@@ -1,6 +1,4 @@
 ﻿using AbarimMUD.Common.Data;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,6 +8,11 @@ namespace AbarimMUD.TbaMUDImporter
 {
 	internal class Program
 	{
+		static void Log(string message)
+		{
+			Console.WriteLine(message);
+		}
+
 		static void Process()
 		{
 			var inputDir = "D:\\Projects\\chaos\\tbamud\\lib";
@@ -51,7 +54,7 @@ namespace AbarimMUD.TbaMUDImporter
 
 					// First line is the zone id precedeed by '%'
 					line = line.Substring(1);
-					var id = int.Parse(line);
+					var vnum = int.Parse(line);
 
 					line = reader.ReadLine();
 					var builder = line.Substring(0, line.Length - 1).Trim();
@@ -60,24 +63,35 @@ namespace AbarimMUD.TbaMUDImporter
 					var name = line.Substring(0, line.Length - 1).Trim();
 					using (var db = new DataContext())
 					{
-						var zone = (from z in db.Zones where z.Id == id select z).FirstOrDefault();
+						var created = false;
+						var zone = (from z in db.Zones where z.VNum == vnum select z).FirstOrDefault();
+
 						if (zone == null)
 						{
-							zone = new Zone
-							{
-								Id = id
-							};
-
+							zone = new Zone();
 							db.Zones.Add(zone);
+							created = true;
 						}
 
+						zone.VNum = vnum;
 						zone.Builder = builder;
 						zone.Name = name;
 
+
 						db.SaveChanges();
+
+						if (created)
+						{
+							Log($"Created zone {vnum}, {builder}, {name}");
+						} else
+						{
+							Log($"Updated zone {vnum}, {builder}, {name}");
+						}
 					}
 				}
 			}
+
+			Log("Success");
 		}
 
 		static void Main(string[] args)
@@ -85,6 +99,7 @@ namespace AbarimMUD.TbaMUDImporter
 			try
 			{
 				Process();
+				Console.ReadKey();
 			}
 			catch (Exception ex)
 			{
