@@ -3,9 +3,11 @@ using System.Configuration;
 
 namespace AbarimMUD.Common.Data
 {
-	public class DataContext: DbContext
+	public class DataContext : DbContext
 	{
 		public DbSet<Zone> Zones => Set<Zone>();
+		public DbSet<Room> Rooms => Set<Room>();
+		public DbSet<RoomDirection> RoomsDirections => Set<RoomDirection>();
 
 		public DataContext()
 		{
