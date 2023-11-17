@@ -1,4 +1,6 @@
-﻿namespace AbarimMUD.Common.Data
+﻿using System.Collections.Generic;
+
+namespace AbarimMUD.Common.Data
 {
 	public enum ResetMode
 	{
@@ -23,5 +25,6 @@
 		public long Flags2 { get; set; }
 		public long Flags3 { get; set; }
 		public long Flags4 { get; set; }
+		public ICollection<Room> Rooms { get; }
 	}
 }

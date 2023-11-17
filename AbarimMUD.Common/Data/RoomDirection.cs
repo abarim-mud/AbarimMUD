@@ -30,7 +30,7 @@ namespace AbarimMUD.Common.Data
 		public int Id { get; set; }
 		public int SourceRoomId { get; set; }
 		public Room SourceRoom { get; set; }
-		public int TargetRoomId { get; set; }
+		public int? TargetRoomId { get; set; }
 		public Room TargetRoom { get; set; }
 		public DirectionType DirectionType { get; set; }
 		public string GeneralDescription { get; set; }

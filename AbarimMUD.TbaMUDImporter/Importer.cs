@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace AbarimMUD.TbaMUDImporter
 {
@@ -11,7 +13,6 @@ namespace AbarimMUD.TbaMUDImporter
 	{
 		private const string InputDir = "D:\\Projects\\chaos\\tbamud\\lib";
 
-		private DataContext _db;
 		private string[] _indexFiles;
 		private readonly List<RoomDirection> _tempDirections = new List<RoomDirection>();
 
@@ -53,30 +54,39 @@ namespace AbarimMUD.TbaMUDImporter
 			return result.ToArray();
 		}
 
-		private void ProcessType(string typeName, string folderName, Action<StreamReader> processor)
+		private void ProcessType(string typeName, string folderName, Action<DataContext, StreamReader> processor)
 		{
 			Log($"Processing {typeName}...");
 
 			string indexFile;
 			var files = EnumerateFilesFromIndex(folderName, out indexFile);
 			var folder = Path.GetDirectoryName(indexFile);
+
+			var tasks = new List<Action>();
 			foreach (var file in files)
 			{
-				using (_db = new DataContext())
+				var task = () =>
 				{
-					var filePath = Path.Combine(folder, file);
-					Log($"Processing {filePath}...");
-
-					using (var stream = File.OpenRead(filePath))
-					using (var reader = new StreamReader(stream))
+					using (var db = new DataContext())
 					{
-						processor(reader);
+						var filePath = Path.Combine(folder, file);
+						Log($"Processing {filePath}...");
+
+						using (var stream = File.OpenRead(filePath))
+						using (var reader = new StreamReader(stream))
+						{
+							processor(db, reader);
+						}
 					}
-				}
+				};
+
+				tasks.Add(task);
 			}
+
+			Parallel.Invoke(tasks.ToArray());
 		}
 
-		private void ProcessZone(StreamReader reader)
+		private void ProcessZone(DataContext db, StreamReader reader)
 		{
 			var line = reader.ReadLine();
 			var vnum = line.ParseVnum();
@@ -116,7 +126,7 @@ namespace AbarimMUD.TbaMUDImporter
 			}
 
 			var created = false;
-			var zone = (from z in _db.Zones where z.VNum == vnum select z).FirstOrDefault();
+			var zone = (from z in db.Zones where z.VNum == vnum select z).FirstOrDefault();
 
 			if (zone == null)
 			{
@@ -124,7 +134,7 @@ namespace AbarimMUD.TbaMUDImporter
 				{
 					VNum = vnum
 				};
-				_db.Zones.Add(zone);
+				db.Zones.Add(zone);
 				created = true;
 			}
 
@@ -141,7 +151,7 @@ namespace AbarimMUD.TbaMUDImporter
 			zone.MinimumLevel = minimumLevel;
 			zone.MaximumLevel = maximumLevel;
 
-			_db.SaveChanges();
+			db.SaveChanges();
 
 			if (created)
 			{
@@ -153,7 +163,7 @@ namespace AbarimMUD.TbaMUDImporter
 			}
 		}
 
-		private void ProcessRoom(StreamReader reader)
+		private void ProcessRoom(DataContext db, StreamReader reader)
 		{
 			while (!reader.EndOfStream)
 			{
@@ -166,7 +176,7 @@ namespace AbarimMUD.TbaMUDImporter
 				var vnum = line.ParseVnum();
 
 				// Find room zone
-				var zone = (from z in _db.Zones where z.StartRoomVNum <= vnum && vnum <= z.MaximumRooms select z).FirstOrDefault();
+				var zone = (from z in db.Zones where z.StartRoomVNum <= vnum && vnum <= z.MaximumRooms select z).FirstOrDefault();
 				if (zone == null)
 				{
 					throw new Exception($"Could not find zone for the room with vnum {vnum}");
@@ -190,7 +200,8 @@ namespace AbarimMUD.TbaMUDImporter
 				}
 
 				var created = false;
-				var room = (from r in _db.Rooms where r.VNum == vnum select r).FirstOrDefault();
+				var room = (from r in db.Rooms where r.VNum == vnum select r)
+					.FirstOrDefault();
 
 				if (room == null)
 				{
@@ -199,10 +210,12 @@ namespace AbarimMUD.TbaMUDImporter
 						VNum = vnum,
 					};
 
-					_db.Rooms.Add(room);
+					db.Rooms.Add(room);
 					created = true;
 				}
 
+				room.Zone = zone;
+				room.ZoneId = zone.Id;
 				room.Name = name;
 				room.Description = desc;
 				room.Flags1 = flags1;
@@ -221,17 +234,13 @@ namespace AbarimMUD.TbaMUDImporter
 				}
 
 				// Delete room directions
-				if (room.InputDirections.Count > 0)
+				if (!created)
 				{
-					_db.RoomsDirections.RemoveRange(room.InputDirections);
+					db.Database.ExecuteSqlRaw("DELETE FROM RoomsDirections WHERE SourceRoomId={0}", room.Id);
+					db.Database.ExecuteSqlRaw("DELETE FROM RoomsDirections WHERE TargetRoomId={0}", room.Id);
 				}
 
-				if (room.OutputDirections.Count > 0)
-				{
-					_db.RoomsDirections.RemoveRange(room.OutputDirections);
-				}
-
-				_db.SaveChanges();
+				db.SaveChanges();
 
 				while (!reader.EndOfStream)
 				{
@@ -286,10 +295,7 @@ namespace AbarimMUD.TbaMUDImporter
 								roomDirection.ToRoom = val;
 							}
 
-							if (roomDirection.ToRoom != null)
-							{
-								_tempDirections.Add(roomDirection);
-							}
+							_tempDirections.Add(roomDirection);
 							break;
 
 						case 'E':
@@ -314,7 +320,7 @@ namespace AbarimMUD.TbaMUDImporter
 					}
 				}
 			finishRoom:
-				_db.SaveChanges();
+				db.SaveChanges();
 			}
 		}
 
@@ -327,16 +333,29 @@ namespace AbarimMUD.TbaMUDImporter
 
 			// Process directions
 			Log("Updating directions");
-			using (_db = new DataContext())
+			var tasks = new List<Action>();
+			foreach (var dir in _tempDirections)
 			{
-				foreach (var dir in _tempDirections)
+				var task = () =>
 				{
-					dir.TargetRoomId = (from r in _db.Rooms where r.VNum == dir.ToRoom select r).First().Id;
-					_db.RoomsDirections.Add(dir);
-				}
+					using (var db = new DataContext())
+					{
+						if (dir.ToRoom != null)
+						{
+							dir.TargetRoomId = (from r in db.Rooms where r.VNum == dir.ToRoom.Value select r).First().Id;
+						} else
+						{
+							dir.TargetRoomId = null;
+						}
+						db.RoomsDirections.Add(dir);
+						db.SaveChanges();
+					}
+				};
 
-				_db.SaveChanges();
+				tasks.Add(task);
 			}
+
+			Parallel.Invoke(tasks.ToArray());
 
 			Log("Success");
 		}

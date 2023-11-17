@@ -27,14 +27,14 @@ namespace AbarimMUD.Common.Data
 
 			modelBuilder.Entity<Room>()
 				.HasMany(r => r.InputDirections)
-				.WithOne(rd => rd.SourceRoom)
-				.HasForeignKey(rd => rd.SourceRoomId)
-				.IsRequired();
+				.WithOne(rd => rd.TargetRoom)
+				.HasForeignKey(rd => rd.TargetRoomId)
+				.IsRequired(false);
 
 			modelBuilder.Entity<Room>()
 				.HasMany(r => r.OutputDirections)
-				.WithOne(rd => rd.TargetRoom)
-				.HasForeignKey(rd => rd.TargetRoomId)
+				.WithOne(rd => rd.SourceRoom)
+				.HasForeignKey(rd => rd.SourceRoomId)
 				.IsRequired();
 		}
 	}
