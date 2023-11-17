@@ -13,6 +13,7 @@ namespace AbarimMUD.TbaMUDImporter
 
 		private DataContext _db;
 		private string[] _indexFiles;
+		private readonly List<RoomDirection> _tempDirections = new List<RoomDirection>();
 
 		private static void Log(string message)
 		{
@@ -61,13 +62,16 @@ namespace AbarimMUD.TbaMUDImporter
 			var folder = Path.GetDirectoryName(indexFile);
 			foreach (var file in files)
 			{
-				var filePath = Path.Combine(folder, file);
-				Log($"Processing {filePath}...");
-
-				using (var stream = File.OpenRead(filePath))
-				using (var reader = new StreamReader(stream))
+				using (_db = new DataContext())
 				{
-					processor(reader);
+					var filePath = Path.Combine(folder, file);
+					Log($"Processing {filePath}...");
+
+					using (var stream = File.OpenRead(filePath))
+					using (var reader = new StreamReader(stream))
+					{
+						processor(reader);
+					}
 				}
 			}
 		}
@@ -207,8 +211,6 @@ namespace AbarimMUD.TbaMUDImporter
 				room.Flags4 = flags4;
 				room.SectorType = sectorType;
 
-				_db.SaveChanges();
-
 				if (created)
 				{
 					Log($"Created room {vnum}, {name}");
@@ -219,8 +221,16 @@ namespace AbarimMUD.TbaMUDImporter
 				}
 
 				// Delete room directions
-				var roomsDirections = (from rd in _db.RoomsDirections where rd.RoomId == room.Id select rd);
-				_db.RoomsDirections.RemoveRange(roomsDirections);
+				if (room.InputDirections.Count > 0)
+				{
+					_db.RoomsDirections.RemoveRange(room.InputDirections);
+				}
+
+				if (room.OutputDirections.Count > 0)
+				{
+					_db.RoomsDirections.RemoveRange(room.OutputDirections);
+				}
+
 				_db.SaveChanges();
 
 				while (!reader.EndOfStream)
@@ -230,9 +240,11 @@ namespace AbarimMUD.TbaMUDImporter
 					switch (line[0])
 					{
 						case 'D':
+
 							var roomDirection = new RoomDirection
 							{
-								RoomId = room.Id,
+								SourceRoomId = room.Id,
+								DirectionType = (DirectionType)int.Parse(line[1].ToString()),
 								GeneralDescription = reader.ReadDikuString(),
 								Keyword = reader.ReadDikuString()
 							};
@@ -242,7 +254,7 @@ namespace AbarimMUD.TbaMUDImporter
 
 							var flags = RoomDirectionFlags.None;
 							var val = int.Parse(parts[0]);
-							switch(val)
+							switch (val)
 							{
 								case 1:
 									flags = RoomDirectionFlags.IsDoor;
@@ -274,7 +286,10 @@ namespace AbarimMUD.TbaMUDImporter
 								roomDirection.ToRoom = val;
 							}
 
-							_db.RoomsDirections.Add(roomDirection);
+							if (roomDirection.ToRoom != null)
+							{
+								_tempDirections.Add(roomDirection);
+							}
 							break;
 
 						case 'E':
@@ -283,24 +298,23 @@ namespace AbarimMUD.TbaMUDImporter
 							break;
 
 						case 'S':
-							if (!reader.EndOfStream)
+							// Process triggers
+							while (!reader.EndOfStream)
 							{
 								var c = (char)reader.Peek();
-								if (c == 'T')
+								if (c != 'T')
 								{
-									// TODO: Triggers
-									line = reader.ReadLine();
-									var k = 5;
+									break;
 								}
+
+								line = reader.ReadLine();
 							}
 
 							goto finishRoom;
 					}
 				}
-finishRoom:
+			finishRoom:
 				_db.SaveChanges();
-
-
 			}
 		}
 
@@ -308,10 +322,20 @@ finishRoom:
 		{
 			LoadIndexFiles();
 
+			ProcessType("Zones", "zon", ProcessZone);
+			ProcessType("Rooms", "wld", ProcessRoom);
+
+			// Process directions
+			Log("Updating directions");
 			using (_db = new DataContext())
 			{
-				ProcessType("Zones", "zon", ProcessZone);
-				ProcessType("Rooms", "wld", ProcessRoom);
+				foreach (var dir in _tempDirections)
+				{
+					dir.TargetRoomId = (from r in _db.Rooms where r.VNum == dir.ToRoom select r).First().Id;
+					_db.RoomsDirections.Add(dir);
+				}
+
+				_db.SaveChanges();
 			}
 
 			Log("Success");

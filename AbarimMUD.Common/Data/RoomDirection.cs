@@ -11,10 +11,28 @@ namespace AbarimMUD.Common.Data
 		Hidden = 1 << 2,
 	}
 
+	public enum DirectionType
+	{
+		North,
+		East,
+		South,
+		West,
+		Up,
+		Down,
+		NorthWest,
+		NorthEast,
+		SouthEast,
+		SouthWest
+	}
+
 	public class RoomDirection
 	{
 		public int Id { get; set; }
-		public int RoomId { get; set; }
+		public int SourceRoomId { get; set; }
+		public Room SourceRoom { get; set; }
+		public int TargetRoomId { get; set; }
+		public Room TargetRoom { get; set; }
+		public DirectionType DirectionType { get; set; }
 		public string GeneralDescription { get; set; }
 		public string Keyword { get; set; }
 		public RoomDirectionFlags Flags { get; set; }

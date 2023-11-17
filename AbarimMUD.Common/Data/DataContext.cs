@@ -20,5 +20,22 @@ namespace AbarimMUD.Common.Data
 			var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 			optionsBuilder.UseSqlite(connectionString);
 		}
+
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
+		{
+			base.OnModelCreating(modelBuilder);
+
+			modelBuilder.Entity<Room>()
+				.HasMany(r => r.InputDirections)
+				.WithOne(rd => rd.SourceRoom)
+				.HasForeignKey(rd => rd.SourceRoomId)
+				.IsRequired();
+
+			modelBuilder.Entity<Room>()
+				.HasMany(r => r.OutputDirections)
+				.WithOne(rd => rd.TargetRoom)
+				.HasForeignKey(rd => rd.TargetRoomId)
+				.IsRequired();
+		}
 	}
 }

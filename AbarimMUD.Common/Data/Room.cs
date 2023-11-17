@@ -1,4 +1,6 @@
-﻿namespace AbarimMUD.Common.Data
+﻿using System.Collections.Generic;
+
+namespace AbarimMUD.Common.Data
 {
 	public class Room
 	{
@@ -14,5 +16,7 @@
 		public int SectorType { get; set; }
 		public string NDKeyword { get; set; }
 		public string NDDescription { get; set; }
+		public ICollection<RoomDirection> OutputDirections { get; } = new List<RoomDirection>();
+		public ICollection<RoomDirection> InputDirections { get; } = new List<RoomDirection>();
 	}
 }
