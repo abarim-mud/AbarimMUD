@@ -14,7 +14,7 @@ namespace AbarimMUD.Common.Data
 		public string Builder { get; set; }
 		public string Name { get; set; }
 		public int StartRoomVNum { get; set; }
-		public int MaximumRooms { get; set; }
+		public int EndRoomVNum { get; set; }
 		public int ResetInMinutes { get; set; }
 		public ResetMode ResetMode { get; set; }
 		public int? MinimumLevel { get; set; }

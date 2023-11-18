@@ -410,4 +410,19 @@
 		Wands,
 		Recall
 	}
+
+	public enum SectorType
+	{
+		Inside,
+		City,
+		Field,
+		Forest,
+		Hills,
+		Mountain,
+		WaterSwim,
+		WaterNoSwim,
+		Unused,
+		Air,
+		Desert
+	}
 }

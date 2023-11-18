@@ -81,39 +81,6 @@ namespace AbarimMUD.ImportAre
 			return stream.ReadLine();
 		}
 
-		public static int LoadFlags(string str)
-		{
-			int result = 0;
-			var isNum = true;
-			for (var i = 0; i < str.Length; i++)
-			{
-				var c = str[i];
-
-				if (char.IsLower(c))
-				{
-					int value = c - 'a';
-					result |= (int)1 << value;
-				}
-				else if (char.IsUpper(c))
-				{
-					int value = c - 'A' + 26;
-					result |= (int)1 << value;
-				}
-
-				if (!char.IsDigit(c) && (c != '-' || i > 0))
-				{
-					isNum = false;
-				}
-			}
-
-			if (isNum)
-			{
-				result = int.Parse(str);
-			}
-
-			return result;
-		}
-
 		public static int ReadFlag(this Stream stream)
 		{
 			int result = 0;

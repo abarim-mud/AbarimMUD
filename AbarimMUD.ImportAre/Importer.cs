@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace AbarimMUD.ImportAre
 {
@@ -24,7 +25,7 @@ namespace AbarimMUD.ImportAre
 			area.Builder = stream.ReadDikuString();
 
 			area.StartRoomVNum = stream.ReadNumber();
-			area.MaximumRooms = stream.ReadNumber();
+			area.EndRoomVNum = stream.ReadNumber();
 
 			db.Areas.Add(area);
 			db.SaveChanges();
@@ -278,244 +279,109 @@ namespace AbarimMUD.ImportAre
 			}
 		}
 
-
-		/*		private void ProcessArea(DataContext db, Stream stream)
+		private void ProcessRooms(DataContext db, Stream stream, Area area)
+		{
+			while (!stream.EndOfStream())
+			{
+				var vnum = int.Parse(stream.ReadId());
+				if (vnum == 0)
 				{
-					var line = reader.ReadLine();
-					var vnum = line.ParseVnum();
+					break;
+				}
 
-					line = reader.ReadLine();
-					var builder = line.RemoveTilda().Trim();
+				var name = stream.ReadDikuString();
+				Log($"Processing room {name}...");
 
-					line = reader.ReadLine();
-					var name = line.RemoveTilda().Trim();
+				var room = new Room
+				{
+					AreaId = area.Id,
+					VNum = vnum,
+					Name = name,
+					Description = stream.ReadDikuString(),
+				};
 
-					line = reader.ReadLine();
-					var parts = line.Split(" ");
+				stream.ReadNumber(); // Area Number
 
-					int startRoomVnum = int.Parse(parts[0]);
-					int maximumRooms = int.Parse(parts[1]);
-					int resetInMinutes = int.Parse(parts[2]);
-					var resetMode = (ResetMode)int.Parse(parts[3]);
-					int flags1 = 0;
-					int flags2 = 0;
-					int flags3 = 0;
-					int flags4 = 0;
-					int? minimumLevel = null;
-					int? maximumLevel = null;
-					if (parts.Length == 10)
+				room.Flags = stream.ReadFlag();
+				room.SectorType = stream.ReadEnumFromWord<SectorType>();
+
+				// Save room to set its id
+				db.Rooms.Add(room);
+				db.SaveChanges();
+
+				while (!stream.EndOfStream())
+				{
+					var c = stream.ReadSpacedLetter();
+
+					if (c == 'S')
 					{
-						// New TbaMUD
-						flags1 = Utility.LoadFlags(parts[4]);
-						flags2 = Utility.LoadFlags(parts[5]);
-						flags3 = Utility.LoadFlags(parts[6]);
-						flags4 = Utility.LoadFlags(parts[7]);
-
-						minimumLevel = int.Parse(parts[8]);
-						maximumLevel = int.Parse(parts[9]);
+						break;
 					}
-					else if (parts.Length == 4)
+					else if (c == 'H')
 					{
+						room.HealRate = stream.ReadNumber();
 					}
-
-					var created = false;
-					var zone = (from z in db.Areas where z.VNum == vnum select z).FirstOrDefault();
-
-					if (zone == null)
+					else if (c == 'M')
 					{
-						zone = new Area
+						room.ManaRate = stream.ReadNumber();
+					}
+					else if (c == 'C')
+					{
+						string clan = stream.ReadDikuString();
+					}
+					else if (c == 'D')
+					{
+						var roomDirection = new RoomDirection
 						{
-							VNum = vnum
+							AreaId = area.Id,
+							SourceRoomId = room.Id,
+							DirectionType = (DirectionType)stream.ReadNumber(),
+							Description = stream.ReadDikuString(),
+							Keyword = stream.ReadDikuString(),
 						};
-						db.Areas.Add(zone);
-						created = true;
+
+						var locks = stream.ReadNumber();
+						switch (locks)
+						{
+							case 1:
+								roomDirection.Flags = RoomDirectionFlags.IsDoor;
+								break;
+							case 2:
+								roomDirection.Flags = RoomDirectionFlags.IsDoor | RoomDirectionFlags.PickProof;
+								break;
+							case 3:
+								roomDirection.Flags = RoomDirectionFlags.IsDoor | RoomDirectionFlags.NoPass;
+								break;
+							case 4:
+								roomDirection.Flags = RoomDirectionFlags.IsDoor | RoomDirectionFlags.PickProof | RoomDirectionFlags.NoPass;
+								break;
+							default:
+								break;
+						}
+
+						roomDirection.Key = stream.ReadNumber();
+						roomDirection.TargetRoomVNum = stream.ReadNumber();
+
+						_tempDirections.Add(roomDirection);
 					}
-
-					zone.Builder = builder;
-					zone.Name = name;
-					zone.StartRoomVNum = startRoomVnum;
-					zone.MaximumRooms = maximumRooms;
-					zone.ResetInMinutes = resetInMinutes;
-					zone.ResetMode = resetMode;
-					zone.Flags1 = flags1;
-					zone.Flags2 = flags2;
-					zone.Flags3 = flags3;
-					zone.Flags4 = flags4;
-					zone.MinimumLevel = minimumLevel;
-					zone.MaximumLevel = maximumLevel;
-
-					db.SaveChanges();
-
-					if (created)
+					else if (c == 'E')
 					{
-						Log($"Created zone {vnum}, {builder}, {name}");
+						room.ExtraKeyword = stream.ReadDikuString();
+						room.ExtraDescription = stream.ReadDikuString();
+					}
+					else if (c == 'O')
+					{
+						room.Owner = stream.ReadDikuString();
 					}
 					else
 					{
-						Log($"Updated zone {vnum}, {builder}, {name}");
+						throw new Exception($"Unknown room command '{c}'");
 					}
 				}
 
-				private void ProcessRoom(DataContext db, Stream stream)
-				{
-					while (!reader.EndOfStream)
-					{
-						var line = reader.ReadLine();
-						if (line.Trim() == "$~")
-						{
-							return;
-						}
-
-						var vnum = line.ParseVnum();
-
-						// Find room zone
-						var zone = (from z in db.Areas where z.StartRoomVNum <= vnum && vnum <= z.MaximumRooms select z).FirstOrDefault();
-						if (zone == null)
-						{
-							throw new Exception($"Could not find zone for the room with vnum {vnum}");
-						}
-
-						var name = reader.ReadDikuString();
-						var desc = reader.ReadDikuString();
-
-						line = reader.ReadLine();
-						var parts = line.Split(" ");
-
-						var flags1 = int.Parse(parts[1]);
-						var flags2 = int.Parse(parts[2]);
-						var flags3 = int.Parse(parts[3]);
-						var flags4 = int.Parse(parts[4]);
-						var sectorType = int.Parse(parts[5]);
-
-						if (sectorType > 10)
-						{
-							sectorType = 0;
-						}
-
-						var created = false;
-						var room = (from r in db.Rooms where r.VNum == vnum select r)
-							.FirstOrDefault();
-
-						if (room == null)
-						{
-							room = new Room
-							{
-								VNum = vnum,
-							};
-
-							db.Rooms.Add(room);
-							created = true;
-						}
-
-						room.Area = zone;
-						room.AreaId = zone.Id;
-						room.Name = name;
-						room.Description = desc;
-						room.Flags1 = flags1;
-						room.Flags2 = flags2;
-						room.Flags3 = flags3;
-						room.Flags4 = flags4;
-						room.SectorType = sectorType;
-
-						if (created)
-						{
-							Log($"Created room {vnum}, {name}");
-						}
-						else
-						{
-							Log($"Updated room {vnum}, {name}");
-						}
-
-						// Delete room directions
-						if (!created)
-						{
-							db.Database.ExecuteSqlRaw("DELETE FROM RoomsDirections WHERE SourceRoomId={0}", room.Id);
-							db.Database.ExecuteSqlRaw("DELETE FROM RoomsDirections WHERE TargetRoomId={0}", room.Id);
-						}
-
-						db.SaveChanges();
-
-						while (!reader.EndOfStream)
-						{
-							line = reader.ReadLine();
-
-							switch (line[0])
-							{
-								case 'D':
-
-									var roomDirection = new RoomDirection
-									{
-										SourceRoomId = room.Id,
-										DirectionType = (DirectionType)int.Parse(line[1].ToString()),
-										GeneralDescription = reader.ReadDikuString(),
-										Keyword = reader.ReadDikuString()
-									};
-
-									line = reader.ReadLine();
-									parts = line.Split(' ');
-
-									var flags = RoomDirectionFlags.None;
-									var val = int.Parse(parts[0]);
-									switch (val)
-									{
-										case 1:
-											flags = RoomDirectionFlags.IsDoor;
-											break;
-										case 2:
-											flags = RoomDirectionFlags.IsDoor | RoomDirectionFlags.PickProof;
-											break;
-										case 3:
-											flags = RoomDirectionFlags.IsDoor | RoomDirectionFlags.Hidden;
-											break;
-										case 4:
-											flags = RoomDirectionFlags.IsDoor | RoomDirectionFlags.PickProof | RoomDirectionFlags.Hidden;
-											break;
-										default:
-											break;
-									}
-
-									roomDirection.Flags = flags;
-
-									val = int.Parse(parts[1]);
-									if (val != -1 && val != 65535)
-									{
-										roomDirection.Key = val;
-									}
-
-									val = int.Parse(parts[2]);
-									if (val != -1 && val != 0)
-									{
-										roomDirection.ToRoom = val;
-									}
-
-									_tempDirections.Add(roomDirection);
-									break;
-
-								case 'E':
-									room.NDKeyword = reader.ReadDikuString();
-									room.NDDescription = reader.ReadDikuString();
-									break;
-
-								case 'S':
-									// Process triggers
-									while (!reader.EndOfStream)
-									{
-										var c = (char)reader.Peek();
-										if (c != 'T')
-										{
-											break;
-										}
-
-										line = reader.ReadLine();
-									}
-
-									goto finishRoom;
-							}
-						}
-					finishRoom:
-						db.SaveChanges();
-					}
-				}*/
+				db.SaveChanges();
+			}
+		}
 
 		private void ProcessFile(string areaFile)
 		{
@@ -540,6 +406,9 @@ namespace AbarimMUD.ImportAre
 							case "OBJECTS":
 								ProcessObjects(db, stream, zone);
 								break;
+							case "ROOMS":
+								ProcessRooms(db, stream, zone);
+								break;
 							default:
 								goto finish;
 								break;
@@ -550,7 +419,6 @@ namespace AbarimMUD.ImportAre
 				}
 			}
 		}
-
 
 		public void Process()
 		{
@@ -563,47 +431,29 @@ namespace AbarimMUD.ImportAre
 				db.Database.EnsureCreated();
 			}
 
-			var tasks = new List<Action>();
 			foreach (var areaFile in areaFiles)
 			{
-				var task = () => ProcessFile(areaFile);
-				tasks.Add(task);
+				ProcessFile(areaFile);
 			}
 
-			// Parallel.Invoke(tasks.ToArray());
-			foreach (var task in tasks)
+			// Process directions
+			Log("Updating directions");
+			foreach (var dir in _tempDirections)
 			{
-				task();
+				using (var db = new DataContext())
+				{
+					if (dir.TargetRoomVNum != -1)
+					{
+						dir.TargetRoomId = (from r in db.Rooms where r.VNum == dir.TargetRoomVNum select r).First().Id;
+					}
+					else
+					{
+						dir.TargetRoomId = null;
+					}
+					db.RoomsDirections.Add(dir);
+					db.SaveChanges();
+				}
 			}
-
-			/*			ProcessType("Areas", "zon", ProcessArea);
-						ProcessType("Rooms", "wld", ProcessRoom);
-
-						// Process directions
-						Log("Updating directions");
-						var tasks = new List<Action>();
-						foreach (var dir in _tempDirections)
-						{
-							var task = () =>
-							{
-								using (var db = new DataContext())
-								{
-									if (dir.ToRoom != null)
-									{
-										dir.TargetRoomId = (from r in db.Rooms where r.VNum == dir.ToRoom.Value select r).First().Id;
-									} else
-									{
-										dir.TargetRoomId = null;
-									}
-									db.RoomsDirections.Add(dir);
-									db.SaveChanges();
-								}
-							};
-
-							tasks.Add(task);
-						}
-
-						Parallel.Invoke(tasks.ToArray());*/
 
 			Log("Success");
 		}

@@ -8,7 +8,7 @@ namespace AbarimMUD.Common.Data
 		None = 0,
 		IsDoor = 1 << 0,
 		PickProof = 1 << 1,
-		Hidden = 1 << 2,
+		NoPass = 1 << 2,
 	}
 
 	public enum DirectionType
@@ -19,10 +19,6 @@ namespace AbarimMUD.Common.Data
 		West,
 		Up,
 		Down,
-		NorthWest,
-		NorthEast,
-		SouthEast,
-		SouthWest
 	}
 
 	public class RoomDirection: Entity
@@ -34,10 +30,10 @@ namespace AbarimMUD.Common.Data
 		public int? TargetRoomId { get; set; }
 		public Room TargetRoom { get; set; }
 		public DirectionType DirectionType { get; set; }
-		public string GeneralDescription { get; set; }
+		public string Description { get; set; }
 		public string Keyword { get; set; }
 		public RoomDirectionFlags Flags { get; set; }
-		public int? Key { get; set; }
-		public int? ToRoom { get; set; }
+		public int Key { get; set; }
+		public int TargetRoomVNum { get; set; }
 	}
 }

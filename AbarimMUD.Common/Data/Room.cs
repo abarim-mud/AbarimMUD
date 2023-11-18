@@ -6,13 +6,13 @@ namespace AbarimMUD.Common.Data
 	{
 		public string Name { get; set; }
 		public string Description { get; set; }
-		public int Flags1 { get; set; }
-		public int Flags2 { get; set; }
-		public int Flags3 { get; set; }
-		public int Flags4 { get; set; }
-		public int SectorType { get; set; }
-		public string NDKeyword { get; set; }
-		public string NDDescription { get; set; }
+		public int Flags { get; set; }
+		public SectorType SectorType { get; set; }
+		public int HealRate { get; set; }
+		public int ManaRate { get; set; }
+		public string ExtraKeyword { get; set; }
+		public string ExtraDescription { get; set; }
+		public string Owner { get; set; }
 		public ICollection<RoomDirection> OutputDirections { get; } = new List<RoomDirection>();
 		public ICollection<RoomDirection> InputDirections { get; } = new List<RoomDirection>();
 	}
