@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AbarimMUD.TbaMUDImporter
+namespace AbarimMUD.ImportAre
 {
 	internal static class Program
 	{
