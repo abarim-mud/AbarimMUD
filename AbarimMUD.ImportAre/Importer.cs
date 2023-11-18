@@ -130,7 +130,7 @@ namespace AbarimMUD.ImportAre
 					Name = name,
 					ShortDescription = stream.ReadDikuString(),
 					Description = stream.ReadDikuString(),
-					Material = stream.ReadEnumFromDikuString<Material>(),
+					Material = stream.ReadEnumFromDikuStringWithDef<Material>(Material.Generic),
 					ItemType = stream.ReadEnumFromWord<ItemType>(),
 					ExtraFlags = stream.ReadFlag(),
 					WearFlags = stream.ReadFlag(),
@@ -170,36 +170,36 @@ namespace AbarimMUD.ImportAre
 						obj.Value1 = stream.ReadNumber();
 						obj.Value2 = stream.ReadNumber();
 						obj.Value3 = stream.ReadNumber();
-						obj.Value4 = (int)stream.ReadSkill();
+						obj.Value4 = (int)stream.ReadEnumFromWordWithDef(Skill.Reserved);
 						obj.Value5 = stream.ReadNumber();
 						break;
 					case ItemType.Staff:
 						obj.Value1 = stream.ReadNumber();
 						obj.Value2 = stream.ReadNumber();
 						obj.Value3 = stream.ReadNumber();
-						obj.Value4 = (int)stream.ReadSkill();
+						obj.Value4 = (int)stream.ReadEnumFromWordWithDef(Skill.Reserved);
 						obj.Value5 = stream.ReadNumber();
 						break;
 					case ItemType.Potion:
 						obj.Value1 = stream.ReadNumber();
-						obj.Value2 = (int)stream.ReadSkill();
-						obj.Value3 = (int)stream.ReadSkill();
-						obj.Value4 = (int)stream.ReadSkill();
-						obj.Value5 = (int)stream.ReadSkill();
+						obj.Value2 = (int)stream.ReadEnumFromWordWithDef(Skill.Reserved);
+						obj.Value3 = (int)stream.ReadEnumFromWordWithDef(Skill.Reserved);
+						obj.Value4 = (int)stream.ReadEnumFromWordWithDef(Skill.Reserved);
+						obj.Value5 = (int)stream.ReadEnumFromWordWithDef(Skill.Reserved);
 						break;
 					case ItemType.Pill:
 						obj.Value1 = stream.ReadNumber();
-						obj.Value2 = (int)stream.ReadSkill();
-						obj.Value3 = (int)stream.ReadSkill();
-						obj.Value4 = (int)stream.ReadSkill();
-						obj.Value5 = (int)stream.ReadSkill();
+						obj.Value2 = (int)stream.ReadEnumFromWordWithDef(Skill.Reserved);
+						obj.Value3 = (int)stream.ReadEnumFromWordWithDef(Skill.Reserved);
+						obj.Value4 = (int)stream.ReadEnumFromWordWithDef(Skill.Reserved);
+						obj.Value5 = (int)stream.ReadEnumFromWordWithDef(Skill.Reserved);
 						break;
 					case ItemType.Scroll:
 						obj.Value1 = stream.ReadNumber();
-						obj.Value2 = (int)stream.ReadSkill();
-						obj.Value3 = (int)stream.ReadSkill();
-						obj.Value4 = (int)stream.ReadSkill();
-						obj.Value5 = (int)stream.ReadSkill();
+						obj.Value2 = (int)stream.ReadEnumFromWordWithDef(Skill.Reserved);
+						obj.Value3 = (int)stream.ReadEnumFromWordWithDef(Skill.Reserved);
+						obj.Value4 = (int)stream.ReadEnumFromWordWithDef(Skill.Reserved);
+						obj.Value5 = (int)stream.ReadEnumFromWordWithDef(Skill.Reserved);
 						break;
 					default:
 						obj.Value1 = stream.ReadFlag();

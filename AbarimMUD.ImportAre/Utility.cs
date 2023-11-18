@@ -329,21 +329,34 @@ namespace AbarimMUD.ImportAre
 			return str.ToEnum<T>();
 		}
 
+		public static T ReadEnumFromDikuStringWithDef<T>(this Stream stream, T def)
+		{
+			var str = stream.ReadDikuString();
+
+			if (string.IsNullOrEmpty(str))
+			{
+				return def;
+			}
+
+			return str.ToEnum<T>();
+		}
+
 		public static T ReadEnumFromWord<T>(this Stream stream)
 		{
 			var word = stream.ReadWord();
 			return word.ToEnum<T>();
 		}
 
-		public static Skill ReadSkill(this Stream stream)
+		public static T ReadEnumFromWordWithDef<T>(this Stream stream, T def)
 		{
 			var word = stream.ReadWord();
+
 			if (string.IsNullOrEmpty(word))
 			{
-				return Skill.Reserved;
+				return def;
 			}
 
-			return word.ToEnum<Skill>();
+			return word.ToEnum<T>();
 		}
 	}
 }
