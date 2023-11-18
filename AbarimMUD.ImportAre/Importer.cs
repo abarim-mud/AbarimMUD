@@ -359,8 +359,17 @@ namespace AbarimMUD.ImportAre
 								break;
 						}
 
-						roomDirection.Key = stream.ReadNumber();
-						roomDirection.TargetRoomVNum = stream.ReadNumber();
+						var keyVNum = stream.ReadNumber();
+						if (roomDirection.Flags != RoomDirectionFlags.None && keyVNum != -1)
+						{
+							roomDirection.KeyObjectVNum = keyVNum;
+						}
+
+						var targetVnum = stream.ReadNumber();
+						if (targetVnum != -1)
+						{
+							roomDirection.TargetRoomVNum = targetVnum;
+						}
 
 						_tempDirections.Add(roomDirection);
 					}
@@ -442,14 +451,20 @@ namespace AbarimMUD.ImportAre
 			{
 				using (var db = new DataContext())
 				{
-					if (dir.TargetRoomVNum != -1)
+					if (dir.TargetRoomVNum != null)
 					{
-						dir.TargetRoomId = (from r in db.Rooms where r.VNum == dir.TargetRoomVNum select r).First().Id;
+						dir.TargetRoomId = (from r in db.Rooms where r.VNum == dir.TargetRoomVNum.Value select r).First().Id;
 					}
-					else
+
+					if (dir.KeyObjectVNum != null)
 					{
-						dir.TargetRoomId = null;
+						var keyObj = (from o in db.Objects where o.VNum == dir.KeyObjectVNum.Value select o).FirstOrDefault();
+						if (keyObj != null)
+						{
+							dir.KeyObjectId = keyObj.Id;
+						}
 					}
+
 					db.RoomsDirections.Add(dir);
 					db.SaveChanges();
 				}

@@ -33,7 +33,9 @@ namespace AbarimMUD.Common.Data
 		public string Description { get; set; }
 		public string Keyword { get; set; }
 		public RoomDirectionFlags Flags { get; set; }
-		public int Key { get; set; }
-		public int TargetRoomVNum { get; set; }
+		public int? KeyObjectId { get; set; }
+		public GameObject KeyObject { get; set; }
+		public int? KeyObjectVNum { get; set; }
+		public int? TargetRoomVNum { get; set; }
 	}
 }

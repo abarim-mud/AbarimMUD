@@ -44,6 +44,12 @@ namespace AbarimMUD.Common.Data
 				.WithMany()
 				.HasForeignKey(e => e.AreaId)
 				.IsRequired();
+
+			modelBuilder.Entity<RoomDirection>()
+				.HasOne(e => e.KeyObject)
+				.WithMany()
+				.HasForeignKey(e => e.KeyObjectId)
+				.IsRequired(false);
 		}
 	}
 }
