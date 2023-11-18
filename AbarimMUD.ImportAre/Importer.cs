@@ -43,7 +43,7 @@ namespace AbarimMUD.ImportAre
 					break;
 				}
 
-				var name = stream.ReadDikuString();
+				var name = stream.ReadDikuString().Replace("oldstyle ", "");
 				Log($"Processing mobile {name}...");
 
 				var mobile = new Mobile
