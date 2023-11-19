@@ -642,6 +642,43 @@ namespace AbarimMUD.ImportAre
 			}
 		}
 
+		private void ProcessSpecials(DataContext db, Stream stream, Area area)
+		{
+			while (!stream.EndOfStream())
+			{
+				var c = stream.ReadSpacedLetter();
+				switch (c)
+				{
+					case 'S':
+						return;
+
+					case '*':
+						break;
+
+					case 'M':
+						var mobVnum = stream.ReadNumber();
+						var mobile = (from m in db.Mobiles where m.VNum == mobVnum select m).FirstOrDefault();
+						if (mobile == null)
+						{
+							throw new Exception($"Could not find mobile with vnum {mobVnum}");
+						}
+
+						var special = new MobileSpecialAttack
+						{
+							MobileId = mobile.Id,
+							AttackType = stream.ReadWord()
+						};
+
+						db.MobileSpecialAttacks.Add(special);
+						db.SaveChanges();
+
+						break;
+				}
+
+				stream.ReadLine();
+			}
+		}
+
 		private void ProcessFile(string areaFile)
 		{
 			Log($"Processing {areaFile}...");
@@ -687,8 +724,13 @@ namespace AbarimMUD.ImportAre
 							case "SHOPS":
 								ProcessShops(db, stream, area);
 								break;
-							default:
+							case "SPECIALS":
+								ProcessSpecials(db, stream, area);
+								break;
+							case "$":
 								goto finish;
+							default:
+								stream.RaiseError($"Sections {type} aren't supported.");
 								break;
 						}
 					}

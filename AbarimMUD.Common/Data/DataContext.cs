@@ -13,6 +13,7 @@ namespace AbarimMUD.Common.Data
 		public DbSet<GameObjectEffect> ObjectsEffect => Set<GameObjectEffect>();
 		public DbSet<AreaReset> AreaResets => Set<AreaReset>();
 		public DbSet<Shop> Shops => Set<Shop>();
+		public DbSet<MobileSpecialAttack> MobileSpecialAttacks => Set<MobileSpecialAttack>();
 
 		public DataContext()
 		{

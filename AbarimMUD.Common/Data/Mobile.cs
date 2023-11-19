@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace AbarimMUD.Common.Data
 {
@@ -311,5 +312,6 @@ namespace AbarimMUD.Common.Data
 		public MobileSize Size { get; set; }
 		public Material Material { get; set; }
 		public Shop Shop { get; set; }
+		public ICollection<MobileSpecialAttack> SpecialAttacks { get; }
 	}
 }
