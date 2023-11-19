@@ -10,6 +10,7 @@ namespace AbarimMUD.Common.Data
 		public DbSet<RoomDirection> RoomsDirections => Set<RoomDirection>();
 		public DbSet<Mobile> Mobiles => Set<Mobile>();
 		public DbSet<GameObject> Objects => Set<GameObject>();
+		public DbSet<GameObjectEffect> ObjectsEffect => Set<GameObjectEffect>();
 
 		public DataContext()
 		{
@@ -37,12 +38,6 @@ namespace AbarimMUD.Common.Data
 				.HasMany(r => r.OutputDirections)
 				.WithOne(rd => rd.SourceRoom)
 				.HasForeignKey(rd => rd.SourceRoomId)
-				.IsRequired();
-
-			modelBuilder.Entity<RoomDirection>()
-				.HasOne(e => e.Area)
-				.WithMany()
-				.HasForeignKey(e => e.AreaId)
 				.IsRequired();
 
 			modelBuilder.Entity<RoomDirection>()

@@ -1,6 +1,4 @@
-﻿using AbarimMUD.Common.Data;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
 using System.Text;
 
@@ -8,6 +6,40 @@ namespace AbarimMUD.ImportAre
 {
 	internal static class Utility
 	{
+		public static void RaiseError(this Stream stream, string message)
+		{
+			var line = 0;
+			var linePos = 0;
+
+			var lastPos = stream.Position;
+
+			// Calculate the line and line pos
+			stream.Seek(0, SeekOrigin.Begin);
+
+			while(stream.Position < lastPos)
+			{
+				var b = stream.ReadByte();
+
+				++linePos;
+
+				if (b == '\n')
+				{
+					++line;
+					linePos = 0;
+				}
+			}
+
+			var fileName = string.Empty;
+			var asFileStream = stream as FileStream;
+			if (asFileStream != null)
+			{
+				fileName = asFileStream.Name;
+				throw new Exception($"File: {fileName}, Line: {line}, LinePos: {linePos}, Error: {message}");
+			}
+
+			throw new Exception($"Line: {line}, LinePos: {linePos}, Error: {message}");
+		}
+
 		public static string RemoveTilda(this string str) => str.Replace("~", "");
 
 		public static int ParseVnum(this string str) => int.Parse(str.Substring(1));
@@ -75,7 +107,7 @@ namespace AbarimMUD.ImportAre
 			var c = stream.ReadSpacedLetter();
 			if (c != '#')
 			{
-				throw new Exception("# not found");
+				stream.RaiseError("# not found");
 			}
 
 			return stream.ReadLine();
@@ -163,7 +195,7 @@ namespace AbarimMUD.ImportAre
 
 			if (!char.IsDigit(c))
 			{
-				throw new Exception($"Could not parse number {c}");
+				stream.RaiseError($"Could not parse number {c}");
 			}
 
 			var sb = new StringBuilder();
@@ -197,18 +229,16 @@ namespace AbarimMUD.ImportAre
 		{
 			var result = new StringBuilder();
 
+			var c = stream.ReadSpacedLetter();
 			while (!stream.EndOfStream())
 			{
-				var c = stream.ReadLetter();
-
 				if (c == '~')
 				{
-					// Skip new line
-					stream.ReadLine();
 					break;
 				}
 
 				result.Append(c);
+				c = stream.ReadLetter();
 			}
 
 			return result.ToString();
@@ -219,7 +249,7 @@ namespace AbarimMUD.ImportAre
 			var c = stream.ReadLetter();
 			if (c != expected)
 			{
-				throw new Exception($"Expected symbol '{expected}'");
+				stream.RaiseError($"Expected symbol '{expected}'");
 			}
 
 			return c;
@@ -274,7 +304,7 @@ namespace AbarimMUD.ImportAre
 			return sb.ToString();
 		}
 
-		public static T ToEnum<T>(this string value)
+		public static T ToEnum<T>(this Stream stream, string value)
 		{
 			value = value.Replace("_", "").Replace(" ", "");
 
@@ -285,15 +315,16 @@ namespace AbarimMUD.ImportAre
 			}
 			catch(Exception)
 			{
-				Importer.Log($"Enum parse error: enum type={typeof(T).Name}, value={value}");
-				throw;
+				stream.RaiseError($"Enum parse error: enum type={typeof(T).Name}, value={value}");
 			}
+
+			return default(T);
 		}
 
 		public static T ReadEnumFromDikuString<T>(this Stream stream)
 		{
 			var str = stream.ReadDikuString();
-			return str.ToEnum<T>();
+			return stream.ToEnum<T>(str);
 		}
 
 		public static T ReadEnumFromDikuStringWithDef<T>(this Stream stream, T def)
@@ -305,13 +336,13 @@ namespace AbarimMUD.ImportAre
 				return def;
 			}
 
-			return str.ToEnum<T>();
+			return stream.ToEnum<T>(str);
 		}
 
 		public static T ReadEnumFromWord<T>(this Stream stream)
 		{
 			var word = stream.ReadWord();
-			return word.ToEnum<T>();
+			return stream.ToEnum<T>(word);
 		}
 
 		public static T ReadEnumFromWordWithDef<T>(this Stream stream, T def)
@@ -323,7 +354,7 @@ namespace AbarimMUD.ImportAre
 				return def;
 			}
 
-			return word.ToEnum<T>();
+			return stream.ToEnum<T>(word);
 		}
 	}
 }

@@ -23,8 +23,6 @@ namespace AbarimMUD.Common.Data
 
 	public class RoomDirection: Entity
 	{
-		public int AreaId { get; set; }
-		public Area Area { get; set; }
 		public int SourceRoomId { get; set; }
 		public Room SourceRoom { get; set; }
 		public int? TargetRoomId { get; set; }

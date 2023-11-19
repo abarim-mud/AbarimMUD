@@ -9,10 +9,12 @@ namespace AbarimMUD.Common.Data
 		ResetAlways
 	}
 
-	public class Area: Entity
+	public class Area : Entity
 	{
-		public string Builder { get; set; }
 		public string Name { get; set; }
+		public string Credits { get; set; }
+		public string Builders { get; set; }
+		public int Security { get; set; } = 9;
 		public int StartRoomVNum { get; set; }
 		public int EndRoomVNum { get; set; }
 		public int ResetInMinutes { get; set; }

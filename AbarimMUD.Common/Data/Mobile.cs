@@ -7,8 +7,8 @@
 		public string LongDescription { get; set; }
 		public string Description { get; set; }
 		public Race Race { get; set; }
-		public int Flags { get; set; }
-		public int AffectedBy { get; set; }
+		public MobileFlags MobileFlags { get; set; }
+		public AffectedByFlags AffectedByFlags { get; set; }
 		public int Alignment { get; set; }
 		public int Group { get; set; }
 		public int Level { get; set; }
@@ -21,16 +21,16 @@
 		public int AcBash { get; set; }
 		public int AcSlash { get; set; }
 		public int AcExotic { get; set; }
-		public int OffenseFlags { get; set; }
-		public int ImmuneFlags { get; set; }
-		public int ResistanceFlags { get; set; }
-		public int VulnerableFlags { get; set; }
+		public MobileOffensiveFlags OffenseFlags { get; set; }
+		public ResistanceFlags ImmuneFlags { get; set; }
+		public ResistanceFlags ResistanceFlags { get; set; }
+		public ResistanceFlags VulnerableFlags { get; set; }
 		public MobilePosition StartPosition { get; set; }
 		public MobilePosition DefaultPosition { get; set; }
 		public Sex Sex { get; set; }
 		public int Wealth { get; set; }
-		public int FormsFlags { get; set; }
-		public int PartsFlags { get; set; }
+		public FormFlags FormsFlags { get; set; }
+		public PartFlags PartsFlags { get; set; }
 		public MobileSize Size { get; set; }
 		public Material Material { get; set; }
 	}

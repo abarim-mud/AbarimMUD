@@ -10,7 +10,6 @@ namespace AbarimMUD.ImportAre
 			{
 				var importer = new Importer();
 				importer.Process();
-				Console.ReadKey();
 			}
 			catch (Exception ex)
 			{

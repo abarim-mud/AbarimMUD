@@ -22,7 +22,7 @@ namespace AbarimMUD.ImportAre
 		{
 			var fileName = stream.ReadDikuString();
 			area.Name = stream.ReadDikuString();
-			area.Builder = stream.ReadDikuString();
+			area.Credits = stream.ReadDikuString();
 
 			area.StartRoomVNum = stream.ReadNumber();
 			area.EndRoomVNum = stream.ReadNumber();
@@ -31,7 +31,49 @@ namespace AbarimMUD.ImportAre
 			db.SaveChanges();
 
 			Log($"Created area {area.Name}");
+		}
 
+		private void ProcessAreaData(DataContext db, Stream stream, Area area)
+		{
+			while(true)
+			{
+				var word = stream.EndOfStream() ? "End" : stream.ReadWord();
+
+				switch (char.ToUpper(word[0]))
+				{
+					case 'C':
+						area.Credits = stream.ReadDikuString();
+						break;
+					case 'N':
+						area.Name = stream.ReadDikuString();
+						break;
+					case 'S':
+						area.Security = stream.ReadNumber();
+						break;
+					case 'V':
+						if (word == "VNUMs")
+						{
+							area.StartRoomVNum = stream.ReadNumber();
+							area.EndRoomVNum = stream.ReadNumber();
+						}
+						break;
+					case 'E':
+						if (word == "End")
+						{
+							goto finish;
+						}
+						break;
+					case 'B':
+						area.Builders = stream.ReadDikuString();
+						break;
+				}
+			}
+
+		finish:;
+			db.Areas.Add(area);
+			db.SaveChanges();
+
+			Log($"Created area {area.Name}");
 		}
 
 		private void ProcessMobiles(DataContext db, Stream stream, Area area)
@@ -56,8 +98,8 @@ namespace AbarimMUD.ImportAre
 					LongDescription = stream.ReadDikuString(),
 					Description = stream.ReadDikuString(),
 					Race = stream.ReadEnumFromDikuString<Race>(),
-					Flags = stream.ReadFlag(),
-					AffectedBy = stream.ReadFlag(),
+					MobileFlags = (MobileFlags)stream.ReadFlag(),
+					AffectedByFlags = (AffectedByFlags)stream.ReadFlag(),
 					Alignment = stream.ReadNumber(),
 					Group = stream.ReadNumber(),
 					Level = stream.ReadNumber(),
@@ -70,19 +112,31 @@ namespace AbarimMUD.ImportAre
 					AcBash = stream.ReadNumber(),
 					AcSlash = stream.ReadNumber(),
 					AcExotic = stream.ReadNumber(),
-					OffenseFlags = stream.ReadFlag(),
-					ImmuneFlags = stream.ReadFlag(),
-					ResistanceFlags = stream.ReadFlag(),
-					VulnerableFlags = stream.ReadFlag(),
+					OffenseFlags = (MobileOffensiveFlags)stream.ReadFlag(),
+					ImmuneFlags = (ResistanceFlags)stream.ReadFlag(),
+					ResistanceFlags = (ResistanceFlags)stream.ReadFlag(),
+					VulnerableFlags = (ResistanceFlags)stream.ReadFlag(),
 					StartPosition = stream.ReadEnumFromWord<MobilePosition>(),
 					DefaultPosition = stream.ReadEnumFromWord<MobilePosition>(),
 					Sex = stream.ReadEnumFromWord<Sex>(),
 					Wealth = stream.ReadNumber(),
-					FormsFlags = stream.ReadFlag(),
-					PartsFlags = stream.ReadFlag(),
+					FormsFlags = (FormFlags)stream.ReadFlag(),
+					PartsFlags = (PartFlags)stream.ReadFlag(),
 					Size = stream.ReadEnumFromWord<MobileSize>(),
 					Material = stream.ReadEnumFromWord<Material>(),
 				};
+
+				var raceInfo = mobile.Race.GetRaceInfo();
+
+				mobile.MobileFlags |= raceInfo.MobileFlags;
+				mobile.AffectedByFlags |= raceInfo.AffectedByFlags;
+				mobile.OffenseFlags |= raceInfo.OffensiveFlags;
+				mobile.ImmuneFlags |= raceInfo.ImmuneFlags;
+				mobile.ResistanceFlags |= raceInfo.ResistanceFlags;
+				mobile.VulnerableFlags |= raceInfo.VulnerableFlags;
+				mobile.FormsFlags |= raceInfo.FormFlags;
+				mobile.PartsFlags |= raceInfo.PartFlags;
+
 
 				while (!stream.EndOfStream())
 				{
@@ -92,12 +146,45 @@ namespace AbarimMUD.ImportAre
 					{
 						var word = stream.ReadWord();
 						var vector = stream.ReadFlag();
+
+						switch(word.Substring(0, 3).ToLower())
+						{
+							case "act":
+								mobile.MobileFlags &= (MobileFlags)(~vector);
+								break;
+							case "aff":
+								mobile.AffectedByFlags &= (AffectedByFlags)(~vector);
+								break;
+							case "off":
+								mobile.OffenseFlags &= (MobileOffensiveFlags)(~vector);
+								break;
+							case "imm":
+								mobile.ImmuneFlags &= (ResistanceFlags)(~vector);
+								break;
+							case "res":
+								mobile.ResistanceFlags &= (ResistanceFlags)(~vector);
+								break;
+							case "vul":
+								mobile.VulnerableFlags &= (ResistanceFlags)(~vector);
+								break;
+							case "for":
+								mobile.FormsFlags &= (FormFlags)(~vector);
+								break;
+							case "par":
+								mobile.PartsFlags &= (PartFlags)(~vector);
+								break;
+							default:
+								stream.RaiseError($"Unknown flag {word}");
+								break;
+						}
 					}
 					else if (c == 'M')
 					{
 						var word = stream.ReadWord();
 						var mnum = stream.ReadNumber();
 						var trig = stream.ReadDikuString();
+
+						Log("Warning: mob triggers are ignored.");
 					}
 					else
 					{
@@ -131,10 +218,10 @@ namespace AbarimMUD.ImportAre
 					Name = name,
 					ShortDescription = stream.ReadDikuString(),
 					Description = stream.ReadDikuString(),
-					Material = stream.ReadEnumFromDikuStringWithDef<Material>(Material.Generic),
+					Material = stream.ReadEnumFromDikuStringWithDef(Material.Generic),
 					ItemType = stream.ReadEnumFromWord<ItemType>(),
-					ExtraFlags = stream.ReadFlag(),
-					WearFlags = stream.ReadFlag(),
+					ExtraFlags = (ItemExtraFlags)stream.ReadFlag(),
+					WearFlags = (ItemWearFlags)stream.ReadFlag(),
 				};
 
 				switch (obj.ItemType)
@@ -245,27 +332,36 @@ namespace AbarimMUD.ImportAre
 						break;
 				}
 
+				db.Objects.Add(obj);
+				db.SaveChanges();
+
 				while (!stream.EndOfStream())
 				{
 					var c = stream.ReadSpacedLetter();
 
 					if (c == 'A')
 					{
-						var location = stream.ReadNumber();
-						var modifier = stream.ReadNumber();
+						var effect = new GameObjectEffect
+						{
+							GameObjectId = obj.Id,
+							EffectType = (EffectType)stream.ReadNumber(),
+							Modifier = stream.ReadNumber()
+						};
+
+						db.ObjectsEffect.Add(effect);
 					}
 					else if (c == 'F')
 					{
 						c = stream.ReadSpacedLetter();
-						var location = stream.ReadNumber();
+						var location = (EffectType)stream.ReadNumber();
 						var modifier = stream.ReadNumber();
 
 						var bits = stream.ReadFlag();
 					}
 					else if (c == 'E')
 					{
-						var keyword = stream.ReadDikuString();
-						var description = stream.ReadDikuString();
+						obj.ExtraKeyword = stream.ReadDikuString();
+						obj.ExtraDescription = stream.ReadDikuString();
 					}
 					else
 					{
@@ -274,7 +370,6 @@ namespace AbarimMUD.ImportAre
 					}
 				}
 
-				db.Objects.Add(obj);
 				db.SaveChanges();
 			}
 		}
@@ -333,7 +428,6 @@ namespace AbarimMUD.ImportAre
 					{
 						var roomDirection = new RoomDirection
 						{
-							AreaId = area.Id,
 							SourceRoomId = room.Id,
 							DirectionType = (DirectionType)stream.ReadNumber(),
 							Description = stream.ReadDikuString(),
@@ -408,6 +502,10 @@ namespace AbarimMUD.ImportAre
 							case "AREA":
 								zone = new Area();
 								ProcessArea(db, stream, zone);
+								break;
+							case "AREADATA":
+								zone = new Area();
+								ProcessAreaData(db, stream, zone);
 								break;
 							case "MOBILES":
 								ProcessMobiles(db, stream, zone);
