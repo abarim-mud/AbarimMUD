@@ -344,6 +344,7 @@ namespace AbarimMUD.ImportAre
 						var effect = new GameObjectEffect
 						{
 							GameObjectId = obj.Id,
+							EffectBitType = EffectBitType.Object,
 							EffectType = (EffectType)stream.ReadNumber(),
 							Modifier = stream.ReadNumber()
 						};
@@ -352,11 +353,36 @@ namespace AbarimMUD.ImportAre
 					}
 					else if (c == 'F')
 					{
+						var effect = new GameObjectEffect
+						{
+							GameObjectId = obj.Id
+						};
+						
 						c = stream.ReadSpacedLetter();
-						var location = (EffectType)stream.ReadNumber();
-						var modifier = stream.ReadNumber();
+						switch(c)
+						{
+							case 'A':
+								effect.EffectBitType = EffectBitType.None;
+								break;
+							case 'I':
+								effect.EffectBitType = EffectBitType.Immunity;
+								break;
+							case 'R':
+								effect.EffectBitType = EffectBitType.Resistance;
+								break;
+							case 'V':
+								effect.EffectBitType = EffectBitType.Vulnerability;
+								break;
+							default:
+								stream.RaiseError($"Unable to parse effect bit '{c}'");
+								break;
+						}
 
-						var bits = stream.ReadFlag();
+						effect.EffectType = (EffectType)stream.ReadNumber();
+						effect.Modifier = stream.ReadNumber();
+						effect.Bits = (AffectedByFlags)stream.ReadFlag();
+
+						db.ObjectsEffect.Add(effect);
 					}
 					else if (c == 'E')
 					{

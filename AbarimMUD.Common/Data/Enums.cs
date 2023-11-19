@@ -381,6 +381,16 @@ namespace AbarimMUD.Common.Data
 		Sound
 	}
 
+	public enum EffectBitType
+	{
+		None,
+		Object,
+		Immunity,
+		Resistance,
+		Vulnerability,
+		Weapon
+	}
+
 	public enum EffectType
 	{
 		None = 0,
