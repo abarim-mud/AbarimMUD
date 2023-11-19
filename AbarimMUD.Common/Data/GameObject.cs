@@ -359,6 +359,7 @@ namespace AbarimMUD.Common.Data
 
 	public class GameObject : AreaEntity
 	{
+		public int? VNum { get; set; }
 		public string Name { get; set; }
 		public string ShortDescription { get; set; }
 		public string Description { get; set; }

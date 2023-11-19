@@ -602,6 +602,46 @@ namespace AbarimMUD.ImportAre
 			}
 		}
 
+		private void ProcessShops(DataContext db, Stream stream, Area area)
+		{
+			while (!stream.EndOfStream())
+			{
+				var keeperVnum = stream.ReadNumber();
+				if (keeperVnum == 0)
+				{
+					break;
+				}
+
+				var keeper = (from m in db.Mobiles where m.VNum == keeperVnum select m).FirstOrDefault();
+				if (keeper == null)
+				{
+					stream.RaiseError($"Could not find shop keeper with vnum {keeperVnum}");
+				}
+
+				var shop = new Shop
+				{
+					AreaId = area.Id,
+					MobileId = keeper.Id,
+					BuyType1 = stream.ReadNumber(),
+					BuyType2 = stream.ReadNumber(),
+					BuyType3 = stream.ReadNumber(),
+					BuyType4 = stream.ReadNumber(),
+					BuyType5 = stream.ReadNumber(),
+					ProfitBuy = stream.ReadNumber(),
+					ProfitSell = stream.ReadNumber(),
+					OpenHour = stream.ReadNumber(),
+					CloseHour = stream.ReadNumber(),
+				};
+
+				stream.ReadLine();
+
+				db.Shops.Add(shop);
+				db.SaveChanges();
+
+				Log($"Added shop for mobile {keeper.Name}");
+			}
+		}
+
 		private void ProcessFile(string areaFile)
 		{
 			Log($"Processing {areaFile}...");
@@ -643,6 +683,9 @@ namespace AbarimMUD.ImportAre
 								break;
 							case "RESETS":
 								ProcessResets(db, stream, area);
+								break;
+							case "SHOPS":
+								ProcessShops(db, stream, area);
 								break;
 							default:
 								goto finish;

@@ -29,5 +29,6 @@ namespace AbarimMUD.Common.Data
 		public ICollection<Mobile> Mobiles { get; }
 		public ICollection<GameObject> Objects { get; }
 		public ICollection<AreaReset> Resets { get; }
+		public ICollection<Shop> Shops { get; }
 	}
 }

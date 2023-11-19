@@ -12,6 +12,7 @@ namespace AbarimMUD.Common.Data
 		public DbSet<GameObject> Objects => Set<GameObject>();
 		public DbSet<GameObjectEffect> ObjectsEffect => Set<GameObjectEffect>();
 		public DbSet<AreaReset> AreaResets => Set<AreaReset>();
+		public DbSet<Shop> Shops => Set<Shop>();
 
 		public DataContext()
 		{

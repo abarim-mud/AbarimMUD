@@ -19,6 +19,7 @@ namespace AbarimMUD.Common.Data
 
 	public class Room: AreaEntity
 	{
+		public int? VNum { get; set; }
 		public string Name { get; set; }
 		public string Description { get; set; }
 		public int Flags { get; set; }
