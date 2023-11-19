@@ -14,6 +14,8 @@ namespace AbarimMUD.Common.Data
 		public DbSet<AreaReset> AreaResets => Set<AreaReset>();
 		public DbSet<Shop> Shops => Set<Shop>();
 		public DbSet<MobileSpecialAttack> MobileSpecialAttacks => Set<MobileSpecialAttack>();
+		public DbSet<HelpData> Helps => Set<HelpData>();
+		public DbSet<Social> Socials => Set<Social>();
 
 		public DataContext()
 		{

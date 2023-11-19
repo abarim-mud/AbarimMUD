@@ -602,7 +602,7 @@ namespace AbarimMUD.ImportAre
 			}
 		}
 
-		private void ProcessShops(DataContext db, Stream stream, Area area)
+		private void ProcessShops(DataContext db, Stream stream)
 		{
 			while (!stream.EndOfStream())
 			{
@@ -620,7 +620,6 @@ namespace AbarimMUD.ImportAre
 
 				var shop = new Shop
 				{
-					AreaId = area.Id,
 					MobileId = keeper.Id,
 					BuyType1 = stream.ReadNumber(),
 					BuyType2 = stream.ReadNumber(),
@@ -642,7 +641,7 @@ namespace AbarimMUD.ImportAre
 			}
 		}
 
-		private void ProcessSpecials(DataContext db, Stream stream, Area area)
+		private void ProcessSpecials(DataContext db, Stream stream)
 		{
 			while (!stream.EndOfStream())
 			{
@@ -676,6 +675,112 @@ namespace AbarimMUD.ImportAre
 				}
 
 				stream.ReadLine();
+			}
+		}
+
+		private void ProcessHelps(DataContext db, Stream stream)
+		{
+			while (!stream.EndOfStream())
+			{
+				var level = stream.ReadNumber();
+				var keyword = stream.ReadDikuString();
+
+				if (keyword[0] == '$')
+				{
+					break;
+				}
+
+				var helpData = new HelpData
+				{
+					Level = level,
+					Keyword = keyword,
+					Text = stream.ReadDikuString()
+				};
+
+				db.Helps.Add(helpData);
+				db.SaveChanges();
+			}
+		}
+
+		private void ProcessSocials(DataContext db, Stream stream)
+		{
+			while (!stream.EndOfStream())
+			{
+				var temp = stream.ReadWord();
+				if (temp == "#0")
+				{
+					return;
+				}
+
+				var social = new Social
+				{
+					Name = temp,
+				};
+
+				Log($"Processing social {temp}...");
+
+				do
+				{
+					string s = string.Empty;
+					if (!stream.ReadSocialString(ref s))
+					{
+						break;
+					}
+					social.CharNoArg = s;
+
+					s = string.Empty;
+					if (!stream.ReadSocialString(ref s))
+					{
+						break;
+					}
+					social.OthersNoArg = s;
+
+					s = string.Empty;
+					if (!stream.ReadSocialString(ref s))
+					{
+						break;
+					}
+					social.CharFound = s;
+
+					s = string.Empty;
+					if (!stream.ReadSocialString(ref s))
+					{
+						break;
+					}
+					social.OthersFound = s;
+
+					s = string.Empty;
+					if (!stream.ReadSocialString(ref s))
+					{
+						break;
+					}
+					social.VictFound = s;
+
+					s = string.Empty;
+					if (!stream.ReadSocialString(ref s))
+					{
+						break;
+					}
+					social.CharNotFound = s;
+
+					s = string.Empty;
+					if (!stream.ReadSocialString(ref s))
+					{
+						break;
+					}
+					social.CharAuto = s;
+
+					s = string.Empty;
+					if (!stream.ReadSocialString(ref s))
+					{
+						break;
+					}
+					social.OthersAuto = s;
+				}
+				while (false);
+
+				db.Socials.Add(social);
+				db.SaveChanges();
 			}
 		}
 
@@ -722,10 +827,16 @@ namespace AbarimMUD.ImportAre
 								ProcessResets(db, stream, area);
 								break;
 							case "SHOPS":
-								ProcessShops(db, stream, area);
+								ProcessShops(db, stream);
 								break;
 							case "SPECIALS":
-								ProcessSpecials(db, stream, area);
+								ProcessSpecials(db, stream);
+								break;
+							case "HELPS":
+								ProcessHelps(db, stream);
+								break;
+							case "SOCIALS":
+								ProcessSocials(db, stream);
 								break;
 							case "$":
 								goto finish;
@@ -753,6 +864,12 @@ namespace AbarimMUD.ImportAre
 
 			foreach (var areaFile in areaFiles)
 			{
+				if (Path.GetFileName(areaFile) == "proto.are")
+				{
+					Log($"Skipping prototype area {areaFile}");
+					continue;
+				}
+
 				ProcessFile(areaFile);
 			}
 

@@ -110,7 +110,7 @@ namespace AbarimMUD.ImportAre
 				stream.RaiseError("# not found");
 			}
 
-			return stream.ReadLine();
+			return stream.ReadLine().Trim();
 		}
 
 		public static int ReadFlag(this Stream stream)
@@ -355,6 +355,25 @@ namespace AbarimMUD.ImportAre
 			}
 
 			return stream.ToEnum<T>(word);
+		}
+
+		public static bool ReadSocialString(this Stream stream, ref string s)
+		{
+			var temp = stream.ReadLine().Trim();
+			if (temp == "$")
+			{
+				s = string.Empty;
+			}
+			else if (temp == "#")
+			{
+				return false;
+			}
+			else
+			{
+				s = temp;
+			}
+
+			return true;
 		}
 	}
 }

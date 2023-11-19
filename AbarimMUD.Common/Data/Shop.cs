@@ -1,6 +1,6 @@
 ﻿namespace AbarimMUD.Common.Data
 {
-	public class Shop: AreaEntity
+	public class Shop: Entity
 	{
 		public int MobileId { get; set; }
 		public Mobile Mobile { get; set; }
