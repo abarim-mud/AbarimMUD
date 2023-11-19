@@ -1,9 +1,71 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System;
 
 namespace AbarimMUD.Common.Data
 {
-	public static class Extensions
+	public enum Race
+	{
+		Unique,
+		Human,
+		Elf,
+		Dwarf,
+		Giant,
+		Pixie,
+		Bat,
+		Bear,
+		Cat,
+		Centipede,
+		Dog,
+		Doll,
+		Dragon,
+		Fido,
+		Fox,
+		Goblin,
+		Hobgoblin,
+		Kobold,
+		Lizard,
+		Modron,
+		Orc,
+		Pig,
+		Rabbit,
+		SchoolMonster,
+		Snake,
+		SongBird,
+		Troll,
+		WaterFowl,
+		Wolf,
+		Wyvern
+	}
+
+	public class RaceInfo
+	{
+		public bool PcRace { get; }
+		public MobileFlags MobileFlags { get; }
+		public AffectedByFlags AffectedByFlags { get; }
+		public MobileOffensiveFlags OffensiveFlags { get; }
+		public ResistanceFlags ImmuneFlags { get; }
+		public ResistanceFlags ResistanceFlags { get; }
+		public ResistanceFlags VulnerableFlags { get; }
+		public FormFlags FormFlags { get; }
+		public PartFlags PartFlags { get; }
+
+		public RaceInfo(bool pcRace, MobileFlags mobileFlags, AffectedByFlags affectedByFlags,
+			MobileOffensiveFlags offensiveFlags, ResistanceFlags immuneFlags, ResistanceFlags resistanceFlags,
+			ResistanceFlags vulnerableFlags, FormFlags formFlags, PartFlags partFlags)
+		{
+			PcRace = pcRace;
+			MobileFlags = mobileFlags;
+			AffectedByFlags = affectedByFlags;
+			OffensiveFlags = offensiveFlags;
+			ImmuneFlags = immuneFlags;
+			ResistanceFlags = resistanceFlags;
+			VulnerableFlags = vulnerableFlags;
+			FormFlags = formFlags;
+			PartFlags = partFlags;
+		}
+	}
+
+	public static class RaceExtensions
 	{
 		private static readonly Dictionary<Race, RaceInfo> _raceData = new Dictionary<Race, RaceInfo>
 		{
@@ -33,11 +95,11 @@ namespace AbarimMUD.Common.Data
 				ResistanceFlags.Negative | ResistanceFlags.Mental | ResistanceFlags.Disease | ResistanceFlags.Drowning,
 				ResistanceFlags.Bash | ResistanceFlags.Light, ResistanceFlags.Slash | ResistanceFlags.Fire |
 				ResistanceFlags.Acid | ResistanceFlags.Lightning | ResistanceFlags.Energy,
-				FormFlags.Other | FormFlags.Construct | FormFlags.Biped | FormFlags.ColdBlood, 
+				FormFlags.Other | FormFlags.Construct | FormFlags.Biped | FormFlags.ColdBlood,
 				PartFlags.PartsHumanoid & ~(PartFlags.PartsAlive | PartFlags.Ear)),
 			[Race.Dragon] = new RaceInfo(false, 0, AffectedByFlags.Infrared | AffectedByFlags.Flying, 0, 0,
 				ResistanceFlags.Fire | ResistanceFlags.Bash | ResistanceFlags.Charm, ResistanceFlags.Pierce | ResistanceFlags.Cold,
-				FormFlags.Edible | FormFlags.Sentinent | FormFlags.Dragon, 
+				FormFlags.Edible | FormFlags.Sentinent | FormFlags.Dragon,
 				PartFlags.PartsLizard | PartFlags.Fingers | PartFlags.Claws | PartFlags.Fangs),
 			[Race.Fido] = new RaceInfo(false, 0, 0, MobileOffensiveFlags.Dodge | MobileOffensiveFlags.AssistRace, 0, 0,
 				ResistanceFlags.Magic, FormFlags.Mammal | FormFlags.Poison, PartFlags.PartsCanine | PartFlags.Tail),
@@ -61,7 +123,7 @@ namespace AbarimMUD.Common.Data
 			[Race.Rabbit] = new RaceInfo(false, 0, 0, MobileOffensiveFlags.Dodge | MobileOffensiveFlags.Fast, 0, 0, 0, FormFlags.Mammal,
 				PartFlags.PartsQuadRuped),
 			[Race.SchoolMonster] = new RaceInfo(false, MobileFlags.NoAlign, 0, 0, ResistanceFlags.Charm | ResistanceFlags.Summon, 0,
-				ResistanceFlags.Magic,  FormFlags.Edible | FormFlags.Biped | FormFlags.Mammal, 
+				ResistanceFlags.Magic, FormFlags.Edible | FormFlags.Biped | FormFlags.Mammal,
 				PartFlags.PartsBiped | PartFlags.Tail | PartFlags.Claws),
 			[Race.Snake] = new RaceInfo(false, 0, 0, 0, 0, ResistanceFlags.Poison, ResistanceFlags.Cold,
 				FormFlags.Edible | FormFlags.Animal | FormFlags.Reptile | FormFlags.Snake | FormFlags.ColdBlood,

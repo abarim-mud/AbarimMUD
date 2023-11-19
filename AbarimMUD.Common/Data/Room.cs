@@ -2,6 +2,21 @@
 
 namespace AbarimMUD.Common.Data
 {
+	public enum SectorType
+	{
+		Inside,
+		City,
+		Field,
+		Forest,
+		Hills,
+		Mountain,
+		WaterSwim,
+		WaterNoSwim,
+		Unused,
+		Air,
+		Desert
+	}
+
 	public class Room: AreaEntity
 	{
 		public string Name { get; set; }
