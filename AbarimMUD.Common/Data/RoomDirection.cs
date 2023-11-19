@@ -6,9 +6,16 @@ namespace AbarimMUD.Common.Data
 	public enum RoomDirectionFlags
 	{
 		None = 0,
-		IsDoor = 1 << 0,
-		PickProof = 1 << 1,
-		NoPass = 1 << 2,
+		Door = 1 << 0,
+		Closed = 1 << 1,
+		Locked = 1 << 2,
+		PickProof = 1 << 5,
+		NoPass = 1 << 6,
+		Easy = 1 << 7,
+		Hard = 1 << 8,
+		Infuriating = 1 << 9,
+		NoClose = 1 << 10,
+		NoLock = 1 << 11,
 	}
 
 	public enum DirectionType

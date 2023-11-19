@@ -1,4 +1,5 @@
 ﻿using AbarimMUD.Common.Data;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -35,7 +36,7 @@ namespace AbarimMUD.ImportAre
 
 		private void ProcessAreaData(DataContext db, Stream stream, Area area)
 		{
-			while(true)
+			while (true)
 			{
 				var word = stream.EndOfStream() ? "End" : stream.ReadWord();
 
@@ -147,7 +148,7 @@ namespace AbarimMUD.ImportAre
 						var word = stream.ReadWord();
 						var vector = stream.ReadFlag();
 
-						switch(word.Substring(0, 3).ToLower())
+						switch (word.Substring(0, 3).ToLower())
 						{
 							case "act":
 								mobile.MobileFlags &= (MobileFlags)(~vector);
@@ -357,9 +358,9 @@ namespace AbarimMUD.ImportAre
 						{
 							GameObjectId = obj.Id
 						};
-						
+
 						c = stream.ReadSpacedLetter();
-						switch(c)
+						switch (c)
 						{
 							case 'A':
 								effect.EffectBitType = EffectBitType.None;
@@ -464,16 +465,16 @@ namespace AbarimMUD.ImportAre
 						switch (locks)
 						{
 							case 1:
-								roomDirection.Flags = RoomDirectionFlags.IsDoor;
+								roomDirection.Flags = RoomDirectionFlags.Door;
 								break;
 							case 2:
-								roomDirection.Flags = RoomDirectionFlags.IsDoor | RoomDirectionFlags.PickProof;
+								roomDirection.Flags = RoomDirectionFlags.Door | RoomDirectionFlags.PickProof;
 								break;
 							case 3:
-								roomDirection.Flags = RoomDirectionFlags.IsDoor | RoomDirectionFlags.NoPass;
+								roomDirection.Flags = RoomDirectionFlags.Door | RoomDirectionFlags.NoPass;
 								break;
 							case 4:
-								roomDirection.Flags = RoomDirectionFlags.IsDoor | RoomDirectionFlags.PickProof | RoomDirectionFlags.NoPass;
+								roomDirection.Flags = RoomDirectionFlags.Door | RoomDirectionFlags.PickProof | RoomDirectionFlags.NoPass;
 								break;
 							default:
 								break;
@@ -512,12 +513,101 @@ namespace AbarimMUD.ImportAre
 			}
 		}
 
+		private void ProcessResets(DataContext db, Stream stream, Area area)
+		{
+			while (!stream.EndOfStream())
+			{
+				var c = stream.ReadSpacedLetter();
+				if (c == 'S')
+				{
+					break;
+				}
+
+				if (c == '*')
+				{
+					stream.ReadLine();
+					continue;
+				}
+
+				var reset = new AreaReset
+				{
+					AreaId = area.Id
+				};
+
+				switch (c)
+				{
+					case 'M':
+						reset.ResetType = AreaResetType.Mobile;
+						reset.Value1 = stream.ReadNumber();
+						reset.Value2 = stream.ReadNumber();
+						reset.Value3 = stream.ReadNumber();
+						reset.Value4 = stream.ReadNumber();
+						reset.Value5 = stream.ReadNumber();
+						break;
+
+					case 'O':
+						reset.ResetType = AreaResetType.GameObject;
+						reset.Value1 = stream.ReadNumber();
+						reset.Value2 = stream.ReadNumber();
+						reset.Value3 = stream.ReadNumber();
+						reset.Value4 = stream.ReadNumber();
+						break;
+
+					case 'P':
+						reset.ResetType = AreaResetType.Put;
+						reset.Value1 = stream.ReadNumber();
+						reset.Value2 = stream.ReadNumber();
+						reset.Value3 = stream.ReadNumber();
+						reset.Value4 = stream.ReadNumber();
+						reset.Value5 = stream.ReadNumber();
+						break;
+
+					case 'G':
+						reset.ResetType = AreaResetType.Give;
+						reset.Value1 = stream.ReadNumber();
+						reset.Value2 = stream.ReadNumber();
+						reset.Value3 = stream.ReadNumber();
+						break;
+
+					case 'E':
+						reset.ResetType = AreaResetType.Equip;
+						reset.Value1 = stream.ReadNumber();
+						reset.Value2 = stream.ReadNumber();
+						reset.Value3 = stream.ReadNumber();
+						reset.Value4 = stream.ReadNumber();
+						break;
+
+					case 'D':
+						reset.ResetType = AreaResetType.Door;
+						reset.Value1 = stream.ReadNumber();
+						reset.Value2 = stream.ReadNumber();
+						reset.Value3 = stream.ReadNumber();
+						reset.Value4 = stream.ReadNumber();
+
+						break;
+
+					case 'R':
+						reset.ResetType = AreaResetType.Randomize;
+						reset.Value1 = stream.ReadNumber();
+						reset.Value2 = stream.ReadNumber();
+						reset.Value3 = stream.ReadNumber();
+
+						break;
+				}
+
+				stream.ReadLine();
+
+				db.AreaResets.Add(reset);
+				db.SaveChanges();
+			}
+		}
+
 		private void ProcessFile(string areaFile)
 		{
 			Log($"Processing {areaFile}...");
 			using (var db = new DataContext())
 			{
-				Area zone = null;
+				Area area = null;
 				using (var stream = File.OpenRead(areaFile))
 				{
 					while (!stream.EndOfStream())
@@ -526,21 +616,33 @@ namespace AbarimMUD.ImportAre
 						switch (type)
 						{
 							case "AREA":
-								zone = new Area();
-								ProcessArea(db, stream, zone);
+								area = new Area();
+								ProcessArea(db, stream, area);
 								break;
 							case "AREADATA":
-								zone = new Area();
-								ProcessAreaData(db, stream, zone);
+								area = new Area();
+								ProcessAreaData(db, stream, area);
 								break;
 							case "MOBILES":
-								ProcessMobiles(db, stream, zone);
+								ProcessMobiles(db, stream, area);
 								break;
 							case "OBJECTS":
-								ProcessObjects(db, stream, zone);
+								ProcessObjects(db, stream, area);
 								break;
 							case "ROOMS":
-								ProcessRooms(db, stream, zone);
+								ProcessRooms(db, stream, area);
+								break;
+							case "MOBOLD":
+								stream.RaiseError("Old mobiles aren't supported");
+								break;
+							case "MOBPROGS":
+								Log("Mob programs aren't supported");
+								break;
+							case "OBJOLD":
+								stream.RaiseError("Old objects aren't supported");
+								break;
+							case "RESETS":
+								ProcessResets(db, stream, area);
 								break;
 							default:
 								goto finish;
@@ -591,6 +693,61 @@ namespace AbarimMUD.ImportAre
 
 					db.RoomsDirections.Add(dir);
 					db.SaveChanges();
+				}
+			}
+
+			Log("Locking doors");
+
+			using (var db = new DataContext())
+			{
+				var areas = (from a in db.Areas select a).Include(a => a.Resets);
+				foreach (var area in areas)
+				{
+					foreach (var reset in area.Resets)
+					{
+						if (reset.ResetType != AreaResetType.Door)
+						{
+							continue;
+						}
+
+						if (reset.Value3 < 0 || reset.Value3 >= 6)
+						{
+							throw new Exception($"Reset {reset.Id}. Room direction with value {reset.Value3} is outside of range.");
+						}
+
+						var dir = (DirectionType)reset.Value3;
+
+						var roomVnum = reset.Value2;
+
+						var room = (from r in db.Rooms where r.VNum == roomVnum select r).Include(r => r.OutputDirections).FirstOrDefault();
+						if (room == null)
+						{
+							throw new Exception($"Reset {reset.Id}. Can't find room with vnum {roomVnum}");
+						}
+
+						var exit = (from e in room.OutputDirections where e.DirectionType == (DirectionType)reset.Value3 select e).FirstOrDefault();
+						if (exit == null || !exit.Flags.HasFlag(RoomDirectionFlags.Door))
+						{
+							throw new Exception($"Reset {reset.Id}. Can't find exit {dir}");
+						}
+
+						switch (reset.Value4)
+						{
+							case 0:
+								break;
+							case 1:
+								exit.Flags |= RoomDirectionFlags.Closed;
+								db.SaveChanges();
+								break;
+							case 2:
+								exit.Flags |= RoomDirectionFlags.Closed | RoomDirectionFlags.Locked;
+								db.SaveChanges();
+								break;
+							default:
+								throw new Exception($"Reset {reset.Id}. Bad locks {reset.Value4}");
+
+						}
+					}
 				}
 			}
 
