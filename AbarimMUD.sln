@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbarimMUD.Common", "AbarimM
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbarimMUD.ImportAre", "AbarimMUD.ImportAre\AbarimMUD.ImportAre.csproj", "{7422ADFB-CD4C-44AE-943D-889A2527C009}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbarimMUD.Engine", "AbarimMUD.Engine\AbarimMUD.Engine.csproj", "{2A35E74E-C77B-44B9-83CE-83F8E12CF9F4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{7422ADFB-CD4C-44AE-943D-889A2527C009}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7422ADFB-CD4C-44AE-943D-889A2527C009}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7422ADFB-CD4C-44AE-943D-889A2527C009}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A35E74E-C77B-44B9-83CE-83F8E12CF9F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A35E74E-C77B-44B9-83CE-83F8E12CF9F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A35E74E-C77B-44B9-83CE-83F8E12CF9F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A35E74E-C77B-44B9-83CE-83F8E12CF9F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

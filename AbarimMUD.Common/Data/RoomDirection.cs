@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AbarimMUD.Common.Data
+namespace AbarimMUD.Data
 {
 	[Flags]
 	public enum RoomDirectionFlags
@@ -28,7 +28,7 @@ namespace AbarimMUD.Common.Data
 		Down,
 	}
 
-	public class RoomDirection: Entity
+	public class RoomDirection : Entity
 	{
 		public int SourceRoomId { get; set; }
 		public Room SourceRoom { get; set; }
@@ -42,5 +42,29 @@ namespace AbarimMUD.Common.Data
 		public GameObject KeyObject { get; set; }
 		public int? KeyObjectVNum { get; set; }
 		public int? TargetRoomVNum { get; set; }
+	}
+
+	public static class RoomDirectionExtensions
+	{
+		public static DirectionType GetOppositeDirection(this DirectionType direction)
+		{
+			switch (direction)
+			{
+				case DirectionType.East:
+					return DirectionType.West;
+				case DirectionType.West:
+					return DirectionType.East;
+				case DirectionType.North:
+					return DirectionType.South;
+				case DirectionType.South:
+					return DirectionType.North;
+				case DirectionType.Up:
+					return DirectionType.Down;
+				default:
+					return DirectionType.Up;
+			}
+		}
+
+		public static string GetName(this DirectionType direction) => direction.ToString().ToLower();
 	}
 }

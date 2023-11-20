@@ -1,4 +1,4 @@
-﻿namespace AbarimMUD.Common.Data
+﻿namespace AbarimMUD.Data
 {
 	public class HelpData: Entity
 	{

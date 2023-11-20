@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AbarimMUD.Common.Data
+namespace AbarimMUD.Data
 {
 	public enum ResetMode
 	{
@@ -25,9 +25,9 @@ namespace AbarimMUD.Common.Data
 		public int Flags2 { get; set; }
 		public int Flags3 { get; set; }
 		public int Flags4 { get; set; }
-		public ICollection<Room> Rooms { get; }
-		public ICollection<Mobile> Mobiles { get; }
-		public ICollection<GameObject> Objects { get; }
-		public ICollection<AreaReset> Resets { get; }
+		public List<Room> Rooms { get; }
+		public List<Mobile> Mobiles { get; }
+		public List<GameObject> Objects { get; }
+		public List<AreaReset> Resets { get; }
 	}
 }

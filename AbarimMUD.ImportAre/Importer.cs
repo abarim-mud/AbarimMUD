@@ -1,4 +1,4 @@
-﻿using AbarimMUD.Common.Data;
+﻿using AbarimMUD.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -901,7 +901,7 @@ namespace AbarimMUD.ImportAre
 
 			using (var db = new DataContext())
 			{
-				var areas = (from a in db.Areas select a).Include(a => a.Resets);
+				var areas = (from a in db.Areas select a).Include(a => a.Resets).ToArray();
 				foreach (var area in areas)
 				{
 					foreach (var reset in area.Resets)
@@ -920,13 +920,13 @@ namespace AbarimMUD.ImportAre
 
 						var roomVnum = reset.Value2;
 
-						var room = (from r in db.Rooms where r.VNum == roomVnum select r).Include(r => r.OutputDirections).FirstOrDefault();
+						var room = (from r in db.Rooms where r.VNum == roomVnum select r).Include(r => r.Exits).FirstOrDefault();
 						if (room == null)
 						{
 							throw new Exception($"Reset {reset.Id}. Can't find room with vnum {roomVnum}");
 						}
 
-						var exit = (from e in room.OutputDirections where e.DirectionType == (DirectionType)reset.Value3 select e).FirstOrDefault();
+						var exit = (from e in room.Exits where e.DirectionType == (DirectionType)reset.Value3 select e).FirstOrDefault();
 						if (exit == null || !exit.Flags.HasFlag(RoomDirectionFlags.Door))
 						{
 							throw new Exception($"Reset {reset.Id}. Can't find exit {dir}");

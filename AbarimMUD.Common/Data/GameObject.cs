@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AbarimMUD.Common.Data
+namespace AbarimMUD.Data
 {
 	public enum ItemType
 	{
@@ -380,6 +380,6 @@ namespace AbarimMUD.Common.Data
 		public string ExtraKeyword { get; set; }
 		public string ExtraDescription { get; set; }
 
-		public ICollection<GameObjectEffect> Effects { get; }
+		public List<GameObjectEffect> Effects { get; }
 	}
 }

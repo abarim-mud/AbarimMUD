@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Configuration;
 
-namespace AbarimMUD.Common.Data
+namespace AbarimMUD.Data
 {
 	public class DataContext : DbContext
 	{
@@ -16,6 +16,9 @@ namespace AbarimMUD.Common.Data
 		public DbSet<MobileSpecialAttack> MobileSpecialAttacks => Set<MobileSpecialAttack>();
 		public DbSet<HelpData> Helps => Set<HelpData>();
 		public DbSet<Social> Socials => Set<Social>();
+		public DbSet<Account> Accounts => Set<Account>();
+		public DbSet<Character> Characters => Set<Character>();
+
 
 		public DataContext()
 		{
@@ -26,7 +29,7 @@ namespace AbarimMUD.Common.Data
 			base.OnConfiguring(optionsBuilder);
 
 			var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-			optionsBuilder.UseSqlite(connectionString);
+			optionsBuilder.UseNpgsql(connectionString);
 		}
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -34,16 +37,16 @@ namespace AbarimMUD.Common.Data
 			base.OnModelCreating(modelBuilder);
 
 			modelBuilder.Entity<Room>()
-				.HasMany(r => r.InputDirections)
-				.WithOne(rd => rd.TargetRoom)
-				.HasForeignKey(rd => rd.TargetRoomId)
-				.IsRequired(false);
-
-			modelBuilder.Entity<Room>()
-				.HasMany(r => r.OutputDirections)
+				.HasMany(r => r.Exits)
 				.WithOne(rd => rd.SourceRoom)
 				.HasForeignKey(rd => rd.SourceRoomId)
 				.IsRequired();
+
+			modelBuilder.Entity<RoomDirection>()
+				.HasOne(rd => rd.TargetRoom)
+				.WithMany()
+				.HasForeignKey(rd => rd.TargetRoomId)
+				.IsRequired(false);
 
 			modelBuilder.Entity<RoomDirection>()
 				.HasOne(e => e.KeyObject)

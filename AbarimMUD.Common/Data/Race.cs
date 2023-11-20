@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System;
 
-namespace AbarimMUD.Common.Data
+namespace AbarimMUD.Data
 {
 	public enum Race
 	{
