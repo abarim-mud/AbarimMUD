@@ -10,8 +10,6 @@ namespace AbarimMUD.ImportAre
 {
 	internal class Importer
 	{
-		private const string InputDir = "D:\\Projects\\chaos\\basedmud\\area";
-
 		private readonly List<RoomDirection> _tempDirections = new List<RoomDirection>();
 
 		public static void Log(string message)
@@ -853,6 +851,7 @@ namespace AbarimMUD.ImportAre
 
 		public void Process()
 		{
+			var InputDir = Path.Combine(Utility.ExecutingAssemblyDirectory, "../../../../SourceContent");
 			var areaFiles = Directory.EnumerateFiles(InputDir, "*.are", SearchOption.AllDirectories).ToArray();
 
 			// Recreate the db

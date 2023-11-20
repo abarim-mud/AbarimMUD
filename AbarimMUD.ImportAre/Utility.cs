@@ -1,11 +1,23 @@
 ﻿using System;
 using System.IO;
+using System.Reflection;
 using System.Text;
 
 namespace AbarimMUD.ImportAre
 {
 	internal static class Utility
 	{
+		public static string ExecutingAssemblyDirectory
+		{
+			get
+			{
+				string codeBase = Assembly.GetExecutingAssembly().Location;
+				UriBuilder uri = new UriBuilder(codeBase);
+				string path = Uri.UnescapeDataString(uri.Path);
+				return Path.GetDirectoryName(path);
+			}
+		}
+
 		public static void RaiseError(this Stream stream, string message)
 		{
 			var line = 0;
@@ -29,11 +41,10 @@ namespace AbarimMUD.ImportAre
 				}
 			}
 
-			var fileName = string.Empty;
 			var asFileStream = stream as FileStream;
 			if (asFileStream != null)
 			{
-				fileName = asFileStream.Name;
+				var fileName = asFileStream.Name;
 				throw new Exception($"File: {fileName}, Line: {line}, LinePos: {linePos}, Error: {message}");
 			}
 
