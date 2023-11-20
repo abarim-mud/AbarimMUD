@@ -421,7 +421,7 @@ namespace AbarimMUD.ImportAre
 
 				stream.ReadNumber(); // Area Number
 
-				room.Flags = stream.ReadFlag();
+				room.Flags = (RoomFlags)stream.ReadFlag();
 				room.SectorType = stream.ReadEnumFromWord<SectorType>();
 
 				// Save room to set its id

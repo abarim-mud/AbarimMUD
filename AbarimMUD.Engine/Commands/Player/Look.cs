@@ -36,7 +36,7 @@ namespace AbarimMUD.Commands.Player
 
 				sd.Append(ConsoleCommand.ForeColorCyan);
 				sd.Append(ConsoleCommand.Underline);
-				sd.Append(exit);
+				sd.Append(exit.DirectionType.GetName());
 
 				if (context.Type >= (Role.AreaBuilder))
 				{

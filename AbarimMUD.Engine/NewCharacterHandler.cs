@@ -58,7 +58,7 @@ namespace AbarimMUD
 		private void SendConfirmPrompt()
 		{
 			Send(string.Format("Please, confirm your new character({0}, {1}, {2}): (y/n)",
-				_character.Id,
+				_character.Name,
 				_character.GameClassName,
 				_character.IsMale ? "male" : "female"));
 		}
@@ -92,14 +92,14 @@ namespace AbarimMUD
 				return;
 			}
 
-			if (DataService.Characters.Find(data) != null)
+			if (Database.Characters.GetByName(data) != null)
 			{
 				SendTextLine("This name is already taken.");
 				SendCharacterNamePrompt();
 				return;
 			}
 
-			_character.Id = data;
+			_character.Name = data;
 
 			_mode = Mode.PrimaryClass;
 			SendChoosePrimaryClassPrompt();
@@ -155,8 +155,8 @@ namespace AbarimMUD
 			if (data == "y")
 			{
 				_character.CurrentRoomId = 0;
-				DataService.Characters.Create(_character);
-				DataService.Accounts.Update(Session.Account);
+				Database.Characters.Create(_character);
+				Database.Accounts.Update(Session.Account);
 				SendTextLine("Character is saved.");
 			}
 

@@ -161,7 +161,7 @@ namespace AbarimMUD
 				return;
 			}
 
-			var acc = DataService.Accounts.Find(name);
+			var acc = Database.Accounts.GetByName(name);
 			if (acc == null)
 			{
 				SendTextLine(string.Format("Account '{0}' is unknown.", name));
@@ -268,10 +268,10 @@ namespace AbarimMUD
 			SendTextLine("Creating new account...");
 			_account = new Account
 			{
-				Id = _newName,
+				Name = _newName,
 				PasswordHash = HashUtils.CalculateMD5Hash(_newPassword)
 			};
-			DataService.Accounts.Create(_account);
+			Database.Accounts.Create(_account);
 			Login();
 		}
 	}

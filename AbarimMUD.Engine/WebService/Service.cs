@@ -92,7 +92,7 @@ namespace AbarimMUD.WebService
 						break;
 					}
 
-					var areas = DataService.Areas.QueryAll();
+					var areas = Database.Areas.QueryAll();
 					if (areas.Length == 0)
 					{
 						result.Result = ResultDescription.CreateFromResultType(ResultType.NoMaps);
@@ -147,7 +147,7 @@ namespace AbarimMUD.WebService
 						break;
 					}
 
-					var area = DataService.Areas.Find(areaId);
+					var area = Database.Areas.GetById(areaId);
 					if (area == null)
 					{
 						result.Result = ResultDescription.CreateAreaNotFound(areaId);
@@ -156,8 +156,7 @@ namespace AbarimMUD.WebService
 
 					result.Result = ResultDescription.CreateFromResultType(ResultType.OK);
 
-					result.Area = new AreaDocument { Area = area };
-					result.Area.Rooms.AddRange(DataService.Rooms.FindAllByAreaId(areaId));
+					result.Area = area;
 				} while (false);
 			}
 			catch (Exception ex)
@@ -180,13 +179,13 @@ namespace AbarimMUD.WebService
 			}
 
 			_logger.Info("Incoming request: {0}", request);
-	
+
 			if (request.Url == null || request.Url.Segments.Length < 1)
 			{
 				_logger.Info("Request.Url is empty");
 				return;
 			}
-			
+
 			var method = request.Url.Segments[request.Url.Segments.Length - 1].ToLower();
 			_logger.Info("method: {0}", method);
 

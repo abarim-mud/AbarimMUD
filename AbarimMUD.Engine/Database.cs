@@ -71,6 +71,17 @@ namespace AbarimMUD
 			.Include(r => r.Mobiles)
 			.Include(r => r.Objects)
 			.Include(r => r.Resets);
+
+		public Area[] QueryAll()
+		{
+			using(var db = new DataContext())
+			{
+				var query = (from a in db.Areas select a);
+				query = UpdateQuery(query);
+
+				return query.ToArray();
+			}
+		}
 	}
 
 	public class RoomsCRUD : BaseCRUD<Room>

@@ -25,7 +25,7 @@ namespace AbarimMUD
 		{
 			get
 			{
-				var remote = (IPEndPoint) _socket.RemoteEndPoint;
+				var remote = (IPEndPoint)_socket.RemoteEndPoint;
 				return string.Format("{0}", remote.Address);
 			}
 		}

@@ -39,12 +39,12 @@ namespace AbarimMUD
 
 			var sb = new StringBuilder();
 
-			var characters = DataService.Characters.QueryCharactersOfAccount(Session.Account.Id);
+			var characters = Session.Account.Characters;
 			if (characters != null)
 			{
 				foreach (var c in characters)
 				{
-					sb.AddTextLine(string.Format("{0}) {1}", i, c.Id));
+					sb.AddTextLine(string.Format("{0}) {1}", i, c.Name));
 
 					++i;
 				}
@@ -96,8 +96,8 @@ namespace AbarimMUD
 			int choice;
 			if (int.TryParse(data, out choice))
 			{
-				var characters = DataService.Characters.QueryCharactersOfAccount(Session.Account.Id);
-				var newIndex = characters != null ? characters.Length : 0;
+				var characters = Session.Account.Characters;
+				var newIndex = characters != null ? characters.Count : 0;
 				++newIndex;
 
 				if (characters != null && choice >= 1 && choice < newIndex)

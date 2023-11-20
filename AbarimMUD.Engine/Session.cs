@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using AbarimMUD.Commands;
 using AbarimMUD.Data;
 using AbarimMUD.Utils;
@@ -44,7 +45,14 @@ namespace AbarimMUD
 			set
 			{
 				_character = value;
-				_room = DataService.Rooms.Find(Character.CurrentRoomId);
+
+				int startRoomId;
+				using (var db = new DataContext())
+				{
+					startRoomId = (from r in db.Rooms where r.VNum == Configuration.StartRoomVnum select r.Id).First();
+				}
+
+				_room = Database.Rooms.GetById(startRoomId);
 				_room.AddCharacter(_character);
 			}
 		}

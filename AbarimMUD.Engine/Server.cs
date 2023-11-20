@@ -35,7 +35,6 @@ namespace AbarimMUD
 			try
 			{
 				_logger.Info("Starting Server");
-				DataService.Initialize();
 
 				_logger.Info("Starting WebService");
 				_webService.Start();
