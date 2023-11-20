@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace AbarimMUD.ImportAre
 {
@@ -23,8 +22,8 @@ namespace AbarimMUD.ImportAre
 			area.Name = stream.ReadDikuString();
 			area.Credits = stream.ReadDikuString();
 
-			area.StartRoomVNum = stream.ReadNumber();
-			area.EndRoomVNum = stream.ReadNumber();
+			stream.ReadNumber(); // Start vnum
+			stream.ReadNumber(); // End vnum
 
 			db.Areas.Add(area);
 			db.SaveChanges();
@@ -47,13 +46,13 @@ namespace AbarimMUD.ImportAre
 						area.Name = stream.ReadDikuString();
 						break;
 					case 'S':
-						area.Security = stream.ReadNumber();
+						stream.ReadNumber(); // Security
 						break;
 					case 'V':
 						if (word == "VNUMs")
 						{
-							area.StartRoomVNum = stream.ReadNumber();
-							area.EndRoomVNum = stream.ReadNumber();
+							stream.ReadNumber();
+							stream.ReadNumber();
 						}
 						break;
 					case 'E':

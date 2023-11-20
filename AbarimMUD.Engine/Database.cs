@@ -62,31 +62,42 @@ namespace AbarimMUD
 		}
 	}
 
+	public class AreasCRUD : BaseCRUD<Area>
+	{
+		protected override DbSet<Area> GetDbSet(DataContext db) => db.Areas;
+
+		protected override IQueryable<Area> UpdateQuery(IQueryable<Area> query) => query
+			.Include(r => r.Rooms)
+			.Include(r => r.Mobiles)
+			.Include(r => r.Objects)
+			.Include(r => r.Resets);
+	}
+
 	public class RoomsCRUD : BaseCRUD<Room>
 	{
+		protected override DbSet<Room> GetDbSet(DataContext db) => db.Rooms;
+
 		protected override IQueryable<Room> UpdateQuery(IQueryable<Room> query) => query
 				.Include(r => r.Area)
 				.Include(r => r.Exits);
-
-		protected override DbSet<Room> GetDbSet(DataContext db) => db.Rooms;
 	}
 
 	public class MobileInfosCRUD : BaseCRUD<Mobile>
 	{
+		protected override DbSet<Mobile> GetDbSet(DataContext db) => db.Mobiles;
+
 		protected override IQueryable<Mobile> UpdateQuery(IQueryable<Mobile> query) => query
 				.Include(r => r.Area)
 				.Include(m => m.Shop)
 				.Include(m => m.SpecialAttacks);
-
-		protected override DbSet<Mobile> GetDbSet(DataContext db) => db.Mobiles;
 	}
 
 	public class CharactersCRUD : BaseCRUD<Character>
 	{
+		protected override DbSet<Character> GetDbSet(DataContext db) => db.Characters;
+
 		protected override IQueryable<Character> UpdateQuery(IQueryable<Character> query) => query
 				.Include(c => c.Account);
-
-		protected override DbSet<Character> GetDbSet(DataContext db) => db.Characters;
 
 		public Character GetByName(string name)
 		{
@@ -114,10 +125,11 @@ namespace AbarimMUD
 
 	public class AccountsCRUD : BaseCRUD<Account>
 	{
+		protected override DbSet<Account> GetDbSet(DataContext db) => db.Accounts;
+
 		protected override IQueryable<Account> UpdateQuery(IQueryable<Account> query) => query
 				.Include(a => a.Characters);
 
-		protected override DbSet<Account> GetDbSet(DataContext db) => db.Accounts;
 		public Account GetByName(string name)
 		{
 			var result = (from pair in _cache where pair.Value.Name == name select pair.Value).FirstOrDefault();
@@ -144,6 +156,7 @@ namespace AbarimMUD
 
 	public static class Database
 	{
+		public static AreasCRUD Areas { get; } = new AreasCRUD();
 		public static AccountsCRUD Accounts { get; } = new AccountsCRUD();
 		public static CharactersCRUD Characters { get; } = new CharactersCRUD();
 		public static RoomsCRUD Rooms { get; } = new RoomsCRUD();

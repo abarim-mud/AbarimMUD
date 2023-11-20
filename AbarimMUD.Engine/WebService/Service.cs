@@ -47,7 +47,7 @@ namespace AbarimMUD.WebService
 			}
 
 			// Find account
-			var acc = DataService.Accounts.Find(account.CasedName());
+			var acc = Database.Accounts.GetByName(account.CasedName());
 			if (acc == null)
 			{
 				result = ResultDescription.CreateInvalidAccount(account);
@@ -61,8 +61,7 @@ namespace AbarimMUD.WebService
 				return null;
 			}
 
-			var characters = DataService.Characters.QueryCharactersOfAccount(acc.Id);
-			var admin = (from c in characters where c.IsStaff select c).FirstOrDefault();
+			var admin = (from c in acc.Characters where c.IsStaff select c).FirstOrDefault();
 			if (admin == null)
 			{
 				result = ResultDescription.CreateFromResultType(ResultType.NotAdmin);
