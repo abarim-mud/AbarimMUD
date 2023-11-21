@@ -14,7 +14,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 				return;
 			}
 
-			var mobileInfo = Database.MobilesInfos.GetById(id);
+			var mobileInfo = Database.GetMobileById(id);
 			if (mobileInfo == null)
 			{
 				context.Send(string.Format("Unable to find mobile info with id {0}", id));

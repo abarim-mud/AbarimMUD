@@ -1,10 +1,22 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
+using System;
 using System.Configuration;
 
 namespace AbarimMUD.Data
 {
 	public class DataContext : DbContext
 	{
+		public static Action<string> LogOutput;
+
+		private static void Log(string message)
+		{
+			if (LogOutput != null)
+			{
+				LogOutput(message);
+			}
+		}
+
 		public DbSet<Area> Areas => Set<Area>();
 		public DbSet<Room> Rooms => Set<Room>();
 		public DbSet<RoomExit> RoomsExits => Set<RoomExit>();
@@ -29,7 +41,9 @@ namespace AbarimMUD.Data
 			base.OnConfiguring(optionsBuilder);
 
 			var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-			optionsBuilder.UseSqlite(connectionString);
+			optionsBuilder
+				.UseSqlite(connectionString)
+				.LogTo(Log, new[] { RelationalEventId.CommandExecuted });
 		}
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -37,55 +51,55 @@ namespace AbarimMUD.Data
 			base.OnModelCreating(modelBuilder);
 
 			modelBuilder.Entity<Account>()
-				.HasMany<Character>()
+				.HasMany(e => e.Characters)
 				.WithOne(e => e.Account)
-				.HasForeignKey(e => e.AccountId)
+				.HasForeignKey("AccountId")
 				.IsRequired();
 
 			modelBuilder.Entity<Area>()
-				.HasMany<Room>()
+				.HasMany(e => e.Rooms)
 				.WithOne(e => e.Area)
 				.HasForeignKey("AreaId")
 				.IsRequired();
 
 			modelBuilder.Entity<Area>()
-				.HasMany<Mobile>()
+				.HasMany(e => e.Mobiles)
 				.WithOne(e => e.Area)
 				.HasForeignKey("AreaId")
 				.IsRequired();
 
 			modelBuilder.Entity<Area>()
-				.HasMany<GameObject>()
+				.HasMany(e => e.Objects)
 				.WithOne(e => e.Area)
 				.HasForeignKey("AreaId")
 				.IsRequired();
 
 			modelBuilder.Entity<Area>()
-				.HasMany<AreaReset>()
+				.HasMany(e => e.Resets)
 				.WithOne(e => e.Area)
 				.HasForeignKey("AreaId")
 				.IsRequired();
 
 			modelBuilder.Entity<GameObject>()
-				.HasMany<GameObjectEffect>()
+				.HasMany(e => e.Effects)
 				.WithOne(e => e.GameObject)
 				.HasForeignKey("GameObjectId")
 				.IsRequired();
 
 			modelBuilder.Entity<Mobile>()
-				.HasMany<MobileSpecialAttack>()
+				.HasMany(e => e.SpecialAttacks)
 				.WithOne(e => e.Mobile)
 				.HasForeignKey("MobileId")
 				.IsRequired();
 
 			modelBuilder.Entity<Mobile>()
-				.HasOne<Shop>()
+				.HasOne(e => e.Shop)
 				.WithOne()
 				.HasForeignKey<Shop>("MobileId")
 				.IsRequired(false);
 
 			modelBuilder.Entity<Room>()
-				.HasMany<RoomExit>()
+				.HasMany(e => e.Exits)
 				.WithOne(e => e.SourceRoom)
 				.HasForeignKey(e => e.SourceRoomId)
 				.IsRequired();

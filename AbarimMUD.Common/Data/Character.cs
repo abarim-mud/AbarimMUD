@@ -14,7 +14,6 @@ namespace AbarimMUD.Data
 
 	public sealed class Character : Entity
 	{
-		public int AccountId { get; set; }
 		public Account Account { get; set; }
 
 		public string Name { get; set; }

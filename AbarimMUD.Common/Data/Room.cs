@@ -53,8 +53,7 @@ namespace AbarimMUD.Data
 		public string ExtraDescription { get; set; }
 		public string Owner { get; set; }
 
-		[NotMapped]
-		public RoomExit[] Exits { get; set; }
+		public List<RoomExit> Exits { get; } = new List<RoomExit>();
 
 		[NotMapped]
 		public List<MobileInstance> Mobiles { get; } = new List<MobileInstance>();

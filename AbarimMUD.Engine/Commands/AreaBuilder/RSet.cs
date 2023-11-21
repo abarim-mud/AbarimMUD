@@ -24,7 +24,7 @@
 				}
 				var room = context.CurrentRoom;
 				room.Name = cmdData.Trim();
-				Database.Rooms.Update(room);
+				Database.Update(room);
 				context.SendTextLine(string.Format("Changed {0}'s name to {1}", room.Id, room.Name));
 			}
 		}

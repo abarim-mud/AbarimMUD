@@ -13,7 +13,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 				return;
 			}
 
-			var newRoom = Database.Rooms.GetById(newRoomId);
+			var newRoom = Database.GetRoomById(newRoomId);
 			if (newRoom == null)
 			{
 				context.Send(string.Format("Unable to find room with id {0}", newRoomId));

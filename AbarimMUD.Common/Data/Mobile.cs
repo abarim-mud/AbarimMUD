@@ -311,5 +311,7 @@ namespace AbarimMUD.Data
 		public PartFlags PartsFlags { get; set; }
 		public MobileSize Size { get; set; }
 		public Material Material { get; set; }
+		public Shop Shop { get; set; }
+		public List<MobileSpecialAttack> SpecialAttacks { get; } = new List<MobileSpecialAttack>();
 	}
 }

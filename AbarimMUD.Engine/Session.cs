@@ -52,7 +52,7 @@ namespace AbarimMUD
 					startRoomId = (from r in db.Rooms where r.VNum == Configuration.StartRoomVnum select r.Id).First();
 				}
 
-				_room = Database.Rooms.GetById(startRoomId);
+				_room = Database.GetRoomById(startRoomId);
 				_room.AddCharacter(_character);
 			}
 		}

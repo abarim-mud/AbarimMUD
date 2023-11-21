@@ -31,7 +31,7 @@ namespace AbarimMUD.Commands.Owner
 			var characterName = parts[0];
 
 			// Find the character
-			var character = Database.Characters.GetByName(characterName);
+			var character = Database.GetCharacterByName(characterName);
 			if (character == null)
 			{
 				context.Send(string.Format("Could not find character '{0}'", characterName));
@@ -58,7 +58,7 @@ namespace AbarimMUD.Commands.Owner
 
 			// Change
 			character.Role = type;
-			Database.Characters.Update(character);
+			Database.Update(character);
 
 			context.SendTextLine(string.Format("Changed {0}'s type from {1} to {2}", character.Id, oldType.ToString(),
 				type.ToString()));

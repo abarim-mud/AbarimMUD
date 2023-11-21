@@ -31,7 +31,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 				return;
 			}
 
-			Database.Rooms.Disconnect(sourceRoom, exitType);
+			Database.DisconnectRoom(sourceRoom, exitType);
 
 			if (roomExit.TargetRoom != null)
 			{
