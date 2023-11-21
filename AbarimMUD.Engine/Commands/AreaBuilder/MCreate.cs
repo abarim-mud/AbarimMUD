@@ -9,14 +9,13 @@ namespace AbarimMUD.Commands.AreaBuilder
 			// Create new mobile
 			var newMobileInfo = new Mobile
 			{
-				Area = context.CurrentRoom.Area,
 				Name = "unset",
 				ShortDescription = "Unset",
 				LongDescription = "A mobile with 'unset' name is standing here.",
 				Description = "Unset."
 			};
 
-			Database.CreateMobile(newMobileInfo);
+			Database.CreateMobile(context.CurrentRoom.Area, newMobileInfo);
 
 			context.SendTextLine(string.Format("New mobile info (#{0}) had been created for the area {1} (#{2})",
 				newMobileInfo.Id,

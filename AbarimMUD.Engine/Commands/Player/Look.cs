@@ -64,7 +64,7 @@ namespace AbarimMUD.Commands.Player
 					continue;
 				}
 
-				sd.AddTextLine(string.Format("{0} is standing here.", character.Id));
+				sd.AddTextLine(string.Format("{0} is standing here.", character.Name));
 			}
 
 			return sd.ToString();

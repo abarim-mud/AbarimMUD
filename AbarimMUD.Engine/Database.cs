@@ -27,6 +27,14 @@ namespace AbarimMUD
 				_cache[entity.Id] = entity;
 			}
 
+			public void AddRange(IEnumerable<T> data)
+			{
+				foreach(var entity in data)
+				{
+					Add(entity);
+				}
+			}
+
 			public T GetById(int id)
 			{
 				T result;
@@ -68,29 +76,14 @@ namespace AbarimMUD
 			using (var db = new DataContext())
 			{
 				// Load area data
-				var areas = (from a in db.Areas select a).ToList();
+				_areas.AddRange(db.Areas);
 
 				// Fetching this content will make areas fill their lists automatically
-				var rooms = db.Rooms.ToList();
-				var mobiles = db.Mobiles.ToList();
+				_rooms.AddRange(db.Rooms);
+				_mobiles.AddRange(db.Mobiles);
 				var objects = db.Objects.ToList();
 				var resets = db.AreaResets.ToList();
 				var roomsExits = db.RoomsExits.ToList();
-
-				foreach (var a in areas)
-				{
-					_areas.Add(a);
-
-					foreach (var r in a.Rooms)
-					{
-						_rooms.Add(r);
-					}
-
-					foreach (var m in a.Mobiles)
-					{
-						_mobiles.Add(m);
-					}
-				}
 
 				// Load accounts
 				foreach (var account in db.Accounts.Include(a => a.Characters))
@@ -119,7 +112,7 @@ namespace AbarimMUD
 		{
 			using (var db = new DataContext())
 			{
-				db.Update(entity);
+				db.Entry(entity).State = EntityState.Modified;
 				db.SaveChanges();
 			}
 		}
@@ -130,13 +123,16 @@ namespace AbarimMUD
 
 		public static Room GetRoomById(int id) => _rooms.GetById(id);
 
-		public static void CreateRoom(Room r)
+		public static void CreateRoom(Area area, Room r)
 		{
+			r.AreaId = area.Id;
+			r.Area = null;
 			_rooms.Create(r);
 
-			if (!r.Area.Rooms.Contains(r))
+			r.Area = area;
+			if (!area.Rooms.Contains(r))
 			{
-				r.Area.Rooms.Add(r);
+				area.Rooms.Add(r);
 			}
 		}
 
@@ -209,13 +205,16 @@ namespace AbarimMUD
 
 		public static Mobile GetMobileById(int id) => _mobiles.GetById(id);
 
-		public static void CreateMobile(Mobile mobile)
+		public static void CreateMobile(Area area, Mobile mobile)
 		{
+			mobile.AreaId = area.Id;
+			mobile.Area = null;
 			_mobiles.Create(mobile);
+			mobile.Area = area;
 
-			if (!mobile.Area.Mobiles.Contains(mobile))
+			if (!area.Mobiles.Contains(mobile))
 			{
-				mobile.Area.Mobiles.Add(mobile);
+				area.Mobiles.Add(mobile);
 			}
 		}
 
