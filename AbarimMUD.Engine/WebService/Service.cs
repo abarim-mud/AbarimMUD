@@ -61,7 +61,8 @@ namespace AbarimMUD.WebService
 				return null;
 			}
 
-			var admin = (from c in acc.Characters where c.IsStaff select c).FirstOrDefault();
+			var characters = Database.Characters.GetByAccount(acc.Id);
+			var admin = (from c in characters where c.IsStaff select c).FirstOrDefault();
 			if (admin == null)
 			{
 				result = ResultDescription.CreateFromResultType(ResultType.NotAdmin);
@@ -92,7 +93,7 @@ namespace AbarimMUD.WebService
 						break;
 					}
 
-					var areas = Database.Areas.QueryAll();
+					var areas = Database.Areas.GetAll();
 					if (areas.Length == 0)
 					{
 						result.Result = ResultDescription.CreateFromResultType(ResultType.NoMaps);

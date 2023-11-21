@@ -9,7 +9,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 			// Create new room
 			var newRoom = new Room
 			{
-				AreaId = context.CurrentRoom.AreaId,
+				Area = context.CurrentRoom.Area,
 				Name = "Empty",
 				Description = "Empty"
 			};
@@ -19,7 +19,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 			context.SendTextLine(string.Format("New room (#{0}) had been created for the area {1} (#{2})",
 				newRoom.Id,
 				context.CurrentRoom.Area.Name,
-				context.CurrentRoom.AreaId));
+				context.CurrentRoom.Area.Id));
 
 			new Goto().Execute(context, newRoom.Id.ToString());
 		}

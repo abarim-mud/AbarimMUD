@@ -2,7 +2,6 @@
 {
 	public class Shop: Entity
 	{
-		public int MobileId { get; set; }
 		public Mobile Mobile { get; set; }
 
 		public int BuyType1 { get; set; }

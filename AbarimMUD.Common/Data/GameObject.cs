@@ -379,7 +379,5 @@ namespace AbarimMUD.Data
 		public int Condition { get; set; }
 		public string ExtraKeyword { get; set; }
 		public string ExtraDescription { get; set; }
-
-		public List<GameObjectEffect> Effects { get; }
 	}
 }

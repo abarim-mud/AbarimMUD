@@ -9,7 +9,14 @@ namespace AbarimMUD.ImportAre
 {
 	internal class Importer
 	{
-		private readonly List<RoomDirection> _tempDirections = new List<RoomDirection>();
+		private class RoomExitInfo
+		{
+			public RoomExit RoomExit { get; set; }
+			public int? TargetRoomVNum { get; set; }
+			public int? KeyObjectVNum { get; set; }
+		}
+
+		private readonly List<RoomExitInfo> _tempDirections = new List<RoomExitInfo>();
 
 		public static void Log(string message)
 		{
@@ -89,7 +96,7 @@ namespace AbarimMUD.ImportAre
 
 				var mobile = new Mobile
 				{
-					AreaId = area.Id,
+					Area = area,
 					VNum = vnum,
 					Name = name,
 					ShortDescription = stream.ReadDikuString(),
@@ -211,7 +218,7 @@ namespace AbarimMUD.ImportAre
 
 				var obj = new GameObject
 				{
-					AreaId = area.Id,
+					Area = area,
 					VNum = vnum,
 					Name = name,
 					ShortDescription = stream.ReadDikuString(),
@@ -333,6 +340,7 @@ namespace AbarimMUD.ImportAre
 				db.Objects.Add(obj);
 				db.SaveChanges();
 
+
 				while (!stream.EndOfStream())
 				{
 					var c = stream.ReadSpacedLetter();
@@ -341,7 +349,7 @@ namespace AbarimMUD.ImportAre
 					{
 						var effect = new GameObjectEffect
 						{
-							GameObjectId = obj.Id,
+							GameObject = obj,
 							EffectBitType = EffectBitType.Object,
 							EffectType = (EffectType)stream.ReadNumber(),
 							Modifier = stream.ReadNumber()
@@ -353,7 +361,7 @@ namespace AbarimMUD.ImportAre
 					{
 						var effect = new GameObjectEffect
 						{
-							GameObjectId = obj.Id
+							GameObject = obj
 						};
 
 						c = stream.ReadSpacedLetter();
@@ -413,7 +421,7 @@ namespace AbarimMUD.ImportAre
 
 				var room = new Room
 				{
-					AreaId = area.Id,
+					Area = area,
 					VNum = vnum,
 					Name = name,
 					Description = stream.ReadDikuString(),
@@ -450,10 +458,10 @@ namespace AbarimMUD.ImportAre
 					}
 					else if (c == 'D')
 					{
-						var roomDirection = new RoomDirection
+						var exit = new RoomExit
 						{
 							SourceRoomId = room.Id,
-							DirectionType = (DirectionType)stream.ReadNumber(),
+							Direction = (Direction)stream.ReadNumber(),
 							Description = stream.ReadDikuString(),
 							Keyword = stream.ReadDikuString(),
 						};
@@ -462,34 +470,39 @@ namespace AbarimMUD.ImportAre
 						switch (locks)
 						{
 							case 1:
-								roomDirection.Flags = RoomDirectionFlags.Door;
+								exit.Flags = RoomExitFlags.Door;
 								break;
 							case 2:
-								roomDirection.Flags = RoomDirectionFlags.Door | RoomDirectionFlags.PickProof;
+								exit.Flags = RoomExitFlags.Door | RoomExitFlags.PickProof;
 								break;
 							case 3:
-								roomDirection.Flags = RoomDirectionFlags.Door | RoomDirectionFlags.NoPass;
+								exit.Flags = RoomExitFlags.Door | RoomExitFlags.NoPass;
 								break;
 							case 4:
-								roomDirection.Flags = RoomDirectionFlags.Door | RoomDirectionFlags.PickProof | RoomDirectionFlags.NoPass;
+								exit.Flags = RoomExitFlags.Door | RoomExitFlags.PickProof | RoomExitFlags.NoPass;
 								break;
 							default:
 								break;
 						}
 
-						var keyVNum = stream.ReadNumber();
-						if (roomDirection.Flags != RoomDirectionFlags.None && keyVNum != -1)
+						var exitInfo = new RoomExitInfo
 						{
-							roomDirection.KeyObjectVNum = keyVNum;
+							RoomExit = exit
+						};
+
+						var keyVNum = stream.ReadNumber();
+						if (exit.Flags != RoomExitFlags.None && keyVNum != -1)
+						{
+							exitInfo.KeyObjectVNum = keyVNum;
 						}
 
 						var targetVnum = stream.ReadNumber();
 						if (targetVnum != -1)
 						{
-							roomDirection.TargetRoomVNum = targetVnum;
+							exitInfo.TargetRoomVNum = targetVnum;
 						}
 
-						_tempDirections.Add(roomDirection);
+						_tempDirections.Add(exitInfo);
 					}
 					else if (c == 'E')
 					{
@@ -528,7 +541,7 @@ namespace AbarimMUD.ImportAre
 
 				var reset = new AreaReset
 				{
-					AreaId = area.Id
+					Area = area
 				};
 
 				switch (c)
@@ -617,7 +630,7 @@ namespace AbarimMUD.ImportAre
 
 				var shop = new Shop
 				{
-					MobileId = keeper.Id,
+					Mobile = keeper,
 					BuyType1 = stream.ReadNumber(),
 					BuyType2 = stream.ReadNumber(),
 					BuyType3 = stream.ReadNumber(),
@@ -661,7 +674,7 @@ namespace AbarimMUD.ImportAre
 
 						var special = new MobileSpecialAttack
 						{
-							MobileId = mobile.Id,
+							Mobile = mobile,
 							AttackType = stream.ReadWord()
 						};
 
@@ -877,9 +890,10 @@ namespace AbarimMUD.ImportAre
 			{
 				using (var db = new DataContext())
 				{
+					var exit = dir.RoomExit;
 					if (dir.TargetRoomVNum != null)
 					{
-						dir.TargetRoomId = (from r in db.Rooms where r.VNum == dir.TargetRoomVNum.Value select r).First().Id;
+						exit.TargetRoomId = (from r in db.Rooms where r.VNum == dir.TargetRoomVNum.Value select r).First().Id;
 					}
 
 					if (dir.KeyObjectVNum != null)
@@ -887,23 +901,23 @@ namespace AbarimMUD.ImportAre
 						var keyObj = (from o in db.Objects where o.VNum == dir.KeyObjectVNum.Value select o).FirstOrDefault();
 						if (keyObj != null)
 						{
-							dir.KeyObjectId = keyObj.Id;
+							exit.KeyObjectId = keyObj.Id;
 						}
 					}
 
-					db.RoomsDirections.Add(dir);
+					db.RoomsExits.Add(exit);
 					db.SaveChanges();
 				}
 			}
 
 			Log("Locking doors");
-
 			using (var db = new DataContext())
 			{
-				var areas = (from a in db.Areas select a).Include(a => a.Resets).ToArray();
+				var areas = (from a in db.Areas select a).ToArray();
 				foreach (var area in areas)
 				{
-					foreach (var reset in area.Resets)
+					var resets = (from r in db.AreaResets where r.Area == area select r).ToArray();
+					foreach (var reset in resets)
 					{
 						if (reset.ResetType != AreaResetType.Door)
 						{
@@ -915,18 +929,20 @@ namespace AbarimMUD.ImportAre
 							throw new Exception($"Reset {reset.Id}. Room direction with value {reset.Value3} is outside of range.");
 						}
 
-						var dir = (DirectionType)reset.Value3;
+						var dir = (Direction)reset.Value3;
 
 						var roomVnum = reset.Value2;
 
-						var room = (from r in db.Rooms where r.VNum == roomVnum select r).Include(r => r.Exits).FirstOrDefault();
+						var room = (from r in db.Rooms where r.VNum == roomVnum select r).FirstOrDefault();
 						if (room == null)
 						{
 							throw new Exception($"Reset {reset.Id}. Can't find room with vnum {roomVnum}");
 						}
 
-						var exit = (from e in room.Exits where e.DirectionType == (DirectionType)reset.Value3 select e).FirstOrDefault();
-						if (exit == null || !exit.Flags.HasFlag(RoomDirectionFlags.Door))
+						var exit = (from e in db.RoomsExits where e.SourceRoomId == room.Id && 
+									e.Direction == (Direction)reset.Value3 
+									select e).FirstOrDefault();
+						if (exit == null || !exit.Flags.HasFlag(RoomExitFlags.Door))
 						{
 							throw new Exception($"Reset {reset.Id}. Can't find exit {dir}");
 						}
@@ -936,11 +952,11 @@ namespace AbarimMUD.ImportAre
 							case 0:
 								break;
 							case 1:
-								exit.Flags |= RoomDirectionFlags.Closed;
+								exit.Flags |= RoomExitFlags.Closed;
 								db.SaveChanges();
 								break;
 							case 2:
-								exit.Flags |= RoomDirectionFlags.Closed | RoomDirectionFlags.Locked;
+								exit.Flags |= RoomExitFlags.Closed | RoomExitFlags.Locked;
 								db.SaveChanges();
 								break;
 							default:

@@ -14,7 +14,7 @@
 				return;
 			}
 
-			var mobileInfo = Database.MobileInfos.GetById(id);
+			var mobileInfo = Database.MobilesInfos.GetById(id);
 			if (mobileInfo == null)
 			{
 				context.Send(string.Format("Unable to find mobile info with id {0}", id));
@@ -32,7 +32,7 @@
 				}
 
 				mobileInfo.Name = cmdData;
-				Database.MobileInfos.Update(mobileInfo);
+				Database.MobilesInfos.Update(mobileInfo);
 				context.SendTextLine(string.Format("Changed {0}'s name to {1}", mobileInfo.Id, mobileInfo.Name));
 			}
 			else if (cmdText == "desc")
@@ -44,7 +44,7 @@
 				}
 
 				mobileInfo.Description = cmdData;
-				Database.MobileInfos.Update(mobileInfo);
+				Database.MobilesInfos.Update(mobileInfo);
 				context.SendTextLine(string.Format("Changed {0}'s desc to {1}", mobileInfo.Id, mobileInfo.Description));
 			}
 			else if (cmdText == "short")
@@ -56,7 +56,7 @@
 				}
 
 				mobileInfo.ShortDescription = cmdData;
-				Database.MobileInfos.Update(mobileInfo);
+				Database.MobilesInfos.Update(mobileInfo);
 				context.SendTextLine(string.Format("Changed {0}'s short to '{1}'", mobileInfo.Id, mobileInfo.ShortDescription));
 			}
 			else if (cmdText == "long")
@@ -68,7 +68,7 @@
 				}
 
 				mobileInfo.LongDescription = cmdData;
-				Database.MobileInfos.Update(mobileInfo);
+				Database.MobilesInfos.Update(mobileInfo);
 				context.SendTextLine(string.Format("Changed {0}'s long to '{1}'", mobileInfo.Id, mobileInfo.LongDescription));
 			}
 			else

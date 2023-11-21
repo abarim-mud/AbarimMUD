@@ -52,7 +52,9 @@ namespace AbarimMUD.Data
 		public string ExtraKeyword { get; set; }
 		public string ExtraDescription { get; set; }
 		public string Owner { get; set; }
-		public List<RoomDirection> Exits { get; } = new List<RoomDirection>();
+
+		[NotMapped]
+		public RoomExit[] Exits { get; set; }
 
 		[NotMapped]
 		public List<MobileInstance> Mobiles { get; } = new List<MobileInstance>();
@@ -70,36 +72,6 @@ namespace AbarimMUD.Data
 		public void RemoveCharacter(Character character)
 		{
 			Characters.Remove(character);
-		}
-
-		public void Connect(DirectionType direction, Room targetRoom)
-		{
-			Exits.RemoveAll(rd => rd.DirectionType == direction);
-
-			if (targetRoom != null)
-			{
-				var rd = new RoomDirection
-				{
-					SourceRoomId = Id,
-					SourceRoom = this,
-					TargetRoomId = targetRoom.Id,
-					TargetRoom = targetRoom,
-					DirectionType = direction,
-				};
-
-				Exits.Add(rd);
-			}
-		}
-
-		public Room GetConnectedRoom(DirectionType direction)
-		{
-			var roomDirection = (from rd in Exits where rd.DirectionType == direction select rd).FirstOrDefault();
-			if (roomDirection == null)
-			{
-				return null;
-			}
-
-			return roomDirection.TargetRoom;
 		}
 	}
 }

@@ -21,7 +21,6 @@ namespace AbarimMUD
 		public NewCharacterHandler(Session session)
 			: base(session)
 		{
-			_character.AccountId = session.Account.Id;
 		}
 
 		public override void OnSet()
@@ -155,8 +154,9 @@ namespace AbarimMUD
 			if (data == "y")
 			{
 				_character.CurrentRoomId = 0;
+
+				_character.AccountId = Session.Account.Id;
 				Database.Characters.Create(_character);
-				Database.Accounts.Update(Session.Account);
 				SendTextLine("Character is saved.");
 			}
 

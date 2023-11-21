@@ -1,12 +1,13 @@
-﻿using AbarimMUD.Data;
+﻿using System.Linq;
+using AbarimMUD.Data;
 
 namespace AbarimMUD.Commands.Player
 {
 	public class Move : PlayerCommand
 	{
-		private readonly DirectionType _dir;
+		private readonly Direction _dir;
 
-		public Move(DirectionType dir)
+		public Move(Direction dir)
 		{
 			_dir = dir;
 		}
@@ -15,8 +16,8 @@ namespace AbarimMUD.Commands.Player
 		{
 			var sourceRoom = context.CurrentRoom;
 
-			var targetRoom = sourceRoom.GetConnectedRoom(_dir);
-			if (targetRoom == null)
+			var exit = (from e in sourceRoom.Exits where e.Direction == _dir select e).FirstOrDefault();
+			if (exit == null || exit.TargetRoom == null)
 			{
 				context.Send("Alas, you cannot go that way...");
 				return;
@@ -38,7 +39,9 @@ namespace AbarimMUD.Commands.Player
 				t.SendTextLine(string.Format("{0} arrives from {1}.", context.Name, dirName));
 			}
 
-			context.Logger.Info("Moved to room with id {0}", targetRoom.Id);
+			context.CurrentRoom = exit.TargetRoom;
+			
+			context.Logger.Info("Moved to room with id {0}", exit.TargetRoomId);
 
 			new Look().Execute(context, string.Empty);
 		}

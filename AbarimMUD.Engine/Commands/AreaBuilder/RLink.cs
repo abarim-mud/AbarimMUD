@@ -16,7 +16,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 				return;
 			}
 
-			DirectionType exitType;
+			Direction exitType;
 			if (!Enum.TryParse(exit, out exitType))
 			{
 				context.Send(string.Format("Unable to resolve exit {0}", exit));
@@ -44,12 +44,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 				return;
 			}
 
-			sourceRoom.Connect(exitType, destRoom);
-			Database.Rooms.Update(sourceRoom);
-
-			var destDir = exitType.GetOppositeDirection();
-			destRoom.Connect(destDir, sourceRoom);
-			Database.Rooms.Update(destRoom);
+			Database.Rooms.Connect(sourceRoom, destRoom, exitType);
 
 			context.Send(string.Format("Linked the room {0} exit to {1} (#{2})",
 				exitType.ToString(), destRoom.Name, id));

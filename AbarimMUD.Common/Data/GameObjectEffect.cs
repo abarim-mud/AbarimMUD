@@ -2,7 +2,6 @@
 {
 	public class GameObjectEffect : Entity
 	{
-		public int GameObjectId { get; set; }
 		public GameObject GameObject { get; set; }
 
 		public EffectBitType EffectBitType { get; set; }

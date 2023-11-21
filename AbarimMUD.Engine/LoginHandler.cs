@@ -88,7 +88,7 @@ namespace AbarimMUD
 
 		private void Login()
 		{
-			SendTextLine(string.Format("Welcome, {0}!", _account.Id));
+			SendTextLine(string.Format("Welcome, {0}!", _account.Name));
 
 			Session.Account = _account;
 

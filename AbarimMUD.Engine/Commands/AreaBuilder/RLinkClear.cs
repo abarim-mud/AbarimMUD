@@ -1,5 +1,6 @@
-﻿using AbarimMUD.Data;
-using System;
+﻿using System;
+using System.Linq;
+using AbarimMUD.Data;
 
 namespace AbarimMUD.Commands.AreaBuilder
 {
@@ -15,7 +16,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 				return;
 			}
 
-			DirectionType exitType;
+			Direction exitType;
 			if (!Enum.TryParse(exit, out exitType))
 			{
 				context.Send(string.Format("Unable to resolve exit {0}", exit));
@@ -23,22 +24,24 @@ namespace AbarimMUD.Commands.AreaBuilder
 			}
 
 			var sourceRoom = context.CurrentRoom;
-			var targetRoom = sourceRoom.GetConnectedRoom(exitType);
-			if (targetRoom == null)
+			var roomExit = (from e in sourceRoom.Exits where e.Direction == exitType select e).FirstOrDefault();
+			if (roomExit == null)
 			{
 				context.Send(string.Format("The room isnt connected to anything at the direction {0}", exitType.ToString()));
 				return;
 			}
 
-			sourceRoom.Connect(exitType, null);
-			Database.Rooms.Update(sourceRoom);
+			Database.Rooms.Disconnect(sourceRoom, exitType);
 
-			var destDir = exitType.GetOppositeDirection();
-			targetRoom.Connect(destDir, null);
-			Database.Rooms.Update(targetRoom);
-
-			context.Send(string.Format("Cleared the link from the room {0} exit to {1} (#{2})",
-				exitType, targetRoom.Name, targetRoom.Id));
+			if (roomExit.TargetRoom != null)
+			{
+				context.Send(string.Format("Cleared the link from the room {0} exit to {1} (#{2})",
+					exitType, roomExit.TargetRoom.Name, roomExit.TargetRoom.Id));
+			}
+			else
+			{
+				context.Send(string.Format("Cleared the link from the room {0} exit to {1}", exitType));
+			}
 		}
 	}
 }

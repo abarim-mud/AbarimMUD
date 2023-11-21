@@ -9,19 +9,19 @@ namespace AbarimMUD.Commands.AreaBuilder
 			// Create new mobile
 			var newMobileInfo = new Mobile
 			{
-				AreaId = context.CurrentRoom.AreaId,
+				Area = context.CurrentRoom.Area,
 				Name = "unset",
 				ShortDescription = "Unset",
 				LongDescription = "A mobile with 'unset' name is standing here.",
 				Description = "Unset."
 			};
 
-			Database.MobileInfos.Create(newMobileInfo);
+			Database.MobilesInfos.Create(newMobileInfo);
 
 			context.SendTextLine(string.Format("New mobile info (#{0}) had been created for the area {1} (#{2})",
 				newMobileInfo.Id,
 				context.CurrentRoom.Area.Name,
-				context.CurrentRoom.AreaId));
+				context.CurrentRoom.Area.Id));
 
 			new MSpawn().Execute(context, newMobileInfo.Id.ToString());
 		}

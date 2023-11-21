@@ -22,12 +22,12 @@ namespace AbarimMUD.Commands
 		{
 			_allCommands["help"] = new Help();
 
-			_allCommands["east"] = new Move(DirectionType.East);
-			_allCommands["west"] = new Move(DirectionType.West);
-			_allCommands["north"] = new Move(DirectionType.North);
-			_allCommands["south"] = new Move(DirectionType.South);
-			_allCommands["up"] = new Move(DirectionType.Up);
-			_allCommands["down"] = new Move(DirectionType.Down);
+			_allCommands["east"] = new Move(Direction.East);
+			_allCommands["west"] = new Move(Direction.West);
+			_allCommands["north"] = new Move(Direction.North);
+			_allCommands["south"] = new Move(Direction.South);
+			_allCommands["up"] = new Move(Direction.Up);
+			_allCommands["down"] = new Move(Direction.Down);
 
 			_allCommands["say"] = new Say();
 			_allCommands["gossip"] = new Gossip();
