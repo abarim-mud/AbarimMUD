@@ -13,6 +13,10 @@ namespace AbarimMUD.Site.Pages
 	{
 		[BindProperty(SupportsGet = true)]
 		public int MapId { get; set; }
+
+		[BindProperty(SupportsGet = true)]
+		public int? MaxSteps { get; set; }
+
 		public string EncodedImage { get; set; }
 
 		public void OnGet()
@@ -24,7 +28,7 @@ namespace AbarimMUD.Site.Pages
 			}
 
 			var mapBuilder = new Utility.Utility.MapBuilder();
-			var imageBytes = mapBuilder.Build(map);
+			var imageBytes = mapBuilder.Build(map, MaxSteps);
 
 			EncodedImage = "data:image/png;base64," + Convert.ToBase64String(imageBytes);
 		}

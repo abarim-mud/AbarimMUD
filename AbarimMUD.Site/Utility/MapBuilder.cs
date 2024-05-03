@@ -37,280 +37,201 @@ namespace AbarimMUD.Site.Utility.Utility
 	{
 		private const int RoomHeight = 32;
 		private const int TextPadding = 8;
-		private static readonly Point RoomSpace = new Point(16, 8);
-		private readonly List<List<Room>> _roomsChains = new List<List<Room>>();
-
-		private List<Room> FindChainForRoom(Room room)
+		private static readonly Direction[] Directions = new Direction[]
 		{
-			List<Room> result = null;
+			Direction.West, Direction.North, Direction.South, Direction.East,
+		};
 
-			foreach (var chain in _roomsChains)
-			{
-				foreach (var cell in chain)
-				{
-					if (room == cell)
-					{
-						// Found
-						result = chain;
-						break;
-					}
-				}
-			}
+		private static readonly Point RoomSpace = new Point(32, 32);
 
-			return result;
-		}
-
-		private void ProcessRoomChain(Room room)
-		{
-			// Find the current chain of room
-			var currentChain = FindChainForRoom(room);
-
-			if (currentChain == null)
-			{
-				// Create new chain
-				currentChain = new List<Room>
-				{
-
-					room
-				};
-
-				_roomsChains.Add(currentChain);
-			}
-
-			// Now process the exits
-			foreach (Direction exitType in Enum.GetValues(typeof(Direction)))
-			{
-				var exit = (from e in room.Exits where e.Direction == exitType select e).FirstOrDefault();
-				if (exit == null || exit.TargetRoom == null)
-				{
-					continue;
-				}
-				var exitRoom = exit.TargetRoom;
-
-				// Find chain of the exit room
-				var exitRoomChain = FindChainForRoom(exitRoom);
-				if (exitRoomChain == currentChain)
-				{
-					// Already in chain
-					continue;
-				}
-
-				if (exitRoomChain == null)
-				{
-					// Simply add to the current chain
-					currentChain.Add(exitRoom);
-					continue;
-				}
-
-				// Merge chains into the current room
-				for (int i = 0; i < exitRoomChain.Count; ++i)
-				{
-					currentChain.Add(exitRoomChain[i]);
-				}
-
-				exitRoomChain.Clear();
-			}
-		}
-
-		private void AssignCoordinates(List<Room> chain, Room room)
-		{
-			var pos = (Point)room.Tag;
-			foreach (Direction exitType in Enum.GetValues(typeof(Direction)))
-			{
-				var exit = (from e in room.Exits where e.Direction == exitType select e).FirstOrDefault();
-				if (exit == null || exit.TargetRoom == null || exit.TargetRoom.Tag != null)
-				{
-					continue;
-				}
-
-				var exitRoom = exit.TargetRoom;
-				Point delta = exitType.getExitTypeDelta();
-
-				var newPos = new Point(pos.X + delta.X, pos.Y + delta.Y);
-				exitRoom.Tag = newPos;
-
-				AssignCoordinates(chain, exitRoom);
-			}
-
-			// Now check if any other room has connection to this room
-			foreach (var otherRoom in chain)
-			{
-				if (otherRoom == room || otherRoom.Tag != null)
-				{
-					continue;
-				}
-
-				foreach (Direction et in Enum.GetValues(typeof(Direction)))
-				{
-					var exit = (from e in room.Exits where e.Direction == et select e).FirstOrDefault();
-					if (exit == null || exit.TargetRoom == null)
-					{
-						continue;
-					}
-
-					var exitRoom = exit.TargetRoom;
-					if (exitRoom == room)
-					{
-						// Connected
-						Point delta = et.getExitTypeDelta();
-
-						var newPos = new Point(pos.X - delta.X, pos.Y - delta.Y);
-						otherRoom.Tag = newPos;
-
-						break;
-					}
-				}
-			}
-		}
+		private Area _area;
+		private int[] cellsWidths;
 
 		private Room GetRoomByPoint(Point p)
 		{
-			foreach (var chain in _roomsChains)
+			foreach (var room in _area.Rooms)
 			{
-				foreach (var room in chain)
+				if (room.Tag == null)
 				{
-					var pos = (Point)room.Tag;
+					continue;
+				}
 
-					if (pos == p)
-					{
-						return room;
-					}
+				var pos = (Point)room.Tag;
+
+				if (pos == p)
+				{
+					return room;
 				}
 			}
 
 			return null;
 		}
 
-		public byte[] Build(Area area)
+		private void PushRooms(Point pos, Direction dir)
 		{
-			_roomsChains.Clear();
-
-			// Build up room chains
-			foreach (var room in area.Rooms)
+			foreach (var room in _area.Rooms)
 			{
-				ProcessRoomChain(room);
+				if (room.Tag == null)
+				{
+					continue;
+				}
+
+				var roomPos = (Point)room.Tag;
+
+				switch (dir)
+				{
+					case Direction.North:
+						if (roomPos.Y <= pos.Y)
+						{
+							--roomPos.Y;
+						}
+						break;
+					case Direction.East:
+						if (roomPos.X >= pos.X)
+						{
+							++roomPos.X;
+						}
+						break;
+					case Direction.South:
+						if (roomPos.Y >= pos.Y)
+						{
+							++roomPos.Y;
+						}
+						break;
+					case Direction.West:
+						if (roomPos.X <= pos.X)
+						{
+							--roomPos.X;
+						}
+						break;
+					case Direction.Up:
+						break;
+					case Direction.Down:
+						break;
+				}
+
+				room.Tag = roomPos;
+			}
+		}
+
+		public byte[] Build(Area area, int? maxSteps = null)
+		{
+			_area = area;
+
+			var toProcess = new List<Room>();
+
+			area.Rooms[0].Tag = new Point(0, 0);
+			toProcess.Add(area.Rooms[0]);
+
+			var step = 1;
+
+			Point pos;
+			while (toProcess.Count > 0 && (maxSteps == null || maxSteps.Value > step))
+			{
+				var room = toProcess[0];
+				toProcess.RemoveAt(0);
+
+				pos = (Point)(room.Tag);
+				foreach (var direction in Directions)
+				{
+					var exit = (from e in room.Exits where e.Direction == direction select e).FirstOrDefault();
+					if (exit == null || exit.TargetRoom == null || exit.TargetRoom.Tag != null)
+					{
+						continue;
+					}
+
+					var delta = direction.getExitTypeDelta();
+					var newPos = new Point(pos.X + delta.X, pos.Y + delta.Y);
+
+					// Check if this pos is used already
+					foreach (var room2 in _area.Rooms)
+					{
+						if (exit.TargetRoom == room2 || room2.Tag == null)
+						{
+							continue;
+						}
+
+						if ((Point)room2.Tag == newPos)
+						{
+							// It is used
+							PushRooms(newPos, direction);
+						}
+					}
+
+					exit.TargetRoom.Tag = newPos;
+					toProcess.Add(exit.TargetRoom);
+				}
+
+				++step;
 			}
 
-			// Remove empty chains
-			_roomsChains.RemoveAll(chain => chain.Count == 0);
-
-			// Sort by size
-			_roomsChains.Sort((x, y) =>
+			// Determine minimum point
+			var min = new Point();
+			var minSet = false;
+			foreach (var room in _area.Rooms)
 			{
-				if (x.Count > y.Count)
+				if (room.Tag == null)
 				{
-					return -1;
-				}
-				else if (x.Count == y.Count)
-				{
-					return 0;
+					continue;
 				}
 
-				return 1;
-			});
-
-			// Clear room tags
-			foreach (var chain in _roomsChains)
-			{
-				foreach (var room in chain)
+				pos = (Point)room.Tag;
+				if (!minSet)
 				{
-					room.Tag = null;
+					min = new Point(pos.X, pos.Y);
+					minSet = true;
+				}
+
+				if (pos.X < min.X)
+				{
+					min.X = pos.X;
+				}
+
+				if (pos.Y < min.Y)
+				{
+					min.Y = pos.Y;
 				}
 			}
 
-			// Next run assign every room it's coordinate
-			int y = 0;
-			foreach (var chain in _roomsChains)
+			// Shift everything so it begins from 0,0
+			Point shift = new Point(min.X < 0 ? -min.X : 0, min.Y < 0 ? -min.Y : 0);
+			foreach (var room in _area.Rooms)
 			{
-				// First room in chain is 0, 0
-				var point = new Point(0, y);
-
-				chain[0].Tag = point;
-				AssignCoordinates(chain, chain[0]);
-
-				// Sort by y,x
-				chain.Sort((x, y) =>
+				if (room.Tag == null)
 				{
-					var a = (Point)x.Tag;
-					var b = (Point)y.Tag;
-
-					if (a.Y < b.Y)
-					{
-						return -1;
-					}
-					else if (a.Y == b.Y)
-					{
-						if (a.X < b.X)
-						{
-							return -1;
-						}
-						else if (a.X == b.X)
-						{
-							return 0;
-						}
-					}
-
-					return 1;
-				});
-
-				// Determine minimum point
-				var min = new Point();
-				var minSet = false;
-				Point pos;
-				foreach (var room in chain)
-				{
-					pos = (Point)room.Tag;
-					if (!minSet)
-					{
-						min = new Point(pos.X, pos.Y);
-						minSet = true;
-					}
-
-					if (pos.X < min.X)
-					{
-						min.X = pos.X;
-					}
-
-					if (pos.Y < min.Y)
-					{
-						min.Y = pos.Y;
-					}
+					continue;
 				}
 
-				// Shift everything so it begins from 0,0
-				Point shift = new Point(min.X < 0 ? -min.X : 0, min.Y < 0 ? -min.Y : 0);
-				foreach (var room in chain)
-				{
-					pos = (Point)room.Tag;
+				pos = (Point)room.Tag;
 
-					pos.X += shift.X;
-					pos.Y += shift.Y;
-					room.Tag = pos;
-				}
-
-				//
-				pos = (Point)chain[chain.Count - 1].Tag;
-				y = pos.Y + 1;
+				pos.X += shift.X;
+				pos.Y += shift.Y;
+				room.Tag = pos;
 			}
 
 			// Determine size
 			Point max = new Point(0, 0);
-			foreach (var chain in _roomsChains)
+			foreach (var room in _area.Rooms)
 			{
-				foreach (var room in chain)
+				if (room.Tag == null)
 				{
-					var pos = (Point)room.Tag;
-					if (pos.X > max.X)
-					{
-						max.X = pos.X;
-					}
+					continue;
+				}
 
-					if (pos.Y > max.Y)
-					{
-						max.Y = pos.Y;
-					}
+				pos = (Point)room.Tag;
+				if (pos.X > max.X)
+				{
+					max.X = pos.X;
+				}
+
+				if (pos.Y > max.Y)
+				{
+					max.Y = pos.Y;
 				}
 			}
+
+			++max.X;
+			++max.Y;
 
 			byte[] imageBytes = null;
 
@@ -320,12 +241,12 @@ namespace AbarimMUD.Site.Utility.Utility
 				paint.IsAntialias = true;
 				paint.Style = SKPaintStyle.Stroke;
 				paint.TextAlign = SKTextAlign.Center;
-				
+
 				// First grid run - determine cells width
-				var cellsWidths = new int[max.X];
+				cellsWidths = new int[max.X];
 				for (var x = 0; x < max.X; ++x)
 				{
-					for (y = 0; y < max.Y; ++y)
+					for (var y = 0; y < max.Y; ++y)
 					{
 						var room = GetRoomByPoint(new Point(x, y));
 						if (room == null)
@@ -344,7 +265,7 @@ namespace AbarimMUD.Site.Utility.Utility
 
 				// Second run - draw the map
 				var imageWidth = 0;
-				for(var i = 0; i < cellsWidths.Length; ++i)
+				for (var i = 0; i < cellsWidths.Length; ++i)
 				{
 					imageWidth += cellsWidths[i];
 				}
@@ -359,10 +280,9 @@ namespace AbarimMUD.Site.Utility.Utility
 				{
 					SKCanvas canvas = surface.Canvas;
 
-					var screenX = RoomSpace.X;
 					for (var x = 0; x < max.X; ++x)
 					{
-						for (y = 0; y < max.Y; ++y)
+						for (var y = 0; y < max.Y; ++y)
 						{
 							var room = GetRoomByPoint(new Point(x, y));
 							if (room == null)
@@ -370,18 +290,60 @@ namespace AbarimMUD.Site.Utility.Utility
 								continue;
 							}
 
-							var screenPos = new Point(screenX,
-													  y * RoomHeight + (y + 1) * RoomSpace.Y);
+							// Draw room
+							var rect = GetRoomRect(new Point(x, y));
 							paint.StrokeWidth = 2;
-							canvas.DrawRect(screenPos.X, screenPos.Y, cellsWidths[x], RoomHeight, paint);
+							canvas.DrawRect(rect.X, rect.Y, cellsWidths[x], RoomHeight, paint);
+
+							// Draw connections
+							foreach (var roomExit in room.Exits)
+							{
+								if (roomExit.TargetRoom == null || roomExit.TargetRoom.Tag == null)
+								{
+									continue;
+								}
+
+								var targetPos = (Point)roomExit.TargetRoom.Tag;
+								var targetRect = GetRoomRect(targetPos);
+
+								var sourceScreen = new Point(rect.X + rect.Width / 2, rect.Y + rect.Height / 2);
+								var targetScreen = new Point(targetRect.X + targetRect.Width / 2,
+									targetRect.Y + targetRect.Height / 2);
+
+								if (targetPos.X > x && targetPos.Y == y)
+								{
+									// To the right
+									sourceScreen = new Point(rect.Right, rect.Y + rect.Height / 2);
+									targetScreen = new Point(targetRect.X, targetRect.Y + targetRect.Height / 2);
+								}
+								else if (targetPos.X < x && targetPos.Y == y)
+								{
+									// To the left
+									sourceScreen = new Point(rect.Left, rect.Y + rect.Height / 2);
+									targetScreen = new Point(targetRect.Right, targetRect.Y + targetRect.Height / 2);
+								}
+								else if (targetPos.X == x && targetPos.Y > y)
+								{
+									// To the bottom
+									sourceScreen = new Point(rect.X + rect.Width / 2, rect.Bottom);
+									targetScreen = new Point(targetRect.X + targetRect.Width / 2, targetRect.Y);
+								}
+								else if (targetPos.X == x && targetPos.Y < y)
+								{
+									// To the top
+									sourceScreen = new Point(rect.X + rect.Width / 2, rect.Y);
+									targetScreen = new Point(targetRect.X + targetRect.Width / 2, targetRect.Bottom);
+								}
+
+								canvas.DrawLine(sourceScreen.X, sourceScreen.Y, targetScreen.X, targetScreen.Y, paint);
+							}
 
 							paint.StrokeWidth = 1;
-							canvas.DrawText(room.Name, screenPos.X + cellsWidths[x] / 2, screenPos.Y + RoomHeight / 2, paint);
-						}
+							canvas.DrawText(room.Name, rect.X + rect.Width / 2, rect.Y + rect.Height / 2, paint);
 
-						screenX += cellsWidths[x];
-						screenX += RoomSpace.X;
+						}
 					}
+
 					using (SKImage image = surface.Snapshot())
 					using (SKData data = image.Encode(SKEncodedImageFormat.Png, 100))
 					using (MemoryStream mStream = new MemoryStream(data.ToArray()))
@@ -393,6 +355,18 @@ namespace AbarimMUD.Site.Utility.Utility
 			}
 
 			return imageBytes;
+		}
+
+		private Rectangle GetRoomRect(Point pos)
+		{
+			var screenX = RoomSpace.X;
+			for (var x = 0; x < pos.X; ++x)
+			{
+				screenX += cellsWidths[x];
+				screenX += RoomSpace.X;
+			}
+
+			return new Rectangle(screenX, pos.Y * RoomHeight + (pos.Y + 1) * RoomSpace.Y, cellsWidths[pos.X], RoomHeight);
 		}
 	}
 }
