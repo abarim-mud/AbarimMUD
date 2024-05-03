@@ -12,7 +12,7 @@ namespace AbarimMUD.Site.Pages
 		{
 			using (var db = Database.CreateDataContext())
 			{
-				Areas = db.Areas.ToArray();
+				Areas = (from a in db.Areas orderby a.Name select a).ToArray();
 			}
 		}
 	}

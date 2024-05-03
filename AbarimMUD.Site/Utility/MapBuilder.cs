@@ -11,9 +11,9 @@ namespace AbarimMUD.Site.Utility.Utility
 {
 	public static class MapBuilderExtensions
 	{
-		public static Point getExitTypeDelta(this Direction exitType)
+		public static Point GetDelta(this Direction direction)
 		{
-			switch (exitType)
+			switch (direction)
 			{
 				case Direction.East:
 					return new Point(1, 0);
@@ -24,12 +24,12 @@ namespace AbarimMUD.Site.Utility.Utility
 				case Direction.South:
 					return new Point(0, 1);
 				case Direction.Up:
-					return new Point(0, -1);
+					return new Point(1, -1);
 				case Direction.Down:
-					return new Point(0, 1);
+					return new Point(-1, 1);
 			}
 
-			throw new Exception($"Unknown direction {exitType}");
+			throw new Exception($"Unknown direction {direction}");
 		}
 	}
 
@@ -37,11 +37,6 @@ namespace AbarimMUD.Site.Utility.Utility
 	{
 		private const int RoomHeight = 32;
 		private const int TextPadding = 8;
-		private static readonly Direction[] Directions = new Direction[]
-		{
-			Direction.West, Direction.North, Direction.South, Direction.East,
-		};
-
 		private static readonly Point RoomSpace = new Point(32, 32);
 
 		private Area _area;
@@ -105,8 +100,18 @@ namespace AbarimMUD.Site.Utility.Utility
 						}
 						break;
 					case Direction.Up:
+						if (roomPos.X >= pos.X && roomPos.Y <= pos.Y)
+						{
+							++roomPos.X;
+							--roomPos.Y;
+						}
 						break;
 					case Direction.Down:
+						if (roomPos.X <= pos.X && roomPos.Y >= pos.Y)
+						{
+							--roomPos.X;
+							++roomPos.Y;
+						}
 						break;
 				}
 
@@ -132,15 +137,14 @@ namespace AbarimMUD.Site.Utility.Utility
 				toProcess.RemoveAt(0);
 
 				pos = (Point)(room.Tag);
-				foreach (var direction in Directions)
+				foreach (var exit in room.Exits)
 				{
-					var exit = (from e in room.Exits where e.Direction == direction select e).FirstOrDefault();
-					if (exit == null || exit.TargetRoom == null || exit.TargetRoom.Tag != null)
+					if (exit.TargetRoom == null || exit.TargetRoom.Tag != null)
 					{
 						continue;
 					}
 
-					var delta = direction.getExitTypeDelta();
+					var delta = exit.Direction.GetDelta();
 					var newPos = new Point(pos.X + delta.X, pos.Y + delta.Y);
 
 					// Check if this pos is used already
@@ -154,7 +158,7 @@ namespace AbarimMUD.Site.Utility.Utility
 						if ((Point)room2.Tag == newPos)
 						{
 							// It is used
-							PushRooms(newPos, direction);
+							PushRooms(newPos, exit.Direction);
 						}
 					}
 
@@ -163,6 +167,46 @@ namespace AbarimMUD.Site.Utility.Utility
 				}
 
 				++step;
+			}
+
+			// Next run: if it is possible to place interconnected rooms next to each other, do it
+			foreach (var room in _area.Rooms)
+			{
+				if (room.Tag == null)
+				{
+					continue;
+				}
+
+				pos = (Point)room.Tag;
+
+				foreach (var exit in room.Exits)
+				{
+					if (exit.TargetRoom == null)
+					{
+						continue;
+					}
+
+					var targetPos = (Point)exit.TargetRoom.Tag;
+					var delta = exit.Direction.GetDelta();
+					var desiredPos = new Point(pos.X + delta.X, pos.Y + delta.Y);
+
+					if (targetPos == desiredPos)
+					{
+						// Target room is already next to the source
+						continue;
+					}
+
+					// Check if the spot is free
+					var usedByRoom = GetRoomByPoint(desiredPos);
+					if (usedByRoom != null)
+					{
+						// Spot is occupied
+						continue;
+					}
+
+					// Place target room next to source
+					exit.TargetRoom.Tag = desiredPos;
+				}
 			}
 
 			// Determine minimum point
@@ -306,36 +350,14 @@ namespace AbarimMUD.Site.Utility.Utility
 								var targetPos = (Point)roomExit.TargetRoom.Tag;
 								var targetRect = GetRoomRect(targetPos);
 
-								var sourceScreen = new Point(rect.X + rect.Width / 2, rect.Y + rect.Height / 2);
-								var targetScreen = new Point(targetRect.X + targetRect.Width / 2,
-									targetRect.Y + targetRect.Height / 2);
+								var sourceScreen = GetConnectionPoint(rect, roomExit.Direction);
+								var targetScreen = GetConnectionPoint(targetRect, roomExit.Direction.GetOppositeDirection());
 
-								if (targetPos.X > x && targetPos.Y == y)
+								var delta = roomExit.Direction.GetDelta();
+								//if (targetPos == new Point(x + delta.X, y + delta.Y))
 								{
-									// To the right
-									sourceScreen = new Point(rect.Right, rect.Y + rect.Height / 2);
-									targetScreen = new Point(targetRect.X, targetRect.Y + targetRect.Height / 2);
+									canvas.DrawLine(sourceScreen.X, sourceScreen.Y, targetScreen.X, targetScreen.Y, paint);
 								}
-								else if (targetPos.X < x && targetPos.Y == y)
-								{
-									// To the left
-									sourceScreen = new Point(rect.Left, rect.Y + rect.Height / 2);
-									targetScreen = new Point(targetRect.Right, targetRect.Y + targetRect.Height / 2);
-								}
-								else if (targetPos.X == x && targetPos.Y > y)
-								{
-									// To the bottom
-									sourceScreen = new Point(rect.X + rect.Width / 2, rect.Bottom);
-									targetScreen = new Point(targetRect.X + targetRect.Width / 2, targetRect.Y);
-								}
-								else if (targetPos.X == x && targetPos.Y < y)
-								{
-									// To the top
-									sourceScreen = new Point(rect.X + rect.Width / 2, rect.Y);
-									targetScreen = new Point(targetRect.X + targetRect.Width / 2, targetRect.Bottom);
-								}
-
-								canvas.DrawLine(sourceScreen.X, sourceScreen.Y, targetScreen.X, targetScreen.Y, paint);
 							}
 
 							paint.StrokeWidth = 1;
@@ -367,6 +389,27 @@ namespace AbarimMUD.Site.Utility.Utility
 			}
 
 			return new Rectangle(screenX, pos.Y * RoomHeight + (pos.Y + 1) * RoomSpace.Y, cellsWidths[pos.X], RoomHeight);
+		}
+
+		private static Point GetConnectionPoint(Rectangle rect, Direction direction)
+		{
+			switch (direction)
+			{
+				case Direction.North:
+					return new Point(rect.X + rect.Width / 2, rect.Y);
+				case Direction.East:
+					return new Point(rect.Right, rect.Y + rect.Height / 2);
+				case Direction.South:
+					return new Point(rect.X + rect.Width / 2, rect.Bottom);
+				case Direction.West:
+					return new Point(rect.Left, rect.Y + rect.Height / 2);
+				case Direction.Up:
+					return new Point(rect.Right, rect.Y);
+				case Direction.Down:
+					return new Point(rect.X, rect.Bottom);
+			}
+
+			throw new Exception($"Unknown direction {direction}");
 		}
 	}
 }
