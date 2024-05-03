@@ -12,6 +12,8 @@ namespace AbarimMUD
 {
 	public static class Database
 	{
+		public static DataContext CreateDataContext() => new DataContext(Configuration.ConnectionString);
+
 		private class CRUD<T> : IEnumerable<T> where T : Entity
 		{
 			private readonly Func<DataContext, DbSet<T>> _tableGetter;
@@ -46,7 +48,7 @@ namespace AbarimMUD
 
 			public void Create(T entity)
 			{
-				using (var db = new DataContext())
+				using (var db = CreateDataContext())
 				{
 					var table = _tableGetter(db);
 					table.Add(entity);
@@ -73,7 +75,7 @@ namespace AbarimMUD
 		{
 			DataContext.LogOutput = msg => _dbLogger.Info(msg);
 
-			using (var db = new DataContext())
+			using (var db = CreateDataContext())
 			{
 				// Load area data
 				_areas.AddRange(db.Areas);
@@ -110,7 +112,7 @@ namespace AbarimMUD
 
 		public static void Update(Entity entity)
 		{
-			using (var db = new DataContext())
+			using (var db = CreateDataContext())
 			{
 				db.Entry(entity).State = EntityState.Modified;
 				db.SaveChanges();
@@ -165,7 +167,7 @@ namespace AbarimMUD
 
 		public static void ConnectRoom(Room sourceRoom, Room targetRoom, Direction direction)
 		{
-			using (var db = new DataContext())
+			using (var db = CreateDataContext())
 			{
 				// Delete existing connections
 				DisconnectInternal(db, sourceRoom, direction);
@@ -195,7 +197,7 @@ namespace AbarimMUD
 
 		public static void DisconnectRoom(Room room, Direction direction)
 		{
-			using (var db = new DataContext())
+			using (var db = CreateDataContext())
 			{
 				// Delete existing connections
 				DisconnectInternal(db, room, direction);

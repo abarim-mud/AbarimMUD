@@ -74,10 +74,10 @@ namespace AbarimMUD.WebService
 
 		public string GetVersion()
 		{
-			return Assembly.GetExecutingAssembly().GetName().Version.ToString();
+			return Assembly.GetExecutingAssembly().GetName().Version.ToString().SerializeToJSON();
 		}
 
-		public string ListAreas(NameValueCollection parameters)
+		public string ListAreas()
 		{
 			var result = new ListAreasResult();
 
@@ -85,14 +85,6 @@ namespace AbarimMUD.WebService
 			{
 				do
 				{
-					ResultDescription rd;
-					var admin = GetAdminCharacter(parameters, out rd);
-					if (admin == null)
-					{
-						result.Result = rd;
-						break;
-					}
-
 					var areas = Database.GetAllAreas();
 					if (areas.Length == 0)
 					{
@@ -124,30 +116,13 @@ namespace AbarimMUD.WebService
 			return result.SerializeToJSON();
 		}
 
-		private string GetArea(NameValueCollection parameters)
+		private string GetArea(int areaId)
 		{
 			var result = new GetAreaResult();
 			try
 			{
-				var areaIdStr = parameters.Get(AreaKey);
-
 				do
 				{
-					int areaId;
-					if (string.IsNullOrEmpty(areaIdStr) || !int.TryParse(areaIdStr, out areaId))
-					{
-						result.Result = ResultDescription.CreateRequiredParameterIsNotSet("area");
-						break;
-					}
-
-					ResultDescription rd;
-					var admin = GetAdminCharacter(parameters, out rd);
-					if (admin == null)
-					{
-						result.Result = rd;
-						break;
-					}
-
 					var area = Database.GetAreaById(areaId);
 					if (area == null)
 					{
@@ -156,7 +131,6 @@ namespace AbarimMUD.WebService
 					}
 
 					result.Result = ResultDescription.CreateFromResultType(ResultType.OK);
-
 					result.Area = area;
 				} while (false);
 			}
@@ -187,7 +161,7 @@ namespace AbarimMUD.WebService
 				return;
 			}
 
-			var method = request.Url.Segments[request.Url.Segments.Length - 1].ToLower();
+			var method = request.Url.Segments[2].ToLower().Replace("/", string.Empty);
 			_logger.Info("method: {0}", method);
 
 			var data = string.Empty;
@@ -198,11 +172,11 @@ namespace AbarimMUD.WebService
 					break;
 
 				case "listareas":
-					data = ListAreas(request.QueryString);
+					data = ListAreas();
 					break;
 
 				case "getarea":
-					data = GetArea(request.QueryString);
+					data = GetArea(int.Parse(request.Url.Segments[3].ToLower()));
 					break;
 			}
 
@@ -219,24 +193,30 @@ namespace AbarimMUD.WebService
 
 		private void MainThreadProc(object state)
 		{
-			_logger.Info("WebService Started");
-
-			_listener.Prefixes.Add(Configuration.WebServiceUrl);
-
-			_listener.Start();
-
-			while (_running)
+			try
 			{
-				try
-				{
-					var context = _listener.GetContext();
+				_listener.Prefixes.Add(Configuration.WebServiceUrl);
+				_listener.Start();
 
-					ProcessRequest(context);
-				}
-				catch (Exception ex)
+				_logger.Info($"WebService Started at '{Configuration.WebServiceUrl}'");
+
+				while (_running)
 				{
-					_logger.Info(ex);
+					try
+					{
+						var context = _listener.GetContext();
+
+						ProcessRequest(context);
+					}
+					catch (Exception ex)
+					{
+						_logger.Info(ex);
+					}
 				}
+			}
+			catch (Exception ex)
+			{
+				_logger.Info(ex);
 			}
 		}
 	}

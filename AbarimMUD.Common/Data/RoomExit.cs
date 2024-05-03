@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
 {
@@ -30,9 +31,12 @@ namespace AbarimMUD.Data
 
 	public class RoomExit : Entity
 	{
+		[JsonIgnore]
 		public int SourceRoomId { get; set; }
+		[JsonIgnore]
 		public Room SourceRoom { get; set; }
 		public int? TargetRoomId { get; set; }
+		[JsonIgnore]
 		public Room TargetRoom { get; set; }
 		public Direction Direction { get; set; }
 		public string Description { get; set; }

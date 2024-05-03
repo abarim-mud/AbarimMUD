@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
 {
@@ -55,11 +56,17 @@ namespace AbarimMUD.Data
 
 		public List<RoomExit> Exits { get; } = new List<RoomExit>();
 
+		[JsonIgnore]
 		[NotMapped]
 		public List<MobileInstance> Mobiles { get; } = new List<MobileInstance>();
 
+		[JsonIgnore]
 		[NotMapped]
 		public List<Character> Characters { get; } = new List<Character>();
+
+		[JsonIgnore]
+		[NotMapped]
+		public object Tag { get; set; }
 
 		public void AddCharacter(Character character)
 		{

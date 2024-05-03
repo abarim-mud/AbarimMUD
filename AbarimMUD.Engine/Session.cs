@@ -47,7 +47,7 @@ namespace AbarimMUD
 				_character = value;
 
 				int startRoomId;
-				using (var db = new DataContext())
+				using (var db = Database.CreateDataContext())
 				{
 					startRoomId = (from r in db.Rooms where r.VNum == Configuration.StartRoomVnum select r.Id).First();
 				}

@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using System;
-using System.Configuration;
 
 namespace AbarimMUD.Data
 {
@@ -16,6 +15,8 @@ namespace AbarimMUD.Data
 				LogOutput(message);
 			}
 		}
+
+		private readonly string _connectionString;
 
 		public DbSet<Area> Areas => Set<Area>();
 		public DbSet<Room> Rooms => Set<Room>();
@@ -32,17 +33,17 @@ namespace AbarimMUD.Data
 		public DbSet<Character> Characters => Set<Character>();
 
 
-		public DataContext()
+		public DataContext(string connectionString)
 		{
+			_connectionString = connectionString;
 		}
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
 			base.OnConfiguring(optionsBuilder);
 
-			var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 			optionsBuilder
-				.UseSqlite(connectionString)
+				.UseSqlite(_connectionString)
 				.LogTo(Log, new[] { RelationalEventId.CommandExecuted });
 		}
 
