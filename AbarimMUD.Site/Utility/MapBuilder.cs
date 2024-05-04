@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Security.Claims;
 
 namespace AbarimMUD.Site.Utility.Utility
 {
@@ -62,60 +61,109 @@ namespace AbarimMUD.Site.Utility.Utility
 			return null;
 		}
 
-		private void PushRooms(Point pos, Direction dir)
+		private void PushRoom(Room room, Direction dir)
 		{
-			foreach (var room in _area.Rooms)
+			var roomPos = (Point)room.Tag;
+			switch (dir)
 			{
+				case Direction.North:
+					--roomPos.Y;
+					break;
+				case Direction.East:
+					++roomPos.X;
+					break;
+				case Direction.South:
+					++roomPos.Y;
+					break;
+				case Direction.West:
+					--roomPos.X;
+					break;
+				case Direction.Up:
+					++roomPos.X;
+					--roomPos.Y;
+					break;
+				case Direction.Down:
+					--roomPos.X;
+					++roomPos.Y;
+					break;
+			}
+
+			room.Tag = roomPos;
+		}
+
+		private void PushRooms(Room firstRoom, Direction dir, bool strongPush)
+		{
+			var pos = (Point)firstRoom.Tag;
+
+			// Push other rooms
+			foreach(var room in _area.Rooms)
+			{ 
+				// Push this room
 				if (room.Tag == null)
 				{
 					continue;
 				}
 
 				var roomPos = (Point)room.Tag;
+				var push = false;
 
-				switch (dir)
+				if (room == firstRoom)
 				{
-					case Direction.North:
-						if (roomPos.Y <= pos.Y)
-						{
-							--roomPos.Y;
-						}
-						break;
-					case Direction.East:
-						if (roomPos.X >= pos.X)
-						{
-							++roomPos.X;
-						}
-						break;
-					case Direction.South:
-						if (roomPos.Y >= pos.Y)
-						{
-							++roomPos.Y;
-						}
-						break;
-					case Direction.West:
-						if (roomPos.X <= pos.X)
-						{
-							--roomPos.X;
-						}
-						break;
-					case Direction.Up:
-						if (roomPos.X >= pos.X && roomPos.Y <= pos.Y)
-						{
-							++roomPos.X;
-							--roomPos.Y;
-						}
-						break;
-					case Direction.Down:
-						if (roomPos.X <= pos.X && roomPos.Y >= pos.Y)
-						{
-							--roomPos.X;
-							++roomPos.Y;
-						}
-						break;
+					push = true;
+				}
+				else if (strongPush)
+				{
+					switch (dir)
+					{
+						case Direction.North:
+							push = roomPos.Y <= pos.Y;
+							break;
+						case Direction.East:
+							push = roomPos.X >= pos.X;
+							break;
+						case Direction.South:
+							push = roomPos.Y >= pos.Y;
+							break;
+						case Direction.West:
+							push = roomPos.X <= pos.X;
+							break;
+						case Direction.Up:
+							push = roomPos.X >= pos.X && roomPos.Y <= pos.Y;
+							break;
+						case Direction.Down:
+							push = roomPos.X <= pos.X && roomPos.Y >= pos.Y;
+							break;
+					}
+				}
+				else
+				{
+					switch (dir)
+					{
+						case Direction.North:
+							push = roomPos.Y < pos.Y;
+							break;
+						case Direction.East:
+							push = roomPos.X > pos.X;
+							break;
+						case Direction.South:
+							push = roomPos.Y > pos.Y;
+							break;
+						case Direction.West:
+							push = roomPos.X < pos.X;
+							break;
+						case Direction.Up:
+							push = roomPos.X > pos.X && roomPos.Y < pos.Y;
+							break;
+						case Direction.Down:
+							push = roomPos.X < pos.X && roomPos.Y > pos.Y;
+							break;
+					}
 				}
 
-				room.Tag = roomPos;
+				if (push)
+				{
+					PushRoom(room, dir);
+				}
 			}
 		}
 
@@ -139,7 +187,7 @@ namespace AbarimMUD.Site.Utility.Utility
 				pos = (Point)(room.Tag);
 				foreach (var exit in room.Exits)
 				{
-					if (exit.TargetRoom == null || exit.TargetRoom.Tag != null)
+					if (exit.TargetRoom == null || exit.TargetRoom.AreaId != _area.Id || exit.TargetRoom.Tag != null)
 					{
 						continue;
 					}
@@ -147,18 +195,67 @@ namespace AbarimMUD.Site.Utility.Utility
 					var delta = exit.Direction.GetDelta();
 					var newPos = new Point(pos.X + delta.X, pos.Y + delta.Y);
 
-					// Check if this pos is used already
-					foreach (var room2 in _area.Rooms)
+					while(true)
 					{
-						if (exit.TargetRoom == room2 || room2.Tag == null)
+						// Check if this pos is used already
+						var intersectRoom = (from r in _area.Rooms where r != exit.TargetRoom && r.Tag != null && ((Point)r.Tag) == newPos select r).FirstOrDefault();
+						if (intersectRoom == null)
 						{
-							continue;
+							break;
 						}
 
-						if ((Point)room2.Tag == newPos)
+						switch (exit.Direction)
 						{
-							// It is used
-							PushRooms(newPos, exit.Direction);
+							case Direction.North:
+								PushRooms(intersectRoom, Direction.North, true);
+								break;
+							case Direction.East:
+								{
+									var horizontalConnection = (from ex in intersectRoom.Exits
+																where
+																(ex.Direction == Direction.West || ex.Direction == Direction.East) &&
+																ex.TargetRoom != null && ex.TargetRoom.AreaId == _area.Id && ex.TargetRoom.Tag != null
+																select ex).FirstOrDefault();
+									if (horizontalConnection == null)
+									{
+										// We arent breaking any horizontal line
+										// Hence doing vertical push
+										PushRooms(intersectRoom, Direction.North, false);
+									}
+									else
+									{
+										PushRooms(intersectRoom, Direction.East, true);
+									}
+								}
+								break;
+							case Direction.South:
+								PushRooms(intersectRoom, Direction.South, true);
+								break;
+							case Direction.West:
+								{
+									var horizontalConnection = (from ex in intersectRoom.Exits
+																where
+																(ex.Direction == Direction.West || ex.Direction == Direction.East) &&
+																ex.TargetRoom != null && ex.TargetRoom.AreaId == _area.Id && ex.TargetRoom.Tag != null
+																select ex).FirstOrDefault();
+									if (horizontalConnection == null)
+									{
+										// We arent breaking any horizontal line
+										// Hence doing vertical push
+										PushRooms(intersectRoom, Direction.North, false);
+									}
+									else
+									{
+										PushRooms(intersectRoom, Direction.West, true);
+									}
+								}
+								break;
+							case Direction.Up:
+								PushRooms(intersectRoom, Direction.North, true);
+								break;
+							case Direction.Down:
+								PushRooms(intersectRoom, Direction.South, true);
+								break;
 						}
 					}
 
@@ -169,7 +266,7 @@ namespace AbarimMUD.Site.Utility.Utility
 				++step;
 			}
 
-			// Next run: if it is possible to place interconnected rooms next to each other, do it
+			// Next run: if it is possible to place interconnected rooms with single exits next to each other, do it
 			foreach (var room in _area.Rooms)
 			{
 				if (room.Tag == null)
@@ -181,7 +278,13 @@ namespace AbarimMUD.Site.Utility.Utility
 
 				foreach (var exit in room.Exits)
 				{
-					if (exit.TargetRoom == null)
+					if (exit.TargetRoom == null || exit.TargetRoom.AreaId != _area.Id || exit.TargetRoom.Tag == null)
+					{
+						continue;
+					}
+
+					var targetExitsCount = (from ex in exit.TargetRoom.Exits where ex.TargetRoom != null && ex.TargetRoom.AreaId == _area.Id select ex).Count();
+					if (targetExitsCount > 1)
 					{
 						continue;
 					}
@@ -278,7 +381,6 @@ namespace AbarimMUD.Site.Utility.Utility
 			++max.Y;
 
 			byte[] imageBytes = null;
-
 			using (SKPaint paint = new SKPaint())
 			{
 				paint.Color = SKColors.Black;

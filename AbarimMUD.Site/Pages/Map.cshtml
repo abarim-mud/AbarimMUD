@@ -3,4 +3,17 @@
 @{
 }
 
+<p>
+<a href="/Maps/@Model.MapId/1">&lt;&lt;</a>
+@if (Model.MaxSteps != null)
+{
+	@if (Model.MaxSteps.Value > 1)
+	{
+		<a href="/Maps/@Model.MapId/@(Model.MaxSteps.Value - 1)">&lt;</a>
+	}
+	<a href="/Maps/@Model.MapId/@(Model.MaxSteps.Value + 1)">&gt;</a>
+}
+<a href="/Maps/@Model.MapId">&gt;&gt;</a>
+</p>
+
 <img src="@Model.EncodedImage" alt="" />
