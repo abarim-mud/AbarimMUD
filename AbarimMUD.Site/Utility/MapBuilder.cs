@@ -1,45 +1,116 @@
 ﻿using AbarimMUD.Data;
+using GoRogue.MapViews;
+using GoRogue;
 using SkiaSharp;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using Direction = AbarimMUD.Data.Direction;
+using Rectangle = System.Drawing.Rectangle;
+using System.Text;
+using GoRogue.Pathing;
+using System.Numerics;
 
 namespace AbarimMUD.Site.Utility.Utility
 {
-	public static class MapBuilderExtensions
-	{
-		public static Point GetDelta(this Direction direction)
-		{
-			switch (direction)
-			{
-				case Direction.East:
-					return new Point(1, 0);
-				case Direction.West:
-					return new Point(-1, 0);
-				case Direction.North:
-					return new Point(0, -1);
-				case Direction.South:
-					return new Point(0, 1);
-				case Direction.Up:
-					return new Point(1, -1);
-				case Direction.Down:
-					return new Point(-1, 1);
-			}
-
-			throw new Exception($"Unknown direction {direction}");
-		}
-	}
-
 	public class MapBuilder
 	{
+		private class RoomInfo
+		{
+			private Dictionary<Direction, Point> _connections = new Dictionary<Direction, Point>();
+
+			public Room Room { get; private set; }
+
+			public RoomInfo(Room room)
+			{
+				Room = room;
+			}
+
+			public void Connect(Direction direction, Point pos)
+			{
+				_connections[direction] = pos;
+			}
+
+			public bool IsConnected(Direction direction, Point pos)
+			{
+				Point connectedPos;
+				if (!_connections.TryGetValue(direction, out connectedPos))
+				{
+					return false;
+				}
+
+				return connectedPos == pos;
+			}
+		}
+
+		private class MapGrid
+		{
+			private readonly RoomInfo[,] _cellData;
+
+			public RoomInfo this[Point coord]
+			{
+				get => _cellData[coord.X, coord.Y];
+				set => _cellData[coord.X, coord.Y] = value;
+			}
+
+			public RoomInfo this[int x, int y]
+			{
+				get => _cellData[x, y];
+				set => _cellData[x, y] = value;
+			}
+
+			public int Width => _cellData.GetLength(0);
+			public int Height => _cellData.GetLength(1);
+
+			public MapGrid(Point size)
+			{
+				_cellData = new RoomInfo[size.X, size.Y];
+			}
+
+			public bool AreRoomsConnected(Point a, Point b, Direction direction)
+			{
+				var room = this[a];
+				if (room.IsConnected(direction, b))
+				{
+					return true;
+				}
+
+				room = this[b];
+				if (room.IsConnected(direction.GetOppositeDirection(), a))
+				{
+					return true;
+				}
+
+				return false;
+			}
+
+			public override string ToString()
+			{
+				var sb = new StringBuilder();
+
+				for (var y = 0; y < Height; ++y)
+				{
+					for (var x = 0; x < Width; ++x)
+					{
+						sb.Append(_cellData[x, y] != null ? "x" : ".");
+					}
+
+					sb.Append(Environment.NewLine);
+				}
+
+				return sb.ToString();
+			}
+		}
+
 		private const int RoomHeight = 32;
 		private const int TextPadding = 8;
 		private static readonly Point RoomSpace = new Point(32, 32);
 
 		private Area _area;
-		private int[] cellsWidths;
+		private MapGrid _grid;
+		private int[] _cellsWidths;
 
 		private Room GetRoomByPoint(Point p)
 		{
@@ -96,8 +167,8 @@ namespace AbarimMUD.Site.Utility.Utility
 			var pos = (Point)firstRoom.Tag;
 
 			// Push other rooms
-			foreach(var room in _area.Rooms)
-			{ 
+			foreach (var room in _area.Rooms)
+			{
 				// Push this room
 				if (room.Tag == null)
 				{
@@ -195,7 +266,7 @@ namespace AbarimMUD.Site.Utility.Utility
 					var delta = exit.Direction.GetDelta();
 					var newPos = new Point(pos.X + delta.X, pos.Y + delta.Y);
 
-					while(true)
+					while (true)
 					{
 						// Check if this pos is used already
 						var intersectRoom = (from r in _area.Rooms where r != exit.TargetRoom && r.Tag != null && ((Point)r.Tag) == newPos select r).FirstOrDefault();
@@ -380,6 +451,21 @@ namespace AbarimMUD.Site.Utility.Utility
 			++max.X;
 			++max.Y;
 
+			_grid = new MapGrid(max);
+			for (var x = 0; x < max.X; ++x)
+			{
+				for (var y = 0; y < max.Y; ++y)
+				{
+					var room = GetRoomByPoint(new Point(x, y));
+					if (room == null)
+					{
+						continue;
+					}
+
+					_grid[x, y] = new RoomInfo(room);
+				}
+			}
+
 			byte[] imageBytes = null;
 			using (SKPaint paint = new SKPaint())
 			{
@@ -389,21 +475,21 @@ namespace AbarimMUD.Site.Utility.Utility
 				paint.TextAlign = SKTextAlign.Center;
 
 				// First grid run - determine cells width
-				cellsWidths = new int[max.X];
+				_cellsWidths = new int[max.X];
 				for (var x = 0; x < max.X; ++x)
 				{
 					for (var y = 0; y < max.Y; ++y)
 					{
-						var room = GetRoomByPoint(new Point(x, y));
+						var room = _grid[x, y];
 						if (room == null)
 						{
 							continue;
 						}
 
-						var sz = (int)(paint.MeasureText(room.Name) + TextPadding * 2 + 0.5f);
-						if (sz > cellsWidths[x])
+						var sz = (int)(paint.MeasureText(room.Room.Name) + TextPadding * 2 + 0.5f);
+						if (sz > _cellsWidths[x])
 						{
-							cellsWidths[x] = sz;
+							_cellsWidths[x] = sz;
 						}
 					}
 				}
@@ -411,9 +497,9 @@ namespace AbarimMUD.Site.Utility.Utility
 
 				// Second run - draw the map
 				var imageWidth = 0;
-				for (var i = 0; i < cellsWidths.Length; ++i)
+				for (var i = 0; i < _cellsWidths.Length; ++i)
 				{
-					imageWidth += cellsWidths[i];
+					imageWidth += _cellsWidths[i];
 				}
 
 				imageWidth += (max.X + 1) * RoomSpace.X;
@@ -430,8 +516,8 @@ namespace AbarimMUD.Site.Utility.Utility
 					{
 						for (var y = 0; y < max.Y; ++y)
 						{
-							var room = GetRoomByPoint(new Point(x, y));
-							if (room == null)
+							var roomInfo = _grid[x, y];
+							if (roomInfo == null)
 							{
 								continue;
 							}
@@ -439,10 +525,10 @@ namespace AbarimMUD.Site.Utility.Utility
 							// Draw room
 							var rect = GetRoomRect(new Point(x, y));
 							paint.StrokeWidth = 2;
-							canvas.DrawRect(rect.X, rect.Y, cellsWidths[x], RoomHeight, paint);
+							canvas.DrawRect(rect.X, rect.Y, _cellsWidths[x], RoomHeight, paint);
 
 							// Draw connections
-							foreach (var roomExit in room.Exits)
+							foreach (var roomExit in roomInfo.Room.Exits)
 							{
 								if (roomExit.TargetRoom == null || roomExit.TargetRoom.Tag == null)
 								{
@@ -450,21 +536,145 @@ namespace AbarimMUD.Site.Utility.Utility
 								}
 
 								var targetPos = (Point)roomExit.TargetRoom.Tag;
-								var targetRect = GetRoomRect(targetPos);
-
-								var sourceScreen = GetConnectionPoint(rect, roomExit.Direction);
-								var targetScreen = GetConnectionPoint(targetRect, roomExit.Direction.GetOppositeDirection());
-
-								var delta = roomExit.Direction.GetDelta();
-								//if (targetPos == new Point(x + delta.X, y + delta.Y))
+								if (_grid.AreRoomsConnected(new Point(x, y), targetPos, roomExit.Direction))
 								{
+									// Connection is drawn already
+									continue;
+								}
+
+								// Check if the straight connection could be drawn
+								var straightConnection = false;
+
+								Point? startCheck = null;
+								Point? endCheck = null;
+
+								switch (roomExit.Direction)
+								{
+									case Direction.North:
+										if (y - targetPos.Y == 1)
+										{
+											straightConnection = true;
+										}
+										else if (y - targetPos.Y > 1)
+										{
+											startCheck = new Point(x, y - 1);
+											endCheck = new Point(targetPos.X, targetPos.Y + 1);
+										}
+										break;
+									case Direction.East:
+										if (targetPos.X - x == 1)
+										{
+											straightConnection = true;
+										}
+										else if (targetPos.X - x > 1)
+										{
+											startCheck = new Point(x + 1, y);
+											endCheck = new Point(targetPos.X - 1, targetPos.Y);
+										}
+										break;
+									case Direction.South:
+										if (targetPos.Y - y == 1)
+										{
+											straightConnection = true;
+										}
+										else if (targetPos.Y - 1 > 1)
+										{
+											startCheck = new Point(x, y + 1);
+											endCheck = new Point(targetPos.X, targetPos.Y - 1);
+										}
+										break;
+									case Direction.West:
+										if (x - targetPos.X == 1)
+										{
+											straightConnection = true;
+										}
+										else if (x - targetPos.X > 1)
+										{
+											startCheck = new Point(x + 1, y);
+											endCheck = new Point(targetPos.X - 1, targetPos.Y);
+										}
+										break;
+									case Direction.Up:
+										if (targetPos.X - x == 1)
+										{
+											straightConnection = true;
+										}
+										else if (y - targetPos.Y >= 1 && targetPos.X - x >= 1)
+										{
+											startCheck = new Point(x + 1, y - 1);
+											endCheck = new Point(targetPos.X - 1, targetPos.Y + 1);
+										}
+										break;
+									case Direction.Down:
+										if (x - targetPos.X == 1)
+										{
+											straightConnection = true;
+										}
+										else if (targetPos.Y - y >= 1 && x - targetPos.X >= 1)
+										{
+											startCheck = new Point(x - 1, y + 1);
+											endCheck = new Point(targetPos.X + 1, targetPos.Y - 1);
+										}
+										break;
+								}
+
+								if (startCheck != null && endCheck != null)
+								{
+									straightConnection = true;
+									for(var checkX = Math.Min(startCheck.Value.X, endCheck.Value.X); checkX <= Math.Max(startCheck.Value.X, endCheck.Value.X); ++checkX)
+									{
+										for (var checkY = Math.Min(startCheck.Value.Y, endCheck.Value.Y); checkY <= Math.Max(startCheck.Value.Y, endCheck.Value.Y); ++checkY)
+										{
+											if (_grid[checkX, checkY] != null)
+											{
+												straightConnection = false;
+												goto finishCheck;
+											}
+										}
+									}
+
+								finishCheck:;
+								}
+
+								if (straightConnection)
+								{
+									// Source and target room are close to each other, hence draw the simple line
+									var targetRect = GetRoomRect(targetPos);
+									var sourceScreen = GetConnectionPoint(rect, roomExit.Direction);
+									var targetScreen = GetConnectionPoint(targetRect, roomExit.Direction.GetOppositeDirection());
 									canvas.DrawLine(sourceScreen.X, sourceScreen.Y, targetScreen.X, targetScreen.Y, paint);
 								}
+								else
+								{
+									// In other case we might have to use A* to draw the path
+									// Basic idea is to consider every cell(spaces between rooms are cells too) as grid 2x2
+									// Where 1 means center
+									var aStarSourceCoords = new Point(x, y).ToAStarCoord() + roomExit.Direction.ToAStarCoord();
+									var aStarTargetCoords = targetPos.ToAStarCoord() + roomExit.Direction.GetOppositeDirection().ToAStarCoord();
+
+									var aStarView = new AStarView(_grid);
+									var pathFinder = new AStar(aStarView, Distance.MANHATTAN);
+									var path = pathFinder.ShortestPath(aStarSourceCoords, aStarTargetCoords);
+									var steps = path.Steps.ToArray();
+
+									var src = aStarSourceCoords;
+									for (var i = 0; i < steps.Length; i++)
+									{
+										var dest = steps[i];
+
+										var sourceScreen = ToScreenCoord(src);
+										var targetScreen = ToScreenCoord(dest);
+										canvas.DrawLine(sourceScreen.X, sourceScreen.Y, targetScreen.X, targetScreen.Y, paint);
+
+										src = dest;
+									}
+								}
+
+								roomInfo.Connect(roomExit.Direction, targetPos);
 							}
 
 							paint.StrokeWidth = 1;
-							canvas.DrawText(room.Name, rect.X + rect.Width / 2, rect.Y + rect.Height / 2, paint);
-
+							canvas.DrawText(roomInfo.Room.Name, rect.X + rect.Width / 2, rect.Y + rect.Height / 2, paint);
 						}
 					}
 
@@ -486,11 +696,58 @@ namespace AbarimMUD.Site.Utility.Utility
 			var screenX = RoomSpace.X;
 			for (var x = 0; x < pos.X; ++x)
 			{
-				screenX += cellsWidths[x];
+				screenX += _cellsWidths[x];
 				screenX += RoomSpace.X;
 			}
 
-			return new Rectangle(screenX, pos.Y * RoomHeight + (pos.Y + 1) * RoomSpace.Y, cellsWidths[pos.X], RoomHeight);
+			return new Rectangle(screenX, pos.Y * RoomHeight + (pos.Y + 1) * RoomSpace.Y, _cellsWidths[pos.X], RoomHeight);
+		}
+
+		private Point ToScreenCoord(Coord coord)
+		{
+			// Shift by initial space
+			coord -= new Coord(2, 2);
+
+			// Determine grid coord
+			var gridCoord = new Point(coord.X / 4, coord.Y / 4);
+
+			// Calculate cell screen coords
+			var screenX = RoomSpace.X;
+			for (var x = 0; x < gridCoord.X; ++x)
+			{
+				screenX += _cellsWidths[x];
+				screenX += RoomSpace.X;
+			}
+
+			var screenY = gridCoord.Y * RoomHeight + (gridCoord.Y + 1) * RoomSpace.Y;
+
+			switch (coord.X % 4)
+			{
+				case 1:
+					screenX += _cellsWidths[gridCoord.X] / 2;
+					break;
+				case 2:
+					screenX += _cellsWidths[gridCoord.X];
+					break;
+				case 3:
+					screenX += _cellsWidths[gridCoord.X] + RoomSpace.X / 2;
+					break;
+			}
+
+			switch (coord.Y % 4)
+			{
+				case 1:
+					screenY += RoomHeight / 2;
+					break;
+				case 2:
+					screenY += RoomHeight;
+					break;
+				case 3:
+					screenY += RoomHeight + RoomSpace.Y / 2;
+					break;
+			}
+
+			return new Point(screenX, screenY);
 		}
 
 		private static Point GetConnectionPoint(Rectangle rect, Direction direction)
@@ -513,5 +770,103 @@ namespace AbarimMUD.Site.Utility.Utility
 
 			throw new Exception($"Unknown direction {direction}");
 		}
+
+		private class AStarView : IMapView<bool>
+		{
+			private readonly MapGrid _grid;
+
+			public bool this[Coord pos] => CheckMove(pos.ToVector2());
+
+			public bool this[int index1D] => throw new NotImplementedException();
+
+			public bool this[int x, int y] => CheckMove(new Vector2(x, y));
+
+			public int Height => _grid.Height * 4 + 2;
+
+			public int Width => _grid.Width * 4 + 2;
+
+			public AStarView(MapGrid grid)
+			{
+				_grid = grid;
+			}
+
+			public bool CheckMove(Vector2 coord)
+			{
+				// Firstly determine whether wether we're at cell or space zone
+				if (coord.X < 2 || coord.Y < 2)
+				{
+					// Space
+					return true;
+				}
+
+				// Shift by initial space
+				coord.X -= 2;
+				coord.Y -= 2;
+
+				var cx = coord.X % 4;
+				var cy = coord.Y % 4;
+				if (cx > 2 || cy > 2)
+				{
+					// Space
+					return true;
+				}
+
+				// Cell
+				var gridPoint = new Point((int)(coord.X / 4), (int)(coord.Y / 4));
+				var room = _grid[gridPoint];
+
+				return room == null;
+			}
+		}
+	}
+
+	internal static class MapBuilderExtensions
+	{
+		public static Point GetDelta(this Direction direction)
+		{
+			switch (direction)
+			{
+				case Direction.East:
+					return new Point(1, 0);
+				case Direction.West:
+					return new Point(-1, 0);
+				case Direction.North:
+					return new Point(0, -1);
+				case Direction.South:
+					return new Point(0, 1);
+				case Direction.Up:
+					return new Point(1, -1);
+				case Direction.Down:
+					return new Point(-1, 1);
+			}
+
+			throw new Exception($"Unknown direction {direction}");
+		}
+
+		public static Coord ToAStarCoord(this Direction direction)
+		{
+			switch (direction)
+			{
+				case Direction.North:
+					return new Coord(1, 0);
+				case Direction.East:
+					return new Coord(2, 1);
+				case Direction.South:
+					return new Coord(1, 2);
+				case Direction.West:
+					return new Coord(0, 1);
+				case Direction.Up:
+					return new Coord(2, 0);
+				case Direction.Down:
+					return new Coord(0, 2);
+			}
+
+			throw new Exception($"Unknown direction {direction}");
+		}
+
+		public static Coord ToAStarCoord(this Point source) => new Coord(source.X * 4 + 2, source.Y * 4 + 2);
+		public static Point ToGridPoint(this Coord source) => new Point((source.X - 2) / 4, (source.Y - 2) / 4);
+		public static Vector2 ToVector2(this Coord source) => new Vector2(source.X, source.Y);
+		public static Coord ToCoord(this Vector2 source) => new Coord((int)source.X, (int)source.Y);
 	}
 }
