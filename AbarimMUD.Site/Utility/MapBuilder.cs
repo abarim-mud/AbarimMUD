@@ -112,6 +112,14 @@ namespace AbarimMUD.Site.Utility.Utility
 		private MapGrid _grid;
 		private int[] _cellsWidths;
 
+		private RoomExit GetExit(Room room, Direction dir)
+		{
+			var result = (from ex in room.Exits where ex.TargetRoom != null && ex.TargetRoom.AreaId == _area.Id && ex.Direction == dir select ex).FirstOrDefault();
+
+			return result;
+
+		}
+
 		private Room GetRoomByPoint(Point p)
 		{
 			foreach (var room in _area.Rooms)
@@ -132,108 +140,85 @@ namespace AbarimMUD.Site.Utility.Utility
 			return null;
 		}
 
-		private void PushRoom(Room room, Direction dir)
+		private void PushRoom(Room firstRoom, Direction dir)
 		{
-			var roomPos = (Point)room.Tag;
-			switch (dir)
-			{
-				case Direction.North:
-					--roomPos.Y;
-					break;
-				case Direction.East:
-					++roomPos.X;
-					break;
-				case Direction.South:
-					++roomPos.Y;
-					break;
-				case Direction.West:
-					--roomPos.X;
-					break;
-				case Direction.Up:
-					++roomPos.X;
-					--roomPos.Y;
-					break;
-				case Direction.Down:
-					--roomPos.X;
-					++roomPos.Y;
-					break;
-			}
-
-			room.Tag = roomPos;
-		}
-
-		private void PushRooms(Room firstRoom, Direction dir, bool strongPush)
-		{
+			// Push other rooms
 			var pos = (Point)firstRoom.Tag;
 
-			// Push other rooms
-			foreach (var room in _area.Rooms)
+			var toProcess = new List<Room>();
+			var processed = new List<Room>();
+			toProcess.Add(firstRoom);
+
+			while (toProcess.Count > 0)
 			{
-				// Push this room
-				if (room.Tag == null)
-				{
-					continue;
-				}
+				var room = toProcess[0];
+				toProcess.RemoveAt(0);
+				processed.Add(room);
 
 				var roomPos = (Point)room.Tag;
-				var push = false;
-
-				if (room == firstRoom)
+				switch (dir)
 				{
-					push = true;
+					case Direction.North:
+						--roomPos.Y;
+						break;
+					case Direction.East:
+						++roomPos.X;
+						break;
+					case Direction.South:
+						++roomPos.Y;
+						break;
+					case Direction.West:
+						--roomPos.X;
+						break;
+					case Direction.Up:
+						--roomPos.Y;
+						++roomPos.X;
+						break;
+					case Direction.Down:
+						++roomPos.Y;
+						--roomPos.X;
+						break;
 				}
-				else if (strongPush)
+
+				room.Tag = roomPos;
+
+				foreach(var exit in room.Exits)
 				{
+					if (exit.TargetRoom == null || exit.TargetRoom.AreaId != _area.Id || exit.TargetRoom.Tag == null || 
+						toProcess.Contains(exit.TargetRoom) || processed.Contains(exit.TargetRoom))
+					{
+						continue;
+					}
+
+					roomPos = (Point)exit.TargetRoom.Tag;
+
+					var add = false;
 					switch (dir)
 					{
 						case Direction.North:
-							push = roomPos.Y <= pos.Y;
+							add = roomPos.Y <= pos.Y;
 							break;
 						case Direction.East:
-							push = roomPos.X >= pos.X;
+							add = roomPos.X >= pos.X;
 							break;
 						case Direction.South:
-							push = roomPos.Y >= pos.Y;
+							add = roomPos.Y >= pos.Y;
 							break;
 						case Direction.West:
-							push = roomPos.X <= pos.X;
+							add = roomPos.X <= pos.X;
 							break;
 						case Direction.Up:
-							push = roomPos.X >= pos.X && roomPos.Y <= pos.Y;
+							add = roomPos.Y <= pos.Y || roomPos.X >= pos.X;
 							break;
 						case Direction.Down:
-							push = roomPos.X <= pos.X && roomPos.Y >= pos.Y;
+							add = roomPos.Y >= pos.Y || roomPos.X <= pos.X;
 							break;
 					}
-				}
-				else
-				{
-					switch (dir)
+					
+					if (add)
 					{
-						case Direction.North:
-							push = roomPos.Y < pos.Y;
-							break;
-						case Direction.East:
-							push = roomPos.X > pos.X;
-							break;
-						case Direction.South:
-							push = roomPos.Y > pos.Y;
-							break;
-						case Direction.West:
-							push = roomPos.X < pos.X;
-							break;
-						case Direction.Up:
-							push = roomPos.X > pos.X && roomPos.Y < pos.Y;
-							break;
-						case Direction.Down:
-							push = roomPos.X < pos.X && roomPos.Y > pos.Y;
-							break;
+						toProcess.Add(exit.TargetRoom);
 					}
-				}
-
-				if (push)
-				{
-					PushRoom(room, dir);
 				}
 			}
 		}
@@ -255,7 +240,6 @@ namespace AbarimMUD.Site.Utility.Utility
 				var room = toProcess[0];
 				toProcess.RemoveAt(0);
 
-				pos = (Point)(room.Tag);
 				foreach (var exit in room.Exits)
 				{
 					if (exit.TargetRoom == null || exit.TargetRoom.AreaId != _area.Id || exit.TargetRoom.Tag != null)
@@ -263,6 +247,7 @@ namespace AbarimMUD.Site.Utility.Utility
 						continue;
 					}
 
+					pos = (Point)(room.Tag);
 					var delta = exit.Direction.GetDelta();
 					var newPos = new Point(pos.X + delta.X, pos.Y + delta.Y);
 
@@ -275,59 +260,7 @@ namespace AbarimMUD.Site.Utility.Utility
 							break;
 						}
 
-						switch (exit.Direction)
-						{
-							case Direction.North:
-								PushRooms(intersectRoom, Direction.North, true);
-								break;
-							case Direction.East:
-								{
-									var horizontalConnection = (from ex in intersectRoom.Exits
-																where
-																(ex.Direction == Direction.West || ex.Direction == Direction.East) &&
-																ex.TargetRoom != null && ex.TargetRoom.AreaId == _area.Id && ex.TargetRoom.Tag != null
-																select ex).FirstOrDefault();
-									if (horizontalConnection == null)
-									{
-										// We arent breaking any horizontal line
-										// Hence doing vertical push
-										PushRooms(intersectRoom, Direction.North, false);
-									}
-									else
-									{
-										PushRooms(intersectRoom, Direction.East, true);
-									}
-								}
-								break;
-							case Direction.South:
-								PushRooms(intersectRoom, Direction.South, true);
-								break;
-							case Direction.West:
-								{
-									var horizontalConnection = (from ex in intersectRoom.Exits
-																where
-																(ex.Direction == Direction.West || ex.Direction == Direction.East) &&
-																ex.TargetRoom != null && ex.TargetRoom.AreaId == _area.Id && ex.TargetRoom.Tag != null
-																select ex).FirstOrDefault();
-									if (horizontalConnection == null)
-									{
-										// We arent breaking any horizontal line
-										// Hence doing vertical push
-										PushRooms(intersectRoom, Direction.North, false);
-									}
-									else
-									{
-										PushRooms(intersectRoom, Direction.West, true);
-									}
-								}
-								break;
-							case Direction.Up:
-								PushRooms(intersectRoom, Direction.North, true);
-								break;
-							case Direction.Down:
-								PushRooms(intersectRoom, Direction.South, true);
-								break;
-						}
+						PushRoom(intersectRoom, exit.Direction);
 					}
 
 					exit.TargetRoom.Tag = newPos;
@@ -621,7 +554,7 @@ namespace AbarimMUD.Site.Utility.Utility
 								if (startCheck != null && endCheck != null)
 								{
 									straightConnection = true;
-									for(var checkX = Math.Min(startCheck.Value.X, endCheck.Value.X); checkX <= Math.Max(startCheck.Value.X, endCheck.Value.X); ++checkX)
+									for (var checkX = Math.Min(startCheck.Value.X, endCheck.Value.X); checkX <= Math.Max(startCheck.Value.X, endCheck.Value.X); ++checkX)
 									{
 										for (var checkY = Math.Min(startCheck.Value.Y, endCheck.Value.Y); checkY <= Math.Max(startCheck.Value.Y, endCheck.Value.Y); ++checkY)
 										{
