@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbarimMUD.Site", "AbarimMUD
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbarimMUD.Common", "AbarimMUD.Common\AbarimMUD.Common.csproj", "{18708949-46D1-471D-85CB-698197F1001C}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MUDMapBuilder", "..\MUDMapBuilder.NET\MUDMapBuilder\MUDMapBuilder.csproj", "{9D21D450-EE5D-4DAD-8B1A-1B617CE72DAD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{18708949-46D1-471D-85CB-698197F1001C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18708949-46D1-471D-85CB-698197F1001C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18708949-46D1-471D-85CB-698197F1001C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D21D450-EE5D-4DAD-8B1A-1B617CE72DAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D21D450-EE5D-4DAD-8B1A-1B617CE72DAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D21D450-EE5D-4DAD-8B1A-1B617CE72DAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D21D450-EE5D-4DAD-8B1A-1B617CE72DAD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

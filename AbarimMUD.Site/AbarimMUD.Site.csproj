@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\MUDMapBuilder.NET\MUDMapBuilder\MUDMapBuilder.csproj" />
     <ProjectReference Include="..\AbarimMUD.Common\AbarimMUD.Common.csproj" />
   </ItemGroup>
 

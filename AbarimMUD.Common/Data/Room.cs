@@ -64,10 +64,6 @@ namespace AbarimMUD.Data
 		[NotMapped]
 		public List<Character> Characters { get; } = new List<Character>();
 
-		[JsonIgnore]
-		[NotMapped]
-		public object Tag { get; set; }
-
 		public void AddCharacter(Character character)
 		{
 			// Remove all characters with such id
@@ -79,5 +75,7 @@ namespace AbarimMUD.Data
 		{
 			Characters.Remove(character);
 		}
+
+		public override string ToString() => $"{Name} (#{Id})";
 	}
 }
