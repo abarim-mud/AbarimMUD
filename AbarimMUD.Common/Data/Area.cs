@@ -20,5 +20,7 @@ namespace AbarimMUD.Data
 		public List<Mobile> Mobiles { get; } = new List<Mobile>();
 		public List<GameObject> Objects { get; } = new List<GameObject>();
 		public List<AreaReset> Resets { get; } = new List<AreaReset>();
+
+		public override string ToString() => $"{Name}";
 	}
 }
