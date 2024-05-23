@@ -6,21 +6,21 @@ using System.IO;
 
 namespace AbarimMUD.Common.Tests
 {
-	public class DatabaseTests
+	public class DataContextTests
 	{
 		[SetUp]
 		public void Setup()
 		{
 		}
 
-		private static Database CreateDatabase(bool delete)
+		private static DataContext CreateDatabase(bool delete)
 		{
 			if (delete)
 			{
 				Directory.Delete("Data", true);
 			}
 
-			return new Database("Data", s => Trace.WriteLine(s));
+			return new DataContext("Data", s => Trace.WriteLine(s));
 		}
 
 		[Test]

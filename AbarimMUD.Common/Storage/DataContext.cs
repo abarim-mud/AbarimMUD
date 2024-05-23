@@ -1,28 +1,23 @@
-﻿using System;
+﻿using AbarimMUD.Data;
+using System;
 
 namespace AbarimMUD.Storage
 {
-	internal class DataContext
+	public class DataContext
 	{
-		private readonly string _folder;
-		private readonly Action<string> _log;
+		private readonly DataContextSettings _context;
 
-		public string Folder => _folder;
+		public CRUD<Account> Accounts { get; }
+		public Characters Characters { get; }
+		public CRUD<Area> Areas { get; }
 
-		public DataContext(string folder, Action<string> log)
+
+		public DataContext(string path, Action<string> log)
 		{
-			_folder = folder;
-			_log = log;
-		}
-
-		public void Log(string message)
-		{
-			if (_log == null)
-			{
-				return;
-			}
-
-			_log(message);
+			_context = new DataContextSettings(path, log);
+			Accounts = new Accounts(_context);
+			Characters = new Characters(_context);
+			Areas = new Areas(_context);
 		}
 	}
 }

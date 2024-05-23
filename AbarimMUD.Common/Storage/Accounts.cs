@@ -12,7 +12,7 @@ namespace AbarimMUD.Storage
 		internal string Folder => Path.Combine(BaseFolder, SubfolderName);
 
 
-		public Accounts(DataContext context) : base(context)
+		public Accounts(DataContextSettings context) : base(context)
 		{
 			Load();
 		}

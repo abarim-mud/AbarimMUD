@@ -5,12 +5,12 @@ namespace AbarimMUD.Storage
 {
 	public abstract class CRUD<T> where T: Entity
 	{
-		private readonly DataContext _context;
+		private readonly DataContextSettings _context;
 		internal readonly Dictionary<string, T> _cache = new Dictionary<string, T>();
 
 		internal string BaseFolder => _context.Folder;
 
-		internal CRUD(DataContext context)
+		internal CRUD(DataContextSettings context)
 		{
 			_context = context;
 		}
