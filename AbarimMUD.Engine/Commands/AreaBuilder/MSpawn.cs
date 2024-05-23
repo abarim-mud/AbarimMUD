@@ -6,7 +6,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 	{
 		protected override void InternalExecute(ExecutionContext context, string data)
 		{
-			data = data.Trim();
+/*			data = data.Trim();
 			var id = -1;
 			if (string.IsNullOrEmpty(data) || !int.TryParse(data, out id))
 			{
@@ -41,7 +41,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 					ctx.SendTextLine(string.Format("{0} appears in a puff of smoke.",
 						mobileInfo.Name));
 				}
-			}
+			}*/
 		}
 	}
 }

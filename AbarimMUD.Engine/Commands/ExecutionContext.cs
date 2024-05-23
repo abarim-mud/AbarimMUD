@@ -39,6 +39,8 @@ namespace AbarimMUD.Commands
 		public abstract int CurrentMV { get; }
 
 		public abstract Room CurrentRoom { get; set; }
+		public Area CurrentArea => CurrentRoom.Area;
+
 		public abstract Role Type { get; }
 		public abstract string[] Keywords { get; }
 
@@ -119,6 +121,8 @@ namespace AbarimMUD.Commands
 
 			_sendCache.Clear();
 		}
+
+		public Room GetRoomById(int id) => CurrentRoom.Area.GetRoomById(id);
 
 	}
 }

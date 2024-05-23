@@ -13,7 +13,8 @@ namespace AbarimMUD.Commands.AreaBuilder
 				Description = "Empty"
 			};
 
-			Database.CreateRoom(context.CurrentRoom.Area, newRoom);
+			context.CurrentRoom.Area.Rooms.Add(newRoom);
+			Database.Areas.Update(context.CurrentRoom.Area);
 
 			context.SendTextLine(string.Format("New room (#{0}) had been created for the area {1} (#{2})",
 				newRoom.Id,

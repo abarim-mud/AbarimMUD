@@ -11,13 +11,16 @@ namespace AbarimMUD.Storage
 		public Characters Characters { get; }
 		public CRUD<Area> Areas { get; }
 
-
 		public DataContext(string path, Action<string> log)
 		{
 			_context = new DataContextSettings(path, log);
 			Accounts = new Accounts(_context);
 			Characters = new Characters(_context);
 			Areas = new Areas(_context);
+
+			Accounts.SetReferences(this);
+			Characters.SetReferences(this);
+			Areas.SetReferences(this);
 		}
 	}
 }

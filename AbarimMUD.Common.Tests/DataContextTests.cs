@@ -36,14 +36,14 @@ namespace AbarimMUD.Common.Tests
 
 			var newChar = new Character
 			{
-				AccountName = newAcc.Id,
+				Account = newAcc,
 				Name = "char1"
 			};
 			db.Characters.Update(newChar);
 
 			var newChar2 = new Character
 			{
-				AccountName = newAcc.Id,
+				Account = newAcc,
 				Name = "char2"
 			};
 			db.Characters.Update(newChar2);

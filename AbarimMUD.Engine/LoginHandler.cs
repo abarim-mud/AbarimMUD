@@ -161,7 +161,7 @@ namespace AbarimMUD
 				return;
 			}
 
-			var acc = Database.GetAccountByName(name);
+			var acc = Database.Accounts.GetById(name);
 			if (acc == null)
 			{
 				SendTextLine(string.Format("Account '{0}' is unknown.", name));
@@ -272,7 +272,7 @@ namespace AbarimMUD
 				PasswordHash = HashUtils.CalculateMD5Hash(_newPassword)
 			};
 
-			Database.CreateAccount(_account);
+			Database.Accounts.Update(_account);
 			Login();
 		}
 	}

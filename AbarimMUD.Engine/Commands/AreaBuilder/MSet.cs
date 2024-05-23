@@ -4,7 +4,7 @@
 	{
 		protected override void InternalExecute(ExecutionContext context, string data)
 		{
-			data = data.Trim();
+/*			data = data.Trim();
 			string idStr, cmd;
 			int id;
 			data.ParseCommand(out idStr, out cmd);
@@ -74,7 +74,7 @@
 			else
 			{
 				context.Send(string.Format("Unknown mset command '{0}'", cmdData));
-			}
+			}*/
 		}
 	}
 }

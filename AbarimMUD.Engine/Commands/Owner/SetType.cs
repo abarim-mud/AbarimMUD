@@ -11,10 +11,8 @@ namespace AbarimMUD.Commands.Owner
 		static SetType()
 		{
 			_namesToTypes["player"] = Role.Player;
-			_namesToTypes["area"] = Role.AreaBuilder;
-			_namesToTypes["world"] = Role.WorldBuilder;
-			_namesToTypes["lowadmin"] = Role.LowAdministrator;
-			_namesToTypes["highadmin"] = Role.HighAdministrator;
+			_namesToTypes["builder"] = Role.Builder;
+			_namesToTypes["admin"] = Role.Administrator;
 			_namesToTypes["owner"] = Role.Owner;
 		}
 
@@ -31,7 +29,7 @@ namespace AbarimMUD.Commands.Owner
 			var characterName = parts[0];
 
 			// Find the character
-			var character = Database.GetCharacterByName(characterName);
+			var character = Database.Characters.GetById(characterName);
 			if (character == null)
 			{
 				context.Send(string.Format("Could not find character '{0}'", characterName));
@@ -58,7 +56,7 @@ namespace AbarimMUD.Commands.Owner
 
 			// Change
 			character.Role = type;
-			Database.Update(character);
+			Database.Characters.Update(character);
 
 			context.SendTextLine(string.Format("Changed {0}'s type from {1} to {2}", character.Id, oldType.ToString(),
 				type.ToString()));

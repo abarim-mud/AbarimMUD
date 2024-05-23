@@ -39,7 +39,7 @@ namespace AbarimMUD
 
 			var sb = new StringBuilder();
 
-			var characters = Session.Account.Characters;
+			var characters = Database.Characters.GetByAccountName(Session.Account.Name);
 			if (characters != null)
 			{
 				foreach (var c in characters)
@@ -96,8 +96,8 @@ namespace AbarimMUD
 			int choice;
 			if (int.TryParse(data, out choice))
 			{
-				var characters = Session.Account.Characters;
-				var newIndex = characters != null ? characters.Count : 0;
+				var characters = Database.Characters.GetByAccountName(Session.Account.Name);
+				var newIndex = characters != null ? characters.Length : 0;
 				++newIndex;
 
 				if (characters != null && choice >= 1 && choice < newIndex)

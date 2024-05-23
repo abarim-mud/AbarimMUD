@@ -1,5 +1,6 @@
 ﻿using AbarimMUD.Data;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
@@ -8,6 +9,21 @@ namespace AbarimMUD.Storage
 {
 	public class Characters : CRUD<Character>
 	{
+		private class CharacterRecord
+		{
+			public Character Character { get; }
+			public string AccountName { get; }
+
+			public CharacterRecord(Character character, string accountName)
+			{
+				Character = character;
+				AccountName = accountName;
+			}
+		}
+
+
+		private readonly List<CharacterRecord> _tempCache = new List<CharacterRecord>();
+
 		private const string CharacterFileName = "character.json";
 
 		private string AccountsFolder => Path.Combine(BaseFolder, Accounts.SubfolderName);
@@ -45,25 +61,37 @@ namespace AbarimMUD.Storage
 
 					var data = File.ReadAllText(characterPath);
 					var character = JsonSerializer.Deserialize<Character>(data);
-					character.AccountName = accountName;
-					AddToCache(character);
+
+					var record = new CharacterRecord(character, accountName);
+					_tempCache.Add(record);
 				}
+			}
+		}
+
+		internal override void SetReferences(DataContext db)
+		{
+			base.SetReferences(db);
+
+			foreach(var record in _tempCache)
+			{
+				record.Character.Account = db.Accounts.EnsureById(record.AccountName);
+				AddToCache(record.Character);
 			}
 		}
 
 		public Character[] GetByAccountName(string accountName)
 		{
-			return (from pair in _cache where pair.Value.AccountName == accountName select pair.Value).ToArray();
+			return (from pair in _cache where pair.Value.Account.Name == accountName select pair.Value).ToArray();
 		}
 
 		internal override void Save(Character entity)
 		{
-			if (string.IsNullOrEmpty(entity.AccountName))
+			if (entity.Account == null || string.IsNullOrEmpty(entity.Account.Name))
 			{
-				throw new Exception($"Character {entity.Name} account id could not be empty.");
+				throw new Exception($"Character {entity.Name} account isn't set.");
 			}
 
-			var accountFolder = Path.Combine(Path.Combine(BaseFolder, Accounts.SubfolderName), entity.AccountName);
+			var accountFolder = Path.Combine(Path.Combine(BaseFolder, Accounts.SubfolderName), entity.Account.Name);
 			if (!Directory.Exists(accountFolder))
 			{
 				throw new Exception($"Account folder '{accountFolder}' doesnt exist");

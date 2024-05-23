@@ -81,24 +81,25 @@ namespace AbarimMUD
 			}
 		}
 
-		private void ProcessName(string data)
+		private void ProcessName(string name)
 		{
-			data = data.CasedName();
-			if (string.IsNullOrEmpty(data))
+			name = name.CasedName();
+			if (string.IsNullOrEmpty(name))
 			{
 				SendTextLine("Invalid name.");
 				SendCharacterNamePrompt();
 				return;
 			}
 
-			if (Database.GetCharacterByName(data) != null)
+
+			if (Database.Characters.GetById(name) != null)
 			{
 				SendTextLine("This name is already taken.");
 				SendCharacterNamePrompt();
 				return;
 			}
 
-			_character.Name = data;
+			_character.Name = name;
 
 			_mode = Mode.PrimaryClass;
 			SendChoosePrimaryClassPrompt();
@@ -162,8 +163,8 @@ namespace AbarimMUD
 					SendTextLine("This character is first in the game. Hence it will become the owner.");
 				}
 
-				Session.Account.Characters.Add(_character);
-				Database.Update(Session.Account);
+				_character.Account = Session.Account;
+				Database.Characters.Update(_character);
 				SendTextLine("Character is saved.");
 			}
 

@@ -13,7 +13,7 @@ namespace AbarimMUD.Commands.Player
 			sd.Append(ConsoleCommand.ForeColorCyan);
 
 			var name = room.Name;
-			if (context.Type >= (Role.AreaBuilder))
+			if (context.Type >= (Role.Builder))
 			{
 				name += string.Format(" (#{0})", room.Id);
 			}
@@ -38,7 +38,7 @@ namespace AbarimMUD.Commands.Player
 				sd.Append(ConsoleCommand.Underline);
 				sd.Append(exit.Direction.GetName());
 
-				if (context.Type >= (Role.AreaBuilder))
+				if (context.Type >= (Role.Builder))
 				{
 					sd.Append(string.Format("(#{0})", exit.TargetRoomId));
 				}

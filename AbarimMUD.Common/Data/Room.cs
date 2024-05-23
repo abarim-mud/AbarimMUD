@@ -44,6 +44,9 @@ namespace AbarimMUD.Data
 	public class Room
 	{
 		[JsonIgnore]
+		public Area Area { get; set; }
+
+		[JsonIgnore]
 		public int Id { get; set; }
 		public string Name { get; set; }
 		public string Description { get; set; }

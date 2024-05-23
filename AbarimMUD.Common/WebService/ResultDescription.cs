@@ -27,7 +27,7 @@ namespace AbarimMUD.WebService
 				string.Format(ResultType.AccountNotFound.GetResultTypeString(), accountName));
 		}
 
-		public static ResultDescription CreateAreaNotFound(int areaId)
+		public static ResultDescription CreateAreaNotFound(string areaId)
 		{
 			return new ResultDescription(ResultType.AreaNotFound,
 				string.Format(ResultType.AreaNotFound.GetResultTypeString(), areaId));

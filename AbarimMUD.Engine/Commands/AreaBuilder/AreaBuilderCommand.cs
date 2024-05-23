@@ -6,7 +6,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 	{
 		public override Role RequiredType
 		{
-			get { return Role.AreaBuilder; }
+			get { return Role.Builder; }
 		}
 	}
 }

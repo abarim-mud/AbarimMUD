@@ -60,7 +60,7 @@ namespace AbarimMUD
 			Send("Updating the password...\n");
 
 			Session.Account.PasswordHash = HashUtils.CalculateMD5Hash(_newPassword);
-			Database.Update(Session.Account);
+			Database.Accounts.Update(Session.Account);
 
 			Session.CurrentHandler = new MainMenuHandler(Session);
 		}

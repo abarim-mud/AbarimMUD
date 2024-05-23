@@ -15,7 +15,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 				Description = "Unset."
 			};
 
-			Database.CreateMobile(context.CurrentRoom.Area, newMobileInfo);
+//			Database.CreateMobile(context.CurrentRoom.Area, newMobileInfo);
 
 			context.SendTextLine(string.Format("New mobile info (#{0}) had been created for the area {1} (#{2})",
 				newMobileInfo.Id,

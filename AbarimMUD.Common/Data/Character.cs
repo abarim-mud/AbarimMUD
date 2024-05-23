@@ -13,7 +13,7 @@ namespace AbarimMUD.Data
 	public sealed class Character: Entity
 	{
 		[JsonIgnore]
-		public string AccountName { get; set; }
+		public Account Account { get; set; }
 
 		[JsonIgnore]
 		public string Name

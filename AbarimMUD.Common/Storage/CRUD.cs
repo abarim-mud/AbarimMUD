@@ -1,5 +1,7 @@
 ﻿using AbarimMUD.Data;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AbarimMUD.Storage
 {
@@ -9,6 +11,10 @@ namespace AbarimMUD.Storage
 		internal readonly Dictionary<string, T> _cache = new Dictionary<string, T>();
 
 		internal string BaseFolder => _context.Folder;
+
+		public int Count => _cache.Count;
+
+		public T[] All => _cache.Values.ToArray();
 
 		internal CRUD(DataContextSettings context)
 		{
@@ -33,6 +39,18 @@ namespace AbarimMUD.Storage
 			return result;
 		}
 
+		public T EnsureById(string id)
+		{
+			var result = GetById(id);
+			if (result == null)
+			{
+				throw new Exception($"Could not find item with id {id}");
+			}
+
+			return result;
+		}
+
+
 		public void Update(T entity)
 		{
 			// Save the data
@@ -43,5 +61,9 @@ namespace AbarimMUD.Storage
 		}
 
 		internal abstract void Save(T entity);
+
+		internal virtual void SetReferences(DataContext db)
+		{
+		}
 	}
 }

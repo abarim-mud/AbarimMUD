@@ -7,7 +7,7 @@ namespace AbarimMUD
 	{
 		static void Main(string[] args)
 		{
-			Configuration.ConnectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+			Configuration.DataFolder = @"D:\Projects\AbarimMUD\Data";
 
 			Server.Instance.Start();
 			Console.ReadKey();

@@ -1,4 +1,5 @@
 ﻿using AbarimMUD.Data;
+using AbarimMUD.Utils;
 using System;
 
 namespace AbarimMUD.Commands.AreaBuilder
@@ -17,7 +18,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 			}
 
 			Direction exitType;
-			if (!Enum.TryParse(exit, out exitType))
+			if (!Enum.TryParse(exit.CasedName(), out exitType))
 			{
 				context.Send(string.Format("Unable to resolve exit {0}", exit));
 				return;
@@ -37,7 +38,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 				return;
 			}
 
-			var destRoom = Database.GetRoomById(id);
+			var destRoom = context.GetRoomById(id);
 			if (destRoom == null)
 			{
 				context.Send(string.Format("Could not find room with id {0}", idStr));
