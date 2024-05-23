@@ -1,11 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
 {
 	public sealed class Account : Entity
 	{
-		public string Name { get; set; }
+		[JsonIgnore]
+		public string Name
+		{
+			get => Id;
+			set => Id = value;
+		}
+
 		public string PasswordHash { get; set; }
-		public List<Character> Characters { get; } = new List<Character>();
 	}
 }

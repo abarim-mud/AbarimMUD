@@ -41,9 +41,10 @@ namespace AbarimMUD.Data
 		Nowhere = 1 << 19
 	}
 
-	public class Room : AreaEntity
+	public class Room
 	{
-		public int? VNum { get; set; }
+		[JsonIgnore]
+		public int Id { get; set; }
 		public string Name { get; set; }
 		public string Description { get; set; }
 		public RoomFlags Flags { get; set; }
@@ -54,20 +55,19 @@ namespace AbarimMUD.Data
 		public string ExtraDescription { get; set; }
 		public string Owner { get; set; }
 
+		[JsonIgnore]
 		public List<RoomExit> Exits { get; } = new List<RoomExit>();
 
 		[JsonIgnore]
-		[NotMapped]
 		public List<MobileInstance> Mobiles { get; } = new List<MobileInstance>();
 
 		[JsonIgnore]
-		[NotMapped]
 		public List<Character> Characters { get; } = new List<Character>();
 
 		public void AddCharacter(Character character)
 		{
 			// Remove all characters with such id
-			Characters.RemoveAll(character1 => character1.Id == character.Id);
+			Characters.RemoveAll(character1 => character1.Name == character.Name);
 			Characters.Add(character);
 		}
 

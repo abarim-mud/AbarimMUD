@@ -1,22 +1,26 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
 {
 	public enum Role
 	{
 		Player,
-		AreaBuilder,
-		WorldBuilder,
-		LowAdministrator,
-		HighAdministrator,
+		Builder,
+		Administrator,
 		Owner
 	}
 
-	public sealed class Character : Entity
+	public sealed class Character: Entity
 	{
-		public Account Account { get; set; }
+		[JsonIgnore]
+		public string AccountName { get; set; }
 
-		public string Name { get; set; }
+		[JsonIgnore]
+		public string Name
+		{
+			get => Id;
+			set => Id = value;
+		}
 
 		public string GameClassName { get; set; }
 
@@ -24,7 +28,7 @@ namespace AbarimMUD.Data
 
 		public bool IsStaff
 		{
-			get { return Role >= Role.AreaBuilder; }
+			get { return Role >= Role.Builder; }
 		}
 
 		public bool IsMale { get; set; }
@@ -35,7 +39,7 @@ namespace AbarimMUD.Data
 		public int CurrentIP { get; set; }
 		public int CurrentMV { get; set; }
 
-		[NotMapped]
+		[JsonIgnore]
 		public object Tag { get; set; }
 
 		public Character()
