@@ -1,6 +1,7 @@
 ﻿using AbarimMUD.Data;
 using System.IO;
 using System.Text.Json;
+using System.Text.Json.Serialization.Metadata;
 
 namespace AbarimMUD.Storage
 {
@@ -15,6 +16,7 @@ namespace AbarimMUD.Storage
 			Load();
 		}
 
+			
 		private void Load()
 		{
 			var areasFolder = Folder;
@@ -34,6 +36,26 @@ namespace AbarimMUD.Storage
 			}
 		}
 
+		internal override void SetReferences(DataContext db)
+		{
+			base.SetReferences(db);
+
+			foreach(var pair in _cache)
+			{
+				var area  = pair.Value;
+				foreach(var room in area.Rooms)
+				{
+					foreach(var pair2 in room.Exits)
+					{
+						var exit = pair2.Value;
+
+						exit.Direction = pair2.Key;
+						exit.TargetRoom = area.Rooms[exit.TargetRoomId];
+					}
+				}
+			}
+		}
+
 		internal override void Save(Area entity)
 		{
 			var areasFolder = Folder;
@@ -42,7 +64,7 @@ namespace AbarimMUD.Storage
 				Directory.CreateDirectory(areasFolder);
 			}
 
-			var options = new JsonSerializerOptions { WriteIndented = true };
+			var options = Utility.CreateDefaultOptions();
 			var data = JsonSerializer.Serialize(entity, options);
 
 			var accountPath = Path.Combine(areasFolder, $"{entity.Id}.json");

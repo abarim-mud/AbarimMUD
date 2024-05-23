@@ -26,6 +26,7 @@ namespace AbarimMUD.Data
 
 		public Role Role { get; set; }
 
+		[JsonIgnore]
 		public bool IsStaff
 		{
 			get { return Role >= Role.Builder; }

@@ -26,8 +26,9 @@ namespace AbarimMUD.Commands.Player
 			sd.Append("Exits: ");
 
 			var first = true;
-			foreach (var exit in room.Exits)
+			foreach (var pair in room.Exits)
 			{
+				var exit = pair.Value;
 				if (!first)
 				{
 					sd.Append(ConsoleCommand.ColorClear);
@@ -40,7 +41,7 @@ namespace AbarimMUD.Commands.Player
 
 				if (context.Type >= (Role.Builder))
 				{
-					sd.Append(string.Format("(#{0})", exit.TargetRoomId));
+					sd.Append(string.Format("(#{0})", exit.TargetRoom.Id));
 				}
 
 				first = false;

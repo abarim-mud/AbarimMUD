@@ -16,8 +16,8 @@ namespace AbarimMUD.Commands.Player
 		{
 			var sourceRoom = context.CurrentRoom;
 
-			var exit = (from e in sourceRoom.Exits where e.Direction == _dir select e).FirstOrDefault();
-			if (exit == null || exit.TargetRoom == null)
+			RoomExit exit;
+			if (!sourceRoom.Exits.TryGetValue(_dir, out exit) || exit.TargetRoom == null)
 			{
 				context.Send("Alas, you cannot go that way...");
 				return;
@@ -40,8 +40,8 @@ namespace AbarimMUD.Commands.Player
 			}
 
 			context.CurrentRoom = exit.TargetRoom;
-			
-			context.Logger.Info("Moved to room with id {0}", exit.TargetRoomId);
+
+			context.Logger.Info("Moved to room with id {0}", exit.TargetRoom.Id);
 
 			new Look().Execute(context, string.Empty);
 		}

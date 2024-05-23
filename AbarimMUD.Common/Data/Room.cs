@@ -58,8 +58,7 @@ namespace AbarimMUD.Data
 		public string ExtraDescription { get; set; }
 		public string Owner { get; set; }
 
-		[JsonIgnore]
-		public List<RoomExit> Exits { get; } = new List<RoomExit>();
+		public Dictionary<Direction, RoomExit> Exits { get; set; } = new Dictionary<Direction, RoomExit>();
 
 		[JsonIgnore]
 		public List<MobileInstance> Mobiles { get; } = new List<MobileInstance>();

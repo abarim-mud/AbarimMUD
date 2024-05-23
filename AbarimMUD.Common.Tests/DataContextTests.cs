@@ -15,7 +15,7 @@ namespace AbarimMUD.Common.Tests
 
 		private static DataContext CreateDatabase(bool delete)
 		{
-			if (delete)
+			if (delete && Directory.Exists("Data"))
 			{
 				Directory.Delete("Data", true);
 			}
@@ -85,16 +85,40 @@ namespace AbarimMUD.Common.Tests
 			{
 				Name = "Test Room"
 			};
-
 			area.Rooms.Add(room);
+
+			var room2 = new Room
+			{
+				Name = "Test Room2"
+			};
+			area.Rooms.Add(room2);
+
+			room.Exits[Direction.Up] = new RoomExit
+			{
+				TargetRoom = room2
+			};
+
+			room2.Exits[Direction.Down] = new RoomExit
+			{
+				TargetRoom = room
+			};
+
+
 			db.Areas.Update(area);
 
 			var db2 = CreateDatabase(false);
 			area = db2.Areas.GetById("test");
 			Assert.That(area, Is.Not.Null);
 			Assert.That(area.Name, Is.EqualTo("test"));
-			Assert.That(area.Rooms.Count, Is.EqualTo(1));
+			Assert.That(area.Rooms.Count, Is.EqualTo(2));
 			Assert.That(area.Rooms[0].Name, Is.EqualTo("Test Room"));
+			Assert.That(area.Rooms[1].Name, Is.EqualTo("Test Room2"));
+			Assert.That(area.Rooms[0].Exits.Count, Is.EqualTo(1));
+			Assert.That(area.Rooms[0].Exits.ContainsKey(Direction.Up), Is.True);
+			Assert.That(area.Rooms[0].Exits[Direction.Up].TargetRoom, Is.EqualTo(area.Rooms[1]));
+			Assert.That(area.Rooms[1].Exits.Count, Is.EqualTo(1));
+			Assert.That(area.Rooms[1].Exits.ContainsKey(Direction.Down), Is.True);
+			Assert.That(area.Rooms[1].Exits[Direction.Down].TargetRoom, Is.EqualTo(area.Rooms[0]));
 		}
 	}
 }

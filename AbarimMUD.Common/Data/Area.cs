@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
@@ -25,9 +26,13 @@ namespace AbarimMUD.Data
 		}
 
 		public string Credits { get; set; }
+
 		public string Builders { get; set; }
+
 		public int? MinimumLevel { get; set; }
+
 		public int? MaximumLevel { get; set; }
+
 		public ObservableCollection<Room> Rooms
 		{
 			get => _rooms;
@@ -70,7 +75,7 @@ namespace AbarimMUD.Data
 			Rooms = new ObservableCollection<Room>();
 		}
 
-		private void OnRoomsChanged(object? sender, NotifyCollectionChangedEventArgs e)
+		private void OnRoomsChanged(object sender, NotifyCollectionChangedEventArgs e)
 		{
 			UpdateRooms();
 		}

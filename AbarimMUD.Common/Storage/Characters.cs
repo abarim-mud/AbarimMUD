@@ -77,6 +77,8 @@ namespace AbarimMUD.Storage
 				record.Character.Account = db.Accounts.EnsureById(record.AccountName);
 				AddToCache(record.Character);
 			}
+
+			_tempCache.Clear();
 		}
 
 		public Character[] GetByAccountName(string accountName)
@@ -103,7 +105,7 @@ namespace AbarimMUD.Storage
 				Directory.CreateDirectory(characterFolder);
 			}
 
-			var options = new JsonSerializerOptions { WriteIndented = true };
+			var options = Utility.CreateDefaultOptions();
 			var data = JsonSerializer.Serialize(entity, options);
 
 			var charPath = Path.Combine(characterFolder, CharacterFileName);

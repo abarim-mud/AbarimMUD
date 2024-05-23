@@ -1,0 +1,23 @@
+{
+  "Rooms": [
+    {
+      "Name": "Start Room",
+      "Description": "This is the start room.",
+      "Exits": {
+        "South": {
+          "TargetRoomId": 1
+        }
+      }
+    },
+    {
+      "Name": "Second Room",
+      "Description": "This is the second room.",
+      "Exits": {
+        "North": {
+          "TargetRoomId": 0
+        }
+      }
+    }
+  ],
+  "Id": "sampleArea"
+}

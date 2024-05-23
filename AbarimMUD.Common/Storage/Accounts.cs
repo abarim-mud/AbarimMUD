@@ -50,7 +50,7 @@ namespace AbarimMUD.Storage
 				Directory.CreateDirectory(accountFolder);
 			}
 
-			var options = new JsonSerializerOptions { WriteIndented = true };
+			var options = Utility.CreateDefaultOptions();
 			var data = JsonSerializer.Serialize(entity, options);
 
 			var accountPath = Path.Combine(accountFolder, AccountFileName);

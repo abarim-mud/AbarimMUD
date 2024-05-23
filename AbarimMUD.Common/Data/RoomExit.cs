@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
@@ -29,20 +30,39 @@ namespace AbarimMUD.Data
 		Down,
 	}
 
-	public class RoomExit : Entity
+	public class RoomExit
 	{
+		private Room _targetRoom;
+
+		[JsonInclude]
+		internal string TargetAreaName { get; set; }
+
+		[JsonInclude]
+		[JsonIgnore(Condition = JsonIgnoreCondition.Never)] 
+		internal int TargetRoomId { get; set; }
+
 		[JsonIgnore]
-		public int SourceRoomId { get; set; }
+		public Room TargetRoom
+		{
+			get => _targetRoom;
+			
+			set
+			{
+				_targetRoom = value;
+				TargetRoomId = _targetRoom.Id;
+			}
+		}
+		
 		[JsonIgnore]
-		public Room SourceRoom { get; set; }
-		public int? TargetRoomId { get; set; }
-		[JsonIgnore]
-		public Room TargetRoom { get; set; }
 		public Direction Direction { get; set; }
+
 		public string Description { get; set; }
+
 		public string Keyword { get; set; }
+
 		public RoomExitFlags Flags { get; set; }
-		public int? KeyObjectId { get; set; }
+
+		public string KeyObjectId { get; set; }
 	}
 
 	public static class RoomDirectionExtensions

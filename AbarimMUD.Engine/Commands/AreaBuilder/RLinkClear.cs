@@ -24,8 +24,8 @@ namespace AbarimMUD.Commands.AreaBuilder
 			}
 
 			var sourceRoom = context.CurrentRoom;
-			var roomExit = (from e in sourceRoom.Exits where e.Direction == exitType select e).FirstOrDefault();
-			if (roomExit == null)
+			RoomExit roomExit;
+			if (!sourceRoom.Exits.TryGetValue(exitType, out roomExit))
 			{
 				context.Send(string.Format("The room isnt connected to anything at the direction {0}", exitType.ToString()));
 				return;

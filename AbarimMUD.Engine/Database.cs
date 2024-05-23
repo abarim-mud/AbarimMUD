@@ -23,23 +23,23 @@ namespace AbarimMUD
 		{
 			var oppositeDir = direction.GetOppositeDirection();
 
-			// Delete existing connections
-			var existingConnection = (from e in room.Exits
-									  where e.Direction == direction
-									  select e).FirstOrDefault();
+			// Get the connection
+			RoomExit existingConnection;
+			if (!room.Exits.TryGetValue(direction, out existingConnection))
+			{
+				return;
+			}
 
 			if (existingConnection != null)
 			{
-				room.Exits.Remove(existingConnection);
+				room.Exits.Remove(direction);
 				if (existingConnection.TargetRoom != null)
 				{
-					var oppositeConnection = (from e in existingConnection.TargetRoom.Exits
-											  where e.TargetRoomId == room.Id && e.Direction == oppositeDir
-											  select e).FirstOrDefault();
-
-					if (oppositeConnection != null)
+					RoomExit oppositeConnection;
+					if (existingConnection.TargetRoom.Exits.TryGetValue(oppositeDir, out oppositeConnection) &&
+						oppositeConnection.TargetRoom == room)
 					{
-						existingConnection.TargetRoom.Exits.Remove(oppositeConnection);
+						existingConnection.TargetRoom.Exits.Remove(oppositeDir);
 					}
 				}
 
@@ -58,19 +58,18 @@ namespace AbarimMUD
 			// Create new ones
 			var newConnection = new RoomExit
 			{
-				TargetRoomId = targetRoom.Id,
 				TargetRoom = targetRoom,
 				Direction = direction
 			};
-			sourceRoom.Exits.Add(newConnection);
+
+			sourceRoom.Exits[direction] = newConnection;
 
 			var oppositeNewConnection = new RoomExit
 			{
-				TargetRoomId = sourceRoom.Id,
 				TargetRoom = sourceRoom,
 				Direction = direction.GetOppositeDirection()
 			};
-			targetRoom.Exits.Add(oppositeNewConnection);
+			targetRoom.Exits[oppositeNewConnection.Direction] = oppositeNewConnection;
 
 			Areas.Update(sourceRoom.Area);
 			if (sourceRoom.Area != targetRoom.Area)
