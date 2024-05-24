@@ -4,7 +4,7 @@
 	{
 		protected override void InternalExecute(ExecutionContext context, string data)
 		{
-/*			data = data.Trim();
+			data = data.Trim();
 			string idStr, cmd;
 			int id;
 			data.ParseCommand(out idStr, out cmd);
@@ -14,7 +14,8 @@
 				return;
 			}
 
-			var mobileInfo = Database.GetMobileById(id);
+			var area = context.CurrentArea;
+			var mobileInfo = area.GetMobileById(id);
 			if (mobileInfo == null)
 			{
 				context.Send(string.Format("Unable to find mobile info with id {0}", id));
@@ -32,7 +33,7 @@
 				}
 
 				mobileInfo.Name = cmdData;
-				Database.Update(mobileInfo);
+				Database.Areas.Update(area);
 				context.SendTextLine(string.Format("Changed {0}'s name to {1}", mobileInfo.Id, mobileInfo.Name));
 			}
 			else if (cmdText == "desc")
@@ -44,7 +45,7 @@
 				}
 
 				mobileInfo.Description = cmdData;
-				Database.Update(mobileInfo);
+				Database.Areas.Update(area);
 				context.SendTextLine(string.Format("Changed {0}'s desc to {1}", mobileInfo.Id, mobileInfo.Description));
 			}
 			else if (cmdText == "short")
@@ -56,7 +57,7 @@
 				}
 
 				mobileInfo.ShortDescription = cmdData;
-				Database.Update(mobileInfo);
+				Database.Areas.Update(area);
 				context.SendTextLine(string.Format("Changed {0}'s short to '{1}'", mobileInfo.Id, mobileInfo.ShortDescription));
 			}
 			else if (cmdText == "long")
@@ -68,13 +69,13 @@
 				}
 
 				mobileInfo.LongDescription = cmdData;
-				Database.Update(mobileInfo);
+				Database.Areas.Update(area);
 				context.SendTextLine(string.Format("Changed {0}'s long to '{1}'", mobileInfo.Id, mobileInfo.LongDescription));
 			}
 			else
 			{
 				context.Send(string.Format("Unknown mset command '{0}'", cmdData));
-			}*/
+			}
 		}
 	}
 }

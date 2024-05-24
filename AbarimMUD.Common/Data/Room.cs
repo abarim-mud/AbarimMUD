@@ -41,13 +41,8 @@ namespace AbarimMUD.Data
 		Nowhere = 1 << 19
 	}
 
-	public class Room
+	public class Room: AreaEntity
 	{
-		[JsonIgnore]
-		public Area Area { get; set; }
-
-		[JsonIgnore]
-		public int Id { get; set; }
 		public string Name { get; set; }
 		public string Description { get; set; }
 		public RoomFlags Flags { get; set; }

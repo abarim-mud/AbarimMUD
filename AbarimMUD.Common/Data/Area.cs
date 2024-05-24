@@ -17,6 +17,7 @@ namespace AbarimMUD.Data
 	public class Area : Entity
 	{
 		private ObservableCollection<Room> _rooms;
+		private ObservableCollection<Mobile> _mobiles;
 
 		[JsonIgnore]
 		public string Name
@@ -57,12 +58,37 @@ namespace AbarimMUD.Data
 
 				_rooms.CollectionChanged += OnRoomsChanged;
 
-				UpdateRooms();
+				UpdateEntities(Rooms);
 			}
 		}
 
-		[JsonIgnore]
-		public List<Mobile> Mobiles { get; } = new List<Mobile>();
+		public ObservableCollection<Mobile> Mobiles
+		{
+			get => _mobiles;
+			set
+			{
+				if (value == null)
+				{
+					throw new ArgumentNullException(nameof(value));
+				}
+
+				if (value == _mobiles)
+				{
+					return;
+				}
+
+				if (_mobiles != null)
+				{
+					_mobiles.CollectionChanged -= OnMobilesChanged;
+				}
+
+				_mobiles = value;
+
+				_mobiles.CollectionChanged += OnMobilesChanged;
+
+				UpdateEntities(Mobiles);
+			}
+		}
 
 		[JsonIgnore]
 		public List<GameObject> Objects { get; } = new List<GameObject>();
@@ -73,20 +99,26 @@ namespace AbarimMUD.Data
 		public Area()
 		{
 			Rooms = new ObservableCollection<Room>();
+			Mobiles = new ObservableCollection<Mobile>();
 		}
 
 		private void OnRoomsChanged(object sender, NotifyCollectionChangedEventArgs e)
 		{
-			UpdateRooms();
+			UpdateEntities(Rooms);
 		}
 
-		public void UpdateRooms()
+		private void OnMobilesChanged(object sender, NotifyCollectionChangedEventArgs e)
 		{
-			for(var i = 0; i < Rooms.Count; ++i)
+			UpdateEntities(Mobiles);
+		}
+
+		private void UpdateEntities(IReadOnlyList<AreaEntity> entities)
+		{
+			for (var i = 0; i < entities.Count; ++i)
 			{
-				var room = Rooms[i];
-				room.Area = this;
-				room.Id = i;
+				var entity = entities[i];
+				entity.Area = this;
+				entity.Id = i;
 			}
 		}
 
@@ -106,6 +138,27 @@ namespace AbarimMUD.Data
 			if (result == null)
 			{
 				throw new Exception($"Unable to find room with id {id} in the area {Name}");
+			}
+
+			return result;
+		}
+
+		public Mobile GetMobileById(int id)
+		{
+			if (id < 0 || id >= Mobiles.Count)
+			{
+				return null;
+			}
+
+			return Mobiles[id];
+		}
+
+		public Mobile EnsureMobileById(int id)
+		{
+			var result = GetMobileById(id);
+			if (result == null)
+			{
+				throw new Exception($"Unable to find mobile with id {id} in the area {Name}");
 			}
 
 			return result;

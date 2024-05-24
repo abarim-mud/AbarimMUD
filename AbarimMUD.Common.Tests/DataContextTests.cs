@@ -103,6 +103,11 @@ namespace AbarimMUD.Common.Tests
 				TargetRoom = room
 			};
 
+			var mobile = new Mobile
+			{
+				Name = "Test Mobile"
+			};
+			area.Mobiles.Add(mobile);
 
 			db.Areas.Update(area);
 
@@ -119,6 +124,8 @@ namespace AbarimMUD.Common.Tests
 			Assert.That(area.Rooms[1].Exits.Count, Is.EqualTo(1));
 			Assert.That(area.Rooms[1].Exits.ContainsKey(Direction.Down), Is.True);
 			Assert.That(area.Rooms[1].Exits[Direction.Down].TargetRoom, Is.EqualTo(area.Rooms[0]));
+			Assert.That(area.Mobiles.Count, Is.EqualTo(1));
+			Assert.That(area.Mobiles[0].Name, Is.EqualTo("Test Mobile"));
 		}
 	}
 }

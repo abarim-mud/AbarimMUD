@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
 {
@@ -279,11 +280,12 @@ namespace AbarimMUD.Data
 
 	public class Mobile: AreaEntity
 	{
-		public int? VNum { get; set; }
 		public string Name { get; set; }
 		public string ShortDescription { get; set; }
 		public string LongDescription { get; set; }
 		public string Description { get; set; }
+
+		[JsonIgnore]
 		public Race Race { get; set; }
 		public MobileFlags MobileFlags { get; set; }
 		public AffectedByFlags AffectedByFlags { get; set; }
@@ -311,6 +313,8 @@ namespace AbarimMUD.Data
 		public PartFlags PartsFlags { get; set; }
 		public MobileSize Size { get; set; }
 		public Material Material { get; set; }
+
+		[JsonIgnore]
 		public Shop Shop { get; set; }
 		public List<MobileSpecialAttack> SpecialAttacks { get; } = new List<MobileSpecialAttack>();
 	}

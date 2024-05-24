@@ -2,12 +2,12 @@
 
 namespace AbarimMUD.Data
 {
-	public class AreaEntity: Entity
+	public class AreaEntity
 	{
 		[JsonIgnore]
-		public int AreaId { get; set; }
+		public Area Area { get; set; }
 
 		[JsonIgnore]
-		public Area Area { get; set; }
+		public int Id { get; set; }
 	}
 }

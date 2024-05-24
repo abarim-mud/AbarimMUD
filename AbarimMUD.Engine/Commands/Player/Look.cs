@@ -53,7 +53,12 @@ namespace AbarimMUD.Commands.Player
 			// Mobiles
 			foreach (var mobile in room.Mobiles)
 			{
-				sd.AddTextLine(mobile.Info.ShortDescription);
+				var desc = mobile.Info.ShortDescription;
+				if (context.Type >= (Role.Builder))
+				{
+					desc += string.Format(" (#{0})", mobile.Info.Id);
+				}
+				sd.AddTextLine(desc);
 			}
 
 			// Characters

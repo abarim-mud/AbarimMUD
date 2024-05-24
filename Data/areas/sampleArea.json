@@ -23,5 +23,14 @@
       }
     }
   ],
+  "Mobiles": [
+    {
+      "Name": "unset",
+      "ShortDescription": "Unset",
+      "LongDescription": "A mobile with \u0027unset\u0027 name is standing here.",
+      "Description": "Unset.",
+      "SpecialAttacks": []
+    }
+  ],
   "Id": "sampleArea"
 }
