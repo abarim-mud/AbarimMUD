@@ -44,6 +44,8 @@ namespace AbarimMUD.Commands
 			_allCommands["mcreate"] = new MCreate();
 			_allCommands["mspawn"] = new MSpawn();
 			_allCommands["mset"] = new MSet();
+			_allCommands["maddattack"] = new MAddAttack();
+			_allCommands["mremoveattack"] = new MRemoveAttack();
 		}
 
 		public static BaseCommand FindCommand(string name)
@@ -87,7 +89,7 @@ namespace AbarimMUD.Commands
 				return;
 			}
 
-			if (command.RequiredType > context.Type)
+			if (command.RequiredType > context.Role)
 			{
 				context.Logger.Info("Command is not available for this character.");
 				context.Send("Arglebargle, glop-glyf!?!");

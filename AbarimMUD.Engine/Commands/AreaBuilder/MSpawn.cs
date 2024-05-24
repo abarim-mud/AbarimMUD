@@ -29,7 +29,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 
 			foreach (var ctx in context.AllInRoom())
 			{
-				if (ctx.Type >= Role.Builder)
+				if (ctx.IsStaff)
 				{
 					ctx.SendTextLine(string.Format("{0} (#{1}) appears in a puff of smoke.",
 						mobileInfo.Name,

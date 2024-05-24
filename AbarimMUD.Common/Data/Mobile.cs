@@ -278,12 +278,13 @@ namespace AbarimMUD.Data
 		Chill
 	}
 
-	public class Mobile: AreaEntity
+	public class Mobile : AreaEntity
 	{
 		public string Name { get; set; }
 		public string ShortDescription { get; set; }
 		public string LongDescription { get; set; }
 		public string Description { get; set; }
+		public List<MobileAttack> Attacks { get; set; } = new List<MobileAttack>();
 
 		[JsonIgnore]
 		public Race Race { get; set; }

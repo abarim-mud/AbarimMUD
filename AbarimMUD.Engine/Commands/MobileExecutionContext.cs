@@ -33,7 +33,7 @@ namespace AbarimMUD.Commands
 			get { return 0; }
 		}
 
-		public override Role Type
+		public override Role Role
 		{
 			get { return Role.Player; }
 		}

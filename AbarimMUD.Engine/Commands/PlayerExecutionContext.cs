@@ -13,7 +13,7 @@ namespace AbarimMUD.Commands
 			get { return _session.Character.Name; }
 		}
 
-		public override Role Type
+		public override Role Role
 		{
 			get { return _session.Character.Role; }
 		}

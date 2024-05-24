@@ -41,13 +41,14 @@ namespace AbarimMUD.Commands
 		public abstract Room CurrentRoom { get; set; }
 		public Area CurrentArea => CurrentRoom.Area;
 
-		public abstract Role Type { get; }
-		public abstract string[] Keywords { get; }
-
-		public string Look
+		public abstract Role Role { get; }
+		
+		public bool IsStaff
 		{
-			get { return string.Format("You look at {0}.", Name); }
+			get { return Role >= Role.Builder; }
 		}
+
+		public abstract string[] Keywords { get; }
 
 		public abstract Logger Logger { get; }
 
@@ -57,6 +58,8 @@ namespace AbarimMUD.Commands
 		{
 			InternalSend(text + ConsoleCommand.NewLine);
 		}
+
+
 
 		public IEnumerable<ExecutionContext> AllExceptMe()
 		{

@@ -5,25 +5,23 @@ namespace AbarimMUD.Commands.Player
 {
 	public sealed class Look : PlayerCommand
 	{
-		private string BuildRoomDescription(ExecutionContext context)
+		private string BuildRoomDescription(ExecutionContext context, Room room)
 		{
-			var room = context.CurrentRoom;
-
-			var sd = new StringBuilder();
-			sd.Append(ConsoleCommand.ForeColorCyan);
+			var sb = new StringBuilder();
+			sb.Append(ConsoleCommand.ForeColorCyan);
 
 			var name = room.Name;
-			if (context.Type >= (Role.Builder))
+			if (context.IsStaff)
 			{
 				name += string.Format(" (#{0})", room.Id);
 			}
 
-			sd.AddTextLine(name);
-			sd.Append(ConsoleCommand.ColorClear);
-			sd.Append("   ");
-			sd.AddTextLine(room.Description);
-			sd.Append(ConsoleCommand.ForeColorCyan);
-			sd.Append("Exits: ");
+			sb.AddTextLine(name);
+			sb.Append(ConsoleCommand.ColorClear);
+			sb.Append("   ");
+			sb.AddTextLine(room.Description);
+			sb.Append(ConsoleCommand.ForeColorCyan);
+			sb.Append("Exits: ");
 
 			var first = true;
 			foreach (var pair in room.Exits)
@@ -31,34 +29,34 @@ namespace AbarimMUD.Commands.Player
 				var exit = pair.Value;
 				if (!first)
 				{
-					sd.Append(ConsoleCommand.ColorClear);
-					sd.Append(" ");
+					sb.Append(ConsoleCommand.ColorClear);
+					sb.Append(" ");
 				}
 
-				sd.Append(ConsoleCommand.ForeColorCyan);
-				sd.Append(ConsoleCommand.Underline);
-				sd.Append(exit.Direction.GetName());
+				sb.Append(ConsoleCommand.ForeColorCyan);
+				sb.Append(ConsoleCommand.Underline);
+				sb.Append(exit.Direction.GetName());
 
-				if (context.Type >= (Role.Builder))
+				if (context.IsStaff)
 				{
-					sd.Append(string.Format("(#{0})", exit.TargetRoom.Id));
+					sb.Append(string.Format("(#{0})", exit.TargetRoom.Id));
 				}
 
 				first = false;
 			}
 
-			sd.AddNewLine();
-			sd.Append(ConsoleCommand.ColorClear);
+			sb.AddNewLine();
+			sb.Append(ConsoleCommand.ColorClear);
 
 			// Mobiles
 			foreach (var mobile in room.Mobiles)
 			{
-				var desc = mobile.Info.ShortDescription;
-				if (context.Type >= (Role.Builder))
+				var desc = mobile.Info.LongDescription;
+				if (context.IsStaff)
 				{
 					desc += string.Format(" (#{0})", mobile.Info.Id);
 				}
-				sd.AddTextLine(desc);
+				sb.AddTextLine(desc);
 			}
 
 			// Characters
@@ -70,10 +68,34 @@ namespace AbarimMUD.Commands.Player
 					continue;
 				}
 
-				sd.AddTextLine(string.Format("{0} is standing here.", character.Name));
+				sb.AddTextLine(string.Format("{0} is standing here.", character.Name));
 			}
 
-			return sd.ToString();
+			return sb.ToString();
+		}
+
+		private string BuildMobileDescription(ExecutionContext context, MobileInstance mobile)
+		{
+			var sb = new StringBuilder();
+
+			sb.AppendLine(mobile.Info.Description);
+			if (context.IsStaff)
+			{
+				sb.Append(ConsoleCommand.ForeColorCyan);
+				sb.AppendLine("Name: " + mobile.Info.Name);
+				sb.AppendLine("Short: " + mobile.Info.ShortDescription);
+				sb.AppendLine("Long: " + mobile.Info.LongDescription);
+
+				for (var i = 0; i < mobile.Info.Attacks.Count; ++i)
+				{
+					var attack = mobile.Info.Attacks[i];
+					sb.AppendLine($"#{i} attack: {attack.ToString()}");
+				}
+
+				sb.Append(ConsoleCommand.ColorClear);
+			}
+
+			return sb.ToString();
 		}
 
 		protected override void InternalExecute(ExecutionContext context, string data)
@@ -82,20 +104,24 @@ namespace AbarimMUD.Commands.Player
 			if (string.IsNullOrEmpty(data))
 			{
 				// Look room
-				var sd = BuildRoomDescription(context);
+				var sd = BuildRoomDescription(context, context.CurrentRoom);
 				context.Send(sd);
 			}
 			else
 			{
 				var lookContext = context.CurrentRoom.Find(data);
-
 				if (lookContext == null)
 				{
 					context.SendTextLine(string.Format("There isnt '{0}' in this room", data));
 					return;
 				}
 
-				context.SendTextLine(lookContext.Look);
+				var asMobileContext = lookContext as MobileExecutionContext;
+				if (asMobileContext != null)
+				{
+					var d = BuildMobileDescription(context, asMobileContext.Mobile);
+					context.Send(d);
+				}
 
 				if (lookContext != context)
 				{

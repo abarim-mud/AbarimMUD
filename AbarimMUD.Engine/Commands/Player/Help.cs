@@ -10,7 +10,7 @@ namespace AbarimMUD.Commands.Player
 
 			foreach (var ac in AllCommands)
 			{
-				if (ac.Value.RequiredType <= context.Type)
+				if (ac.Value.RequiredType <= context.Role)
 				{
 					sd.AddTextLine(ac.Key);
 				}

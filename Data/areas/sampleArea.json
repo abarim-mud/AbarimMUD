@@ -21,6 +21,20 @@
       "ShortDescription": "Unset",
       "LongDescription": "A mobile with \u0027unset\u0027 name is standing here.",
       "Description": "Unset.",
+      "Attacks": [
+        {
+          "AttackType": 5,
+          "MinimumDamage": 10,
+          "MaximumDamage": 20,
+          "Penetration": 20
+        },
+        {
+          "AttackType": 3,
+          "MinimumDamage": 10,
+          "MaximumDamage": 20,
+          "Penetration": 20
+        }
+      ],
       "SpecialAttacks": []
     }
   ],

@@ -13,7 +13,7 @@ namespace AbarimMUD.Commands.Player
 			sb.Append(ConsoleCommand.ForeColorCyan);
 
 			var name = area.Name;
-			if (context.Type >= (Role.Builder))
+			if (context.IsStaff)
 			{
 				name += string.Format(" (#{0})", area.Id);
 			}

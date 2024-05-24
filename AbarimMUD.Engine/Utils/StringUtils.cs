@@ -1,4 +1,6 @@
-﻿namespace AbarimMUD.Utils
+﻿using System;
+
+namespace AbarimMUD.Utils
 {
 	public static class StringUtils
 	{
@@ -21,6 +23,11 @@
 			}
 
 			return char.ToUpper(name[0]) + name.Substring(1, name.Length - 1).ToLower();
+		}
+
+		public static bool TryParseEnumUncased<T>(this string name, out T value) where T: struct
+		{
+			return Enum.TryParse(name.CasedName(), out value);
 		}
 	}
 }
