@@ -32,26 +32,8 @@ namespace AbarimMUD.Data
 
 	public class RoomExit
 	{
-		private Room _targetRoom;
-
-		[JsonInclude]
-		internal string TargetAreaName { get; set; }
-
-		[JsonInclude]
-		[JsonIgnore(Condition = JsonIgnoreCondition.Never)] 
-		internal int TargetRoomId { get; set; }
-
 		[JsonIgnore]
-		public Room TargetRoom
-		{
-			get => _targetRoom;
-			
-			set
-			{
-				_targetRoom = value;
-				TargetRoomId = _targetRoom.Id;
-			}
-		}
+		public Room TargetRoom { get; set; }
 		
 		[JsonIgnore]
 		public Direction Direction { get; set; }
@@ -63,6 +45,12 @@ namespace AbarimMUD.Data
 		public RoomExitFlags Flags { get; set; }
 
 		public string KeyObjectId { get; set; }
+
+		/// <summary>
+		/// Used by the json serializer
+		/// Shouldn't be used by anything else
+		/// </summary>
+		public RoomReference JsonData { get; set; }
 	}
 
 	public static class RoomDirectionExtensions

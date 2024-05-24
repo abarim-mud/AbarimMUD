@@ -5,7 +5,9 @@
       "Description": "This is the start room.",
       "Exits": {
         "South": {
-          "TargetRoomId": 1
+          "JsonData": {
+            "TargetRoomId": 1
+          }
         }
       }
     },
@@ -14,7 +16,9 @@
       "Description": "This is the second room.",
       "Exits": {
         "North": {
-          "TargetRoomId": 0
+          "JsonData": {
+            "TargetRoomId": 0
+          }
         }
       }
     }

@@ -1,12 +1,12 @@
 ﻿using AbarimMUD.Data;
 using System.IO;
 using System.Text.Json;
-using System.Text.Json.Serialization.Metadata;
 
 namespace AbarimMUD.Storage
 {
 	internal class Areas : CRUD<Area>
 	{
+
 		internal const string SubfolderName = "areas";
 
 		private string Folder => Path.Combine(BaseFolder, SubfolderName);
@@ -50,13 +50,15 @@ namespace AbarimMUD.Storage
 						var exit = pair2.Value;
 
 						exit.Direction = pair2.Key;
-						exit.TargetRoom = area.Rooms[exit.TargetRoomId];
+						exit.TargetRoom = area.Rooms[exit.JsonData.TargetRoomId];
+
+						exit.JsonData = null;
 					}
 				}
 			}
 		}
 
-		internal override void Save(Area entity)
+		internal override void Save(Area area)
 		{
 			var areasFolder = Folder;
 			if (!Directory.Exists(areasFolder))
@@ -64,11 +66,35 @@ namespace AbarimMUD.Storage
 				Directory.CreateDirectory(areasFolder);
 			}
 
-			var options = Utility.CreateDefaultOptions();
-			var data = JsonSerializer.Serialize(entity, options);
+			// Set json data
+			foreach(var room in area.Rooms)
+			{
+				foreach(var pair in room.Exits)
+				{
+					var roomExit = pair.Value;
 
-			var accountPath = Path.Combine(areasFolder, $"{entity.Id}.json");
+					roomExit.JsonData = new RoomReference
+					{
+						TargetRoomId = roomExit.TargetRoom.Id
+					};
+				}
+			}
+
+			var options = Utility.CreateDefaultOptions();
+			var data = JsonSerializer.Serialize(area, options);
+
+			var accountPath = Path.Combine(areasFolder, $"{area.Id}.json");
 			File.WriteAllText(accountPath, data);
+
+			// Clear json data
+			foreach (var room in area.Rooms)
+			{
+				foreach (var pair in room.Exits)
+				{
+					var roomExit = pair.Value;
+					roomExit.JsonData = null;
+				}
+			}
 		}
 	}
 }
