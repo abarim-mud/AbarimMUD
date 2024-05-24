@@ -1,11 +1,30 @@
 ﻿using AbarimMUD.Data;
+using System;
 using System.IO;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Storage
 {
 	internal class Areas : CRUD<Area>
 	{
+		private class RoomExitConverter : JsonConverter<RoomExit>
+		{
+			public override RoomExit Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+			{
+				var id = reader.GetInt32();
+
+				return new RoomExit
+				{
+					Tag = id
+				};
+			}
+
+			public override void Write(Utf8JsonWriter writer, RoomExit value, JsonSerializerOptions options)
+			{
+				writer.WriteNumberValue(value.TargetRoom.Id);
+			}
+		}
 
 		internal const string SubfolderName = "areas";
 
@@ -31,7 +50,9 @@ namespace AbarimMUD.Storage
 				Log($"Loading {path}");
 
 				var data = File.ReadAllText(path);
-				var area = JsonSerializer.Deserialize<Area>(data);
+				var options = Utility.CreateDefaultOptions();
+				options.Converters.Add(new RoomExitConverter());
+				var area = JsonSerializer.Deserialize<Area>(data, options);
 				AddToCache(area);
 			}
 		}
@@ -50,9 +71,11 @@ namespace AbarimMUD.Storage
 						var exit = pair2.Value;
 
 						exit.Direction = pair2.Key;
-						exit.TargetRoom = area.Rooms[exit.JsonData.TargetRoomId];
 
-						exit.JsonData = null;
+						var targetRoomId = (int)exit.Tag;
+						exit.TargetRoom = area.Rooms[targetRoomId];
+
+						exit.Tag = null;
 					}
 				}
 			}
@@ -66,35 +89,12 @@ namespace AbarimMUD.Storage
 				Directory.CreateDirectory(areasFolder);
 			}
 
-			// Set json data
-			foreach(var room in area.Rooms)
-			{
-				foreach(var pair in room.Exits)
-				{
-					var roomExit = pair.Value;
-
-					roomExit.JsonData = new RoomReference
-					{
-						TargetRoomId = roomExit.TargetRoom.Id
-					};
-				}
-			}
-
 			var options = Utility.CreateDefaultOptions();
+			options.Converters.Add(new RoomExitConverter());
 			var data = JsonSerializer.Serialize(area, options);
 
 			var accountPath = Path.Combine(areasFolder, $"{area.Id}.json");
 			File.WriteAllText(accountPath, data);
-
-			// Clear json data
-			foreach (var room in area.Rooms)
-			{
-				foreach (var pair in room.Exits)
-				{
-					var roomExit = pair.Value;
-					roomExit.JsonData = null;
-				}
-			}
 		}
 	}
 }

@@ -46,11 +46,7 @@ namespace AbarimMUD.Data
 
 		public string KeyObjectId { get; set; }
 
-		/// <summary>
-		/// Used by the json serializer
-		/// Shouldn't be used by anything else
-		/// </summary>
-		public RoomReference JsonData { get; set; }
+		public object Tag { get; set; }
 	}
 
 	public static class RoomDirectionExtensions
