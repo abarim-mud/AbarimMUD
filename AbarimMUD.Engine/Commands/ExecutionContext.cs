@@ -42,7 +42,7 @@ namespace AbarimMUD.Commands
 		public Area CurrentArea => CurrentRoom.Area;
 
 		public abstract Role Role { get; }
-		
+
 		public bool IsStaff
 		{
 			get { return Role >= Role.Builder; }
@@ -51,6 +51,8 @@ namespace AbarimMUD.Commands
 		public abstract string[] Keywords { get; }
 
 		public abstract Logger Logger { get; }
+		public abstract List<Attack> Attacks { get; }
+		public abstract int ArmorClass { get; }
 
 		protected abstract void InternalSend(string text);
 
@@ -79,7 +81,7 @@ namespace AbarimMUD.Commands
 			var room = CurrentRoom;
 			foreach (var c in room.Characters)
 			{
-				var context = (ExecutionContext) c.Tag;
+				var context = (ExecutionContext)c.Tag;
 				if (this == context)
 				{
 					continue;
@@ -94,7 +96,7 @@ namespace AbarimMUD.Commands
 			var room = CurrentRoom;
 			foreach (var c in room.Characters)
 			{
-				var context = (ExecutionContext) c.Tag;
+				var context = (ExecutionContext)c.Tag;
 				yield return context;
 			}
 		}
@@ -126,6 +128,5 @@ namespace AbarimMUD.Commands
 		}
 
 		public Room GetRoomById(int id) => CurrentRoom.Area.GetRoomById(id);
-
 	}
 }

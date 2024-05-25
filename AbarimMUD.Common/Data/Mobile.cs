@@ -236,7 +236,7 @@ namespace AbarimMUD.Data
 
 	public enum AttackType
 	{
-		None,
+		Hit,
 		Slice,
 		Stab,
 		Slash,
@@ -250,32 +250,17 @@ namespace AbarimMUD.Data
 		Pierce,
 		Suction,
 		Beating,
-		Digestion,
 		Charge,
 		Slap,
 		Punch,
-		Wrath,
-		Magic,
-		Divine,
 		Cleave,
 		Scratch,
 		Peck,
-		PeckB,
 		Chop,
 		Sting,
 		Smash,
-		ShBite,
-		FlBite,
-		FrBite,
-		AcBite,
 		Chomp,
-		Drain,
 		Thrust,
-		Slime,
-		Shock,
-		Thwack,
-		Flame,
-		Chill
 	}
 
 	public class Mobile : AreaEntity
@@ -284,7 +269,8 @@ namespace AbarimMUD.Data
 		public string ShortDescription { get; set; }
 		public string LongDescription { get; set; }
 		public string Description { get; set; }
-		public List<MobileAttack> Attacks { get; set; } = new List<MobileAttack>();
+		public int ArmorClass { get; set; }
+		public List<Attack> Attacks { get; set; } = new List<Attack>();
 
 		[JsonIgnore]
 		public Race Race { get; set; }

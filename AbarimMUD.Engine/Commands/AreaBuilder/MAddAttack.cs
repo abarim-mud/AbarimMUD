@@ -55,7 +55,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 				return;
 			}
 
-			var newAttack = new MobileAttack
+			var newAttack = new Attack
 			{
 				AttackType = attackType,
 				Penetration = penetration,

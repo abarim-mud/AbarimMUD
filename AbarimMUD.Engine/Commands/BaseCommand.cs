@@ -34,6 +34,8 @@ namespace AbarimMUD.Commands
 			_allCommands["look"] = new Look();
 			_allCommands["where"] = new Where();
 
+			_allCommands["kill"] = new Kill();
+
 			_allCommands["force"] = new Force();
 			_allCommands["settype"] = new SetType();
 			_allCommands["rset"] = new RSet();

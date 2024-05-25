@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using AbarimMUD.Data;
 using AbarimMUD.Utils;
 
@@ -48,6 +49,10 @@ namespace AbarimMUD.Commands
 		{
 			get { return _mobile.Info.Name.Split(" "); }
 		}
+
+		public override List<Attack> Attacks => Mobile.Info.Attacks;
+
+		public override int ArmorClass => Mobile.Info.ArmorClass;
 
 		public override NLog.Logger Logger
 		{

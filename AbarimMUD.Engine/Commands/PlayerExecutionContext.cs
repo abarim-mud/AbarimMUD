@@ -1,6 +1,7 @@
 ﻿using NLog;
 using System;
 using AbarimMUD.Data;
+using System.Collections.Generic;
 
 namespace AbarimMUD.Commands
 {
@@ -32,7 +33,7 @@ namespace AbarimMUD.Commands
 		{
 			get { return _session.Character.CurrentIP; }
 		}
-	
+
 		public override Room CurrentRoom
 		{
 			get { return _session.CurrentRoom; }
@@ -46,13 +47,31 @@ namespace AbarimMUD.Commands
 
 		public override string[] Keywords
 		{
-			get { return new[] {_session.Character.Name.ToLower()}; }
+			get { return new[] { _session.Character.Name.ToLower() }; }
 		}
 
 		public Session Session
 		{
 			get { return _session; }
 		}
+
+		public override List<Attack> Attacks
+		{
+			get
+			{
+				var result = new List<Attack>
+				{
+					new Attack(AttackType.Slash, 50, 50, 70),
+					new Attack(AttackType.Hit, 50, 50, 70),
+					new Attack(AttackType.Punch, 50, 50, 70),
+					new Attack(AttackType.Smash, 50, 50, 70),
+				};
+
+				return result;
+			}
+		}
+
+		public override int ArmorClass => 20;
 
 		public PlayerExecutionContext(Session session)
 		{

@@ -10,7 +10,7 @@
 			data.ParseCommand(out idStr, out cmd);
 			if (string.IsNullOrEmpty(data) || !int.TryParse(idStr, out id))
 			{
-				context.Send("Usage: mset _id_ name|desc|short|long _params_");
+				context.Send("Usage: mset _id_ name|desc|short|long|ac _params_");
 				return;
 			}
 
@@ -34,7 +34,7 @@
 
 				mobileInfo.Name = cmdData;
 				Database.Areas.Update(area);
-				context.SendTextLine(string.Format("Changed {0}'s name to {1}", mobileInfo.Id, mobileInfo.Name));
+				context.SendTextLine($"Changed {mobileInfo.Id}'s name to {mobileInfo.Name}");
 			}
 			else if (cmdText == "desc")
 			{
@@ -46,7 +46,7 @@
 
 				mobileInfo.Description = cmdData;
 				Database.Areas.Update(area);
-				context.SendTextLine(string.Format("Changed {0}'s desc to {1}", mobileInfo.Id, mobileInfo.Description));
+				context.SendTextLine($"Changed {mobileInfo.Id}'s desc to {mobileInfo.Description}");
 			}
 			else if (cmdText == "short")
 			{
@@ -58,7 +58,7 @@
 
 				mobileInfo.ShortDescription = cmdData;
 				Database.Areas.Update(area);
-				context.SendTextLine(string.Format("Changed {0}'s short to '{1}'", mobileInfo.Id, mobileInfo.ShortDescription));
+				context.SendTextLine($"Changed {mobileInfo.Id}'s short to '{mobileInfo.ShortDescription}'");
 			}
 			else if (cmdText == "long")
 			{
@@ -70,7 +70,20 @@
 
 				mobileInfo.LongDescription = cmdData;
 				Database.Areas.Update(area);
-				context.SendTextLine(string.Format("Changed {0}'s long to '{1}'", mobileInfo.Id, mobileInfo.LongDescription));
+				context.SendTextLine($"Changed {mobileInfo.Id}'s long to '{mobileInfo.LongDescription}'");
+			}
+			else if (cmdText == "ac")
+			{
+				int armorClass;
+				if (string.IsNullOrEmpty(cmdData) || !int.TryParse(cmdData, out armorClass))
+				{
+					context.Send("Usage: mset ac _armorClass_");
+					return;
+				}
+
+				mobileInfo.ArmorClass = armorClass;
+				Database.Areas.Update(area);
+				context.SendTextLine($"Changed {mobileInfo.Id}'s ac to '{mobileInfo.ArmorClass}'");
 			}
 			else
 			{
