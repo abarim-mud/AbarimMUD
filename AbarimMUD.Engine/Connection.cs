@@ -3,7 +3,6 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using NLog;
-using AbarimMUD.Utils;
 
 namespace AbarimMUD
 {
@@ -12,14 +11,17 @@ namespace AbarimMUD
 		private readonly Logger _logger;
 
 		private readonly Socket _socket;
+		private readonly IPAddress _remoteIp;
+		private readonly int _remotePort;
 		private readonly byte[] _buffer = new byte[1024];
 		private readonly StringBuilder _inputBuffer = new StringBuilder();
 		private bool _alive = true;
+		private string _input;
 
-		public Socket Socket
-		{
-			get { return _socket; }
-		}
+		public bool Alive => _alive;
+
+		public IPAddress RemoteIp => _remoteIp;
+		public int RemotePort => _remotePort;
 
 		public string LoggerName
 		{
@@ -30,12 +32,7 @@ namespace AbarimMUD
 			}
 		}
 
-		public Logger Logger
-		{
-			get { return _logger; }
-		}
-
-		public event EventHandler<GenericEventArgs<string>> Received;
+		public Logger Logger => _logger;
 
 		public Connection(Socket socket)
 		{
@@ -45,6 +42,10 @@ namespace AbarimMUD
 			}
 
 			_socket = socket;
+
+			var remote = (IPEndPoint)_socket.RemoteEndPoint;
+			_remoteIp = remote.Address;
+			_remotePort = remote.Port;
 			_logger = LogManager.GetLogger(LoggerName);
 			_socket.BeginReceive(_buffer, 0, _buffer.Length, 0, ReadCallback, null);
 		}
@@ -83,16 +84,14 @@ namespace AbarimMUD
 					{
 						break;
 					}
+
 					// '\n' ends a command
 					var data = content.Substring(0, rlPos).Trim();
 
 					_logger.Info("Incomming data: '{0}'", data);
 
-					var ev = Received;
-					if (ev != null)
-					{
-						ev(this, new GenericEventArgs<string>(data));
-					}
+					_input = data;
+					Server.Instance.Awake();
 
 					// Reset input buffer
 					_inputBuffer.Clear();
@@ -111,6 +110,14 @@ namespace AbarimMUD
 			{
 				_logger.Error(ex);
 			}
+		}
+
+		public string GetInput()
+		{
+			var result = _input;
+			_input = null;
+
+			return result;
 		}
 
 		public void Send(string data)

@@ -91,7 +91,6 @@ namespace AbarimMUD
 				return;
 			}
 
-
 			if (Database.Characters.GetById(name) != null)
 			{
 				SendTextLine("This name is already taken.");

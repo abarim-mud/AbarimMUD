@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Linq;
 using AbarimMUD.Commands;
 using AbarimMUD.Data;
-using AbarimMUD.Utils;
 
 namespace AbarimMUD
 {
@@ -13,7 +11,6 @@ namespace AbarimMUD
 		private readonly PlayerExecutionContext _context;
 		private Character _character;
 		private Room _room;
-
 
 		public Connection Connection
 		{
@@ -86,18 +83,28 @@ namespace AbarimMUD
 			}
 
 			_connection = connection;
-			_connection.Received += OnReceived;
 
 			CurrentHandler = new LoginHandler(this);
 
 			_context = new PlayerExecutionContext(this);
 		}
 
-		private void OnReceived(object sender, GenericEventArgs<string> e)
+		public void ProcessInput()
 		{
+			if (!_connection.Alive)
+			{
+				return;
+			}
+
+			var input = _connection.GetInput();
+			if (string.IsNullOrEmpty(input))
+			{
+				return;
+			}
+
 			if (CurrentHandler != null)
 			{
-				CurrentHandler.Process(e.Data);
+				CurrentHandler.Process(input);
 			}
 		}
 
