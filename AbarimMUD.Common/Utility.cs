@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AbarimMUD.Data;
+using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -35,6 +36,21 @@ namespace AbarimMUD
 				WriteIndented = true,
 				DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault
 			};
+		}
+
+		public static float Clamp(float val, float min = 0.0f, float max = 1.0f)
+		{
+			if (val < min)
+			{
+				return min;
+			}
+
+			if (val > max)
+			{
+				return max;
+			}
+
+			return val;
 		}
 	}
 }

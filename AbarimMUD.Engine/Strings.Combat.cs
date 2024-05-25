@@ -55,7 +55,7 @@ namespace AbarimMUD
 			return attackType.ToString().ToLower();
 		}
 
-		public static string GetAttackVerb(AttackType attackType)
+		public static string GetAttackVerb(this AttackType attackType)
 		{
 			return _attackNames[(int)attackType].Verb;
 		}
@@ -78,43 +78,58 @@ namespace AbarimMUD
 			return sb.ToString();
 		}
 
-		public static string GetAttackMessage(int damage, string attackerName, string targetName, AttackType attackType)
+		public static string GetAttackMessage(DamageResult damageResult, string attackerName, string targetName, AttackType attackType)
 		{
-			var sb = new StringBuilder();
+			string result;
+			string attackVerb, massacre, massacre2;
+
+			if (attackerName == "You")
+			{
+				attackVerb = attackType.GetAttackNoun();
+				massacre = "massacre";
+				massacre2 = $"your {attackType.GetAttackNoun()}";
+			} else
+			{
+				attackVerb = attackType.GetAttackVerb();
+				massacre = "massacres";
+				massacre2 = $"its {attackType.GetAttackNoun()}";
+			}
+
+			var damage = damageResult.Damage;
 			if (damage < 5)
 			{
-				sb.Append($"{attackerName} barely {GetAttackVerb(attackType)} {targetName} ({damage}).");
+				result = $"{attackerName} barely {attackVerb} {targetName} ({damageResult}).";
 			}
 			else if (damage < 10)
 			{
-				sb.Append($"{attackerName} {GetAttackVerb(attackType)} {targetName} ({damage}).");
+				result = $"{attackerName} {attackVerb} {targetName} ({damageResult}).";
 			}
 			else if (damage < 15)
 			{
-				sb.Append($"{attackerName} {GetAttackVerb(attackType)} {targetName} hard ({damage}).");
+				result = $"{attackerName} {attackVerb} {targetName} hard ({damageResult}).";
 			}
 			else if (damage < 20)
 			{
-				sb.Append($"{attackerName} {GetAttackVerb(attackType)} {targetName} very hard ({damage}).");
+				result = $"{attackerName} {attackVerb} {targetName} very hard ({damageResult}).";
 			}
 			else if (damage < 25)
 			{
-				sb.Append($"{attackerName} {GetAttackVerb(attackType)} {targetName} extremelly hard ({damage}).");
+				result = $"{attackerName} {attackVerb} {targetName} extremelly hard ({damageResult}).";
 			}
 			else if (damage < 30)
 			{
-				sb.Append($"{attackerName} massacres {targetName} to small fragments with {GetAttackNoun(attackType)} ({damage}).");
+				result = $"{attackerName} {massacre} {targetName} to small fragments with {massacre2} ({damageResult}).";
 			}
 			else if (damage < 50)
 			{
-				sb.Append($"{attackerName} brutally massacres {targetName} to small fragments with {GetAttackNoun(attackType)} ({damage}).");
+				result = $"{attackerName} brutally {massacre} {targetName} to small fragments with {massacre2} ({damageResult}).";
 			}
 			else
 			{
-				sb.Append($"{attackerName} viciously massacres {targetName} to small fragments with {GetAttackNoun(attackType)} ({damage}).");
+				result = $"{attackerName} viciously {massacre} {targetName} to small fragments with {massacre2} ({damageResult}).";
 			}
 
-			return sb.ToString();
+			return result;
 		}
 
 		public static string GetNpcDeathMessage(string name)

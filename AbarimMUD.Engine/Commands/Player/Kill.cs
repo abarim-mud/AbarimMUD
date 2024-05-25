@@ -32,7 +32,7 @@
 				var attack = attacks[i];
 				var damage = Combat.CalculateDamage(attack, asMobileContext.ArmorClass);
 
-				if (damage <= 0)
+				if (damage.Damage <= 0)
 				{
 					context.SendTextLine($"Your {attack.AttackType.GetAttackNoun()} couldn't pierce through armor of {asMobileContext.Name}");
 				} else
@@ -48,7 +48,7 @@
 				var attack = attacks[i];
 				var damage = Combat.CalculateDamage(attack, context.ArmorClass);
 
-				if (damage <= 0)
+				if (damage.Damage <= 0)
 				{
 					context.SendTextLine($"{asMobileContext.Name} couldn't pierce through your armor with {attack.AttackType.GetAttackNoun()}");
 				}

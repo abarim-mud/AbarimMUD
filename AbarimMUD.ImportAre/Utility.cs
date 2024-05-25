@@ -8,6 +8,35 @@ namespace AbarimMUD.ImportAre
 {
 	internal static class Utility
 	{
+		private enum MobClass
+		{
+			Warrior,
+			Thief,
+			Mage,
+			Cleric
+		}
+
+		private struct GuildThac0
+		{
+			public int Level1;
+			public int Level32;
+
+			public GuildThac0(int level1, int level32)
+			{
+				Level1 = level1;
+				Level32 = level32;
+			}
+		}
+
+		private static readonly int[][] _mobAttacksTable;
+		private static readonly GuildThac0[] _guildThacs = new GuildThac0[]
+		{
+			new GuildThac0(20, -10),
+			new GuildThac0(20, -4),
+			new GuildThac0(20, 2),
+			new GuildThac0(20, -2),
+		};
+
 		public static string ExecutingAssemblyDirectory
 		{
 			get
@@ -17,6 +46,36 @@ namespace AbarimMUD.ImportAre
 				string path = Uri.UnescapeDataString(uri.Path);
 				return Path.GetDirectoryName(path);
 			}
+		}
+
+		static Utility()
+		{
+			_mobAttacksTable = new int[8][];
+
+			_mobAttacksTable[(int)MobClass.Warrior] = new int[]
+			{
+				5,
+				12,
+				25
+			};
+
+			_mobAttacksTable[(int)MobClass.Thief] = new int[]
+			{
+				12,
+				25
+			};
+
+			_mobAttacksTable[(int)MobClass.Mage] = new int[]
+			{
+				23
+			};
+
+
+			_mobAttacksTable[(int)MobClass.Cleric] = new int[]
+			{
+				20,
+				30
+			};
 		}
 
 		public static void RaiseError(this Stream stream, string message)
@@ -29,7 +88,7 @@ namespace AbarimMUD.ImportAre
 			// Calculate the line and line pos
 			stream.Seek(0, SeekOrigin.Begin);
 
-			while(stream.Position < lastPos)
+			while (stream.Position < lastPos)
 			{
 				var b = stream.ReadByte();
 
@@ -88,7 +147,7 @@ namespace AbarimMUD.ImportAre
 			var sb = new StringBuilder();
 
 			var endOfLine = false;
-			while(!stream.EndOfStream())
+			while (!stream.EndOfStream())
 			{
 				var c = stream.ReadLetter();
 
@@ -98,11 +157,13 @@ namespace AbarimMUD.ImportAre
 					if (!isNewLine)
 					{
 						sb.Append(c);
-					} else
+					}
+					else
 					{
 						endOfLine = true;
 					}
-				} else if (!isNewLine)
+				}
+				else if (!isNewLine)
 				{
 					stream.GoBackIfNotEOF();
 					break;
@@ -199,7 +260,8 @@ namespace AbarimMUD.ImportAre
 			if (c == '+')
 			{
 				c = stream.ReadLetter();
-			} else if (c == '-')
+			}
+			else if (c == '-')
 			{
 				negative = true;
 				c = stream.ReadLetter();
@@ -296,7 +358,7 @@ namespace AbarimMUD.ImportAre
 				c = stream.ReadLetter();
 			}
 
-			while(!stream.EndOfStream())
+			while (!stream.EndOfStream())
 			{
 				if ((startsWithQuote && (c == '"' || c == '\'')) ||
 					(!startsWithQuote && char.IsWhiteSpace(c)))
@@ -358,7 +420,7 @@ namespace AbarimMUD.ImportAre
 
 				return (T)Enum.Parse(typeof(T), value, true);
 			}
-			catch(Exception)
+			catch (Exception)
 			{
 				stream.RaiseError($"Enum parse error: enum type={typeof(T).Name}, value={value}");
 			}
@@ -419,6 +481,67 @@ namespace AbarimMUD.ImportAre
 			}
 
 			return true;
+		}
+
+		private static MobClass GetMobClass(this Mobile mob)
+		{
+			var mc = MobClass.Warrior;
+			if (mob.MobileFlags.HasFlag(MobileFlags.Thief))
+			{
+				mc = MobClass.Thief;
+			}
+			else if (mob.MobileFlags.HasFlag(MobileFlags.Mage))
+			{
+				mc = MobClass.Mage;
+			}
+			else if (mob.MobileFlags.HasFlag(MobileFlags.Cleric))
+			{
+				mc = MobClass.Cleric;
+			}
+
+			return mc;
+		}
+
+		public static int GetAttacksCount(this Mobile mob)
+		{
+			var result = 1;
+
+			// Area attack
+			if (mob.OffenseFlags.HasFlag(MobileOffensiveFlags.AreaAttack))
+			{
+				++result;
+			}
+
+			var mc = mob.GetMobClass();
+			var levelsTable = _mobAttacksTable[(int)mc];
+
+			for (var i = 0; i < levelsTable.Length; i++)
+			{
+				if (mob.Level < levelsTable[i])
+				{
+					break;
+				}
+
+				++result;
+			}
+
+			return result;
+		}
+
+		public static int GetAccuracy(this Mobile mob)
+		{
+			var mc = mob.GetMobClass();
+
+			var guildThac = _guildThacs[(int)mc];
+			var thac0 = guildThac.Level1 + mob.Level * (guildThac.Level32 - guildThac.Level1) / 32;
+
+			if (thac0 < 0)
+				thac0 = thac0 / 2;
+
+			if (thac0 < -5)
+				thac0 = -5 + (thac0 + 5) / 2;
+
+			return -(thac0 - 20) * 10;
 		}
 	}
 }

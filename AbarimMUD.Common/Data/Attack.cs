@@ -4,20 +4,16 @@ namespace AbarimMUD.Data
 {
 	public class Attack
 	{
-		private int _penetration, _minimumDamage, _maximumDamage;
+		private int _accuracy, _minimumDamage, _maximumDamage;
 
 		public AttackType AttackType { get; set; }
-		public int Penetration
+		
+		public int Accuracy
 		{
-			get => _penetration;
+			get => _accuracy;
 			set
 			{
-				if (value < 0 || value > 100)
-				{
-					throw new ArgumentOutOfRangeException(nameof(value));
-				}
-
-				_penetration = value;
+				_accuracy = value;
 			}
 		}
 
@@ -53,17 +49,17 @@ namespace AbarimMUD.Data
 		{
 		}
 
-		public Attack(AttackType attackType, int penetration, int minimumDamage, int maximumDamage)
+		public Attack(AttackType attackType, int accuracy, int minimumDamage, int maximumDamage)
 		{
 			AttackType = attackType;
-			Penetration = penetration;
+			Accuracy = accuracy;
 			MinimumDamage = minimumDamage;
 			MaximumDamage = maximumDamage;
 		}
 
 		public override string ToString()
 		{
-			return $"{AttackType}, {Penetration}, {MinimumDamage} - {MaximumDamage}";
+			return $"{AttackType}, {Accuracy}, {MinimumDamage} - {MaximumDamage}";
 		}
 	}
 }

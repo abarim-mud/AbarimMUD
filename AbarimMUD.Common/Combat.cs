@@ -1,23 +1,41 @@
 ﻿using AbarimMUD.Data;
-using System;
 
 namespace AbarimMUD
 {
+	public struct DamageResult
+	{
+		public int InitialDamage;
+		public int ArmorAbsorbedDamage;
+
+		public int Damage => InitialDamage - ArmorAbsorbedDamage;
+
+		public DamageResult(int initialDamage, int armorAbsorbedDamage)
+		{
+			InitialDamage = initialDamage;
+			ArmorAbsorbedDamage = armorAbsorbedDamage;
+		}
+
+		public override string ToString() => $"{InitialDamage}-{ArmorAbsorbedDamage}={Damage}";
+	}
+
 	public static class Combat
 	{
-		public static int CalculateDamage(Attack attack, int armorClass)
+		public static DamageResult CalculateDamage(Attack attack, int armorClass)
 		{
-			var damage = Utility.RandomRange(attack.MinimumDamage, attack.MaximumDamage);
-
-			if (damage <= 0)
+			var result = new DamageResult
 			{
-				return 0;
+				InitialDamage = Utility.RandomRange(attack.MinimumDamage, attack.MaximumDamage)
+			};
+
+			if (result.InitialDamage <= 0)
+			{
+				return result;
 			}
 
-			var armorWithPenetration = (int)(armorClass * (1.0f - attack.Penetration / 100.0f));
-			damage = Math.Max(damage - armorWithPenetration, 0);
+			var armorFactor = Utility.Clamp((100 + armorClass - attack.Accuracy) / 200.0f);
+			result.ArmorAbsorbedDamage = (int)(armorFactor * result.InitialDamage);
 
-			return damage;
+			return result;
 		}
 	}
 }

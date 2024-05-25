@@ -8,11 +8,11 @@ namespace AbarimMUD.Commands.AreaBuilder
 	{
 		protected override void InternalExecute(ExecutionContext context, string data)
 		{
-			int id, penetration, minDamage, maxDamage;
+			int id, accuracy, minDamage, maxDamage;
 			string typeStr;
-			if (!data.Parse(out id, out typeStr, out penetration, out minDamage, out maxDamage))
+			if (!data.Parse(out id, out typeStr, out accuracy, out minDamage, out maxDamage))
 			{
-				context.Send("Usage: maddattack _mobileId_ _type_ _penetration_ _minDamage_ _maxDamage_");
+				context.Send("Usage: maddattack _mobileId_ _type_ _accuracy_ _minDamage_ _maxDamage_");
 				return;
 			}
 
@@ -41,12 +41,6 @@ namespace AbarimMUD.Commands.AreaBuilder
 				return;
 			}
 
-			if (penetration < 0 || penetration > 100)
-			{
-				context.Send($"penetration should be within [0; 100]");
-				return;
-			}
-
 			var area = context.CurrentArea;
 			var mobileInfo = area.GetMobileById(id);
 			if (mobileInfo == null)
@@ -58,7 +52,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 			var newAttack = new Attack
 			{
 				AttackType = attackType,
-				Penetration = penetration,
+				Accuracy = accuracy,
 				MinimumDamage = minDamage,
 				MaximumDamage = maxDamage
 			};

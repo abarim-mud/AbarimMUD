@@ -1,5 +1,6 @@
 ﻿using AbarimMUD.Data;
 using AbarimMUD.Storage;
+using GoRogue.DiceNotation;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -139,6 +140,26 @@ namespace AbarimMUD.ImportAre
 					Size = stream.ReadEnumFromWord<MobileSize>(),
 					Material = stream.ReadEnumFromWord<Material>(),
 				};
+
+				var averageAc = (mobile.AcPierce + mobile.AcBash + mobile.AcSlash) / 3;
+				mobile.ArmorClass = -(averageAc - 10) * 10;
+
+				if (mobile.ArmorClass < 0)
+				{
+					stream.RaiseError($"Negative armor class");
+				}
+
+				var attacksCount = mobile.GetAttacksCount();
+				var accuracy = mobile.GetAccuracy() + mobile.HitRoll * 10;
+				for (var i = 0; i < attacksCount; ++i)
+				{
+					var expr = Dice.Parse(mobile.DamageDice);
+					var min = expr.MinRoll();
+					var max = expr.MaxRoll();
+
+					var attack = new Attack(mobile.AttackType, accuracy, min, max);
+					mobile.Attacks.Add(attack);
+				}
 
 				area.Mobiles.Add(mobile);
 				_mobilesByVnums[vnum] = mobile;
