@@ -19,6 +19,7 @@ namespace AbarimMUD.Commands.Player
 			}
 
 			sb.AddTextLine(name);
+			sb.Append(ConsoleCommand.ColorClear);
 
 			context.Send(sb.ToString());
 		}

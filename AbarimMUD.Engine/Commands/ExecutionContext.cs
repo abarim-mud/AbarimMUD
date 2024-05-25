@@ -58,10 +58,13 @@ namespace AbarimMUD.Commands
 
 		public void SendTextLine(string text)
 		{
+			if (!text.EndsWith("."))
+			{
+				text += ".";
+			}
+
 			InternalSend(text + ConsoleCommand.NewLine);
 		}
-
-
 
 		public IEnumerable<ExecutionContext> AllExceptMe()
 		{

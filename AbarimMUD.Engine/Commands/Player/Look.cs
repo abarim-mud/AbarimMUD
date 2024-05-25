@@ -85,6 +85,7 @@ namespace AbarimMUD.Commands.Player
 				sb.AppendLine("Name: " + mobile.Info.Name);
 				sb.AppendLine("Short: " + mobile.Info.ShortDescription);
 				sb.AppendLine("Long: " + mobile.Info.LongDescription);
+				sb.AppendLine("Armor Class: " + mobile.Info.ArmorClass);
 
 				for (var i = 0; i < mobile.Info.Attacks.Count; ++i)
 				{
