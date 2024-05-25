@@ -18,6 +18,7 @@ namespace AbarimMUD.Data
 	{
 		private ObservableCollection<Room> _rooms;
 		private ObservableCollection<Mobile> _mobiles;
+		private ObservableCollection<GameObject> _objects;
 
 		[JsonIgnore]
 		public string Name
@@ -91,7 +92,34 @@ namespace AbarimMUD.Data
 		}
 
 		[JsonIgnore]
-		public List<GameObject> Objects { get; } = new List<GameObject>();
+		public ObservableCollection<GameObject> Objects
+		{
+			get => _objects;
+			set
+			{
+				if (value == null)
+				{
+					throw new ArgumentNullException(nameof(value));
+				}
+
+				if (value == _objects)
+				{
+					return;
+				}
+
+				if (_objects != null)
+				{
+					_objects.CollectionChanged -= OnObjectsChanged;
+				}
+
+				_objects = value;
+
+				_objects.CollectionChanged += OnObjectsChanged;
+
+				UpdateEntities(Objects);
+			}
+		}
+
 
 		[JsonIgnore]
 		public List<AreaReset> Resets { get; } = new List<AreaReset>();
@@ -100,6 +128,7 @@ namespace AbarimMUD.Data
 		{
 			Rooms = new ObservableCollection<Room>();
 			Mobiles = new ObservableCollection<Mobile>();
+			Objects = new ObservableCollection<GameObject>();
 		}
 
 		private void OnRoomsChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -108,6 +137,11 @@ namespace AbarimMUD.Data
 		}
 
 		private void OnMobilesChanged(object sender, NotifyCollectionChangedEventArgs e)
+		{
+			UpdateEntities(Mobiles);
+		}
+
+		private void OnObjectsChanged(object sender, NotifyCollectionChangedEventArgs e)
 		{
 			UpdateEntities(Mobiles);
 		}
@@ -159,6 +193,27 @@ namespace AbarimMUD.Data
 			if (result == null)
 			{
 				throw new Exception($"Unable to find mobile with id {id} in the area {Name}");
+			}
+
+			return result;
+		}
+
+		public GameObject GetObjectById(int id)
+		{
+			if (id < 0 || id >= Objects.Count)
+			{
+				return null;
+			}
+
+			return Objects[id];
+		}
+
+		public GameObject EnsureObjectById(int id)
+		{
+			var result = GetObjectById(id);
+			if (result == null)
+			{
+				throw new Exception($"Unable to find object with id {id} in the area {Name}");
 			}
 
 			return result;

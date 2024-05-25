@@ -242,6 +242,7 @@ namespace AbarimMUD.Data
 		Slash,
 		Whip,
 		Claw,
+		Hack,
 		Blast,
 		Pound,
 		Crush,
@@ -261,6 +262,8 @@ namespace AbarimMUD.Data
 		Smash,
 		Chomp,
 		Thrust,
+		Slime,
+		Shock
 	}
 
 	public class Mobile : AreaEntity
@@ -271,8 +274,6 @@ namespace AbarimMUD.Data
 		public string Description { get; set; }
 		public int ArmorClass { get; set; }
 		public List<Attack> Attacks { get; set; } = new List<Attack>();
-
-		[JsonIgnore]
 		public Race Race { get; set; }
 		public MobileFlags MobileFlags { get; set; }
 		public AffectedByFlags AffectedByFlags { get; set; }
@@ -301,7 +302,6 @@ namespace AbarimMUD.Data
 		public MobileSize Size { get; set; }
 		public Material Material { get; set; }
 
-		[JsonIgnore]
 		public Shop Shop { get; set; }
 		public List<MobileSpecialAttack> SpecialAttacks { get; } = new List<MobileSpecialAttack>();
 	}

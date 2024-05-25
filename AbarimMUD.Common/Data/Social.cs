@@ -1,8 +1,16 @@
-﻿namespace AbarimMUD.Data
+﻿using System.Text.Json.Serialization;
+
+namespace AbarimMUD.Data
 {
 	public class Social: Entity
 	{
-		public string Name { get; set; }
+		[JsonIgnore]
+		public string Name
+		{
+			get => Id;
+			set => Id = value;
+		}
+
 		public string CharNoArg { get; set; }
 		public string OthersNoArg { get; set; }
 		public string CharFound { get; set; }

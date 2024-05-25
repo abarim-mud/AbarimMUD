@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AbarimMUD.Data;
+using System;
 using System.IO;
 using System.Reflection;
 using System.Text;
@@ -322,6 +323,39 @@ namespace AbarimMUD.ImportAre
 			// Parse the enum
 			try
 			{
+				if (typeof(T) == typeof(AttackType))
+				{
+					if (value == "none" || value == "magic" || value == "divine" || value == "wrath")
+					{
+						value = "hit";
+					}
+
+					if (value == "peckb")
+					{
+						value = "peck";
+					}
+
+					if (value == "shbite" || value == "flbite" || value == "frbite" || value == "acbite" || value == "digestion")
+					{
+						value = "bite";
+					}
+
+					if (value == "thwack")
+					{
+						value = "hack";
+					}
+
+					if (value == "drain")
+					{
+						value = "slash";
+					}
+
+					if (value == "flame")
+					{
+						value = "pound";
+					}
+				}
+
 				return (T)Enum.Parse(typeof(T), value, true);
 			}
 			catch(Exception)

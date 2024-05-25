@@ -1,8 +1,7 @@
 ﻿namespace AbarimMUD.Data
 {
-	public class MobileSpecialAttack: Entity
+	public class MobileSpecialAttack
 	{
-		public Mobile Mobile { get; set; }
 		public string AttackType { get; set; }
 	}
 }

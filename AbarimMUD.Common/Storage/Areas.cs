@@ -8,21 +8,61 @@ namespace AbarimMUD.Storage
 {
 	internal class Areas : CRUD<Area>
 	{
+		private class RoomReference
+		{
+			public string AreaId { get; private set; }
+			public int RoomId { get; private set; }
+
+			public RoomReference(string areaId, int roomId)
+			{
+				AreaId = areaId;
+				RoomId = roomId;
+			}
+		}
+
 		private class RoomExitConverter : JsonConverter<RoomExit>
 		{
+			public Area Area { get; set; }
+
 			public override RoomExit Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 			{
-				var id = reader.GetInt32();
+				RoomReference roomReference = null;
+				var r = reader.GetString();
+				if (r.Contains("/"))
+				{
+					var parts = r.Split('/');
+					roomReference = new RoomReference(parts[0], int.Parse(parts[1]));
+				}
+				else
+				{
+					roomReference = new RoomReference(null, int.Parse(r));
+				}
 
 				return new RoomExit
 				{
-					Tag = id
+					Tag = roomReference
 				};
 			}
 
 			public override void Write(Utf8JsonWriter writer, RoomExit value, JsonSerializerOptions options)
 			{
-				writer.WriteNumberValue(value.TargetRoom.Id);
+				if (value.TargetRoom != null)
+				{
+					if (value.TargetRoom.Area == Area)
+					{
+						// Write just id
+						writer.WriteStringValue(value.TargetRoom.Id.ToString());
+					}
+					else
+					{
+						// Write area and id
+						writer.WriteStringValue($"{value.TargetRoom.Area.Id}/{value.TargetRoom.Id}");
+					}
+				}
+				else
+				{
+					writer.WriteNullValue();
+				}
 			}
 		}
 
@@ -35,7 +75,7 @@ namespace AbarimMUD.Storage
 			Load();
 		}
 
-			
+
 		private void Load()
 		{
 			var areasFolder = Folder;
@@ -61,19 +101,31 @@ namespace AbarimMUD.Storage
 		{
 			base.SetReferences(db);
 
-			foreach(var pair in _cache)
+			foreach (var pair in _cache)
 			{
-				var area  = pair.Value;
-				foreach(var room in area.Rooms)
+				var area = pair.Value;
+				foreach (var room in area.Rooms)
 				{
-					foreach(var pair2 in room.Exits)
+					foreach (var pair2 in room.Exits)
 					{
 						var exit = pair2.Value;
+						if (exit == null)
+						{
+							continue;
+						}
 
 						exit.Direction = pair2.Key;
 
-						var targetRoomId = (int)exit.Tag;
-						exit.TargetRoom = area.Rooms[targetRoomId];
+						var roomReference = (RoomReference)exit.Tag;
+						if (string.IsNullOrEmpty(roomReference.AreaId))
+						{
+							// Same area
+							exit.TargetRoom = area.Rooms[roomReference.RoomId];
+						} else
+						{
+							// Different area
+							exit.TargetRoom = EnsureById(roomReference.AreaId).Rooms[roomReference.RoomId];
+						}
 
 						exit.Tag = null;
 					}
@@ -90,7 +142,11 @@ namespace AbarimMUD.Storage
 			}
 
 			var options = Utility.CreateDefaultOptions();
-			options.Converters.Add(new RoomExitConverter());
+			var converter = new RoomExitConverter
+			{
+				Area = area
+			};
+			options.Converters.Add(converter);
 			var data = JsonSerializer.Serialize(area, options);
 
 			var accountPath = Path.Combine(areasFolder, $"{area.Id}.json");

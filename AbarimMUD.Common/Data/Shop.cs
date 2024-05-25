@@ -1,9 +1,7 @@
 ﻿namespace AbarimMUD.Data
 {
-	public class Shop: Entity
+	public class Shop
 	{
-		public Mobile Mobile { get; set; }
-
 		public int BuyType1 { get; set; }
 		public int BuyType2 { get; set; }
 		public int BuyType3 { get; set; }
@@ -13,6 +11,5 @@
 		public int ProfitSell { get; set;}
 		public int OpenHour { get; set; }
 		public int CloseHour { get; set; }
-
 	}
 }

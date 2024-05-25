@@ -10,6 +10,7 @@ namespace AbarimMUD.Storage
 		public CRUD<Account> Accounts { get; }
 		public Characters Characters { get; }
 		public CRUD<Area> Areas { get; }
+		public Socials Socials { get; }
 
 		public DataContext(string path, Action<string> log)
 		{
@@ -17,6 +18,7 @@ namespace AbarimMUD.Storage
 			Accounts = new Accounts(_context);
 			Characters = new Characters(_context);
 			Areas = new Areas(_context);
+			Socials = new Socials(_context);
 
 			Accounts.SetReferences(this);
 			Characters.SetReferences(this);

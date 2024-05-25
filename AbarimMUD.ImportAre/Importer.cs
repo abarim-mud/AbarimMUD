@@ -1,5 +1,5 @@
 ﻿using AbarimMUD.Data;
-using Microsoft.EntityFrameworkCore;
+using AbarimMUD.Storage;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,8 +9,13 @@ namespace AbarimMUD.ImportAre
 {
 	internal class Importer
 	{
+		private readonly Dictionary<int, Room> _roomsByVnums = new Dictionary<int, Room>();
+		private readonly Dictionary<int, Mobile> _mobilesByVnums = new Dictionary<int, Mobile>();
+		private readonly Dictionary<int, GameObject> _objectsByVnums = new Dictionary<int, GameObject>();
+
 		private class RoomExitInfo
 		{
+			public Room SourceRoom { get; set; }
 			public RoomExit RoomExit { get; set; }
 			public int? TargetRoomVNum { get; set; }
 			public int? KeyObjectVNum { get; set; }
@@ -23,7 +28,19 @@ namespace AbarimMUD.ImportAre
 			Console.WriteLine(message);
 		}
 
-		private void ProcessArea(DataContext db, Stream stream, Area area)
+		private Room GetRoomByVnum(int vnum) =>
+			(from m in _roomsByVnums where m.Key == vnum select m.Value).FirstOrDefault();
+
+		private Room EnsureRoomByVnum(int vnum) =>
+			(from m in _roomsByVnums where m.Key == vnum select m.Value).First();
+
+		private Mobile GetMobileByVnum(int vnum) =>
+			(from m in _mobilesByVnums where m.Key == vnum select m.Value).FirstOrDefault();
+
+		private GameObject GetObjectByVnum(int vnum) =>
+			(from m in _objectsByVnums where m.Key == vnum select m.Value).FirstOrDefault();
+
+		private void ProcessArea(Stream stream, Area area)
 		{
 			var fileName = stream.ReadDikuString();
 			area.Name = stream.ReadDikuString();
@@ -32,13 +49,10 @@ namespace AbarimMUD.ImportAre
 			stream.ReadNumber(); // Start vnum
 			stream.ReadNumber(); // End vnum
 
-			db.Areas.Add(area);
-			db.SaveChanges();
-
 			Log($"Created area {area.Name}");
 		}
 
-		private void ProcessAreaData(DataContext db, Stream stream, Area area)
+		private void ProcessAreaData(Stream stream, Area area)
 		{
 			while (true)
 			{
@@ -75,13 +89,10 @@ namespace AbarimMUD.ImportAre
 			}
 
 		finish:;
-			db.Areas.Add(area);
-			db.SaveChanges();
-
-			Log($"Created area {area.Name}");
+			Log($"Processed area data for {area.Name}");
 		}
 
-		private void ProcessMobiles(DataContext db, Stream stream, Area area)
+		private void ProcessMobiles(Stream stream, Area area)
 		{
 			while (!stream.EndOfStream())
 			{
@@ -96,8 +107,6 @@ namespace AbarimMUD.ImportAre
 
 				var mobile = new Mobile
 				{
-					Area = area,
-					VNum = vnum,
 					Name = name,
 					ShortDescription = stream.ReadDikuString(),
 					LongDescription = stream.ReadDikuString(),
@@ -130,6 +139,9 @@ namespace AbarimMUD.ImportAre
 					Size = stream.ReadEnumFromWord<MobileSize>(),
 					Material = stream.ReadEnumFromWord<Material>(),
 				};
+
+				area.Mobiles.Add(mobile);
+				_mobilesByVnums[vnum] = mobile;
 
 				var raceInfo = mobile.Race.GetRaceInfo();
 
@@ -197,13 +209,10 @@ namespace AbarimMUD.ImportAre
 						break;
 					}
 				}
-
-				db.Mobiles.Add(mobile);
-				db.SaveChanges();
 			}
 		}
 
-		private void ProcessObjects(DataContext db, Stream stream, Area area)
+		private void ProcessObjects(Stream stream, Area area)
 		{
 			while (!stream.EndOfStream())
 			{
@@ -218,8 +227,6 @@ namespace AbarimMUD.ImportAre
 
 				var obj = new GameObject
 				{
-					Area = area,
-					VNum = vnum,
 					Name = name,
 					ShortDescription = stream.ReadDikuString(),
 					Description = stream.ReadDikuString(),
@@ -228,6 +235,9 @@ namespace AbarimMUD.ImportAre
 					ExtraFlags = (ItemExtraFlags)stream.ReadFlag(),
 					WearFlags = (ItemWearFlags)stream.ReadFlag(),
 				};
+
+				area.Objects.Add(obj);
+				_objectsByVnums[vnum] = obj;
 
 				switch (obj.ItemType)
 				{
@@ -337,10 +347,6 @@ namespace AbarimMUD.ImportAre
 						break;
 				}
 
-				db.Objects.Add(obj);
-				db.SaveChanges();
-
-
 				while (!stream.EndOfStream())
 				{
 					var c = stream.ReadSpacedLetter();
@@ -349,21 +355,16 @@ namespace AbarimMUD.ImportAre
 					{
 						var effect = new GameObjectEffect
 						{
-							GameObject = obj,
 							EffectBitType = EffectBitType.Object,
 							EffectType = (EffectType)stream.ReadNumber(),
 							Modifier = stream.ReadNumber()
 						};
 
-						db.ObjectsEffect.Add(effect);
+						obj.Effects.Add(effect);
 					}
 					else if (c == 'F')
 					{
-						var effect = new GameObjectEffect
-						{
-							GameObject = obj
-						};
-
+						var effect = new GameObjectEffect();
 						c = stream.ReadSpacedLetter();
 						switch (c)
 						{
@@ -387,8 +388,7 @@ namespace AbarimMUD.ImportAre
 						effect.EffectType = (EffectType)stream.ReadNumber();
 						effect.Modifier = stream.ReadNumber();
 						effect.Bits = (AffectedByFlags)stream.ReadFlag();
-
-						db.ObjectsEffect.Add(effect);
+						obj.Effects.Add(effect);
 					}
 					else if (c == 'E')
 					{
@@ -401,12 +401,10 @@ namespace AbarimMUD.ImportAre
 						break;
 					}
 				}
-
-				db.SaveChanges();
 			}
 		}
 
-		private void ProcessRooms(DataContext db, Stream stream, Area area)
+		private void ProcessRooms(Stream stream, Area area)
 		{
 			while (!stream.EndOfStream())
 			{
@@ -421,8 +419,6 @@ namespace AbarimMUD.ImportAre
 
 				var room = new Room
 				{
-					Area = area,
-					VNum = vnum,
 					Name = name,
 					Description = stream.ReadDikuString(),
 				};
@@ -433,8 +429,8 @@ namespace AbarimMUD.ImportAre
 				room.SectorType = stream.ReadEnumFromWord<SectorType>();
 
 				// Save room to set its id
-				db.Rooms.Add(room);
-				db.SaveChanges();
+				area.Rooms.Add(room);
+				_roomsByVnums[vnum] = room;
 
 				while (!stream.EndOfStream())
 				{
@@ -460,7 +456,6 @@ namespace AbarimMUD.ImportAre
 					{
 						var exit = new RoomExit
 						{
-							SourceRoomId = room.Id,
 							Direction = (Direction)stream.ReadNumber(),
 							Description = stream.ReadDikuString(),
 							Keyword = stream.ReadDikuString(),
@@ -487,6 +482,7 @@ namespace AbarimMUD.ImportAre
 
 						var exitInfo = new RoomExitInfo
 						{
+							SourceRoom = room,
 							RoomExit = exit
 						};
 
@@ -518,12 +514,10 @@ namespace AbarimMUD.ImportAre
 						throw new Exception($"Unknown room command '{c}'");
 					}
 				}
-
-				db.SaveChanges();
 			}
 		}
 
-		private void ProcessResets(DataContext db, Stream stream, Area area)
+		private void ProcessResets(Stream stream, Area area)
 		{
 			while (!stream.EndOfStream())
 			{
@@ -606,13 +600,11 @@ namespace AbarimMUD.ImportAre
 				}
 
 				stream.ReadLine();
-
-				db.AreaResets.Add(reset);
-				db.SaveChanges();
+				area.Resets.Add(reset);
 			}
 		}
 
-		private void ProcessShops(DataContext db, Stream stream)
+		private void ProcessShops(Stream stream)
 		{
 			while (!stream.EndOfStream())
 			{
@@ -622,7 +614,7 @@ namespace AbarimMUD.ImportAre
 					break;
 				}
 
-				var keeper = (from m in db.Mobiles where m.VNum == keeperVnum select m).FirstOrDefault();
+				var keeper = GetMobileByVnum(keeperVnum);
 				if (keeper == null)
 				{
 					stream.RaiseError($"Could not find shop keeper with vnum {keeperVnum}");
@@ -630,7 +622,6 @@ namespace AbarimMUD.ImportAre
 
 				var shop = new Shop
 				{
-					Mobile = keeper,
 					BuyType1 = stream.ReadNumber(),
 					BuyType2 = stream.ReadNumber(),
 					BuyType3 = stream.ReadNumber(),
@@ -642,16 +633,15 @@ namespace AbarimMUD.ImportAre
 					CloseHour = stream.ReadNumber(),
 				};
 
-				stream.ReadLine();
+				keeper.Shop = shop;
 
-				db.Shops.Add(shop);
-				db.SaveChanges();
+				stream.ReadLine();
 
 				Log($"Added shop for mobile {keeper.Name}");
 			}
 		}
 
-		private void ProcessSpecials(DataContext db, Stream stream)
+		private void ProcessSpecials(Stream stream)
 		{
 			while (!stream.EndOfStream())
 			{
@@ -666,7 +656,7 @@ namespace AbarimMUD.ImportAre
 
 					case 'M':
 						var mobVnum = stream.ReadNumber();
-						var mobile = (from m in db.Mobiles where m.VNum == mobVnum select m).FirstOrDefault();
+						var mobile = GetMobileByVnum(mobVnum);
 						if (mobile == null)
 						{
 							throw new Exception($"Could not find mobile with vnum {mobVnum}");
@@ -674,41 +664,14 @@ namespace AbarimMUD.ImportAre
 
 						var special = new MobileSpecialAttack
 						{
-							Mobile = mobile,
 							AttackType = stream.ReadWord()
 						};
 
-						db.MobileSpecialAttacks.Add(special);
-						db.SaveChanges();
-
+						mobile.SpecialAttacks.Add(special);
 						break;
 				}
 
 				stream.ReadLine();
-			}
-		}
-
-		private void ProcessHelps(DataContext db, Stream stream)
-		{
-			while (!stream.EndOfStream())
-			{
-				var level = stream.ReadNumber();
-				var keyword = stream.ReadDikuString();
-
-				if (keyword[0] == '$')
-				{
-					break;
-				}
-
-				var helpData = new HelpData
-				{
-					Level = level,
-					Keyword = keyword,
-					Text = stream.ReadDikuString()
-				};
-
-				db.Helps.Add(helpData);
-				db.SaveChanges();
 			}
 		}
 
@@ -719,7 +682,7 @@ namespace AbarimMUD.ImportAre
 				var temp = stream.ReadWord();
 				if (temp == "#0")
 				{
-					return;
+					break;
 				}
 
 				var social = new Social
@@ -790,89 +753,92 @@ namespace AbarimMUD.ImportAre
 				while (false);
 
 				db.Socials.Add(social);
-				db.SaveChanges();
 			}
+
+			db.Socials.Save();
 		}
 
-		private void ProcessFile(string areaFile)
+		private void ProcessFile(DataContext db, string areaFile)
 		{
 			Log($"Processing {areaFile}...");
-			using (var db = new DataContext())
+			Area area = null;
+			using (var stream = File.OpenRead(areaFile))
 			{
-				Area area = null;
-				using (var stream = File.OpenRead(areaFile))
+				while (!stream.EndOfStream())
 				{
-					while (!stream.EndOfStream())
+					var type = stream.ReadId();
+					switch (type)
 					{
-						var type = stream.ReadId();
-						switch (type)
-						{
-							case "AREA":
-								area = new Area();
-								ProcessArea(db, stream, area);
-								break;
-							case "AREADATA":
-								area = new Area();
-								ProcessAreaData(db, stream, area);
-								break;
-							case "MOBILES":
-								ProcessMobiles(db, stream, area);
-								break;
-							case "OBJECTS":
-								ProcessObjects(db, stream, area);
-								break;
-							case "ROOMS":
-								ProcessRooms(db, stream, area);
-								break;
-							case "MOBOLD":
-								stream.RaiseError("Old mobiles aren't supported");
-								break;
-							case "MOBPROGS":
-								Log("Mob programs aren't supported");
-								break;
-							case "OBJOLD":
-								stream.RaiseError("Old objects aren't supported");
-								break;
-							case "RESETS":
-								ProcessResets(db, stream, area);
-								break;
-							case "SHOPS":
-								ProcessShops(db, stream);
-								break;
-							case "SPECIALS":
-								ProcessSpecials(db, stream);
-								break;
-							case "HELPS":
-								ProcessHelps(db, stream);
-								break;
-							case "SOCIALS":
-								ProcessSocials(db, stream);
-								break;
-							case "$":
-								goto finish;
-							default:
-								stream.RaiseError($"Sections {type} aren't supported.");
-								break;
-						}
+						case "AREA":
+							area = new Area();
+							ProcessArea(stream, area);
+							break;
+						case "AREADATA":
+							area = new Area();
+							ProcessAreaData(stream, area);
+							break;
+						case "MOBILES":
+							ProcessMobiles(stream, area);
+							break;
+						case "OBJECTS":
+							ProcessObjects(stream, area);
+							break;
+						case "ROOMS":
+							ProcessRooms(stream, area);
+							break;
+						case "MOBOLD":
+							stream.RaiseError("Old mobiles aren't supported");
+							break;
+						case "MOBPROGS":
+							Log("Mob programs aren't supported");
+							break;
+						case "OBJOLD":
+							stream.RaiseError("Old objects aren't supported");
+							break;
+						case "RESETS":
+							ProcessResets(stream, area);
+							break;
+						case "SHOPS":
+							ProcessShops(stream);
+							break;
+						case "SPECIALS":
+							ProcessSpecials(stream);
+							break;
+						case "HELPS":
+							// Ignore helps
+							goto finish;
+						case "SOCIALS":
+							ProcessSocials(db, stream);
+							goto finish;
+						case "$":
+							if (area != null)
+							{
+								db.Areas.Update(area);
+							}
+							goto finish;
+						default:
+							stream.RaiseError($"Sections {type} aren't supported.");
+							break;
 					}
-
-				finish:;
 				}
+
+			finish:;
 			}
 		}
 
 		public void Process()
 		{
-			var InputDir = Path.Combine(Utility.ExecutingAssemblyDirectory, "../../../../SourceContent");
-			var areaFiles = Directory.EnumerateFiles(InputDir, "*.are", SearchOption.AllDirectories).ToArray();
+			var inputDir = Path.Combine(Utility.ExecutingAssemblyDirectory, "../../../../SourceContent");
+			var areaFiles = Directory.EnumerateFiles(inputDir, "*.are", SearchOption.AllDirectories).ToArray();
 
-			// Recreate the db
-			using (var db = new DataContext())
+			var outputDir = Path.Combine(Utility.ExecutingAssemblyDirectory, "../../../../Data");
+			var areasFolder = Path.Combine(outputDir, "areas");
+			if (Directory.Exists(areasFolder))
 			{
-				db.Database.EnsureDeleted();
-				db.Database.EnsureCreated();
+				Directory.Delete(areasFolder, true);
 			}
 
+			var db = new DataContext(outputDir, Log);
 			foreach (var areaFile in areaFiles)
 			{
 				if (Path.GetFileName(areaFile) == "proto.are")
@@ -881,91 +847,93 @@ namespace AbarimMUD.ImportAre
 					continue;
 				}
 
-				ProcessFile(areaFile);
+				ProcessFile(db, areaFile);
 			}
 
 			// Process directions
 			Log("Updating directions");
 			foreach (var dir in _tempDirections)
 			{
-				using (var db = new DataContext())
+				var exit = dir.RoomExit;
+				if (dir.TargetRoomVNum != null)
 				{
-					var exit = dir.RoomExit;
-					if (dir.TargetRoomVNum != null)
-					{
-						exit.TargetRoomId = (from r in db.Rooms where r.VNum == dir.TargetRoomVNum.Value select r).First().Id;
-					}
-
-					if (dir.KeyObjectVNum != null)
-					{
-						var keyObj = (from o in db.Objects where o.VNum == dir.KeyObjectVNum.Value select o).FirstOrDefault();
-						if (keyObj != null)
-						{
-							exit.KeyObjectId = keyObj.Id;
-						}
-					}
-
-					db.RoomsExits.Add(exit);
-					db.SaveChanges();
+					exit.TargetRoom = EnsureRoomByVnum(dir.TargetRoomVNum.Value);
 				}
+
+				if (dir.KeyObjectVNum != null)
+				{
+					var keyObj = GetObjectByVnum(dir.KeyObjectVNum.Value);
+					if (keyObj != null)
+					{
+						exit.KeyObjectId = keyObj.Id;
+					}
+				}
+
+				dir.SourceRoom.Exits[exit.Direction] = exit;
 			}
 
-			Log("Locking doors");
-			using (var db = new DataContext())
+			// Update all areas
+			foreach(var area in db.Areas)
 			{
-				var areas = (from a in db.Areas select a).ToArray();
-				foreach (var area in areas)
-				{
-					var resets = (from r in db.AreaResets where r.Area == area select r).ToArray();
-					foreach (var reset in resets)
-					{
-						if (reset.ResetType != AreaResetType.Door)
-						{
-							continue;
-						}
-
-						if (reset.Value3 < 0 || reset.Value3 >= 6)
-						{
-							throw new Exception($"Reset {reset.Id}. Room direction with value {reset.Value3} is outside of range.");
-						}
-
-						var dir = (Direction)reset.Value3;
-
-						var roomVnum = reset.Value2;
-
-						var room = (from r in db.Rooms where r.VNum == roomVnum select r).FirstOrDefault();
-						if (room == null)
-						{
-							throw new Exception($"Reset {reset.Id}. Can't find room with vnum {roomVnum}");
-						}
-
-						var exit = (from e in db.RoomsExits where e.SourceRoomId == room.Id && 
-									e.Direction == (Direction)reset.Value3 
-									select e).FirstOrDefault();
-						if (exit == null || !exit.Flags.HasFlag(RoomExitFlags.Door))
-						{
-							throw new Exception($"Reset {reset.Id}. Can't find exit {dir}");
-						}
-
-						switch (reset.Value4)
-						{
-							case 0:
-								break;
-							case 1:
-								exit.Flags |= RoomExitFlags.Closed;
-								db.SaveChanges();
-								break;
-							case 2:
-								exit.Flags |= RoomExitFlags.Closed | RoomExitFlags.Locked;
-								db.SaveChanges();
-								break;
-							default:
-								throw new Exception($"Reset {reset.Id}. Bad locks {reset.Value4}");
-
-						}
-					}
-				}
+				db.Areas.Update(area);
 			}
+
+			/*						Log("Locking doors");
+									using (var db = new DataContext())
+									{
+										var areas = (from a in db.Areas select a).ToArray();
+										foreach (var area in areas)
+										{
+											var resets = (from r in db.AreaResets where r.Area == area select r).ToArray();
+											foreach (var reset in resets)
+											{
+												if (reset.ResetType != AreaResetType.Door)
+												{
+													continue;
+												}
+
+												if (reset.Value3 < 0 || reset.Value3 >= 6)
+												{
+													throw new Exception($"Reset {reset.Id}. Room direction with value {reset.Value3} is outside of range.");
+												}
+
+												var dir = (Direction)reset.Value3;
+
+												var roomVnum = reset.Value2;
+
+												var room = (from r in db.Rooms where r.VNum == roomVnum select r).FirstOrDefault();
+												if (room == null)
+												{
+													throw new Exception($"Reset {reset.Id}. Can't find room with vnum {roomVnum}");
+												}
+
+												var exit = (from e in db.RoomsExits where e.SourceRoomId == room.Id && 
+															e.Direction == (Direction)reset.Value3 
+															select e).FirstOrDefault();
+												if (exit == null || !exit.Flags.HasFlag(RoomExitFlags.Door))
+												{
+													throw new Exception($"Reset {reset.Id}. Can't find exit {dir}");
+												}
+
+												switch (reset.Value4)
+												{
+													case 0:
+														break;
+													case 1:
+														exit.Flags |= RoomExitFlags.Closed;
+														db.SaveChanges();
+														break;
+													case 2:
+														exit.Flags |= RoomExitFlags.Closed | RoomExitFlags.Locked;
+														db.SaveChanges();
+														break;
+													default:
+														throw new Exception($"Reset {reset.Id}. Bad locks {reset.Value4}");
+
+												}
+											}
+										}
+									}*/
 
 			Log("Success");
 		}

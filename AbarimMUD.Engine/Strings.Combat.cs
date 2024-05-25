@@ -26,6 +26,7 @@ namespace AbarimMUD
 			_attackNames[(int)AttackType.Slash] = new AttackNames("slashes");
 			_attackNames[(int)AttackType.Whip] = new AttackNames("whips");
 			_attackNames[(int)AttackType.Claw] = new AttackNames("claws");
+			_attackNames[(int)AttackType.Hack] = new AttackNames("hacks");
 			_attackNames[(int)AttackType.Blast] = new AttackNames("blasts");
 			_attackNames[(int)AttackType.Pound] = new AttackNames("pounds");
 			_attackNames[(int)AttackType.Crush] = new AttackNames("crushes");
@@ -45,6 +46,8 @@ namespace AbarimMUD
 			_attackNames[(int)AttackType.Smash] = new AttackNames("smashes");
 			_attackNames[(int)AttackType.Chomp] = new AttackNames("chomps");
 			_attackNames[(int)AttackType.Thrust] = new AttackNames("thrusts");
+			_attackNames[(int)AttackType.Slime] = new AttackNames("slimes");
+			_attackNames[(int)AttackType.Shock] = new AttackNames("shocks");
 		}
 
 		public static string GetAttackNoun(this AttackType attackType)

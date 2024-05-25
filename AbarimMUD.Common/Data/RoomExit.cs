@@ -44,7 +44,7 @@ namespace AbarimMUD.Data
 
 		public RoomExitFlags Flags { get; set; }
 
-		public string KeyObjectId { get; set; }
+		public int? KeyObjectId { get; set; }
 
 		public object Tag { get; set; }
 	}
