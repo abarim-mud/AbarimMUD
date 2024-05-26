@@ -19,12 +19,7 @@ namespace AbarimMUD.Data
 		private ObservableCollection<Mobile> _mobiles;
 		private ObservableCollection<GameObject> _objects;
 
-		[JsonIgnore]
-		public string Name
-		{
-			get => Id;
-			set => Id = value;
-		}
+		public string Name { get; set; }
 
 		public string Credits { get; set; }
 

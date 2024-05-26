@@ -1,9 +1,11 @@
-﻿namespace AbarimMUD.Data
+﻿using System.Text.Json.Serialization;
+
+namespace AbarimMUD.Data
 {
 	public enum AreaResetType
 	{
-		Mobile,
-		GameObject,
+		NPC,
+		Item,
 		Put,
 		Give,
 		Equip,
@@ -13,11 +15,11 @@
 
 	public class AreaReset
 	{
+		[JsonIgnore(Condition = JsonIgnoreCondition.Never)] 
 		public AreaResetType ResetType { get; set; }
-		public int Value1 { get; set; }
-		public int Value2 { get; set; }
-		public int Value3 { get; set; }
-		public int Value4 { get; set; }
-		public int Value5 { get; set; }
+		public int Id1 { get; set; }
+		public int Count { get; set; }
+		public int Max { get; set; }
+		public int Id2 { get; set; }
 	}
 }

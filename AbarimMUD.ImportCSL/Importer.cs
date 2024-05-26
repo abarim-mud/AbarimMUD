@@ -103,7 +103,6 @@ namespace AbarimMUD.ImportCSL
 				}
 
 				_roomsByVnums[vnum] = room;
-
 				area.Rooms.Add(room);
 			}
 		}
@@ -173,8 +172,27 @@ namespace AbarimMUD.ImportCSL
 				}
 
 				area.Mobiles.Add(mobile);
-
 				_mobilesByVnums[vnum] = mobile;
+			}
+		}
+
+		private void ProcessResets(XElement root, Area area)
+		{
+			Log("Resets");
+
+			var resetsElement = root.Element("Resets");
+			foreach (var resetElement in resetsElement.Nodes().OfType<XElement>())
+			{
+				var reset = new AreaReset
+				{
+					ResetType = resetElement.EnsureEnum<AreaResetType>("Type"),
+					Id1 = resetElement.EnsureInt("Destination"),
+					Count = resetElement.EnsureInt("Count"),
+					Max = resetElement.EnsureInt("Max"),
+					Id2 = resetElement.EnsureInt("Vnum"),
+				};
+
+				area.Resets.Add(reset);
 			}
 		}
 
@@ -217,6 +235,7 @@ namespace AbarimMUD.ImportCSL
 				var areaData = root.Element("AreaData");
 				var area = new Area
 				{
+					Id = Path.GetFileNameWithoutExtension(areaFile),
 					Name = areaData.GetString("Name"),
 					Credits = areaData.GetString("Credits"),
 					Builders = areaData.GetString("Builders")
@@ -224,6 +243,7 @@ namespace AbarimMUD.ImportCSL
 
 				ProcessRooms(root, area);
 				ProcessMobiles(root, area);
+				ProcessResets(root, area);
 
 				db.Areas.Update(area);
 			}
@@ -262,17 +282,35 @@ namespace AbarimMUD.ImportCSL
 			}
 
 			// Update resets
+			Log("Updating resets");
 			foreach (var area in db.Areas)
 			{
-				foreach (var reset in area.Resets)
+				var toDelete = new List<AreaReset>();
+				for(var i = 0; i < area.Resets.Count; ++i)
 				{
+					var reset = area.Resets[i];
 					switch (reset.ResetType)
 					{
-						case AreaResetType.Mobile:
-							reset.Value2 = EnsureMobileByVnum(reset.Value2).Id;
-							reset.Value4 = EnsureRoomByVnum(reset.Value4).Id;
+						case AreaResetType.NPC:
+							var room = GetRoomByVnum(reset.Id1);
+							if (room == null)
+							{
+								Log($"WARNING: Unable to find room with vnum {reset.Id2} for #{i} reset of area {area.Name}");
+								toDelete.Add(reset);
+								break;
+							}
+
+							var mobile = GetMobileByVnum(reset.Id2);
+							if (mobile == null)
+							{
+								Log($"WARNING: Unable to find mobile with vnum {reset.Id1} for #{i} reset of area {area.Name}");
+								toDelete.Add(reset);
+								break;
+							}
+							reset.Id1 = mobile.Id;
+							reset.Id2 = room.Id;
 							break;
-						case AreaResetType.GameObject:
+						case AreaResetType.Item:
 							break;
 						case AreaResetType.Put:
 							break;
@@ -285,6 +323,11 @@ namespace AbarimMUD.ImportCSL
 						case AreaResetType.Randomize:
 							break;
 					}
+				}
+
+				foreach(var reset in toDelete)
+				{
+					area.Resets.Remove(reset);
 				}
 			}
 

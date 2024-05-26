@@ -300,5 +300,7 @@ namespace AbarimMUD.Data
 
 		public Shop Shop { get; set; }
 		public List<MobileSpecialAttack> SpecialAttacks { get; } = new List<MobileSpecialAttack>();
+
+		public override string ToString() => $"{Name} (#{Id})";
 	}
 }

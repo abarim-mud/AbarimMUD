@@ -561,7 +561,7 @@ namespace AbarimMUD.ImportAre
 				switch (c)
 				{
 					case 'M':
-						reset.ResetType = AreaResetType.Mobile;
+						reset.ResetType = AreaResetType.NPC;
 						reset.Value1 = stream.ReadNumber();
 						reset.Value2 = stream.ReadNumber();
 						reset.Value3 = stream.ReadNumber();
@@ -570,7 +570,7 @@ namespace AbarimMUD.ImportAre
 						break;
 
 					case 'O':
-						reset.ResetType = AreaResetType.GameObject;
+						reset.ResetType = AreaResetType.Item;
 						reset.Value1 = stream.ReadNumber();
 						reset.Value2 = stream.ReadNumber();
 						reset.Value3 = stream.ReadNumber();
@@ -914,11 +914,11 @@ namespace AbarimMUD.ImportAre
 				{
 					switch (reset.ResetType)
 					{
-						case AreaResetType.Mobile:
+						case AreaResetType.NPC:
 							reset.Value2 = EnsureMobileByVnum(reset.Value2).Id;
 							reset.Value4 = EnsureRoomByVnum(reset.Value4).Id;
 							break;
-						case AreaResetType.GameObject:
+						case AreaResetType.Item:
 							break;
 						case AreaResetType.Put:
 							break;

@@ -102,12 +102,18 @@ namespace AbarimMUD.ImportCSL
 
 		public static string GetString(this XElement element, string name, string def = null)
 		{
-			if (element.Element(name) == null)
+			var el = element.Element(name);
+			if (el != null)
 			{
-				return def;
+				return el.Value;
 			}
 
-			return element.Element(name).Value;
+			var attr = element.Attribute(name);
+			if (attr != null)
+			{
+				return attr.Value;
+			}
+			return def;
 		}
 
 		public static int GetInt(this XElement element, string name, int def = 0)

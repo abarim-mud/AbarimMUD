@@ -64,13 +64,13 @@ namespace AbarimMUD
 				{
 					foreach (var areaReset in area.Resets)
 					{
-						if (areaReset.ResetType != Data.AreaResetType.Mobile)
+						if (areaReset.ResetType != Data.AreaResetType.NPC)
 						{
 							continue;
 						}
 
-						var mobile = Database.EnsureMobileById(areaReset.Value2);
-						var room = Database.EnsureRoomById(areaReset.Value4);
+						var mobile = Database.EnsureMobileById(areaReset.Id1);
+						var room = Database.EnsureRoomById(areaReset.Id2);
 
 						// Spawn
 						var newMobile = new MobileInstance(mobile)
