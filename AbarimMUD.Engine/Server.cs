@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using NLog;
@@ -7,6 +6,8 @@ using AbarimMUD.WebService;
 using AbarimMUD.Utils;
 using System.Threading;
 using System.Diagnostics;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace AbarimMUD
 {
@@ -14,8 +15,8 @@ namespace AbarimMUD
 	{
 		private static readonly Logger _logger = LogUtility.GetGlobalLogger();
 		private static readonly Server _instance = new Server();
-		private readonly List<Session> _sessions = new List<Session>();
-		private readonly List<Session> _sessionsCopy = new List<Session>();
+		private readonly ObservableCollection<Session> _sessions = new ObservableCollection<Session>();
+		private Session[] _sessionsCopy = null;
 		private readonly AutoResetEvent _mainThreadEvent = new AutoResetEvent(false);
 		private readonly Service _webService = new Service();
 
@@ -26,11 +27,29 @@ namespace AbarimMUD
 
 		public Session[] Sessions
 		{
-			get { return _sessions.ToArray(); }
+			get
+			{
+				if (_sessionsCopy != null)
+				{
+					return _sessionsCopy;
+				}
+
+				lock(_sessions)
+				{
+					_sessionsCopy = _sessions.ToArray();
+				}
+
+				return _sessionsCopy;
+			}
+
 		}
 
 		private Server()
 		{
+			_sessions.CollectionChanged += (s, e) =>
+			{
+				_sessionsCopy = null;
+			};
 		}
 
 		public void Start()
@@ -60,16 +79,7 @@ namespace AbarimMUD
 						Debug.WriteLine("Tick");
 
 						// Process player input
-						_sessionsCopy.Clear();
-						lock (_sessions)
-						{
-							foreach (var session in _sessions)
-							{
-								_sessionsCopy.Add(session);
-							}
-						}
-
-						foreach (var session in _sessionsCopy)
+						foreach (var session in Sessions)
 						{
 							session.ProcessInput();
 						}
@@ -103,7 +113,7 @@ namespace AbarimMUD
 				var remote = (IPEndPoint)handler.RemoteEndPoint;
 				_logger.Info("Incoming connection from {0}:{1}", remote.Address, remote.Port);
 				var connection = new Connection(handler);
-				var session = new Session(connection);
+				var session = new Session(connection, Sessions.Length == 0);
 
 				session.Disconnected += session_Disconnected;
 

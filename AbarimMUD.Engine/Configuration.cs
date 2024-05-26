@@ -8,5 +8,6 @@
 		public static string StartAreaName = "Midgaard";
 		public static int StartRoomId => 0;
 		public static string DataFolder;
+		public static string DefaultCharacter = "Yang";
 	}
 }

@@ -23,14 +23,7 @@ namespace AbarimMUD
 		public IPAddress RemoteIp => _remoteIp;
 		public int RemotePort => _remotePort;
 
-		public string LoggerName
-		{
-			get
-			{
-				var remote = (IPEndPoint)_socket.RemoteEndPoint;
-				return string.Format("{0}", remote.Address);
-			}
-		}
+		public string LoggerName => RemoteIp.ToString();
 
 		public Logger Logger => _logger;
 

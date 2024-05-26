@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.Xml.Linq;
 using AbarimMUD.Data;
 
 namespace AbarimMUD.Commands.Player
@@ -120,6 +121,8 @@ namespace AbarimMUD.Commands.Player
 				var asMobileContext = lookContext as MobileExecutionContext;
 				if (asMobileContext != null)
 				{
+					context.Send($"You look at {asMobileContext.Mobile.Info.ShortDescription}.\n");
+
 					var d = BuildMobileDescription(context, asMobileContext.Mobile);
 					context.Send(d);
 				}

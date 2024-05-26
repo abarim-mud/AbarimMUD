@@ -1,6 +1,7 @@
 ﻿using System;
 using AbarimMUD.Commands;
 using AbarimMUD.Data;
+using NLog;
 
 namespace AbarimMUD
 {
@@ -12,10 +13,9 @@ namespace AbarimMUD
 		private Character _character;
 		private Room _room;
 
-		public Connection Connection
-		{
-			get { return _connection; }
-		}
+		public Connection Connection => _connection;
+
+		public Logger Logger => Connection.Logger;
 
 		public Handler CurrentHandler
 		{
@@ -42,6 +42,7 @@ namespace AbarimMUD
 			set
 			{
 				_character = value;
+				_character.Tag = Context;
 
 				var startArea = Database.Areas.GetById(Configuration.StartAreaName);
 				_room = startArea.Rooms[Configuration.StartRoomId];
@@ -75,7 +76,7 @@ namespace AbarimMUD
 
 		public event EventHandler Disconnected;
 
-		public Session(Connection connection)
+		public Session(Connection connection, bool firstSession = false)
 		{
 			if (connection == null)
 			{
@@ -83,10 +84,28 @@ namespace AbarimMUD
 			}
 
 			_connection = connection;
-
-			CurrentHandler = new LoginHandler(this);
-
 			_context = new PlayerExecutionContext(this);
+
+			if (!firstSession || string.IsNullOrEmpty(Configuration.DefaultCharacter))
+			{
+				CurrentHandler = new LoginHandler(this);
+			}
+			else
+			{
+				var character = Database.Characters.GetById(Configuration.DefaultCharacter);
+				if (character == null)
+				{
+					Logger.Error($"Unable to find default character {Configuration.DefaultCharacter}");
+					CurrentHandler = new LoginHandler(this);
+				}
+				else
+				{
+					Logger.Info($"Logging {Configuration.DefaultCharacter} since it is first session and default character is set.");
+					Account = character.Account;
+					Character = character;
+					CurrentHandler = new GameHandler(this);
+				}
+			}
 		}
 
 		public void ProcessInput()

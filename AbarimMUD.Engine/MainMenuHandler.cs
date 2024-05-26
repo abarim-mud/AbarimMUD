@@ -102,9 +102,8 @@ namespace AbarimMUD
 
 				if (characters != null && choice >= 1 && choice < newIndex)
 				{
-					var character= characters[choice - 1];
-					
-					character.Tag = Session.Context;
+					var character = characters[choice - 1];
+
 					Session.Character = character;
 					Session.CurrentHandler = new GameHandler(Session);
 					return;
