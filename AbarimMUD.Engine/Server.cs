@@ -8,6 +8,7 @@ using System.Threading;
 using System.Diagnostics;
 using System.Collections.ObjectModel;
 using System.Linq;
+using AbarimMUD.Data;
 
 namespace AbarimMUD
 {
@@ -69,7 +70,14 @@ namespace AbarimMUD
 							continue;
 						}
 
-						var k = 5;
+						var mobile = Database.EnsureMobileById(areaReset.Value2);
+						var room = Database.EnsureRoomById(areaReset.Value4);
+
+						// Spawn
+						var newMobile = new MobileInstance(mobile)
+						{
+							Room = room
+						};
 					}
 				}
 

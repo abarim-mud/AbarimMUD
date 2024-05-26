@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using AbarimMUD.Data;
 
 namespace AbarimMUD.Commands
@@ -9,7 +10,7 @@ namespace AbarimMUD.Commands
 		{
 			foreach (var s in pattern)
 			{
-				var found = (from k in keywords where k.StartsWith(s) select k).Any();
+				var found = (from k in keywords where k.StartsWith(s, StringComparison.OrdinalIgnoreCase) select k).Any();
 
 				if (!found)
 				{

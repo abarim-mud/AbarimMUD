@@ -38,6 +38,9 @@ namespace AbarimMUD.ImportAre
 		private Mobile GetMobileByVnum(int vnum) =>
 			(from m in _mobilesByVnums where m.Key == vnum select m.Value).FirstOrDefault();
 
+		private Mobile EnsureMobileByVnum(int vnum) =>
+			(from m in _mobilesByVnums where m.Key == vnum select m.Value).First();
+
 		private GameObject GetObjectByVnum(int vnum) =>
 			(from m in _objectsByVnums where m.Key == vnum select m.Value).FirstOrDefault();
 
@@ -904,8 +907,35 @@ namespace AbarimMUD.ImportAre
 				dir.SourceRoom.Exits[exit.Direction] = exit;
 			}
 
+			// Update resets
+			foreach (var area in db.Areas)
+			{
+				foreach(var reset in area.Resets)
+				{
+					switch (reset.ResetType)
+					{
+						case AreaResetType.Mobile:
+							reset.Value2 = EnsureMobileByVnum(reset.Value2).Id;
+							reset.Value4 = EnsureRoomByVnum(reset.Value4).Id;
+							break;
+						case AreaResetType.GameObject:
+							break;
+						case AreaResetType.Put:
+							break;
+						case AreaResetType.Give:
+							break;
+						case AreaResetType.Equip:
+							break;
+						case AreaResetType.Door:
+							break;
+						case AreaResetType.Randomize:
+							break;
+					}
+				}
+			}
+
 			// Update all areas
-			foreach(var area in db.Areas)
+			foreach (var area in db.Areas)
 			{
 				db.Areas.Update(area);
 			}
