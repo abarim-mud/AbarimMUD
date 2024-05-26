@@ -57,7 +57,6 @@
 					context.SendTextLine(Strings.GetAttackMessage(damage, asMobileContext.Name, "you", attack.AttackType));
 				}
 			}
-
 		}
 	}
 }

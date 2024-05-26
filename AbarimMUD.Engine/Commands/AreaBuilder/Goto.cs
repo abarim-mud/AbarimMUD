@@ -6,17 +6,17 @@ namespace AbarimMUD.Commands.AreaBuilder
 	{
 		protected override void InternalExecute(ExecutionContext context, string data)
 		{
-			int newRoomId;
-			if (!int.TryParse(data, out newRoomId))
+			int id;
+			if (!int.TryParse(data, out id))
 			{
-				context.Send("Usage: goto roomId");
+				context.Send("Usage: goto _roomId_");
 				return;
 			}
 
-			var newRoom = context.GetRoomById(newRoomId);
+			var newRoom = Database.GetRoomById(id);
 			if (newRoom == null)
 			{
-				context.Send(string.Format("Unable to find room with id {0}", newRoomId));
+				context.Send(string.Format("Unable to find room with id {0}", id));
 				return;
 			}
 

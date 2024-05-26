@@ -10,13 +10,12 @@
 			data.ParseCommand(out idStr, out cmd);
 			if (string.IsNullOrEmpty(data) || !int.TryParse(idStr, out id))
 			{
-				context.Send("Usage: mset _id_ name|desc|short|long|ac _params_");
+				context.Send("Usage: mset _mobileId_ name|desc|short|long|ac _params_");
 				return;
 			}
 
-			var area = context.CurrentArea;
-			var mobileInfo = area.GetMobileById(id);
-			if (mobileInfo == null)
+			var mobile = Database.GetMobileById(id);
+			if (mobile == null)
 			{
 				context.Send(string.Format("Unable to find mobile info with id {0}", id));
 				return;
@@ -32,9 +31,9 @@
 					return;
 				}
 
-				mobileInfo.Name = cmdData;
-				Database.Areas.Update(area);
-				context.SendTextLine($"Changed {mobileInfo.Id}'s name to {mobileInfo.Name}");
+				mobile.Name = cmdData;
+				Database.Update(mobile);
+				context.SendTextLine($"Changed {mobile.Id}'s name to {mobile.Name}");
 			}
 			else if (cmdText == "desc")
 			{
@@ -44,9 +43,9 @@
 					return;
 				}
 
-				mobileInfo.Description = cmdData;
-				Database.Areas.Update(area);
-				context.SendTextLine($"Changed {mobileInfo.Id}'s desc to {mobileInfo.Description}");
+				mobile.Description = cmdData;
+				Database.Update(mobile);
+				context.SendTextLine($"Changed {mobile.Id}'s desc to {mobile.Description}");
 			}
 			else if (cmdText == "short")
 			{
@@ -56,9 +55,9 @@
 					return;
 				}
 
-				mobileInfo.ShortDescription = cmdData;
-				Database.Areas.Update(area);
-				context.SendTextLine($"Changed {mobileInfo.Id}'s short to '{mobileInfo.ShortDescription}'");
+				mobile.ShortDescription = cmdData;
+				Database.Update(mobile);
+				context.SendTextLine($"Changed {mobile.Id}'s short to '{mobile.ShortDescription}'");
 			}
 			else if (cmdText == "long")
 			{
@@ -68,9 +67,9 @@
 					return;
 				}
 
-				mobileInfo.LongDescription = cmdData;
-				Database.Areas.Update(area);
-				context.SendTextLine($"Changed {mobileInfo.Id}'s long to '{mobileInfo.LongDescription}'");
+				mobile.LongDescription = cmdData;
+				Database.Update(mobile);
+				context.SendTextLine($"Changed {mobile.Id}'s long to '{mobile.LongDescription}'");
 			}
 			else if (cmdText == "ac")
 			{
@@ -81,9 +80,9 @@
 					return;
 				}
 
-				mobileInfo.ArmorClass = armorClass;
-				Database.Areas.Update(area);
-				context.SendTextLine($"Changed {mobileInfo.Id}'s ac to '{mobileInfo.ArmorClass}'");
+				mobile.ArmorClass = armorClass;
+				Database.Update(mobile);
+				context.SendTextLine($"Changed {mobile.Id}'s ac to '{mobile.ArmorClass}'");
 			}
 			else
 			{

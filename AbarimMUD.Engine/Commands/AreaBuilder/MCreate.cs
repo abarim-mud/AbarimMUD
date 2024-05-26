@@ -7,8 +7,9 @@ namespace AbarimMUD.Commands.AreaBuilder
 		protected override void InternalExecute(ExecutionContext context, string data)
 		{
 			// Create new mobile
-			var newMobileInfo = new Mobile
+			var newMobile = new Mobile
 			{
+				Id = Database.NewMobileId,
 				Name = "unset",
 				ShortDescription = "Unset",
 				LongDescription = "A mobile with 'unset' name is standing here.",
@@ -16,15 +17,15 @@ namespace AbarimMUD.Commands.AreaBuilder
 			};
 
 			var area = context.CurrentRoom.Area;
-			area.Mobiles.Add(newMobileInfo);
-			Database.Areas.Update(context.CurrentRoom.Area);
+			area.Mobiles.Add(newMobile);
+			Database.Update(newMobile);
 
 			context.SendTextLine(string.Format("New mobile info (#{0}) had been created for the area {1} (#{2})",
-				newMobileInfo.Id,
+				newMobile.Id,
 				context.CurrentRoom.Area.Name,
 				context.CurrentRoom.Area.Id));
 
-			new MSpawn().Execute(context, newMobileInfo.Id.ToString());
+			new MSpawn().Execute(context, newMobile.Id.ToString());
 		}
 	}
 }

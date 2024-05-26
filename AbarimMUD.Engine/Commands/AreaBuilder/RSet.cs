@@ -26,7 +26,7 @@
 						}
 						var room = context.CurrentRoom;
 						room.Name = cmdData.Trim();
-						Database.Areas.Update(context.CurrentArea);
+						Database.Update(room);
 						context.SendTextLine(string.Format("Changed {0}'s name to {1}", room.Id, room.Name));
 					}
 					break;
@@ -40,7 +40,7 @@
 						}
 						var room = context.CurrentRoom;
 						room.Description = cmdData.Trim();
-						Database.Areas.Update(context.CurrentArea);
+						Database.Update(room);
 						context.SendTextLine(string.Format("Changed {0}'s description to {1}", room.Id, room.Name));
 					}
 					break;

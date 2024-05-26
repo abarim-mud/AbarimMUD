@@ -12,7 +12,11 @@ namespace AbarimMUD
 
 		public static CRUD<Account> Accounts => _dataContext.Accounts;
 		public static Characters Characters => _dataContext.Characters;
-		public static CRUD<Area> Areas => _dataContext.Areas;
+		public static Areas Areas => _dataContext.Areas;
+
+		public static int NewRoomId => Areas.NewRoomId;
+		public static int NewMobileId => Areas.NewMobileId;
+		public static int NewObjectId => Areas.NewObjectId;
 
 		public static void Initialize()
 		{
@@ -79,5 +83,17 @@ namespace AbarimMUD
 		}
 
 		public static int CalculateCharactersAmount() => Characters.Count;
+
+		public static Room GetRoomById(int id) => Areas.GetRoomById(id);
+		public static Room EnsureRoomById(int id) => Areas.EnsureRoomById(id);
+		public static Mobile GetMobileById(int id) => Areas.GetMobileById(id);
+		public static Mobile EnsureMobileById(int id) => Areas.EnsureMobileById(id);
+		public static GameObject GetObjectById(int id) => Areas.GetObjectById(id);
+		public static GameObject EnsureObjectById(int id) => Areas.EnsureObjectById(id);
+
+		public static void Update(AreaEntity entity)
+		{
+			Areas.Update(entity.Area);
+		}
 	}
 }

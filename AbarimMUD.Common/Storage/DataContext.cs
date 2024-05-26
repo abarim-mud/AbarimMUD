@@ -9,7 +9,7 @@ namespace AbarimMUD.Storage
 
 		public CRUD<Account> Accounts { get; }
 		public Characters Characters { get; }
-		public CRUD<Area> Areas { get; }
+		public Areas Areas { get; }
 		public Socials Socials { get; }
 
 		public DataContext(string path, Action<string> log)

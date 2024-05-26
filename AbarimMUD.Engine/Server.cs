@@ -56,8 +56,22 @@ namespace AbarimMUD
 		{
 			try
 			{
-				_logger.Info("Starting Server");
+				_logger.Info("Loading Database");
 				Database.Initialize();
+
+				_logger.Info("Spawning areas");
+				foreach(var area in Database.Areas)
+				{
+					foreach(var areaReset in area.Resets)
+					{
+						if (areaReset.ResetType != Data.AreaResetType.Mobile)
+						{
+							continue;
+						}
+
+						var k = 5;
+					}
+				}
 
 				_logger.Info("Starting WebService");
 				_webService.Start();

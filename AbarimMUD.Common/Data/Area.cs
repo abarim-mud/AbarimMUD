@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using System.ComponentModel;
 using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
@@ -120,9 +119,9 @@ namespace AbarimMUD.Data
 			}
 		}
 
+		public List<AreaReset> Resets { get; set; } = new List<AreaReset>();
 
-		[JsonIgnore]
-		public List<AreaReset> Resets { get; } = new List<AreaReset>();
+		public event EventHandler RoomsChanged, MobilesChanged, ObjectsChanged;
 
 		public Area()
 		{
@@ -134,89 +133,27 @@ namespace AbarimMUD.Data
 		private void OnRoomsChanged(object sender, NotifyCollectionChangedEventArgs e)
 		{
 			UpdateEntities(Rooms);
+			RoomsChanged?.Invoke(this, EventArgs.Empty);
 		}
 
 		private void OnMobilesChanged(object sender, NotifyCollectionChangedEventArgs e)
 		{
 			UpdateEntities(Mobiles);
+			MobilesChanged?.Invoke(this, EventArgs.Empty);
 		}
 
 		private void OnObjectsChanged(object sender, NotifyCollectionChangedEventArgs e)
 		{
 			UpdateEntities(Mobiles);
+			ObjectsChanged?.Invoke(this, EventArgs.Empty);
 		}
 
 		private void UpdateEntities(IReadOnlyList<AreaEntity> entities)
 		{
-			for (var i = 0; i < entities.Count; ++i)
+			foreach (var entity in entities)
 			{
-				var entity = entities[i];
 				entity.Area = this;
-				entity.Id = i;
 			}
-		}
-
-		public Room GetRoomById(int id)
-		{
-			if (id < 0 || id >= Rooms.Count)
-			{
-				return null;
-			}
-
-			return Rooms[id];
-		}
-
-		public Room EnsureRoomById(int id)
-		{
-			var result = GetRoomById(id);
-			if (result == null)
-			{
-				throw new Exception($"Unable to find room with id {id} in the area {Name}");
-			}
-
-			return result;
-		}
-
-		public Mobile GetMobileById(int id)
-		{
-			if (id < 0 || id >= Mobiles.Count)
-			{
-				return null;
-			}
-
-			return Mobiles[id];
-		}
-
-		public Mobile EnsureMobileById(int id)
-		{
-			var result = GetMobileById(id);
-			if (result == null)
-			{
-				throw new Exception($"Unable to find mobile with id {id} in the area {Name}");
-			}
-
-			return result;
-		}
-
-		public GameObject GetObjectById(int id)
-		{
-			if (id < 0 || id >= Objects.Count)
-			{
-				return null;
-			}
-
-			return Objects[id];
-		}
-
-		public GameObject EnsureObjectById(int id)
-		{
-			var result = GetObjectById(id);
-			if (result == null)
-			{
-				throw new Exception($"Unable to find object with id {id} in the area {Name}");
-			}
-
-			return result;
 		}
 
 		public override string ToString() => $"{Name}";

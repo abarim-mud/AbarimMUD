@@ -10,19 +10,19 @@ namespace AbarimMUD.Commands.AreaBuilder
 			var id = -1;
 			if (string.IsNullOrEmpty(data) || !int.TryParse(data, out id))
 			{
-				context.Send("Usage: mspawn _id_");
+				context.Send("Usage: mspawn _mobileId_");
 				return;
 			}
 
-			var mobileInfo = context.CurrentArea.GetMobileById(id);
-			if (mobileInfo == null)
+			var mobile = Database.GetMobileById(id);
+			if (mobile == null)
 			{
-				context.Send(string.Format("Unable to find mobile info with id {0}", id));
+				context.Send(string.Format("Unable to find mobile info with vnum {0}", id));
 				return;
 			}
 
 			// Create new mobile
-			var newMobile = new MobileInstance(mobileInfo)
+			var newMobile = new MobileInstance(mobile)
 			{
 				Room = context.CurrentRoom
 			};
@@ -32,13 +32,13 @@ namespace AbarimMUD.Commands.AreaBuilder
 				if (ctx.IsStaff)
 				{
 					ctx.SendTextLine(string.Format("{0} (#{1}) appears in a puff of smoke.",
-						mobileInfo.Name,
-						mobileInfo.Id));
+						mobile.Name,
+						mobile.Id));
 				}
 				else
 				{
 					ctx.SendTextLine(string.Format("{0} appears in a puff of smoke.",
-						mobileInfo.Name));
+						mobile.Name));
 				}
 			}
 		}

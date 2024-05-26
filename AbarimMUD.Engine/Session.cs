@@ -44,8 +44,7 @@ namespace AbarimMUD
 				_character = value;
 				_character.Tag = Context;
 
-				var startArea = Database.Areas.GetById(Configuration.StartAreaName);
-				_room = startArea.Rooms[Configuration.StartRoomId];
+				_room = Database.EnsureRoomById(Configuration.StartRoomId);
 				_room.AddCharacter(_character);
 			}
 		}

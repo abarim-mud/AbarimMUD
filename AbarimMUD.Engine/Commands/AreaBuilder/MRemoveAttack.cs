@@ -17,24 +17,23 @@
 				return;
 			}
 
-			var area = context.CurrentArea;
-			var mobileInfo = area.GetMobileById(id);
-			if (mobileInfo == null)
+			var mobile = Database.GetMobileById(id);
+			if (mobile == null)
 			{
 				context.Send($"Unable to find mobile info with id {id}");
 				return;
 			}
 
-			if (attackId >= mobileInfo.Attacks.Count)
+			if (attackId >= mobile.Attacks.Count)
 			{
-				context.Send($"Mobile with id {id} doesnt have attack with id {attackId}. It has only {mobileInfo.Attacks.Count} attacks");
+				context.Send($"Mobile with id {id} doesnt have attack with id {attackId}. It has only {mobile.Attacks.Count} attacks");
 				return;
 			}
 
-			var attack = mobileInfo.Attacks[attackId];
-			mobileInfo.Attacks.RemoveAt(attackId);
-			Database.Areas.Update(area);
-			context.Send($"Removed #{attackId} attack ({attack}) from {mobileInfo.ShortDescription} (#{mobileInfo.Id})");
+			var attack = mobile.Attacks[attackId];
+			mobile.Attacks.RemoveAt(attackId);
+			Database.Update(mobile);
+			context.Send($"Removed #{attackId} attack ({attack}) from {mobile.ShortDescription} (#{mobile.Id})");
 		}
 	}
 }

@@ -554,11 +554,7 @@ namespace AbarimMUD.ImportAre
 					continue;
 				}
 
-				var reset = new AreaReset
-				{
-					Area = area
-				};
-
+				var reset = new AreaReset();
 				switch (c)
 				{
 					case 'M':
@@ -847,6 +843,16 @@ namespace AbarimMUD.ImportAre
 			}
 		}
 
+		private static void SetIds<T>(Dictionary<int, T> data) where T: AreaEntity
+		{
+			var id = 1;
+			foreach(var pair in data)
+			{
+				pair.Value.Id = id;
+				++id;
+			}
+		}
+
 		public void Process()
 		{
 			var inputDir = Path.Combine(Utility.ExecutingAssemblyDirectory, "../../../../SourceContent");
@@ -870,6 +876,11 @@ namespace AbarimMUD.ImportAre
 
 				ProcessFile(db, areaFile);
 			}
+
+			// Set ids
+			SetIds(_roomsByVnums);
+			SetIds(_mobilesByVnums);
+			SetIds(_objectsByVnums);
 
 			// Process directions
 			Log("Updating directions");
@@ -922,7 +933,7 @@ namespace AbarimMUD.ImportAre
 
 												var roomVnum = reset.Value2;
 
-												var room = (from r in db.Rooms where r.VNum == roomVnum select r).FirstOrDefault();
+												var room = (from r in db.Rooms where r.Id == roomVnum select r).FirstOrDefault();
 												if (room == null)
 												{
 													throw new Exception($"Reset {reset.Id}. Can't find room with vnum {roomVnum}");

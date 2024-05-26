@@ -1,6 +1,5 @@
 ﻿using AbarimMUD.Data;
 using AbarimMUD.Utils;
-using System;
 
 namespace AbarimMUD.Commands.AreaBuilder
 {
@@ -41,9 +40,8 @@ namespace AbarimMUD.Commands.AreaBuilder
 				return;
 			}
 
-			var area = context.CurrentArea;
-			var mobileInfo = area.GetMobileById(id);
-			if (mobileInfo == null)
+			var mobile = Database.GetMobileById(id);
+			if (mobile == null)
 			{
 				context.Send($"Unable to find mobile info with id {id}");
 				return;
@@ -57,9 +55,9 @@ namespace AbarimMUD.Commands.AreaBuilder
 				MaximumDamage = maxDamage
 			};
 
-			mobileInfo.Attacks.Add(newAttack);
-			Database.Areas.Update(area);
-			context.Send($"Added #{mobileInfo.Attacks.Count - 1} attack ({newAttack}) to {mobileInfo.ShortDescription} (#{mobileInfo.Id})");
+			mobile.Attacks.Add(newAttack);
+			Database.Update(mobile);
+			context.Send($"Added #{mobile.Attacks.Count - 1} attack ({newAttack}) to {mobile.ShortDescription} (#{mobile.Id})");
 		}
 	}
 }

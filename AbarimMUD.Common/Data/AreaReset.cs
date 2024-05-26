@@ -11,7 +11,7 @@
 		Randomize
 	}
 
-	public class AreaReset: AreaEntity
+	public class AreaReset
 	{
 		public AreaResetType ResetType { get; set; }
 		public int Value1 { get; set; }

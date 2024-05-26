@@ -129,7 +129,5 @@ namespace AbarimMUD.Commands
 
 			_sendCache.Clear();
 		}
-
-		public Room GetRoomById(int id) => CurrentRoom.Area.GetRoomById(id);
 	}
 }

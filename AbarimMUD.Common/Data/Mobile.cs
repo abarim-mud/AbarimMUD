@@ -89,7 +89,7 @@ namespace AbarimMUD.Data
 		AssistRace = 1 << 17,
 		AssistPlayer = 1 << 18,
 		AssistGuard = 1 << 19,
-		AssistVNum = 1 << 20,
+		AssistId = 1 << 20,
 	}
 
 	[Flags]

@@ -13,7 +13,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 
 			if (string.IsNullOrEmpty(data) || string.IsNullOrEmpty(exit))
 			{
-				context.Send("Usage: rlink east|west|south|north|up|down _id_");
+				context.Send("Usage: rlink east|west|south|north|up|down _roomId_");
 				return;
 			}
 
@@ -27,7 +27,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 			int id;
 			if (!int.TryParse(idStr, out id))
 			{
-				context.Send(string.Format("Unable to resolve id {0}", idStr));
+				context.Send(string.Format("Unable to resolve vnum {0}", idStr));
 				return;
 			}
 
@@ -38,7 +38,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 				return;
 			}
 
-			var destRoom = context.GetRoomById(id);
+			var destRoom = Database.GetRoomById(id);
 			if (destRoom == null)
 			{
 				context.Send(string.Format("Could not find room with id {0}", idStr));
