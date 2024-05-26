@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
@@ -14,38 +12,33 @@ namespace AbarimMUD.Data
 		Forest,
 		Hills,
 		Mountain,
-		WaterSwim,
 		WaterNoSwim,
 		Unused,
 		Air,
-		Desert
+		Desert,
+		River,
+		Cave,
+		Swim,
+		Swamp,
+		Underground,
+		Trail,
+		Road,
+		Ocean
 	}
 
-	[Flags]
 	public enum RoomFlags
 	{
-		None = 0,
-		Dark = 1 << 0,
-		NoMob = 1 << 2,
-		InDoors = 1 << 3,
-		Private = 1 << 9,
-		Safe = 1 << 10,
-		Solitary = 1 << 11,
-		PetShop = 1 << 12,
-		NoRecall = 1 << 13,
-		ImpOnly = 1 << 14,
-		GodsOnly = 1 << 15,
-		HeroesOnly = 1 << 16,
-		NewbiesOnly = 1 << 17,
-		Law = 1 << 18,
-		Nowhere = 1 << 19
+		NoMob,
+		Dark,
+		Indoors,
+		Law,
 	}
 
 	public class Room: AreaEntity
 	{
 		public string Name { get; set; }
 		public string Description { get; set; }
-		public RoomFlags Flags { get; set; }
+		public HashSet<RoomFlags> Flags { get; set; }
 		public SectorType SectorType { get; set; }
 		public int HealRate { get; set; }
 		public int ManaRate { get; set; }

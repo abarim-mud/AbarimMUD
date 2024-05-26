@@ -116,9 +116,9 @@ namespace AbarimMUD.ImportAre
 					LongDescription = stream.ReadDikuString(),
 					Description = stream.ReadDikuString(),
 					Race = stream.ReadEnumFromDikuString<Race>(),
-					MobileFlags = (MobileFlags)stream.ReadFlag(),
+					Flags = (MobileFlags)stream.ReadFlag(),
 					AffectedByFlags = (AffectedByFlags)stream.ReadFlag(),
-					Alignment = stream.ReadNumber(),
+//					Alignment = stream.ReadNumber(),
 					Group = stream.ReadNumber(),
 					Level = stream.ReadNumber(),
 					HitRoll = stream.ReadNumber(),
@@ -169,7 +169,7 @@ namespace AbarimMUD.ImportAre
 
 				var raceInfo = mobile.Race.GetRaceInfo();
 
-				mobile.MobileFlags |= raceInfo.MobileFlags;
+				mobile.Flags |= raceInfo.MobileFlags;
 				mobile.AffectedByFlags |= raceInfo.AffectedByFlags;
 				mobile.OffenseFlags |= raceInfo.OffensiveFlags;
 				mobile.ImmuneFlags |= raceInfo.ImmuneFlags;
@@ -191,7 +191,7 @@ namespace AbarimMUD.ImportAre
 						switch (word.Substring(0, 3).ToLower())
 						{
 							case "act":
-								mobile.MobileFlags &= (MobileFlags)(~vector);
+								mobile.Flags &= (MobileFlags)(~vector);
 								break;
 							case "aff":
 								mobile.AffectedByFlags &= (AffectedByFlags)(~vector);

@@ -31,11 +31,15 @@ namespace AbarimMUD
 
 		public static JsonSerializerOptions CreateDefaultOptions()
 		{
-			return new JsonSerializerOptions
+			var result = new JsonSerializerOptions
 			{
 				WriteIndented = true,
 				DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault
 			};
+
+			result.Converters.Add(new JsonStringEnumConverter());
+
+			return result;
 		}
 
 		public static float Clamp(float val, float min = 0.0f, float max = 1.0f)

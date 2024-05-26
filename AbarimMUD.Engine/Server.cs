@@ -35,14 +35,13 @@ namespace AbarimMUD
 					return _sessionsCopy;
 				}
 
-				lock(_sessions)
+				lock (_sessions)
 				{
 					_sessionsCopy = _sessions.ToArray();
 				}
 
 				return _sessionsCopy;
 			}
-
 		}
 
 		private Server()
@@ -61,9 +60,9 @@ namespace AbarimMUD
 				Database.Initialize();
 
 				_logger.Info("Spawning areas");
-				foreach(var area in Database.Areas)
+				foreach (var area in Database.Areas)
 				{
-					foreach(var areaReset in area.Resets)
+					foreach (var areaReset in area.Resets)
 					{
 						if (areaReset.ResetType != Data.AreaResetType.Mobile)
 						{
@@ -161,13 +160,20 @@ namespace AbarimMUD
 
 		void session_Disconnected(object sender, EventArgs e)
 		{
-			var session = (Session)sender;
-			var connection = session.Connection;
-			_logger.Info("Closed connection from {0}:{1}", connection.RemoteIp, connection.RemotePort);
-
-			lock (_sessions)
+			try
 			{
-				_sessions.Remove(session);
+				var session = (Session)sender;
+				var connection = session.Connection;
+				_logger.Info("Closed connection from {0}:{1}", connection.RemoteIp, connection.RemotePort);
+
+				lock (_sessions)
+				{
+					_sessions.Remove(session);
+				}
+			}
+			catch (Exception ex)
+			{
+				_logger.Error(ex);
 			}
 		}
 

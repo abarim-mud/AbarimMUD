@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbarimMUD.Launcher", "Abari
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbarimMUD.Common.Tests", "AbarimMUD.Common.Tests\AbarimMUD.Common.Tests.csproj", "{AF36CE32-19BA-44EE-BC97-A2CD4469364A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbarimMUD.ImportCSL", "AbarimMUD.ImportCSL\AbarimMUD.ImportCSL.csproj", "{397FCD13-14F5-4695-A1E4-495633E0F2EB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,7 +26,6 @@ Global
 		{05A90EB7-9447-48C6-937F-8E0FD79078D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{05A90EB7-9447-48C6-937F-8E0FD79078D0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7422ADFB-CD4C-44AE-943D-889A2527C009}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7422ADFB-CD4C-44AE-943D-889A2527C009}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7422ADFB-CD4C-44AE-943D-889A2527C009}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7422ADFB-CD4C-44AE-943D-889A2527C009}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2A35E74E-C77B-44B9-83CE-83F8E12CF9F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -39,6 +40,10 @@ Global
 		{AF36CE32-19BA-44EE-BC97-A2CD4469364A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF36CE32-19BA-44EE-BC97-A2CD4469364A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF36CE32-19BA-44EE-BC97-A2CD4469364A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{397FCD13-14F5-4695-A1E4-495633E0F2EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{397FCD13-14F5-4695-A1E4-495633E0F2EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{397FCD13-14F5-4695-A1E4-495633E0F2EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{397FCD13-14F5-4695-A1E4-495633E0F2EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

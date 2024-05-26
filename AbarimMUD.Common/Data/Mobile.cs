@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
 {
@@ -36,89 +35,95 @@ namespace AbarimMUD.Data
 		Giant
 	}
 
-	[Flags]
 	public enum MobileFlags
 	{
-		None = 0,
-		Npc = 1 << 0,
-		Sentinel = 1 << 1,
-		Scavenger = 1 << 2,
-		Aggressive = 1 << 5,
-		StayInArea = 1 << 6,
-		Wimpy = 1 << 7,
-		Pet = 1 << 8,
-		Train = 1 << 9,
-		Practice = 1 << 10,
-		Undead = 1 << 14,
-		Cleric = 1 << 16,
-		Mage = 1 << 17,
-		Thief = 1 << 18,
-		Warrior = 1 << 19,
-		NoAlign = 1 << 20,
-		NoPurge = 1 << 21,
-		OutDoors = 1 << 22,
-		InDoors = 1 << 24,
-		IsHealer = 1 << 26,
-		Gain = 1 << 27,
-		UpdateAlways = 1 << 28,
-		IsChanger = 1 << 29,
-		FriendlyBits = Train | Practice | IsHealer | IsChanger
+		Sentinel,
+		StayArea,
+		NoWander,
+		NPC,
+		Bash,
+		Berserk,
+		Disarm,
+		Dodge,
+		Kick,
+		DirtKick,
+		Parry,
+		Trip,
+		AreaAttack,
+		Aggressive,
+		Undead,
+		Wimpy,
+		Warrior,
+		Mage,
+		Cleric,
+		Thief,
+		Healer,
+		Scavenger,
+		ShopKeeper,
+		Gain,
+		Banker,
+		NoPurge,
+		GuildMaster,
+		NoAlign,
+		Pet,
+		Fade,
+		Changer,
+		Rescue,
+		Outdoors,
+		Indoors,
+		NoTrack,
+		Practice,
+		UpdateAlways,
+		AssistRace,
+		AssistAlign,
+		AssistPlayer,
+		AssistAll,
+		AssistGuard,
+		AssistVNum,
+
+		AssistPlayers = AssistPlayer,
 	}
 
-	[Flags]
-	public enum MobileOffensiveFlags
+	public enum AffectedByFlags
 	{
-		None = 0,
-		AreaAttack = 1 << 0,
-		Backstab = 1 << 1,
-		Bash = 1 << 2,
-		Berserk = 1 << 3,
-		Disarm = 1 << 4,
-		Dodge = 1 << 5,
-		Fade = 1 << 6,
-		Fast = 1 << 7,
-		Kick = 1 << 8,
-		KickDirt = 1 << 9,
-		Parry = 1 << 10,
-		Rescue = 1 << 11,
-		Tail = 1 << 12,
-		Trip = 1 << 13,
-		Crush = 1 << 14,
-		AssistAll = 1 << 15,
-		AssistAlign = 1 << 16,
-		AssistRace = 1 << 17,
-		AssistPlayer = 1 << 18,
-		AssistGuard = 1 << 19,
-		AssistId = 1 << 20,
+		Infrared,
+		Flying,
+		DetectIllusion,
+		DetectEvil,
+		DetectGood,
+		DetectHidden,
+		DetectInvis,
+		DetectMagic,
+		Haste,
+		Sanctuary,
+		Hide,
+		PassDoor,
+		DarkVision,
+		AcuteVision,
+		Sneak,
+		ProtectionEvil,
+		ProtectionGood,
+		Plague,
+		Berserk,
+		Invisible,
+		Swim,
+		Slow,
+		FaerieFire,
+		Regeneration,
+		Weaken,
+		Blind,
+		Poison,
+		Curse,
+		Camouflage,
+
+		ProtectEvil = ProtectionEvil,
 	}
 
-	[Flags]
 	public enum ResistanceFlags
 	{
-		None = 0,
-		Summon = 1 << 0,
-		Charm = 1 << 1,
-		Magic = 1 << 2,
-		Weapon = 1 << 3,
-		Bash = 1 << 4,
-		Pierce = 1 << 5,
-		Slash = 1 << 6,
-		Fire = 1 << 7,
-		Cold = 1 << 8,
-		Lightning = 1 << 9,
-		Acid = 1 << 10,
-		Poison = 1 << 11,
-		Negative = 1 << 12,
-		Holy = 1 << 13,
-		Energy = 1 << 14,
-		Mental = 1 << 15,
-		Disease = 1 << 16,
-		Drowning = 1 << 17,
-		Light = 1 << 18,
-		Sound = 1 << 19,
-		Wood = 1 << 23,
-		Silver = 1 << 24,
-		Iron = 1 << 25,
+		Disease,
+		Poison,
+		Fire,
 	}
 
 	[Flags]
@@ -199,41 +204,6 @@ namespace AbarimMUD.Data
 		PartsBird = PartsAlive | Head | Legs | Feet | Eye | Wings
 	}
 
-	[Flags]
-	public enum AffectedByFlags
-	{
-		None = 0,
-		Blindness = 1 << 0,
-		Invisible = 1 << 1,
-		DetectEvil = 1 << 2,
-		DetectInvis = 1 << 3,
-		DetectMagic = 1 << 4,
-		DetectHidden = 1 << 5,
-		DetectGood = 1 << 6,
-		Sanctuary = 1 << 7,
-		FaerieFire = 1 << 8,
-		Infrared = 1 << 9,
-		Curse = 1 << 10,
-		Poison = 1 << 12,
-		ProtectEvil = 1 << 13,
-		ProtectGood = 1 << 14,
-		Sneak = 1 << 15,
-		Hide = 1 << 16,
-		Sleep = 1 << 17,
-		Charm = 1 << 18,
-		Flying = 1 << 19,
-		PassDoor = 1 << 20,
-		Haste = 1 << 21,
-		Calm = 1 << 22,
-		Plague = 1 << 23,
-		Weaken = 1 << 24,
-		DarkVision = 1 << 25,
-		Berserk = 1 << 26,
-		Swim = 1 << 27,
-		Regeneration = 1 << 28,
-		Slow = 1 << 29,
-	}
-
 	public enum AttackType
 	{
 		Hit,
@@ -266,6 +236,33 @@ namespace AbarimMUD.Data
 		Shock
 	}
 
+	public enum Alignment
+	{
+		Good,
+		Neutral,
+		Evil
+	}
+
+	public class Dice
+	{
+		public int Sides { get; set; }
+		public int Count { get; set; }
+		public int Bonus { get; set; }
+
+		public Dice()
+		{
+		}
+
+		public Dice(int sides, int count, int bonus)
+		{
+			Sides = sides;
+			Count = count;
+			Bonus = bonus;
+		}
+
+		public override string ToString() => $"{Count}d{Sides}+{Bonus}";
+	}
+
 	public class Mobile : AreaEntity
 	{
 		public string Name { get; set; }
@@ -275,24 +272,23 @@ namespace AbarimMUD.Data
 		public int ArmorClass { get; set; }
 		public List<Attack> Attacks { get; set; } = new List<Attack>();
 		public Race Race { get; set; }
-		public MobileFlags MobileFlags { get; set; }
-		public AffectedByFlags AffectedByFlags { get; set; }
-		public int Alignment { get; set; }
+		public HashSet<MobileFlags> Flags { get; set; }
+		public HashSet<AffectedByFlags> AffectedByFlags { get; set; }
+		public Alignment Alignment { get; set; }
 		public int Group { get; set; }
 		public int Level { get; set; }
 		public int HitRoll { get; set; }
-		public string HitDice { get; set; }
-		public string ManaDice { get; set; }
-		public string DamageDice { get; set; }
+		public Dice HitDice { get; set; }
+		public Dice ManaDice { get; set; }
+		public Dice DamageDice { get; set; }
 		public AttackType AttackType { get; set; }
 		public int AcPierce { get; set; }
 		public int AcBash { get; set; }
 		public int AcSlash { get; set; }
 		public int AcExotic { get; set; }
-		public MobileOffensiveFlags OffenseFlags { get; set; }
-		public ResistanceFlags ImmuneFlags { get; set; }
-		public ResistanceFlags ResistanceFlags { get; set; }
-		public ResistanceFlags VulnerableFlags { get; set; }
+		public HashSet<ResistanceFlags> ImmuneFlags { get; set; }
+		public HashSet<ResistanceFlags> ResistanceFlags { get; set; }
+		public HashSet<ResistanceFlags> VulnerableFlags { get; set; }
 		public MobilePosition StartPosition { get; set; }
 		public MobilePosition DefaultPosition { get; set; }
 		public Sex Sex { get; set; }

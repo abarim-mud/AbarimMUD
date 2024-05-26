@@ -1,62 +1,75 @@
 ﻿using System.Collections.Generic;
-using System;
 
 namespace AbarimMUD.Data
 {
 	public enum Race
 	{
-		Unique,
 		Human,
-		Elf,
 		Dwarf,
-		Giant,
-		Pixie,
-		Bat,
-		Bear,
-		Cat,
-		Centipede,
-		Dog,
-		Doll,
+		Elf,
+		Gnome,
 		Dragon,
-		Fido,
-		Fox,
-		Goblin,
-		Hobgoblin,
-		Kobold,
-		Lizard,
-		Modron,
 		Orc,
-		Pig,
-		Rabbit,
-		SchoolMonster,
+		Undead,
+		Skeleton,
+		Unique,
+		Null,
+		Lich,
+		Ghoul,
 		Snake,
+		Rabbit,
 		SongBird,
-		Troll,
-		WaterFowl,
+		Bear,
+		Wyvern,
+		Cat,
+		Dog,
 		Wolf,
-		Wyvern
+		Lizard,
+		Serpent,
+		DarkElf,
+		Trolloc,
+		Centipede,
+		Bat,
+		Giant,
+		Troll,
+		Goblin,
+		Doll,
+		Centaur,
+		Fox,
+		Fido,
+		Waterfowl,
+		Kobold,
+		Hobgoblin,
+		Schoolmonster,
+		Pig,
+		Nymph,
+		Modron,
+		Duergar,
+		Fish,
+		Rat,
+		Bird,
+		Angel,
 	}
 
 	public class RaceInfo
 	{
 		public bool PcRace { get; }
-		public MobileFlags MobileFlags { get; }
-		public AffectedByFlags AffectedByFlags { get; }
-		public MobileOffensiveFlags OffensiveFlags { get; }
-		public ResistanceFlags ImmuneFlags { get; }
-		public ResistanceFlags ResistanceFlags { get; }
-		public ResistanceFlags VulnerableFlags { get; }
+		public HashSet<MobileFlags> MobileFlags { get; } = new HashSet<MobileFlags>();
+		public HashSet<AffectedByFlags> AffectedByFlags { get; } = new HashSet<AffectedByFlags>();
+		public HashSet<ResistanceFlags> ImmuneFlags { get; } = new HashSet<ResistanceFlags>();
+		public HashSet<ResistanceFlags> ResistanceFlags { get; } = new HashSet<ResistanceFlags>();
+		public HashSet<ResistanceFlags> VulnerableFlags { get; } = new HashSet<ResistanceFlags>();
 		public FormFlags FormFlags { get; }
 		public PartFlags PartFlags { get; }
 
-		public RaceInfo(bool pcRace, MobileFlags mobileFlags, AffectedByFlags affectedByFlags,
-			MobileOffensiveFlags offensiveFlags, ResistanceFlags immuneFlags, ResistanceFlags resistanceFlags,
-			ResistanceFlags vulnerableFlags, FormFlags formFlags, PartFlags partFlags)
+		public RaceInfo(bool pcRace, 
+			HashSet<MobileFlags> mobileFlags, HashSet<AffectedByFlags> affectedByFlags,
+			HashSet<ResistanceFlags> immuneFlags, HashSet<ResistanceFlags> resistanceFlags, 
+			HashSet<ResistanceFlags> vulnerableFlags, FormFlags formFlags, PartFlags partFlags)
 		{
 			PcRace = pcRace;
 			MobileFlags = mobileFlags;
 			AffectedByFlags = affectedByFlags;
-			OffensiveFlags = offensiveFlags;
 			ImmuneFlags = immuneFlags;
 			ResistanceFlags = resistanceFlags;
 			VulnerableFlags = vulnerableFlags;
@@ -65,7 +78,7 @@ namespace AbarimMUD.Data
 		}
 	}
 
-	public static class RaceExtensions
+/*	public static class RaceExtensions
 	{
 		private static readonly Dictionary<Race, RaceInfo> _raceData = new Dictionary<Race, RaceInfo>
 		{
@@ -154,5 +167,5 @@ namespace AbarimMUD.Data
 
 			return result;
 		}
-	}
+	}*/
 }

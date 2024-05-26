@@ -486,15 +486,15 @@ namespace AbarimMUD.ImportAre
 		private static MobClass GetMobClass(this Mobile mob)
 		{
 			var mc = MobClass.Warrior;
-			if (mob.MobileFlags.HasFlag(MobileFlags.Thief))
+			if (mob.Flags.HasFlag(MobileFlags.Thief))
 			{
 				mc = MobClass.Thief;
 			}
-			else if (mob.MobileFlags.HasFlag(MobileFlags.Mage))
+			else if (mob.Flags.HasFlag(MobileFlags.Mage))
 			{
 				mc = MobClass.Mage;
 			}
-			else if (mob.MobileFlags.HasFlag(MobileFlags.Cleric))
+			else if (mob.Flags.HasFlag(MobileFlags.Cleric))
 			{
 				mc = MobClass.Cleric;
 			}
