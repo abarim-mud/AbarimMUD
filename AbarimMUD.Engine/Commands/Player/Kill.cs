@@ -35,9 +35,19 @@
 				if (damage.Damage <= 0)
 				{
 					context.SendTextLine($"Your {attack.AttackType.GetAttackNoun()} couldn't pierce through armor of {asMobileContext.Name}");
+
+					foreach(var ctx in context.AllExceptMeInRoom())
+					{
+						ctx.SendTextLine($"{context.Name}'s {attack.AttackType.GetAttackNoun()} couldn't pierce through armor of {asMobileContext.Name}");
+					}
 				} else
 				{
 					context.SendTextLine(Strings.GetAttackMessage(damage, "You", asMobileContext.Name, attack.AttackType));
+
+					foreach (var ctx in context.AllExceptMeInRoom())
+					{
+						ctx.SendTextLine(Strings.GetAttackMessage(damage, context.Name, asMobileContext.Name, attack.AttackType));
+					}
 				}
 			}
 
@@ -51,10 +61,20 @@
 				if (damage.Damage <= 0)
 				{
 					context.SendTextLine($"{asMobileContext.Name} couldn't pierce through your armor with {attack.AttackType.GetAttackNoun()}");
+
+					foreach (var ctx in context.AllExceptMeInRoom())
+					{
+						ctx.SendTextLine($"{asMobileContext.Name}'s {attack.AttackType.GetAttackNoun()} couldn't pierce through armor of {context.Name}");
+					}
 				}
 				else
 				{
 					context.SendTextLine(Strings.GetAttackMessage(damage, asMobileContext.Name, "you", attack.AttackType));
+
+					foreach (var ctx in context.AllExceptMeInRoom())
+					{
+						ctx.SendTextLine(Strings.GetAttackMessage(damage, asMobileContext.Name, context.Name, attack.AttackType));
+					}
 				}
 			}
 		}
