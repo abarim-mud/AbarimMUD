@@ -15,6 +15,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 				LongDescription = "A mobile with 'unset' name is standing here.",
 				Description = "Unset."
 			};
+			newMobile.InitializeLists();
 
 			var area = context.CurrentRoom.Area;
 			area.Mobiles.Add(newMobile);

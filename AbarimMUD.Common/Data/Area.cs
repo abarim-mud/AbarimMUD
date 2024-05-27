@@ -114,15 +114,20 @@ namespace AbarimMUD.Data
 			}
 		}
 
-		public List<AreaReset> Resets { get; set; } = new List<AreaReset>();
+		public List<AreaReset> Resets { get; set; }
 
 		public event EventHandler RoomsChanged, MobilesChanged, ObjectsChanged;
 
 		public Area()
 		{
+		}
+
+		public void InitializeLists()
+		{
 			Rooms = new ObservableCollection<Room>();
 			Mobiles = new ObservableCollection<Mobile>();
 			Objects = new ObservableCollection<GameObject>();
+			Resets = new List<AreaReset>();
 		}
 
 		private void OnRoomsChanged(object sender, NotifyCollectionChangedEventArgs e)

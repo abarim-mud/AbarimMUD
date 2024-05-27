@@ -1,51 +1,16 @@
 ﻿using AbarimMUD.Data;
+using AbarimMUD.Import;
 using AbarimMUD.Storage;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Xml.Linq;
-using static AbarimMUD.ImportCSL.Utility;
 
 namespace AbarimMUD.ImportCSL
 {
-	internal class Importer
+	internal class Importer : BaseImporter
 	{
-		private static readonly Regex CreditsRegEx1 = new Regex(@"^[\{\[]?\s*(\w+)\s*[\}\]]\s*(\w+)");
-		private static readonly Regex CreditsRegEx2 = new Regex(@"^[\{\[]\s*(\w+)\s*-?\s*(\w+)\s*[\}\]]\s*(\w+)");
-
-		private readonly Dictionary<int, Room> _roomsByVnums = new Dictionary<int, Room>();
-		private readonly Dictionary<int, Mobile> _mobilesByVnums = new Dictionary<int, Mobile>();
-		private readonly Dictionary<int, GameObject> _objectsByVnums = new Dictionary<int, GameObject>();
-
-		private class RoomExitInfo
-		{
-			public Room SourceRoom { get; set; }
-			public RoomExit RoomExit { get; set; }
-			public int? TargetRoomVNum { get; set; }
-			public int? KeyObjectVNum { get; set; }
-		}
-
-		private readonly List<RoomExitInfo> _tempDirections = new List<RoomExitInfo>();
-
-		public static void Log(string message) => Console.WriteLine(message);
-
-		private Room GetRoomByVnum(int vnum) =>
-			(from m in _roomsByVnums where m.Key == vnum select m.Value).FirstOrDefault();
-
-		private Room EnsureRoomByVnum(int vnum) =>
-			(from m in _roomsByVnums where m.Key == vnum select m.Value).First();
-
-		private Mobile GetMobileByVnum(int vnum) =>
-			(from m in _mobilesByVnums where m.Key == vnum select m.Value).FirstOrDefault();
-
-		private Mobile EnsureMobileByVnum(int vnum) =>
-			(from m in _mobilesByVnums where m.Key == vnum select m.Value).First();
-
-		private GameObject GetObjectByVnum(int vnum) =>
-			(from m in _objectsByVnums where m.Key == vnum select m.Value).FirstOrDefault();
-
 		private void ProcessRooms(XElement root, Area area)
 		{
 			Log("Rooms");
@@ -65,6 +30,7 @@ namespace AbarimMUD.ImportCSL
 					Flags = roomElement.ParseFlags<RoomFlags>("Flags")
 				};
 
+				room.InitializeLists();
 				var exitsElement = roomElement.Element("Exits");
 				foreach (var exitElement in exitsElement.Nodes().OfType<XElement>())
 				{
@@ -95,7 +61,7 @@ namespace AbarimMUD.ImportCSL
 						exitInfo.TargetRoomVNum = targetVnum;
 					}
 
-					_tempDirections.Add(exitInfo);
+					AddRoomExitToCache(exitInfo);
 				}
 
 				// Extra description
@@ -107,8 +73,8 @@ namespace AbarimMUD.ImportCSL
 					room.ExtraDescription = extraDesc.GetString("Description");
 				}
 
-				_roomsByVnums[vnum] = room;
 				area.Rooms.Add(room);
+				AddRoomToCache(vnum, room);
 			}
 		}
 
@@ -143,6 +109,7 @@ namespace AbarimMUD.ImportCSL
 					Sex = mobileElement.GetEnum("Sex", Sex.None),
 					Size = mobileElement.GetEnum("Size", MobileSize.Medium),
 				};
+				mobile.InitializeLists();
 
 				var damageDice = mobileElement.GetDice("DamageDice", new Dice(1, 1, 1));
 				var attackType = mobileElement.EnsureEnum<AttackType>("WeaponDamageMessage");
@@ -164,10 +131,12 @@ namespace AbarimMUD.ImportCSL
 					Log($"WARNING: {mobile.Name} has negative armor class. Clamped to zero");
 				}
 
-				var attacksCount = mobile.GetAttacksCount();
+				var guild = mobileElement.GetString("Guild");
+
+				var attacksCount = mobile.GetAttacksCount(guild);
 
 				var hitRoll = mobileElement.EnsureInt("hitroll");
-				var accuracy = mobile.GetAccuracy(hitRoll);
+				var accuracy = mobile.GetAccuracy(guild, hitRoll);
 				for (var i = 0; i < attacksCount; ++i)
 				{
 					var attack = new Attack(attackType, accuracy, damageDice.ToRandomRange());
@@ -175,7 +144,7 @@ namespace AbarimMUD.ImportCSL
 				}
 
 				area.Mobiles.Add(mobile);
-				_mobilesByVnums[vnum] = mobile;
+				AddMobileToCache(vnum, mobile);
 			}
 		}
 
@@ -199,29 +168,19 @@ namespace AbarimMUD.ImportCSL
 			}
 		}
 
-		private static void SetIds<T>(Dictionary<int, T> data) where T : AreaEntity
-		{
-			var id = 1;
-			foreach (var pair in data)
-			{
-				pair.Value.Id = id;
-				++id;
-			}
-		}
-
 		public void Process()
 		{
 			var inputDir = @"D:\Projects\CrimsonStainedLands\master\CrimsonStainedLands\data\areas";
 			var areaFiles = Directory.EnumerateFiles(inputDir, "*.xml", SearchOption.AllDirectories).ToArray();
 
-			var outputDir = Path.Combine(Utility.ExecutingAssemblyDirectory, "../../../../Data");
+			var outputDir = Path.Combine(ImportUtility.ExecutingAssemblyDirectory, "../../../../Data");
 			var areasFolder = Path.Combine(outputDir, "areas");
 			if (Directory.Exists(areasFolder))
 			{
 				Directory.Delete(areasFolder, true);
 			}
 
-			var db = new DataContext(outputDir, Log);
+			InitializeDb(outputDir);
 			foreach (var areaFile in areaFiles)
 			{
 				var xDoc = XDocument.Load(areaFile);
@@ -243,137 +202,29 @@ namespace AbarimMUD.ImportCSL
 					Credits = areaData.GetString("Credits"),
 					Builders = areaData.GetString("Builders")
 				};
+				area.InitializeLists();
 
 				// Try to get levels range from the credits
-				var c = area.Credits.Trim();
-				var match = CreditsRegEx1.Match(c);
-				if (match.Success)
-				{
-					area.MinimumLevel = area.MaximumLevel = match.Groups[1].Value;
-					if (string.IsNullOrEmpty(area.Builders))
-					{
-						area.Builders = match.Groups[2].Value;
-					}
-
-					Log($"Regex1 worked: parsed {area.MinimumLevel}/{area.Builders} from {c}");
-				}
-				else {
-
-					match = CreditsRegEx2.Match(c);
-					if (match.Success)
-					{
-						area.MinimumLevel = match.Groups[1].Value;
-						area.MaximumLevel = match.Groups[2].Value;
-
-						if (string.IsNullOrEmpty(area.Builders))
-						{
-							area.Builders = match.Groups[3].Value;
-						}
-
-						Log($"Regex2 worked: parsed [{area.MinimumLevel} {area.MaximumLevel}]/{area.Builders} from {c}");
-					}
-				}
-					
-				if (!match.Success)
-				{
-					Log($"Couldn't parse levels/builders info from {c}");
-				}
+				area.ParseLevelsBuilds();
 
 				ProcessRooms(root, area);
 				ProcessMobiles(root, area);
 				ProcessResets(root, area);
 
-				db.Areas.Update(area);
+				DB.Areas.Update(area);
 			}
 
 			// Set ids
-			SetIds(_roomsByVnums);
-			SetIds(_mobilesByVnums);
-			SetIds(_objectsByVnums);
+			SetIdsInCache();
 
 			// Process directions
-			Log("Updating directions");
-			foreach (var dir in _tempDirections)
-			{
-				var exit = dir.RoomExit;
-				if (dir.TargetRoomVNum != null)
-				{
-					var targetRoom = GetRoomByVnum(dir.TargetRoomVNum.Value);
-					if (targetRoom == null)
-					{
-						Log($"WARNING: Unable to set target room for exit. Room with vnum {dir.TargetRoomVNum.Value} doesnt exist.");
-					}
-
-					exit.TargetRoom = targetRoom;
-				}
-
-				if (dir.KeyObjectVNum != null)
-				{
-					var keyObj = GetObjectByVnum(dir.KeyObjectVNum.Value);
-					if (keyObj != null)
-					{
-						exit.KeyObjectId = keyObj.Id;
-					}
-				}
-
-				dir.SourceRoom.Exits[exit.Direction] = exit;
-			}
+			UpdateRoomExitsReferences();
 
 			// Update resets
-			Log("Updating resets");
-			foreach (var area in db.Areas)
-			{
-				var toDelete = new List<AreaReset>();
-				for (var i = 0; i < area.Resets.Count; ++i)
-				{
-					var reset = area.Resets[i];
-					switch (reset.ResetType)
-					{
-						case AreaResetType.NPC:
-							var room = GetRoomByVnum(reset.Id1);
-							if (room == null)
-							{
-								Log($"WARNING: Unable to find room with vnum {reset.Id2} for #{i} reset of area {area.Id}");
-								toDelete.Add(reset);
-								break;
-							}
-
-							var mobile = GetMobileByVnum(reset.Id2);
-							if (mobile == null)
-							{
-								Log($"WARNING: Unable to find mobile with vnum {reset.Id1} for #{i} reset of area {area.Id}");
-								toDelete.Add(reset);
-								break;
-							}
-							reset.Id1 = mobile.Id;
-							reset.Id2 = room.Id;
-							break;
-						case AreaResetType.Item:
-							break;
-						case AreaResetType.Put:
-							break;
-						case AreaResetType.Give:
-							break;
-						case AreaResetType.Equip:
-							break;
-						case AreaResetType.Door:
-							break;
-						case AreaResetType.Randomize:
-							break;
-					}
-				}
-
-				foreach (var reset in toDelete)
-				{
-					area.Resets.Remove(reset);
-				}
-			}
+			UpdateResets();
 
 			// Update all areas
-			foreach (var area in db.Areas)
-			{
-				db.Areas.Update(area);
-			}
+			UpdateAllAreas();
 		}
 	}
 }

@@ -7,8 +7,6 @@ namespace AbarimMUD.Commands.AreaBuilder
 	{
 		protected override void InternalExecute(ExecutionContext context, string data)
 		{
-			var area = context.CurrentArea;
-
 			// Create new room
 			var newRoom = new Room
 			{
@@ -16,8 +14,10 @@ namespace AbarimMUD.Commands.AreaBuilder
 				Name = "Empty",
 				Description = "Empty"
 			};
+			newRoom.InitializeLists();
 
-			context.CurrentRoom.Area.Rooms.Add(newRoom);
+			var area = context.CurrentArea;
+			area.Rooms.Add(newRoom);
 			Database.Update(newRoom);
 
 			context.SendTextLine(string.Format("New room (#{0}) had been created for the area {1} (#{2})",

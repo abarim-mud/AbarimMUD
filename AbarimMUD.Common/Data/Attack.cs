@@ -5,7 +5,7 @@
 		private int _accuracy;
 
 		public AttackType AttackType { get; set; }
-		
+
 		public int Accuracy
 		{
 			get => _accuracy;
@@ -16,7 +16,7 @@
 		}
 
 		public RandomRange DamageRange;
-		
+
 		public Attack()
 		{
 		}
@@ -26,6 +26,10 @@
 			AttackType = attackType;
 			Accuracy = accuracy;
 			DamageRange = damageRange;
+		}
+
+		public Attack(AttackType attackType, int accuracy, int min, int max) : this(attackType, accuracy, new RandomRange(min, max))
+		{
 		}
 
 		public override string ToString()

@@ -1,54 +1,20 @@
 ﻿using AbarimMUD.Data;
+using AbarimMUD.Import;
 using AbarimMUD.Storage;
-using GoRogue.DiceNotation;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
 namespace AbarimMUD.ImportAre
 {
-	internal class Importer
+	internal class Importer : BaseImporter
 	{
-		private readonly Dictionary<int, Room> _roomsByVnums = new Dictionary<int, Room>();
-		private readonly Dictionary<int, Mobile> _mobilesByVnums = new Dictionary<int, Mobile>();
-		private readonly Dictionary<int, GameObject> _objectsByVnums = new Dictionary<int, GameObject>();
-
-		private class RoomExitInfo
-		{
-			public Room SourceRoom { get; set; }
-			public RoomExit RoomExit { get; set; }
-			public int? TargetRoomVNum { get; set; }
-			public int? KeyObjectVNum { get; set; }
-		}
-
-		private readonly List<RoomExitInfo> _tempDirections = new List<RoomExitInfo>();
-
-		public static void Log(string message)
-		{
-			Console.WriteLine(message);
-		}
-
-		private Room GetRoomByVnum(int vnum) =>
-			(from m in _roomsByVnums where m.Key == vnum select m.Value).FirstOrDefault();
-
-		private Room EnsureRoomByVnum(int vnum) =>
-			(from m in _roomsByVnums where m.Key == vnum select m.Value).First();
-
-		private Mobile GetMobileByVnum(int vnum) =>
-			(from m in _mobilesByVnums where m.Key == vnum select m.Value).FirstOrDefault();
-
-		private Mobile EnsureMobileByVnum(int vnum) =>
-			(from m in _mobilesByVnums where m.Key == vnum select m.Value).First();
-
-		private GameObject GetObjectByVnum(int vnum) =>
-			(from m in _objectsByVnums where m.Key == vnum select m.Value).FirstOrDefault();
-
 		private void ProcessArea(Stream stream, Area area)
 		{
 			var fileName = stream.ReadDikuString();
-			area.Name = stream.ReadDikuString();
+			area.Id = area.Name = stream.ReadDikuString();
 			area.Credits = stream.ReadDikuString();
+			area.ParseLevelsBuilds();
 
 			stream.ReadNumber(); // Start vnum
 			stream.ReadNumber(); // End vnum
@@ -66,9 +32,10 @@ namespace AbarimMUD.ImportAre
 				{
 					case 'C':
 						area.Credits = stream.ReadDikuString();
+						area.ParseLevelsBuilds();
 						break;
 					case 'N':
-						area.Name = stream.ReadDikuString();
+						area.Id = area.Name = stream.ReadDikuString();
 						break;
 					case 'S':
 						stream.ReadNumber(); // Security
@@ -116,35 +83,46 @@ namespace AbarimMUD.ImportAre
 					LongDescription = stream.ReadDikuString(),
 					Description = stream.ReadDikuString(),
 					Race = stream.ReadEnumFromDikuString<Race>(),
-					Flags = (MobileFlags)stream.ReadFlag(),
-					AffectedByFlags = (AffectedByFlags)stream.ReadFlag(),
-//					Alignment = stream.ReadNumber(),
-					Group = stream.ReadNumber(),
-					Level = stream.ReadNumber(),
-					HitRoll = stream.ReadNumber(),
-					HitDice = stream.ReadDice(),
-					ManaDice = stream.ReadDice(),
-					DamageDice = stream.ReadDice(),
-					AttackType = stream.ReadEnumFromWord<AttackType>(),
-					AcPierce = stream.ReadNumber(),
-					AcBash = stream.ReadNumber(),
-					AcSlash = stream.ReadNumber(),
-					AcExotic = stream.ReadNumber(),
-					OffenseFlags = (MobileOffensiveFlags)stream.ReadFlag(),
-					ImmuneFlags = (ResistanceFlags)stream.ReadFlag(),
-					ResistanceFlags = (ResistanceFlags)stream.ReadFlag(),
-					VulnerableFlags = (ResistanceFlags)stream.ReadFlag(),
-					StartPosition = stream.ReadEnumFromWord<MobilePosition>(),
-					Position = stream.ReadEnumFromWord<MobilePosition>(),
-					Sex = stream.ReadEnumFromWord<Sex>(),
-					Wealth = stream.ReadNumber(),
-					FormsFlags = (FormFlags)stream.ReadFlag(),
-					PartsFlags = (PartFlags)stream.ReadFlag(),
-					Size = stream.ReadEnumFromWord<MobileSize>(),
-					Material = stream.ReadEnumFromWord<Material>(),
 				};
 
-				var averageAc = (mobile.AcPierce + mobile.AcBash + mobile.AcSlash) / 3;
+				mobile.InitializeLists();
+
+				var flags = (OldMobileFlags)stream.ReadFlag();
+				var affectedByFlags = (OldAffectedByFlags)stream.ReadFlag();
+
+				mobile.Alignment = stream.ReadNumber().ToAlignment();
+				var group = stream.ReadNumber();
+				mobile.Level = stream.ReadNumber();
+
+				var hitRoll = stream.ReadNumber();
+				var hitDice = stream.ReadDice();
+				mobile.HitpointsRange = stream.ToRandomRange(hitDice);
+
+				var manaDice = stream.ReadDice();
+				mobile.ManaRange = stream.ToRandomRange(manaDice);
+
+				var damageDice = stream.ReadDice();
+				var attackType = stream.ReadEnumFromWord<AttackType>();
+				var acPierce = stream.ReadNumber();
+				var acBash = stream.ReadNumber();
+				var acSlash = stream.ReadNumber();
+				var acExotic = stream.ReadNumber();
+				var offenseFlags = (OldMobileOffensiveFlags)stream.ReadFlag();
+
+				var immuneFlags = (OldResistanceFlags)stream.ReadFlag();
+				var resistanceFlags = (OldResistanceFlags)stream.ReadFlag();
+				var vulnerableFlags = (OldResistanceFlags)stream.ReadFlag();
+				var startPosition = stream.ReadEnumFromWord<MobilePosition>();
+				mobile.Position = stream.ReadEnumFromWord<MobilePosition>();
+				mobile.Sex = stream.ReadEnumFromWord<Sex>();
+				mobile.Wealth = stream.ReadNumber();
+				var formsFlags = (FormFlags)stream.ReadFlag();
+				var partsFlags = (PartFlags)stream.ReadFlag();
+
+				mobile.Size = stream.ReadEnumFromWord<MobileSize>();
+				var material = stream.ReadEnumFromWord<Material>();
+
+				var averageAc = (acPierce + acBash + acSlash) / 3;
 				mobile.ArmorClass = -(averageAc - 10) * 10;
 
 				if (mobile.ArmorClass < 0)
@@ -152,32 +130,29 @@ namespace AbarimMUD.ImportAre
 					stream.RaiseError($"Negative armor class");
 				}
 
-				var attacksCount = mobile.GetAttacksCount();
-				var accuracy = mobile.GetAccuracy() + mobile.HitRoll * 10;
+				var attacksCount = mobile.GetAttacksCount("");
+				var accuracy = mobile.GetAccuracy("", hitRoll);
 				for (var i = 0; i < attacksCount; ++i)
 				{
-					var expr = Dice.Parse(mobile.DamageDice);
-					var min = expr.MinRoll();
-					var max = expr.MaxRoll();
-
-					var attack = new Attack(mobile.AttackType, accuracy, min, max);
+					var range = stream.ToRandomRange(damageDice);
+					var attack = new Attack(attackType, accuracy, range);
 					mobile.Attacks.Add(attack);
 				}
 
 				area.Mobiles.Add(mobile);
-				_mobilesByVnums[vnum] = mobile;
+				AddMobileToCache(vnum, mobile);
 
+				// Add race flags
 				var raceInfo = mobile.Race.GetRaceInfo();
 
-				mobile.Flags |= raceInfo.MobileFlags;
-				mobile.AffectedByFlags |= raceInfo.AffectedByFlags;
-				mobile.OffenseFlags |= raceInfo.OffensiveFlags;
-				mobile.ImmuneFlags |= raceInfo.ImmuneFlags;
-				mobile.ResistanceFlags |= raceInfo.ResistanceFlags;
-				mobile.VulnerableFlags |= raceInfo.VulnerableFlags;
-				mobile.FormsFlags |= raceInfo.FormFlags;
-				mobile.PartsFlags |= raceInfo.PartFlags;
-
+				flags |= raceInfo.Flags;
+				affectedByFlags |= raceInfo.AffectedByFlags;
+				offenseFlags |= raceInfo.OffensiveFlags;
+				immuneFlags |= raceInfo.ImmuneFlags;
+				resistanceFlags |= raceInfo.ResistanceFlags;
+				vulnerableFlags |= raceInfo.VulnerableFlags;
+				formsFlags |= raceInfo.FormFlags;
+				partsFlags |= raceInfo.PartFlags;
 
 				while (!stream.EndOfStream())
 				{
@@ -191,28 +166,28 @@ namespace AbarimMUD.ImportAre
 						switch (word.Substring(0, 3).ToLower())
 						{
 							case "act":
-								mobile.Flags &= (MobileFlags)(~vector);
+								flags &= (OldMobileFlags)(~vector);
 								break;
 							case "aff":
-								mobile.AffectedByFlags &= (AffectedByFlags)(~vector);
+								affectedByFlags &= (OldAffectedByFlags)(~vector);
 								break;
 							case "off":
-								mobile.OffenseFlags &= (MobileOffensiveFlags)(~vector);
+								offenseFlags &= (OldMobileOffensiveFlags)(~vector);
 								break;
 							case "imm":
-								mobile.ImmuneFlags &= (ResistanceFlags)(~vector);
+								immuneFlags &= (OldResistanceFlags)(~vector);
 								break;
 							case "res":
-								mobile.ResistanceFlags &= (ResistanceFlags)(~vector);
+								resistanceFlags &= (OldResistanceFlags)(~vector);
 								break;
 							case "vul":
-								mobile.VulnerableFlags &= (ResistanceFlags)(~vector);
+								vulnerableFlags &= (OldResistanceFlags)(~vector);
 								break;
 							case "for":
-								mobile.FormsFlags &= (FormFlags)(~vector);
+								formsFlags &= (FormFlags)(~vector);
 								break;
 							case "par":
-								mobile.PartsFlags &= (PartFlags)(~vector);
+								partsFlags &= (PartFlags)(~vector);
 								break;
 							default:
 								stream.RaiseError($"Unknown flag {word}");
@@ -233,6 +208,19 @@ namespace AbarimMUD.ImportAre
 						break;
 					}
 				}
+
+				// Set flags
+				mobile.Flags = flags.ToNewFlags();
+				var newOffensiveFlags = offenseFlags.ToNewFlags();
+				foreach (var f in newOffensiveFlags)
+				{
+					mobile.Flags.Add(f);
+				}
+
+				mobile.AffectedByFlags = affectedByFlags.ToNewFlags();
+				mobile.ImmuneFlags = immuneFlags.ToNewFlags();
+				mobile.ResistanceFlags = resistanceFlags.ToNewFlags();
+				mobile.VulnerableFlags = vulnerableFlags.ToNewFlags();
 			}
 		}
 
@@ -261,7 +249,7 @@ namespace AbarimMUD.ImportAre
 				};
 
 				area.Objects.Add(obj);
-				_objectsByVnums[vnum] = obj;
+				AddObjectToCache(vnum, obj);
 
 				switch (obj.ItemType)
 				{
@@ -447,14 +435,16 @@ namespace AbarimMUD.ImportAre
 					Description = stream.ReadDikuString(),
 				};
 
+				room.InitializeLists();
+
 				stream.ReadNumber(); // Area Number
 
-				room.Flags = (RoomFlags)stream.ReadFlag();
+				room.Flags = ((OldRoomFlags)stream.ReadFlag()).ToNewFlags();
 				room.SectorType = stream.ReadEnumFromWord<SectorType>();
 
 				// Save room to set its id
 				area.Rooms.Add(room);
-				_roomsByVnums[vnum] = room;
+				AddRoomToCache(vnum, room);
 
 				while (!stream.EndOfStream())
 				{
@@ -486,23 +476,27 @@ namespace AbarimMUD.ImportAre
 						};
 
 						var locks = stream.ReadNumber();
+
+						var exitFlags = OldRoomExitFlags.None;
 						switch (locks)
 						{
 							case 1:
-								exit.Flags = RoomExitFlags.Door;
+								exitFlags = OldRoomExitFlags.Door;
 								break;
 							case 2:
-								exit.Flags = RoomExitFlags.Door | RoomExitFlags.PickProof;
+								exitFlags = OldRoomExitFlags.Door | OldRoomExitFlags.PickProof;
 								break;
 							case 3:
-								exit.Flags = RoomExitFlags.Door | RoomExitFlags.NoPass;
+								exitFlags = OldRoomExitFlags.Door | OldRoomExitFlags.NoPass;
 								break;
 							case 4:
-								exit.Flags = RoomExitFlags.Door | RoomExitFlags.PickProof | RoomExitFlags.NoPass;
+								exitFlags = OldRoomExitFlags.Door | OldRoomExitFlags.PickProof | OldRoomExitFlags.NoPass;
 								break;
 							default:
 								break;
 						}
+
+						exit.Flags = exitFlags.ToNewFlags();
 
 						var exitInfo = new RoomExitInfo
 						{
@@ -511,7 +505,7 @@ namespace AbarimMUD.ImportAre
 						};
 
 						var keyVNum = stream.ReadNumber();
-						if (exit.Flags != RoomExitFlags.None && keyVNum != -1)
+						if (exitFlags != OldRoomExitFlags.None && keyVNum != -1)
 						{
 							exitInfo.KeyObjectVNum = keyVNum;
 						}
@@ -522,7 +516,7 @@ namespace AbarimMUD.ImportAre
 							exitInfo.TargetRoomVNum = targetVnum;
 						}
 
-						_tempDirections.Add(exitInfo);
+						AddRoomExitToCache(exitInfo);
 					}
 					else if (c == 'E')
 					{
@@ -557,7 +551,7 @@ namespace AbarimMUD.ImportAre
 					continue;
 				}
 
-				var reset = new AreaReset();
+				var reset = new OldAreaReset();
 				switch (c)
 				{
 					case 'M':
@@ -620,7 +614,7 @@ namespace AbarimMUD.ImportAre
 				}
 
 				stream.ReadLine();
-				area.Resets.Add(reset);
+				area.Resets.Add(reset.ToNewAreaReset());
 			}
 		}
 
@@ -791,10 +785,12 @@ namespace AbarimMUD.ImportAre
 					{
 						case "AREA":
 							area = new Area();
+							area.InitializeLists();
 							ProcessArea(stream, area);
 							break;
 						case "AREADATA":
 							area = new Area();
+							area.InitializeLists();
 							ProcessAreaData(stream, area);
 							break;
 						case "MOBILES":
@@ -846,29 +842,19 @@ namespace AbarimMUD.ImportAre
 			}
 		}
 
-		private static void SetIds<T>(Dictionary<int, T> data) where T: AreaEntity
-		{
-			var id = 1;
-			foreach(var pair in data)
-			{
-				pair.Value.Id = id;
-				++id;
-			}
-		}
-
 		public void Process()
 		{
-			var inputDir = Path.Combine(Utility.ExecutingAssemblyDirectory, "../../../../SourceContent");
+			var inputDir = Path.Combine(ImportUtility.ExecutingAssemblyDirectory, "../../../../SourceContent");
 			var areaFiles = Directory.EnumerateFiles(inputDir, "*.are", SearchOption.AllDirectories).ToArray();
 
-			var outputDir = Path.Combine(Utility.ExecutingAssemblyDirectory, "../../../../Data");
+			var outputDir = Path.Combine(ImportUtility.ExecutingAssemblyDirectory, "../../../../Data");
 			var areasFolder = Path.Combine(outputDir, "areas");
 			if (Directory.Exists(areasFolder))
 			{
 				Directory.Delete(areasFolder, true);
 			}
 
-			var db = new DataContext(outputDir, Log);
+			InitializeDb(outputDir);
 			foreach (var areaFile in areaFiles)
 			{
 				if (Path.GetFileName(areaFile) == "proto.are")
@@ -877,68 +863,21 @@ namespace AbarimMUD.ImportAre
 					continue;
 				}
 
-				ProcessFile(db, areaFile);
+				ProcessFile(DB, areaFile);
 			}
 
 			// Set ids
-			SetIds(_roomsByVnums);
-			SetIds(_mobilesByVnums);
-			SetIds(_objectsByVnums);
+			SetIdsInCache();
 
 			// Process directions
-			Log("Updating directions");
-			foreach (var dir in _tempDirections)
-			{
-				var exit = dir.RoomExit;
-				if (dir.TargetRoomVNum != null)
-				{
-					exit.TargetRoom = EnsureRoomByVnum(dir.TargetRoomVNum.Value);
-				}
-
-				if (dir.KeyObjectVNum != null)
-				{
-					var keyObj = GetObjectByVnum(dir.KeyObjectVNum.Value);
-					if (keyObj != null)
-					{
-						exit.KeyObjectId = keyObj.Id;
-					}
-				}
-
-				dir.SourceRoom.Exits[exit.Direction] = exit;
-			}
+			UpdateRoomExitsReferences();
 
 			// Update resets
-			foreach (var area in db.Areas)
-			{
-				foreach(var reset in area.Resets)
-				{
-					switch (reset.ResetType)
-					{
-						case AreaResetType.NPC:
-							reset.Value2 = EnsureMobileByVnum(reset.Value2).Id;
-							reset.Value4 = EnsureRoomByVnum(reset.Value4).Id;
-							break;
-						case AreaResetType.Item:
-							break;
-						case AreaResetType.Put:
-							break;
-						case AreaResetType.Give:
-							break;
-						case AreaResetType.Equip:
-							break;
-						case AreaResetType.Door:
-							break;
-						case AreaResetType.Randomize:
-							break;
-					}
-				}
-			}
+			UpdateResets();
 
 			// Update all areas
-			foreach (var area in db.Areas)
-			{
-				db.Areas.Update(area);
-			}
+			UpdateAllAreas();
+
 
 			/*						Log("Locking doors");
 									using (var db = new DataContext())

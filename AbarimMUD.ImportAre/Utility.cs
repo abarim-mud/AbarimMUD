@@ -1,81 +1,56 @@
 ﻿using AbarimMUD.Data;
+using AbarimMUD.Import;
 using System;
+using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
 using System.Text;
 
 namespace AbarimMUD.ImportAre
 {
 	internal static class Utility
 	{
-		private enum MobClass
-		{
-			Warrior,
-			Thief,
-			Mage,
-			Cleric
-		}
+		private static readonly Dictionary<OldRoomFlags, RoomFlags> _roomFlagsMapper = new Dictionary<OldRoomFlags, RoomFlags>();
+		private static readonly Dictionary<OldRoomExitFlags, RoomExitFlags> _roomExitFlagsMapper = new Dictionary<OldRoomExitFlags, RoomExitFlags>();
+		private static readonly Dictionary<OldMobileFlags, MobileFlags> _mobileFlagsMapper = new Dictionary<OldMobileFlags, MobileFlags>();
+		private static readonly Dictionary<OldMobileOffensiveFlags, MobileFlags> _offensiveMobileFlagsMapper = new Dictionary<OldMobileOffensiveFlags, MobileFlags>();
+		private static readonly Dictionary<OldResistanceFlags, ResistanceFlags> _resistanceFlagsMapper = new Dictionary<OldResistanceFlags, ResistanceFlags>();
+		private static readonly Dictionary<OldAffectedByFlags, AffectedByFlags> _affectedByFlagsMapper = new Dictionary<OldAffectedByFlags, AffectedByFlags>();
 
-		private struct GuildThac0
-		{
-			public int Level1;
-			public int Level32;
-
-			public GuildThac0(int level1, int level32)
-			{
-				Level1 = level1;
-				Level32 = level32;
-			}
-		}
-
-		private static readonly int[][] _mobAttacksTable;
-		private static readonly GuildThac0[] _guildThacs = new GuildThac0[]
-		{
-			new GuildThac0(20, -10),
-			new GuildThac0(20, -4),
-			new GuildThac0(20, 2),
-			new GuildThac0(20, -2),
-		};
-
-		public static string ExecutingAssemblyDirectory
-		{
-			get
-			{
-				string codeBase = Assembly.GetExecutingAssembly().Location;
-				UriBuilder uri = new UriBuilder(codeBase);
-				string path = Uri.UnescapeDataString(uri.Path);
-				return Path.GetDirectoryName(path);
-			}
-		}
 
 		static Utility()
 		{
-			_mobAttacksTable = new int[8][];
+			PopulateMapper(_roomFlagsMapper);
 
-			_mobAttacksTable[(int)MobClass.Warrior] = new int[]
+			PopulateMapper(_roomExitFlagsMapper);
+
+			PopulateMapper(_mobileFlagsMapper);
+			_mobileFlagsMapper[OldMobileFlags.StayInArea] = MobileFlags.StayArea;
+
+			PopulateMapper(_offensiveMobileFlagsMapper);
+			_offensiveMobileFlagsMapper[OldMobileOffensiveFlags.KickDirt] = MobileFlags.DirtKick;
+
+			PopulateMapper(_affectedByFlagsMapper);
+
+			PopulateMapper(_resistanceFlagsMapper);
+		}
+
+		private static void PopulateMapper<T2, T>(Dictionary<T2, T> mapper) where T : struct, Enum where T2 : struct, Enum
+		{
+			foreach (T2 flag in Enum.GetValues(typeof(T2)))
 			{
-				5,
-				12,
-				25
-			};
+				if ((int)(object)flag == 0)
+				{
+					continue;
+				}
 
-			_mobAttacksTable[(int)MobClass.Thief] = new int[]
-			{
-				12,
-				25
-			};
+				var name = flag.ToString();
 
-			_mobAttacksTable[(int)MobClass.Mage] = new int[]
-			{
-				23
-			};
-
-
-			_mobAttacksTable[(int)MobClass.Cleric] = new int[]
-			{
-				20,
-				30
-			};
+				T newFlag;
+				if (Enum.TryParse(name, true, out newFlag))
+				{
+					mapper[flag] = newFlag;
+				}
+			}
 		}
 
 		public static void RaiseError(this Stream stream, string message)
@@ -483,65 +458,70 @@ namespace AbarimMUD.ImportAre
 			return true;
 		}
 
-		private static MobClass GetMobClass(this Mobile mob)
+		private static HashSet<T> ConvertFlags<T, T2>(Dictionary<T2, T> mapper, T2 flags) where T2 : struct, Enum
 		{
-			var mc = MobClass.Warrior;
-			if (mob.Flags.HasFlag(MobileFlags.Thief))
+			var result = new HashSet<T>();
+
+			if ((int)(object)flags == 0)
 			{
-				mc = MobClass.Thief;
-			}
-			else if (mob.Flags.HasFlag(MobileFlags.Mage))
-			{
-				mc = MobClass.Mage;
-			}
-			else if (mob.Flags.HasFlag(MobileFlags.Cleric))
-			{
-				mc = MobClass.Cleric;
+				// None
+				return new HashSet<T>();
 			}
 
-			return mc;
-		}
-
-		public static int GetAttacksCount(this Mobile mob)
-		{
-			var result = 1;
-
-			// Area attack
-			if (mob.OffenseFlags.HasFlag(MobileOffensiveFlags.AreaAttack))
+			foreach (T2 flag in Enum.GetValues(typeof(T2)))
 			{
-				++result;
-			}
-
-			var mc = mob.GetMobClass();
-			var levelsTable = _mobAttacksTable[(int)mc];
-
-			for (var i = 0; i < levelsTable.Length; i++)
-			{
-				if (mob.Level < levelsTable[i])
+				if ((int)(object)flag == 0)
 				{
-					break;
+					continue;
 				}
 
-				++result;
+				if (flags.HasFlag(flag))
+				{
+					T newFlag;
+					if (!mapper.TryGetValue(flag, out newFlag))
+					{
+						throw new Exception($"Unable to find the corresponding flag for {flag}");
+					}
+
+					result.Add(newFlag);
+				}
 			}
 
 			return result;
 		}
 
-		public static int GetAccuracy(this Mobile mob)
+		public static HashSet<RoomFlags> ToNewFlags(this OldRoomFlags flags) => ConvertFlags(_roomFlagsMapper, flags);
+		public static HashSet<RoomExitFlags> ToNewFlags(this OldRoomExitFlags flags) => ConvertFlags(_roomExitFlagsMapper, flags);
+		public static HashSet<MobileFlags> ToNewFlags(this OldMobileFlags flags) => ConvertFlags(_mobileFlagsMapper, flags);
+		public static HashSet<MobileFlags> ToNewFlags(this OldMobileOffensiveFlags flags) => ConvertFlags(_offensiveMobileFlagsMapper, flags);
+		public static HashSet<ResistanceFlags> ToNewFlags(this OldResistanceFlags flags) => ConvertFlags(_resistanceFlagsMapper, flags);
+		public static HashSet<AffectedByFlags> ToNewFlags(this OldAffectedByFlags flags) => ConvertFlags(_affectedByFlagsMapper, flags);
+
+
+		public static Alignment ToAlignment(this int align)
 		{
-			var mc = mob.GetMobClass();
+			if (align < 0)
+			{
+				return Alignment.Evil;
+			}
 
-			var guildThac = _guildThacs[(int)mc];
-			var thac0 = guildThac.Level1 + mob.Level * (guildThac.Level32 - guildThac.Level1) / 32;
+			if (align > 0)
+			{
+				return Alignment.Good;
+			}
 
-			if (thac0 < 0)
-				thac0 = thac0 / 2;
+			return Alignment.Neutral;
+		}
 
-			if (thac0 < -5)
-				thac0 = -5 + (thac0 + 5) / 2;
+		public static RandomRange ToRandomRange(this Stream stream, string expr)
+		{
+			var dice = Dice.Parse(expr);
+			if (dice == null)
+			{
+				stream.RaiseError($"Unable to parse dice expression {expr}");
+			}
 
-			return -(thac0 - 20) * 10;
+			return dice.Value.ToRandomRange();
 		}
 	}
 }

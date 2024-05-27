@@ -74,14 +74,22 @@ namespace AbarimMUD.Data
 		NoTrack,
 		Practice,
 		UpdateAlways,
+		Backstab,
+		Crush,
+		Fast,
+		Tail,
 		AssistRace,
 		AssistAlign,
 		AssistPlayer,
 		AssistAll,
 		AssistGuard,
-		AssistVNum,
+		AssistId,
 
 		AssistPlayers = AssistPlayer,
+		Train = GuildMaster,
+		IsHealer = Healer,
+		IsChanger = Changer,
+		AssistVNum = AssistId,
 	}
 
 	public enum AffectedByFlags
@@ -117,6 +125,7 @@ namespace AbarimMUD.Data
 		Camouflage,
 
 		ProtectEvil = ProtectionEvil,
+		Blindness = Blind,
 	}
 
 	public enum ResistanceFlags
@@ -124,6 +133,24 @@ namespace AbarimMUD.Data
 		Disease,
 		Poison,
 		Fire,
+		Charm,
+		Bash,
+		Pierce,
+		Cold,
+		Light,
+		Lightning,
+		Drowning,
+		Summon,
+		Magic,
+		Weapon,
+		Mental,
+		Negative,
+		Holy,
+		Slash,
+		Acid,
+		Energy,
+		Iron,
+		Silver,
 	}
 
 	[Flags]
@@ -250,7 +277,7 @@ namespace AbarimMUD.Data
 		public string LongDescription { get; set; }
 		public string Description { get; set; }
 		public int ArmorClass { get; set; }
-		public List<Attack> Attacks { get; set; } = new List<Attack>();
+		public List<Attack> Attacks { get; set; }
 		public Race Race { get; set; }
 		public HashSet<MobileFlags> Flags { get; set; }
 		public HashSet<AffectedByFlags> AffectedByFlags { get; set; }
@@ -267,7 +294,18 @@ namespace AbarimMUD.Data
 		public MobileSize Size { get; set; }
 
 		public Shop Shop { get; set; }
-		public List<MobileSpecialAttack> SpecialAttacks { get; } = new List<MobileSpecialAttack>();
+		public List<MobileSpecialAttack> SpecialAttacks { get; set; }
+
+		public void InitializeLists()
+		{
+			Attacks = new List<Attack>();
+			Flags = new HashSet<MobileFlags>();
+			AffectedByFlags = new HashSet<AffectedByFlags>();
+			ImmuneFlags = new HashSet<ResistanceFlags>();
+			ResistanceFlags = new HashSet<ResistanceFlags>();
+			VulnerableFlags = new HashSet<ResistanceFlags>();
+			SpecialAttacks = new List<MobileSpecialAttack>();
+		}
 
 		public override string ToString() => $"{Name} (#{Id})";
 	}

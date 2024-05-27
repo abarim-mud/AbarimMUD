@@ -32,6 +32,15 @@ namespace AbarimMUD.Data
 		Dark,
 		Indoors,
 		Law,
+		Private,
+		NoRecall,
+		Solitary,
+		HeroesOnly,
+		GodsOnly,
+		ImpOnly,
+		Safe,
+		PetShop,
+		NewbiesOnly,
 	}
 
 	public class Room: AreaEntity
@@ -46,13 +55,18 @@ namespace AbarimMUD.Data
 		public string ExtraDescription { get; set; }
 		public string Owner { get; set; }
 
-		public Dictionary<Direction, RoomExit> Exits { get; set; } = new Dictionary<Direction, RoomExit>();
+		public Dictionary<Direction, RoomExit> Exits { get; set; }
 
 		[JsonIgnore]
 		public List<MobileInstance> Mobiles { get; } = new List<MobileInstance>();
 
 		[JsonIgnore]
 		public List<Character> Characters { get; } = new List<Character>();
+
+		public void InitializeLists()
+		{
+			Exits = new Dictionary<Direction, RoomExit>();
+		}
 
 		public void AddCharacter(Character character)
 		{

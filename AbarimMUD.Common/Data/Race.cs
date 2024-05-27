@@ -49,6 +49,8 @@ namespace AbarimMUD.Data
 		Rat,
 		Bird,
 		Angel,
+		Pixie,
+
 	}
 
 	public class RaceInfo
