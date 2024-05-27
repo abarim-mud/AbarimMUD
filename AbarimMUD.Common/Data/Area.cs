@@ -25,9 +25,9 @@ namespace AbarimMUD.Data
 
 		public string Builders { get; set; }
 
-		public int? MinimumLevel { get; set; }
+		public string MinimumLevel { get; set; }
 
-		public int? MaximumLevel { get; set; }
+		public string MaximumLevel { get; set; }
 
 		public ObservableCollection<Room> Rooms
 		{

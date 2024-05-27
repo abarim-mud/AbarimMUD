@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using static AbarimMUD.ImportCSL.Utility;
 
@@ -11,6 +12,9 @@ namespace AbarimMUD.ImportCSL
 {
 	internal class Importer
 	{
+		private static readonly Regex CreditsRegEx1 = new Regex(@"^[\{\[]?\s*(\w+)\s*[\}\]]\s*(\w+)");
+		private static readonly Regex CreditsRegEx2 = new Regex(@"^[\{\[]\s*(\w+)\s*-?\s*(\w+)\s*[\}\]]\s*(\w+)");
+
 		private readonly Dictionary<int, Room> _roomsByVnums = new Dictionary<int, Room>();
 		private readonly Dictionary<int, Mobile> _mobilesByVnums = new Dictionary<int, Mobile>();
 		private readonly Dictionary<int, GameObject> _objectsByVnums = new Dictionary<int, GameObject>();
@@ -239,6 +243,41 @@ namespace AbarimMUD.ImportCSL
 					Credits = areaData.GetString("Credits"),
 					Builders = areaData.GetString("Builders")
 				};
+
+				// Try to get levels range from the credits
+				var c = area.Credits.Trim();
+				var match = CreditsRegEx1.Match(c);
+				if (match.Success)
+				{
+					area.MinimumLevel = area.MaximumLevel = match.Groups[1].Value;
+					if (string.IsNullOrEmpty(area.Builders))
+					{
+						area.Builders = match.Groups[2].Value;
+					}
+
+					Log($"Regex1 worked: parsed {area.MinimumLevel}/{area.Builders} from {c}");
+				}
+				else {
+
+					match = CreditsRegEx2.Match(c);
+					if (match.Success)
+					{
+						area.MinimumLevel = match.Groups[1].Value;
+						area.MaximumLevel = match.Groups[2].Value;
+
+						if (string.IsNullOrEmpty(area.Builders))
+						{
+							area.Builders = match.Groups[3].Value;
+						}
+
+						Log($"Regex2 worked: parsed [{area.MinimumLevel} {area.MaximumLevel}]/{area.Builders} from {c}");
+					}
+				}
+					
+				if (!match.Success)
+				{
+					Log($"Couldn't parse levels/builders info from {c}");
+				}
 
 				ProcessRooms(root, area);
 				ProcessMobiles(root, area);
