@@ -36,8 +36,9 @@ namespace AbarimMUD.Commands
 
 			_allCommands["kill"] = new Kill();
 
+			// Builders
 			_allCommands["force"] = new Force();
-			_allCommands["settype"] = new SetType();
+			_allCommands["areas"] = new Areas();
 			_allCommands["rset"] = new RSet();
 			_allCommands["rlink"] = new RLink();
 			_allCommands["rlinkclear"] = new RLinkClear();
@@ -48,6 +49,9 @@ namespace AbarimMUD.Commands
 			_allCommands["mset"] = new MSet();
 			_allCommands["maddattack"] = new MAddAttack();
 			_allCommands["mremoveattack"] = new MRemoveAttack();
+
+			// Owner
+			_allCommands["settype"] = new SetType();
 		}
 
 		public static BaseCommand FindCommand(string name)

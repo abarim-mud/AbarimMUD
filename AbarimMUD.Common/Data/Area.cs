@@ -151,6 +151,6 @@ namespace AbarimMUD.Data
 			}
 		}
 
-		public override string ToString() => $"{Name}";
+		public override string ToString() => $"{MinimumLevel}-{MaximumLevel} {Builders} {Name}";
 	}
 }
