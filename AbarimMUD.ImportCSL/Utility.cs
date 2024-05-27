@@ -29,6 +29,24 @@ namespace AbarimMUD.ImportCSL
 			}
 		}
 
+		public struct Dice
+		{
+			public int Sides { get; set; }
+			public int Count { get; set; }
+			public int Bonus { get; set; }
+
+			public Dice(int sides, int count, int bonus)
+			{
+				Sides = sides;
+				Count = count;
+				Bonus = bonus;
+			}
+
+			public override string ToString() => $"{Count}d{Sides}+{Bonus}";
+
+			public RandomRange ToRandomRange() => new RandomRange(Count + Bonus, Count * Sides + Bonus);
+		}
+
 		private static readonly int[][] _mobAttacksTable;
 		private static readonly GuildThac0[] _guildThacs = new GuildThac0[]
 		{
@@ -267,12 +285,13 @@ namespace AbarimMUD.ImportCSL
 			return result;
 		}
 
-		public static int GetAccuracy(this Mobile mob)
+		public static int GetAccuracy(this Mobile mob, int hitRoll)
 		{
 			var mc = mob.GetMobClass();
 
 			var guildThac = _guildThacs[(int)mc];
 			var thac0 = guildThac.Level1 + mob.Level * (guildThac.Level32 - guildThac.Level1) / 32;
+			thac0 -= hitRoll;
 
 			if (thac0 < 0)
 				thac0 = thac0 / 2;

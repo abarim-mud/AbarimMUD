@@ -51,8 +51,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 			{
 				AttackType = attackType,
 				Accuracy = accuracy,
-				MinimumDamage = minDamage,
-				MaximumDamage = maxDamage
+				DamageRange = new RandomRange(minDamage, maxDamage)
 			};
 
 			mobile.Attacks.Add(newAttack);

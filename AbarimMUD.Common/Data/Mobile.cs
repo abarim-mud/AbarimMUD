@@ -243,26 +243,6 @@ namespace AbarimMUD.Data
 		Evil
 	}
 
-	public class Dice
-	{
-		public int Sides { get; set; }
-		public int Count { get; set; }
-		public int Bonus { get; set; }
-
-		public Dice()
-		{
-		}
-
-		public Dice(int sides, int count, int bonus)
-		{
-			Sides = sides;
-			Count = count;
-			Bonus = bonus;
-		}
-
-		public override string ToString() => $"{Count}d{Sides}+{Bonus}";
-	}
-
 	public class Mobile : AreaEntity
 	{
 		public string Name { get; set; }
@@ -275,28 +255,16 @@ namespace AbarimMUD.Data
 		public HashSet<MobileFlags> Flags { get; set; }
 		public HashSet<AffectedByFlags> AffectedByFlags { get; set; }
 		public Alignment Alignment { get; set; }
-		public int Group { get; set; }
 		public int Level { get; set; }
-		public int HitRoll { get; set; }
-		public Dice HitDice { get; set; }
-		public Dice ManaDice { get; set; }
-		public Dice DamageDice { get; set; }
-		public AttackType AttackType { get; set; }
-		public int AcPierce { get; set; }
-		public int AcBash { get; set; }
-		public int AcSlash { get; set; }
-		public int AcExotic { get; set; }
+		public RandomRange HitpointsRange { get; set; }
+		public RandomRange ManaRange { get; set; }
 		public HashSet<ResistanceFlags> ImmuneFlags { get; set; }
 		public HashSet<ResistanceFlags> ResistanceFlags { get; set; }
 		public HashSet<ResistanceFlags> VulnerableFlags { get; set; }
-		public MobilePosition StartPosition { get; set; }
-		public MobilePosition DefaultPosition { get; set; }
+		public MobilePosition Position { get; set; }
 		public Sex Sex { get; set; }
 		public int Wealth { get; set; }
-		public FormFlags FormsFlags { get; set; }
-		public PartFlags PartsFlags { get; set; }
 		public MobileSize Size { get; set; }
-		public Material Material { get; set; }
 
 		public Shop Shop { get; set; }
 		public List<MobileSpecialAttack> SpecialAttacks { get; } = new List<MobileSpecialAttack>();

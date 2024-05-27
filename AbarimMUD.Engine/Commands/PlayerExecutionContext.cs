@@ -61,10 +61,10 @@ namespace AbarimMUD.Commands
 			{
 				var result = new List<Attack>
 				{
-					new Attack(AttackType.Slash, 50, 50, 70),
-					new Attack(AttackType.Hit, 50, 50, 70),
-					new Attack(AttackType.Punch, 50, 50, 70),
-					new Attack(AttackType.Smash, 50, 50, 70),
+					new Attack(AttackType.Slash, 50, new RandomRange(50, 70)),
+					new Attack(AttackType.Hit, 50, new RandomRange(50, 70)),
+					new Attack(AttackType.Punch, 50, new RandomRange(50, 70)),
+					new Attack(AttackType.Smash, 50, new RandomRange(50, 70)),
 				};
 
 				return result;

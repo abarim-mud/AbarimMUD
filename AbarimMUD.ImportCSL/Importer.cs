@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
+using static AbarimMUD.ImportCSL.Utility;
 
 namespace AbarimMUD.ImportCSL
 {
@@ -129,29 +130,29 @@ namespace AbarimMUD.ImportCSL
 					AffectedByFlags = mobileElement.ParseFlags<AffectedByFlags>("affectedBy"),
 					Alignment = mobileElement.EnsureEnum<Alignment>("alignment"),
 					Level = mobileElement.EnsureInt("level"),
-					HitRoll = mobileElement.EnsureInt("hitroll"),
-					HitDice = mobileElement.EnsureDice("HitPointDice"),
-					ManaDice = mobileElement.EnsureDice("ManaPointDice"),
-					DamageDice = mobileElement.GetDice("DamageDice", new Dice(1, 1, 1)),
-					AttackType = mobileElement.EnsureEnum<AttackType>("WeaponDamageMessage"),
-					AcPierce = mobileElement.EnsureInt("ArmorPierce"),
-					AcBash = mobileElement.EnsureInt("ArmorBash"),
-					AcSlash = mobileElement.EnsureInt("ArmorSlash"),
-					AcExotic = mobileElement.EnsureInt("ArmorExotic"),
+					HitpointsRange = mobileElement.EnsureDice("HitPointDice").ToRandomRange(),
+					ManaRange = mobileElement.EnsureDice("ManaPointDice").ToRandomRange(),
 					ImmuneFlags = mobileElement.ParseFlags<ResistanceFlags>("immune"),
 					ResistanceFlags = mobileElement.ParseFlags<ResistanceFlags>("resist"),
 					VulnerableFlags = mobileElement.ParseFlags<ResistanceFlags>("vulnerable"),
-					DefaultPosition = mobileElement.GetEnum("DefaultPosition", MobilePosition.Stand),
+					Position = mobileElement.GetEnum("DefaultPosition", MobilePosition.Stand),
 					Sex = mobileElement.GetEnum("Sex", Sex.None),
 					Size = mobileElement.GetEnum("Size", MobileSize.Medium),
 				};
+
+				var damageDice = mobileElement.GetDice("DamageDice", new Dice(1, 1, 1));
+				var attackType = mobileElement.EnsureEnum<AttackType>("WeaponDamageMessage");
 
 				var gold = mobileElement.GetInt("gold", 0);
 				var silver = mobileElement.GetInt("silver", 0);
 
 				mobile.Wealth = gold * 10 + silver;
 
-				var averageAc = (mobile.AcPierce + mobile.AcBash + mobile.AcSlash) / 3;
+				var AcPierce = mobileElement.EnsureInt("ArmorPierce");
+				var AcBash = mobileElement.EnsureInt("ArmorBash");
+				var AcSlash = mobileElement.EnsureInt("ArmorSlash");
+				var AcExotic = mobileElement.EnsureInt("ArmorExotic");
+				var averageAc = (AcPierce + AcBash + AcSlash) / 3;
 				mobile.ArmorClass = -(averageAc - 100);
 
 				if (mobile.ArmorClass < 0)
@@ -160,14 +161,12 @@ namespace AbarimMUD.ImportCSL
 				}
 
 				var attacksCount = mobile.GetAttacksCount();
-				var accuracy = mobile.GetAccuracy() + mobile.HitRoll * 10;
+
+				var hitRoll = mobileElement.EnsureInt("hitroll");
+				var accuracy = mobile.GetAccuracy(hitRoll);
 				for (var i = 0; i < attacksCount; ++i)
 				{
-					var expr = GoRogue.DiceNotation.Dice.Parse(mobile.DamageDice.ToString());
-					var min = expr.MinRoll();
-					var max = expr.MaxRoll();
-
-					var attack = new Attack(mobile.AttackType, accuracy, min, max);
+					var attack = new Attack(attackType, accuracy, damageDice.ToRandomRange());
 					mobile.Attacks.Add(attack);
 				}
 
@@ -286,7 +285,7 @@ namespace AbarimMUD.ImportCSL
 			foreach (var area in db.Areas)
 			{
 				var toDelete = new List<AreaReset>();
-				for(var i = 0; i < area.Resets.Count; ++i)
+				for (var i = 0; i < area.Resets.Count; ++i)
 				{
 					var reset = area.Resets[i];
 					switch (reset.ResetType)
@@ -295,7 +294,7 @@ namespace AbarimMUD.ImportCSL
 							var room = GetRoomByVnum(reset.Id1);
 							if (room == null)
 							{
-								Log($"WARNING: Unable to find room with vnum {reset.Id2} for #{i} reset of area {area.Name}");
+								Log($"WARNING: Unable to find room with vnum {reset.Id2} for #{i} reset of area {area.Id}");
 								toDelete.Add(reset);
 								break;
 							}
@@ -303,7 +302,7 @@ namespace AbarimMUD.ImportCSL
 							var mobile = GetMobileByVnum(reset.Id2);
 							if (mobile == null)
 							{
-								Log($"WARNING: Unable to find mobile with vnum {reset.Id1} for #{i} reset of area {area.Name}");
+								Log($"WARNING: Unable to find mobile with vnum {reset.Id1} for #{i} reset of area {area.Id}");
 								toDelete.Add(reset);
 								break;
 							}
@@ -325,7 +324,7 @@ namespace AbarimMUD.ImportCSL
 					}
 				}
 
-				foreach(var reset in toDelete)
+				foreach (var reset in toDelete)
 				{
 					area.Resets.Remove(reset);
 				}

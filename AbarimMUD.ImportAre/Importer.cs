@@ -135,7 +135,7 @@ namespace AbarimMUD.ImportAre
 					ResistanceFlags = (ResistanceFlags)stream.ReadFlag(),
 					VulnerableFlags = (ResistanceFlags)stream.ReadFlag(),
 					StartPosition = stream.ReadEnumFromWord<MobilePosition>(),
-					DefaultPosition = stream.ReadEnumFromWord<MobilePosition>(),
+					Position = stream.ReadEnumFromWord<MobilePosition>(),
 					Sex = stream.ReadEnumFromWord<Sex>(),
 					Wealth = stream.ReadNumber(),
 					FormsFlags = (FormFlags)stream.ReadFlag(),

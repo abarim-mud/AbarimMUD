@@ -24,7 +24,7 @@ namespace AbarimMUD
 		{
 			var result = new DamageResult
 			{
-				InitialDamage = Utility.RandomRange(attack.MinimumDamage, attack.MaximumDamage)
+				InitialDamage = attack.DamageRange.Generate()
 			};
 
 			if (result.InitialDamage <= 0)

@@ -27,14 +27,23 @@ namespace AbarimMUD
 			return rnd <= percentage;
 		}
 
-		public static int RandomRange(int min, int max) => Random.Next(min, max + 1);
+		public static int RandomRange(int min, int max)
+		{
+			if (min >= max)
+			{
+				return min;
+			}
+
+			return Random.Next(min, max + 1);
+		}
 
 		public static JsonSerializerOptions CreateDefaultOptions()
 		{
 			var result = new JsonSerializerOptions
 			{
 				WriteIndented = true,
-				DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault
+				DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault,
+				IncludeFields = true,
 			};
 
 			result.Converters.Add(new JsonStringEnumConverter());
