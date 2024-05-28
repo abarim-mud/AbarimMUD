@@ -123,8 +123,10 @@ namespace AbarimMUD.Data
 		Poison,
 		Curse,
 		Camouflage,
+		Charm,
 
 		ProtectEvil = ProtectionEvil,
+		ProtectGood = ProtectionGood,
 		Blindness = Blind,
 	}
 
@@ -151,6 +153,8 @@ namespace AbarimMUD.Data
 		Energy,
 		Iron,
 		Silver,
+		Sound,
+		Wood,
 	}
 
 	[Flags]

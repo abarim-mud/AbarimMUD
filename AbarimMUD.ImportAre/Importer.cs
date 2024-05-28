@@ -127,7 +127,7 @@ namespace AbarimMUD.ImportAre
 
 				if (mobile.ArmorClass < 0)
 				{
-					stream.RaiseError($"Negative armor class");
+					Log($"WARNING: {mobile.Name} has negative armor class. Clamped to zero");
 				}
 
 				var attacksCount = mobile.GetAttacksCount("");
@@ -407,6 +407,15 @@ namespace AbarimMUD.ImportAre
 						obj.ExtraKeyword = stream.ReadDikuString();
 						obj.ExtraDescription = stream.ReadDikuString();
 					}
+					else if (c == 'L' || c == 'C')
+					{
+						var n = stream.ReadFlag();
+					}
+					else if (c == 'R' || c == 'D' || c == 'O' || c == 'X' || c == 'M' || 
+						c == 'Y' || c == 'J' || c == 'G' || c == 'K' || c == 'V' || c == 'P' || c == 'd')
+					{
+						var k = 5;
+					}
 					else
 					{
 						stream.GoBackIfNotEOF();
@@ -427,7 +436,7 @@ namespace AbarimMUD.ImportAre
 				}
 
 				var name = stream.ReadDikuString();
-				Log($"Processing room {name}...");
+				Log($"Processing room {name} (# {vnum})...");
 
 				var room = new Room
 				{
@@ -775,6 +784,7 @@ namespace AbarimMUD.ImportAre
 		private void ProcessFile(DataContext db, string areaFile)
 		{
 			Log($"Processing {areaFile}...");
+
 			Area area = null;
 			using (var stream = File.OpenRead(areaFile))
 			{
@@ -807,7 +817,12 @@ namespace AbarimMUD.ImportAre
 							break;
 						case "MOBPROGS":
 							Log("Mob programs aren't supported");
-							break;
+							if (area != null)
+							{
+								db.Areas.Update(area);
+							}
+
+							goto finish;
 						case "OBJOLD":
 							stream.RaiseError("Old objects aren't supported");
 							break;
@@ -857,7 +872,8 @@ namespace AbarimMUD.ImportAre
 			InitializeDb(outputDir);
 			foreach (var areaFile in areaFiles)
 			{
-				if (Path.GetFileName(areaFile) == "proto.are")
+				var fn = Path.GetFileName(areaFile);
+				if (fn == "proto.are" || fn == "mprog.are" || fn == "secretlab.are")
 				{
 					Log($"Skipping prototype area {areaFile}");
 					continue;

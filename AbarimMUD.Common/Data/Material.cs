@@ -40,6 +40,8 @@
 		Tin,
 		Vellum,
 		Water,
-		Wood
+		Wood,
+		Unknown,
+		Bone,
 	}
 }

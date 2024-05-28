@@ -173,56 +173,61 @@ namespace AbarimMUD.ImportAre
 				c = stream.ReadLetter();
 			}
 
-			if (!char.IsDigit(c))
+			while (!stream.EndOfStream())
 			{
-				while (!stream.EndOfStream())
+				if (!char.IsDigit(c))
 				{
-					int bitsum = 0;
-					if ('A' <= c && c <= 'Z')
+					while (!stream.EndOfStream())
 					{
-						bitsum = 1;
-						for (int i = c; i > 'A'; i--)
+						int bitsum = 0;
+						if ('A' <= c && c <= 'Z')
 						{
-							bitsum *= 2;
+							bitsum = 1;
+							for (int i = c; i > 'A'; i--)
+							{
+								bitsum *= 2;
+							}
 						}
-					}
-					else if ('a' <= c && c <= 'z')
-					{
-						bitsum = 67108864;
-						for (int i = c; i > 'a'; i--)
+						else if ('a' <= c && c <= 'z')
 						{
-							bitsum *= 2;
+							bitsum = 67108864;
+							for (int i = c; i > 'a'; i--)
+							{
+								bitsum *= 2;
+							}
 						}
-					}
-					else
-					{
-						break;
-					}
+						else
+						{
+							break;
+						}
 
-					result += bitsum;
-					c = stream.ReadLetter();
+						result += bitsum;
+						c = stream.ReadLetter();
+					}
 				}
-			}
-			else
-			{
-				var sb = new StringBuilder();
 
 				while (!stream.EndOfStream() && char.IsDigit(c))
 				{
-					sb.Append(c);
+					result += result * 10 + (c - '0');
 					c = stream.ReadLetter();
 				}
 
-				result = int.Parse(sb.ToString());
-			}
 
-			if (c == '|')
-			{
-				result += stream.ReadFlag();
-			}
+				if (c == '|')
+				{
+					c = stream.ReadLetter();
+					// Next iteration
+				} else
+				{
+					if (c != ' ')
+					{
+						// Last symbol beint to the new data
+						stream.GoBackIfNotEOF();
+					}
 
-			// Last symbol beint to the new data
-			stream.GoBackIfNotEOF();
+					break;
+				}
+			}
 
 			return negative ? -result : result;
 		}
@@ -353,47 +358,20 @@ namespace AbarimMUD.ImportAre
 			return sb.ToString();
 		}
 
-		public static T ToEnum<T>(this Stream stream, string value)
+		public static T ToEnum<T>(this Stream stream, string value) where T: struct, Enum
 		{
 			value = value.Replace("_", "").Replace(" ", "");
 
 			// Parse the enum
 			try
 			{
-				if (typeof(T) == typeof(AttackType))
+				T result;
+				if (!Enum.TryParse<T>(value, true, out result))
 				{
-					if (value == "none" || value == "magic" || value == "divine" || value == "wrath")
-					{
-						value = "hit";
-					}
-
-					if (value == "peckb")
-					{
-						value = "peck";
-					}
-
-					if (value == "shbite" || value == "flbite" || value == "frbite" || value == "acbite" || value == "digestion")
-					{
-						value = "bite";
-					}
-
-					if (value == "thwack")
-					{
-						value = "hack";
-					}
-
-					if (value == "drain")
-					{
-						value = "slash";
-					}
-
-					if (value == "flame")
-					{
-						value = "pound";
-					}
+					result = default(T);
 				}
 
-				return (T)Enum.Parse(typeof(T), value, true);
+				return result;
 			}
 			catch (Exception)
 			{
@@ -403,13 +381,13 @@ namespace AbarimMUD.ImportAre
 			return default(T);
 		}
 
-		public static T ReadEnumFromDikuString<T>(this Stream stream)
+		public static T ReadEnumFromDikuString<T>(this Stream stream) where T : struct, Enum
 		{
 			var str = stream.ReadDikuString();
 			return stream.ToEnum<T>(str);
 		}
 
-		public static T ReadEnumFromDikuStringWithDef<T>(this Stream stream, T def)
+		public static T ReadEnumFromDikuStringWithDef<T>(this Stream stream, T def) where T : struct, Enum
 		{
 			var str = stream.ReadDikuString();
 
@@ -421,13 +399,13 @@ namespace AbarimMUD.ImportAre
 			return stream.ToEnum<T>(str);
 		}
 
-		public static T ReadEnumFromWord<T>(this Stream stream)
+		public static T ReadEnumFromWord<T>(this Stream stream) where T : struct, Enum
 		{
 			var word = stream.ReadWord();
 			return stream.ToEnum<T>(word);
 		}
 
-		public static T ReadEnumFromWordWithDef<T>(this Stream stream, T def)
+		public static T ReadEnumFromWordWithDef<T>(this Stream stream, T def) where T : struct, Enum
 		{
 			var word = stream.ReadWord();
 
@@ -518,6 +496,7 @@ namespace AbarimMUD.ImportAre
 			var dice = Dice.Parse(expr);
 			if (dice == null)
 			{
+				return new RandomRange(1, 1);
 				stream.RaiseError($"Unable to parse dice expression {expr}");
 			}
 

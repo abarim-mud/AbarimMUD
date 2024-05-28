@@ -60,7 +60,8 @@ namespace AbarimMUD.Storage
 					Log($"Loading {characterPath}");
 
 					var data = File.ReadAllText(characterPath);
-					var character = JsonSerializer.Deserialize<Character>(data);
+					var options = Utility.CreateDefaultOptions();
+					var character = JsonSerializer.Deserialize<Character>(data, options);
 
 					var record = new CharacterRecord(character, accountName);
 					_tempCache.Add(record);

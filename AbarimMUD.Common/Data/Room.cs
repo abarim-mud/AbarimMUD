@@ -41,6 +41,7 @@ namespace AbarimMUD.Data
 		Safe,
 		PetShop,
 		NewbiesOnly,
+		Nowhere,
 	}
 
 	public class Room: AreaEntity
