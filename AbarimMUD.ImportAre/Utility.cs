@@ -298,12 +298,15 @@ namespace AbarimMUD.ImportAre
 			return result.ToString();
 		}
 
-		public static char EnsureChar(this Stream stream, char expected)
+		public static char EnsureChar(this Stream stream, char expected, bool ignoreCase = false)
 		{
 			var c = stream.ReadLetter();
 			if (c != expected)
 			{
-				stream.RaiseError($"Expected symbol '{expected}'");
+				if (!ignoreCase || char.ToUpper(c) != expected)
+				{
+					stream.RaiseError($"Expected symbol '{expected}'");
+				}
 			}
 
 			return c;
@@ -313,7 +316,7 @@ namespace AbarimMUD.ImportAre
 		{
 			var sb = new StringBuilder();
 			sb.Append(stream.ReadNumber());
-			sb.Append(stream.EnsureChar('d'));
+			sb.Append(stream.EnsureChar('d', true));
 			sb.Append(stream.ReadNumber());
 			sb.Append(stream.EnsureChar('+'));
 			sb.Append(stream.ReadNumber());

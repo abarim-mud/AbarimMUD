@@ -124,6 +124,8 @@ namespace AbarimMUD.Data
 		Curse,
 		Camouflage,
 		Charm,
+		Sleep,
+		Calm,
 
 		ProtectEvil = ProtectionEvil,
 		ProtectGood = ProtectionGood,

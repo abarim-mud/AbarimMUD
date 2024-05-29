@@ -104,7 +104,7 @@ namespace AbarimMUD.Import
 
 		public static void Log(string message) => Console.WriteLine(message);
 
-		public static void ParseLevelsBuilds(this Area area)
+		public static bool ParseLevelsBuilds(this Area area)
 		{
 			// Try to get levels range from the credits
 			var c = area.Credits.Trim();
@@ -141,6 +141,8 @@ namespace AbarimMUD.Import
 			{
 				Log($"Couldn't parse levels/builders info from {c}");
 			}
+
+			return match.Success;
 		}
 
 		private static MobClass GetMobClass(this Mobile mob, string guild)

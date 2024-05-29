@@ -1,6 +1,8 @@
 ﻿using AbarimMUD.Data;
 using AbarimMUD.Storage;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace AbarimMUD.Import
@@ -11,6 +13,7 @@ namespace AbarimMUD.Import
 		private readonly Dictionary<int, Room> _roomsByVnums = new Dictionary<int, Room>();
 		private readonly Dictionary<int, Mobile> _mobilesByVnums = new Dictionary<int, Mobile>();
 		private readonly Dictionary<int, GameObject> _objectsByVnums = new Dictionary<int, GameObject>();
+		private readonly Dictionary<int, Shop> _shopsByKeepersVnums = new Dictionary<int, Shop>();
 
 		private readonly List<RoomExitInfo> _tempDirections = new List<RoomExitInfo>();
 
@@ -37,6 +40,7 @@ namespace AbarimMUD.Import
 		public void AddMobileToCache(int vnum, Mobile mobile) => _mobilesByVnums[vnum] = mobile;
 		public void AddObjectToCache(int vnum, GameObject obj) => _objectsByVnums[vnum] = obj;
 		public void AddRoomExitToCache(RoomExitInfo exitInfo) => _tempDirections.Add(exitInfo);
+		public void AddShopToCache(int keeperVNum, Shop shop) => _shopsByKeepersVnums[keeperVNum] = shop;
 
 		public void InitializeDb(string folder)
 		{
@@ -58,6 +62,21 @@ namespace AbarimMUD.Import
 			SetIds(_roomsByVnums);
 			SetIds(_mobilesByVnums);
 			SetIds(_objectsByVnums);
+		}
+
+		public void UpdateShops()
+		{
+			Log("Updating shops");
+			foreach (var pair in _shopsByKeepersVnums)
+			{
+				var keeper = GetMobileByVnum(pair.Key);
+				if (keeper == null)
+				{
+					throw new Exception($"Could not find shop keeper with vnum {pair.Key}");
+				}
+
+				keeper.Shop = pair.Value;
+			}
 		}
 
 		public void UpdateRoomExitsReferences()

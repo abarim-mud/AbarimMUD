@@ -9,6 +9,8 @@ namespace AbarimMUD.ImportAre
 {
 	internal class Importer : BaseImporter
 	{
+		public SourceType SourceType { get; set; }
+
 		private void ProcessArea(Stream stream, Area area)
 		{
 			var fileName = stream.ReadDikuString();
@@ -82,8 +84,12 @@ namespace AbarimMUD.ImportAre
 					ShortDescription = stream.ReadDikuString(),
 					LongDescription = stream.ReadDikuString(),
 					Description = stream.ReadDikuString(),
-					Race = stream.ReadEnumFromDikuString<Race>(),
 				};
+
+				if (SourceType == SourceType.ROM)
+				{
+					mobile.Race = stream.ReadEnumFromDikuString<Race>();
+				}
 
 				mobile.InitializeLists();
 
@@ -91,39 +97,75 @@ namespace AbarimMUD.ImportAre
 				var affectedByFlags = (OldAffectedByFlags)stream.ReadFlag();
 
 				mobile.Alignment = stream.ReadNumber().ToAlignment();
-				var group = stream.ReadNumber();
+
+				if (SourceType == SourceType.ROM)
+				{
+					var group = stream.ReadNumber();
+				} else
+				{
+					var c = stream.ReadSpacedLetter();
+				}
 				mobile.Level = stream.ReadNumber();
 
 				var hitRoll = stream.ReadNumber();
+
+				int ac = 0;
+				if (SourceType == SourceType.Envy)
+				{
+					ac = stream.ReadNumber();
+				}
+
 				var hitDice = stream.ReadDice();
 				mobile.HitpointsRange = stream.ToRandomRange(hitDice);
 
-				var manaDice = stream.ReadDice();
-				mobile.ManaRange = stream.ToRandomRange(manaDice);
+				if (SourceType == SourceType.ROM)
+				{
+					var manaDice = stream.ReadDice();
+					mobile.ManaRange = stream.ToRandomRange(manaDice);
+				}
 
 				var damageDice = stream.ReadDice();
-				var attackType = stream.ReadEnumFromWord<AttackType>();
-				var acPierce = stream.ReadNumber();
-				var acBash = stream.ReadNumber();
-				var acSlash = stream.ReadNumber();
-				var acExotic = stream.ReadNumber();
-				var offenseFlags = (OldMobileOffensiveFlags)stream.ReadFlag();
 
-				var immuneFlags = (OldResistanceFlags)stream.ReadFlag();
-				var resistanceFlags = (OldResistanceFlags)stream.ReadFlag();
-				var vulnerableFlags = (OldResistanceFlags)stream.ReadFlag();
-				var startPosition = stream.ReadEnumFromWord<MobilePosition>();
-				mobile.Position = stream.ReadEnumFromWord<MobilePosition>();
-				mobile.Sex = stream.ReadEnumFromWord<Sex>();
-				mobile.Wealth = stream.ReadNumber();
-				var formsFlags = (FormFlags)stream.ReadFlag();
-				var partsFlags = (PartFlags)stream.ReadFlag();
+				var attackType = AttackType.Hit;
 
-				mobile.Size = stream.ReadEnumFromWord<MobileSize>();
-				var material = stream.ReadEnumFromWord<Material>();
+				var offenseFlags = OldMobileOffensiveFlags.None;
+				var immuneFlags = OldResistanceFlags.None;
+				var resistanceFlags = OldResistanceFlags.None;
+				var vulnerableFlags = OldResistanceFlags.None;
+				var formsFlags = FormFlags.None;
+				var partsFlags = PartFlags.None;
+				if (SourceType == SourceType.ROM)
+				{
+					attackType = stream.ReadEnumFromWord<AttackType>();
+					var acPierce = stream.ReadNumber();
+					var acBash = stream.ReadNumber();
+					var acSlash = stream.ReadNumber();
+					var acExotic = stream.ReadNumber();
+					ac = (acPierce + acBash + acSlash) / 3;
+					offenseFlags = (OldMobileOffensiveFlags)stream.ReadFlag();
 
-				var averageAc = (acPierce + acBash + acSlash) / 3;
-				mobile.ArmorClass = -(averageAc - 10) * 10;
+					immuneFlags = (OldResistanceFlags)stream.ReadFlag();
+					resistanceFlags = (OldResistanceFlags)stream.ReadFlag();
+					vulnerableFlags = (OldResistanceFlags)stream.ReadFlag();
+					var startPosition = stream.ReadEnumFromWord<MobilePosition>();
+					mobile.Position = stream.ReadEnumFromWord<MobilePosition>();
+					mobile.Sex = stream.ReadEnumFromWord<Sex>();
+					mobile.Wealth = stream.ReadNumber();
+					formsFlags = (FormFlags)stream.ReadFlag();
+					partsFlags = (PartFlags)stream.ReadFlag();
+
+					mobile.Size = stream.ReadEnumFromWord<MobileSize>();
+					var material = stream.ReadEnumFromWord<Material>();
+				} else if (SourceType == SourceType.Envy)
+				{
+					mobile.Wealth = stream.ReadNumber();
+					var xp = stream.ReadNumber();
+					mobile.Position = stream.ReadEnumFromWord<MobilePosition>();
+					mobile.Race = stream.ReadEnumFromDikuString<Race>();
+					mobile.Sex = stream.ReadEnumFromWord<Sex>();
+				}
+
+				mobile.ArmorClass = -(ac - 10) * 10;
 
 				if (mobile.ArmorClass < 0)
 				{
@@ -242,121 +284,140 @@ namespace AbarimMUD.ImportAre
 					Name = name,
 					ShortDescription = stream.ReadDikuString(),
 					Description = stream.ReadDikuString(),
-					Material = stream.ReadEnumFromDikuStringWithDef(Material.Generic),
-					ItemType = stream.ReadEnumFromWord<ItemType>(),
-					ExtraFlags = (ItemExtraFlags)stream.ReadFlag(),
-					WearFlags = (ItemWearFlags)stream.ReadFlag(),
+					Material = stream.ReadEnumFromDikuStringWithDef(Material.Generic)
 				};
+
+				obj.ItemType = stream.ReadEnumFromWord<ItemType>();
+				obj.ExtraFlags = (ItemExtraFlags)stream.ReadFlag();
+				obj.WearFlags = (ItemWearFlags)stream.ReadFlag();
 
 				area.Objects.Add(obj);
 				AddObjectToCache(vnum, obj);
 
-				switch (obj.ItemType)
+				if (SourceType == SourceType.ROM)
 				{
-					case ItemType.Weapon:
-						obj.Value1 = (int)stream.ReadEnumFromWord<WeaponType>();
-						obj.Value2 = stream.ReadNumber();
-						obj.Value3 = stream.ReadNumber();
-						obj.Value4 = (int)stream.ReadEnumFromWord<AttackType>();
-						obj.Value5 = stream.ReadFlag();
-						break;
-					case ItemType.Container:
-						obj.Value1 = stream.ReadNumber();
-						obj.Value2 = stream.ReadFlag();
-						obj.Value3 = stream.ReadNumber();
-						obj.Value4 = stream.ReadNumber();
-						obj.Value5 = stream.ReadNumber();
-						break;
-					case ItemType.Drink:
-						obj.Value1 = stream.ReadNumber();
-						obj.Value2 = stream.ReadNumber();
-						obj.Value3 = (int)stream.ReadEnumFromWord<LiquidType>();
-						obj.Value4 = stream.ReadNumber();
-						obj.Value5 = stream.ReadNumber();
-						break;
-					case ItemType.Fountain:
-						obj.Value1 = stream.ReadNumber();
-						obj.Value2 = stream.ReadNumber();
-						obj.Value3 = (int)stream.ReadEnumFromWord<LiquidType>();
-						obj.Value4 = stream.ReadNumber();
-						obj.Value5 = stream.ReadNumber();
-						break;
-					case ItemType.Wand:
-						obj.Value1 = stream.ReadNumber();
-						obj.Value2 = stream.ReadNumber();
-						obj.Value3 = stream.ReadNumber();
-						obj.Value4 = (int)stream.ReadEnumFromWordWithDef(Skill.Reserved);
-						obj.Value5 = stream.ReadNumber();
-						break;
-					case ItemType.Staff:
-						obj.Value1 = stream.ReadNumber();
-						obj.Value2 = stream.ReadNumber();
-						obj.Value3 = stream.ReadNumber();
-						obj.Value4 = (int)stream.ReadEnumFromWordWithDef(Skill.Reserved);
-						obj.Value5 = stream.ReadNumber();
-						break;
-					case ItemType.Potion:
-						obj.Value1 = stream.ReadNumber();
-						obj.Value2 = (int)stream.ReadEnumFromWordWithDef(Skill.Reserved);
-						obj.Value3 = (int)stream.ReadEnumFromWordWithDef(Skill.Reserved);
-						obj.Value4 = (int)stream.ReadEnumFromWordWithDef(Skill.Reserved);
-						obj.Value5 = (int)stream.ReadEnumFromWordWithDef(Skill.Reserved);
-						break;
-					case ItemType.Pill:
-						obj.Value1 = stream.ReadNumber();
-						obj.Value2 = (int)stream.ReadEnumFromWordWithDef(Skill.Reserved);
-						obj.Value3 = (int)stream.ReadEnumFromWordWithDef(Skill.Reserved);
-						obj.Value4 = (int)stream.ReadEnumFromWordWithDef(Skill.Reserved);
-						obj.Value5 = (int)stream.ReadEnumFromWordWithDef(Skill.Reserved);
-						break;
-					case ItemType.Scroll:
-						obj.Value1 = stream.ReadNumber();
-						obj.Value2 = (int)stream.ReadEnumFromWordWithDef(Skill.Reserved);
-						obj.Value3 = (int)stream.ReadEnumFromWordWithDef(Skill.Reserved);
-						obj.Value4 = (int)stream.ReadEnumFromWordWithDef(Skill.Reserved);
-						obj.Value5 = (int)stream.ReadEnumFromWordWithDef(Skill.Reserved);
-						break;
-					default:
-						obj.Value1 = stream.ReadFlag();
-						obj.Value2 = stream.ReadFlag();
-						obj.Value3 = stream.ReadFlag();
-						obj.Value4 = stream.ReadFlag();
-						obj.Value5 = stream.ReadFlag();
-						break;
+
+					switch (obj.ItemType)
+					{
+						case ItemType.Weapon:
+							obj.Value1 = (int)stream.ReadEnumFromWord<WeaponType>();
+							obj.Value2 = stream.ReadNumber();
+							obj.Value3 = stream.ReadNumber();
+							obj.Value4 = (int)stream.ReadEnumFromWord<AttackType>();
+							obj.Value5 = stream.ReadFlag();
+							break;
+						case ItemType.Container:
+							obj.Value1 = stream.ReadNumber();
+							obj.Value2 = stream.ReadFlag();
+							obj.Value3 = stream.ReadNumber();
+							obj.Value4 = stream.ReadNumber();
+							obj.Value5 = stream.ReadNumber();
+							break;
+						case ItemType.Drink:
+							obj.Value1 = stream.ReadNumber();
+							obj.Value2 = stream.ReadNumber();
+							obj.Value3 = (int)stream.ReadEnumFromWord<LiquidType>();
+							obj.Value4 = stream.ReadNumber();
+							obj.Value5 = stream.ReadNumber();
+							break;
+						case ItemType.Fountain:
+							obj.Value1 = stream.ReadNumber();
+							obj.Value2 = stream.ReadNumber();
+							obj.Value3 = (int)stream.ReadEnumFromWord<LiquidType>();
+							obj.Value4 = stream.ReadNumber();
+							obj.Value5 = stream.ReadNumber();
+							break;
+						case ItemType.Wand:
+							obj.Value1 = stream.ReadNumber();
+							obj.Value2 = stream.ReadNumber();
+							obj.Value3 = stream.ReadNumber();
+							obj.Value4 = (int)stream.ReadEnumFromWordWithDef(Skill.Reserved);
+							obj.Value5 = stream.ReadNumber();
+							break;
+						case ItemType.Staff:
+							obj.Value1 = stream.ReadNumber();
+							obj.Value2 = stream.ReadNumber();
+							obj.Value3 = stream.ReadNumber();
+							obj.Value4 = (int)stream.ReadEnumFromWordWithDef(Skill.Reserved);
+							obj.Value5 = stream.ReadNumber();
+							break;
+						case ItemType.Potion:
+							obj.Value1 = stream.ReadNumber();
+							obj.Value2 = (int)stream.ReadEnumFromWordWithDef(Skill.Reserved);
+							obj.Value3 = (int)stream.ReadEnumFromWordWithDef(Skill.Reserved);
+							obj.Value4 = (int)stream.ReadEnumFromWordWithDef(Skill.Reserved);
+							obj.Value5 = (int)stream.ReadEnumFromWordWithDef(Skill.Reserved);
+							break;
+						case ItemType.Pill:
+							obj.Value1 = stream.ReadNumber();
+							obj.Value2 = (int)stream.ReadEnumFromWordWithDef(Skill.Reserved);
+							obj.Value3 = (int)stream.ReadEnumFromWordWithDef(Skill.Reserved);
+							obj.Value4 = (int)stream.ReadEnumFromWordWithDef(Skill.Reserved);
+							obj.Value5 = (int)stream.ReadEnumFromWordWithDef(Skill.Reserved);
+							break;
+						case ItemType.Scroll:
+							obj.Value1 = stream.ReadNumber();
+							obj.Value2 = (int)stream.ReadEnumFromWordWithDef(Skill.Reserved);
+							obj.Value3 = (int)stream.ReadEnumFromWordWithDef(Skill.Reserved);
+							obj.Value4 = (int)stream.ReadEnumFromWordWithDef(Skill.Reserved);
+							obj.Value5 = (int)stream.ReadEnumFromWordWithDef(Skill.Reserved);
+							break;
+						default:
+							obj.Value1 = stream.ReadFlag();
+							obj.Value2 = stream.ReadFlag();
+							obj.Value3 = stream.ReadFlag();
+							obj.Value4 = stream.ReadFlag();
+							obj.Value5 = stream.ReadFlag();
+							break;
+					}
+
+					obj.Level = stream.ReadNumber();
+				}
+				else
+				{
+					obj.S1 = stream.ReadDikuString();
+					obj.S2 = stream.ReadDikuString();
+					obj.S3 = stream.ReadDikuString();
+					obj.S4 = stream.ReadDikuString();
 				}
 
-				obj.Level = stream.ReadNumber();
 				obj.Weight = stream.ReadNumber();
 				obj.Cost = stream.ReadNumber();
 
-				var letter = stream.ReadSpacedLetter();
-
-				switch (letter)
+				if (SourceType == SourceType.Envy)
 				{
-					case 'P':
-						obj.Condition = 100;
-						break;
-					case 'G':
-						obj.Condition = 90;
-						break;
-					case 'A':
-						obj.Condition = 75;
-						break;
-					case 'W':
-						obj.Condition = 50;
-						break;
-					case 'D':
-						obj.Condition = 25;
-						break;
-					case 'B':
-						obj.Condition = 10;
-						break;
-					case 'R':
-						obj.Condition = 0;
-						break;
-					default:
-						obj.Condition = 100;
-						break;
+					var costPerDay = stream.ReadNumber();
+				}
+				else
+				{
+					var letter = stream.ReadSpacedLetter();
+					switch (letter)
+					{
+						case 'P':
+							obj.Condition = 100;
+							break;
+						case 'G':
+							obj.Condition = 90;
+							break;
+						case 'A':
+							obj.Condition = 75;
+							break;
+						case 'W':
+							obj.Condition = 50;
+							break;
+						case 'D':
+							obj.Condition = 25;
+							break;
+						case 'B':
+							obj.Condition = 10;
+							break;
+						case 'R':
+							obj.Condition = 0;
+							break;
+						default:
+							obj.Condition = 100;
+							break;
+					}
 				}
 
 				while (!stream.EndOfStream())
@@ -569,7 +630,11 @@ namespace AbarimMUD.ImportAre
 						reset.Value2 = stream.ReadNumber();
 						reset.Value3 = stream.ReadNumber();
 						reset.Value4 = stream.ReadNumber();
-						reset.Value5 = stream.ReadNumber();
+
+						if (SourceType == SourceType.ROM)
+						{
+							reset.Value5 = stream.ReadNumber();
+						}
 						break;
 
 					case 'O':
@@ -586,7 +651,11 @@ namespace AbarimMUD.ImportAre
 						reset.Value2 = stream.ReadNumber();
 						reset.Value3 = stream.ReadNumber();
 						reset.Value4 = stream.ReadNumber();
-						reset.Value5 = stream.ReadNumber();
+
+						if (SourceType == SourceType.ROM)
+						{
+							reset.Value5 = stream.ReadNumber();
+						}
 						break;
 
 					case 'G':
@@ -637,12 +706,6 @@ namespace AbarimMUD.ImportAre
 					break;
 				}
 
-				var keeper = GetMobileByVnum(keeperVnum);
-				if (keeper == null)
-				{
-					stream.RaiseError($"Could not find shop keeper with vnum {keeperVnum}");
-				}
-
 				var shop = new Shop
 				{
 					BuyType1 = stream.ReadNumber(),
@@ -656,11 +719,11 @@ namespace AbarimMUD.ImportAre
 					CloseHour = stream.ReadNumber(),
 				};
 
-				keeper.Shop = shop;
+				AddShopToCache(keeperVnum, shop);
 
 				stream.ReadLine();
 
-				Log($"Added shop for mobile {keeper.Name}");
+				Log($"Added shop for mobile {keeperVnum}");
 			}
 		}
 
@@ -781,6 +844,20 @@ namespace AbarimMUD.ImportAre
 			db.Socials.Save();
 		}
 
+		private void SkipSection(Stream stream)
+		{
+			while (!stream.EndOfStream())
+			{
+				var c = stream.ReadLetter();
+				if (c == '$')
+				{
+					// Skip ~
+					stream.ReadLetter();
+					break;
+				}
+			}
+		}
+
 		private void ProcessFile(DataContext db, string areaFile)
 		{
 			Log($"Processing {areaFile}...");
@@ -791,6 +868,34 @@ namespace AbarimMUD.ImportAre
 				while (!stream.EndOfStream())
 				{
 					var type = stream.ReadId();
+
+					if (type.StartsWith("AREA") && type.EndsWith("~"))
+					{
+						var credits = type.Substring(4);
+						credits = credits.Substring(0, credits.Length - 1).Trim();
+						area = new Area
+						{
+							Credits = credits
+						};
+						area.InitializeLists();
+						
+						if (!area.ParseLevelsBuilds())
+						{
+							throw new Exception($"Couldn't parse levels/builders info from {credits}");
+						}
+
+						// Determine area name
+						var i = credits.IndexOf(area.Builders);
+						credits = credits.Substring(i + area.Builders.Length + 1);
+						area.Id = area.Name = credits.Trim();
+
+						continue;
+					} else if (type.StartsWith("RECALL"))
+					{
+						Log($"Skipping '{type}'");
+						continue;
+					}
+
 					switch (type)
 					{
 						case "AREA":
@@ -812,20 +917,6 @@ namespace AbarimMUD.ImportAre
 						case "ROOMS":
 							ProcessRooms(stream, area);
 							break;
-						case "MOBOLD":
-							stream.RaiseError("Old mobiles aren't supported");
-							break;
-						case "MOBPROGS":
-							Log("Mob programs aren't supported");
-							if (area != null)
-							{
-								db.Areas.Update(area);
-							}
-
-							goto finish;
-						case "OBJOLD":
-							stream.RaiseError("Old objects aren't supported");
-							break;
 						case "RESETS":
 							ProcessResets(stream, area);
 							break;
@@ -835,9 +926,6 @@ namespace AbarimMUD.ImportAre
 						case "SPECIALS":
 							ProcessSpecials(stream);
 							break;
-						case "HELPS":
-							// Ignore helps
-							goto finish;
 						case "SOCIALS":
 							ProcessSocials(db, stream);
 							goto finish;
@@ -848,7 +936,8 @@ namespace AbarimMUD.ImportAre
 							}
 							goto finish;
 						default:
-							stream.RaiseError($"Sections {type} aren't supported.");
+							Log($"Skipping section {type}");
+							SkipSection(stream);
 							break;
 					}
 				}
@@ -859,7 +948,8 @@ namespace AbarimMUD.ImportAre
 
 		public void Process()
 		{
-			var inputDir = Path.Combine(ImportUtility.ExecutingAssemblyDirectory, "../../../../SourceContent");
+			SourceType = SourceType.Envy;
+			var inputDir = Path.Combine(@"D:\Projects\chaos\envy22\area");
 			var areaFiles = Directory.EnumerateFiles(inputDir, "*.are", SearchOption.AllDirectories).ToArray();
 
 			var outputDir = Path.Combine(ImportUtility.ExecutingAssemblyDirectory, "../../../../Data");
@@ -873,7 +963,7 @@ namespace AbarimMUD.ImportAre
 			foreach (var areaFile in areaFiles)
 			{
 				var fn = Path.GetFileName(areaFile);
-				if (fn == "proto.are" || fn == "mprog.are" || fn == "secretlab.are")
+				if (fn == "proto.are")
 				{
 					Log($"Skipping prototype area {areaFile}");
 					continue;
@@ -884,6 +974,9 @@ namespace AbarimMUD.ImportAre
 
 			// Set ids
 			SetIdsInCache();
+
+			// Process shops
+			UpdateShops();
 
 			// Process directions
 			UpdateRoomExitsReferences();

@@ -372,6 +372,10 @@ namespace AbarimMUD.Data
 		public int Value3 { get; set; }
 		public int Value4 { get; set; }
 		public int Value5 { get; set; }
+		public string S1 { get; set; }
+		public string S2 { get; set; }
+		public string S3 { get; set; }
+		public string S4 { get; set; }
 		public int Level { get; set; }
 		public int Weight { get; set; }
 		public int Cost { get; set; }
