@@ -303,7 +303,7 @@ namespace AbarimMUD.ImportAre
 			var c = stream.ReadLetter();
 			if (c != expected)
 			{
-				if (!ignoreCase || char.ToUpper(c) != expected)
+				if (!ignoreCase || char.ToLower(c) != expected)
 				{
 					stream.RaiseError($"Expected symbol '{expected}'");
 				}
