@@ -24,6 +24,8 @@ namespace AbarimMUD.Data
 		public string Credits { get; set; }
 
 		public string Builders { get; set; }
+		public int Version { get; set; }
+		public string ResetMessage { get; set; }
 
 		public string MinimumLevel { get; set; }
 

@@ -13,9 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbarimMUD.Launcher", "Abari
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbarimMUD.Common.Tests", "AbarimMUD.Common.Tests\AbarimMUD.Common.Tests.csproj", "{AF36CE32-19BA-44EE-BC97-A2CD4469364A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbarimMUD.ImportCSL", "AbarimMUD.ImportCSL\AbarimMUD.ImportCSL.csproj", "{397FCD13-14F5-4695-A1E4-495633E0F2EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbarimMUD.ImportCSL", "AbarimMUD.ImportCSL\AbarimMUD.ImportCSL.csproj", "{397FCD13-14F5-4695-A1E4-495633E0F2EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbarimMUD.Import", "AbarimMUD.Import\AbarimMUD.Import.csproj", "{C8A9F552-4858-45D4-A576-246144AF63E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbarimMUD.Import", "AbarimMUD.Import\AbarimMUD.Import.csproj", "{C8A9F552-4858-45D4-A576-246144AF63E2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

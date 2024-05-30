@@ -505,5 +505,15 @@ namespace AbarimMUD.ImportAre
 
 			return dice.Value.ToRandomRange();
 		}
+
+		public static string RemoveTrailingTilda(this string s)
+		{
+			if (string.IsNullOrEmpty(s) || !s.EndsWith("~"))
+			{
+				return s;
+			}
+
+			return s.Substring(0, s.Length - 1);
+		}
 	}
 }

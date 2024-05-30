@@ -9,7 +9,12 @@ namespace AbarimMUD.ImportAre
 {
 	internal class Importer : BaseImporter
 	{
-		public SourceType SourceType { get; set; }
+		public ImporterSettings Settings { get; private set; }
+
+		public Importer(ImporterSettings settings)
+		{
+			Settings = settings ?? throw new ArgumentNullException(nameof(settings));
+		}
 
 		private void ProcessArea(Stream stream, Area area)
 		{
@@ -86,7 +91,7 @@ namespace AbarimMUD.ImportAre
 					Description = stream.ReadDikuString(),
 				};
 
-				if (SourceType == SourceType.ROM)
+				if (Settings.SourceType == SourceType.ROM)
 				{
 					mobile.Race = stream.ReadEnumFromDikuString<Race>();
 				}
@@ -98,10 +103,11 @@ namespace AbarimMUD.ImportAre
 
 				mobile.Alignment = stream.ReadNumber().ToAlignment();
 
-				if (SourceType == SourceType.ROM)
+				if (Settings.SourceType == SourceType.ROM)
 				{
 					var group = stream.ReadNumber();
-				} else
+				}
+				else
 				{
 					var c = stream.ReadSpacedLetter();
 				}
@@ -110,7 +116,7 @@ namespace AbarimMUD.ImportAre
 				var hitRoll = stream.ReadNumber();
 
 				int ac = 0;
-				if (SourceType == SourceType.Envy)
+				if (Settings.SourceType == SourceType.Envy)
 				{
 					ac = stream.ReadNumber();
 				}
@@ -118,7 +124,7 @@ namespace AbarimMUD.ImportAre
 				var hitDice = stream.ReadDice();
 				mobile.HitpointsRange = stream.ToRandomRange(hitDice);
 
-				if (SourceType == SourceType.ROM)
+				if (Settings.SourceType == SourceType.ROM)
 				{
 					var manaDice = stream.ReadDice();
 					mobile.ManaRange = stream.ToRandomRange(manaDice);
@@ -134,7 +140,7 @@ namespace AbarimMUD.ImportAre
 				var vulnerableFlags = OldResistanceFlags.None;
 				var formsFlags = FormFlags.None;
 				var partsFlags = PartFlags.None;
-				if (SourceType == SourceType.ROM)
+				if (Settings.SourceType == SourceType.ROM)
 				{
 					attackType = stream.ReadEnumFromWord<AttackType>();
 					var acPierce = stream.ReadNumber();
@@ -156,7 +162,8 @@ namespace AbarimMUD.ImportAre
 
 					mobile.Size = stream.ReadEnumFromWord<MobileSize>();
 					var material = stream.ReadEnumFromWord<Material>();
-				} else if (SourceType == SourceType.Envy)
+				}
+				else if (Settings.SourceType == SourceType.Envy)
 				{
 					mobile.Wealth = stream.ReadNumber();
 					var xp = stream.ReadNumber();
@@ -294,7 +301,7 @@ namespace AbarimMUD.ImportAre
 				area.Objects.Add(obj);
 				AddObjectToCache(vnum, obj);
 
-				if (SourceType == SourceType.ROM)
+				if (Settings.SourceType == SourceType.ROM)
 				{
 
 					switch (obj.ItemType)
@@ -384,7 +391,7 @@ namespace AbarimMUD.ImportAre
 				obj.Weight = stream.ReadNumber();
 				obj.Cost = stream.ReadNumber();
 
-				if (SourceType == SourceType.Envy)
+				if (Settings.SourceType == SourceType.Envy)
 				{
 					var costPerDay = stream.ReadNumber();
 				}
@@ -472,7 +479,7 @@ namespace AbarimMUD.ImportAre
 					{
 						var n = stream.ReadFlag();
 					}
-					else if (c == 'R' || c == 'D' || c == 'O' || c == 'X' || c == 'M' || 
+					else if (c == 'R' || c == 'D' || c == 'O' || c == 'X' || c == 'M' ||
 						c == 'Y' || c == 'J' || c == 'G' || c == 'K' || c == 'V' || c == 'P' || c == 'd')
 					{
 						var k = 5;
@@ -631,7 +638,7 @@ namespace AbarimMUD.ImportAre
 						reset.Value3 = stream.ReadNumber();
 						reset.Value4 = stream.ReadNumber();
 
-						if (SourceType == SourceType.ROM)
+						if (Settings.SourceType == SourceType.ROM)
 						{
 							reset.Value5 = stream.ReadNumber();
 						}
@@ -652,7 +659,7 @@ namespace AbarimMUD.ImportAre
 						reset.Value3 = stream.ReadNumber();
 						reset.Value4 = stream.ReadNumber();
 
-						if (SourceType == SourceType.ROM)
+						if (Settings.SourceType == SourceType.ROM)
 						{
 							reset.Value5 = stream.ReadNumber();
 						}
@@ -871,28 +878,66 @@ namespace AbarimMUD.ImportAre
 
 					if (type.StartsWith("AREA") && type.EndsWith("~"))
 					{
-						var credits = type.Substring(4);
-						credits = credits.Substring(0, credits.Length - 1).Trim();
+						var credits = type.Substring(4).RemoveTrailingTilda().Trim();
 						area = new Area
 						{
 							Credits = credits
 						};
 						area.InitializeLists();
-						
+
 						if (!area.ParseLevelsBuilds())
 						{
-							throw new Exception($"Couldn't parse levels/builders info from {credits}");
+							Log($"WARNING: Couldn't parse levels/builders info from '{credits}'");
+						} else
+						{
+							// Area name should be after buildes
+							var i = credits.IndexOf(area.Builders);
+							credits = credits.Substring(i + area.Builders.Length + 1);
 						}
 
-						// Determine area name
-						var i = credits.IndexOf(area.Builders);
-						credits = credits.Substring(i + area.Builders.Length + 1);
 						area.Id = area.Name = credits.Trim();
 
 						continue;
-					} else if (type.StartsWith("RECALL"))
+					}
+					else if (type.StartsWith("RECALL"))
 					{
 						Log($"Skipping '{type}'");
+						continue;
+					}
+					else if (type.StartsWith("VERSION"))
+					{
+						var data = type.Substring(8);
+						if (string.IsNullOrWhiteSpace(data))
+						{
+							stream.RaiseError($"No area version specified");
+						}
+
+						area.Version = int.Parse(data.Trim());
+						Log($"Area version: {area.Version}");
+						continue;
+					}
+					else if(type.StartsWith("AUTHOR"))
+					{
+						var data = type.Substring(7);
+						if (string.IsNullOrWhiteSpace(data))
+						{
+							stream.RaiseError($"No area author specified");
+						}
+
+						area.Credits = data.RemoveTrailingTilda().Trim();
+						Log($"Area Author: {area.Credits}");
+						continue;
+					}
+					else if(type.StartsWith("RESETMSG"))
+					{
+						var data = type.Substring(9);
+						if (string.IsNullOrWhiteSpace(data))
+						{
+							stream.RaiseError($"No area author specified");
+						}
+
+						area.ResetMessage = data.RemoveTrailingTilda().Trim();
+						Log($"Area Reset Message: {area.ResetMessage}");
 						continue;
 					}
 
@@ -929,6 +974,21 @@ namespace AbarimMUD.ImportAre
 						case "SOCIALS":
 							ProcessSocials(db, stream);
 							goto finish;
+						case "RANGES":
+							{
+								var r1 = stream.ReadNumber();
+								var r2 = stream.ReadNumber();
+								var r3 = stream.ReadNumber();
+								var r4 = stream.ReadNumber();
+
+								Log($"Parsed levels range: {r1} {r2} {r3} {r4}");
+								area.MinimumLevel = r1.ToString();
+								area.MaximumLevel = r2.ToString();
+
+								// Skip $
+								var c = stream.ReadSpacedLetter();
+							}
+							break;
 						case "$":
 							if (area != null)
 							{
@@ -948,18 +1008,15 @@ namespace AbarimMUD.ImportAre
 
 		public void Process()
 		{
-			SourceType = SourceType.Envy;
-			var inputDir = Path.Combine(@"D:\Projects\chaos\envy22\area");
-			var areaFiles = Directory.EnumerateFiles(inputDir, "*.are", SearchOption.AllDirectories).ToArray();
-
-			var outputDir = Path.Combine(ImportUtility.ExecutingAssemblyDirectory, "../../../../Data");
-			var areasFolder = Path.Combine(outputDir, "areas");
+			var areasFolder = Path.Combine(Settings.OutputFolder, "areas");
 			if (Directory.Exists(areasFolder))
 			{
 				Directory.Delete(areasFolder, true);
 			}
 
-			InitializeDb(outputDir);
+			InitializeDb(Settings.OutputFolder);
+
+			var areaFiles = Directory.EnumerateFiles(Settings.InputFolder, "*.are", SearchOption.AllDirectories).ToArray();
 			foreach (var areaFile in areaFiles)
 			{
 				var fn = Path.GetFileName(areaFile);

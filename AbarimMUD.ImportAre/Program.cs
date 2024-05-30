@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AbarimMUD.Import;
+using System;
+using System.IO;
 
 namespace AbarimMUD.ImportAre
 {
@@ -8,7 +10,9 @@ namespace AbarimMUD.ImportAre
 		{
 			try
 			{
-				var importer = new Importer();
+				var outputDir = Path.Combine(ImportUtility.ExecutingAssemblyDirectory, "../../../../Data");
+				var settings = new ImporterSettings(@"D:\Projects\chaos\envy22\area", outputDir, SourceType.Envy);
+				var importer = new Importer(settings);
 				importer.Process();
 			}
 			catch (Exception ex)
