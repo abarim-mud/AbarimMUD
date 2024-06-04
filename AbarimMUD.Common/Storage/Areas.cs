@@ -1,24 +1,23 @@
 ﻿using AbarimMUD.Data;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Storage
 {
-	public class Areas : CRUD<Area>
+	public class Areas : MultipleFilesStorageString<Area>
 	{
+		private const string AreasFolder = "areas";
+
 		private bool _roomsDirty = true, _mobilesDirty = true, _objectsDirty = true;
-		private int _maxRoomsId = int.MinValue, _maxMobilesId = int.MinValue, _maxObjectsId = int.MinValue;
+		private int _nextRoomId = 0, _nextMobileId = 0, _nextObjectId = 0;
 		private readonly Dictionary<int, Room> _allRoomsCache = new Dictionary<int, Room>();
 		private readonly Dictionary<int, Mobile> _allMobilesCache = new Dictionary<int, Mobile>();
 		private readonly Dictionary<int, GameObject> _allObjectsCache = new Dictionary<int, GameObject>();
 
 		private class RoomExitConverter : JsonConverter<RoomExit>
 		{
-			public Area Area { get; set; }
-
 			public override RoomExit Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 			{
 				var vnum = reader.GetInt32();
@@ -47,8 +46,9 @@ namespace AbarimMUD.Storage
 		{
 			get
 			{
-				UpdateAllRooms();
-				return _maxRoomsId + 1;
+				var result = _nextRoomId;
+				++_nextRoomId;
+				return result;
 			}
 		}
 
@@ -56,8 +56,9 @@ namespace AbarimMUD.Storage
 		{
 			get
 			{
-				UpdateAllMobiles();
-				return _maxMobilesId + 1;
+				var result = _nextMobileId;
+				++_nextMobileId;
+				return result;
 			}
 		}
 
@@ -65,50 +66,33 @@ namespace AbarimMUD.Storage
 		{
 			get
 			{
-				UpdateAllObjects();
-				return _maxObjectsId + 1;
+				var result = _nextObjectId;
+				++_nextObjectId;
+				return result;
 			}
 		}
 
-		private string Folder => Path.Combine(BaseFolder, SubfolderName);
-
-		internal Areas(DataContextSettings context) : base(context)
+		internal Areas() : base(a => a.Name, AreasFolder)
 		{
-			Load();
 		}
 
-		private void Load()
+		public override Area LoadEntity(string filePath)
 		{
-			var areasFolder = Folder;
-			if (!Directory.Exists(areasFolder))
-			{
-				return;
-			}
+			var area = base.LoadEntity(filePath);
 
-			var files = Directory.GetFiles(areasFolder, "*.json");
-			foreach (var path in files)
-			{
-				Log($"Loading {path}");
+			area.RoomsChanged += (s, a) => _roomsDirty = true;
+			area.MobilesChanged += (s, a) => _mobilesDirty = true;
+			area.ObjectsChanged += (s, a) => _objectsDirty = true;
 
-				var data = File.ReadAllText(path);
-				var options = Utility.CreateDefaultOptions();
-				options.Converters.Add(new RoomExitConverter());
-				var area = JsonSerializer.Deserialize<Area>(data, options);
-				AddToCache(area);
-
-				area.RoomsChanged += (s, a) => _roomsDirty = true;
-				area.MobilesChanged += (s, a) => _mobilesDirty = true;
-				area.ObjectsChanged += (s, a) => _objectsDirty = true;
-			}
+			return area;
 		}
 
-		internal override void SetReferences(DataContext db)
+		protected internal override void SetReferences()
 		{
-			base.SetReferences(db);
+			base.SetReferences();
 
-			foreach (var pair in _cache)
+			foreach (var area in this)
 			{
-				var area = pair.Value;
 				foreach (var room in area.Rooms)
 				{
 					foreach (var pair2 in room.Exits)
@@ -129,24 +113,18 @@ namespace AbarimMUD.Storage
 			}
 		}
 
-		internal override void Save(Area area)
+		protected override JsonSerializerOptions CreateJsonOptions()
 		{
-			var areasFolder = Folder;
-			if (!Directory.Exists(areasFolder))
-			{
-				Directory.CreateDirectory(areasFolder);
-			}
+			var result = base.CreateJsonOptions();
+			var converter = new RoomExitConverter();
+			result.Converters.Add(converter);
 
-			var options = Utility.CreateDefaultOptions();
-			var converter = new RoomExitConverter
-			{
-				Area = area
-			};
-			options.Converters.Add(converter);
-			var data = JsonSerializer.Serialize(area, options);
+			return result;
+		}
 
-			var accountPath = Path.Combine(areasFolder, $"{area.Id}.json");
-			File.WriteAllText(accountPath, data);
+		protected override void InternalLoad()
+		{
+			base.InternalLoad();
 		}
 
 		private void UpdateAllRooms()
@@ -157,15 +135,15 @@ namespace AbarimMUD.Storage
 			}
 
 			_allRoomsCache.Clear();
-			_maxRoomsId = int.MinValue;
+			_nextRoomId = int.MinValue;
 
 			foreach (var area in All)
 			{
 				foreach (var room in area.Rooms)
 				{
-					if (room.Id > _maxRoomsId)
+					if (room.Id > _nextRoomId)
 					{
-						_maxRoomsId = room.Id;
+						_nextRoomId = room.Id;
 					}
 
 					_allRoomsCache[room.Id] = room;
@@ -183,15 +161,15 @@ namespace AbarimMUD.Storage
 			}
 
 			_allMobilesCache.Clear();
-			_maxMobilesId = int.MinValue;
+			_nextMobileId = int.MinValue;
 
 			foreach (var area in All)
 			{
 				foreach (var mobile in area.Mobiles)
 				{
-					if (mobile.Id > _maxMobilesId)
+					if (mobile.Id > _nextMobileId)
 					{
-						_maxMobilesId = mobile.Id;
+						_nextMobileId = mobile.Id;
 					}
 
 					_allMobilesCache[mobile.Id] = mobile;
@@ -209,15 +187,15 @@ namespace AbarimMUD.Storage
 			}
 
 			_allObjectsCache.Clear();
-			_maxObjectsId = int.MinValue;
+			_nextObjectId = int.MinValue;
 
 			foreach (var area in All)
 			{
 				foreach (var obj in area.Objects)
 				{
-					if (obj.Id > _maxObjectsId)
+					if (obj.Id > _nextObjectId)
 					{
-						_maxObjectsId = obj.Id;
+						_nextObjectId = obj.Id;
 					}
 
 					_allObjectsCache[obj.Id] = obj;

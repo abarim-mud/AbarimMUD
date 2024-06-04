@@ -1,4 +1,6 @@
-﻿using System.Text.Json.Serialization;
+﻿using AbarimMUD.Storage;
+using System.Linq;
+using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
 {
@@ -10,17 +12,14 @@ namespace AbarimMUD.Data
 		Owner
 	}
 
-	public sealed class Character: Entity
+	public sealed class Character : StoredInFile
 	{
+		public static readonly MultipleFilesStorageString<Character> Storage = new Characters();
+
 		[JsonIgnore]
 		public Account Account { get; set; }
 
-		[JsonIgnore]
-		public string Name
-		{
-			get => Id;
-			set => Id = value;
-		}
+		public string Name { get; set; }
 
 		public string GameClassName { get; set; }
 
@@ -51,6 +50,19 @@ namespace AbarimMUD.Data
 			CurrentHP = 200;
 			CurrentIP = 100;
 			CurrentMV = 250;
+		}
+
+		public void Create() => Storage.Create(this);
+		public void Save() => Storage.Save(this);
+
+		public static Character GetCharacterByName(string name) => Storage.GetByKey(name);
+		public static Character EnsureCharacterByName(string name) => Storage.EnsureByKey(name);
+		public static Character LookupCharacter(string name) => Storage.Lookup(name);
+		public static Character[] GetCharactersByAccountName(string name)
+		{
+			var result = (from c in Storage where c.Account.Name.ToLower() == name.ToLower() select c).ToArray();
+
+			return result;
 		}
 	}
 }

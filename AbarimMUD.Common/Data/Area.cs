@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AbarimMUD.Storage;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
@@ -13,8 +14,10 @@ namespace AbarimMUD.Data
 		ResetAlways
 	}
 
-	public class Area : Entity
+	public class Area : StoredInFile
 	{
+		public static readonly Areas Storage = new Areas();
+
 		private ObservableCollection<Room> _rooms;
 		private ObservableCollection<Mobile> _mobiles;
 		private ObservableCollection<GameObject> _objects;
@@ -122,10 +125,6 @@ namespace AbarimMUD.Data
 
 		public Area()
 		{
-		}
-
-		public void InitializeLists()
-		{
 			Rooms = new ObservableCollection<Room>();
 			Mobiles = new ObservableCollection<Mobile>();
 			Objects = new ObservableCollection<GameObject>();
@@ -158,6 +157,23 @@ namespace AbarimMUD.Data
 			}
 		}
 
+		public void Create() => Storage.Create(this);
+		public void Save() => Storage.Save(this);
+
 		public override string ToString() => $"{MinimumLevel}-{MaximumLevel} {Builders} {Name}";
+
+		public static int NextRoomId => Storage.NewRoomId;
+		public static int NextMobileId => Storage.NewMobileId;
+		public static int NextObjectId => Storage.NewObjectId;
+
+		public static Area GetAreaByName(string name) => Storage.GetByKey(name);
+		public static Area EnsureAreaByName(string name) => Storage.EnsureByKey(name);
+		public static Area LookupArea(string name) => Storage.Lookup(name);
+		public static Room GetRoomById(int id) => Storage.GetRoomById(id);
+		public static Room EnsureRoomById(int id) => Storage.EnsureRoomById(id);
+		public static Mobile GetMobileById(int id) => Storage.GetMobileById(id);
+		public static Mobile EnsureMobileById(int id) => Storage.EnsureMobileById(id);
+		public static GameObject GetObjectById(int id) => Storage.GetObjectById(id);
+		public static GameObject EnsureObjectById(int id) => Storage.EnsureObjectById(id);
 	}
 }

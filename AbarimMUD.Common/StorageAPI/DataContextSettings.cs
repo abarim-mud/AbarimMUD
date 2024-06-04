@@ -1,17 +1,19 @@
 ﻿using System;
+using System.Text.Json.Serialization;
+using System.Text.Json;
+using System.IO;
 
 namespace AbarimMUD.Storage
 {
 	internal class DataContextSettings
 	{
-		private readonly string _folder;
 		private readonly Action<string> _log;
 
-		public string Folder => _folder;
+		public string Folder { get; private set; }
 
 		public DataContextSettings(string folder, Action<string> log)
 		{
-			_folder = folder;
+			Folder = folder;
 			_log = log;
 		}
 

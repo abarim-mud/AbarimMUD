@@ -1,5 +1,4 @@
 ﻿using System.Text;
-using AbarimMUD.Data;
 
 namespace AbarimMUD.Commands.Player
 {
@@ -15,7 +14,7 @@ namespace AbarimMUD.Commands.Player
 			var name = area.Name;
 			if (context.IsStaff)
 			{
-				name += string.Format(" (#{0})", area.Id);
+				name += string.Format(" (#{0})", area.Name);
 			}
 
 			sb.AddTextLine(name);

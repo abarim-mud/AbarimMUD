@@ -7,7 +7,6 @@ namespace AbarimMUD.Data
 		[JsonIgnore]
 		public Area Area { get; set; }
 
-		[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 		public int Id { get; set; }
 	}
 }

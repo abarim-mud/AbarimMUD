@@ -8,87 +8,98 @@ namespace AbarimMUD.Common.Tests
 {
 	public class DataContextTests
 	{
-		[SetUp]
-		public void Setup()
+		private static void ResetData()
 		{
-		}
-
-		private static DataContext CreateDatabase(bool delete)
-		{
-			if (delete && Directory.Exists("Data"))
+			if (Directory.Exists("Data"))
 			{
 				Directory.Delete("Data", true);
 			}
 
-			return new DataContext("Data", s => Trace.WriteLine(s));
+			DataContext.Initialize("Data", s => Trace.WriteLine(s));
 		}
 
 		[Test]
 		public void TestAccounts()
 		{
-			var db = CreateDatabase(true);
+			ResetData();
+
+			DataContext.Register(Account.Storage);
+			DataContext.Register(Character.Storage);
+			DataContext.Load();
+
 			var newAcc = new Account
 			{
 				Name = "test",
 				PasswordHash = "1234"
 			};
-			db.Accounts.Update(newAcc);
+			newAcc.Create();
 
 			var newChar = new Character
 			{
 				Account = newAcc,
 				Name = "char1"
 			};
-			db.Characters.Update(newChar);
+			newChar.Create();
 
 			var newChar2 = new Character
 			{
 				Account = newAcc,
 				Name = "char2"
 			};
-			db.Characters.Update(newChar2);
+			newChar2.Create();
 
-			var accGet = db.Accounts.GetById(newAcc.Name);
+			var accGet = Account.GetAccountByName(newAcc.Name);
 			Assert.That(accGet, Is.Not.Null);
 			Assert.That(accGet.Name, Is.EqualTo("test"));
 			Assert.That(accGet.PasswordHash, Is.EqualTo("1234"));
 
-			var charsGet = db.Characters.GetByAccountName("test");
+			var charsGet = Character.GetCharactersByAccountName(newAcc.Name);
 			Assert.That(charsGet, Is.Not.Null);
 			Assert.That(charsGet.Length, Is.EqualTo(2));
 			Assert.That(charsGet[0].Name, Is.EqualTo("char1"));
 			Assert.That(charsGet[1].Name, Is.EqualTo("char2"));
 
-			var db2 = CreateDatabase(false);
-			accGet = db2.Accounts.GetById(newAcc.Name);
+			DataContext.Load();
+
+			accGet = Account.GetAccountByName(newAcc.Name);
 			Assert.That(accGet, Is.Not.Null);
 			Assert.That(accGet.Name, Is.EqualTo("test"));
 			Assert.That(accGet.PasswordHash, Is.EqualTo("1234"));
 
-			charsGet = db2.Characters.GetByAccountName("test");
+			charsGet = Character.GetCharactersByAccountName(newAcc.Name);
 			Assert.That(charsGet, Is.Not.Null);
 			Assert.That(charsGet.Length, Is.EqualTo(2));
 			Assert.That(charsGet[0].Name, Is.EqualTo("char1"));
 			Assert.That(charsGet[1].Name, Is.EqualTo("char2"));
+
+			DataContext.Unregister(Account.Storage);
+			DataContext.Unregister(Character.Storage);
 		}
 
 		[Test]
 		public void TestAreas()
 		{
-			var db = CreateDatabase(true);
+			ResetData();
+
+			DataContext.Register(Area.Storage);
+			DataContext.Load();
+
 			var area = new Area
 			{
 				Name = "test",
+				Filename = "test.json"
 			};
 
 			var room = new Room
 			{
+				Id = Area.NextRoomId,
 				Name = "Test Room"
 			};
 			area.Rooms.Add(room);
 
 			var room2 = new Room
 			{
+				Id = Area.NextRoomId,
 				Name = "Test Room2"
 			};
 			area.Rooms.Add(room2);
@@ -105,14 +116,16 @@ namespace AbarimMUD.Common.Tests
 
 			var mobile = new Mobile
 			{
+				Id = Area.NextMobileId,
 				Name = "Test Mobile"
 			};
 			area.Mobiles.Add(mobile);
+			area.Create();
 
-			db.Areas.Update(area);
+			// Reload
+			DataContext.Load();
 
-			var db2 = CreateDatabase(false);
-			area = db2.Areas.GetById("test");
+			area = Area.GetAreaByName("test");
 			Assert.That(area, Is.Not.Null);
 			Assert.That(area.Name, Is.EqualTo("test"));
 			Assert.That(area.Rooms.Count, Is.EqualTo(2));
@@ -126,6 +139,8 @@ namespace AbarimMUD.Common.Tests
 			Assert.That(area.Rooms[1].Exits[Direction.Down].TargetRoom, Is.EqualTo(area.Rooms[0]));
 			Assert.That(area.Mobiles.Count, Is.EqualTo(1));
 			Assert.That(area.Mobiles[0].Name, Is.EqualTo("Test Mobile"));
+
+			DataContext.Unregister(Area.Storage);
 		}
 	}
 }

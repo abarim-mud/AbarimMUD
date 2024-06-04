@@ -41,7 +41,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 		{
 			var sb = new StringBuilder();
 
-			var areas = (from a in Database.Areas orderby AreaNumericValue(a) select a).ToList();
+			var areas = (from a in Area.Storage orderby AreaNumericValue(a) select a).ToList();
 
 			foreach (var area in areas)
 			{

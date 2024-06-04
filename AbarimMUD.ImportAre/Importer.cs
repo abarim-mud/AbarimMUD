@@ -792,14 +792,14 @@ namespace AbarimMUD.ImportAre
 					{
 						break;
 					}
-					social.CharNoArg = s;
+					social.CharNoArgument = s;
 
 					s = string.Empty;
 					if (!stream.ReadSocialString(ref s))
 					{
 						break;
 					}
-					social.OthersNoArg = s;
+					social.OthersNoArgument = s;
 
 					s = string.Empty;
 					if (!stream.ReadSocialString(ref s))
@@ -820,14 +820,14 @@ namespace AbarimMUD.ImportAre
 					{
 						break;
 					}
-					social.VictFound = s;
+					social.VictimFound = s;
 
 					s = string.Empty;
 					if (!stream.ReadSocialString(ref s))
 					{
 						break;
 					}
-					social.CharNotFound = s;
+					social.CharSelf = s;
 
 					s = string.Empty;
 					if (!stream.ReadSocialString(ref s))
@@ -841,7 +841,7 @@ namespace AbarimMUD.ImportAre
 					{
 						break;
 					}
-					social.OthersAuto = s;
+					social.OthersSelf = s;
 				}
 				while (false);
 

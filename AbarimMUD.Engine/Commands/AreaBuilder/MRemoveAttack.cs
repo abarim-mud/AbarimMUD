@@ -1,4 +1,6 @@
-﻿namespace AbarimMUD.Commands.AreaBuilder
+﻿using AbarimMUD.Data;
+
+namespace AbarimMUD.Commands.AreaBuilder
 {
 	public class MRemoveAttack : AreaBuilderCommand
 	{
@@ -17,7 +19,7 @@
 				return;
 			}
 
-			var mobile = Database.GetMobileById(id);
+			var mobile = Area.GetMobileById(id);
 			if (mobile == null)
 			{
 				context.Send($"Unable to find mobile info with id {id}");
@@ -32,7 +34,7 @@
 
 			var attack = mobile.Attacks[attackId];
 			mobile.Attacks.RemoveAt(attackId);
-			Database.Update(mobile);
+			mobile.Area.Save();
 			context.Send($"Removed #{attackId} attack ({attack}) from {mobile.ShortDescription} (#{mobile.Id})");
 		}
 	}

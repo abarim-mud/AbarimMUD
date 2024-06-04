@@ -31,7 +31,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 				return;
 			}
 
-			Database.DisconnectRoom(sourceRoom, exitType);
+			sourceRoom.DisconnectRoom(exitType);
 			if (roomExit.TargetRoom != null)
 			{
 				context.Send(string.Format("Cleared the link from the room {0} exit to {1} (#{2})",

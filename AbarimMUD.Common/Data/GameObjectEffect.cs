@@ -1,6 +1,6 @@
 ﻿namespace AbarimMUD.Data
 {
-	public class GameObjectEffect : Entity
+	public class GameObjectEffect
 	{
 		public GameObject GameObject { get; set; }
 

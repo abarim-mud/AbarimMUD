@@ -14,7 +14,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 				return;
 			}
 
-			var mobile = Database.GetMobileById(id);
+			var mobile = Area.GetMobileById(id);
 			if (mobile == null)
 			{
 				context.Send(string.Format("Unable to find mobile info with vnum {0}", id));

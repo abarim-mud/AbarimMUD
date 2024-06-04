@@ -1,60 +1,40 @@
 ﻿using AbarimMUD.Data;
 using System.IO;
-using System.Text.Json;
+using System.Linq;
 
 namespace AbarimMUD.Storage
 {
-	internal class Accounts : CRUD<Account>
+	internal class Accounts : MultipleFilesStorageString<Account>
 	{
-		private const string AccountFileName = "account.json";
 		internal const string SubfolderName = "accounts";
+		private const string AccountFileName = "account.json";
 
-		internal string Folder => Path.Combine(BaseFolder, SubfolderName);
-
-
-		public Accounts(DataContextSettings context) : base(context)
+		public Accounts() : base(a => a.Name, SubfolderName)
 		{
-			Load();
 		}
 
-		private void Load()
+		protected override string[] ListFiles()
 		{
 			if (!Directory.Exists(Folder))
 			{
-				return;
+				Log($"WARNING: Folder '{Folder}' doesnt exist.");
+				return new string[0];
 			}
 
-			var subfolders = Directory.GetDirectories(Folder);
-			foreach (var subfolder in subfolders)
-			{
-				var accountPath = Path.Combine(subfolder, AccountFileName);
-				if (!File.Exists(accountPath))
-				{
-					Log($"WARNING: Subfolder {subfolder} exists, but there's no {AccountFileName}");
-					continue;
-				}
-
-				Log($"Loading {accountPath}");
-
-				var data = File.ReadAllText(accountPath);
-				var account = JsonSerializer.Deserialize<Account>(data);
-				AddToCache(account);
-			}
+			return Directory.EnumerateFiles(Folder, AccountFileName, SearchOption.AllDirectories).ToArray();
 		}
 
-		internal override void Save(Account entity)
+		protected override string BuildPath(Account entity)
 		{
-			var accountFolder = Path.Combine(Folder, entity.Name);
-			if (!Directory.Exists(accountFolder))
-			{
-				Directory.CreateDirectory(accountFolder);
-			}
+			var result = Folder;
 
-			var options = Utility.CreateDefaultOptions();
-			var data = JsonSerializer.Serialize(entity, options);
+			// Add first letter of the account name in the path
+			result = Path.Combine(result, entity.Name[0].ToString());
 
-			var accountPath = Path.Combine(accountFolder, AccountFileName);
-			File.WriteAllText(accountPath, data);
+			// Add account name in the path
+			result = Path.Combine(result, entity.Name);
+
+			return Path.Combine(result, AccountFileName);
 		}
 	}
 }

@@ -25,7 +25,7 @@ namespace AbarimMUD
 		public override void OnSet()
 		{
 			Send(string.Format("Account {0} is already connected. Would you like to reconnect(Y/n)?",
-				_previousSession.Account.Id));
+				_previousSession.Account.Name));
 		}
 
 		public override void Process(string data)

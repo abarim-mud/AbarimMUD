@@ -1,13 +1,10 @@
 ﻿using AbarimMUD.Data;
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text.Json;
 
 namespace AbarimMUD.Storage
 {
-	public class Characters : CRUD<Character>
+	public class Characters : MultipleFilesStorageString<Character>
 	{
 		private class CharacterRecord
 		{
@@ -22,20 +19,17 @@ namespace AbarimMUD.Storage
 		}
 
 
+		private const string CharactersSubfolder = "characters";
+
 		private readonly List<CharacterRecord> _tempCache = new List<CharacterRecord>();
 
-		private const string CharacterFileName = "character.json";
-
-		private string AccountsFolder => Path.Combine(BaseFolder, Accounts.SubfolderName);
-
-		internal Characters(DataContextSettings context) : base(context)
+		internal Characters() : base(c => c.Name, Accounts.SubfolderName)
 		{
-			Load();
 		}
 
-		private void Load()
+		protected override void InternalLoad()
 		{
-			var accountsFolder = AccountsFolder;
+			var accountsFolder = Folder;
 			if (!Directory.Exists(accountsFolder))
 			{
 				return;
@@ -44,73 +38,63 @@ namespace AbarimMUD.Storage
 			var subfolders = Directory.GetDirectories(accountsFolder);
 			foreach (var subfolder in subfolders)
 			{
-				var accountName = Path.GetFileName(subfolder);
-				Log($"Loading characters of account {accountName}, folder `{subfolder}`");
-
 				var subfolders2 = Directory.GetDirectories(subfolder);
 				foreach (var subfolder2 in subfolders2)
 				{
-					var characterPath = Path.Combine(subfolder2, CharacterFileName);
-					if (!File.Exists(characterPath))
+					var accountName = Path.GetFileName(subfolder2);
+					Log($"Loading characters of account {accountName}, folder `{subfolder2}`");
+
+					var charactersFolder = Path.Combine(subfolder2, CharactersSubfolder);
+					if (!Directory.Exists(charactersFolder))
 					{
-						Log($"WARNING: Subfolder {subfolder} exists, but there's no {CharacterFileName}");
+						Log($"WARNING: Subfolder {subfolder} exists, but there's no {CharactersSubfolder}");
 						continue;
 					}
 
-					Log($"Loading {characterPath}");
+					Log($"Loading {charactersFolder}");
 
-					var data = File.ReadAllText(characterPath);
-					var options = Utility.CreateDefaultOptions();
-					var character = JsonSerializer.Deserialize<Character>(data, options);
-
-					var record = new CharacterRecord(character, accountName);
-					_tempCache.Add(record);
+					var characterFiles = Directory.GetFiles(charactersFolder);
+					foreach (var characterFile in characterFiles)
+					{
+						var character = LoadEntity(characterFile);
+						AddToCache(character);
+						var record = new CharacterRecord(character, accountName);
+						_tempCache.Add(record);
+					}
 				}
 			}
 		}
 
-		internal override void SetReferences(DataContext db)
+		protected override string BuildPath(Character entity)
 		{
-			base.SetReferences(db);
+			var result = Folder;
 
-			foreach(var record in _tempCache)
+			// Add first letter of the account name in the path
+			result = Path.Combine(result, entity.Account.Name[0].ToString());
+
+			// Add account name in the path
+			result = Path.Combine(result, entity.Account.Name);
+
+			// Add character subfolder
+			result = Path.Combine(result, CharactersSubfolder);
+
+			// Add character name
+			result = Path.Combine(result, entity.Name);
+			result = Path.ChangeExtension(result, "json");
+
+			return result;
+		}
+
+		protected internal override void SetReferences()
+		{
+			base.SetReferences();
+
+			foreach (var record in _tempCache)
 			{
-				record.Character.Account = db.Accounts.EnsureById(record.AccountName);
-				AddToCache(record.Character);
+				record.Character.Account = Account.EnsureAccountByName(record.AccountName);
 			}
 
 			_tempCache.Clear();
-		}
-
-		public Character[] GetByAccountName(string accountName)
-		{
-			return (from pair in _cache where pair.Value.Account.Name == accountName select pair.Value).ToArray();
-		}
-
-		internal override void Save(Character entity)
-		{
-			if (entity.Account == null || string.IsNullOrEmpty(entity.Account.Name))
-			{
-				throw new Exception($"Character {entity.Name} account isn't set.");
-			}
-
-			var accountFolder = Path.Combine(Path.Combine(BaseFolder, Accounts.SubfolderName), entity.Account.Name);
-			if (!Directory.Exists(accountFolder))
-			{
-				throw new Exception($"Account folder '{accountFolder}' doesnt exist");
-			}
-
-			var characterFolder = Path.Combine(accountFolder, entity.Name);
-			if (!Directory.Exists(characterFolder))
-			{
-				Directory.CreateDirectory(characterFolder);
-			}
-
-			var options = Utility.CreateDefaultOptions();
-			var data = JsonSerializer.Serialize(entity, options);
-
-			var charPath = Path.Combine(characterFolder, CharacterFileName);
-			File.WriteAllText(charPath, data);
 		}
 	}
 }

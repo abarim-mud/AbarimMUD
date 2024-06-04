@@ -91,7 +91,7 @@ namespace AbarimMUD
 				return;
 			}
 
-			if (Database.Characters.GetById(name) != null)
+			if (Character.GetCharacterByName(name) != null)
 			{
 				SendTextLine("This name is already taken.");
 				SendCharacterNamePrompt();
@@ -125,8 +125,8 @@ namespace AbarimMUD
 		{
 			data = data.ToLower().Trim();
 			if (string.IsNullOrEmpty(data) &&
-			    data != "m" &&
-			    data != "f")
+				data != "m" &&
+				data != "f")
 			{
 				SendTextLine("Invalid gender.");
 				SendGenderPrompt();
@@ -143,8 +143,8 @@ namespace AbarimMUD
 		{
 			data = data.ToLower().Trim();
 			if (string.IsNullOrEmpty(data) &&
-			    data != "y" &&
-			    data != "n")
+				data != "y" &&
+				data != "n")
 			{
 				SendTextLine("Invalid choice.");
 				SendConfirmPrompt();
@@ -156,14 +156,14 @@ namespace AbarimMUD
 				_character.CurrentRoomId = 0;
 
 				// First character becomes owner
-				if (Database.CalculateCharactersAmount() == 0)
+				if (Character.Storage.Count == 0)
 				{
 					_character.Role = Role.Owner;
 					SendTextLine("This character is first in the game. Hence it will become the owner.");
 				}
 
 				_character.Account = Session.Account;
-				Database.Characters.Update(_character);
+				_character.Save();
 				SendTextLine("Character is saved.");
 			}
 

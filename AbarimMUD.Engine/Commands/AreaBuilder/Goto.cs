@@ -1,4 +1,5 @@
 ﻿using AbarimMUD.Commands.Player;
+using AbarimMUD.Data;
 
 namespace AbarimMUD.Commands.AreaBuilder
 {
@@ -13,7 +14,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 				return;
 			}
 
-			var newRoom = Database.GetRoomById(id);
+			var newRoom = Area.GetRoomById(id);
 			if (newRoom == null)
 			{
 				context.Send(string.Format("Unable to find room with id {0}", id));

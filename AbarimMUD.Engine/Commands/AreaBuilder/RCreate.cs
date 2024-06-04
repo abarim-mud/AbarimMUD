@@ -10,20 +10,16 @@ namespace AbarimMUD.Commands.AreaBuilder
 			// Create new room
 			var newRoom = new Room
 			{
-				Id = Database.NewRoomId,
+				Id = Area.NextRoomId,
 				Name = "Empty",
 				Description = "Empty"
 			};
-			newRoom.InitializeLists();
 
 			var area = context.CurrentArea;
 			area.Rooms.Add(newRoom);
-			Database.Update(newRoom);
+			area.Save();
 
-			context.SendTextLine(string.Format("New room (#{0}) had been created for the area {1} (#{2})",
-				newRoom.Id,
-				context.CurrentRoom.Area.Name,
-				context.CurrentRoom.Area.Id));
+			context.SendTextLine($"New room (#{newRoom.Id}) had been created for the area '{context.CurrentRoom.Area.Name}'");
 
 			new Goto().Execute(context, newRoom.Id.ToString());
 		}

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AbarimMUD.Storage;
+using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
@@ -64,7 +65,7 @@ namespace AbarimMUD.Data
 		[JsonIgnore]
 		public List<Character> Characters { get; } = new List<Character>();
 
-		public void InitializeLists()
+		public Room()
 		{
 			Exits = new Dictionary<Direction, RoomExit>();
 		}
@@ -82,5 +83,64 @@ namespace AbarimMUD.Data
 		}
 
 		public override string ToString() => $"{Name} (#{Id})";
+
+		public void DisconnectRoom(Direction direction, bool updateArea = true)
+		{
+			var oppositeDir = direction.GetOppositeDirection();
+
+			// Get the connection
+			RoomExit existingConnection;
+			if (!Exits.TryGetValue(direction, out existingConnection))
+			{
+				return;
+			}
+
+			if (existingConnection != null)
+			{
+				Exits.Remove(direction);
+				if (existingConnection.TargetRoom != null)
+				{
+					RoomExit oppositeConnection;
+					if (existingConnection.TargetRoom.Exits.TryGetValue(oppositeDir, out oppositeConnection) &&
+						oppositeConnection.TargetRoom == this)
+					{
+						existingConnection.TargetRoom.Exits.Remove(oppositeDir);
+					}
+				}
+
+				if (updateArea)
+				{
+					Area.Save();
+				}
+			}
+		}
+
+		public void ConnectRoom(Room targetRoom, Direction direction)
+		{
+			// Delete existing connections
+			DisconnectRoom(direction, false);
+
+			// Create new ones
+			var newConnection = new RoomExit
+			{
+				TargetRoom = targetRoom,
+				Direction = direction
+			};
+
+			Exits[direction] = newConnection;
+
+			var oppositeNewConnection = new RoomExit
+			{
+				TargetRoom = this,
+				Direction = direction.GetOppositeDirection()
+			};
+			targetRoom.Exits[oppositeNewConnection.Direction] = oppositeNewConnection;
+
+			Area.Save();
+			if (Area != targetRoom.Area)
+			{
+				targetRoom.Area.Save();
+			}
+		}
 	}
 }

@@ -15,6 +15,8 @@
 				return;
 			}
 
+			var room = context.CurrentRoom;
+			var doSave = true;
 			switch(cmdText)
 			{
 				case "name":
@@ -24,9 +26,7 @@
 							context.Send("Usage: rset name _data_");
 							return;
 						}
-						var room = context.CurrentRoom;
 						room.Name = cmdData.Trim();
-						Database.Update(room);
 						context.SendTextLine(string.Format("Changed {0}'s name to {1}", room.Id, room.Name));
 					}
 					break;
@@ -38,12 +38,19 @@
 							context.Send("Usage: rset desc _data_");
 							return;
 						}
-						var room = context.CurrentRoom;
 						room.Description = cmdData.Trim();
-						Database.Update(room);
 						context.SendTextLine(string.Format("Changed {0}'s description to {1}", room.Id, room.Name));
 					}
 					break;
+
+				default:
+					doSave = false;
+					break;
+			}
+
+			if (doSave)
+			{
+				room.Area.Save();
 			}
 		}
 	}

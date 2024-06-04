@@ -38,14 +38,14 @@ namespace AbarimMUD.Commands.AreaBuilder
 				return;
 			}
 
-			var destRoom = Database.GetRoomById(id);
+			var destRoom = Area.GetRoomById(id);
 			if (destRoom == null)
 			{
 				context.Send(string.Format("Could not find room with id {0}", idStr));
 				return;
 			}
 
-			Database.ConnectRoom(sourceRoom, destRoom, exitType);
+			sourceRoom.ConnectRoom(destRoom, exitType);
 
 			context.Send(string.Format("Linked the room {0} exit to {1} (#{2})",
 				exitType.ToString(), destRoom.Name, id));

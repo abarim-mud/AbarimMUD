@@ -29,7 +29,7 @@ namespace AbarimMUD.Commands.Owner
 			var characterName = parts[0];
 
 			// Find the character
-			var character = Database.Characters.GetById(characterName);
+			var character = Character.GetCharacterByName(characterName);
 			if (character == null)
 			{
 				context.Send(string.Format("Could not find character '{0}'", characterName));
@@ -48,7 +48,7 @@ namespace AbarimMUD.Commands.Owner
 
 			if (character.Role == type)
 			{
-				context.Send(string.Format("{0}'s type is {1} already.", character.Id, type.ToString()));
+				context.Send(string.Format("{0}'s type is {1} already.", character.Name, type.ToString()));
 				return;
 			}
 
@@ -56,15 +56,15 @@ namespace AbarimMUD.Commands.Owner
 
 			// Change
 			character.Role = type;
-			Database.Characters.Update(character);
+			character.Save();
 
-			context.SendTextLine(string.Format("Changed {0}'s type from {1} to {2}", character.Id, oldType.ToString(),
+			context.SendTextLine(string.Format("Changed {0}'s type from {1} to {2}", character.Name, oldType.ToString(),
 				type.ToString()));
 
 			// Check if it's online
 			foreach (var s in Server.Instance.Sessions)
 			{
-				if (s.Character != null && s.Character.Id == character.Id)
+				if (s.Character != null && s.Character.Name == character.Name)
 				{
 					// It's online
 					// Inform him or her that the type had been changed

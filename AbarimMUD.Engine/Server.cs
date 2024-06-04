@@ -9,12 +9,14 @@ using System.Diagnostics;
 using System.Collections.ObjectModel;
 using System.Linq;
 using AbarimMUD.Data;
+using AbarimMUD.Storage;
 
 namespace AbarimMUD
 {
 	public sealed class Server
 	{
 		private static readonly Logger _logger = LogUtility.GetGlobalLogger();
+		private static Logger _dbLogger = LogManager.GetLogger("DB");
 		private static readonly Server _instance = new Server();
 		private readonly ObservableCollection<Session> _sessions = new ObservableCollection<Session>();
 		private Session[] _sessionsCopy = null;
@@ -52,15 +54,29 @@ namespace AbarimMUD
 			};
 		}
 
+		private void LoadDatabase()
+		{
+			_logger.Info("Loading Database");
+
+			DataContext.Initialize(Configuration.DataFolder, _dbLogger.Info);
+			DataContext.Register(Area.Storage);
+			DataContext.Register(Account.Storage);
+			DataContext.Register(Character.Storage);
+			DataContext.Register(Social.Storage);
+
+			DataContext.Load();
+
+			Social.Storage.SaveAll();
+		}
+
 		public void Start()
 		{
 			try
 			{
-				_logger.Info("Loading Database");
-				Database.Initialize();
+				LoadDatabase();
 
 				_logger.Info("Spawning areas");
-				foreach (var area in Database.Areas)
+				foreach (var area in Area.Storage)
 				{
 					foreach (var areaReset in area.Resets)
 					{
@@ -69,8 +85,8 @@ namespace AbarimMUD
 							continue;
 						}
 
-						var mobile = Database.EnsureMobileById(areaReset.Id1);
-						var room = Database.EnsureRoomById(areaReset.Id2);
+						var mobile = Area.EnsureMobileById(areaReset.Id1);
+						var room = Area.EnsureRoomById(areaReset.Id2);
 
 						// Spawn
 						var newMobile = new MobileInstance(mobile)

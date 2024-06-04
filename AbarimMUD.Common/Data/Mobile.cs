@@ -302,7 +302,7 @@ namespace AbarimMUD.Data
 		public Shop Shop { get; set; }
 		public List<MobileSpecialAttack> SpecialAttacks { get; set; }
 
-		public void InitializeLists()
+		public Mobile()
 		{
 			Attacks = new List<Attack>();
 			Flags = new HashSet<MobileFlags>();

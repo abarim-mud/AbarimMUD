@@ -1,4 +1,6 @@
-﻿namespace AbarimMUD.Commands.AreaBuilder
+﻿using AbarimMUD.Data;
+
+namespace AbarimMUD.Commands.AreaBuilder
 {
 	public sealed class MSet : AreaBuilderCommand
 	{
@@ -14,7 +16,7 @@
 				return;
 			}
 
-			var mobile = Database.GetMobileById(id);
+			var mobile = Area.GetMobileById(id);
 			if (mobile == null)
 			{
 				context.Send(string.Format("Unable to find mobile info with id {0}", id));
@@ -23,6 +25,8 @@
 
 			string cmdText, cmdData;
 			cmd.ParseCommand(out cmdText, out cmdData);
+
+			var doSave = true;
 			if (cmdText == "name")
 			{
 				if (string.IsNullOrEmpty(cmdData))
@@ -32,7 +36,6 @@
 				}
 
 				mobile.Name = cmdData;
-				Database.Update(mobile);
 				context.SendTextLine($"Changed {mobile.Id}'s name to {mobile.Name}");
 			}
 			else if (cmdText == "desc")
@@ -44,7 +47,6 @@
 				}
 
 				mobile.Description = cmdData;
-				Database.Update(mobile);
 				context.SendTextLine($"Changed {mobile.Id}'s desc to {mobile.Description}");
 			}
 			else if (cmdText == "short")
@@ -56,7 +58,6 @@
 				}
 
 				mobile.ShortDescription = cmdData;
-				Database.Update(mobile);
 				context.SendTextLine($"Changed {mobile.Id}'s short to '{mobile.ShortDescription}'");
 			}
 			else if (cmdText == "long")
@@ -68,7 +69,6 @@
 				}
 
 				mobile.LongDescription = cmdData;
-				Database.Update(mobile);
 				context.SendTextLine($"Changed {mobile.Id}'s long to '{mobile.LongDescription}'");
 			}
 			else if (cmdText == "ac")
@@ -81,12 +81,17 @@
 				}
 
 				mobile.ArmorClass = armorClass;
-				Database.Update(mobile);
 				context.SendTextLine($"Changed {mobile.Id}'s ac to '{mobile.ArmorClass}'");
 			}
 			else
 			{
 				context.Send(string.Format("Unknown mset command '{0}'", cmdData));
+				doSave = false;
+			}
+
+			if (doSave)
+			{
+				mobile.Area.Save();
 			}
 		}
 	}

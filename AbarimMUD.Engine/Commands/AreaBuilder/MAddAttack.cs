@@ -40,7 +40,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 				return;
 			}
 
-			var mobile = Database.GetMobileById(id);
+			var mobile = Area.GetMobileById(id);
 			if (mobile == null)
 			{
 				context.Send($"Unable to find mobile info with id {id}");
@@ -55,7 +55,8 @@ namespace AbarimMUD.Commands.AreaBuilder
 			};
 
 			mobile.Attacks.Add(newAttack);
-			Database.Update(mobile);
+			mobile.Area.Save();
+
 			context.Send($"Added #{mobile.Attacks.Count - 1} attack ({newAttack}) to {mobile.ShortDescription} (#{mobile.Id})");
 		}
 	}

@@ -1,5 +1,4 @@
-﻿using AbarimMUD.Data;
-using AbarimMUD.Utils;
+﻿using AbarimMUD.Utils;
 
 namespace AbarimMUD
 {
@@ -60,7 +59,7 @@ namespace AbarimMUD
 			Send("Updating the password...\n");
 
 			Session.Account.PasswordHash = HashUtils.CalculateMD5Hash(_newPassword);
-			Database.Accounts.Update(Session.Account);
+			Session.Account.Save();
 
 			Session.CurrentHandler = new MainMenuHandler(Session);
 		}

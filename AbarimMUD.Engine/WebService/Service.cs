@@ -47,7 +47,7 @@ namespace AbarimMUD.WebService
 			}
 
 			// Find account
-			var acc = Database.Accounts.GetById(account);
+			var acc = Account.GetAccountByName(account);
 			if (acc == null)
 			{
 				result = ResultDescription.CreateInvalidAccount(account);
@@ -61,7 +61,7 @@ namespace AbarimMUD.WebService
 				return null;
 			}
 
-			var characters = Database.Characters.GetByAccountName(acc.Name);
+			var characters = Character.GetCharactersByAccountName(acc.Name);
 			var admin = (from c in characters where c.IsStaff select c).FirstOrDefault();
 			if (admin == null)
 			{
@@ -85,7 +85,7 @@ namespace AbarimMUD.WebService
 			{
 				do
 				{
-					var areas = Database.Areas.All;
+					var areas = Area.Storage.ToArray();
 					if (areas.Length == 0)
 					{
 						result.Result = ResultDescription.CreateFromResultType(ResultType.NoMaps);
@@ -98,7 +98,7 @@ namespace AbarimMUD.WebService
 					{
 						areaInfos.Add(new ListAreasResult.AreaInfo
 						{
-							Id = a.Id.ToString(),
+							Id = a.Filename,
 							Name = a.Name
 						});
 					}
@@ -123,7 +123,7 @@ namespace AbarimMUD.WebService
 			{
 				do
 				{
-					var area = Database.Areas.GetById(areaId);
+					var area = Area.GetAreaByName(areaId);
 					if (area == null)
 					{
 						result.Result = ResultDescription.CreateAreaNotFound(areaId);

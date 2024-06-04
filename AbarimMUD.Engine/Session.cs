@@ -44,7 +44,7 @@ namespace AbarimMUD
 				_character = value;
 				_character.Tag = Context;
 
-				_room = Database.EnsureRoomById(Configuration.StartRoomId);
+				_room = Area.EnsureRoomById(Configuration.StartRoomId);
 				_room.AddCharacter(_character);
 			}
 		}
@@ -91,7 +91,7 @@ namespace AbarimMUD
 			}
 			else
 			{
-				var character = Database.Characters.GetById(Configuration.DefaultCharacter);
+				var character = Character.GetCharacterByName(Configuration.DefaultCharacter);
 				if (character == null)
 				{
 					Logger.Error($"Unable to find default character {Configuration.DefaultCharacter}");

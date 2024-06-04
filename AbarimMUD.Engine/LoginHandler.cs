@@ -95,7 +95,7 @@ namespace AbarimMUD
 			// Check if there are already sessions with that account
 			var accountSessions = (from s in Server.Instance.Sessions
 				where s != Session &&
-				      s.Account != null && s.Account.Id == _account.Id
+				      s.Account != null && s.Account.Name == _account.Name
 				select s).ToList();
 
 			// Find non-reconnecting session among them
@@ -161,7 +161,7 @@ namespace AbarimMUD
 				return;
 			}
 
-			var acc = Database.Accounts.GetById(name);
+			var acc = Account.GetAccountByName(name);
 			if (acc == null)
 			{
 				SendTextLine(string.Format("Account '{0}' is unknown.", name));
@@ -272,7 +272,7 @@ namespace AbarimMUD
 				PasswordHash = HashUtils.CalculateMD5Hash(_newPassword)
 			};
 
-			Database.Accounts.Update(_account);
+			_account.Save();
 			Login();
 		}
 	}
