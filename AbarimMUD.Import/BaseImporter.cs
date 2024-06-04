@@ -9,15 +9,12 @@ namespace AbarimMUD.Import
 {
 	public class BaseImporter
 	{
-		private DataContext _db;
 		private readonly Dictionary<int, Room> _roomsByVnums = new Dictionary<int, Room>();
 		private readonly Dictionary<int, Mobile> _mobilesByVnums = new Dictionary<int, Mobile>();
 		private readonly Dictionary<int, GameObject> _objectsByVnums = new Dictionary<int, GameObject>();
 		private readonly Dictionary<int, Shop> _shopsByKeepersVnums = new Dictionary<int, Shop>();
 
 		private readonly List<RoomExitInfo> _tempDirections = new List<RoomExitInfo>();
-
-		public DataContext DB => _db;
 
 		public static void Log(string message) => ImportUtility.Log(message);
 
@@ -44,7 +41,14 @@ namespace AbarimMUD.Import
 
 		public void InitializeDb(string folder)
 		{
-			_db = new DataContext(folder, Log);
+			DataContext.Initialize(folder, Log);
+
+			DataContext.Register(Area.Storage);
+			DataContext.Register(Account.Storage);
+			DataContext.Register(Character.Storage);
+			DataContext.Register(Social.Storage);
+
+			DataContext.Load();
 		}
 
 		private static void SetIds<T>(Dictionary<int, T> data) where T : AreaEntity
@@ -112,7 +116,7 @@ namespace AbarimMUD.Import
 		public void UpdateResets()
 		{
 			Log("Updating resets");
-			foreach (var area in _db.Areas)
+			foreach (var area in Area.Storage)
 			{
 				var toDelete = new List<AreaReset>();
 				for (var i = 0; i < area.Resets.Count; ++i)
@@ -124,7 +128,7 @@ namespace AbarimMUD.Import
 							var room = GetRoomByVnum(reset.Id1);
 							if (room == null)
 							{
-								Log($"WARNING: Unable to find room with vnum {reset.Id2} for #{i} reset of area {area.Id}");
+								Log($"WARNING: Unable to find room with vnum {reset.Id2} for #{i} reset of area {area.Name}");
 								toDelete.Add(reset);
 								break;
 							}
@@ -132,7 +136,7 @@ namespace AbarimMUD.Import
 							var mobile = GetMobileByVnum(reset.Id2);
 							if (mobile == null)
 							{
-								Log($"WARNING: Unable to find mobile with vnum {reset.Id1} for #{i} reset of area {area.Id}");
+								Log($"WARNING: Unable to find mobile with vnum {reset.Id1} for #{i} reset of area {area.Name}");
 								toDelete.Add(reset);
 								break;
 							}
@@ -164,10 +168,7 @@ namespace AbarimMUD.Import
 		public void UpdateAllAreas()
 		{
 			Log("Updating all areas");
-			foreach (var area in DB.Areas)
-			{
-				DB.Areas.Update(area);
-			}
+			Area.Storage.SaveAll();
 		}
 	}
 }

@@ -19,7 +19,7 @@ namespace AbarimMUD.Storage
 		}
 
 
-		private const string CharactersSubfolder = "characters";
+		private const string CharacterFile = "character.json";
 
 		private readonly List<CharacterRecord> _tempCache = new List<CharacterRecord>();
 
@@ -44,19 +44,17 @@ namespace AbarimMUD.Storage
 					var accountName = Path.GetFileName(subfolder2);
 					Log($"Loading characters of account {accountName}, folder `{subfolder2}`");
 
-					var charactersFolder = Path.Combine(subfolder2, CharactersSubfolder);
-					if (!Directory.Exists(charactersFolder))
+					var subFolders3 = Directory.GetDirectories(subfolder2);
+					foreach (var subFolder3 in subFolders3)
 					{
-						Log($"WARNING: Subfolder {subfolder} exists, but there's no {CharactersSubfolder}");
-						continue;
-					}
+						var path = Path.Combine(subFolder3, CharacterFile);
+						if (!File.Exists(path))
+						{
+							Log($"WARNING: Subfolder {subFolder3} exists, but there's no {CharacterFile}");
+							continue;
+						}
 
-					Log($"Loading {charactersFolder}");
-
-					var characterFiles = Directory.GetFiles(charactersFolder);
-					foreach (var characterFile in characterFiles)
-					{
-						var character = LoadEntity(characterFile);
+						var character = LoadEntity(path);
 						AddToCache(character);
 						var record = new CharacterRecord(character, accountName);
 						_tempCache.Add(record);
@@ -75,12 +73,11 @@ namespace AbarimMUD.Storage
 			// Add account name in the path
 			result = Path.Combine(result, entity.Account.Name);
 
-			// Add character subfolder
-			result = Path.Combine(result, CharactersSubfolder);
-
-			// Add character name
+			// Add character name in the path
 			result = Path.Combine(result, entity.Name);
-			result = Path.ChangeExtension(result, "json");
+
+			// Add character file name
+			result = Path.Combine(result, CharacterFile);
 
 			return result;
 		}

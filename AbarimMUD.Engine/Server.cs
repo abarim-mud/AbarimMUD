@@ -59,14 +59,13 @@ namespace AbarimMUD
 			_logger.Info("Loading Database");
 
 			DataContext.Initialize(Configuration.DataFolder, _dbLogger.Info);
+
 			DataContext.Register(Area.Storage);
 			DataContext.Register(Account.Storage);
 			DataContext.Register(Character.Storage);
 			DataContext.Register(Social.Storage);
 
 			DataContext.Load();
-
-			Social.Storage.SaveAll();
 		}
 
 		public void Start()

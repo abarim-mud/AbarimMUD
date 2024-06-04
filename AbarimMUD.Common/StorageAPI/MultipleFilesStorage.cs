@@ -49,13 +49,11 @@ namespace AbarimMUD.Storage
 
 		public void Save(ItemType entity)
 		{
-			var key = GetKey(entity);
-			if (GetByKey(key) == null)
-			{
-				throw new Exception($"Item with key '{key}' doesn't exist. Use Create instead of Save");
-			}
-
+			// Save the data
 			InternalSave(entity);
+
+			// Add to the cache
+			AddToCache(entity);
 		}
 
 		public void Create(ItemType entity)
@@ -66,11 +64,7 @@ namespace AbarimMUD.Storage
 				throw new Exception($"Item with key '{key}' already exist.");
 			}
 
-			// Save the data
-			InternalSave(entity);
-
-			// Add to the cache
-			AddToCache(entity);
+			Save(entity);
 		}
 
 		protected virtual string[] ListFiles()

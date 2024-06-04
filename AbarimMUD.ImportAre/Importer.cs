@@ -19,7 +19,7 @@ namespace AbarimMUD.ImportAre
 		private void ProcessArea(Stream stream, Area area)
 		{
 			var fileName = stream.ReadDikuString();
-			area.Id = area.Name = stream.ReadDikuString();
+			area.Name = stream.ReadDikuString();
 			area.Credits = stream.ReadDikuString();
 			area.ParseLevelsBuilds();
 
@@ -42,7 +42,7 @@ namespace AbarimMUD.ImportAre
 						area.ParseLevelsBuilds();
 						break;
 					case 'N':
-						area.Id = area.Name = stream.ReadDikuString();
+						area.Name = stream.ReadDikuString();
 						break;
 					case 'S':
 						stream.ReadNumber(); // Security
@@ -95,8 +95,6 @@ namespace AbarimMUD.ImportAre
 				{
 					mobile.Race = stream.ReadEnumFromDikuString<Race>();
 				}
-
-				mobile.InitializeLists();
 
 				var flags = (OldMobileFlags)stream.ReadFlag();
 				var affectedByFlags = (OldAffectedByFlags)stream.ReadFlag();
@@ -512,8 +510,6 @@ namespace AbarimMUD.ImportAre
 					Description = stream.ReadDikuString(),
 				};
 
-				room.InitializeLists();
-
 				stream.ReadNumber(); // Area Number
 
 				room.Flags = ((OldRoomFlags)stream.ReadFlag()).ToNewFlags();
@@ -768,7 +764,7 @@ namespace AbarimMUD.ImportAre
 			}
 		}
 
-		private void ProcessSocials(DataContext db, Stream stream)
+		private void ProcessSocials(Stream stream)
 		{
 			while (!stream.EndOfStream())
 			{
@@ -827,7 +823,7 @@ namespace AbarimMUD.ImportAre
 					{
 						break;
 					}
-					social.CharSelf = s;
+					social.CharAuto = s;
 
 					s = string.Empty;
 					if (!stream.ReadSocialString(ref s))
@@ -841,14 +837,14 @@ namespace AbarimMUD.ImportAre
 					{
 						break;
 					}
-					social.OthersSelf = s;
+					social.OthersAuto = s;
 				}
 				while (false);
 
-				db.Socials.Add(social);
+				social.Create();
 			}
 
-			db.Socials.Save();
+			Social.SaveSocials();
 		}
 
 		private void SkipSection(Stream stream)
@@ -865,9 +861,11 @@ namespace AbarimMUD.ImportAre
 			}
 		}
 
-		private void ProcessFile(DataContext db, string areaFile)
+		private void ProcessFile(string areaFile)
 		{
 			Log($"Processing {areaFile}...");
+
+			var jsonFileName = Path.ChangeExtension(Path.GetFileName(areaFile), "json");
 
 			Area area = null;
 			using (var stream = File.OpenRead(areaFile))
@@ -881,9 +879,9 @@ namespace AbarimMUD.ImportAre
 						var credits = type.Substring(4).RemoveTrailingTilda().Trim();
 						area = new Area
 						{
+							Filename = jsonFileName,
 							Credits = credits
 						};
-						area.InitializeLists();
 
 						if (!area.ParseLevelsBuilds())
 						{
@@ -895,7 +893,7 @@ namespace AbarimMUD.ImportAre
 							credits = credits.Substring(i + area.Builders.Length + 1);
 						}
 
-						area.Id = area.Name = credits.Trim();
+						area.Name = credits.Trim();
 
 						continue;
 					}
@@ -944,13 +942,17 @@ namespace AbarimMUD.ImportAre
 					switch (type)
 					{
 						case "AREA":
-							area = new Area();
-							area.InitializeLists();
+							area = new Area
+							{
+								Filename = jsonFileName
+							};
 							ProcessArea(stream, area);
 							break;
 						case "AREADATA":
-							area = new Area();
-							area.InitializeLists();
+							area = new Area
+							{
+								Filename = jsonFileName
+							};
 							ProcessAreaData(stream, area);
 							break;
 						case "MOBILES":
@@ -972,7 +974,7 @@ namespace AbarimMUD.ImportAre
 							ProcessSpecials(stream);
 							break;
 						case "SOCIALS":
-							ProcessSocials(db, stream);
+							ProcessSocials(stream);
 							goto finish;
 						case "RANGES":
 							{
@@ -992,7 +994,7 @@ namespace AbarimMUD.ImportAre
 						case "$":
 							if (area != null)
 							{
-								db.Areas.Update(area);
+								area.Create();
 							}
 							goto finish;
 						default:
@@ -1026,7 +1028,7 @@ namespace AbarimMUD.ImportAre
 					continue;
 				}
 
-				ProcessFile(DB, areaFile);
+				ProcessFile(areaFile);
 			}
 
 			// Set ids

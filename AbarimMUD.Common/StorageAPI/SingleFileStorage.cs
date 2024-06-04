@@ -26,6 +26,18 @@ namespace AbarimMUD.Storage
 			}
 		}
 
+		public void Create(ItemType entity)
+		{
+			var key = GetKey(entity);
+			if (GetByKey(key) != null)
+			{
+				throw new Exception($"Item with key '{key}' already exist.");
+			}
+
+			// Add to the cache
+			AddToCache(entity);
+		}
+
 		public override void SaveAll()
 		{
 			EnsureFolder(BaseFolder);
