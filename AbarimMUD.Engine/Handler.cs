@@ -1,16 +1,15 @@
-﻿using System;
-using NLog;
+﻿using NLog;
+using System;
 
 namespace AbarimMUD
 {
 	public abstract class Handler
 	{
-		private readonly Session _session;
-		protected readonly Logger _logger;
-
-		protected Session Session
+		protected Session Session { get; private set; }
+		protected Logger Logger
 		{
-			get { return _session; }
+			get => Session.Logger;
+			set => Session.Logger = value;
 		}
 
 		protected Handler(Session session)
@@ -20,8 +19,7 @@ namespace AbarimMUD
 				throw new ArgumentNullException("session");
 			}
 
-			_session = session;
-			_logger = session.Connection.Logger;
+			Session = session;
 		}
 
 		public abstract void OnSet();
@@ -30,18 +28,18 @@ namespace AbarimMUD
 
 		public void Send(string text)
 		{
-			_session.Send(text);
+			Session.Send(text);
 		}
 
 		public void SendTextLine(string text)
 		{
-			_session.Send(text);
-			_session.Send(ConsoleCommand.NewLine.ToString());
+			Session.Send(text);
+			Session.Send(ConsoleCommand.NewLine.ToString());
 		}
 
 		protected void SendDebug(string data)
 		{
-			_session.Send(data);
+			Session.Send(data);
 		}
 
 		protected bool CheckPassword(string pwd)

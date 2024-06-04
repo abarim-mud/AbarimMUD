@@ -8,8 +8,6 @@ namespace AbarimMUD
 {
 	public sealed class Connection
 	{
-		private readonly Logger _logger;
-
 		private readonly Socket _socket;
 		private readonly IPAddress _remoteIp;
 		private readonly int _remotePort;
@@ -25,7 +23,7 @@ namespace AbarimMUD
 
 		public string LoggerName => RemoteIp.ToString();
 
-		public Logger Logger => _logger;
+		public Logger Logger { get; set; }
 
 		public Connection(Socket socket)
 		{
@@ -39,7 +37,11 @@ namespace AbarimMUD
 			var remote = (IPEndPoint)_socket.RemoteEndPoint;
 			_remoteIp = remote.Address;
 			_remotePort = remote.Port;
-			_logger = LogManager.GetLogger(LoggerName);
+
+			// Using server logger as default
+			Logger = Server.Logger;
+
+			// Begin receive
 			_socket.BeginReceive(_buffer, 0, _buffer.Length, 0, ReadCallback, null);
 		}
 
@@ -81,7 +83,7 @@ namespace AbarimMUD
 					// '\n' ends a command
 					var data = content.Substring(0, rlPos).Trim();
 
-					_logger.Info("Incomming data: '{0}'", data);
+					Logger.Info("Incomming data: '{0}'", data);
 
 					_input = data;
 					Server.Instance.Awake();
@@ -96,12 +98,12 @@ namespace AbarimMUD
 				}
 				else
 				{
-					_logger.Info("Connection has been closed by the remote host");
+					Logger.Info("Connection has been closed by the remote host");
 				}
 			}
 			catch (Exception ex)
 			{
-				_logger.Error(ex);
+				Logger.Error(ex);
 			}
 		}
 
@@ -117,11 +119,11 @@ namespace AbarimMUD
 		{
 			if (!_alive)
 			{
-				_logger.Warn("Try to send to disconnected client: '{0}'", data);
+				Logger.Warn("Try to send to disconnected client: '{0}'", data);
 				return;
 			}
 
-			_logger.Info("Sending to client: '{0}'", data);
+			Logger.Info("Sending to client: '{0}'", data);
 
 			var result = Encoding.UTF8.GetBytes(data);
 			_socket.Send(result);
@@ -129,10 +131,10 @@ namespace AbarimMUD
 
 		public void Disconnect()
 		{
-			_logger.Info("Closing connection...");
+			Logger.Info("Closing connection...");
 			_alive = false;
 			_socket.Disconnect(true);
-			_logger.Info("Connection has been closed");
+			Logger.Info("Connection has been closed");
 		}
 	}
 }

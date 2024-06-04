@@ -1,4 +1,5 @@
 ﻿using AbarimMUD.Storage;
+using System.IO;
 using System.Linq;
 using System.Text.Json.Serialization;
 
@@ -54,6 +55,16 @@ namespace AbarimMUD.Data
 
 		public void Create() => Storage.Create(this);
 		public void Save() => Storage.Save(this);
+
+		public string BuildCharacterFolder()
+		{
+			var result = Account.BuildAccountFolder();
+
+			// Add character name in the path
+			result = Path.Combine(result, Name);
+
+			return result;
+		}
 
 		public static Character GetCharacterByName(string name) => Storage.GetByKey(name);
 		public static Character EnsureCharacterByName(string name) => Storage.EnsureByKey(name);

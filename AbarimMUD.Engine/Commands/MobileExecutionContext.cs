@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using AbarimMUD.Data;
 using AbarimMUD.Utils;
+using NLog;
 
 namespace AbarimMUD.Commands
 {
@@ -54,10 +55,7 @@ namespace AbarimMUD.Commands
 
 		public override int ArmorClass => Mobile.Info.ArmorClass;
 
-		public override NLog.Logger Logger
-		{
-			get { return LogUtility.GetGlobalLogger(); }
-		}
+		public override Logger Logger => Server.Logger;
 
 		public MobileExecutionContext(MobileInstance mobile)
 		{

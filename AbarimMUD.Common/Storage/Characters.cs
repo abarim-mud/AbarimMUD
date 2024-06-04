@@ -65,21 +65,11 @@ namespace AbarimMUD.Storage
 
 		protected override string BuildPath(Character entity)
 		{
-			var result = Folder;
+			// Add account folder
+			var characterFolder = entity.BuildCharacterFolder();
+			var result = Path.Combine(Folder, characterFolder);
 
-			// Add first letter of the account name in the path
-			result = Path.Combine(result, entity.Account.Name[0].ToString());
-
-			// Add account name in the path
-			result = Path.Combine(result, entity.Account.Name);
-
-			// Add character name in the path
-			result = Path.Combine(result, entity.Name);
-
-			// Add character file name
-			result = Path.Combine(result, CharacterFile);
-
-			return result;
+			return Path.Combine(result, CharacterFile);
 		}
 
 		protected internal override void SetReferences()

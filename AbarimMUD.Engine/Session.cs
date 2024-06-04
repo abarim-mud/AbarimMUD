@@ -15,7 +15,11 @@ namespace AbarimMUD
 
 		public Connection Connection => _connection;
 
-		public Logger Logger => Connection.Logger;
+		public Logger Logger
+		{
+			get => _connection.Logger;
+			set => _connection.Logger = value;
+		}
 
 		public Handler CurrentHandler
 		{

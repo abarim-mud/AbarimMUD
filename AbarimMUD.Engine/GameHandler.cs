@@ -1,4 +1,7 @@
 ﻿using AbarimMUD.Commands;
+using AbarimMUD.Data;
+using NLog;
+using System.IO;
 
 namespace AbarimMUD
 {
@@ -11,6 +14,15 @@ namespace AbarimMUD
 
 		public override void OnSet()
 		{
+			var connection = Session.Connection;
+			Logger.Info($"Connection {connection.RemoteIp}:{connection.RemotePort} belongs to {Session.Character.Name}");
+
+			// Switch logger to the player logger
+			var newLoggerName = Session.Character.BuildCharacterFolder();
+			newLoggerName = Path.Combine("Data/accounts", newLoggerName);
+			newLoggerName = Path.Combine(newLoggerName, "Logs/");
+			Logger = LogManager.GetLogger(newLoggerName);
+
 			// Execute look command
 			Process("look");
 		}

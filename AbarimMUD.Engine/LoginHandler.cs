@@ -34,13 +34,13 @@ namespace AbarimMUD
 			var splash = "Welcome to AbarimMUD v0.1\n\r";
 			if (string.IsNullOrEmpty(Configuration.SplashFile))
 			{
-				_logger.Warn("{0}SplashFile option is not set. Sending default splath");
+				Logger.Warn("{0}SplashFile option is not set. Sending default splath");
 			}
 			else
 			{
 				if (!File.Exists(Configuration.SplashFile))
 				{
-					_logger.Warn("Splash file {0} couldn't be found. Sending default splath", Configuration.SplashFile);
+					Logger.Warn("Splash file {0} couldn't be found. Sending default splath", Configuration.SplashFile);
 				}
 				else
 				{
@@ -50,8 +50,8 @@ namespace AbarimMUD
 					}
 					catch (Exception ex)
 					{
-						_logger.Error(ex);
-						_logger.Warn("Splash file {0} couldn't be found. Sending default splath",
+						Logger.Error(ex);
+						Logger.Warn("Splash file {0} couldn't be found. Sending default splath",
 							Configuration.SplashFile);
 					}
 				}
@@ -101,7 +101,7 @@ namespace AbarimMUD
 			// Find non-reconnecting session among them
 			var session =
 				(from s in accountSessions where !(s.CurrentHandler is ReconnectHandler) select s).FirstOrDefault();
-			_logger.Info("{0} active sessions with that account has been found.", accountSessions.Count);
+			Logger.Info("{0} active sessions with that account has been found.", accountSessions.Count);
 
 			if (session != null)
 			{

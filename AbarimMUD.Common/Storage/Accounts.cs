@@ -26,13 +26,9 @@ namespace AbarimMUD.Storage
 
 		protected override string BuildPath(Account entity)
 		{
-			var result = Folder;
-
-			// Add first letter of the account name in the path
-			result = Path.Combine(result, entity.Name[0].ToString());
-
-			// Add account name in the path
-			result = Path.Combine(result, entity.Name);
+			// Add account folder
+			var accountFolder = entity.BuildAccountFolder();
+			var result = Path.Combine(Folder, accountFolder);
 
 			return Path.Combine(result, AccountFileName);
 		}

@@ -3,7 +3,6 @@ using System.Net;
 using System.Net.Sockets;
 using NLog;
 using AbarimMUD.WebService;
-using AbarimMUD.Utils;
 using System.Threading;
 using System.Diagnostics;
 using System.Collections.ObjectModel;
@@ -15,13 +14,13 @@ namespace AbarimMUD
 {
 	public sealed class Server
 	{
-		private static readonly Logger _logger = LogUtility.GetGlobalLogger();
-		private static Logger _dbLogger = LogManager.GetLogger("DB");
 		private static readonly Server _instance = new Server();
 		private readonly ObservableCollection<Session> _sessions = new ObservableCollection<Session>();
 		private Session[] _sessionsCopy = null;
 		private readonly AutoResetEvent _mainThreadEvent = new AutoResetEvent(false);
 		private readonly Service _webService = new Service();
+
+		public static Logger Logger { get; private set; } = LogManager.GetLogger("Logs/Server");
 
 		public static Server Instance
 		{
@@ -56,9 +55,9 @@ namespace AbarimMUD
 
 		private void LoadDatabase()
 		{
-			_logger.Info("Loading Database");
+			Logger.Info("Loading Database");
 
-			DataContext.Initialize(Configuration.DataFolder, _dbLogger.Info);
+			DataContext.Initialize(Configuration.DataFolder, Logger.Info);
 
 			DataContext.Register(Area.Storage);
 			DataContext.Register(Account.Storage);
@@ -74,7 +73,7 @@ namespace AbarimMUD
 			{
 				LoadDatabase();
 
-				_logger.Info("Spawning areas");
+				Logger.Info("Spawning areas");
 				foreach (var area in Area.Storage)
 				{
 					foreach (var areaReset in area.Resets)
@@ -95,10 +94,10 @@ namespace AbarimMUD
 					}
 				}
 
-				_logger.Info("Starting WebService");
+				Logger.Info("Starting WebService");
 				_webService.Start();
 
-				_logger.Info("Creating Socket Listener at port {0}", Configuration.ServerPort);
+				Logger.Info("Creating Socket Listener at port {0}", Configuration.ServerPort);
 
 				var ipEndPoint = new IPEndPoint(IPAddress.Any, Configuration.ServerPort);
 				var sListener = new Socket(IPAddress.Any.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
@@ -126,14 +125,14 @@ namespace AbarimMUD
 					catch (Exception ex)
 					{
 						Console.WriteLine(ex.Message);
-						_logger.Error(ex);
+						Logger.Error(ex);
 					}
 				}
 			}
 			catch (Exception ex)
 			{
 				Console.WriteLine(ex.Message);
-				_logger.Error(ex);
+				Logger.Error(ex);
 			}
 		}
 
@@ -147,7 +146,7 @@ namespace AbarimMUD
 
 				// Incoming connection
 				var remote = (IPEndPoint)handler.RemoteEndPoint;
-				_logger.Info("Incoming connection from {0}:{1}", remote.Address, remote.Port);
+				Logger.Info("Incoming connection from {0}:{1}", remote.Address, remote.Port);
 				var connection = new Connection(handler);
 				var session = new Session(connection, Sessions.Length == 0);
 
@@ -160,7 +159,7 @@ namespace AbarimMUD
 			}
 			catch (Exception ex)
 			{
-				_logger.Error(ex);
+				Logger.Error(ex);
 			}
 
 			try
@@ -169,7 +168,7 @@ namespace AbarimMUD
 			}
 			catch (Exception ex)
 			{
-				_logger.Error(ex);
+				Logger.Error(ex);
 			}
 		}
 
@@ -179,7 +178,7 @@ namespace AbarimMUD
 			{
 				var session = (Session)sender;
 				var connection = session.Connection;
-				_logger.Info("Closed connection from {0}:{1}", connection.RemoteIp, connection.RemotePort);
+				Logger.Info("Closed connection from {0}:{1}", connection.RemoteIp, connection.RemotePort);
 
 				lock (_sessions)
 				{
@@ -188,7 +187,7 @@ namespace AbarimMUD
 			}
 			catch (Exception ex)
 			{
-				_logger.Error(ex);
+				Logger.Error(ex);
 			}
 		}
 

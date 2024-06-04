@@ -18,7 +18,7 @@ namespace AbarimMUD.WebService
 		private const string PasswordKey = "password";
 		private const string AreaKey = "area";
 
-		private static readonly Logger _logger = LogManager.GetLogger("WebService");
+		private static readonly Logger _logger = LogManager.GetLogger("Logs/WebService");
 
 		private bool _running = true;
 		private readonly HttpListener _listener = new HttpListener();
