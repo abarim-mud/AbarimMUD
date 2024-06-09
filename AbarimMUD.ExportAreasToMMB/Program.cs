@@ -5,6 +5,7 @@ using System.Reflection;
 using MUDMapBuilder;
 using AbarimMUD.Storage;
 using System.Linq;
+using AbarimMUD.Data;
 
 namespace AbarimMUD.ExportAreasToMMB
 {
@@ -26,10 +27,12 @@ namespace AbarimMUD.ExportAreasToMMB
 		static void Process()
 		{
 			var dataDir = Path.Combine(ExecutingAssemblyDirectory, "../../../../Data");
-			var db = new DataContext(dataDir, Log);
+			DataContext.Initialize(dataDir, Console.WriteLine);
+			DataContext.Register(Area.Storage);
+			DataContext.Load();
 
 			var mmbAreas = new List<MMBArea>();
-			foreach (var area in db.Areas)
+			foreach (var area in Area.Storage)
 			{
 				Log($"Processing area '{area.Name}'");
 

@@ -41,7 +41,7 @@ namespace AbarimMUD
 			// Using server logger as default
 			Logger = Server.Logger;
 
-			// Begin receive
+			// Begin receive	
 			_socket.BeginReceive(_buffer, 0, _buffer.Length, 0, ReadCallback, null);
 		}
 
