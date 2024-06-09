@@ -73,6 +73,28 @@ namespace AbarimMUD
 			{
 				LoadDatabase();
 
+				if (Area.Storage.Count == 0)
+				{
+					Logger.Info("No areas exist. Creating test area with single room.");
+					var newArea = new Area
+					{
+						Name = "Test Area"
+					};
+
+					// Create new room
+					var newRoom = new Room
+					{
+						Id = Area.NextRoomId,
+						Name = "Empty",
+						Description = "Empty"
+					};
+
+					newArea.Rooms.Add(newRoom);
+					newArea.Save();
+
+					Configuration.StartRoomId = newRoom.Id;
+				}
+
 				Logger.Info("Spawning areas");
 				foreach (var area in Area.Storage)
 				{

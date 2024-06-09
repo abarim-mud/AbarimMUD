@@ -3,7 +3,7 @@ using System.IO;
 
 namespace AbarimMUD.Data
 {
-	public sealed class Account : StoredInFile
+	public sealed class Account
 	{
 		public static readonly MultipleFilesStorageString<Account> Storage = new Accounts();
 

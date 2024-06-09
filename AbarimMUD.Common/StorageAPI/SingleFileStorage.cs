@@ -19,6 +19,12 @@ namespace AbarimMUD.Storage
 			ClearCache();
 
 			var path = Path.Combine(BaseFolder, FileName);
+			if (!File.Exists(path))
+			{
+				LogDoesntExist(path);
+				return;
+			}
+
 			var socials = JsonDeserializeFromFile<ItemType[]>(path);
 			foreach (var social in socials)
 			{

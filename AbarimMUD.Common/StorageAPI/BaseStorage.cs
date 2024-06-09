@@ -21,12 +21,17 @@ namespace AbarimMUD.Storage
 		}
 
 		protected abstract void InternalLoad();
-		
+
 		protected internal virtual void SetReferences()
 		{
 		}
 
 		protected void Log(string message) => _settings.Log(message);
+
+		protected void LogDoesntExist(string name)
+		{
+			Log($"WARNING: Folder '{name}' doesnt exist. Skipping loading of {Name}.");
+		}
 
 		protected virtual JsonSerializerOptions CreateJsonOptions()
 		{

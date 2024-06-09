@@ -98,7 +98,7 @@ namespace AbarimMUD.WebService
 					{
 						areaInfos.Add(new ListAreasResult.AreaInfo
 						{
-							Id = a.Filename,
+							Id = a.Name,
 							Name = a.Name
 						});
 					}

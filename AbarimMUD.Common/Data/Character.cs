@@ -13,7 +13,7 @@ namespace AbarimMUD.Data
 		Owner
 	}
 
-	public sealed class Character : StoredInFile
+	public sealed class Character
 	{
 		public static readonly MultipleFilesStorageString<Character> Storage = new Characters();
 

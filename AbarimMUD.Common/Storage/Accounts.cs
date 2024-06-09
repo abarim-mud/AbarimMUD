@@ -17,7 +17,7 @@ namespace AbarimMUD.Storage
 		{
 			if (!Directory.Exists(Folder))
 			{
-				Log($"WARNING: Folder '{Folder}' doesnt exist.");
+				LogDoesntExist(Folder);
 				return new string[0];
 			}
 

@@ -23,6 +23,8 @@ namespace AbarimMUD.Storage
 
 		private readonly List<CharacterRecord> _tempCache = new List<CharacterRecord>();
 
+		public override string Name => "characters";
+
 		internal Characters() : base(c => c.Name, Accounts.SubfolderName)
 		{
 		}
@@ -32,6 +34,7 @@ namespace AbarimMUD.Storage
 			var accountsFolder = Folder;
 			if (!Directory.Exists(accountsFolder))
 			{
+				LogDoesntExist(accountsFolder);
 				return;
 			}
 

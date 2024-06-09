@@ -87,7 +87,6 @@ namespace AbarimMUD.Common.Tests
 			var area = new Area
 			{
 				Name = "test",
-				Filename = "test.json"
 			};
 
 			var room = new Room

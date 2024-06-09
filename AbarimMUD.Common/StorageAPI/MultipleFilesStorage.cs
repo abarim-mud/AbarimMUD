@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace AbarimMUD.Storage
 {
-	public class MultipleFilesStorage<KeyType, ItemType> : GenericBaseStorage<KeyType, ItemType> where ItemType : StoredInFile
+	public class MultipleFilesStorage<KeyType, ItemType> : GenericBaseStorage<KeyType, ItemType> where ItemType : class
 	{
 		private string SubfolderName { get; set; }
 
@@ -33,7 +33,6 @@ namespace AbarimMUD.Storage
 		{
 			var entity = JsonDeserializeFromFile<ItemType>(filePath);
 
-			entity.Filename = Path.GetFileNameWithoutExtension(filePath);
 			AddToCache(entity);
 
 			return entity;
@@ -79,7 +78,7 @@ namespace AbarimMUD.Storage
 
 		}
 
-		protected virtual string BuildPath(ItemType entity) => Path.ChangeExtension(Path.Combine(Folder, entity.Filename), "json");
+		protected virtual string BuildPath(ItemType entity) => Path.ChangeExtension(Path.Combine(Folder, GetKey(entity).ToString()), "json");
 
 		public override void Remove(ItemType entity)
 		{

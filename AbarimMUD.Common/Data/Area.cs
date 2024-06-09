@@ -14,7 +14,7 @@ namespace AbarimMUD.Data
 		ResetAlways
 	}
 
-	public class Area : StoredInFile
+	public class Area
 	{
 		public static readonly Areas Storage = new Areas();
 
