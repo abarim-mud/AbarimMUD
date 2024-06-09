@@ -11,7 +11,7 @@
     "Level100Value": 1500
   },
   "Penetration": {
-    "Level1Value": 1,
+    "Level1Value": 10,
     "Level100Value": 100
   }
 }

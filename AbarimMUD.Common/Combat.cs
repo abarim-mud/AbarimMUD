@@ -32,7 +32,7 @@ namespace AbarimMUD
 				return result;
 			}
 
-			var armorFactor = Utility.Clamp((100 + armorClass - attack.Accuracy) / 200.0f);
+			var armorFactor = Utility.Clamp((100 + armorClass - attack.Penetration) / 200.0f);
 			result.ArmorAbsorbedDamage = (int)(armorFactor * result.InitialDamage);
 
 			return result;

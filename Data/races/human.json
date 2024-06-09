@@ -1,3 +1,22 @@
 {
-  "Name": "human"
+  "Name": "human",
+  "HitpointsModifier": 1,
+  "PenetrationModifier": 1,
+  "AttackType": "Hit",
+  "NaturalArmorClass": {
+    "Level1Value": 0,
+    "Level100Value": 0
+  },
+  "NaturalAttacksCount": {
+    "Level1Value": 2,
+    "Level100Value": 2
+  },
+  "NaturalMinimumDamage": {
+    "Level1Value": 1,
+    "Level100Value": 1
+  },
+  "NaturalMaximumDamage": {
+    "Level1Value": 4,
+    "Level100Value": 4
+  }
 }

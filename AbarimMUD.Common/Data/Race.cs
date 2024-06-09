@@ -8,6 +8,14 @@ namespace AbarimMUD.Data
 
 		public string Name { get; set; }
 
+		public float HitpointsModifier { get; set; } = 1.0f;
+		public float PenetrationModifier { get; set; } = 1.0f;
+		public RaceClassValueRange NaturalArmorClass;
+		public AttackType AttackType { get; set; }
+		public RaceClassValueRange NaturalAttacksCount;
+		public RaceClassValueRange NaturalMinimumDamage;
+		public RaceClassValueRange NaturalMaximumDamage;
+
 		public override string ToString() => Name;
 
 		public static Race GetRaceByName(string name) => Storage.GetByKey(name);

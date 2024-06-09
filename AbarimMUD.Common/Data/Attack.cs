@@ -2,16 +2,16 @@
 {
 	public class Attack
 	{
-		private int _accuracy;
+		private int _penetration;
 
 		public AttackType AttackType { get; set; }
 
-		public int Accuracy
+		public int Penetration
 		{
-			get => _accuracy;
+			get => _penetration;
 			set
 			{
-				_accuracy = value;
+				_penetration = value;
 			}
 		}
 
@@ -21,20 +21,20 @@
 		{
 		}
 
-		public Attack(AttackType attackType, int accuracy, RandomRange damageRange)
+		public Attack(AttackType attackType, int penetration, RandomRange damageRange)
 		{
 			AttackType = attackType;
-			Accuracy = accuracy;
+			Penetration = penetration;
 			DamageRange = damageRange;
 		}
 
-		public Attack(AttackType attackType, int accuracy, int min, int max) : this(attackType, accuracy, new RandomRange(min, max))
+		public Attack(AttackType attackType, int penetration, int min, int max) : this(attackType, penetration, new RandomRange(min, max))
 		{
 		}
 
 		public override string ToString()
 		{
-			return $"{AttackType}, {Accuracy}, {DamageRange}";
+			return $"{AttackType}, {Penetration}, {DamageRange}";
 		}
 	}
 }

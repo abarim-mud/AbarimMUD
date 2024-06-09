@@ -41,23 +41,26 @@ namespace AbarimMUD.Data
 
 			_stats = new CreatureStats
 			{
-				MaxHitpoints = Class.Hitpoints.CalculateValue(Level)
+				MaxHitpoints = (int)(Race.HitpointsModifier * Class.Hitpoints.CalculateValue(Level)),
+				ArmorClass = Race.NaturalArmorClass.CalculateValue(Level),
 			};
 
-			// Everyone has 2 attacks by default
-			var attacksCount = 2;
-			
+			var attacksCount = Race.NaturalAttacksCount.CalculateValue(Level);
+			var penetration = (int)(Race.PenetrationModifier * Class.Penetration.CalculateValue(Level));
+			var minimumDamage = Race.NaturalMinimumDamage.CalculateValue(Level);
+			var maximumDamage = Race.NaturalMaximumDamage.CalculateValue(Level);
+
 			// Apply skill modifiers
-			foreach(var pair in Class.SkillsByLevels)
+			foreach (var pair in Class.SkillsByLevels)
 			{
 				if (Level < pair.Key)
 				{
 					continue;
 				}
 
-				foreach(var skill in pair.Value)
+				foreach (var skill in pair.Value)
 				{
-					foreach(var pair2 in skill.Modifiers)
+					foreach (var pair2 in skill.Modifiers)
 					{
 						switch (pair2.Key)
 						{
@@ -70,11 +73,11 @@ namespace AbarimMUD.Data
 			}
 
 			// Build attack list
-			var penetration = Class.Penetration.CalculateValue(Level);
+			var attack = new Attack(Race.AttackType, penetration, new RandomRange(minimumDamage, maximumDamage));
 			var attacksList = new List<Attack>();
 			for (var i = 0; i < attacksCount; ++i)
 			{
-				attacksList.Add(new Attack(AttackType.Hit, penetration, new RandomRange(1, 4)));
+				attacksList.Add(attack);
 			}
 
 			_stats.Attacks = attacksList.ToArray();

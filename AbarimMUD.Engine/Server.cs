@@ -69,7 +69,8 @@ namespace AbarimMUD
 
 			DataContext.Load();
 
-			GameClass.Storage.SaveAll();
+			// GameClass.Storage.SaveAll();
+			Race.Storage.SaveAll();
 		}
 
 		public void Start()

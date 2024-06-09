@@ -1,0 +1,22 @@
+{
+  "Name": "dragon",
+  "HitpointsModifier": 10,
+  "PenetrationModifier": 1,
+  "AttackType": "Claw",
+  "NaturalArmorClass": {
+    "Level1Value": 10,
+    "Level100Value": 100
+  },
+  "NaturalAttacksCount": {
+    "Level1Value": 2,
+    "Level100Value": 4
+  },
+  "NaturalMinimumDamage": {
+    "Level1Value": 10,
+    "Level100Value": 20
+  },
+  "NaturalMaximumDamage": {
+    "Level1Value": 20,
+    "Level100Value": 100
+  }
+}

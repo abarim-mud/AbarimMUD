@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace AbarimMUD.Data
 {
-	public struct ClassValueRange
+	public struct RaceClassValueRange
 	{
 		public int Level1Value;
 		public int Level100Value;
@@ -41,9 +41,9 @@ namespace AbarimMUD.Data
 		public string Name { get; set; }
 		public string Description { get; set; }
 		
-		public ClassValueRange Hitpoints;
+		public RaceClassValueRange Hitpoints;
 		
-		public ClassValueRange Penetration;
+		public RaceClassValueRange Penetration;
 		
 		public Dictionary<int, List<Skill>> SkillsByLevels { get; set; }
 
