@@ -37,14 +37,14 @@ namespace AbarimMUD.Common.Tests
 			var newChar = new Character
 			{
 				Account = newAcc,
-				Name = "char1"
+				PlayerName = "char1"
 			};
 			newChar.Create();
 
 			var newChar2 = new Character
 			{
 				Account = newAcc,
-				Name = "char2"
+				PlayerName = "char2"
 			};
 			newChar2.Create();
 

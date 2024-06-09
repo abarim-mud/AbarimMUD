@@ -4,6 +4,8 @@ namespace AbarimMUD.Data
 {
 	public abstract class Creature
 	{
+		public static readonly List<Creature> AllCreatures = new List<Creature>();
+
 		private CreatureStats _stats = null;
 
 		public abstract string Name { get; }
@@ -43,6 +45,27 @@ namespace AbarimMUD.Data
 			};
 
 			var attacksCount = 1;
+			foreach(var pair in Class.SkillsByLevels)
+			{
+				if (Level < pair.Key)
+				{
+					continue;
+				}
+
+				foreach(var skill in pair.Value)
+				{
+					foreach(var pair2 in skill.Modifiers)
+					{
+						switch (pair2.Key)
+						{
+							case ModifierType.AttacksCount:
+								attacksCount += pair2.Value;
+								break;
+						}
+					}
+				}
+			}
+
 			var attacksList = new List<Attack>();
 
 			for (var i = 0; i < attacksCount; ++i)

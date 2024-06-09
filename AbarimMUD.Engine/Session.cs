@@ -50,6 +50,7 @@ namespace AbarimMUD
 
 				_room = Area.EnsureRoomById(Configuration.StartRoomId);
 				_room.AddCharacter(_character);
+				Creature.AllCreatures.Add(_character);
 			}
 		}
 

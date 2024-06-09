@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using NLog;
 
 namespace AbarimMUD
@@ -13,6 +15,9 @@ namespace AbarimMUD
 		private readonly int _remotePort;
 		private readonly byte[] _buffer = new byte[1024];
 		private readonly StringBuilder _inputBuffer = new StringBuilder();
+		private readonly List<string> _sendQueue = new List<string>();
+		private readonly AutoResetEvent _sendEvent = new AutoResetEvent(false);
+
 		private bool _alive = true;
 		private string _input;
 
@@ -43,6 +48,8 @@ namespace AbarimMUD
 
 			// Begin receive	
 			_socket.BeginReceive(_buffer, 0, _buffer.Length, 0, ReadCallback, null);
+
+			ThreadPool.QueueUserWorkItem(SendProc);
 		}
 
 		private void ReadCallback(IAsyncResult ar)
@@ -61,6 +68,7 @@ namespace AbarimMUD
 					if (bytesRead <= 0)
 					{
 						_alive = false;
+						_sendEvent.Set();
 						break;
 					}
 					var rawData = Encoding.UTF8.GetString(_buffer, 0, bytesRead);
@@ -123,10 +131,41 @@ namespace AbarimMUD
 				return;
 			}
 
-			Logger.Info("Sending to client: '{0}'", data);
+			// Use dedicated proc to send message to the client
+			// So on one hand sending wont freeze the main loop
+			// On the other hand - the messages would send in the same order they are queued
+			// The second reason explains why we dont use SendAsync
+			Logger.Info("Queing message to client: '{0}'", data);
+			lock (_sendQueue)
+			{
+				_sendQueue.Add(data);
+			}
 
-			var result = Encoding.UTF8.GetBytes(data);
-			_socket.Send(result);
+			_sendEvent.Set();
+		}
+
+		private void SendProc(object obj)
+		{
+			while (_alive)
+			{
+				string[] toSend;
+				lock (_sendQueue)
+				{
+					toSend = _sendQueue.ToArray();
+					_sendQueue.Clear();
+				}
+
+				if (toSend != null)
+				{
+					for (var i = 0; i < toSend.Length; ++i)
+					{
+						var result = Encoding.UTF8.GetBytes(toSend[i]);
+						_socket.Send(result);
+					}
+				}
+
+				_sendEvent.WaitOne();
+			}
 		}
 
 		public void Disconnect()

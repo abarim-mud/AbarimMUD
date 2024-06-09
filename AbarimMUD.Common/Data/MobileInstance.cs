@@ -43,6 +43,8 @@ namespace AbarimMUD.Data
 			Info = mobile ?? throw new ArgumentNullException(nameof(mobile));
 
 			Restore();
+
+			AllCreatures.Add(this);
 		}
 	}
 }

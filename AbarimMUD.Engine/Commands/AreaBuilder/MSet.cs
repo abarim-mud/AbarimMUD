@@ -87,6 +87,18 @@ namespace AbarimMUD.Commands.AreaBuilder
 			}
 
 			mobile.Area.Save();
+
+			foreach (var creature in Creature.AllCreatures)
+			{
+				var mobileInstance = creature as MobileInstance;
+				if (mobileInstance == null || mobileInstance.Info.Id != mobile.Id)
+				{
+					continue;
+				}
+
+				mobileInstance.InvalidateStats();
+				mobileInstance.Restore();
+			}
 		}
 	}
 }

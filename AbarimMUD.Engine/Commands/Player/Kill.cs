@@ -27,7 +27,7 @@
 
 			// Attackers attacks first
 			var attacks = context.Attacks;
-			for(var i = 0; i < attacks.Count; ++i)
+			for(var i = 0; i < attacks.Length; ++i)
 			{
 				var attack = attacks[i];
 				var damage = Combat.CalculateDamage(attack, asMobileContext.ArmorClass);
@@ -53,7 +53,7 @@
 
 			// Defenders attacks
 			attacks = asMobileContext.Attacks;
-			for (var i = 0; i < attacks.Count; ++i)
+			for (var i = 0; i < attacks.Length; ++i)
 			{
 				var attack = attacks[i];
 				var damage = Combat.CalculateDamage(attack, context.ArmorClass);

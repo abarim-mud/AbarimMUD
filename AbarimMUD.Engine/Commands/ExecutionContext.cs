@@ -33,26 +33,25 @@ namespace AbarimMUD.Commands
 		private bool _suspendSend;
 		private readonly StringBuilder _sendCache = new StringBuilder();
 
-		public abstract string Name { get; }
-		public abstract int CurrentHP { get; }
-		public abstract int CurrentIP { get; }
-		public abstract int CurrentMV { get; }
-
-		public abstract Room CurrentRoom { get; set; }
-		public Area CurrentArea => CurrentRoom.Area;
+		public abstract Creature Creature { get; }
 
 		public abstract Role Role { get; }
-
-		public bool IsStaff
-		{
-			get { return Role >= Role.Builder; }
-		}
 
 		public abstract string[] Keywords { get; }
 
 		public abstract Logger Logger { get; }
-		public abstract List<Attack> Attacks { get; }
-		public abstract int ArmorClass { get; }
+
+		public string Name => Creature.Name;
+		public CreatureStats Stats => Creature.Stats;
+		public CreatureState State => Creature.State;
+		public Attack[] Attacks => Stats.Attacks;
+		public int ArmorClass => Stats.ArmorClass;
+
+		public abstract Room CurrentRoom { get; set; }
+		public Area CurrentArea => CurrentRoom.Area;
+
+
+		public bool IsStaff => Role >= Role.Builder;
 
 		protected abstract void InternalSend(string text);
 
@@ -118,7 +117,7 @@ namespace AbarimMUD.Commands
 			}
 
 			_sendCache.AddNewLine();
-			_sendCache.Append(string.Format("<{0}hp {1}ip {2}mv -> ", CurrentHP, CurrentIP, CurrentMV));
+			_sendCache.Append(string.Format("<{0}hp {1}ma {2}mv -> ", State.Hitpoints, State.Mana, State.Movement));
 
 			// Always append color reset
 			_sendCache.Append(ConsoleCommand.ColorClear);
