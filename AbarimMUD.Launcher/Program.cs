@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Configuration;
 
 namespace AbarimMUD
 {
@@ -9,8 +8,14 @@ namespace AbarimMUD
 		{
 			Configuration.DataFolder = @"D:\Projects\AbarimMUD\Data";
 
-			Server.Instance.Start();
-			Console.ReadKey();
+			try
+			{
+				Server.Instance.Start();
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex.ToString());
+			}
 		}
 	}
 }

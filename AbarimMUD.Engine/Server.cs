@@ -59,12 +59,16 @@ namespace AbarimMUD
 
 			DataContext.Initialize(Configuration.DataFolder, Logger.Info);
 
+			DataContext.Register(Race.Storage);
+			DataContext.Register(GameClass.Storage);
+			DataContext.Register(Skill.Storage);
 			DataContext.Register(Area.Storage);
 			DataContext.Register(Account.Storage);
 			DataContext.Register(Character.Storage);
 			DataContext.Register(Social.Storage);
 
 			DataContext.Load();
+			Skill.Storage.SaveAll();
 		}
 
 		public void Start()
@@ -153,8 +157,8 @@ namespace AbarimMUD
 			}
 			catch (Exception ex)
 			{
-				Console.WriteLine(ex.Message);
 				Logger.Error(ex);
+				throw;
 			}
 		}
 

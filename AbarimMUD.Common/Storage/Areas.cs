@@ -40,6 +40,23 @@ namespace AbarimMUD.Storage
 			}
 		}
 
+		private class RaceConverter : JsonConverter<Race>
+		{
+			public override Race Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+			{
+				var name = reader.GetString();
+				return new Race
+				{
+					Name = name
+				};
+			}
+
+			public override void Write(Utf8JsonWriter writer, Race value, JsonSerializerOptions options)
+			{
+				writer.WriteStringValue(value.Name);
+			}
+		}
+
 		internal const string SubfolderName = "areas";
 
 		public int NewRoomId
@@ -110,14 +127,19 @@ namespace AbarimMUD.Storage
 						exit.Tag = null;
 					}
 				}
+
+				foreach (var mobile in area.Mobiles)
+				{
+					mobile.Race = Race.EnsureRaceByName(mobile.Race.Name);
+				}
 			}
 		}
 
 		protected override JsonSerializerOptions CreateJsonOptions()
 		{
 			var result = base.CreateJsonOptions();
-			var converter = new RoomExitConverter();
-			result.Converters.Add(converter);
+			result.Converters.Add(new RoomExitConverter());
+			result.Converters.Add(new RaceConverter());
 
 			return result;
 		}
