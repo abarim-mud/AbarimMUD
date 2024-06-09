@@ -1,4 +1,5 @@
 ﻿using AbarimMUD.Storage;
+using System;
 using System.IO;
 using System.Linq;
 using System.Text.Json.Serialization;
@@ -13,9 +14,14 @@ namespace AbarimMUD.Data
 		Owner
 	}
 
-	public sealed class Character: Creature
+	public sealed class Character : Creature
 	{
 		public static readonly MultipleFilesStorageString<Character> Storage = new Characters();
+
+		private Race _race;
+		private GameClass _class;
+		private int _level;
+
 
 		[JsonIgnore]
 		public Account Account { get; set; }
@@ -28,7 +34,52 @@ namespace AbarimMUD.Data
 			get { return Role >= Role.Builder; }
 		}
 
-		public bool IsMale { get; set; }
+		public string PlayerName { get; set; }
+
+		public Race PlayerRace
+		{
+			get => _race;
+
+			set
+			{
+				_race = value ?? throw new ArgumentNullException(nameof(value));
+				InvalidateStats();
+			}
+		}
+
+		public GameClass PlayerClass
+		{
+			get => _class;
+
+			set
+			{
+				_class = value ?? throw new ArgumentNullException(nameof(value));
+				InvalidateStats();
+			}
+		}
+
+		public int PlayerLevel
+		{
+			get => _level;
+			set
+			{
+				if (value < 1)
+				{
+					throw new ArgumentOutOfRangeException(nameof(value));
+				}
+
+				_level = value;
+				InvalidateStats();
+			}
+		}
+
+		public Sex PlayerSex { get; set; }
+
+		public override string Name => PlayerName;
+		public override Race Race => PlayerRace;
+		public override GameClass Class => PlayerClass;
+		public override int Level => PlayerLevel;
+		public override Sex Sex => PlayerSex;
 
 		public int CurrentRoomId { get; set; }
 
@@ -42,7 +93,6 @@ namespace AbarimMUD.Data
 		public Character()
 		{
 			Role = Role.Player;
-			IsMale = true;
 
 			CurrentHP = 200;
 			CurrentIP = 100;

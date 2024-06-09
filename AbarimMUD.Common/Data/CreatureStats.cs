@@ -2,7 +2,7 @@
 {
 	public class CreatureStats
 	{
-		public int Hitpoints { get; internal set; }
+		public int MaxHitpoints { get; internal set; }
 		public Attack[] Attacks { get; internal set; }
 	}
 }

@@ -83,19 +83,30 @@ namespace AbarimMUD.Commands.Player
 			if (context.IsStaff)
 			{
 				sb.Append(ConsoleCommand.ForeColorCyan);
+				sb.AppendLine("Id: " + mobile.Info.Id);
 				sb.AppendLine("Keywords: " + mobile.Info.Name);
 				sb.AppendLine("Short: " + mobile.Info.ShortDescription);
 				sb.AppendLine("Long: " + mobile.Info.LongDescription);
 				sb.AppendLine("Race: " + mobile.Race.Name);
 				sb.AppendLine("Class: " + mobile.Class.Name);
 				sb.AppendLine("Level: " + mobile.Level);
-/*				sb.AppendLine("Armor Class: " + mobile.Info.ArmorClass);
+				/*				sb.AppendLine("Armor Class: " + mobile.Info.ArmorClass);
 
-				for (var i = 0; i < mobile.Info.Attacks.Count; ++i)
+								for (var i = 0; i < mobile.Info.Attacks.Count; ++i)
+								{
+									var attack = mobile.Info.Attacks[i];
+									sb.AppendLine($"#{i} attack: {attack.ToString()}");
+								}*/
+
+				sb.AppendLine();
+
+				var stats = mobile.Stats;
+				sb.AppendLine($"Hitpoints: {mobile.State.Hitpoints}/{stats.MaxHitpoints}");
+				for (var i = 0; i < stats.Attacks.Length; i++)
 				{
-					var attack = mobile.Info.Attacks[i];
-					sb.AppendLine($"#{i} attack: {attack.ToString()}");
-				}*/
+					var attack = stats.Attacks[i];
+					sb.AppendLine($"Attack {i + 1}: {attack}");
+				}
 
 				sb.Append(ConsoleCommand.ColorClear);
 			}

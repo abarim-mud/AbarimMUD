@@ -2,15 +2,21 @@
 
 namespace AbarimMUD.Data
 {
-	public class MobileInstance
+	public class MobileInstance : Creature
 	{
 		private Room _room;
 
 		public Mobile Info { get; }
 
-		public Race Race => Info.Race;
-		public GameClass Class => Info.Class;
-		public int Level => Info.Level;
+		public override string Name => Info.Name;
+
+		public override Race Race => Info.Race;
+
+		public override GameClass Class => Info.Class;
+
+		public override int Level => Info.Level;
+
+		public override Sex Sex => Info.Sex;
 
 		public Room Room
 		{
@@ -35,6 +41,8 @@ namespace AbarimMUD.Data
 		public MobileInstance(Mobile mobile)
 		{
 			Info = mobile ?? throw new ArgumentNullException(nameof(mobile));
+
+			Restore();
 		}
 	}
 }

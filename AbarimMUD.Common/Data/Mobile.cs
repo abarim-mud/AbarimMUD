@@ -102,13 +102,18 @@ namespace AbarimMUD.Data
 		Shock
 	}
 
-	public class Mobile: Creature
+	public class Mobile
 	{
 		[JsonIgnore]
 		public Area Area { get; set; }
 
 		public int Id { get; set; }
 
+		public string Name { get; set; }
+		public Race Race { get; set; }
+		public GameClass Class { get; set; }
+		public int Level { get; set; }
+		public Sex Sex { get; set; }
 		public string ShortDescription { get; set; }
 		public string LongDescription { get; set; }
 		public string Description { get; set; }

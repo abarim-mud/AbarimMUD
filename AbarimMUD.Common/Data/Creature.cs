@@ -1,52 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace AbarimMUD.Data
 {
-	public class Creature
+	public abstract class Creature
 	{
 		private CreatureStats _stats = null;
-		private Race _race;
-		private GameClass _class;
-		private int _level;
 
-		public string Name { get; set; }
-		public Race Race
-		{
-			get => _race;
+		public abstract string Name { get; }
+		public abstract Race Race { get; }
 
-			set
-			{
-				_race = value ?? throw new ArgumentNullException(nameof(value));
-				InvalidateStats();
-			}
-		}
+		public abstract GameClass Class { get; }
 
-		public GameClass Class
-		{
-			get => _class;
-
-			set
-			{
-				_class = value ?? throw new ArgumentNullException(nameof(value));
-				InvalidateStats();
-			}
-		}
-
-		public int Level
-		{
-			get => _level;
-			set
-			{
-				if (value < 1)
-				{
-					throw new ArgumentOutOfRangeException(nameof(value));
-				}
-
-				_level = value;
-				InvalidateStats();
-			}
-		}
+		public abstract int Level { get; }
+		public abstract Sex Sex { get; }
 
 		public CreatureStats Stats
 		{
@@ -57,7 +23,7 @@ namespace AbarimMUD.Data
 			}
 		}
 
-		public Sex Sex { get; set; }
+		public CreatureState State { get; } = new CreatureState();
 
 		public void InvalidateStats()
 		{
@@ -73,7 +39,7 @@ namespace AbarimMUD.Data
 
 			_stats = new CreatureStats
 			{
-				Hitpoints = Class.HitpointsPerLevel * Level
+				MaxHitpoints = Class.HitpointsPerLevel * Level
 			};
 
 			var attacksCount = 1;
@@ -85,6 +51,13 @@ namespace AbarimMUD.Data
 			}
 
 			_stats.Attacks = attacksList.ToArray();
+		}
+
+		public void Restore()
+		{
+			var stats = Stats;
+
+			State.Hitpoints = stats.MaxHitpoints;
 		}
 	}
 }

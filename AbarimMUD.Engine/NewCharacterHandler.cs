@@ -21,8 +21,8 @@ namespace AbarimMUD
 		public NewCharacterHandler(Session session)
 			: base(session)
 		{
-			_character.Level = 1;
-			_character.Race = Race.EnsureRaceByName(Configuration.DefaultRace);
+			_character.PlayerLevel = 1;
+			_character.PlayerRace = Race.EnsureRaceByName(Configuration.DefaultRace);
 		}
 
 		public override void OnSet()
@@ -62,7 +62,7 @@ namespace AbarimMUD
 			Send(string.Format("Please, confirm your new character({0}, {1}, {2}): (y/n)",
 				_character.Name,
 				_character.Class.Name,
-				_character.IsMale ? "male" : "female"));
+				_character.Sex == Sex.Male ? "male" : "female"));
 		}
 
 		public override void Process(string data)
@@ -101,7 +101,7 @@ namespace AbarimMUD
 				return;
 			}
 
-			_character.Name = name;
+			_character.PlayerName = name;
 
 			_mode = Mode.PrimaryClass;
 			SendChoosePrimaryClassPrompt();
@@ -118,7 +118,7 @@ namespace AbarimMUD
 			}
 
 			var classes = GameClass.Storage.ToArray();
-			_character.Class = classes[index - 1];
+			_character.PlayerClass = classes[index - 1];
 
 			_mode = Mode.Gender;
 			SendGenderPrompt();
@@ -136,7 +136,7 @@ namespace AbarimMUD
 				return;
 			}
 
-			_character.IsMale = (data == "m");
+			_character.PlayerSex = data == "m" ? Sex.Male : Sex.Female;
 
 			_mode = Mode.Confirm;
 			SendConfirmPrompt();

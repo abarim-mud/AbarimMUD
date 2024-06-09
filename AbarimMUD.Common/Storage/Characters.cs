@@ -96,8 +96,8 @@ namespace AbarimMUD.Storage
 
 			foreach (var character in this)
 			{
-				character.Race = Race.EnsureRaceByName(character.Race.Name);
-				character.Class = GameClass.EnsureClassByName(character.Class.Name);
+				character.PlayerRace = Race.EnsureRaceByName(character.Race.Name);
+				character.PlayerClass = GameClass.EnsureClassByName(character.Class.Name);
 			}
 
 			_tempCache.Clear();
