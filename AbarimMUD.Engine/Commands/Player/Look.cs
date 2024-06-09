@@ -75,33 +75,37 @@ namespace AbarimMUD.Commands.Player
 			return sb.ToString();
 		}
 
-		private string BuildMobileDescription(ExecutionContext context, MobileInstance mobile)
+		private string BuildMobileDescription(ExecutionContext context, Creature creature)
 		{
 			var sb = new StringBuilder();
 
-			sb.AppendLine(mobile.Info.Description);
+			var mobile = creature as MobileInstance;
+			if (mobile != null)
+			{
+				sb.AppendLine(mobile.Info.Description);
+			}
+			
 			if (context.IsStaff)
 			{
 				sb.Append(ConsoleCommand.ForeColorCyan);
-				sb.AppendLine("Id: " + mobile.Info.Id);
-				sb.AppendLine("Keywords: " + mobile.Info.Name);
-				sb.AppendLine("Short: " + mobile.Info.ShortDescription);
-				sb.AppendLine("Long: " + mobile.Info.LongDescription);
-				sb.AppendLine("Race: " + mobile.Race.Name);
-				sb.AppendLine("Class: " + mobile.Class.Name);
-				sb.AppendLine("Level: " + mobile.Level);
-				/*				sb.AppendLine("Armor Class: " + mobile.Info.ArmorClass);
 
-								for (var i = 0; i < mobile.Info.Attacks.Count; ++i)
-								{
-									var attack = mobile.Info.Attacks[i];
-									sb.AppendLine($"#{i} attack: {attack.ToString()}");
-								}*/
+				if (mobile != null)
+				{
+					sb.AppendLine("Id: " + mobile.Info.Id);
+					sb.AppendLine("Keywords: " + mobile.Info.Name);
+					sb.AppendLine("Short: " + mobile.Info.ShortDescription);
+					sb.AppendLine("Long: " + mobile.Info.LongDescription);
+				}
+
+				sb.AppendLine("Race: " + creature.Race.Name);
+				sb.AppendLine("Class: " + creature.Class.Name);
+				sb.AppendLine("Level: " + creature.Level);
 
 				sb.AppendLine();
 
-				var stats = mobile.Stats;
-				sb.AppendLine($"Hitpoints: {mobile.State.Hitpoints}/{stats.MaxHitpoints}");
+				var stats = creature.Stats;
+				sb.AppendLine($"Hitpoints: {creature.State.Hitpoints}/{stats.MaxHitpoints}");
+				sb.AppendLine("Armor Class: " + creature.Stats.ArmorClass);
 				for (var i = 0; i < stats.Attacks.Length; i++)
 				{
 					var attack = stats.Attacks[i];
@@ -132,12 +136,11 @@ namespace AbarimMUD.Commands.Player
 					return;
 				}
 
-				var asMobileContext = lookContext as MobileExecutionContext;
-				if (asMobileContext != null)
+				if (lookContext != null)
 				{
-					context.Send($"You look at {asMobileContext.Mobile.Info.ShortDescription}.\n");
+					context.Send($"You look at {lookContext.Name}.\n");
 
-					var d = BuildMobileDescription(context, asMobileContext.Mobile);
+					var d = BuildMobileDescription(context, lookContext.Creature);
 					context.Send(d);
 				}
 

@@ -48,6 +48,8 @@ namespace AbarimMUD
 				_character = value;
 				_character.Tag = Context;
 
+				_character.Restore();
+
 				_room = Area.EnsureRoomById(Configuration.StartRoomId);
 				_room.AddCharacter(_character);
 				Creature.AllCreatures.Add(_character);

@@ -41,10 +41,13 @@ namespace AbarimMUD.Data
 
 			_stats = new CreatureStats
 			{
-				MaxHitpoints = Class.HitpointsPerLevel * Level
+				MaxHitpoints = Class.Hitpoints.CalculateValue(Level)
 			};
 
-			var attacksCount = 1;
+			// Everyone has 2 attacks by default
+			var attacksCount = 2;
+			
+			// Apply skill modifiers
 			foreach(var pair in Class.SkillsByLevels)
 			{
 				if (Level < pair.Key)
@@ -66,11 +69,12 @@ namespace AbarimMUD.Data
 				}
 			}
 
+			// Build attack list
+			var penetration = Class.Penetration.CalculateValue(Level);
 			var attacksList = new List<Attack>();
-
 			for (var i = 0; i < attacksCount; ++i)
 			{
-				attacksList.Add(new Attack(AttackType.Hit, 50, new RandomRange(1, 4)));
+				attacksList.Add(new Attack(AttackType.Hit, penetration, new RandomRange(1, 4)));
 			}
 
 			_stats.Attacks = attacksList.ToArray();

@@ -1,13 +1,17 @@
 {
   "Name": "warrior",
   "Description": "Master of armor and sword.",
-  "HitpointsPerLevel": 30,
   "SkillsByLevels": {
-    "1": [
-      "second attack"
-    ],
     "36": [
       "third attack"
     ]
+  },
+  "Hitpoints": {
+    "Level1Value": 40,
+    "Level100Value": 1500
+  },
+  "Penetration": {
+    "Level1Value": 1,
+    "Level100Value": 100
   }
 }

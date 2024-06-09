@@ -21,7 +21,24 @@ namespace AbarimMUD
 		private bool _alive = true;
 		private string _input;
 
-		public bool Alive => _alive;
+		public bool Alive
+		{
+			get => _alive;
+
+			private set
+			{
+				if (value == _alive)
+				{
+					return;
+				}
+
+				_alive = value;
+				if (!_alive)
+				{
+					_sendEvent.Set();
+				}
+			}
+		}
 
 		public IPAddress RemoteIp => _remoteIp;
 		public int RemotePort => _remotePort;
@@ -67,8 +84,7 @@ namespace AbarimMUD
 				{
 					if (bytesRead <= 0)
 					{
-						_alive = false;
-						_sendEvent.Set();
+						Alive = false;
 						break;
 					}
 					var rawData = Encoding.UTF8.GetString(_buffer, 0, bytesRead);
@@ -112,6 +128,7 @@ namespace AbarimMUD
 			catch (Exception ex)
 			{
 				Logger.Error(ex);
+				Alive = false;
 			}
 		}
 
@@ -148,30 +165,37 @@ namespace AbarimMUD
 		{
 			while (_alive)
 			{
-				string[] toSend;
-				lock (_sendQueue)
+				try
 				{
-					toSend = _sendQueue.ToArray();
-					_sendQueue.Clear();
-				}
-
-				if (toSend != null)
-				{
-					for (var i = 0; i < toSend.Length; ++i)
+					string[] toSend;
+					lock (_sendQueue)
 					{
-						var result = Encoding.UTF8.GetBytes(toSend[i]);
-						_socket.Send(result);
+						toSend = _sendQueue.ToArray();
+						_sendQueue.Clear();
 					}
-				}
 
-				_sendEvent.WaitOne();
+					if (toSend != null)
+					{
+						for (var i = 0; i < toSend.Length; ++i)
+						{
+							var result = Encoding.UTF8.GetBytes(toSend[i]);
+							_socket.Send(result);
+						}
+					}
+
+					_sendEvent.WaitOne();
+				}
+				catch (Exception ex)
+				{
+					Logger.Error(ex);
+				}
 			}
 		}
 
 		public void Disconnect()
 		{
 			Logger.Info("Closing connection...");
-			_alive = false;
+			Alive = false;
 			_socket.Disconnect(true);
 			Logger.Info("Connection has been closed");
 		}
