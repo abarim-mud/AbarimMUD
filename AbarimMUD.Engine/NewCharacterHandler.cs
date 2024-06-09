@@ -1,4 +1,4 @@
-﻿using AbarimMUD.GameClasses;
+﻿using System.Linq;
 using System.Text;
 using AbarimMUD.Data;
 using AbarimMUD.Utils;
@@ -21,6 +21,8 @@ namespace AbarimMUD
 		public NewCharacterHandler(Session session)
 			: base(session)
 		{
+			_character.Level = 1;
+			_character.Race = Race.EnsureRaceByName(Configuration.DefaultRace);
 		}
 
 		public override void OnSet()
@@ -40,7 +42,8 @@ namespace AbarimMUD
 
 			var index = 1;
 
-			foreach (var c in BaseClass.AllClasses)
+			var classes = GameClass.Storage.ToArray();
+			foreach (var c in classes)
 			{
 				sb.AddTextLine(string.Format("{0}) {1} - {2}", index, c.Name, c.Description));
 				++index;
@@ -58,7 +61,7 @@ namespace AbarimMUD
 		{
 			Send(string.Format("Please, confirm your new character({0}, {1}, {2}): (y/n)",
 				_character.Name,
-				_character.GameClassName,
+				_character.Class.Name,
 				_character.IsMale ? "male" : "female"));
 		}
 
@@ -107,15 +110,15 @@ namespace AbarimMUD
 		private void ProcessPrimaryClass(string data)
 		{
 			int index;
-			if (!int.TryParse(data, out index) || index < 1 || index > BaseClass.AllClasses.Length)
+			if (!int.TryParse(data, out index) || index < 1 || index > GameClass.Storage.Count)
 			{
 				Send("Invalid selection.");
 				SendChoosePrimaryClassPrompt();
 				return;
 			}
 
-			var className = BaseClass.AllClasses[index - 1];
-			_character.GameClassName = className.Name;
+			var classes = GameClass.Storage.ToArray();
+			_character.Class = classes[index - 1];
 
 			_mode = Mode.Gender;
 			SendGenderPrompt();

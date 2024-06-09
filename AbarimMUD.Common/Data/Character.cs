@@ -13,16 +13,12 @@ namespace AbarimMUD.Data
 		Owner
 	}
 
-	public sealed class Character
+	public sealed class Character: Creature
 	{
 		public static readonly MultipleFilesStorageString<Character> Storage = new Characters();
 
 		[JsonIgnore]
 		public Account Account { get; set; }
-
-		public string Name { get; set; }
-
-		public string GameClassName { get; set; }
 
 		public Role Role { get; set; }
 

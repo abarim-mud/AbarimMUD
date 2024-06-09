@@ -58,7 +58,7 @@ namespace AbarimMUD.Data
 
 				_rooms.CollectionChanged += OnRoomsChanged;
 
-				UpdateEntities(Rooms);
+				UpdateRooms();
 			}
 		}
 
@@ -86,7 +86,7 @@ namespace AbarimMUD.Data
 
 				_mobiles.CollectionChanged += OnMobilesChanged;
 
-				UpdateEntities(Mobiles);
+				UpdateMobiles();
 			}
 		}
 
@@ -115,7 +115,7 @@ namespace AbarimMUD.Data
 
 				_objects.CollectionChanged += OnObjectsChanged;
 
-				UpdateEntities(Objects);
+				UpdateObjects();
 			}
 		}
 
@@ -133,27 +133,43 @@ namespace AbarimMUD.Data
 
 		private void OnRoomsChanged(object sender, NotifyCollectionChangedEventArgs e)
 		{
-			UpdateEntities(Rooms);
+			UpdateRooms();
 			RoomsChanged?.Invoke(this, EventArgs.Empty);
 		}
 
 		private void OnMobilesChanged(object sender, NotifyCollectionChangedEventArgs e)
 		{
-			UpdateEntities(Mobiles);
+			UpdateMobiles();
 			MobilesChanged?.Invoke(this, EventArgs.Empty);
 		}
 
 		private void OnObjectsChanged(object sender, NotifyCollectionChangedEventArgs e)
 		{
-			UpdateEntities(Mobiles);
+			UpdateObjects();
 			ObjectsChanged?.Invoke(this, EventArgs.Empty);
 		}
 
-		private void UpdateEntities(IReadOnlyList<AreaEntity> entities)
+		private void UpdateRooms()
 		{
-			foreach (var entity in entities)
+			foreach (var r in Rooms)
 			{
-				entity.Area = this;
+				r.Area = this;
+			}
+		}
+
+		private void UpdateMobiles()
+		{
+			foreach (var m in Mobiles)
+			{
+				m.Area = this;
+			}
+		}
+
+		private void UpdateObjects()
+		{
+			foreach (var o in Objects)
+			{
+				o.Area = this;
 			}
 		}
 

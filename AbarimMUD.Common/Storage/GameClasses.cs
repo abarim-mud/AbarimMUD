@@ -38,7 +38,7 @@ namespace AbarimMUD.Storage
 			foreach(var cls in this)
 			{
 				var newDict = new Dictionary<int, List<Skill>>();
-				foreach (var pair in cls.Skills)
+				foreach (var pair in cls.SkillsByLevels)
 				{
 					var newSkills = new List<Skill>();
 					foreach(var skill in pair.Value)
@@ -49,7 +49,7 @@ namespace AbarimMUD.Storage
 					newDict[pair.Key] = newSkills;
 				}
 
-				cls.Skills = newDict;
+				cls.SkillsByLevels = newDict;
 			}
 		}
 	}

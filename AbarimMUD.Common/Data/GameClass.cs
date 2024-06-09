@@ -8,7 +8,12 @@ namespace AbarimMUD.Data
 		public static readonly MultipleFilesStorageString<GameClass> Storage = new GameClasses();
 
 		public string Name { get; set; }
-		public Dictionary<int, List<Skill>> Skills { get; set; }
+		public string Description { get; set; }
+		public int HitpointsPerLevel { get; set; }
+
+		public Dictionary<int, List<Skill>> SkillsByLevels { get; set; }
+
+		public override string ToString() => Name;
 
 		public static GameClass GetClassByName(string name) => Storage.GetByKey(name);
 		public static GameClass EnsureClassByName(string name) => Storage.EnsureByKey(name);

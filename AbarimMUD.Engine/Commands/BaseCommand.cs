@@ -42,13 +42,13 @@ namespace AbarimMUD.Commands
 			_allCommands["rset"] = new RSet();
 			_allCommands["rlink"] = new RLink();
 			_allCommands["rlinkclear"] = new RLinkClear();
+			_allCommands["rsaveresets"] = new RSaveResets();
+
 			_allCommands["goto"] = new Goto();
 			_allCommands["rcreate"] = new RCreate();
 			_allCommands["mcreate"] = new MCreate();
 			_allCommands["mspawn"] = new MSpawn();
 			_allCommands["mset"] = new MSet();
-			_allCommands["maddattack"] = new MAddAttack();
-			_allCommands["mremoveattack"] = new MRemoveAttack();
 
 			// Owner
 			_allCommands["settype"] = new SetType();

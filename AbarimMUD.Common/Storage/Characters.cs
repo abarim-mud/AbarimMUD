@@ -1,6 +1,8 @@
 ﻿using AbarimMUD.Data;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Storage
 {
@@ -18,7 +20,6 @@ namespace AbarimMUD.Storage
 			}
 		}
 
-
 		private const string CharacterFile = "character.json";
 
 		private readonly List<CharacterRecord> _tempCache = new List<CharacterRecord>();
@@ -27,6 +28,15 @@ namespace AbarimMUD.Storage
 
 		internal Characters() : base(c => c.Name, Accounts.SubfolderName)
 		{
+		}
+
+		protected override JsonSerializerOptions CreateJsonOptions()
+		{
+			var result = base.CreateJsonOptions();
+			result.Converters.Add(Common.RaceConverter);
+			result.Converters.Add(Common.ClassConverter);
+
+			return result;
 		}
 
 		protected override void InternalLoad()
@@ -82,6 +92,12 @@ namespace AbarimMUD.Storage
 			foreach (var record in _tempCache)
 			{
 				record.Character.Account = Account.EnsureAccountByName(record.AccountName);
+			}
+
+			foreach (var character in this)
+			{
+				character.Race = Race.EnsureRaceByName(character.Race.Name);
+				character.Class = GameClass.EnsureClassByName(character.Class.Name);
 			}
 
 			_tempCache.Clear();

@@ -10,5 +10,7 @@
 		// public static int StartRoomId => 5135;
 		public static string DataFolder;
 		public static string DefaultCharacter = "Yang";
+		public static string DefaultRace = "human";
+		public static string DefaultClass = "warrior";
 	}
 }

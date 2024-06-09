@@ -68,7 +68,8 @@ namespace AbarimMUD
 			DataContext.Register(Social.Storage);
 
 			DataContext.Load();
-			Skill.Storage.SaveAll();
+
+			GameClass.Storage.SaveAll();
 		}
 
 		public void Start()

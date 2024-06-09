@@ -1,6 +1,8 @@
 {
   "Name": "warrior",
-  "Skills": {
+  "Description": "Master of armor and sword.",
+  "HitpointsPerLevel": 30,
+  "SkillsByLevels": {
     "1": [
       "second attack"
     ]

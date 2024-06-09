@@ -83,16 +83,19 @@ namespace AbarimMUD.Commands.Player
 			if (context.IsStaff)
 			{
 				sb.Append(ConsoleCommand.ForeColorCyan);
-				sb.AppendLine("Name: " + mobile.Info.Name);
+				sb.AppendLine("Keywords: " + mobile.Info.Name);
 				sb.AppendLine("Short: " + mobile.Info.ShortDescription);
 				sb.AppendLine("Long: " + mobile.Info.LongDescription);
-				sb.AppendLine("Armor Class: " + mobile.Info.ArmorClass);
+				sb.AppendLine("Race: " + mobile.Race.Name);
+				sb.AppendLine("Class: " + mobile.Class.Name);
+				sb.AppendLine("Level: " + mobile.Level);
+/*				sb.AppendLine("Armor Class: " + mobile.Info.ArmorClass);
 
 				for (var i = 0; i < mobile.Info.Attacks.Count; ++i)
 				{
 					var attack = mobile.Info.Attacks[i];
 					sb.AppendLine($"#{i} attack: {attack.ToString()}");
-				}
+				}*/
 
 				sb.Append(ConsoleCommand.ColorClear);
 			}

@@ -10,9 +10,12 @@ namespace AbarimMUD.Commands.AreaBuilder
 			string idStr, cmd;
 			int id;
 			data.ParseCommand(out idStr, out cmd);
-			if (string.IsNullOrEmpty(data) || !int.TryParse(idStr, out id))
+
+			string cmdText, cmdData;
+			cmd.ParseCommand(out cmdText, out cmdData);
+			if (string.IsNullOrEmpty(data) || !int.TryParse(idStr, out id) || string.IsNullOrEmpty(cmdData))
 			{
-				context.Send("Usage: mset _mobileId_ name|desc|short|long|ac _params_");
+				context.Send("Usage: mset _mobileId_ name|desc|short|long|race|class|level _params_");
 				return;
 			}
 
@@ -23,76 +26,67 @@ namespace AbarimMUD.Commands.AreaBuilder
 				return;
 			}
 
-			string cmdText, cmdData;
-			cmd.ParseCommand(out cmdText, out cmdData);
-
-			var doSave = true;
 			if (cmdText == "name")
 			{
-				if (string.IsNullOrEmpty(cmdData))
-				{
-					context.Send("Usage: mset name _data_");
-					return;
-				}
-
 				mobile.Name = cmdData;
 				context.SendTextLine($"Changed {mobile.Id}'s name to {mobile.Name}");
 			}
 			else if (cmdText == "desc")
 			{
-				if (string.IsNullOrEmpty(cmdData))
-				{
-					context.Send("Usage: mset desc _data_");
-					return;
-				}
-
 				mobile.Description = cmdData;
 				context.SendTextLine($"Changed {mobile.Id}'s desc to {mobile.Description}");
 			}
 			else if (cmdText == "short")
 			{
-				if (string.IsNullOrEmpty(cmdData))
-				{
-					context.Send("Usage: mset short _data_");
-					return;
-				}
-
 				mobile.ShortDescription = cmdData;
 				context.SendTextLine($"Changed {mobile.Id}'s short to '{mobile.ShortDescription}'");
 			}
 			else if (cmdText == "long")
 			{
-				if (string.IsNullOrEmpty(cmdData))
-				{
-					context.Send("Usage: mset long _data_");
-					return;
-				}
-
 				mobile.LongDescription = cmdData;
 				context.SendTextLine($"Changed {mobile.Id}'s long to '{mobile.LongDescription}'");
 			}
-			else if (cmdText == "ac")
+			else if (cmdText == "race")
 			{
-				int armorClass;
-				if (string.IsNullOrEmpty(cmdData) || !int.TryParse(cmdData, out armorClass))
+				var race = context.EnsureRace(cmdData);
+				if (race == null)
 				{
-					context.Send("Usage: mset ac _armorClass_");
 					return;
 				}
 
-				mobile.ArmorClass = armorClass;
-				context.SendTextLine($"Changed {mobile.Id}'s ac to '{mobile.ArmorClass}'");
+				mobile.Race = race;
+				context.SendTextLine($"Changed {mobile.Id}'s race to '{race}'");
+			}
+			else if (cmdText == "class")
+			{
+				var cls = context.EnsureClass(cmdData);
+				if (cls == null)
+				{
+					return;
+				}
+
+				mobile.Class = cls;
+				context.SendTextLine($"Changed {mobile.Id}'s class to '{cls}'");
+			}
+			else if (cmdText == "level")
+			{
+				int newLevel;
+				if (!int.TryParse(cmdData, out newLevel) || newLevel < 1)
+				{
+					context.SendTextLine($"Can't parse level {cmdData}");
+					return;
+				}
+
+				mobile.Level = newLevel;
+				context.SendTextLine($"Changed {mobile.Id}'s level to '{newLevel}'");
 			}
 			else
 			{
 				context.Send(string.Format("Unknown mset command '{0}'", cmdData));
-				doSave = false;
+				return;
 			}
 
-			if (doSave)
-			{
-				mobile.Area.Save();
-			}
+			mobile.Area.Save();
 		}
 	}
 }

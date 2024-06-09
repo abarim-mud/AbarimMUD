@@ -51,9 +51,9 @@ namespace AbarimMUD.Commands
 			get { return _mobile.Info.Name.Split(" "); }
 		}
 
-		public override List<Attack> Attacks => Mobile.Info.Attacks;
+		public override List<Attack> Attacks => new List<Attack>();
 
-		public override int ArmorClass => Mobile.Info.ArmorClass;
+		public override int ArmorClass => 0;
 
 		public override Logger Logger => Server.Logger;
 

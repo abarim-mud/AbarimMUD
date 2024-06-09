@@ -13,7 +13,10 @@ namespace AbarimMUD.Commands.AreaBuilder
 				Name = "unset",
 				ShortDescription = "Unset",
 				LongDescription = "A mobile with 'unset' name is standing here.",
-				Description = "Unset."
+				Description = "Unset.",
+				Race = Race.EnsureRaceByName(Configuration.DefaultRace),
+				Class = GameClass.EnsureClassByName(Configuration.DefaultClass),
+				Level = 1,
 			};
 
 			var area = context.CurrentRoom.Area;

@@ -7,6 +7,11 @@ namespace AbarimMUD.Data
 		private Room _room;
 
 		public Mobile Info { get; }
+
+		public Race Race => Info.Race;
+		public GameClass Class => Info.Class;
+		public int Level => Info.Level;
+
 		public Room Room
 		{
 			get { return _room; }
