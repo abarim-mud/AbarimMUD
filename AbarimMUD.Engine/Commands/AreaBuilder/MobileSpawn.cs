@@ -2,12 +2,11 @@
 
 namespace AbarimMUD.Commands.AreaBuilder
 {
-	public sealed class MSpawn : AreaBuilderCommand
+	public sealed class MobileSpawn : AreaBuilderCommand
 	{
 		protected override void InternalExecute(ExecutionContext context, string data)
 		{
-			data = data.Trim();
-			var id = -1;
+			int id;
 			if (string.IsNullOrEmpty(data) || !int.TryParse(data, out id))
 			{
 				context.Send("Usage: mspawn _mobileId_");

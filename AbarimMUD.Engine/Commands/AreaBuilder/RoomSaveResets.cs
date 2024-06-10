@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace AbarimMUD.Commands.AreaBuilder
 {
-	public sealed class RSaveResets : AreaBuilderCommand
+	public sealed class RoomSaveResets : AreaBuilderCommand
 	{
 		protected override void InternalExecute(ExecutionContext context, string data)
 		{

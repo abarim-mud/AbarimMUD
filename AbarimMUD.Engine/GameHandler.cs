@@ -41,7 +41,7 @@ namespace AbarimMUD
 		{
 			using (new ExecutionContext.SendSuspender(Session.Context))
 			{
-				BaseCommand.ParseAndExecute(Session.Context, data);
+				Session.Context.ParseAndExecute(data);
 			}
 		}
 	}

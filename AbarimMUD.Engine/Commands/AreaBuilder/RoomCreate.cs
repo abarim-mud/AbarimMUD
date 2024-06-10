@@ -1,9 +1,8 @@
 ﻿using AbarimMUD.Data;
-using AbarimMUD.Utils;
 
 namespace AbarimMUD.Commands.AreaBuilder
 {
-	public sealed class RCreate : AreaBuilderCommand
+	public class RoomCreate : AreaBuilderCommand
 	{
 		protected override void InternalExecute(ExecutionContext context, string data)
 		{
@@ -20,8 +19,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 			area.Save();
 
 			context.SendTextLine($"New room (#{newRoom.Id}) had been created for the area '{context.CurrentRoom.Area.Name}'");
-
-			new Goto().Execute(context, newRoom.Id.ToString());
+			Goto.Execute(context, newRoom.Id.ToString());
 		}
 	}
 }

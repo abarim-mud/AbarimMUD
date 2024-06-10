@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using AbarimMUD.Data;
+using AbarimMUD.Utils;
 
 namespace AbarimMUD.Commands.Owner
 {
@@ -18,9 +19,8 @@ namespace AbarimMUD.Commands.Owner
 
 		protected override void InternalExecute(ExecutionContext context, string data)
 		{
-			var parts = (from d in data.Split(' ') select d.Trim()).ToArray();
-
-			if (parts.Length != 2)
+			var parts = data.SplitByWhitespace();
+			if (parts.Length < 2)
 			{
 				context.Send("Usage: settype <character> player|area|world|lowadmin|highadmin|owner");
 				return;

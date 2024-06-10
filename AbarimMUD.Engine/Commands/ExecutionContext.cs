@@ -3,6 +3,7 @@ using NLog;
 using System.Collections.Generic;
 using System.Text;
 using AbarimMUD.Data;
+using AbarimMUD.Utils;
 
 namespace AbarimMUD.Commands
 {
@@ -127,6 +128,40 @@ namespace AbarimMUD.Commands
 			InternalSend(data);
 
 			_sendCache.Clear();
+		}
+
+		public void ParseAndExecute(string data)
+		{
+			var parts = data.SplitByWhitespace(2);
+			if (parts.Length == 0)
+			{
+				Send(string.Empty);
+				return;
+			}
+
+			var cmd = parts[0];
+
+			Logger.Info("Processing command: {0}", cmd);
+
+			var command = BaseCommand.FindCommand(cmd);
+			if (command == null)
+			{
+				Logger.Info("Command is unrecognized.");
+				Send("Arglebargle, glop-glyf!?!");
+				return;
+			}
+
+			if (command.RequiredType > Role)
+			{
+				Logger.Info("Command is not available for this character.");
+				Send("Arglebargle, glop-glyf!?!");
+				return;
+			}
+
+			Logger.Info("Command type is {0}.", cmd.GetType());
+
+			var args = parts.Length > 1 ? parts[1] : string.Empty;
+			command.Execute(this, args);
 		}
 	}
 }

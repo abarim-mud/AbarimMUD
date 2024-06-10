@@ -1,15 +1,13 @@
-﻿namespace AbarimMUD.Commands.AreaBuilder
+﻿using AbarimMUD.Utils;
+
+namespace AbarimMUD.Commands.AreaBuilder
 {
-	public class RSet : AreaBuilderCommand
+	public class RoomSet : AreaBuilderCommand
 	{
 		protected override void InternalExecute(ExecutionContext context, string data)
 		{
-			data = data.Trim();
-			string cmdText, cmdData;
-			data.ParseCommand(out cmdText, out cmdData);
-			if (string.IsNullOrEmpty(data) ||
-				(cmdText != "name" &&
-				cmdText != "desc"))
+			var parts = data.SplitByWhitespace(2);
+			if (parts.Length < 2)
 			{
 				context.Send("Usage: rset name|desc _params_");
 				return;
@@ -17,7 +15,10 @@
 
 			var room = context.CurrentRoom;
 			var doSave = true;
-			switch(cmdText)
+
+			var cmdText = parts[0];
+			var cmdData = parts[1];
+			switch (cmdText)
 			{
 				case "name":
 					{
@@ -44,6 +45,7 @@
 					break;
 
 				default:
+					context.SendTextLine($"Unknown room property {cmdText}");
 					doSave = false;
 					break;
 			}

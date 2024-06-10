@@ -4,19 +4,18 @@ using System;
 
 namespace AbarimMUD.Commands.AreaBuilder
 {
-	public sealed class RLink : AreaBuilderCommand
+	public sealed class RoomLink : AreaBuilderCommand
 	{
 		protected override void InternalExecute(ExecutionContext context, string data)
 		{
-			string exit, idStr;
-			data.ParseCommand(out exit, out idStr);
-
-			if (string.IsNullOrEmpty(data) || string.IsNullOrEmpty(exit))
+			var parts = data.SplitByWhitespace();
+			if (parts.Length < 2)
 			{
 				context.Send("Usage: rlink east|west|south|north|up|down _roomId_");
 				return;
 			}
 
+			var exit = parts[0];
 			Direction exitType;
 			if (!Enum.TryParse(exit.CasedName(), out exitType))
 			{
@@ -25,9 +24,9 @@ namespace AbarimMUD.Commands.AreaBuilder
 			}
 
 			int id;
-			if (!int.TryParse(idStr, out id))
+			if (!int.TryParse(parts[1], out id))
 			{
-				context.Send(string.Format("Unable to resolve vnum {0}", idStr));
+				context.Send(string.Format("Unable to resolve id {0}", parts[1]));
 				return;
 			}
 
@@ -41,7 +40,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 			var destRoom = Room.GetRoomById(id);
 			if (destRoom == null)
 			{
-				context.Send(string.Format("Could not find room with id {0}", idStr));
+				context.Send(string.Format("Could not find room with id {0}", parts[1]));
 				return;
 			}
 

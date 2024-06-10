@@ -1,31 +1,35 @@
 ﻿using AbarimMUD.Data;
+using AbarimMUD.Utils;
 
 namespace AbarimMUD.Commands.AreaBuilder
 {
-	public sealed class MSet : AreaBuilderCommand
+	public sealed class MobileSet : AreaBuilderCommand
 	{
 		protected override void InternalExecute(ExecutionContext context, string data)
 		{
-			data = data.Trim();
-			string idStr, cmd;
-			int id;
-			data.ParseCommand(out idStr, out cmd);
-
-			string cmdText, cmdData;
-			cmd.ParseCommand(out cmdText, out cmdData);
-			if (string.IsNullOrEmpty(data) || !int.TryParse(idStr, out id) || string.IsNullOrEmpty(cmdData))
+			var parts = data.SplitByWhitespace(3);
+			if (parts.Length < 3)
 			{
-				context.Send("Usage: mset _mobileId_ name|desc|short|long|race|class|level _params_");
+				context.Send("Usage: mset name|desc|short|long|race|class|level _mobileId_ _params_");
+				return;
+			}
+
+			int id;
+			if (!int.TryParse(parts[1], out id))
+			{
+				context.Send($"Unable to parse mobile id {id}");
 				return;
 			}
 
 			var mobile = Mobile.GetMobileById(id);
 			if (mobile == null)
 			{
-				context.Send(string.Format("Unable to find mobile info with id {0}", id));
+				context.Send(string.Format("Unable to find mobile with id {0}", id));
 				return;
 			}
 
+			var cmdText = parts[0];
+			var cmdData = parts[2];
 			if (cmdText == "name")
 			{
 				mobile.Name = cmdData;
@@ -82,7 +86,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 			}
 			else
 			{
-				context.Send(string.Format("Unknown mset command '{0}'", cmdData));
+				context.Send(string.Format("Unknown mobile property '{0}'", cmdData));
 				return;
 			}
 

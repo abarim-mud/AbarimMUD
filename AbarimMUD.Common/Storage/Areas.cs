@@ -200,7 +200,7 @@ namespace AbarimMUD.Storage
 
 			foreach (var area in All)
 			{
-				foreach (var obj in area.Objects)
+				foreach (var obj in area.Items)
 				{
 					if (obj.Id > _nextObjectId)
 					{

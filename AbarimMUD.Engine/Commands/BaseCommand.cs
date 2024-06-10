@@ -3,6 +3,7 @@ using AbarimMUD.Commands.Owner;
 using AbarimMUD.Commands.Player;
 using System.Collections.Generic;
 using AbarimMUD.Data;
+using System.Reflection;
 
 namespace AbarimMUD.Commands
 {
@@ -10,52 +11,63 @@ namespace AbarimMUD.Commands
 	{
 		private static readonly Dictionary<string, BaseCommand> _allCommands = new Dictionary<string, BaseCommand>();
 
+		public static readonly Help Help = new Help();
+		public static readonly Move East = new Move(Direction.East);
+		public static readonly Move West = new Move(Direction.West);
+		public static readonly Move North = new Move(Direction.North);
+		public static readonly Move South = new Move(Direction.South);
+		public static readonly Move Up = new Move(Direction.Up);
+		public static readonly Move Down = new Move(Direction.Down);
+
+		public static readonly Say Say = new Say();
+		public static readonly Gossip Gossip = new Gossip();
+		public static readonly Look Look = new Look();
+		public static readonly Where Where = new Where();
+		public static readonly Player.Inventory Inventory = new Player.Inventory();
+
+		public static readonly Kill Kill = new Kill();
+
+		// Builders
+		public static readonly Force Force = new Force();
+		public static readonly Areas Areas = new Areas();
+		public static readonly Goto Goto = new Goto();
+
+		public static readonly RoomCreate RoomCreate = new RoomCreate();
+		public static readonly RoomSet RoomSet = new RoomSet();
+		public static readonly RoomLink RoomLink = new RoomLink();
+		public static readonly RoomLinkClear RLinkClear = new RoomLinkClear();
+		public static readonly RoomSaveResets RoomSaveResets = new RoomSaveResets();
+
+		public static readonly MobileCreate MobileCreate = new MobileCreate();
+		public static readonly MobileSpawn MSpawn = new MobileSpawn();
+		public static readonly MobileSet MobileSet = new MobileSet();
+
+		public static readonly ItemCreate ItemCreate = new ItemCreate();
+		public static readonly ItemSpawn ItemSpawn = new ItemSpawn();
+		public static readonly ItemSearch ItemSearch = new ItemSearch();
+
+		// Owner
+		public static readonly SetType SetType = new SetType();
 		public abstract Role RequiredType { get; }
 		public static int ExecutionDepth { get; set; }
 
-		public static Dictionary<string, BaseCommand> AllCommands
-		{
-			get { return _allCommands; }
-		}
+		public static IReadOnlyDictionary<string, BaseCommand> AllCommands = _allCommands;
 
 		static BaseCommand()
 		{
-			_allCommands["help"] = new Help();
+			// Use reflection to build dictionary of commands
+			var staticFields = typeof(BaseCommand).GetFields(BindingFlags.Public | BindingFlags.Static);
 
-			_allCommands["east"] = new Move(Direction.East);
-			_allCommands["west"] = new Move(Direction.West);
-			_allCommands["north"] = new Move(Direction.North);
-			_allCommands["south"] = new Move(Direction.South);
-			_allCommands["up"] = new Move(Direction.Up);
-			_allCommands["down"] = new Move(Direction.Down);
+			foreach(var field in staticFields)
+			{
+				if (!field.FieldType.IsSubclassOf(typeof(BaseCommand)))
+				{
+					continue;
+				}
 
-			_allCommands["say"] = new Say();
-			_allCommands["gossip"] = new Gossip();
-			_allCommands["look"] = new Look();
-			_allCommands["where"] = new Where();
-			_allCommands["inventory"] = new Player.Inventory();
-
-			_allCommands["kill"] = new Kill();
-
-			// Builders
-			_allCommands["force"] = new Force();
-			_allCommands["areas"] = new Areas();
-			_allCommands["rset"] = new RSet();
-			_allCommands["rlink"] = new RLink();
-			_allCommands["rlinkclear"] = new RLinkClear();
-			_allCommands["rsaveresets"] = new RSaveResets();
-
-			_allCommands["goto"] = new Goto();
-			_allCommands["rcreate"] = new RCreate();
-			_allCommands["mcreate"] = new MCreate();
-			_allCommands["mspawn"] = new MSpawn();
-			_allCommands["mset"] = new MSet();
-
-			_allCommands["isearch"] = new ISearch();
-			_allCommands["ispawn"] = new ISpawn();
-
-			// Owner
-			_allCommands["settype"] = new SetType();
+				var name = field.Name.ToLower();
+				_allCommands[name] = (BaseCommand)field.GetValue(null);
+			}
 		}
 
 		public static BaseCommand FindCommand(string name)
@@ -73,45 +85,7 @@ namespace AbarimMUD.Commands
 			return null;
 		}
 
-		public static void ParseAndExecute(ExecutionContext context, string data)
-		{
-			data = data.Trim();
-			if (string.IsNullOrEmpty(data))
-			{
-				context.Send(string.Empty);
-				return;
-			}
-
-			string cmdText, cmdData;
-			data.ParseCommand(out cmdText, out cmdData);
-
-			context.Logger.Info("Processing command: {0}", cmdText);
-			if (string.IsNullOrEmpty(cmdText))
-			{
-				return;
-			}
-
-			var command = FindCommand(cmdText);
-			if (command == null)
-			{
-				context.Logger.Info("Command is unrecognized.");
-				context.Send("Arglebargle, glop-glyf!?!");
-				return;
-			}
-
-			if (command.RequiredType > context.Role)
-			{
-				context.Logger.Info("Command is not available for this character.");
-				context.Send("Arglebargle, glop-glyf!?!");
-				return;
-			}
-
-			context.Logger.Info("Command type is {0}.", command.GetType());
-
-			command.Execute(context, cmdData);
-		}
-
-		public void Execute(ExecutionContext context, string data)
+		public void Execute(ExecutionContext context, string data = "")
 		{
 			try
 			{

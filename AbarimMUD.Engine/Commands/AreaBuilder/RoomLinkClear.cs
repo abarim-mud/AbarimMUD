@@ -3,12 +3,11 @@ using AbarimMUD.Data;
 
 namespace AbarimMUD.Commands.AreaBuilder
 {
-	public sealed class RLinkClear : AreaBuilderCommand
+	public sealed class RoomLinkClear : AreaBuilderCommand
 	{
 		protected override void InternalExecute(ExecutionContext context, string data)
 		{
 			var exit = data.Trim().ToLower();
-
 			if (string.IsNullOrEmpty(exit))
 			{
 				context.Send("Usage: rlinkclear east|west|south|north|up|down");

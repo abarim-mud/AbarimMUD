@@ -91,7 +91,7 @@ namespace AbarimMUD.Data
 		}
 
 		[JsonIgnore]
-		public ObservableCollection<Item> Objects
+		public ObservableCollection<Item> Items
 		{
 			get => _items;
 			set
@@ -108,12 +108,12 @@ namespace AbarimMUD.Data
 
 				if (_items != null)
 				{
-					_items.CollectionChanged -= OnObjectsChanged;
+					_items.CollectionChanged -= OnItemsChanged;
 				}
 
 				_items = value;
 
-				_items.CollectionChanged += OnObjectsChanged;
+				_items.CollectionChanged += OnItemsChanged;
 
 				UpdateObjects();
 			}
@@ -127,7 +127,7 @@ namespace AbarimMUD.Data
 		{
 			Rooms = new ObservableCollection<Room>();
 			Mobiles = new ObservableCollection<Mobile>();
-			Objects = new ObservableCollection<Item>();
+			Items = new ObservableCollection<Item>();
 			Resets = new List<AreaReset>();
 		}
 
@@ -143,7 +143,7 @@ namespace AbarimMUD.Data
 			MobilesChanged?.Invoke(this, EventArgs.Empty);
 		}
 
-		private void OnObjectsChanged(object sender, NotifyCollectionChangedEventArgs e)
+		private void OnItemsChanged(object sender, NotifyCollectionChangedEventArgs e)
 		{
 			UpdateObjects();
 			ObjectsChanged?.Invoke(this, EventArgs.Empty);
@@ -167,7 +167,7 @@ namespace AbarimMUD.Data
 
 		private void UpdateObjects()
 		{
-			foreach (var o in Objects)
+			foreach (var o in Items)
 			{
 				o.Area = this;
 			}
@@ -180,7 +180,7 @@ namespace AbarimMUD.Data
 
 		public static int NextRoomId => Storage.NewRoomId;
 		public static int NextMobileId => Storage.NewMobileId;
-		public static int NextObjectId => Storage.NewObjectId;
+		public static int NextItemId => Storage.NewObjectId;
 
 		public static Area GetAreaByName(string name) => Storage.GetByKey(name);
 		public static Area EnsureAreaByName(string name) => Storage.EnsureByKey(name);

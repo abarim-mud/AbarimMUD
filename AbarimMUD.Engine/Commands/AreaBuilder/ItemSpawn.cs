@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace AbarimMUD.Commands.AreaBuilder
 {
-	internal class ISpawn : AreaBuilderCommand
+	public class ItemSpawn : AreaBuilderCommand
 	{
 		protected override void InternalExecute(ExecutionContext context, string data)
 		{
@@ -11,7 +11,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 			int id;
 			if (string.IsNullOrEmpty(pat) || !int.TryParse(pat, out id))
 			{
-				context.SendTextLine("Usage: ispawn _id_");
+				context.SendTextLine("Usage: itemspawn _id_");
 				return;
 			}
 			else

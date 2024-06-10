@@ -2,7 +2,7 @@
 
 namespace AbarimMUD.Commands.AreaBuilder
 {
-	public sealed class MCreate : AreaBuilderCommand
+	public class MobileCreate : AreaBuilderCommand
 	{
 		protected override void InternalExecute(ExecutionContext context, string data)
 		{
@@ -25,7 +25,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 
 			context.SendTextLine($"New mobile info (#{newMobile.Id}) had been created for the area '{area.Name}'");
 
-			new MSpawn().Execute(context, newMobile.Id.ToString());
+			MSpawn.Execute(context, newMobile.Id.ToString());
 		}
 	}
 }

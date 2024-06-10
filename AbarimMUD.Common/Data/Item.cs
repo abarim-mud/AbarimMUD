@@ -37,6 +37,7 @@ namespace AbarimMUD.Data
 	{
 		public string Name { get; set; }
 		public string ShortDescription { get; set; }
+		public string LongDescription { get; set; }
 		public string Description { get; set; }
 		public Material Material { get; set; }
 		public Affect[] Affects { get; set; } = new Affect[0];

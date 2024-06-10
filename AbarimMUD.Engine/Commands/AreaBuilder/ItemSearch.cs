@@ -2,15 +2,13 @@
 
 namespace AbarimMUD.Commands.AreaBuilder
 {
-	public class ISearch : AreaBuilderCommand
+	public class ItemSearch : AreaBuilderCommand
 	{
 		protected override void InternalExecute(ExecutionContext context, string data)
 		{
-			var pat = data.Trim().ToLower();
-
-			if (string.IsNullOrEmpty(pat))
+			if (string.IsNullOrEmpty(data))
 			{
-				context.SendTextLine("Usage: isearch _pattern_");
+				context.SendTextLine("Usage: search _pattern_");
 				return;
 			}
 			else
@@ -19,7 +17,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 				foreach (var pair in Area.Storage.AllItems)
 				{
 					var item = pair.Value;
-					if (item.Name.Contains(pat))
+					if (item.Name.Contains(data))
 					{
 						found = true;
 						context.SendTextLine(item.ToString());
@@ -28,7 +26,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 
 				if (!found)
 				{
-					context.SendTextLine($"No items found which names contained '{pat}'");
+					context.SendTextLine($"No items found which names contained '{data}'");
 				}
 			}
 		}
