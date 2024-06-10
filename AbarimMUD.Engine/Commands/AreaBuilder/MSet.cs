@@ -19,7 +19,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 				return;
 			}
 
-			var mobile = Area.GetMobileById(id);
+			var mobile = Mobile.GetMobileById(id);
 			if (mobile == null)
 			{
 				context.Send(string.Format("Unable to find mobile info with id {0}", id));

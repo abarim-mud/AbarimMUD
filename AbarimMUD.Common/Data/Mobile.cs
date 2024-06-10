@@ -124,5 +124,9 @@ namespace AbarimMUD.Data
 		public List<MobileSpecialAttack> SpecialAttacks { get; set; } = new List<MobileSpecialAttack>();
 
 		public override string ToString() => $"{Name} (#{Id})";
+
+		public static Mobile GetMobileById(int id) => Area.Storage.GetMobileById(id);
+		public static Mobile EnsureMobileById(int id) => Area.Storage.EnsureMobileById(id);
+
 	}
 }

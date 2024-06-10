@@ -20,6 +20,7 @@ namespace AbarimMUD.Data
 
 		private ObservableCollection<Room> _rooms;
 		private ObservableCollection<Mobile> _mobiles;
+		private ObservableCollection<Item> _items;
 
 		public string Name { get; set; }
 
@@ -89,14 +90,44 @@ namespace AbarimMUD.Data
 			}
 		}
 
+		[JsonIgnore]
+		public ObservableCollection<Item> Objects
+		{
+			get => _items;
+			set
+			{
+				if (value == null)
+				{
+					throw new ArgumentNullException(nameof(value));
+				}
+
+				if (value == _items)
+				{
+					return;
+				}
+
+				if (_items != null)
+				{
+					_items.CollectionChanged -= OnObjectsChanged;
+				}
+
+				_items = value;
+
+				_items.CollectionChanged += OnObjectsChanged;
+
+				UpdateObjects();
+			}
+		}
+
 		public List<AreaReset> Resets { get; set; }
 
-		public event EventHandler RoomsChanged, MobilesChanged;
+		public event EventHandler RoomsChanged, MobilesChanged, ObjectsChanged;
 
 		public Area()
 		{
 			Rooms = new ObservableCollection<Room>();
 			Mobiles = new ObservableCollection<Mobile>();
+			Objects = new ObservableCollection<Item>();
 			Resets = new List<AreaReset>();
 		}
 
@@ -110,6 +141,12 @@ namespace AbarimMUD.Data
 		{
 			UpdateMobiles();
 			MobilesChanged?.Invoke(this, EventArgs.Empty);
+		}
+
+		private void OnObjectsChanged(object sender, NotifyCollectionChangedEventArgs e)
+		{
+			UpdateObjects();
+			ObjectsChanged?.Invoke(this, EventArgs.Empty);
 		}
 
 		private void UpdateRooms()
@@ -128,6 +165,14 @@ namespace AbarimMUD.Data
 			}
 		}
 
+		private void UpdateObjects()
+		{
+			foreach (var o in Objects)
+			{
+				o.Area = this;
+			}
+		}
+
 		public void Create() => Storage.Create(this);
 		public void Save() => Storage.Save(this);
 
@@ -135,13 +180,10 @@ namespace AbarimMUD.Data
 
 		public static int NextRoomId => Storage.NewRoomId;
 		public static int NextMobileId => Storage.NewMobileId;
+		public static int NextObjectId => Storage.NewObjectId;
 
 		public static Area GetAreaByName(string name) => Storage.GetByKey(name);
 		public static Area EnsureAreaByName(string name) => Storage.EnsureByKey(name);
 		public static Area LookupArea(string name) => Storage.Lookup(name);
-		public static Room GetRoomById(int id) => Storage.GetRoomById(id);
-		public static Room EnsureRoomById(int id) => Storage.EnsureRoomById(id);
-		public static Mobile GetMobileById(int id) => Storage.GetMobileById(id);
-		public static Mobile EnsureMobileById(int id) => Storage.EnsureMobileById(id);
 	}
 }

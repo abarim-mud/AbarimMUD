@@ -16,7 +16,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 			}
 			else
 			{
-				var item = (from i in Item.Storage where i.Id == id select i).FirstOrDefault();
+				var item = Item.GetItemById(id);
 				if (item == null)
 				{
 					context.SendTextLine($"Unable to find an item with id {id}");

@@ -7,6 +7,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 		protected override void InternalExecute(ExecutionContext context, string data)
 		{
 			var pat = data.Trim().ToLower();
+
 			if (string.IsNullOrEmpty(pat))
 			{
 				context.SendTextLine("Usage: isearch _pattern_");
@@ -15,8 +16,9 @@ namespace AbarimMUD.Commands.AreaBuilder
 			else
 			{
 				var found = false;
-				foreach (var item in Item.Storage)
+				foreach (var pair in Area.Storage.AllItems)
 				{
+					var item = pair.Value;
 					if (item.Name.Contains(pat))
 					{
 						found = true;

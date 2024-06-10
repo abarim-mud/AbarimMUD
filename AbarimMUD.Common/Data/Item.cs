@@ -33,13 +33,8 @@ namespace AbarimMUD.Data
 		Polearm
 	}
 
-	public class Item
+	public class Item : AreaEntity
 	{
-		public static readonly MultipleFilesStorageString<Item> Storage = new MultipleFilesStorageString<Item>(r => r.Name, "items");
-		private static int _id = 1;
-
-		[JsonIgnore]
-		public int Id { get; set; }
 		public string Name { get; set; }
 		public string ShortDescription { get; set; }
 		public string Description { get; set; }
@@ -50,12 +45,6 @@ namespace AbarimMUD.Data
 		public int Value2 { get; set; }
 		public int Value3 { get; set; }
 		public int Value4 { get; set; }
-
-		public Item()
-		{
-			Id = _id;
-			++_id;
-		}
 
 		private void EnsureType(ItemType itemType)
 		{
@@ -93,13 +82,9 @@ namespace AbarimMUD.Data
 			maximumDamage = Value4;
 		}
 
-		public void Create() => Storage.Create(this);
-		public void Save() => Storage.Save(this);
-
 		public override string ToString() => $"{Name} (#{Id})";
 
-		public static Item GetItemByName(string name) => Storage.GetByKey(name);
-		public static Item EnsureItemByName(string name) => Storage.EnsureByKey(name);
-		public static Item LookupItem(string name) => Storage.Lookup(name);
+		public static Item GetItemById(int id) => Area.Storage.GetItemById(id);
+		public static Item EnsureItemById(int id) => Area.Storage.EnsureItemById(id);
 	}
 }

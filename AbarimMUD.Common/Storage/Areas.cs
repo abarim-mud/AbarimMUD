@@ -8,13 +8,6 @@ namespace AbarimMUD.Storage
 {
 	public class Areas : MultipleFilesStorageString<Area>
 	{
-		private const string AreasFolder = "areas";
-
-		private bool _roomsDirty = true, _mobilesDirty = true;
-		private int _nextRoomId = 0, _nextMobileId = 0;
-		private readonly Dictionary<int, Room> _allRoomsCache = new Dictionary<int, Room>();
-		private readonly Dictionary<int, Mobile> _allMobilesCache = new Dictionary<int, Mobile>();
-
 		private class RoomExitConverter : JsonConverter<RoomExit>
 		{
 			public override RoomExit Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
@@ -41,6 +34,12 @@ namespace AbarimMUD.Storage
 
 		internal const string SubfolderName = "areas";
 
+		private bool _roomsDirty = true, _mobilesDirty = true, _objectsDirty = true;
+		private int _nextRoomId = 0, _nextMobileId = 0, _nextObjectId = 0;
+		private readonly Dictionary<int, Room> _allRoomsCache = new Dictionary<int, Room>();
+		private readonly Dictionary<int, Mobile> _allMobilesCache = new Dictionary<int, Mobile>();
+		private readonly Dictionary<int, Item> _allItemsCache = new Dictionary<int, Item>();
+
 		public int NewRoomId
 		{
 			get
@@ -61,7 +60,21 @@ namespace AbarimMUD.Storage
 			}
 		}
 
-		internal Areas() : base(a => a.Name, AreasFolder)
+		public int NewObjectId
+		{
+			get
+			{
+				var result = _nextObjectId;
+				++_nextObjectId;
+				return result;
+			}
+		}
+
+		public IReadOnlyDictionary<int, Room> AllRooms => _allRoomsCache;
+		public IReadOnlyDictionary<int, Mobile> AllMobiles => _allMobilesCache;
+		public IReadOnlyDictionary<int, Item> AllItems => _allItemsCache;
+
+		internal Areas() : base(a => a.Name, SubfolderName)
 		{
 		}
 
@@ -71,6 +84,7 @@ namespace AbarimMUD.Storage
 
 			area.RoomsChanged += (s, a) => _roomsDirty = true;
 			area.MobilesChanged += (s, a) => _mobilesDirty = true;
+			area.ObjectsChanged += (s, a) => _objectsDirty = true;
 
 			return area;
 		}
@@ -174,6 +188,33 @@ namespace AbarimMUD.Storage
 			_mobilesDirty = false;
 		}
 
+		private void UpdateAllObjects()
+		{
+			if (!_objectsDirty)
+			{
+				return;
+			}
+
+			_allItemsCache.Clear();
+			_nextObjectId = int.MinValue;
+
+			foreach (var area in All)
+			{
+				foreach (var obj in area.Objects)
+				{
+					if (obj.Id > _nextObjectId)
+					{
+						_nextObjectId = obj.Id;
+					}
+
+					_allItemsCache[obj.Id] = obj;
+				}
+			}
+
+			_objectsDirty = false;
+		}
+
+
 		public Room GetRoomById(int id)
 		{
 			UpdateAllRooms();
@@ -217,6 +258,30 @@ namespace AbarimMUD.Storage
 			if (result == null)
 			{
 				throw new Exception($"Could not find mobile with vnum {id}");
+			}
+
+			return result;
+		}
+
+		public Item GetItemById(int id)
+		{
+			UpdateAllObjects();
+
+			Item result;
+			if (!_allItemsCache.TryGetValue(id, out result))
+			{
+				return null;
+			}
+
+			return result;
+		}
+
+		public Item EnsureItemById(int id)
+		{
+			var result = GetItemById(id);
+			if (result == null)
+			{
+				throw new Exception($"Could not find item with vnum {id}");
 			}
 
 			return result;

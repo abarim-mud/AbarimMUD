@@ -142,5 +142,9 @@ namespace AbarimMUD.Data
 				targetRoom.Area.Save();
 			}
 		}
+
+		public static Room GetRoomById(int id) => Area.Storage.GetRoomById(id);
+		public static Room EnsureRoomById(int id) => Area.Storage.EnsureRoomById(id);
+
 	}
 }

@@ -65,53 +65,12 @@ namespace AbarimMUD
 			DataContext.Register(Area.Storage);
 			DataContext.Register(Account.Storage);
 			DataContext.Register(Character.Storage);
-			DataContext.Register(Item.Storage);
 			DataContext.Register(Social.Storage);
 
 			DataContext.Load();
 
 			// GameClass.Storage.SaveAll();
 			// Race.Storage.SaveAll();
-
-			/* var longSword = new Item
-			{
-				Id = Item.NewId,
-				Name = "long sword"
-			};
-
-			longSword.SetWeapon(WeaponType.Sword, 10, 1, 8);
-			longSword.Create();
-
-			var armor = new Item
-			{
-				Id = Item.NewId,
-				Name = "iron ring"
-			};
-
-			armor.SetArmor(ArmorType.Ring, 1);
-			armor.Create();
-
-			armor.Id = Item.NewId;
-			armor.Name = "iron amulet";
-			armor.SetArmor(ArmorType.Amulet, 1);
-			armor.Create();
-
-			armor.Id = Item.NewId;
-			armor.Name = "leather armor";
-			armor.SetArmor(ArmorType.Body, 6);
-			armor.Create();
-
-			armor.Id = Item.NewId;
-			armor.Name = "leather leggings";
-			armor.SetArmor(ArmorType.Legs, 4);
-			armor.Create();
-
-			armor.Id = Item.NewId;
-			armor.Name = "leather helmet";
-			armor.SetArmor(ArmorType.Head, 3);
-			armor.Create();*/
-
-			Item.Storage.SaveAll();
 		}
 
 		public void Start()
@@ -152,8 +111,8 @@ namespace AbarimMUD
 							continue;
 						}
 
-						var mobile = Area.EnsureMobileById(areaReset.Id1);
-						var room = Area.EnsureRoomById(areaReset.Id2);
+						var mobile = Mobile.EnsureMobileById(areaReset.Id1);
+						var room = Room.EnsureRoomById(areaReset.Id2);
 
 						// Spawn
 						var newMobile = new MobileInstance(mobile)
