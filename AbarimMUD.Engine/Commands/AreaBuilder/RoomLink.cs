@@ -11,7 +11,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 			var parts = data.SplitByWhitespace();
 			if (parts.Length < 2)
 			{
-				context.Send("Usage: rlink east|west|south|north|up|down _roomId_");
+				context.Send("Usage: roomlink east|west|south|north|up|down _roomId_");
 				return;
 			}
 

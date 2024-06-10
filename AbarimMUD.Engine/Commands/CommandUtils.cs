@@ -1,5 +1,4 @@
 ﻿using AbarimMUD.Data;
-using System.Collections.Generic;
 
 namespace AbarimMUD.Commands
 {
@@ -28,15 +27,15 @@ namespace AbarimMUD.Commands
 			return cls;
 		}
 
-		public static bool TryParseArgument(this string[] args, int index, out int value)
+		public static bool EnsureInt(this ExecutionContext context, string value, out int result)
 		{
-			value = 0;
-			if (index >= args.Length)
+			if (!int.TryParse(value, out result))
 			{
+				context.SendTextLine($"Unable to parse number {result}");
 				return false;
 			}
 
-			return int.TryParse(args[index], out value);
+			return true;
 		}
 	}
 }

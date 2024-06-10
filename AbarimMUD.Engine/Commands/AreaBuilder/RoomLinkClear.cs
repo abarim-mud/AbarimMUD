@@ -10,7 +10,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 			var exit = data.Trim().ToLower();
 			if (string.IsNullOrEmpty(exit))
 			{
-				context.Send("Usage: rlinkclear east|west|south|north|up|down");
+				context.Send("Usage: roomlinkclear east|west|south|north|up|down");
 				return;
 			}
 

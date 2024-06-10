@@ -90,7 +90,6 @@ namespace AbarimMUD.Data
 			}
 		}
 
-		[JsonIgnore]
 		public ObservableCollection<Item> Items
 		{
 			get => _items;

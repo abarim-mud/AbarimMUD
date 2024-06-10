@@ -44,6 +44,7 @@ namespace AbarimMUD.Commands
 
 		public static readonly ItemCreate ItemCreate = new ItemCreate();
 		public static readonly ItemSpawn ItemSpawn = new ItemSpawn();
+		public static readonly ItemSet ItemSet = new ItemSet();
 		public static readonly ItemSearch ItemSearch = new ItemSearch();
 
 		// Owner

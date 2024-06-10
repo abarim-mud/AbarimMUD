@@ -9,7 +9,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 			int id;
 			if (string.IsNullOrEmpty(data) || !int.TryParse(data, out id))
 			{
-				context.Send("Usage: mspawn _mobileId_");
+				context.Send("Usage: mobilespawn _mobileId_");
 				return;
 			}
 

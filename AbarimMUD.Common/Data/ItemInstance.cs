@@ -8,6 +8,8 @@
 
 		public int Id => Info.Id;
 
+		public string[] Keywords => Info.Name.SplitByWhitespace();
+
 		public ItemInstance()
 		{
 		}

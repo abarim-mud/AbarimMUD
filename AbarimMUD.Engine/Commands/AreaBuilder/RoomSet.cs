@@ -9,7 +9,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 			var parts = data.SplitByWhitespace(2);
 			if (parts.Length < 2)
 			{
-				context.Send("Usage: rset name|desc _params_");
+				context.Send("Usage: roomset name|desc _params_");
 				return;
 			}
 
@@ -22,11 +22,6 @@ namespace AbarimMUD.Commands.AreaBuilder
 			{
 				case "name":
 					{
-						if (string.IsNullOrEmpty(cmdData))
-						{
-							context.Send("Usage: rset name _data_");
-							return;
-						}
 						room.Name = cmdData.Trim();
 						context.SendTextLine(string.Format("Changed {0}'s name to {1}", room.Id, room.Name));
 					}
@@ -34,11 +29,6 @@ namespace AbarimMUD.Commands.AreaBuilder
 
 				case "desc":
 					{
-						if (string.IsNullOrEmpty(cmdData))
-						{
-							context.Send("Usage: rset desc _data_");
-							return;
-						}
 						room.Description = cmdData.Trim();
 						context.SendTextLine(string.Format("Changed {0}'s description to {1}", room.Id, room.Name));
 					}

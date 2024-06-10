@@ -10,7 +10,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 			var parts = data.SplitByWhitespace(3);
 			if (parts.Length < 3)
 			{
-				context.Send("Usage: mset name|desc|short|long|race|class|level _mobileId_ _params_");
+				context.Send("Usage: mobileset name|desc|short|long|race|class|level _mobileId_ _params_");
 				return;
 			}
 
@@ -28,66 +28,83 @@ namespace AbarimMUD.Commands.AreaBuilder
 				return;
 			}
 
-			var cmdText = parts[0];
+			var cmdText = parts[0].ToLower();
 			var cmdData = parts[2];
-			if (cmdText == "name")
+			switch (cmdText)
 			{
-				mobile.Name = cmdData;
-				context.SendTextLine($"Changed {mobile.Id}'s name to {mobile.Name}");
-			}
-			else if (cmdText == "desc")
-			{
-				mobile.Description = cmdData;
-				context.SendTextLine($"Changed {mobile.Id}'s desc to {mobile.Description}");
-			}
-			else if (cmdText == "short")
-			{
-				mobile.ShortDescription = cmdData;
-				context.SendTextLine($"Changed {mobile.Id}'s short to '{mobile.ShortDescription}'");
-			}
-			else if (cmdText == "long")
-			{
-				mobile.LongDescription = cmdData;
-				context.SendTextLine($"Changed {mobile.Id}'s long to '{mobile.LongDescription}'");
-			}
-			else if (cmdText == "race")
-			{
-				var race = context.EnsureRace(cmdData);
-				if (race == null)
-				{
-					return;
-				}
+				case "name":
+					{
+						mobile.Name = cmdData;
+						context.SendTextLine($"Changed {mobile.Id}'s name to {mobile.Name}");
+					}
+					break;
 
-				mobile.Race = race;
-				context.SendTextLine($"Changed {mobile.Id}'s race to '{race}'");
-			}
-			else if (cmdText == "class")
-			{
-				var cls = context.EnsureClass(cmdData);
-				if (cls == null)
-				{
-					return;
-				}
+				case "desc":
+					{
+						mobile.Description = cmdData;
+						context.SendTextLine($"Changed {mobile.Id}'s desc to {mobile.Description}");
+					}
+					break;
 
-				mobile.Class = cls;
-				context.SendTextLine($"Changed {mobile.Id}'s class to '{cls}'");
-			}
-			else if (cmdText == "level")
-			{
-				int newLevel;
-				if (!int.TryParse(cmdData, out newLevel) || newLevel < 1)
-				{
-					context.SendTextLine($"Can't parse level {cmdData}");
-					return;
-				}
+				case "short":
+					{
+						mobile.ShortDescription = cmdData;
+						context.SendTextLine($"Changed {mobile.Id}'s short to '{mobile.ShortDescription}'");
+					}
+					break;
 
-				mobile.Level = newLevel;
-				context.SendTextLine($"Changed {mobile.Id}'s level to '{newLevel}'");
-			}
-			else
-			{
-				context.Send(string.Format("Unknown mobile property '{0}'", cmdData));
-				return;
+				case "long":
+					{
+						mobile.LongDescription = cmdData;
+						context.SendTextLine($"Changed {mobile.Id}'s long to '{mobile.LongDescription}'");
+					}
+					break;
+
+				case "race":
+					{
+						var race = context.EnsureRace(cmdData);
+						if (race == null)
+						{
+							return;
+						}
+
+						mobile.Race = race;
+						context.SendTextLine($"Changed {mobile.Id}'s race to '{race}'");
+					}
+					break;
+
+				case "class":
+					{
+						var cls = context.EnsureClass(cmdData);
+						if (cls == null)
+						{
+							return;
+						}
+
+						mobile.Class = cls;
+						context.SendTextLine($"Changed {mobile.Id}'s class to '{cls}'");
+					}
+					break;
+
+				case "level":
+					{
+						int newLevel;
+						if (!int.TryParse(cmdData, out newLevel) || newLevel < 1)
+						{
+							context.SendTextLine($"Can't parse level {cmdData}");
+							return;
+						}
+
+						mobile.Level = newLevel;
+						context.SendTextLine($"Changed {mobile.Id}'s level to '{newLevel}'");
+					}
+					break;
+
+				default:
+					{
+						context.Send(string.Format("Unknown mobile property '{0}'", cmdData));
+						return;
+					}
 			}
 
 			mobile.Area.Save();

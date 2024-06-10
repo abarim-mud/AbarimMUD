@@ -8,7 +8,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 		{
 			if (string.IsNullOrEmpty(data))
 			{
-				context.SendTextLine("Usage: search _pattern_");
+				context.SendTextLine("Usage: itemsearch _pattern_");
 				return;
 			}
 			else

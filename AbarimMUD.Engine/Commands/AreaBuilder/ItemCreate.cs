@@ -2,7 +2,7 @@
 
 namespace AbarimMUD.Commands.AreaBuilder
 {
-	public class ItemCreate: AreaBuilderCommand
+	public class ItemCreate : AreaBuilderCommand
 	{
 		protected override void InternalExecute(ExecutionContext context, string data)
 		{
@@ -12,7 +12,8 @@ namespace AbarimMUD.Commands.AreaBuilder
 				Id = Area.NextItemId,
 				Name = "unset",
 				ShortDescription = "Unset",
-				Description = "An item with 'unset' name is lying here.",
+				LongDescription = "An item with 'unset' name is lying here.",
+				Description = "Unset"
 			};
 
 			var area = context.CurrentRoom.Area;

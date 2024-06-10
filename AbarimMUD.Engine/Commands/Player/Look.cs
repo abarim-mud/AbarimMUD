@@ -83,7 +83,7 @@ namespace AbarimMUD.Commands.Player
 			{
 				sb.AppendLine(mobile.Info.Description);
 			}
-			
+
 			if (context.IsStaff)
 			{
 				sb.Append(ConsoleCommand.ForeColorCyan);
@@ -117,45 +117,94 @@ namespace AbarimMUD.Commands.Player
 			return sb.ToString();
 		}
 
+		private string BuildItemDescription(ExecutionContext context, ItemInstance item)
+		{
+			var sb = new StringBuilder();
+
+			sb.AppendLine(item.Info.Description);
+			if (context.IsStaff)
+			{
+				sb.Append(ConsoleCommand.ForeColorCyan);
+
+				if (item != null)
+				{
+					sb.AppendLine("Id: " + item.Info.Id);
+					sb.AppendLine("Keywords: " + item.Info.Name);
+					sb.AppendLine("Short: " + item.Info.ShortDescription);
+					sb.AppendLine("Long: " + item.Info.LongDescription);
+				}
+
+				sb.AppendLine("Type: " + item.Info.ItemType);
+				sb.AppendLine("Value1: " + item.Info.Value1);
+				sb.AppendLine("Value2: " + item.Info.Value2);
+				sb.AppendLine("Value3: " + item.Info.Value3);
+				sb.AppendLine("Value4: " + item.Info.Value4);
+
+				sb.Append(ConsoleCommand.ColorClear);
+			}
+
+			return sb.ToString();
+		}
+
 		protected override void InternalExecute(ExecutionContext context, string data)
 		{
 			data = data.Trim();
-			if (string.IsNullOrEmpty(data))
+
+			do
 			{
-				// Look room
-				var sd = BuildRoomDescription(context, context.CurrentRoom);
-				context.Send(sd);
-			}
-			else
-			{
-				var lookContext = context.CurrentRoom.Find(data);
-				if (lookContext == null)
+				if (string.IsNullOrEmpty(data))
 				{
-					context.SendTextLine(string.Format("There isnt '{0}' in this room", data));
-					return;
+					// Look room
+					var sd = BuildRoomDescription(context, context.CurrentRoom);
+					context.Send(sd);
+					break;
 				}
 
+				// Look for creature in room
+				var lookContext = context.CurrentRoom.Find(data);
 				if (lookContext != null)
 				{
 					context.Send($"You look at {lookContext.Name}.\n");
 
 					var d = BuildMobileDescription(context, lookContext.Creature);
 					context.Send(d);
-				}
 
-				if (lookContext != context)
-				{
-					lookContext.SendTextLine(string.Format("{0} looks at you.", context.Name));
-				}
-
-				foreach (var t in context.AllExceptMeInRoom())
-				{
-					if (t != lookContext)
+					if (lookContext != context)
 					{
-						t.SendTextLine(string.Format("{0} looks at {1}.", context.Name, lookContext.Name));
+						lookContext.SendTextLine(string.Format("{0} looks at you.", context.Name));
+					}
+
+					foreach (var t in context.AllExceptMeInRoom())
+					{
+						if (t != lookContext)
+						{
+							t.SendTextLine(string.Format("{0} looks at {1}.", context.Name, lookContext.Name));
+						}
+					}
+
+					break;
+				}
+
+				// Look for an item in inv
+				ItemInstance item = null;
+				foreach (var i in context.Creature.Inventory.Items)
+				{
+					if (i.Keywords.StartsWithPattern(new[] { data }))
+					{
+						item = i;
+						break;
 					}
 				}
-			}
+
+				if (item != null)
+				{
+					var d = BuildItemDescription(context, item);
+					context.Send(d);
+					break;
+				}
+
+				context.SendTextLine(string.Format("There isnt '{0}' in this room", data));
+			} while (false);
 		}
 	}
 }

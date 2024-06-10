@@ -6,7 +6,7 @@ namespace AbarimMUD.Commands
 {
 	public static class ExecutionContextUtils
 	{
-		public static bool ContainsPattern(this string[] keywords, string[] pattern)
+		public static bool StartsWithPattern(this string[] keywords, string[] pattern)
 		{
 			foreach (var s in pattern)
 			{
@@ -30,7 +30,7 @@ namespace AbarimMUD.Commands
 			foreach (var c in room.Characters)
 			{
 				var context = (PlayerExecutionContext) c.Tag;
-				if (context.Keywords.ContainsPattern(pattern))
+				if (context.Keywords.StartsWithPattern(pattern))
 				{
 					return context;
 				}
@@ -40,7 +40,7 @@ namespace AbarimMUD.Commands
 			foreach (var m in room.Mobiles)
 			{
 				var context = new MobileExecutionContext(m);
-				if (context.Keywords.ContainsPattern(pattern))
+				if (context.Keywords.StartsWithPattern(pattern))
 				{
 					return context;
 				}
