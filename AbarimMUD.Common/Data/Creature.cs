@@ -15,6 +15,8 @@ namespace AbarimMUD.Data
 
 		public abstract int Level { get; }
 		public abstract Sex Sex { get; }
+		public Equipment Equipment { get; set; } = new Equipment();
+		public Inventory Inventory { get; set; } = new Inventory();
 
 		public CreatureStats Stats
 		{
@@ -42,7 +44,7 @@ namespace AbarimMUD.Data
 			_stats = new CreatureStats
 			{
 				MaxHitpoints = (int)(Race.HitpointsModifier * Class.Hitpoints.CalculateValue(Level)),
-				ArmorClass = Race.NaturalArmorClass.CalculateValue(Level),
+				Armor = Race.NaturalArmor.CalculateValue(Level),
 			};
 
 			var attacksCount = Race.NaturalAttacksCount.CalculateValue(Level);
@@ -88,6 +90,15 @@ namespace AbarimMUD.Data
 			var stats = Stats;
 
 			State.Hitpoints = stats.MaxHitpoints;
+		}
+
+		public bool? Wear(Item item)
+		{
+			var result = Equipment.Wear(item);
+
+			InvalidateStats();
+
+			return result;
 		}
 	}
 }

@@ -20,7 +20,6 @@ namespace AbarimMUD.Data
 
 		private ObservableCollection<Room> _rooms;
 		private ObservableCollection<Mobile> _mobiles;
-		private ObservableCollection<GameObject> _objects;
 
 		public string Name { get; set; }
 
@@ -90,44 +89,14 @@ namespace AbarimMUD.Data
 			}
 		}
 
-		[JsonIgnore]
-		public ObservableCollection<GameObject> Objects
-		{
-			get => _objects;
-			set
-			{
-				if (value == null)
-				{
-					throw new ArgumentNullException(nameof(value));
-				}
-
-				if (value == _objects)
-				{
-					return;
-				}
-
-				if (_objects != null)
-				{
-					_objects.CollectionChanged -= OnObjectsChanged;
-				}
-
-				_objects = value;
-
-				_objects.CollectionChanged += OnObjectsChanged;
-
-				UpdateObjects();
-			}
-		}
-
 		public List<AreaReset> Resets { get; set; }
 
-		public event EventHandler RoomsChanged, MobilesChanged, ObjectsChanged;
+		public event EventHandler RoomsChanged, MobilesChanged;
 
 		public Area()
 		{
 			Rooms = new ObservableCollection<Room>();
 			Mobiles = new ObservableCollection<Mobile>();
-			Objects = new ObservableCollection<GameObject>();
 			Resets = new List<AreaReset>();
 		}
 
@@ -141,12 +110,6 @@ namespace AbarimMUD.Data
 		{
 			UpdateMobiles();
 			MobilesChanged?.Invoke(this, EventArgs.Empty);
-		}
-
-		private void OnObjectsChanged(object sender, NotifyCollectionChangedEventArgs e)
-		{
-			UpdateObjects();
-			ObjectsChanged?.Invoke(this, EventArgs.Empty);
 		}
 
 		private void UpdateRooms()
@@ -165,14 +128,6 @@ namespace AbarimMUD.Data
 			}
 		}
 
-		private void UpdateObjects()
-		{
-			foreach (var o in Objects)
-			{
-				o.Area = this;
-			}
-		}
-
 		public void Create() => Storage.Create(this);
 		public void Save() => Storage.Save(this);
 
@@ -180,7 +135,6 @@ namespace AbarimMUD.Data
 
 		public static int NextRoomId => Storage.NewRoomId;
 		public static int NextMobileId => Storage.NewMobileId;
-		public static int NextObjectId => Storage.NewObjectId;
 
 		public static Area GetAreaByName(string name) => Storage.GetByKey(name);
 		public static Area EnsureAreaByName(string name) => Storage.EnsureByKey(name);
@@ -189,7 +143,5 @@ namespace AbarimMUD.Data
 		public static Room EnsureRoomById(int id) => Storage.EnsureRoomById(id);
 		public static Mobile GetMobileById(int id) => Storage.GetMobileById(id);
 		public static Mobile EnsureMobileById(int id) => Storage.EnsureMobileById(id);
-		public static GameObject GetObjectById(int id) => Storage.GetObjectById(id);
-		public static GameObject EnsureObjectById(int id) => Storage.EnsureObjectById(id);
 	}
 }

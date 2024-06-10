@@ -45,7 +45,7 @@ namespace AbarimMUD.Commands
 		public CreatureStats Stats => Creature.Stats;
 		public CreatureState State => Creature.State;
 		public Attack[] Attacks => Stats.Attacks;
-		public int ArmorClass => Stats.ArmorClass;
+		public int ArmorClass => Stats.Armor;
 
 		public abstract Room CurrentRoom { get; set; }
 		public Area CurrentArea => CurrentRoom.Area;

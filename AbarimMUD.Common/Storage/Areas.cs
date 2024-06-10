@@ -10,11 +10,10 @@ namespace AbarimMUD.Storage
 	{
 		private const string AreasFolder = "areas";
 
-		private bool _roomsDirty = true, _mobilesDirty = true, _objectsDirty = true;
-		private int _nextRoomId = 0, _nextMobileId = 0, _nextObjectId = 0;
+		private bool _roomsDirty = true, _mobilesDirty = true;
+		private int _nextRoomId = 0, _nextMobileId = 0;
 		private readonly Dictionary<int, Room> _allRoomsCache = new Dictionary<int, Room>();
 		private readonly Dictionary<int, Mobile> _allMobilesCache = new Dictionary<int, Mobile>();
-		private readonly Dictionary<int, GameObject> _allObjectsCache = new Dictionary<int, GameObject>();
 
 		private class RoomExitConverter : JsonConverter<RoomExit>
 		{
@@ -62,16 +61,6 @@ namespace AbarimMUD.Storage
 			}
 		}
 
-		public int NewObjectId
-		{
-			get
-			{
-				var result = _nextObjectId;
-				++_nextObjectId;
-				return result;
-			}
-		}
-
 		internal Areas() : base(a => a.Name, AreasFolder)
 		{
 		}
@@ -82,7 +71,6 @@ namespace AbarimMUD.Storage
 
 			area.RoomsChanged += (s, a) => _roomsDirty = true;
 			area.MobilesChanged += (s, a) => _mobilesDirty = true;
-			area.ObjectsChanged += (s, a) => _objectsDirty = true;
 
 			return area;
 		}
@@ -186,33 +174,6 @@ namespace AbarimMUD.Storage
 			_mobilesDirty = false;
 		}
 
-		private void UpdateAllObjects()
-		{
-			if (!_objectsDirty)
-			{
-				return;
-			}
-
-			_allObjectsCache.Clear();
-			_nextObjectId = int.MinValue;
-
-			foreach (var area in All)
-			{
-				foreach (var obj in area.Objects)
-				{
-					if (obj.Id > _nextObjectId)
-					{
-						_nextObjectId = obj.Id;
-					}
-
-					_allObjectsCache[obj.Id] = obj;
-				}
-			}
-
-			_objectsDirty = false;
-		}
-
-
 		public Room GetRoomById(int id)
 		{
 			UpdateAllRooms();
@@ -256,30 +217,6 @@ namespace AbarimMUD.Storage
 			if (result == null)
 			{
 				throw new Exception($"Could not find mobile with vnum {id}");
-			}
-
-			return result;
-		}
-
-		public GameObject GetObjectById(int id)
-		{
-			UpdateAllObjects();
-
-			GameObject result;
-			if (!_allObjectsCache.TryGetValue(id, out result))
-			{
-				return null;
-			}
-
-			return result;
-		}
-
-		public GameObject EnsureObjectById(int id)
-		{
-			var result = GetObjectById(id);
-			if (result == null)
-			{
-				throw new Exception($"Could not find object with vnum {id}");
 			}
 
 			return result;

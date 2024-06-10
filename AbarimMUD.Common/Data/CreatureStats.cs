@@ -6,6 +6,6 @@
 		public int MaxMana { get; internal set; }
 		public int MaxMovement { get; internal set; }
 		public Attack[] Attacks { get; internal set; }
-		public int ArmorClass { get; internal set; }
+		public int Armor { get; internal set; }
 	}
 }

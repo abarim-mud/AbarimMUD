@@ -3,7 +3,7 @@
   "HitpointsModifier": 1,
   "PenetrationModifier": 1,
   "AttackType": "Hit",
-  "NaturalArmorClass": {
+  "NaturalArmor": {
     "Level1Value": 0,
     "Level100Value": 0
   },

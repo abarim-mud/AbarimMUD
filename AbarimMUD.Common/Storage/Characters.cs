@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Storage
 {
@@ -35,6 +34,7 @@ namespace AbarimMUD.Storage
 			var result = base.CreateJsonOptions();
 			result.Converters.Add(Common.RaceConverter);
 			result.Converters.Add(Common.ClassConverter);
+			result.Converters.Add(Common.ItemConverter);
 
 			return result;
 		}
@@ -98,6 +98,11 @@ namespace AbarimMUD.Storage
 			{
 				character.PlayerRace = Race.EnsureRaceByName(character.Race.Name);
 				character.PlayerClass = GameClass.EnsureClassByName(character.Class.Name);
+
+				foreach(var item in character.Inventory.Items)
+				{
+					item.Info = Item.EnsureItemByName(item.Info.Name);
+				}
 			}
 
 			_tempCache.Clear();

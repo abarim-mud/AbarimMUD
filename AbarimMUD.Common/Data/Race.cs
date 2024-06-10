@@ -10,7 +10,7 @@ namespace AbarimMUD.Data
 
 		public float HitpointsModifier { get; set; } = 1.0f;
 		public float PenetrationModifier { get; set; } = 1.0f;
-		public RaceClassValueRange NaturalArmorClass;
+		public RaceClassValueRange NaturalArmor;
 		public AttackType AttackType { get; set; }
 		public RaceClassValueRange NaturalAttacksCount;
 		public RaceClassValueRange NaturalMinimumDamage;

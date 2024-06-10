@@ -33,6 +33,7 @@ namespace AbarimMUD.Commands
 			_allCommands["gossip"] = new Gossip();
 			_allCommands["look"] = new Look();
 			_allCommands["where"] = new Where();
+			_allCommands["inventory"] = new Player.Inventory();
 
 			_allCommands["kill"] = new Kill();
 
@@ -49,6 +50,9 @@ namespace AbarimMUD.Commands
 			_allCommands["mcreate"] = new MCreate();
 			_allCommands["mspawn"] = new MSpawn();
 			_allCommands["mset"] = new MSet();
+
+			_allCommands["isearch"] = new ISearch();
+			_allCommands["ispawn"] = new ISpawn();
 
 			// Owner
 			_allCommands["settype"] = new SetType();

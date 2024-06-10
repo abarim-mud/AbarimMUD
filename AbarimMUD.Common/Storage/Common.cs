@@ -7,12 +7,12 @@ namespace AbarimMUD.Storage
 {
 	internal static class Common
 	{
-		public class ItemWithNameConverter<T> : JsonConverter<T> where T : new()
+		public class EntityWithNameConverter<T> : JsonConverter<T> where T : new()
 		{
 			private readonly Func<T, string> _getter;
 			private readonly Action<T, string> _setter;
 
-			public ItemWithNameConverter(Func<T, string> getter, Action<T, string> setter)
+			public EntityWithNameConverter(Func<T, string> getter, Action<T, string> setter)
 			{
 				_getter = getter;
 				_setter = setter;
@@ -33,8 +33,9 @@ namespace AbarimMUD.Storage
 			}
 		}
 
-		public static readonly ItemWithNameConverter<Race> RaceConverter = new ItemWithNameConverter<Race>(item => item.Name, (item, n) => item.Name = n);
-		public static readonly ItemWithNameConverter<GameClass> ClassConverter = new ItemWithNameConverter<GameClass>(item => item.Name, (item, n) => item.Name = n);
-		public static readonly ItemWithNameConverter<Skill> SkillConverter = new ItemWithNameConverter<Skill>(item => item.Name, (item, n) => item.Name = n);
+		public static readonly EntityWithNameConverter<Race> RaceConverter = new EntityWithNameConverter<Race>(e => e.Name, (e, n) => e.Name = n);
+		public static readonly EntityWithNameConverter<GameClass> ClassConverter = new EntityWithNameConverter<GameClass>(e => e.Name, (e, n) => e.Name = n);
+		public static readonly EntityWithNameConverter<Skill> SkillConverter = new EntityWithNameConverter<Skill>(e => e.Name, (e, n) => e.Name = n);
+		public static readonly EntityWithNameConverter<Item> ItemConverter = new EntityWithNameConverter<Item>(e => e.Name, (e, n) => e.Name = n);
 	}
 }
