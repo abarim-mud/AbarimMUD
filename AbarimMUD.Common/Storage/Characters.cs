@@ -103,6 +103,16 @@ namespace AbarimMUD.Storage
 				{
 					item.Info = Item.EnsureItemById(item.Info.Id);
 				}
+
+				foreach (var eq in character.Equipment.Items)
+				{
+					if (eq.Item == null)
+					{
+						continue;
+					}
+
+					eq.Item.Info = Item.EnsureItemById(eq.Item.Info.Id);
+				}
 			}
 
 			_tempCache.Clear();

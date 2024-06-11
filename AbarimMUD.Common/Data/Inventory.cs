@@ -1,15 +1,45 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
 {
+	public class InventoryRecord
+	{
+		public ItemInstance Item { get; set; }
+		public int Quantity { get; set; } = 1;
+
+		[JsonIgnore]
+		public string Id => Info.Id;
+
+		[JsonIgnore]
+		public string ShortDescription => Info.ShortDescription;
+
+		[JsonIgnore]
+		public Item Info
+		{
+			get => Item.Info;
+			set => Item.Info = value;
+		}
+
+		public InventoryRecord()
+		{
+		}
+
+		public InventoryRecord(ItemInstance item, int quantity)
+		{
+			Item = item ?? throw new ArgumentNullException(nameof(item));
+			Quantity = quantity;
+		}
+	}
+
 	public class Inventory
 	{
-		private readonly List<ItemInstance> _items = new List<ItemInstance>();
-		private ItemInstance[] _itemsArray = null;
+		private readonly List<InventoryRecord> _items = new List<InventoryRecord>();
+		private InventoryRecord[] _itemsArray = null;
 
-		public ItemInstance[] Items
+		public InventoryRecord[] Items
 		{
 			get
 			{
@@ -35,17 +65,17 @@ namespace AbarimMUD.Data
 			}
 		}
 
-		public void AddItem(ItemInstance item)
+		public void AddItem(ItemInstance item, int quantity)
 		{
-			if (item.Quantity == 0)
+			if (quantity == 0)
 			{
 				return;
 			}
 
-			var existingItem = (from i in _items where ItemInstance.AreEqual(i, item) select i).FirstOrDefault();
+			var existingItem = (from i in _items where ItemInstance.AreEqual(i.Item, item) select i).FirstOrDefault();
 			if (existingItem != null)
 			{
-				existingItem.Quantity += item.Quantity;
+				existingItem.Quantity += quantity;
 				if (existingItem.Quantity == 0)
 				{
 					_items.Remove(existingItem);
@@ -53,7 +83,13 @@ namespace AbarimMUD.Data
 			}
 			else
 			{
-				_items.Add(item);
+				if (quantity < 0)
+				{
+					throw new ArgumentOutOfRangeException($"Can't add new item with negative quantity");
+				}
+
+				var rec = new InventoryRecord(item, quantity);
+				_items.Add(rec);
 			}
 
 			InvalidateArray();
@@ -64,5 +100,9 @@ namespace AbarimMUD.Data
 			_itemsArray = null;
 		}
 
+		public InventoryRecord FindItem(string pat)
+		{
+			return (from i in Items where i.Item.Keywords.StartsWithPattern(new[] { pat }) select i).FirstOrDefault();
+		}
 	}
 }

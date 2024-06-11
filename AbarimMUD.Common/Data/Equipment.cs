@@ -29,13 +29,13 @@ namespace AbarimMUD.Data
 	public class WearItem
 	{
 		public SlotType Slot { get; set; }
-		public Item Item { get; set; }
+		public ItemInstance Item { get; set; }
 
 		public WearItem()
 		{
 		}
 
-		public WearItem(SlotType slot, Item item)
+		public WearItem(SlotType slot, ItemInstance item)
 		{
 			Slot = slot;
 			Item = item ?? throw new ArgumentNullException(nameof(item));
@@ -45,7 +45,7 @@ namespace AbarimMUD.Data
 	public class Equipment
 	{
 		private static readonly Dictionary<SlotType, ArmorType> _slotsArmorsMap = new Dictionary<SlotType, ArmorType>();
-		private readonly Dictionary<SlotType, Item> _items = new Dictionary<SlotType, Item>();
+		private readonly Dictionary<SlotType, ItemInstance> _items = new Dictionary<SlotType, ItemInstance>();
 
 		public WearItem[] Items
 		{
@@ -74,7 +74,7 @@ namespace AbarimMUD.Data
 			_slotsArmorsMap[SlotType.WristRight] = ArmorType.Wrist;
 		}
 
-		internal bool? Wear(Item item)
+		internal bool? Wear(ItemInstance item)
 		{
 			if (item.ItemType == ItemType.Armor)
 			{

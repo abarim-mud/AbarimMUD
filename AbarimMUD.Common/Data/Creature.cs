@@ -92,7 +92,7 @@ namespace AbarimMUD.Data
 			State.Hitpoints = stats.MaxHitpoints;
 		}
 
-		public bool? Wear(Item item)
+		public bool? Wear(ItemInstance item)
 		{
 			var result = Equipment.Wear(item);
 

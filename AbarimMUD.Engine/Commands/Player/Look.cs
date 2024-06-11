@@ -191,19 +191,10 @@ namespace AbarimMUD.Commands.Player
 				}
 
 				// Look for an item in inv
-				ItemInstance item = null;
-				foreach (var i in context.Creature.Inventory.Items)
-				{
-					if (i.Keywords.StartsWithPattern(new[] { data }))
-					{
-						item = i;
-						break;
-					}
-				}
-
+				var item = context.Creature.Inventory.FindItem(data);
 				if (item != null)
 				{
-					var d = BuildItemDescription(context, item);
+					var d = BuildItemDescription(context, item.Item);
 					context.Send(d);
 					break;
 				}

@@ -23,7 +23,10 @@ namespace AbarimMUD.Commands
 		public static readonly Gossip Gossip = new Gossip();
 		public static readonly Look Look = new Look();
 		public static readonly Where Where = new Where();
+		
 		public static readonly Player.Inventory Inventory = new Player.Inventory();
+		public static readonly Wear Wear = new Wear();
+		public static readonly Player.Equipment Equipment = new Player.Equipment();
 
 		public static readonly Kill Kill = new Kill();
 

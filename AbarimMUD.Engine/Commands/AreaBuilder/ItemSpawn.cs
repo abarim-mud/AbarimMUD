@@ -22,7 +22,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 				}
 				else
 				{
-					context.Creature.Inventory.AddItem(new ItemInstance(item) { Quantity = 1 });
+					context.Creature.Inventory.AddItem(new ItemInstance(item), 1);
 					context.SendTextLine($"{item} appeared in your inventory");
 
 					var asPlayer = context.Creature as Character;

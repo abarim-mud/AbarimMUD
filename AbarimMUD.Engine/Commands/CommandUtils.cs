@@ -37,5 +37,16 @@ namespace AbarimMUD.Commands
 
 			return true;
 		}
+
+		public static InventoryRecord EnsureItemInInventory(this ExecutionContext context, string name)
+		{
+			var item = context.Creature.Inventory.FindItem(name);
+			if (item == null)
+			{
+				context.SendTextLine($"Unable to find item '{name}'");
+			}
+
+			return item;
+		}
 	}
 }

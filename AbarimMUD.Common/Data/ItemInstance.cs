@@ -6,12 +6,16 @@ namespace AbarimMUD.Data
 	{
 		public Item Info { get; set; }
 
-		public int Quantity { get; set; } = 1;
-
 		public string Id => Info.Id;
 
 		[JsonIgnore]
 		public string[] Keywords => Info.Name.SplitByWhitespace();
+
+		[JsonIgnore]
+		public string ShortDescription => Info.ShortDescription;
+
+		[JsonIgnore]
+		public ItemType ItemType => Info.ItemType;
 
 		public ItemInstance()
 		{
@@ -21,6 +25,10 @@ namespace AbarimMUD.Data
 		{
 			Info = item;
 		}
+
+		public void GetArmor(out ArmorType armorType, out int armor) => Info.GetArmor(out armorType, out armor);
+		public void GetWeapon(out WeaponType weaponType, out int penetration, out int minimumDamage, out int maximumDamage) =>
+			Info.GetWeapon(out weaponType, out penetration, out minimumDamage, out maximumDamage);
 
 		public static bool AreEqual(ItemInstance a, ItemInstance b) => a.Id == b.Id;
 	}

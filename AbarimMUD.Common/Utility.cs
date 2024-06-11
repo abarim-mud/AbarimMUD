@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -99,6 +100,21 @@ namespace AbarimMUD
 			}
 
 			return value.Split(new char[0], maxCount.Value, StringSplitOptions.RemoveEmptyEntries);
+		}
+
+		public static bool StartsWithPattern(this string[] keywords, string[] pattern)
+		{
+			foreach (var s in pattern)
+			{
+				var found = (from k in keywords where k.StartsWith(s, StringComparison.OrdinalIgnoreCase) select k).Any();
+
+				if (!found)
+				{
+					return false;
+				}
+			}
+
+			return true;
 		}
 	}
 }

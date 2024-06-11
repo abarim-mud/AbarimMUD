@@ -6,21 +6,6 @@ namespace AbarimMUD.Commands
 {
 	public static class ExecutionContextUtils
 	{
-		public static bool StartsWithPattern(this string[] keywords, string[] pattern)
-		{
-			foreach (var s in pattern)
-			{
-				var found = (from k in keywords where k.StartsWith(s, StringComparison.OrdinalIgnoreCase) select k).Any();
-
-				if (!found)
-				{
-					return false;
-				}
-			}
-
-			return true;
-		}
-
 		public static ExecutionContext Find(this Room room, string search)
 		{
 			// Split into parts
