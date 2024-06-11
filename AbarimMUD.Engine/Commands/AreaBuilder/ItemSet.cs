@@ -1,5 +1,4 @@
 ﻿using AbarimMUD.Data;
-using AbarimMUD.Utils;
 using System;
 using System.Linq;
 using System.Text;
@@ -27,13 +26,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 				return;
 			}
 
-			int id;
-			if (!int.TryParse(parts[1], out id))
-			{
-				context.Send($"Unable to parse item id {id}");
-				return;
-			}
-
+			var id = parts[1];
 			var item = Item.GetItemById(id);
 			if (item == null)
 			{
@@ -49,7 +42,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 				case "name":
 					{
 						item.Name = cmdData;
-						context.SendTextLine($"Changed {item.Id}'s name to {item.Name}");
+						context.SendTextLine($"Changed {item.Id}'s name to '{item.Name}'");
 					}
 					break;
 				case "short":
@@ -67,7 +60,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 				case "desc":
 					{
 						item.Description = cmdData;
-						context.SendTextLine($"Changed {item.Id}'s desc to {item.Description}");
+						context.SendTextLine($"Changed {item.Id}'s desc to '{item.Description}'");
 					}
 					break;
 				case "type":
@@ -134,7 +127,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 					}
 			}
 
-			item.Area.Save();
+			item.Save();
 		}
 	}
 }

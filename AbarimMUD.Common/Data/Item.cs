@@ -33,8 +33,11 @@ namespace AbarimMUD.Data
 		Polearm
 	}
 
-	public class Item : AreaEntity
+	public class Item
 	{
+		public static readonly MultipleFilesStorageString<Item> Storage = new Items();
+
+		public string Id { get; set; }
 		public string Name { get; set; }
 		public string ShortDescription { get; set; }
 		public string LongDescription { get; set; }
@@ -83,9 +86,12 @@ namespace AbarimMUD.Data
 			maximumDamage = Value4;
 		}
 
-		public override string ToString() => $"{Name} (#{Id})";
+		public override string ToString() => $"{ShortDescription} (#{Id})";
 
-		public static Item GetItemById(int id) => Area.Storage.GetItemById(id);
-		public static Item EnsureItemById(int id) => Area.Storage.EnsureItemById(id);
+		public void Create() => Storage.Create(this);
+		public void Save() => Storage.Save(this);
+
+		public static Item GetItemById(string id) => Storage.GetByKey(id);
+		public static Item EnsureItemById(string id) => Storage.EnsureByKey(id);
 	}
 }

@@ -61,6 +61,8 @@ namespace AbarimMUD
 
 			DataContext.Register(Race.Storage);
 			DataContext.Register(GameClass.Storage);
+			DataContext.Register(Mobile.Storage);
+			DataContext.Register(Item.Storage);
 			DataContext.Register(Skill.Storage);
 			DataContext.Register(Area.Storage);
 			DataContext.Register(Account.Storage);
@@ -69,8 +71,8 @@ namespace AbarimMUD
 
 			DataContext.Load();
 
-			// GameClass.Storage.SaveAll();
-			// Race.Storage.SaveAll();
+			GameClass.Storage.SaveAll();
+			Race.Storage.SaveAll();
 		}
 
 		public void Start()
@@ -104,15 +106,10 @@ namespace AbarimMUD
 				Logger.Info("Spawning areas");
 				foreach (var area in Area.Storage)
 				{
-					foreach (var areaReset in area.Resets)
+					foreach (var mobileReset in area.MobileResets)
 					{
-						if (areaReset.ResetType != Data.AreaResetType.NPC)
-						{
-							continue;
-						}
-
-						var mobile = Mobile.EnsureMobileById(areaReset.Id1);
-						var room = Room.EnsureRoomById(areaReset.Id2);
+						var mobile = Mobile.EnsureMobileById(mobileReset.MobileId);
+						var room = Room.EnsureRoomById(mobileReset.RoomId);
 
 						// Spawn
 						var newMobile = new MobileInstance(mobile)

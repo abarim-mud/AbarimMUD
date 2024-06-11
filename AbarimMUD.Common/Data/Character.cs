@@ -42,7 +42,7 @@ namespace AbarimMUD.Data
 
 			set
 			{
-				_race = value ?? throw new ArgumentNullException(nameof(value));
+				_race = value;
 				InvalidateStats();
 			}
 		}
@@ -53,7 +53,7 @@ namespace AbarimMUD.Data
 
 			set
 			{
-				_class = value ?? throw new ArgumentNullException(nameof(value));
+				_class = value;
 				InvalidateStats();
 			}
 		}

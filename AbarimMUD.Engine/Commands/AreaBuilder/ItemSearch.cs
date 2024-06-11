@@ -14,9 +14,8 @@ namespace AbarimMUD.Commands.AreaBuilder
 			else
 			{
 				var found = false;
-				foreach (var pair in Area.Storage.AllItems)
+				foreach (var item in Item.Storage)
 				{
-					var item = pair.Value;
 					if (item.Name.Contains(data))
 					{
 						found = true;

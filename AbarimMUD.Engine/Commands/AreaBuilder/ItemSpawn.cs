@@ -8,18 +8,17 @@ namespace AbarimMUD.Commands.AreaBuilder
 		protected override void InternalExecute(ExecutionContext context, string data)
 		{
 			var pat = data.Trim().ToLower();
-			int id;
-			if (string.IsNullOrEmpty(pat) || !int.TryParse(pat, out id))
+			if (string.IsNullOrEmpty(pat))
 			{
 				context.SendTextLine("Usage: itemspawn _id_");
 				return;
 			}
 			else
 			{
-				var item = Item.GetItemById(id);
+				var item = Item.GetItemById(pat);
 				if (item == null)
 				{
-					context.SendTextLine($"Unable to find an item with id {id}");
+					context.SendTextLine($"Unable to find an item with id {pat}");
 				}
 				else
 				{

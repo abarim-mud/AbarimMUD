@@ -9,22 +9,17 @@ namespace AbarimMUD.Commands.AreaBuilder
 		{
 			// Remove existing room resets
 			var area = context.CurrentArea;
-			var toDelete = (from r in area.Resets where r.Id2 == context.CurrentRoom.Id select r).ToList();
+			var toDelete = (from r in area.MobileResets where r.RoomId == context.CurrentRoom.Id select r).ToList();
 
 			foreach(var d in toDelete)
 			{
-				area.Resets.Remove(d);
+				area.MobileResets.Remove(d);
 			}
 
 			// Add new
 			foreach(var mobile in context.CurrentRoom.Mobiles)
 			{
-				area.Resets.Add(new AreaReset
-				{
-					ResetType = AreaResetType.NPC,
-					Id1 = mobile.Info.Id,
-					Id2 = context.CurrentRoom.Id
-				});
+				area.MobileResets.Add(new AreaMobileReset(mobile.Info.Id, context.CurrentRoom.Id));
 			};
 
 			area.Save();

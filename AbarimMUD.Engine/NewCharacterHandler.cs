@@ -22,7 +22,7 @@ namespace AbarimMUD
 			: base(session)
 		{
 			_character.PlayerLevel = 1;
-			_character.PlayerRace = Race.EnsureRaceByName(Configuration.DefaultRace);
+			_character.PlayerRace = Race.EnsureRaceById(Configuration.DefaultRace);
 		}
 
 		public override void OnSet()

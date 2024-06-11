@@ -1,24 +1,12 @@
 ﻿using AbarimMUD.Data;
-using System;
 using System.Collections.Generic;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Storage
 {
 	internal class GameClasses : MultipleFilesStorageString<GameClass>
 	{
-		private class SkillConverter : JsonConverter<Skill>
-		{
-			public override Skill Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) => new Skill
-			{
-				Name = reader.GetString()
-			};
-
-			public override void Write(Utf8JsonWriter writer, Skill value, JsonSerializerOptions options) => writer.WriteStringValue(value.Name);
-		}
-
-		public GameClasses() : base(c => c.Name, "classes")
+		public GameClasses() : base(c => c.Id, "classes")
 		{
 		}
 
@@ -26,7 +14,7 @@ namespace AbarimMUD.Storage
 		{
 			var result = base.CreateJsonOptions();
 
-			result.Converters.Add(new SkillConverter());
+			result.Converters.Add(Common.SkillConverter);
 
 			return result;
 		}
@@ -43,7 +31,7 @@ namespace AbarimMUD.Storage
 					var newSkills = new List<Skill>();
 					foreach(var skill in pair.Value)
 					{
-						newSkills.Add(Skill.EnsureSkillByName(skill.Name));
+						newSkills.Add(Skill.EnsureSkillById(skill.Name));
 					}
 
 					newDict[pair.Key] = newSkills;

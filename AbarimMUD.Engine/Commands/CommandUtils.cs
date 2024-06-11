@@ -7,7 +7,7 @@ namespace AbarimMUD.Commands
 
 		public static Race EnsureRace(this ExecutionContext context, string name)
 		{
-			var race = Race.GetRaceByName(name);
+			var race = Race.GetRaceById(name);
 			if (race == null)
 			{
 				context.SendTextLine($"Unable to find race '{name}'");
@@ -18,7 +18,7 @@ namespace AbarimMUD.Commands
 
 		public static GameClass EnsureClass(this ExecutionContext context, string name)
 		{
-			var cls = GameClass.GetClassByName(name);
+			var cls = GameClass.GetClassById(name);
 			if (cls == null)
 			{
 				context.SendTextLine($"Unable to find class '{name}'");

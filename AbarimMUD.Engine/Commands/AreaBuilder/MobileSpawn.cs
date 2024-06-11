@@ -6,13 +6,13 @@ namespace AbarimMUD.Commands.AreaBuilder
 	{
 		protected override void InternalExecute(ExecutionContext context, string data)
 		{
-			int id;
-			if (string.IsNullOrEmpty(data) || !int.TryParse(data, out id))
+			if (string.IsNullOrEmpty(data))
 			{
 				context.Send("Usage: mobilespawn _mobileId_");
 				return;
 			}
 
+			var id = data;
 			var mobile = Mobile.GetMobileById(id);
 			if (mobile == null)
 			{

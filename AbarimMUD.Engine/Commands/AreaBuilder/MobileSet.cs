@@ -1,5 +1,4 @@
 ﻿using AbarimMUD.Data;
-using AbarimMUD.Utils;
 
 namespace AbarimMUD.Commands.AreaBuilder
 {
@@ -10,17 +9,11 @@ namespace AbarimMUD.Commands.AreaBuilder
 			var parts = data.SplitByWhitespace(3);
 			if (parts.Length < 3)
 			{
-				context.Send("Usage: mobileset name|desc|short|long|race|class|level _mobileId_ _params_");
+				context.Send("Usage: mobileset name|short|long|desc|race|class|level _mobileId_ _params_");
 				return;
 			}
 
-			int id;
-			if (!int.TryParse(parts[1], out id))
-			{
-				context.Send($"Unable to parse mobile id {id}");
-				return;
-			}
-
+			var id = parts[1];
 			var mobile = Mobile.GetMobileById(id);
 			if (mobile == null)
 			{
@@ -35,14 +28,14 @@ namespace AbarimMUD.Commands.AreaBuilder
 				case "name":
 					{
 						mobile.Name = cmdData;
-						context.SendTextLine($"Changed {mobile.Id}'s name to {mobile.Name}");
+						context.SendTextLine($"Changed {mobile.Id}'s name to '{mobile.Name}'");
 					}
 					break;
 
 				case "desc":
 					{
 						mobile.Description = cmdData;
-						context.SendTextLine($"Changed {mobile.Id}'s desc to {mobile.Description}");
+						context.SendTextLine($"Changed {mobile.Id}'s desc to '{mobile.Description}'");
 					}
 					break;
 
@@ -107,7 +100,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 					}
 			}
 
-			mobile.Area.Save();
+			mobile.Save();
 
 			foreach (var creature in Creature.AllCreatures)
 			{

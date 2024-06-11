@@ -1,4 +1,6 @@
-﻿namespace AbarimMUD.Data
+﻿using System.Text.Json.Serialization;
+
+namespace AbarimMUD.Data
 {
 	public class ItemInstance
 	{
@@ -6,8 +8,9 @@
 
 		public int Quantity { get; set; } = 1;
 
-		public int Id => Info.Id;
+		public string Id => Info.Id;
 
+		[JsonIgnore]
 		public string[] Keywords => Info.Name.SplitByWhitespace();
 
 		public ItemInstance()

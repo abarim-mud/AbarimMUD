@@ -57,9 +57,9 @@ namespace AbarimMUD.Storage
 			protected override void WriteValue(Utf8JsonWriter writer, int value) => writer.WriteNumberValue(value);
 		}
 
-		public static readonly StringEntityConverter<Race> RaceConverter = new StringEntityConverter<Race>(e => e.Name, (e, v) => e.Name = v);
-		public static readonly StringEntityConverter<GameClass> ClassConverter = new StringEntityConverter<GameClass>(e => e.Name, (e, v) => e.Name = v);
-		public static readonly StringEntityConverter<Skill> SkillConverter = new StringEntityConverter<Skill>(e => e.Name, (e, v) => e.Name = v);
-		public static readonly IntEntityConverter<Item> ItemConverter = new IntEntityConverter<Item>(e => e.Id, (e, v) => e.Id = v);
+		public static readonly StringEntityConverter<Race> RaceConverter = new StringEntityConverter<Race>(e => e.Id, (e, v) => e.Name = v);
+		public static readonly StringEntityConverter<GameClass> ClassConverter = new StringEntityConverter<GameClass>(e => e.Id, (e, v) => e.Name = v);
+		public static readonly StringEntityConverter<Skill> SkillConverter = new StringEntityConverter<Skill>(e => e.Id, (e, v) => e.Name = v);
+		public static readonly StringEntityConverter<Item> ItemConverter = new StringEntityConverter<Item>(e => e.Id, (e, v) => e.Id = v);
 	}
 }

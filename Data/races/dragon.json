@@ -1,5 +1,6 @@
 {
-  "Name": "dragon",
+  "Id": "dragon",
+  "Name": "Dragon",
   "HitpointsModifier": 10,
   "PenetrationModifier": 1,
   "AttackType": "Claw",

@@ -24,10 +24,14 @@ namespace AbarimMUD.Storage
 
 		protected KeyType ConvertKey(KeyType key) => _keyConverter == null ? key : _keyConverter(key);
 
-		protected KeyType GetKey(ItemType entity)
+		protected KeyType GetKey(ItemType entity, bool convert = true)
 		{
 			var key = _keyGetter(entity);
-			key = ConvertKey(key);
+
+			if (convert)
+			{
+				key = ConvertKey(key);
+			}
 
 			return key;
 		}
@@ -86,7 +90,7 @@ namespace AbarimMUD.Storage
 			return null;
 		}
 
-		protected void ClearCache() => _cache.Clear();
+		protected virtual void ClearCache() => _cache.Clear();
 
 		protected void EnsureFolder(string folderPath)
 		{

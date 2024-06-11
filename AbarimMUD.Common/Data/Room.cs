@@ -1,6 +1,4 @@
-﻿using AbarimMUD.Storage;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
@@ -45,8 +43,12 @@ namespace AbarimMUD.Data
 		Nowhere,
 	}
 
-	public class Room: AreaEntity
+	public class Room
 	{
+		[JsonIgnore]
+		public Area Area { get; set; }
+
+		public int Id { get; set; }
 		public string Name { get; set; }
 		public string Description { get; set; }
 		public HashSet<RoomFlags> Flags { get; set; }
@@ -145,6 +147,5 @@ namespace AbarimMUD.Data
 
 		public static Room GetRoomById(int id) => Area.Storage.GetRoomById(id);
 		public static Room EnsureRoomById(int id) => Area.Storage.EnsureRoomById(id);
-
 	}
 }

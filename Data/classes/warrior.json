@@ -1,9 +1,10 @@
 {
-  "Name": "warrior",
+  "Id": "warrior",
+  "Name": "Warrior",
   "Description": "Master of armor and sword.",
   "SkillsByLevels": {
     "36": [
-      "third attack"
+      "thirdAttack"
     ]
   },
   "Hitpoints": {

@@ -1,6 +1,5 @@
-﻿using System;
+﻿using AbarimMUD.Storage;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
 {
@@ -104,11 +103,9 @@ namespace AbarimMUD.Data
 
 	public class Mobile
 	{
-		[JsonIgnore]
-		public Area Area { get; set; }
+		public static readonly MultipleFilesStorageString<Mobile> Storage = new Mobiles();
 
-		public int Id { get; set; }
-
+		public string Id { get; set; }
 		public string Name { get; set; }
 		public Race Race { get; set; }
 		public GameClass Class { get; set; }
@@ -123,10 +120,13 @@ namespace AbarimMUD.Data
 		public Shop Shop { get; set; }
 		public List<MobileSpecialAttack> SpecialAttacks { get; set; } = new List<MobileSpecialAttack>();
 
-		public override string ToString() => $"{Name} (#{Id})";
+		public override string ToString() => $"{ShortDescription} (#{Id})";
 
-		public static Mobile GetMobileById(int id) => Area.Storage.GetMobileById(id);
-		public static Mobile EnsureMobileById(int id) => Area.Storage.EnsureMobileById(id);
+		public void Create() => Storage.Create(this);
+		public void Save() => Storage.Save(this);
+
+		public static Mobile GetMobileById(string id) => Storage.GetByKey(id);
+		public static Mobile EnsureMobileById(string id) => Storage.EnsureByKey(id);
 
 	}
 }

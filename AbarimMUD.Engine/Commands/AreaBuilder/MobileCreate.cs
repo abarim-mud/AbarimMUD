@@ -6,26 +6,37 @@ namespace AbarimMUD.Commands.AreaBuilder
 	{
 		protected override void InternalExecute(ExecutionContext context, string data)
 		{
+			data =	data.Trim();
+			if (string.IsNullOrEmpty(data))
+			{
+				context.SendTextLine("Usage: mobilecreate _newMobileId");
+				return;
+			}
+
+			var id = data;
+			var existing = Mobile.GetMobileById(id);
+			if (existing != null)
+			{
+				context.SendTextLine($"Id {id} is used by {existing} already");
+				return;
+			}
+
 			// Create new mobile
 			var newMobile = new Mobile
 			{
-				Id = Area.NextMobileId,
+				Id = id,
 				Name = "unset",
 				ShortDescription = "Unset",
-				LongDescription = "A mobile with 'unset' name is standing here.",
 				Description = "Unset.",
-				Race = Race.EnsureRaceByName(Configuration.DefaultRace),
-				Class = GameClass.EnsureClassByName(Configuration.DefaultClass),
+				Race = Race.EnsureRaceById(Configuration.DefaultRace),
+				Class = GameClass.EnsureClassById(Configuration.DefaultClass),
 				Level = 1,
 			};
 
-			var area = context.CurrentRoom.Area;
-			area.Mobiles.Add(newMobile);
-			area.Save();
+			newMobile.Create();
+			context.SendTextLine($"New mobile {newMobile} was created");
 
-			context.SendTextLine($"New mobile info (#{newMobile.Id}) had been created for the area '{area.Name}'");
-
-			MSpawn.Execute(context, newMobile.Id.ToString());
+			MobileSpawn.Execute(context, newMobile.Id);
 		}
 	}
 }

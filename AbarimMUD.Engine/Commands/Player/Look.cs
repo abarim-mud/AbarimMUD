@@ -52,6 +52,11 @@ namespace AbarimMUD.Commands.Player
 			foreach (var mobile in room.Mobiles)
 			{
 				var desc = mobile.Info.LongDescription;
+				if (string.IsNullOrEmpty(desc))
+				{
+					desc = Defaults.DefaultMobileLongDesc(mobile.Info.ShortDescription);
+				}
+
 				if (context.IsStaff)
 				{
 					desc += string.Format(" (#{0})", mobile.Info.Id);

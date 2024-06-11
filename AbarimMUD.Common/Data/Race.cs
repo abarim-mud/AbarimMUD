@@ -4,8 +4,9 @@ namespace AbarimMUD.Data
 {
 	public class Race
 	{
-		public static readonly MultipleFilesStorageString<Race> Storage = new MultipleFilesStorageString<Race>(r => r.Name, "races");
+		public static readonly MultipleFilesStorageString<Race> Storage = new MultipleFilesStorageString<Race>(r => r.Id, "races");
 
+		public string Id { get; set; }
 		public string Name { get; set; }
 
 		public float HitpointsModifier { get; set; } = 1.0f;
@@ -18,8 +19,10 @@ namespace AbarimMUD.Data
 
 		public override string ToString() => Name;
 
-		public static Race GetRaceByName(string name) => Storage.GetByKey(name);
-		public static Race EnsureRaceByName(string name) => Storage.EnsureByKey(name);
-		public static Race LookupRace(string name) => Storage.Lookup(name);
+		public void Create() => Storage.Create(this);
+		public void Save() => Storage.Save(this);
+
+		public static Race GetRaceById(string name) => Storage.GetByKey(name);
+		public static Race EnsureRaceById(string name) => Storage.EnsureByKey(name);
 	} 
 }

@@ -1,4 +1,5 @@
 {
+  "Id": "thirdAttack",
   "Name": "third attack",
   "Modifiers": {
     "AttacksCount": 1

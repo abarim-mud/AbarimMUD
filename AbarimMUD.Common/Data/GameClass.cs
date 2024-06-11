@@ -38,19 +38,22 @@ namespace AbarimMUD.Data
 	{
 		public static readonly MultipleFilesStorageString<GameClass> Storage = new GameClasses();
 
+		public string Id { get; set; }
 		public string Name { get; set; }
 		public string Description { get; set; }
 		
 		public RaceClassValueRange Hitpoints;
 		
 		public RaceClassValueRange Penetration;
-		
-		public Dictionary<int, List<Skill>> SkillsByLevels { get; set; }
+
+		public Dictionary<int, List<Skill>> SkillsByLevels { get; set; } = new Dictionary<int, List<Skill>>();
 
 		public override string ToString() => Name;
 
-		public static GameClass GetClassByName(string name) => Storage.GetByKey(name);
-		public static GameClass EnsureClassByName(string name) => Storage.EnsureByKey(name);
-		public static GameClass LookupClass(string name) => Storage.Lookup(name);
+		public void Create() => Storage.Create(this);
+		public void Save() => Storage.Save(this);
+
+		public static GameClass GetClassById(string name) => Storage.GetByKey(name);
+		public static GameClass EnsureClassById(string name) => Storage.EnsureByKey(name);
 	}
 }
