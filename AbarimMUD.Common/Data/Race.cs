@@ -14,8 +14,8 @@ namespace AbarimMUD.Data
 		public RaceClassValueRange NaturalArmor;
 		public AttackType AttackType { get; set; }
 		public RaceClassValueRange NaturalAttacksCount;
-		public RaceClassValueRange NaturalMinimumDamage;
-		public RaceClassValueRange NaturalMaximumDamage;
+		public RaceClassValueRange BareHandedMinimumDamage;
+		public RaceClassValueRange BareHandedMaximumDamage;
 
 		public override string ToString() => Name;
 

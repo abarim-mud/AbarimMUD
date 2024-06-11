@@ -12,11 +12,11 @@
     "Level1Value": 2,
     "Level100Value": 4
   },
-  "NaturalMinimumDamage": {
+  "BareHandedMinimumDamage": {
     "Level1Value": 10,
     "Level100Value": 20
   },
-  "NaturalMaximumDamage": {
+  "BareHandedMaximumDamage": {
     "Level1Value": 20,
     "Level100Value": 100
   }

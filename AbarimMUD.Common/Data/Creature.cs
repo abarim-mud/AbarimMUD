@@ -49,8 +49,8 @@ namespace AbarimMUD.Data
 
 			var attacksCount = Race.NaturalAttacksCount.CalculateValue(Level);
 			var penetration = (int)(Race.PenetrationModifier * Class.Penetration.CalculateValue(Level));
-			var minimumDamage = Race.NaturalMinimumDamage.CalculateValue(Level);
-			var maximumDamage = Race.NaturalMaximumDamage.CalculateValue(Level);
+			var minimumDamage = Race.BareHandedMinimumDamage.CalculateValue(Level);
+			var maximumDamage = Race.BareHandedMaximumDamage.CalculateValue(Level);
 
 			// Apply skill modifiers
 			foreach (var pair in Class.SkillsByLevels)
@@ -95,6 +95,15 @@ namespace AbarimMUD.Data
 		public bool? Wear(ItemInstance item)
 		{
 			var result = Equipment.Wear(item);
+
+			InvalidateStats();
+
+			return result;
+		}
+
+		public ItemInstance Remove(SlotType slot)
+		{
+			var result = Equipment.Remove(slot);
 
 			InvalidateStats();
 

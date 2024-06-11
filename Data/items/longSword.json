@@ -1,0 +1,14 @@
+{
+  "Id": "longSword",
+  "Name": "long sword",
+  "ShortDescription": "a long sword",
+  "LongDescription": null,
+  "Description": "Unset",
+  "Material": "OldStyle",
+  "Affects": [],
+  "ItemType": "Weapon",
+  "Value1": 2,
+  "Value2": 8,
+  "Value3": 0,
+  "Value4": 0
+}

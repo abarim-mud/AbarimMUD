@@ -1,6 +1,5 @@
 ﻿using AbarimMUD.Data;
 using System;
-using System.Linq;
 using System.Text;
 
 namespace AbarimMUD.Commands.AreaBuilder
@@ -15,14 +14,13 @@ namespace AbarimMUD.Commands.AreaBuilder
 				if (parts.Length == 1 && parts[0].ToLower() == "type")
 				{
 					var sb = new StringBuilder();
-					sb.Append("Usage: itemset type ");
-					sb.Append(string.Join('|', (from e in Enum.GetValues<ItemType>() select e.ToString().ToLower())));
-					sb.Append(" _itemId_ _params_");
+					sb.Append("Usage: itemset type _itemId_ ");
+					sb.Append(CommandUtils.JoinForUsage<ItemType>());
 					context.Send(sb.ToString());
 					return;
 				}
 
-				context.Send("Usage: itemset name|short|long|desc|type|val1|val2|val3|val4 _itemId_ _params_");
+				context.Send("Usage: itemset name|short|long|desc|type _itemId_ _params_");
 				return;
 			}
 
@@ -74,50 +72,6 @@ namespace AbarimMUD.Commands.AreaBuilder
 
 						item.ItemType = type;
 						context.SendTextLine($"Changed {item.Id}'s type to '{type}'");
-					}
-					break;
-				case "val1":
-					{
-						int val;
-						if (!context.EnsureInt(cmdData, out val))
-						{
-							return;
-						}
-						item.Value1 = val;
-						context.SendTextLine($"Changed {item.Id}'s value1 to '{val}'");
-					}
-					break;
-				case "val2":
-					{
-						int val;
-						if (!context.EnsureInt(cmdData, out val))
-						{
-							return;
-						}
-						item.Value2 = val;
-						context.SendTextLine($"Changed {item.Id}'s value2 to '{val}'");
-					}
-					break;
-				case "val3":
-					{
-						int val;
-						if (!context.EnsureInt(cmdData, out val))
-						{
-							return;
-						}
-						item.Value3 = val;
-						context.SendTextLine($"Changed {item.Id}'s value3 to '{val}'");
-					}
-					break;
-				case "val4":
-					{
-						int val;
-						if (!context.EnsureInt(cmdData, out val))
-						{
-							return;
-						}
-						item.Value4 = val;
-						context.SendTextLine($"Changed {item.Id}'s value1 to '{val}'");
 					}
 					break;
 				default:

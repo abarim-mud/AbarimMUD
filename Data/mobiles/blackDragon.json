@@ -1,0 +1,15 @@
+{
+  "Id": "blackDragon",
+  "Name": "black dragon",
+  "Race": "dragon",
+  "Class": "warrior",
+  "Level": 50,
+  "Sex": "None",
+  "ShortDescription": "a black dragon",
+  "LongDescription": null,
+  "Description": "Unset.",
+  "Flags": [],
+  "Wealth": 0,
+  "Shop": null,
+  "SpecialAttacks": []
+}

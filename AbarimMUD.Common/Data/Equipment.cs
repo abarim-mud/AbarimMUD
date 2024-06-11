@@ -118,5 +118,31 @@ namespace AbarimMUD.Data
 
 			return null;
 		}
+
+		internal ItemInstance Remove(SlotType type)
+		{
+			ItemInstance item;
+			if (!_items.TryGetValue(type, out item))
+			{
+				return null;
+			}
+
+			_items.Remove(type);
+
+			return item;
+		}
+
+		public WearItem FindItem(string pat)
+		{
+			foreach (var pair in _items)
+			{
+				if (pair.Value.Keywords.StartsWithPattern(new[] { pat }))
+				{
+					return new WearItem(pair.Key, pair.Value);
+				}
+			}
+
+			return null;
+		}
 	}
 }

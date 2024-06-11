@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using AbarimMUD.Utils;
+using System.Text;
 
 namespace AbarimMUD.Commands.Player
 {
@@ -6,28 +7,36 @@ namespace AbarimMUD.Commands.Player
 	{
 		protected override void InternalExecute(ExecutionContext context, string data)
 		{
-			var sb = new StringBuilder();
+			AsciiGrid grid = null;
 
-			var found = false;
-			foreach(var eq in context.Creature.Equipment.Items)
+			var y = 0;
+			foreach (var eq in context.Creature.Equipment.Items)
 			{
 				if (eq.Item == null)
 				{
 					continue;
 				}
 
-				if (!found)
+				if (grid == null)
 				{
-					sb.AppendLine("You are using:");
-					found = true;
+					grid = new AsciiGrid();
 				}
 
-				sb.AppendLine($"<worn on {eq.Slot.ToString().ToLower()}>\t\t{eq.Item.ShortDescription}");
+				grid.SetValue(0, y, $"<worn on {eq.Slot.ToString().ToLower()}>");
+				grid.SetValue(1, y, eq.Item.ShortDescription);
+
+				++y;
 			}
 
-			if (!found)
+			var sb = new StringBuilder();
+			if (grid == null)
 			{
 				sb.AppendLine("You aren't using any items");
+			}
+			else
+			{
+				sb.AppendLine("You are using:");
+				sb.AppendLine(grid.ToString());
 			}
 
 			context.SendTextLine(sb.ToString());

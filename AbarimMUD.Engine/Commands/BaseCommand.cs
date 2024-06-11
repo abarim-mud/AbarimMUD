@@ -23,9 +23,10 @@ namespace AbarimMUD.Commands
 		public static readonly Gossip Gossip = new Gossip();
 		public static readonly Look Look = new Look();
 		public static readonly Where Where = new Where();
-		
+
 		public static readonly Player.Inventory Inventory = new Player.Inventory();
 		public static readonly Wear Wear = new Wear();
+		public static readonly Remove Remove = new Remove();
 		public static readonly Player.Equipment Equipment = new Player.Equipment();
 
 		public static readonly Kill Kill = new Kill();
@@ -48,6 +49,8 @@ namespace AbarimMUD.Commands
 		public static readonly ItemCreate ItemCreate = new ItemCreate();
 		public static readonly ItemSpawn ItemSpawn = new ItemSpawn();
 		public static readonly ItemSet ItemSet = new ItemSet();
+		public static readonly ItemArmorSet ItemArmorSet = new ItemArmorSet();
+		public static readonly ItemWeaponSet ItemWeaponSet = new ItemWeaponSet();
 		public static readonly ItemSearch ItemSearch = new ItemSearch();
 
 		// Owner
@@ -62,7 +65,7 @@ namespace AbarimMUD.Commands
 			// Use reflection to build dictionary of commands
 			var staticFields = typeof(BaseCommand).GetFields(BindingFlags.Public | BindingFlags.Static);
 
-			foreach(var field in staticFields)
+			foreach (var field in staticFields)
 			{
 				if (!field.FieldType.IsSubclassOf(typeof(BaseCommand)))
 				{
