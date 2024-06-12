@@ -10,7 +10,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 			data = data.Trim();
 			if (string.IsNullOrEmpty(data))
 			{
-				context.SendTextLine("Usage: mobilecreate _newMobileId");
+				context.Send("Usage: mobilecreate _newMobileId");
 				return;
 			}
 
@@ -18,7 +18,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 			var existing = Mobile.GetMobileById(id);
 			if (existing != null)
 			{
-				context.SendTextLine($"Id {id} is used by {existing} already");
+				context.Send($"Id {id} is used by {existing} already");
 				return;
 			}
 
@@ -35,7 +35,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 			};
 
 			newMobile.Create();
-			context.SendTextLine($"New mobile {newMobile} was created");
+			context.Send($"New mobile {newMobile} was created");
 
 			MobileSpawn.Execute(context, newMobile.Id);
 		}

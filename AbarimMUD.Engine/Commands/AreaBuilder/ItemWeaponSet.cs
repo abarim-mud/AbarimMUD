@@ -33,7 +33,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 
 			item.Value1 = minimumDamage;
 			item.Value2 = maximumDamage;
-			context.SendTextLine($"Changed {item.Id}'s minimum-maximum damage to {minimumDamage}-{maximumDamage}");
+			context.Send($"Changed {item.Id}'s minimum-maximum damage to {minimumDamage}-{maximumDamage}");
 
 			item.Save();
 		}

@@ -37,12 +37,6 @@ namespace AbarimMUD
 					sb.Append(string.Format("<{0}hp {1}ip {2}mv -> ", c.CurrentHP, c.CurrentIP, c.CurrentMV));
 				}*/
 
-		public override void Process(string data)
-		{
-			using (new ExecutionContext.SendSuspender(Session.Context))
-			{
-				Session.Context.ParseAndExecute(data);
-			}
-		}
+		public override void Process(string data) => Session.Context.ParseAndExecute(data);
 	}
 }

@@ -41,25 +41,25 @@ namespace AbarimMUD.Commands.AreaBuilder
 				case "keywords":
 					{
 						item.Keywords = cmdData.SplitByWhitespace().ToHashSet();
-						context.SendTextLine($"Changed {item.Id}'s keywords to '{item.Keywords.JoinKeywords()}'");
+						context.Send($"Changed {item.Id}'s keywords to '{item.Keywords.JoinKeywords()}'");
 					}
 					break;
 				case "short":
 					{
 						item.ShortDescription = cmdData;
-						context.SendTextLine($"Changed {item.Id}'s short to '{item.ShortDescription}'");
+						context.Send($"Changed {item.Id}'s short to '{item.ShortDescription}'");
 					}
 					break;
 				case "long":
 					{
 						item.LongDescription = cmdData;
-						context.SendTextLine($"Changed {item.Id}'s long to '{item.LongDescription}'");
+						context.Send($"Changed {item.Id}'s long to '{item.LongDescription}'");
 					}
 					break;
 				case "desc":
 					{
 						item.Description = cmdData;
-						context.SendTextLine($"Changed {item.Id}'s desc to '{item.Description}'");
+						context.Send($"Changed {item.Id}'s desc to '{item.Description}'");
 					}
 					break;
 				case "type":
@@ -67,12 +67,12 @@ namespace AbarimMUD.Commands.AreaBuilder
 						ItemType type;
 						if (!Enum.TryParse(cmdData, true, out type))
 						{
-							context.SendTextLine($"Unknown item type '{cmdData}'");
+							context.Send($"Unknown item type '{cmdData}'");
 							return;
 						}
 
 						item.ItemType = type;
-						context.SendTextLine($"Changed {item.Id}'s type to '{type}'");
+						context.Send($"Changed {item.Id}'s type to '{type}'");
 					}
 					break;
 				default:

@@ -50,7 +50,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 			sb.AppendLine();
 			sb.Append($"Total areas count: {areas.Count}");
 
-			context.SendTextLine(sb.ToString());
+			context.Send(sb.ToString());
 		}
 	}
 }

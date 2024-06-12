@@ -8,7 +8,7 @@ namespace AbarimMUD.Commands.Player
 		private string BuildRoomDescription(ExecutionContext context, Room room)
 		{
 			var sb = new StringBuilder();
-			sb.Append(ConsoleCommand.ForeColorCyan);
+			sb.Append("[cyan]");
 
 			var name = room.Name;
 			if (context.IsStaff)
@@ -16,11 +16,11 @@ namespace AbarimMUD.Commands.Player
 				name += string.Format(" (#{0})", room.Id);
 			}
 
-			sb.AddTextLine(name);
-			sb.Append(ConsoleCommand.ColorClear);
+			sb.AppendLine(name);
+			sb.Append("[clear]");
 			sb.Append("   ");
-			sb.AddTextLine(room.Description);
-			sb.Append(ConsoleCommand.ForeColorCyan);
+			sb.AppendLine(room.Description);
+			sb.Append("[cyan]");
 			sb.Append("Exits: ");
 
 			var first = true;
@@ -29,12 +29,11 @@ namespace AbarimMUD.Commands.Player
 				var exit = pair.Value;
 				if (!first)
 				{
-					sb.Append(ConsoleCommand.ColorClear);
+					sb.Append("[clear]");
 					sb.Append(" ");
 				}
 
-				sb.Append(ConsoleCommand.ForeColorCyan);
-				sb.Append(ConsoleCommand.Underline);
+				sb.Append("[cyan][underline]");
 				sb.Append(exit.Direction.GetName());
 
 				if (context.IsStaff)
@@ -45,8 +44,7 @@ namespace AbarimMUD.Commands.Player
 				first = false;
 			}
 
-			sb.AddNewLine();
-			sb.Append(ConsoleCommand.ColorClear);
+			sb.AppendLine("[clear]");
 
 			// Mobiles
 			foreach (var mobile in room.Mobiles)
@@ -61,7 +59,7 @@ namespace AbarimMUD.Commands.Player
 				{
 					desc += string.Format(" (#{0})", mobile.Info.Id);
 				}
-				sb.AddTextLine(desc);
+				sb.AppendLine(desc);
 			}
 
 			// Characters
@@ -73,7 +71,7 @@ namespace AbarimMUD.Commands.Player
 					continue;
 				}
 
-				sb.AddTextLine(string.Format("{0} is standing here.", character.Name));
+				sb.AppendLine(string.Format("{0} is standing here.", character.Name));
 			}
 
 			return sb.ToString();
@@ -91,7 +89,7 @@ namespace AbarimMUD.Commands.Player
 
 			if (context.IsStaff)
 			{
-				sb.Append(ConsoleCommand.ForeColorCyan);
+				sb.Append("[cyan]");
 
 				if (mobile != null)
 				{
@@ -115,7 +113,7 @@ namespace AbarimMUD.Commands.Player
 					sb.AppendLine($"Attack {i + 1}: {attack}");
 				}
 
-				sb.Append(ConsoleCommand.ColorClear);
+				sb.Append("[clear]");
 			}
 
 			return sb.ToString();
@@ -128,9 +126,9 @@ namespace AbarimMUD.Commands.Player
 			sb.AppendLine(item.Info.Description);
 			if (context.IsStaff)
 			{
-				sb.Append(ConsoleCommand.ForeColorCyan);
+				sb.Append("[cyan]");
 				sb.AppendLine("Item Id: " + item.Info.Id);
-				sb.Append(ConsoleCommand.ColorClear);
+				sb.Append("[clear]");
 			}
 
 			return sb.ToString();
@@ -140,13 +138,15 @@ namespace AbarimMUD.Commands.Player
 		{
 			data = data.Trim();
 
+
+			var sb = new StringBuilder();
+
 			do
 			{
 				if (string.IsNullOrEmpty(data))
 				{
 					// Look room
-					var sd = BuildRoomDescription(context, context.CurrentRoom);
-					context.Send(sd);
+					sb.AppendLine(BuildRoomDescription(context, context.CurrentRoom));
 					break;
 				}
 
@@ -154,21 +154,20 @@ namespace AbarimMUD.Commands.Player
 				var lookContext = context.CurrentRoom.Find(data);
 				if (lookContext != null)
 				{
-					context.Send($"You look at {lookContext.ShortDescription}.\n");
-
-					var d = BuildMobileDescription(context, lookContext.Creature);
-					context.Send(d);
+					sb.AppendLine($"You look at {lookContext.ShortDescription}.");
+					sb.AppendLine();
+					sb.AppendLine(BuildMobileDescription(context, lookContext.Creature));
 
 					if (lookContext != context)
 					{
-						lookContext.SendTextLine(string.Format("{0} looks at you.", context.ShortDescription));
+						lookContext.Send(string.Format("{0} looks at you.", context.ShortDescription));
 					}
 
 					foreach (var t in context.AllExceptMeInRoom())
 					{
 						if (t != lookContext)
 						{
-							t.SendTextLine(string.Format("{0} looks at {1}.", context.ShortDescription, lookContext.ShortDescription));
+							t.Send(string.Format("{0} looks at {1}.", context.ShortDescription, lookContext.ShortDescription));
 						}
 					}
 
@@ -179,13 +178,16 @@ namespace AbarimMUD.Commands.Player
 				var item = context.Creature.Inventory.FindItem(data);
 				if (item != null)
 				{
-					var d = BuildItemDescription(context, item.Item);
-					context.Send(d);
+					sb.AppendLine($"You look at {item.ShortDescription}.");
+					sb.AppendLine();
+					sb.AppendLine(BuildItemDescription(context, item.Item));
 					break;
 				}
 
-				context.SendTextLine(string.Format("There isnt '{0}' in this room", data));
+				sb.AppendLine(string.Format("There isnt '{0}' in this room", data));
 			} while (false);
+
+			context.Send(sb.ToString());
 		}
 	}
 }

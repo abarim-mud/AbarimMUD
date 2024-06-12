@@ -33,7 +33,7 @@ namespace AbarimMUD
 			if (string.Compare("n", data, StringComparison.OrdinalIgnoreCase) == 0)
 			{
 				// No
-				SendTextLine("Bye");
+				SendLine("Bye");
 				Session.Disconnect();
 				return;
 			}

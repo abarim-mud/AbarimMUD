@@ -9,7 +9,7 @@ namespace AbarimMUD.Commands.Player
 			var area = context.CurrentRoom.Area;
 
 			var sb = new StringBuilder();
-			sb.Append(ConsoleCommand.ForeColorCyan);
+			sb.Append("[cyan]");
 
 			var name = area.Name;
 			if (context.IsStaff)
@@ -17,8 +17,8 @@ namespace AbarimMUD.Commands.Player
 				name += string.Format(" (#{0})", area.Name);
 			}
 
-			sb.AddTextLine(name);
-			sb.Append(ConsoleCommand.ColorClear);
+			sb.AppendLine(name);
+			sb.Append("[clear]");
 
 			context.Send(sb.ToString());
 		}

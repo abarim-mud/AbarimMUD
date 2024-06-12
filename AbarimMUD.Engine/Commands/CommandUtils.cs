@@ -12,7 +12,7 @@ namespace AbarimMUD.Commands
 			var race = Race.GetRaceById(name);
 			if (race == null)
 			{
-				context.SendTextLine($"Unable to find race '{name}'");
+				context.Send($"Unable to find race '{name}'");
 			}
 
 			return race;
@@ -23,7 +23,7 @@ namespace AbarimMUD.Commands
 			var cls = GameClass.GetClassById(name);
 			if (cls == null)
 			{
-				context.SendTextLine($"Unable to find class '{name}'");
+				context.Send($"Unable to find class '{name}'");
 			}
 
 			return cls;
@@ -33,7 +33,7 @@ namespace AbarimMUD.Commands
 		{
 			if (!int.TryParse(value, out result))
 			{
-				context.SendTextLine($"Unable to parse number '{value}'");
+				context.Send($"Unable to parse number '{value}'");
 				return false;
 			}
 
@@ -45,7 +45,7 @@ namespace AbarimMUD.Commands
 			var item = context.Creature.Inventory.FindItem(name);
 			if (item == null)
 			{
-				context.SendTextLine($"Unable to find item '{name}'");
+				context.Send($"Unable to find item '{name}'");
 			}
 
 			return item;
@@ -56,7 +56,7 @@ namespace AbarimMUD.Commands
 			var item = context.Creature.Equipment.FindItem(name);
 			if (item == null)
 			{
-				context.SendTextLine($"You arent wearing an item '{name}'");
+				context.Send($"You arent wearing an item '{name}'");
 			}
 
 			return item;

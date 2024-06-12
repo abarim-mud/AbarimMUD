@@ -23,19 +23,19 @@ namespace AbarimMUD.Commands.AreaBuilder
 				case "name":
 					{
 						room.Name = cmdData.Trim();
-						context.SendTextLine(string.Format("Changed {0}'s name to {1}", room.Id, room.Name));
+						context.Send(string.Format("Changed {0}'s name to {1}", room.Id, room.Name));
 					}
 					break;
 
 				case "desc":
 					{
 						room.Description = cmdData.Trim();
-						context.SendTextLine(string.Format("Changed {0}'s description to {1}", room.Id, room.Name));
+						context.Send(string.Format("Changed {0}'s description to {1}", room.Id, room.Name));
 					}
 					break;
 
 				default:
-					context.SendTextLine($"Unknown room property {cmdText}");
+					context.Send($"Unknown room property {cmdText}");
 					doSave = false;
 					break;
 			}

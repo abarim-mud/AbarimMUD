@@ -135,7 +135,7 @@ namespace AbarimMUD
 
 		public void Send(string text)
 		{
-			_connection.Send(text.FixNewLines());
+			_connection.Send(text);
 		}
 
 		public void Disconnect()

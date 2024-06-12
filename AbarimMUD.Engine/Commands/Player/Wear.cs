@@ -9,7 +9,7 @@ namespace AbarimMUD.Commands.Player
 			data = data.Trim();
 			if (string.IsNullOrEmpty(data))
 			{
-				context.SendTextLine("Usage: wear <itemName>");
+				context.Send("Usage: wear <itemName>");
 				return;
 			}
 
@@ -24,15 +24,15 @@ namespace AbarimMUD.Commands.Player
 			{
 				// Remove from inv
 				context.Creature.Inventory.AddItem(item.Item, -1);
-				context.SendTextLine($"You wear {item.ShortDescription}");
+				context.Send($"You wear {item.ShortDescription}");
 			}
 			else if (result == false)
 			{
-				context.SendTextLine($"You can't wear {item.ShortDescription}, since that slot is occupied");
+				context.Send($"You can't wear {item.ShortDescription}, since that slot is occupied");
 			}
 			else
 			{
-				context.SendTextLine($"{item.ShortDescription} can't be worn");
+				context.Send($"{item.ShortDescription} can't be worn");
 			}
 
 			var asCharacter = context.Creature as Character;

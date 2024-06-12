@@ -88,7 +88,7 @@ namespace AbarimMUD
 
 		private void Login()
 		{
-			SendTextLine(string.Format("Welcome, {0}!", _account.Name));
+			SendLine(string.Format("Welcome, {0}!", _account.Name));
 
 			Session.Account = _account;
 
@@ -156,7 +156,7 @@ namespace AbarimMUD
 			name = name.CasedName();
 			if (string.IsNullOrEmpty(name))
 			{
-				SendTextLine("Invalid account name.");
+				SendLine("Invalid account name.");
 				SendAccountPrompt();
 				return;
 			}
@@ -164,7 +164,7 @@ namespace AbarimMUD
 			var acc = Account.GetAccountByName(name);
 			if (acc == null)
 			{
-				SendTextLine(string.Format("Account '{0}' is unknown.", name));
+				SendLine(string.Format("Account '{0}' is unknown.", name));
 				Send("Did you type it right (y/n)? ");
 				_newName = name;
 				_mode = Mode.ConfirmAccountName;
@@ -192,7 +192,7 @@ namespace AbarimMUD
 				var inputHash = HashUtils.CalculateMD5Hash(pwd);
 				if (inputHash != _account.PasswordHash)
 				{
-					SendTextLine("Incorrect password.");
+					SendLine("Incorrect password.");
 					break;
 				}
 
@@ -259,13 +259,13 @@ namespace AbarimMUD
 		{
 			if (data != _newPassword)
 			{
-				SendTextLine("Sorry, but passwords do not match.");
+				SendLine("Sorry, but passwords do not match.");
 				SendNewPasswordPrompt();
 				_mode = Mode.NewPassword;
 				return;
 			}
 
-			SendTextLine("Creating new account...");
+			SendLine("Creating new account...");
 			_account = new Account
 			{
 				Name = _newName,

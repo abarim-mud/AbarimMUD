@@ -40,12 +40,12 @@ namespace AbarimMUD.Commands.AreaBuilder
 						ArmorType type;
 						if (!Enum.TryParse(cmdData, true, out type))
 						{
-							context.SendTextLine($"Unknown item type '{cmdData}'");
+							context.Send($"Unknown item type '{cmdData}'");
 							return;
 						}
 
 						item.Value1 = (int)type;
-						context.SendTextLine($"Changed {item.Id}'s type to '{type}'");
+						context.Send($"Changed {item.Id}'s type to '{type}'");
 					}
 					break;
 				case "armor":
@@ -53,12 +53,12 @@ namespace AbarimMUD.Commands.AreaBuilder
 						int val;
 						if (!int.TryParse(cmdData, out val))
 						{
-							context.SendTextLine($"Unable to parse armor {cmdData}");
+							context.Send($"Unable to parse armor {cmdData}");
 							return;
 						}
 
 						item.Value2 = val;
-						context.SendTextLine($"Changed {item.Id}'s armor to '{val}'");
+						context.Send($"Changed {item.Id}'s armor to '{val}'");
 					}
 					break;
 				default:

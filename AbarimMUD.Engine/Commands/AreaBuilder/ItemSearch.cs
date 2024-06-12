@@ -8,7 +8,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 		{
 			if (string.IsNullOrEmpty(data))
 			{
-				context.SendTextLine("Usage: itemsearch _pattern_");
+				context.Send("Usage: itemsearch _pattern_");
 				return;
 			}
 			else
@@ -19,13 +19,13 @@ namespace AbarimMUD.Commands.AreaBuilder
 					if (item.MatchesKeyword(data))
 					{
 						found = true;
-						context.SendTextLine(item.ToString());
+						context.Send(item.ToString());
 					}
 				}
 
 				if (!found)
 				{
-					context.SendTextLine($"No items found which names contained '{data}'");
+					context.Send($"No items found which names contained '{data}'");
 				}
 			}
 		}

@@ -38,14 +38,14 @@ namespace AbarimMUD
 		private void SendChoosePrimaryClassPrompt()
 		{
 			var sb = new StringBuilder();
-			sb.AddTextLine("Please, choose a primary class:");
+			sb.AppendLine("Please, choose a primary class:");
 
 			var index = 1;
 
 			var classes = GameClass.Storage.ToArray();
 			foreach (var c in classes)
 			{
-				sb.AddTextLine(string.Format("{0}) {1} - {2}", index, c.Name, c.Description));
+				sb.AppendLine(string.Format("{0}) {1} - {2}", index, c.Name, c.Description));
 				++index;
 			}
 
@@ -89,14 +89,14 @@ namespace AbarimMUD
 			name = name.CasedName();
 			if (string.IsNullOrEmpty(name))
 			{
-				SendTextLine("Invalid name.");
+				SendLine("Invalid name.");
 				SendCharacterNamePrompt();
 				return;
 			}
 
 			if (Character.GetCharacterByName(name) != null)
 			{
-				SendTextLine("This name is already taken.");
+				SendLine("This name is already taken.");
 				SendCharacterNamePrompt();
 				return;
 			}
@@ -131,7 +131,7 @@ namespace AbarimMUD
 				data != "m" &&
 				data != "f")
 			{
-				SendTextLine("Invalid gender.");
+				SendLine("Invalid gender.");
 				SendGenderPrompt();
 				return;
 			}
@@ -149,7 +149,7 @@ namespace AbarimMUD
 				data != "y" &&
 				data != "n")
 			{
-				SendTextLine("Invalid choice.");
+				SendLine("Invalid choice.");
 				SendConfirmPrompt();
 				return;
 			}
@@ -162,12 +162,12 @@ namespace AbarimMUD
 				if (Character.Storage.Count == 0)
 				{
 					_character.Role = Role.Owner;
-					SendTextLine("This character is first in the game. Hence it will become the owner.");
+					SendLine("This character is first in the game. Hence it will become the owner.");
 				}
 
 				_character.Account = Session.Account;
 				_character.Save();
-				SendTextLine("Character is saved.");
+				SendLine("Character is saved.");
 			}
 
 			Session.CurrentHandler = new MainMenuHandler(Session);

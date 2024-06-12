@@ -10,7 +10,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 			data = data.Trim();
 			if (string.IsNullOrEmpty(data))
 			{
-				context.SendTextLine("Usage: itemcreate _newItemId");
+				context.Send("Usage: itemcreate _newItemId");
 				return;
 			}
 
@@ -18,7 +18,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 			var existing = Item.GetItemById(id);
 			if (existing != null)
 			{
-				context.SendTextLine($"Id {id} is used by {existing} already");
+				context.Send($"Id {id} is used by {existing} already");
 				return;
 			}
 
@@ -33,7 +33,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 
 			newItem.Create();
 
-			context.SendTextLine($"New item '{newItem}' was created");
+			context.Send($"New item '{newItem}' was created");
 
 			ItemSpawn.Execute(context, newItem.Id.ToString());
 		}

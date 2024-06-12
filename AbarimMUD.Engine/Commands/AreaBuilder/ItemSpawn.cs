@@ -10,7 +10,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 			var pat = data.Trim().ToLower();
 			if (string.IsNullOrEmpty(pat))
 			{
-				context.SendTextLine("Usage: itemspawn _id_");
+				context.Send("Usage: itemspawn _id_");
 				return;
 			}
 			else
@@ -18,12 +18,12 @@ namespace AbarimMUD.Commands.AreaBuilder
 				var item = Item.GetItemById(pat);
 				if (item == null)
 				{
-					context.SendTextLine($"Unable to find an item with id {pat}");
+					context.Send($"Unable to find an item with id {pat}");
 				}
 				else
 				{
 					context.Creature.Inventory.AddItem(new ItemInstance(item), 1);
-					context.SendTextLine($"{item} appeared in your inventory");
+					context.Send($"{item} appeared in your inventory");
 
 					var asPlayer = context.Creature as Character;
 					asPlayer?.Save();

@@ -12,7 +12,7 @@ namespace AbarimMUD.Commands.Player
 			{
 				if (ac.Value.RequiredType <= context.Role)
 				{
-					sd.AddTextLine(ac.Key);
+					sd.AppendLine(ac.Key);
 				}
 			}
 

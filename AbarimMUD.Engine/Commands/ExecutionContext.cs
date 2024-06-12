@@ -3,36 +3,12 @@ using NLog;
 using System.Collections.Generic;
 using System.Text;
 using AbarimMUD.Data;
+using System.Linq;
 
 namespace AbarimMUD.Commands
 {
 	public abstract class ExecutionContext
 	{
-		public sealed class SendSuspender : IDisposable
-		{
-			private readonly ExecutionContext _session;
-
-			public SendSuspender(ExecutionContext session)
-			{
-				if (session == null)
-				{
-					throw new ArgumentNullException("session");
-				}
-
-				_session = session;
-				_session._suspendSend = true;
-			}
-
-			public void Dispose()
-			{
-				_session._suspendSend = false;
-				_session.Flush();
-			}
-		}
-
-		private bool _suspendSend;
-		private readonly StringBuilder _sendCache = new StringBuilder();
-
 		public abstract Creature Creature { get; }
 
 		public abstract Role Role { get; }
@@ -53,16 +29,6 @@ namespace AbarimMUD.Commands
 		public bool IsStaff => Role >= Role.Builder;
 
 		protected abstract void InternalSend(string text);
-
-		public void SendTextLine(string text)
-		{
-			if (!text.EndsWith("."))
-			{
-				text += ".";
-			}
-
-			InternalSend(text + ConsoleCommand.NewLine);
-		}
 
 		public bool MatchesKeyword(string keyword) => Creature.MatchesKeyword(keyword);
 
@@ -104,30 +70,48 @@ namespace AbarimMUD.Commands
 			}
 		}
 
-		public void Send(string text)
+		public void Send(string text, bool? forceDotAtTheEnd = null)
 		{
-			_sendCache.Append(text);
-			Flush();
-		}
+			var sb = new StringBuilder();
 
-		private void Flush()
-		{
-			if (_suspendSend)
+			text = text.TrimEnd();
+			if (!string.IsNullOrEmpty(text))
 			{
-				return;
+				// Remove unneeded color clear at the end
+				if (text.EndsWith("[clear]".ToString()))
+				{
+					text = text.Substring(0, text.Length - "[clear]".ToString().Length).TrimEnd();
+				}
+
+				var linesCount = text.Count(c => c.Equals('\n')) + 1;
+				if (forceDotAtTheEnd == null)
+				{
+					// The default behavior is single line strings receive dot at the end
+					// While multi-line string does not
+					forceDotAtTheEnd = linesCount == 1;
+				}
+
+				sb.Append(text);
+
+				if (forceDotAtTheEnd.Value && !text.EndsWith("."))
+				{
+					sb.Append('.');
+				}
+
+				// Always append color reset
+				sb.Append("[clear]");
+
+				// Mandatory line end
+				sb.AppendLine();
 			}
 
-			_sendCache.AddNewLine();
-			_sendCache.Append(string.Format("<{0}hp {1}ma {2}mv -> ", State.Hitpoints, State.Mana, State.Movement));
+			// Line break before stats
+			sb.AppendLine();
+			sb.Append(string.Format("<{0}hp {1}ma {2}mv -> ", State.Hitpoints, State.Mana, State.Movement));
 
-			// Always append color reset
-			_sendCache.Append(ConsoleCommand.ColorClear);
-
-			var data = _sendCache.ToString();
+			var data = sb.ToString();
 
 			InternalSend(data);
-
-			_sendCache.Clear();
 		}
 
 		public void ParseAndExecute(string data)

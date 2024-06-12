@@ -26,10 +26,10 @@ namespace AbarimMUD
 		private void SendMainMenuPrompt()
 		{
 			var sb = new StringBuilder();
-			sb.AddTextLine("Main Menu:");
-			sb.AddTextLine("1) Select a char to play");
-			sb.AddTextLine("2) Change password");
-			sb.AddTextLine("3) Exit");
+			sb.AppendLine("Main Menu:");
+			sb.AppendLine("1) Select a char to play");
+			sb.AppendLine("2) Change password");
+			sb.AppendLine("3) Exit");
 			Send(sb.ToString());
 		}
 
@@ -44,18 +44,18 @@ namespace AbarimMUD
 			{
 				foreach (var c in characters)
 				{
-					sb.AddTextLine(string.Format("{0}) {1}", i, c.Name));
+					sb.AppendLine(string.Format("{0}) {1}", i, c.Name));
 
 					++i;
 				}
 			}
 
 			// New character
-			sb.AddTextLine(string.Format("{0}) Create new character", i));
+			sb.AppendLine(string.Format("{0}) Create new character", i));
 			++i;
 
 			// Back
-			sb.AddTextLine(string.Format("{0}) Back", i));
+			sb.AppendLine(string.Format("{0}) Back", i));
 
 			Send(sb.ToString());
 		}
@@ -124,7 +124,7 @@ namespace AbarimMUD
 				}
 			}
 
-			SendTextLine("Invalid choice.");
+			SendLine("Invalid choice.");
 			SendCharacterMenuPrompt();
 		}
 	}

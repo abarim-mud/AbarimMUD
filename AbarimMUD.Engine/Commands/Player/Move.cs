@@ -27,7 +27,7 @@ namespace AbarimMUD.Commands.Player
 			var dirName = _dir.GetName();
 			foreach (var t in context.AllExceptMeInRoom())
 			{
-				t.SendTextLine(string.Format("{0} leaves {1}.", context.ShortDescription, dirName));
+				t.Send(string.Format("{0} leaves {1}.", context.ShortDescription, dirName));
 			}
 
 			// Notify inhabits of the destination room about the arrival
@@ -36,7 +36,7 @@ namespace AbarimMUD.Commands.Player
 			var allExceptMeInRoom = context.AllExceptMeInRoom();
 			foreach (var t in allExceptMeInRoom)
 			{
-				t.SendTextLine(string.Format("{0} arrives from {1}.", context.ShortDescription, dirName));
+				t.Send(string.Format("{0} arrives from {1}.", context.ShortDescription, dirName));
 			}
 
 			context.CurrentRoom = exit.TargetRoom;

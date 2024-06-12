@@ -9,7 +9,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 			var args = data.SplitByWhitespace(2);
 			if (args.Length < 2)
 			{
-				context.SendTextLine("Usage: force _target_ _command_");
+				context.Send("Usage: force _target_ _command_");
 				return;
 			}
 
@@ -18,13 +18,13 @@ namespace AbarimMUD.Commands.AreaBuilder
 			var targetContext = context.CurrentRoom.Find(target);
 			if (targetContext == null)
 			{
-				context.SendTextLine(string.Format("There isnt '{0}' in this room", target));
+				context.Send(string.Format("There isnt '{0}' in this room", target));
 				return;
 			}
 
 			if (targetContext != context)
 			{
-				targetContext.SendTextLine(string.Format("{0} forces you to '{1}'.", context.ShortDescription, command));
+				targetContext.Send(string.Format("{0} forces you to '{1}'.", context.ShortDescription, command));
 			}
 
 			targetContext.ParseAndExecute(command);

@@ -24,7 +24,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 
 			area.Save();
 
-			context.SendTextLine($"{toDelete.Count} mobile resets were removed. {context.CurrentRoom.Mobiles.Count} mobile resets were added.");
+			context.Send($"{toDelete.Count} mobile resets were removed. {context.CurrentRoom.Mobiles.Count} mobile resets were added.");
 		}
 	}
 }

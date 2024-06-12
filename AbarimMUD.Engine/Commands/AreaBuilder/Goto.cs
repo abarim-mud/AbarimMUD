@@ -22,7 +22,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 			}
 
 			context.CurrentRoom = newRoom;
-			context.SendTextLine("You had been transfered!");
+			context.Send("You had been transfered!");
 
 			new Look().Execute(context);
 		}

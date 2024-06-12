@@ -8,17 +8,17 @@ namespace AbarimMUD.Commands.Player
 		{
 			var sd = new StringBuilder();
 
-			sd.Append(ConsoleCommand.ForeColorMagenta);
-			sd.AddTextLine(string.Format("You gossip-- '{0}'", data));
-			sd.Append(ConsoleCommand.ColorClear);
+			sd.Append("[magenta]");
+			sd.AppendLine(string.Format("You gossip-- '{0}'", data));
+			sd.Append("[clear]");
 			context.Send(sd.ToString());
 
 			// Show it to others
 			sd.Clear();
-			sd.Append(ConsoleCommand.NewLine);
-			sd.Append(ConsoleCommand.ForeColorMagenta);
-			sd.AddTextLine(string.Format("{0} gossips-- '{1}'", context.ShortDescription, data));
-			sd.Append(ConsoleCommand.ColorClear);
+			sd.AppendLine();
+			sd.Append("[magenta]");
+			sd.AppendLine(string.Format("{0} gossips-- '{1}'", context.ShortDescription, data));
+			sd.Append("[clear]");
 
 			foreach (var s in context.AllExceptMe())
 			{

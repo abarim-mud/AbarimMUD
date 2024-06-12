@@ -23,7 +23,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 				return;
 			}
 
-			context.SendTextLine(item.BuildInfoDict().ToAsciiGridString());
+			context.Send(item.BuildInfoDict().ToAsciiGridString());
 		}
 	}
 }

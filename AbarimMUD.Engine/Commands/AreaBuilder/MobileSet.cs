@@ -30,28 +30,28 @@ namespace AbarimMUD.Commands.AreaBuilder
 				case "keywords":
 					{
 						mobile.Keywords = cmdData.SplitByWhitespace().ToHashSet();
-						context.SendTextLine($"Changed {mobile.Id}'s name to '{mobile.Keywords.JoinKeywords()}'");
+						context.Send($"Changed {mobile.Id}'s name to '{mobile.Keywords.JoinKeywords()}'");
 					}
 					break;
 
 				case "desc":
 					{
 						mobile.Description = cmdData;
-						context.SendTextLine($"Changed {mobile.Id}'s desc to '{mobile.Description}'");
+						context.Send($"Changed {mobile.Id}'s desc to '{mobile.Description}'");
 					}
 					break;
 
 				case "short":
 					{
 						mobile.ShortDescription = cmdData;
-						context.SendTextLine($"Changed {mobile.Id}'s short to '{mobile.ShortDescription}'");
+						context.Send($"Changed {mobile.Id}'s short to '{mobile.ShortDescription}'");
 					}
 					break;
 
 				case "long":
 					{
 						mobile.LongDescription = cmdData;
-						context.SendTextLine($"Changed {mobile.Id}'s long to '{mobile.LongDescription}'");
+						context.Send($"Changed {mobile.Id}'s long to '{mobile.LongDescription}'");
 					}
 					break;
 
@@ -64,7 +64,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 						}
 
 						mobile.Race = race;
-						context.SendTextLine($"Changed {mobile.Id}'s race to '{race}'");
+						context.Send($"Changed {mobile.Id}'s race to '{race}'");
 					}
 					break;
 
@@ -77,7 +77,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 						}
 
 						mobile.Class = cls;
-						context.SendTextLine($"Changed {mobile.Id}'s class to '{cls}'");
+						context.Send($"Changed {mobile.Id}'s class to '{cls}'");
 					}
 					break;
 
@@ -86,12 +86,12 @@ namespace AbarimMUD.Commands.AreaBuilder
 						int newLevel;
 						if (!int.TryParse(cmdData, out newLevel) || newLevel < 1)
 						{
-							context.SendTextLine($"Can't parse level {cmdData}");
+							context.Send($"Can't parse level {cmdData}");
 							return;
 						}
 
 						mobile.Level = newLevel;
-						context.SendTextLine($"Changed {mobile.Id}'s level to '{newLevel}'");
+						context.Send($"Changed {mobile.Id}'s level to '{newLevel}'");
 					}
 					break;
 

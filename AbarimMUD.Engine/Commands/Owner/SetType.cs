@@ -58,7 +58,7 @@ namespace AbarimMUD.Commands.Owner
 			character.Role = type;
 			character.Save();
 
-			context.SendTextLine(string.Format("Changed {0}'s type from {1} to {2}", character.Name, oldType.ToString(),
+			context.Send(string.Format("Changed {0}'s type from {1} to {2}", character.Name, oldType.ToString(),
 				type.ToString()));
 
 			// Check if it's online
@@ -68,7 +68,7 @@ namespace AbarimMUD.Commands.Owner
 				{
 					// It's online
 					// Inform him or her that the type had been changed
-					s.Context.SendTextLine(string.Format("Your type had been changed from {0} to {1}", oldType.ToString(),
+					s.Context.Send(string.Format("Your type had been changed from {0} to {1}", oldType.ToString(),
 						type.ToString()));
 				}
 			}

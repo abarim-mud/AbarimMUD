@@ -31,10 +31,9 @@ namespace AbarimMUD
 			Session.Send(text);
 		}
 
-		public void SendTextLine(string text)
+		public void SendLine(string text)
 		{
-			Session.Send(text);
-			Session.Send(ConsoleCommand.NewLine.ToString());
+			Session.Send(text + Connection.ConsoleCommand.NewLine);
 		}
 
 		protected void SendDebug(string data)
@@ -46,7 +45,7 @@ namespace AbarimMUD
 		{
 			if (string.IsNullOrEmpty(pwd))
 			{
-				SendTextLine("Invalid password.");
+				SendLine("Invalid password.");
 				return false;
 			}
 

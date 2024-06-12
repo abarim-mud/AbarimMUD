@@ -39,7 +39,7 @@ namespace AbarimMUD.Commands.Player
 				sb.AppendLine(grid.ToString());
 			}
 
-			context.SendTextLine(sb.ToString());
+			context.Send(sb.ToString());
 		}
 	}
 }
