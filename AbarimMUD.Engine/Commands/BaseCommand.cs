@@ -11,6 +11,7 @@ namespace AbarimMUD.Commands
 	{
 		private static readonly Dictionary<string, BaseCommand> _allCommands = new Dictionary<string, BaseCommand>();
 
+		// Players
 		public static readonly Help Help = new Help();
 		public static readonly Move East = new Move(Direction.East);
 		public static readonly Move West = new Move(Direction.West);
@@ -42,19 +43,22 @@ namespace AbarimMUD.Commands
 		public static readonly RoomLinkClear RLinkClear = new RoomLinkClear();
 		public static readonly RoomSaveResets RoomSaveResets = new RoomSaveResets();
 
+		public static readonly MobileInfo MobileInfo = new MobileInfo();
 		public static readonly MobileCreate MobileCreate = new MobileCreate();
 		public static readonly MobileSpawn MobileSpawn = new MobileSpawn();
 		public static readonly MobileSet MobileSet = new MobileSet();
 
+		public static readonly ItemSearch ItemSearch = new ItemSearch();
+		public static readonly ItemInfo ItemInfo = new ItemInfo();
 		public static readonly ItemCreate ItemCreate = new ItemCreate();
 		public static readonly ItemSpawn ItemSpawn = new ItemSpawn();
 		public static readonly ItemSet ItemSet = new ItemSet();
 		public static readonly ItemArmorSet ItemArmorSet = new ItemArmorSet();
 		public static readonly ItemWeaponSet ItemWeaponSet = new ItemWeaponSet();
-		public static readonly ItemSearch ItemSearch = new ItemSearch();
 
 		// Owner
 		public static readonly SetType SetType = new SetType();
+
 		public abstract Role RequiredType { get; }
 		public static int ExecutionDepth { get; set; }
 

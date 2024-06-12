@@ -25,10 +25,9 @@ namespace AbarimMUD.Commands.AreaBuilder
 			}
 
 			var id = parts[1];
-			var item = Item.GetItemById(id);
+			var item = context.EnsureItemById(id);
 			if (item == null)
 			{
-				context.Send(string.Format("Unable to find item with id {0}", id));
 				return;
 			}
 

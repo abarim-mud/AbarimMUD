@@ -67,12 +67,27 @@ namespace AbarimMUD.Commands
 			return string.Join('|', from e in Enum.GetValues<T>() select e.ToString().ToLower());
 		}
 
-		public static Item EnsureItemType(this ExecutionContext context, string id, ItemType itemType)
+		private static T EnsureById<T>(this ExecutionContext context, string id, Func<string, T> getter)
 		{
-			var item = Item.GetItemById(id);
+			var item = getter(id);
 			if (item == null)
 			{
-				context.Send(string.Format("Unable to find item with id {0}", id));
+				var name = typeof(T).Name.ToLower();
+				context.Send($"Unable to find {name} with id '{id}'");
+			}
+
+			return item;
+
+		}
+
+		public static Item EnsureItemById(this ExecutionContext context, string id) => EnsureById(context, id, Item.GetItemById);
+		public static Mobile EnsureMobileById(this ExecutionContext context, string id) => EnsureById(context, id, Mobile.GetMobileById);
+
+		public static Item EnsureItemType(this ExecutionContext context, string id, ItemType itemType)
+		{
+			var item = Item.EnsureItemById(id);
+			if (item == null)
+			{
 				return null;
 			}
 

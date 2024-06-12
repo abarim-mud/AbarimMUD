@@ -1,5 +1,4 @@
 ﻿using AbarimMUD.Storage;
-using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
 {
@@ -18,19 +17,6 @@ namespace AbarimMUD.Data
 		Legs,
 		Hands,
 		Wrist
-	}
-
-	public enum WeaponType
-	{
-		Exotic,
-		Sword,
-		Mace,
-		Dagger,
-		Axe,
-		Staff,
-		Flail,
-		Whip,
-		Polearm
 	}
 
 	public class Item
@@ -68,22 +54,20 @@ namespace AbarimMUD.Data
 			armor = Value2;
 		}
 
-		public void SetWeapon(WeaponType weaponType, int penetration, int minimumDamage, int maximumDamage)
+		public void SetWeapon(int penetration, int minimumDamage, int maximumDamage)
 		{
 			ItemType = ItemType.Weapon;
-			Value1 = (int)weaponType;
-			Value2 = penetration;
-			Value3 = minimumDamage;
-			Value4 = maximumDamage;
+			Value1 = penetration;
+			Value2 = minimumDamage;
+			Value3 = maximumDamage;
 		}
 
-		public void GetWeapon(out WeaponType weaponType, out int penetration, out int minimumDamage, out int maximumDamage)
+		public void GetWeapon(out int penetration, out int minimumDamage, out int maximumDamage)
 		{
 			EnsureType(ItemType.Weapon);
-			weaponType = (WeaponType)Value1;
-			penetration = Value2;
-			minimumDamage = Value3;
-			maximumDamage = Value4;
+			penetration = Value1;
+			minimumDamage = Value2;
+			maximumDamage = Value3;
 		}
 
 		public override string ToString() => $"{ShortDescription} (#{Id})";

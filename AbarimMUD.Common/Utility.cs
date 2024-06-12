@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
+using System.Reflection;
+using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -115,6 +119,22 @@ namespace AbarimMUD
 			}
 
 			return true;
+		}
+
+		public static IReadOnlyDictionary<string, string> BuildInfoDict<T>(this T obj)
+		{
+			var type = typeof(T);
+
+			var values = new Dictionary<string, string>();
+
+			var props = type.GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.GetProperty | BindingFlags.SetProperty);
+			foreach (var prop in props)
+			{
+				var value = prop.GetValue(obj, null);
+				values[prop.Name] = value != null ? value.ToString() : string.Empty;
+			}
+
+			return values;
 		}
 	}
 }
