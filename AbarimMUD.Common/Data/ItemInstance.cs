@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
 {
@@ -7,9 +8,6 @@ namespace AbarimMUD.Data
 		public Item Info { get; set; }
 
 		public string Id => Info.Id;
-
-		[JsonIgnore]
-		public string[] Keywords => Info.Name.SplitByWhitespace();
 
 		[JsonIgnore]
 		public string ShortDescription => Info.ShortDescription;
@@ -25,6 +23,10 @@ namespace AbarimMUD.Data
 		{
 			Info = item;
 		}
+
+
+		public bool MatchesKeyword(string keyword) => Info.MatchesKeyword(keyword);
+
 
 		public void GetArmor(out ArmorType armorType, out int armor) => Info.GetArmor(out armorType, out armor);
 		public void GetWeapon(out int penetration, out int minimumDamage, out int maximumDamage) =>

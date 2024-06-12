@@ -3,7 +3,6 @@ using NLog;
 using System.Collections.Generic;
 using System.Text;
 using AbarimMUD.Data;
-using AbarimMUD.Utils;
 
 namespace AbarimMUD.Commands
 {
@@ -38,11 +37,10 @@ namespace AbarimMUD.Commands
 
 		public abstract Role Role { get; }
 
-		public abstract string[] Keywords { get; }
-
 		public abstract Logger Logger { get; }
 
-		public string Name => Creature.Name;
+		public string ShortDescription => Creature.ShortDescription;
+
 		public CreatureStats Stats => Creature.Stats;
 		public CreatureState State => Creature.State;
 		public Attack[] Attacks => Stats.Attacks;
@@ -65,6 +63,8 @@ namespace AbarimMUD.Commands
 
 			InternalSend(text + ConsoleCommand.NewLine);
 		}
+
+		public bool MatchesKeyword(string keyword) => Creature.MatchesKeyword(keyword);
 
 		public IEnumerable<ExecutionContext> AllExceptMe()
 		{

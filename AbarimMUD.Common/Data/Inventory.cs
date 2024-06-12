@@ -100,9 +100,9 @@ namespace AbarimMUD.Data
 			_itemsArray = null;
 		}
 
-		public InventoryRecord FindItem(string pat)
+		public InventoryRecord FindItem(string keyword)
 		{
-			return (from i in Items where i.Item.Keywords.StartsWithPattern(new[] { pat }) select i).FirstOrDefault();
+			return (from i in Items where i.Item.MatchesKeyword(keyword) select i).FirstOrDefault();
 		}
 	}
 }

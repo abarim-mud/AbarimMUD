@@ -1,7 +1,6 @@
 ﻿using NLog;
 using System;
 using AbarimMUD.Data;
-using System.Collections.Generic;
 
 namespace AbarimMUD.Commands
 {
@@ -22,11 +21,6 @@ namespace AbarimMUD.Commands
 		public override Logger Logger
 		{
 			get { return LogManager.GetLogger(_session.Connection.LoggerName); }
-		}
-
-		public override string[] Keywords
-		{
-			get { return new[] { _session.Character.Name.ToLower() }; }
 		}
 
 		public Session Session => _session;

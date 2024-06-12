@@ -1,4 +1,5 @@
 ﻿using AbarimMUD.Data;
+using System.Collections.Generic;
 
 namespace AbarimMUD.Commands.AreaBuilder
 {
@@ -6,7 +7,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 	{
 		protected override void InternalExecute(ExecutionContext context, string data)
 		{
-			data =	data.Trim();
+			data = data.Trim();
 			if (string.IsNullOrEmpty(data))
 			{
 				context.SendTextLine("Usage: mobilecreate _newMobileId");
@@ -25,7 +26,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 			var newMobile = new Mobile
 			{
 				Id = id,
-				Name = "unset",
+				Keywords = new HashSet<string> { "unset" },
 				ShortDescription = "Unset",
 				Description = "Unset.",
 				Race = Race.EnsureRaceById(Configuration.DefaultRace),

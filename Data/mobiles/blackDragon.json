@@ -1,6 +1,6 @@
 {
   "Id": "blackDragon",
-  "Name": "black dragon",
+  "Keywords": ["black", "dragon"],
   "Race": "dragon",
   "Class": "warrior",
   "Level": 50,
@@ -8,7 +8,7 @@
   "ShortDescription": "a black dragon",
   "LongDescription": null,
   "Description": "Unset.",
-  "Flags": [],
+  "Flags": ["Sentinel", "Berserk"],
   "Wealth": 0,
   "Shop": null,
   "SpecialAttacks": []

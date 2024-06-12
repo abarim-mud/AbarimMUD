@@ -106,7 +106,7 @@ namespace AbarimMUD.Data
 		public static readonly MultipleFilesStorageString<Mobile> Storage = new Mobiles();
 
 		public string Id { get; set; }
-		public string Name { get; set; }
+		public HashSet<string> Keywords { get; set; } = new HashSet<string>();
 		public string ShortDescription { get; set; }
 		public string LongDescription { get; set; }
 		public string Description { get; set; }
@@ -119,6 +119,8 @@ namespace AbarimMUD.Data
 
 		public Shop Shop { get; set; }
 		public List<MobileSpecialAttack> SpecialAttacks { get; set; } = new List<MobileSpecialAttack>();
+
+		public bool MatchesKeyword(string keyword) => Keywords.StartsWithPattern(keyword);
 
 		public override string ToString() => $"{ShortDescription} (#{Id})";
 

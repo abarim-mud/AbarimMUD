@@ -1,9 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -106,19 +105,9 @@ namespace AbarimMUD
 			return value.Split(new char[0], maxCount.Value, StringSplitOptions.RemoveEmptyEntries);
 		}
 
-		public static bool StartsWithPattern(this string[] keywords, string[] pattern)
+		public static bool StartsWithPattern(this HashSet<string> keywords, string pattern)
 		{
-			foreach (var s in pattern)
-			{
-				var found = (from k in keywords where k.StartsWith(s, StringComparison.OrdinalIgnoreCase) select k).Any();
-
-				if (!found)
-				{
-					return false;
-				}
-			}
-
-			return true;
+			return (from k in keywords where k.StartsWith(pattern, StringComparison.OrdinalIgnoreCase) select k).Any();
 		}
 
 		public static IReadOnlyDictionary<string, string> BuildInfoDict<T>(this T obj)
@@ -131,7 +120,31 @@ namespace AbarimMUD
 			foreach (var prop in props)
 			{
 				var value = prop.GetValue(obj, null);
-				values[prop.Name] = value != null ? value.ToString() : string.Empty;
+
+				var stringValue = string.Empty;
+				if (value != null)
+				{
+					var enumerable = value as IEnumerable;
+					if (enumerable != null && prop.PropertyType != typeof(string))
+					{
+						var query = from object v in enumerable select v.ToString();
+
+						if (prop.Name == "Keywords")
+						{
+							stringValue = string.Join(" ", query);
+						}
+						else
+						{
+							stringValue = string.Join(", ", query);
+						}
+					}
+					else
+					{
+						stringValue = value.ToString();
+					}
+				}
+
+				values[prop.Name] = stringValue;
 			}
 
 			return values;

@@ -96,7 +96,7 @@ namespace AbarimMUD.Commands.Player
 				if (mobile != null)
 				{
 					sb.AppendLine("Id: " + mobile.Info.Id);
-					sb.AppendLine("Keywords: " + mobile.Info.Name);
+					sb.AppendLine("Keywords: " + mobile.Info.Keywords);
 					sb.AppendLine("Short: " + mobile.Info.ShortDescription);
 					sb.AppendLine("Long: " + mobile.Info.LongDescription);
 				}
@@ -134,7 +134,7 @@ namespace AbarimMUD.Commands.Player
 				if (item != null)
 				{
 					sb.AppendLine("Id: " + item.Info.Id);
-					sb.AppendLine("Keywords: " + item.Info.Name);
+					sb.AppendLine("Keywords: " + item.Info.Keywords);
 					sb.AppendLine("Short: " + item.Info.ShortDescription);
 					sb.AppendLine("Long: " + item.Info.LongDescription);
 				}
@@ -169,21 +169,21 @@ namespace AbarimMUD.Commands.Player
 				var lookContext = context.CurrentRoom.Find(data);
 				if (lookContext != null)
 				{
-					context.Send($"You look at {lookContext.Name}.\n");
+					context.Send($"You look at {lookContext.ShortDescription}.\n");
 
 					var d = BuildMobileDescription(context, lookContext.Creature);
 					context.Send(d);
 
 					if (lookContext != context)
 					{
-						lookContext.SendTextLine(string.Format("{0} looks at you.", context.Name));
+						lookContext.SendTextLine(string.Format("{0} looks at you.", context.ShortDescription));
 					}
 
 					foreach (var t in context.AllExceptMeInRoom())
 					{
 						if (t != lookContext)
 						{
-							t.SendTextLine(string.Format("{0} looks at {1}.", context.Name, lookContext.Name));
+							t.SendTextLine(string.Format("{0} looks at {1}.", context.ShortDescription, lookContext.ShortDescription));
 						}
 					}
 

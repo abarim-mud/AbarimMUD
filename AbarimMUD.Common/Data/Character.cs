@@ -34,7 +34,7 @@ namespace AbarimMUD.Data
 			get { return Role >= Role.Builder; }
 		}
 
-		public string PlayerName { get; set; }
+		public string Name { get; set; }
 
 		public Race PlayerRace
 		{
@@ -75,7 +75,7 @@ namespace AbarimMUD.Data
 
 		public Sex PlayerSex { get; set; }
 
-		public override string Name => PlayerName;
+		public override string ShortDescription => Name;
 		public override Race Race => PlayerRace;
 		public override GameClass Class => PlayerClass;
 		public override int Level => PlayerLevel;
@@ -111,6 +111,8 @@ namespace AbarimMUD.Data
 
 			return result;
 		}
+
+		public override bool MatchesKeyword(string keyword) => Name.StartsWith(keyword, StringComparison.OrdinalIgnoreCase);
 
 		public static Character GetCharacterByName(string name) => Storage.GetByKey(name);
 		public static Character EnsureCharacterByName(string name) => Storage.EnsureByKey(name);

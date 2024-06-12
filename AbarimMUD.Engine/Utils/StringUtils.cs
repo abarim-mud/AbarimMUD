@@ -19,5 +19,7 @@ namespace AbarimMUD.Utils
 
 			return grid.ToString();
 		}
+
+		public static string JoinKeywords(this HashSet<string> keywords) => string.Join(" ", keywords);
 	}
 }

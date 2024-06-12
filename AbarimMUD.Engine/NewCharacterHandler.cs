@@ -101,7 +101,7 @@ namespace AbarimMUD
 				return;
 			}
 
-			_character.PlayerName = name;
+			_character.Name = name;
 
 			_mode = Mode.PrimaryClass;
 			SendChoosePrimaryClassPrompt();

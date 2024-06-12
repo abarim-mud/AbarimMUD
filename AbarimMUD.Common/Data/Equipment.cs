@@ -136,7 +136,7 @@ namespace AbarimMUD.Data
 		{
 			foreach (var pair in _items)
 			{
-				if (pair.Value.Keywords.StartsWithPattern(new[] { pat }))
+				if (pair.Value.MatchesKeyword(pat))
 				{
 					return new WearItem(pair.Key, pair.Value);
 				}

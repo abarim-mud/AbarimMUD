@@ -16,7 +16,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 				var found = false;
 				foreach (var item in Item.Storage)
 				{
-					if (item.Name.Contains(data))
+					if (item.MatchesKeyword(data))
 					{
 						found = true;
 						context.SendTextLine(item.ToString());

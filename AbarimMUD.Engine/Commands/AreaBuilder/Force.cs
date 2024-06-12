@@ -24,7 +24,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 
 			if (targetContext != context)
 			{
-				targetContext.SendTextLine(string.Format("{0} forces you to '{1}'.", context.Name, command));
+				targetContext.SendTextLine(string.Format("{0} forces you to '{1}'.", context.ShortDescription, command));
 			}
 
 			targetContext.ParseAndExecute(command);

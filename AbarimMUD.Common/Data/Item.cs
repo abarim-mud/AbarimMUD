@@ -1,4 +1,5 @@
 ﻿using AbarimMUD.Storage;
+using System.Collections.Generic;
 
 namespace AbarimMUD.Data
 {
@@ -24,7 +25,7 @@ namespace AbarimMUD.Data
 		public static readonly MultipleFilesStorageString<Item> Storage = new Items();
 
 		public string Id { get; set; }
-		public string Name { get; set; }
+		public HashSet<string> Keywords { get; set; } = new HashSet<string>();
 		public string ShortDescription { get; set; }
 		public string LongDescription { get; set; }
 		public string Description { get; set; }
@@ -69,6 +70,8 @@ namespace AbarimMUD.Data
 			minimumDamage = Value2;
 			maximumDamage = Value3;
 		}
+
+		public bool MatchesKeyword(string keyword) => Keywords.StartsWithPattern(keyword);
 
 		public override string ToString() => $"{ShortDescription} (#{Id})";
 

@@ -16,7 +16,7 @@ namespace AbarimMUD.Commands.Player
 			// Show it to others
 			sb.Clear();
 			sb.Append(ConsoleCommand.ForeColorMagenta);
-			sb.AddTextLine(string.Format("{0} says '{1}'", context.Name, data));
+			sb.AddTextLine(string.Format("{0} says '{1}'", context.ShortDescription, data));
 			sb.Append(ConsoleCommand.ColorClear);
 
 			foreach (var s in context.AllExceptMeInRoom())

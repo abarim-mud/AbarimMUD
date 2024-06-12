@@ -53,7 +53,7 @@ namespace AbarimMUD.Common.Tests
 			var newChar = new Character
 			{
 				Account = newAcc,
-				PlayerName = "char1",
+				Name = "char1",
 				PlayerRace = testRace,
 				PlayerClass = testClass,
 				PlayerLevel = 1,
@@ -64,7 +64,7 @@ namespace AbarimMUD.Common.Tests
 			var newChar2 = new Character
 			{
 				Account = newAcc,
-				PlayerName = "char2",
+				Name = "char2",
 				PlayerRace = testRace,
 				PlayerClass = testClass,
 				PlayerLevel = 1,

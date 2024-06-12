@@ -1,6 +1,6 @@
 {
   "Id": "longSword",
-  "Name": "long sword",
+  "Keywords": ["long", "sword"],
   "ShortDescription": "a long sword",
   "LongDescription": null,
   "Description": "Unset",

@@ -34,19 +34,19 @@
 
 				if (damage.Damage <= 0)
 				{
-					context.SendTextLine($"Your {attack.AttackType.GetAttackNoun()} couldn't pierce through armor of {asMobileContext.Name}");
+					context.SendTextLine($"Your {attack.AttackType.GetAttackNoun()} couldn't pierce through armor of {asMobileContext.ShortDescription}");
 
 					foreach(var ctx in context.AllExceptMeInRoom())
 					{
-						ctx.SendTextLine($"{context.Name}'s {attack.AttackType.GetAttackNoun()} couldn't pierce through armor of {asMobileContext.Name}");
+						ctx.SendTextLine($"{context.ShortDescription}'s {attack.AttackType.GetAttackNoun()} couldn't pierce through armor of {asMobileContext.ShortDescription}");
 					}
 				} else
 				{
-					context.SendTextLine(Strings.GetAttackMessage(damage, "You", asMobileContext.Name, attack.AttackType));
+					context.SendTextLine(Strings.GetAttackMessage(damage, "You", asMobileContext.ShortDescription, attack.AttackType));
 
 					foreach (var ctx in context.AllExceptMeInRoom())
 					{
-						ctx.SendTextLine(Strings.GetAttackMessage(damage, context.Name, asMobileContext.Name, attack.AttackType));
+						ctx.SendTextLine(Strings.GetAttackMessage(damage, context.ShortDescription, asMobileContext.ShortDescription, attack.AttackType));
 					}
 				}
 			}
@@ -60,20 +60,20 @@
 
 				if (damage.Damage <= 0)
 				{
-					context.SendTextLine($"{asMobileContext.Name} couldn't pierce through your armor with {attack.AttackType.GetAttackNoun()}");
+					context.SendTextLine($"{asMobileContext.ShortDescription} couldn't pierce through your armor with {attack.AttackType.GetAttackNoun()}");
 
 					foreach (var ctx in context.AllExceptMeInRoom())
 					{
-						ctx.SendTextLine($"{asMobileContext.Name}'s {attack.AttackType.GetAttackNoun()} couldn't pierce through armor of {context.Name}");
+						ctx.SendTextLine($"{asMobileContext.ShortDescription}'s {attack.AttackType.GetAttackNoun()} couldn't pierce through armor of {context.ShortDescription}");
 					}
 				}
 				else
 				{
-					context.SendTextLine(Strings.GetAttackMessage(damage, asMobileContext.Name, "you", attack.AttackType));
+					context.SendTextLine(Strings.GetAttackMessage(damage, asMobileContext.ShortDescription, "you", attack.AttackType));
 
 					foreach (var ctx in context.AllExceptMeInRoom())
 					{
-						ctx.SendTextLine(Strings.GetAttackMessage(damage, asMobileContext.Name, context.Name, attack.AttackType));
+						ctx.SendTextLine(Strings.GetAttackMessage(damage, asMobileContext.ShortDescription, context.ShortDescription, attack.AttackType));
 					}
 				}
 			}

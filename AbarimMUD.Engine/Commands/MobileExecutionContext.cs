@@ -1,6 +1,5 @@
 ﻿using System;
 using AbarimMUD.Data;
-using AbarimMUD.Utils;
 using NLog;
 
 namespace AbarimMUD.Commands
@@ -20,11 +19,6 @@ namespace AbarimMUD.Commands
 		{
 			get { return _mobile.Room; }
 			set { _mobile.Room = value; }
-		}
-
-		public override string[] Keywords
-		{
-			get { return _mobile.Info.Name.SplitByWhitespace(); }
 		}
 
 		public override Logger Logger => Server.Logger;

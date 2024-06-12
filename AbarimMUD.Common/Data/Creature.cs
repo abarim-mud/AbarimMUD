@@ -8,7 +8,7 @@ namespace AbarimMUD.Data
 
 		private CreatureStats _stats = null;
 
-		public abstract string Name { get; }
+		public abstract string ShortDescription { get; }
 		public abstract Race Race { get; }
 
 		public abstract GameClass Class { get; }
@@ -109,5 +109,7 @@ namespace AbarimMUD.Data
 
 			return result;
 		}
+
+		public abstract bool MatchesKeyword(string keyword);
 	}
 }

@@ -1,6 +1,6 @@
 {
   "Id": "leatherArmor",
-  "Name": "leather armor",
+  "Keywords": ["leather", "armor"],
   "ShortDescription": "a leather armor",
   "LongDescription": null,
   "Description": "Unset",

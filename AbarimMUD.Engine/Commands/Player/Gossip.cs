@@ -17,7 +17,7 @@ namespace AbarimMUD.Commands.Player
 			sd.Clear();
 			sd.Append(ConsoleCommand.NewLine);
 			sd.Append(ConsoleCommand.ForeColorMagenta);
-			sd.AddTextLine(string.Format("{0} gossips-- '{1}'", context.Name, data));
+			sd.AddTextLine(string.Format("{0} gossips-- '{1}'", context.ShortDescription, data));
 			sd.Append(ConsoleCommand.ColorClear);
 
 			foreach (var s in context.AllExceptMe())

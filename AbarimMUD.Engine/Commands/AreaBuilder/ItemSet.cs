@@ -1,5 +1,7 @@
 ﻿using AbarimMUD.Data;
+using AbarimMUD.Utils;
 using System;
+using System.Linq;
 using System.Text;
 
 namespace AbarimMUD.Commands.AreaBuilder
@@ -20,7 +22,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 					return;
 				}
 
-				context.Send("Usage: itemset name|short|long|desc|type _itemId_ _params_");
+				context.Send("Usage: itemset keywords|short|long|desc|type _itemId_ _params_");
 				return;
 			}
 
@@ -36,10 +38,10 @@ namespace AbarimMUD.Commands.AreaBuilder
 
 			switch (cmdText)
 			{
-				case "name":
+				case "keywords":
 					{
-						item.Name = cmdData;
-						context.SendTextLine($"Changed {item.Id}'s name to '{item.Name}'");
+						item.Keywords = cmdData.SplitByWhitespace().ToHashSet();
+						context.SendTextLine($"Changed {item.Id}'s keywords to '{item.Keywords.JoinKeywords()}'");
 					}
 					break;
 				case "short":

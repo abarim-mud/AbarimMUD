@@ -1,4 +1,5 @@
 ﻿using AbarimMUD.Data;
+using System.Collections.Generic;
 
 namespace AbarimMUD.Commands.AreaBuilder
 {
@@ -25,7 +26,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 			var newItem = new Item
 			{
 				Id = id,
-				Name = "unset",
+				Keywords = new HashSet<string> { "unset" },
 				ShortDescription = "Unset",
 				Description = "Unset"
 			};

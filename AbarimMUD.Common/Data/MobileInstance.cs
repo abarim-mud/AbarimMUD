@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace AbarimMUD.Data
 {
@@ -8,7 +9,8 @@ namespace AbarimMUD.Data
 
 		public Mobile Info { get; }
 
-		public override string Name => Info.Name;
+		public HashSet<string> Keywords => Info.Keywords;
+		public override string ShortDescription => Info.ShortDescription;
 
 		public override Race Race => Info.Race;
 
@@ -46,5 +48,7 @@ namespace AbarimMUD.Data
 
 			AllCreatures.Add(this);
 		}
+
+		public override bool MatchesKeyword(string keyword) => Info.MatchesKeyword(keyword);
 	}
 }

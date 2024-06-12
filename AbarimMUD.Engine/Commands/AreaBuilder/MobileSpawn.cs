@@ -31,13 +31,13 @@ namespace AbarimMUD.Commands.AreaBuilder
 				if (ctx.IsStaff)
 				{
 					ctx.SendTextLine(string.Format("{0} (#{1}) appears in a puff of smoke.",
-						mobile.Name,
+						mobile.ShortDescription,
 						mobile.Id));
 				}
 				else
 				{
 					ctx.SendTextLine(string.Format("{0} appears in a puff of smoke.",
-						mobile.Name));
+						mobile.ShortDescription));
 				}
 			}
 		}

@@ -1,4 +1,6 @@
 ﻿using AbarimMUD.Data;
+using AbarimMUD.Utils;
+using System.Linq;
 
 namespace AbarimMUD.Commands.AreaBuilder
 {
@@ -9,7 +11,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 			var parts = data.SplitByWhitespace(3);
 			if (parts.Length < 3)
 			{
-				context.Send("Usage: mobileset name|short|long|desc|race|class|level _mobileId_ _params_");
+				context.Send("Usage: mobileset keywords|short|long|desc|race|class|level _mobileId_ _params_");
 				return;
 			}
 
@@ -25,10 +27,10 @@ namespace AbarimMUD.Commands.AreaBuilder
 			var cmdData = parts[2];
 			switch (cmdText)
 			{
-				case "name":
+				case "keywords":
 					{
-						mobile.Name = cmdData;
-						context.SendTextLine($"Changed {mobile.Id}'s name to '{mobile.Name}'");
+						mobile.Keywords = cmdData.SplitByWhitespace().ToHashSet();
+						context.SendTextLine($"Changed {mobile.Id}'s name to '{mobile.Keywords.JoinKeywords()}'");
 					}
 					break;
 
