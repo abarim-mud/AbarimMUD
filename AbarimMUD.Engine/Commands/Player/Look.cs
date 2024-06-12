@@ -95,11 +95,10 @@ namespace AbarimMUD.Commands.Player
 
 				if (mobile != null)
 				{
-					sb.AppendLine("Id: " + mobile.Info.Id);
-					sb.AppendLine("Keywords: " + mobile.Info.Keywords);
-					sb.AppendLine("Short: " + mobile.Info.ShortDescription);
-					sb.AppendLine("Long: " + mobile.Info.LongDescription);
+					sb.AppendLine("Mobile Id: " + mobile.Info.Id);
 				}
+
+				sb.AppendLine();
 
 				sb.AppendLine("Race: " + creature.Race.Name);
 				sb.AppendLine("Class: " + creature.Class.Name);
@@ -130,21 +129,7 @@ namespace AbarimMUD.Commands.Player
 			if (context.IsStaff)
 			{
 				sb.Append(ConsoleCommand.ForeColorCyan);
-
-				if (item != null)
-				{
-					sb.AppendLine("Id: " + item.Info.Id);
-					sb.AppendLine("Keywords: " + item.Info.Keywords);
-					sb.AppendLine("Short: " + item.Info.ShortDescription);
-					sb.AppendLine("Long: " + item.Info.LongDescription);
-				}
-
-				sb.AppendLine("Type: " + item.Info.ItemType);
-				sb.AppendLine("Value1: " + item.Info.Value1);
-				sb.AppendLine("Value2: " + item.Info.Value2);
-				sb.AppendLine("Value3: " + item.Info.Value3);
-				sb.AppendLine("Value4: " + item.Info.Value4);
-
+				sb.AppendLine("Item Id: " + item.Info.Id);
 				sb.Append(ConsoleCommand.ColorClear);
 			}
 

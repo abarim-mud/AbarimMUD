@@ -7,7 +7,7 @@ namespace AbarimMUD.Utils
 {
 	public class AsciiGrid
 	{
-		private static readonly Dictionary<int, string> _values = new Dictionary<int, string>();
+		private readonly Dictionary<int, string> _values = new Dictionary<int, string>();
 
 		public int ColSpace { get; set; } = 2;
 
