@@ -6,8 +6,7 @@ namespace AbarimMUD.Commands.AreaBuilder.OLCUtils
 	{
 		public bool HasSetter { get; set; }
 
-		public string Name => InternalName.ToLower();
-		protected abstract string InternalName { get; }
+		public abstract string Name { get; }
 
 		public abstract Type Type { get; }
 		public string Category { get; set; }

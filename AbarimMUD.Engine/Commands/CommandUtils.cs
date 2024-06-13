@@ -1,6 +1,8 @@
-﻿using AbarimMUD.Data;
+﻿using AbarimMUD.Commands.AreaBuilder.OLCUtils;
+using AbarimMUD.Data;
 using AbarimMUD.Utils;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -42,6 +44,17 @@ namespace AbarimMUD.Commands
 			return true;
 		}
 
+		public static bool EnsureBool(this ExecutionContext context, string value, out bool result)
+		{
+			if (!bool.TryParse(value, out result))
+			{
+				context.Send($"Unable to parse boolean value '{value}'");
+				return false;
+			}
+
+			return true;
+		}
+
 		public static bool EnsureEnum<T>(this ExecutionContext context, string value, out T result) where T : struct
 		{
 			if (!Enum.TryParse(value, true, out result))
@@ -51,6 +64,17 @@ namespace AbarimMUD.Commands
 			}
 
 			return true;
+		}
+
+		public static IOLCStorage EnsureStorage(this ExecutionContext context, string key)
+		{
+			var result = OLCManager.GetStorage(key);
+			if (result == null)
+			{
+				context.Send($"Unknown entity '{key}'.");
+			}
+
+			return result;
 		}
 
 

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -108,46 +107,6 @@ namespace AbarimMUD
 		public static bool StartsWithPattern(this HashSet<string> keywords, string pattern)
 		{
 			return (from k in keywords where k.StartsWith(pattern, StringComparison.OrdinalIgnoreCase) select k).Any();
-		}
-
-		public static IReadOnlyDictionary<string, string> BuildInfoDict<T>(this T obj)
-		{
-			var type = typeof(T);
-
-			var values = new Dictionary<string, string>();
-
-			var props = type.GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.GetProperty | BindingFlags.SetProperty);
-			foreach (var prop in props)
-			{
-				var value = prop.GetValue(obj, null);
-
-				var stringValue = string.Empty;
-				if (value != null)
-				{
-					var enumerable = value as IEnumerable;
-					if (enumerable != null && prop.PropertyType != typeof(string))
-					{
-						var query = from object v in enumerable select v.ToString();
-
-						if (prop.Name == "Keywords")
-						{
-							stringValue = string.Join(" ", query);
-						}
-						else
-						{
-							stringValue = string.Join(", ", query);
-						}
-					}
-					else
-					{
-						stringValue = value.ToString();
-					}
-				}
-
-				values[prop.Name] = stringValue;
-			}
-
-			return values;
 		}
 
 		public static bool EqualsToIgnoreCase(this string name, string otherName) => string.Equals(name, otherName, StringComparison.OrdinalIgnoreCase);

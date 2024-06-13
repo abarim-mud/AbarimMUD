@@ -7,7 +7,7 @@ namespace AbarimMUD.Commands.AreaBuilder.OLCUtils
 	{
 		private readonly FieldInfo _fieldInfo;
 
-		protected override string InternalName => _fieldInfo.Name;
+		public override string Name => _fieldInfo.Name;
 
 		public override Type Type => _fieldInfo.FieldType;
 

@@ -36,9 +36,10 @@ namespace AbarimMUD.Commands.AreaBuilder
 				return;
 			}
 
+			var recordName = record.Name.ToLower();
 			if (parts.Length < 3)
 			{
-				context.Send($"Usage: {commandName} {record.Name} _{typeName}Id_ _params_");
+				context.Send($"Usage: {commandName} {recordName} _{typeName}Id_ _params_");
 				return;
 			}
 
@@ -53,7 +54,41 @@ namespace AbarimMUD.Commands.AreaBuilder
 			if (record.Type == typeof(string))
 			{
 				record.SetValue(item, s);
-			} else if(record.Type == typeof(GameClass))
+			}
+			else if (record.Type == typeof(bool))
+			{
+				bool b;
+				if (!context.EnsureBool(s, out b))
+				{
+					return;
+				}
+
+				record.SetValue(item, b);
+			}
+			else if (record.Type == typeof(RaceClassValueRange))
+			{
+				var parts2 = s.SplitByWhitespace();
+				if (parts2.Length < 2)
+				{
+					context.Send($"Usage: {commandName} {recordName} _{typeName}Id_ _level1Value_ _level100Value_");
+					return;
+				}
+
+				int level1Value;
+				if (!context.EnsureInt(parts2[0], out level1Value))
+				{
+					return;
+				}
+
+				int level100Value;
+				if (!context.EnsureInt(parts2[1], out level100Value))
+				{
+					return;
+				}
+
+				record.SetValue(item, new RaceClassValueRange(level1Value, level100Value));
+			}
+			else if (record.Type == typeof(GameClass))
 			{
 				var cls = context.EnsureClassById(s);
 				if (cls == null)
@@ -68,14 +103,15 @@ namespace AbarimMUD.Commands.AreaBuilder
 				}
 
 				record.SetValue(item, cls);
-			} else
+			}
+			else
 			{
 				context.Send($"Setting propertes of type '{record.Type.Name}' isn't implemented.");
 				return;
 			}
 
 			item.Save();
-			context.Send($"Changed {item.Id}'s {record.Name} to '{s}'");
+			context.Send($"Changed {item.Id}'s {recordName} to '{s}'");
 		}
 	}
 }

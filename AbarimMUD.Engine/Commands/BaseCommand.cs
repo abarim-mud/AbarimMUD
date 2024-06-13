@@ -7,7 +7,7 @@ using System.Reflection;
 
 namespace AbarimMUD.Commands
 {
-	public abstract class BaseCommand
+    public abstract class BaseCommand
 	{
 		public const string ExecuteName = "DoExecute";
 
@@ -43,6 +43,9 @@ namespace AbarimMUD.Commands
 		public static readonly Areas Areas = new Areas();
 		public static readonly Goto Goto = new Goto();
 
+		public static readonly Show Show = new Show();
+		public static readonly Info Info = new Info();
+
 		public static readonly ClassCreate ClassCreate = new ClassCreate();
 		public static readonly ClassSet ClassSet = new ClassSet();
 
@@ -54,13 +57,11 @@ namespace AbarimMUD.Commands
 		public static readonly RoomLinkClear RLinkClear = new RoomLinkClear();
 		public static readonly RoomSaveResets RoomSaveResets = new RoomSaveResets();
 
-		public static readonly MobileInfo MobileInfo = new MobileInfo();
 		public static readonly MobileCreate MobileCreate = new MobileCreate();
 		public static readonly MobileSpawn MobileSpawn = new MobileSpawn();
 		public static readonly MobileSet MobileSet = new MobileSet();
 
 		public static readonly ItemSearch ItemSearch = new ItemSearch();
-		public static readonly ItemInfo ItemInfo = new ItemInfo();
 		public static readonly ItemCreate ItemCreate = new ItemCreate();
 		public static readonly ItemSpawn ItemSpawn = new ItemSpawn();
 		public static readonly ItemSet ItemSet = new ItemSet();

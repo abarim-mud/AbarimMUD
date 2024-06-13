@@ -6,8 +6,8 @@
   "IsPlayerClass": false,
   "SkillsByLevels": {},
   "Hitpoints": {
-    "Level1Value": 0,
-    "Level100Value": 0
+    "Level1Value": 50,
+    "Level100Value": 5000
   },
   "Penetration": {
     "Level1Value": 0,

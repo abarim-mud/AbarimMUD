@@ -7,7 +7,7 @@ namespace AbarimMUD.Commands.AreaBuilder.OLCUtils
 	{
 		private readonly PropertyInfo _propertyInfo;
 
-		protected override string InternalName => _propertyInfo.Name;
+		public override string Name => _propertyInfo.Name;
 		public override Type Type => _propertyInfo.PropertyType;
 
 		public PropertyRecord(PropertyInfo propertyInfo)

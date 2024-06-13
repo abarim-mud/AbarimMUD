@@ -10,6 +10,12 @@ namespace AbarimMUD.Data
 		public int Level1Value;
 		public int Level100Value;
 
+		public RaceClassValueRange(int level1Value, int level100Value)
+		{
+			Level1Value = level1Value;
+			Level100Value = level100Value;
+		}
+
 		public int CalculateValue(int level)
 		{
 			if (level < 1)
@@ -35,7 +41,7 @@ namespace AbarimMUD.Data
 		}
 	}
 
-	public class GameClass: IEntity
+	public class GameClass : IEntity
 	{
 		public static readonly MultipleFilesStorageString<GameClass> Storage = new GameClasses();
 
@@ -45,9 +51,9 @@ namespace AbarimMUD.Data
 
 		[JsonConverter(typeof(Common.GameClassConverter))]
 		public GameClass Inherits { get; set; }
-		
+
 		public RaceClassValueRange Hitpoints;
-		
+
 		public RaceClassValueRange Penetration;
 
 		public bool IsPlayerClass { get; set; }
