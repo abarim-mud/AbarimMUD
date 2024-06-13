@@ -77,26 +77,32 @@ namespace AbarimMUD.Commands.Player
 			return sb.ToString();
 		}
 
-		private string BuildMobileDescription(ExecutionContext context, Creature creature)
+		private string BuildCreatureDescription(ExecutionContext context, Creature creature)
 		{
 			var sb = new StringBuilder();
 
-			var mobile = creature as MobileInstance;
-			if (mobile != null)
+			if (!string.IsNullOrEmpty(creature.Description))
 			{
-				sb.AppendLine(mobile.Info.Description);
+				sb.AppendLine(creature.Description);
+			}
+			
+			var grid = creature.BuildEquipmentDesc();
+			if (grid != null)
+			{
+				sb.AppendLine($"{creature.ShortDescription} is using:");
+				sb.Append(grid.ToString());
 			}
 
 			if (context.IsStaff)
 			{
+				sb.AppendLine();
 				sb.Append("[cyan]");
 
+				var mobile = creature as MobileInstance;
 				if (mobile != null)
 				{
 					sb.AppendLine("Mobile Id: " + mobile.Info.Id);
 				}
-
-				sb.AppendLine();
 
 				sb.AppendLine("Race: " + creature.Race.Name);
 				sb.AppendLine("Class: " + creature.Class.Name);
@@ -156,7 +162,7 @@ namespace AbarimMUD.Commands.Player
 				{
 					sb.AppendLine($"You look at {lookContext.ShortDescription}.");
 					sb.AppendLine();
-					sb.AppendLine(BuildMobileDescription(context, lookContext.Creature));
+					sb.AppendLine(BuildCreatureDescription(context, lookContext.Creature));
 
 					if (lookContext != context)
 					{

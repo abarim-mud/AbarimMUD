@@ -11,6 +11,7 @@ namespace AbarimMUD.Data
 
 		public HashSet<string> Keywords => Info.Keywords;
 		public override string ShortDescription => Info.ShortDescription;
+		public override string Description => Info.Description;
 
 		public override Race Race => Info.Race;
 

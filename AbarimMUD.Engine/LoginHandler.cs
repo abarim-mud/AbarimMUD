@@ -220,7 +220,7 @@ namespace AbarimMUD
 
 		private void ProcessConfirmAccountName(string data)
 		{
-			if (string.Compare(data, "y", StringComparison.OrdinalIgnoreCase) == 0)
+			if (data.EqualsToIgnoreCase("y"))
 			{
 				Send("Would you like to create a new account (y/n)? ");
 				_mode = Mode.ConfirmCreation;
@@ -232,7 +232,7 @@ namespace AbarimMUD
 
 		private void ProcessConfirmCreation(string data)
 		{
-			if (string.Compare(data, "y", StringComparison.OrdinalIgnoreCase) == 0)
+			if (data.EqualsToIgnoreCase("y"))
 			{
 				SendNewPasswordPrompt();
 				_mode = Mode.NewPassword;

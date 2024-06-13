@@ -17,7 +17,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 			int minimumLevel;
 			if (!int.TryParse(area.MinimumLevel, out minimumLevel))
 			{
-				if (area.MinimumLevel.Equals("all", StringComparison.OrdinalIgnoreCase))
+				if (area.MinimumLevel.EqualsToIgnoreCase("all"))
 				{
 					return int.MaxValue / 2;
 				}

@@ -49,8 +49,6 @@ namespace AbarimMUD
 		{
 			try
 			{
-				string content;
-
 				// Retrieve the state object and the handler socket
 				// from the asynchronous state object.
 
@@ -60,7 +58,16 @@ namespace AbarimMUD
 				{
 					if (bytesRead <= 0)
 					{
-						Alive = false;
+						Logger.Info("Connection has been closed by the remote host.");
+						Disconnect();
+						break;
+					}
+
+					if (bytesRead >= 4196)
+					{
+						// Too much input data
+						Logger.Info($"Too much data received {bytesRead}. Closing the connection.");
+						Disconnect();
 						break;
 					}
 
@@ -70,21 +77,27 @@ namespace AbarimMUD
 						// Ignore this data, as it comes from mudlet bug
 						break;
 					}
+
 					_inputBuffer.Append(Encoding.ASCII.GetString(_buffer, 0, bytesRead));
+					if (_inputBuffer.Length >= 4196)
+					{
+						// Too much input data
+						Logger.Info($"Too much data accumulated {_inputBuffer.Length}. Closing the connection.");
+						Disconnect();
+						break;
+					}
 
 					// Check for end-of-file tag. If it is not there, read 
 					// more data.
-					content = _inputBuffer.ToString();
-					var rlPos = content.IndexOf("\n");
+					var data = _inputBuffer.ToString();
+					var rlPos = data.IndexOf("\n");
 					if (rlPos == -1)
 					{
 						break;
 					}
 
 					// '\n' ends a command
-					var data = content.Substring(0, rlPos).Trim();
-
-					Logger.Info("Incomming data: '{0}'", data);
+					Logger.Info("Incomming data: '{0}'", data.Trim());
 
 					_input = data;
 					Server.Instance.Awake();
@@ -96,10 +109,6 @@ namespace AbarimMUD
 				if (Alive)
 				{
 					_socket.BeginReceive(_buffer, 0, _buffer.Length, 0, new AsyncCallback(ReadCallback), null);
-				}
-				else
-				{
-					Logger.Info("Connection has been closed by the remote host");
 				}
 			}
 			catch (Exception ex)
@@ -165,13 +174,14 @@ namespace AbarimMUD
 
 		public void Disconnect()
 		{
-			if (_socket.Connected)
+			Alive = false;
+
+			if (!_socket.Connected)
 			{
 				return;
 			}
 
 			Logger.Info("Closing connection...");
-			Alive = false;
 			_socket.Disconnect(true);
 			Logger.Info("Connection has been closed");
 		}

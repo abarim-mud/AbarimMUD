@@ -122,6 +122,13 @@ namespace AbarimMUD
 			}
 
 			var input = _connection.GetInput();
+			if (string.IsNullOrEmpty(input))
+			{
+				return;
+			}
+
+			// Trim newline at the end
+			input = input.TrimEnd();
 			if (CurrentHandler != null)
 			{
 				CurrentHandler.Process(input);
@@ -153,7 +160,7 @@ namespace AbarimMUD
 		{
 			foreach(var session in Server.Instance.Sessions)
 			{
-				if (session.Character != null && session.Character.Name == name)
+				if (session.Character != null && session.Character.Name.EqualsToIgnoreCase(name))
 				{
 					return session;
 				}

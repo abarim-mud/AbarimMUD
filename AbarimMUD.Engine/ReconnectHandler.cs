@@ -30,7 +30,7 @@ namespace AbarimMUD
 
 		public override void Process(string data)
 		{
-			if (string.Compare("n", data, StringComparison.OrdinalIgnoreCase) == 0)
+			if (data.EqualsToIgnoreCase("n"))
 			{
 				// No
 				SendLine("Bye");

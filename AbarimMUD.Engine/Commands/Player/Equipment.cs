@@ -7,27 +7,7 @@ namespace AbarimMUD.Commands.Player
 	{
 		protected override void InternalExecute(ExecutionContext context, string data)
 		{
-			AsciiGrid grid = null;
-
-			var y = 0;
-			foreach (var eq in context.Creature.Equipment.Items)
-			{
-				if (eq.Item == null)
-				{
-					continue;
-				}
-
-				if (grid == null)
-				{
-					grid = new AsciiGrid();
-				}
-
-				grid.SetValue(0, y, $"<worn on {eq.Slot.ToString().ToLower()}>");
-				grid.SetValue(1, y, eq.Item.ShortDescription);
-
-				++y;
-			}
-
+			var grid = context.Creature.BuildEquipmentDesc();
 			var sb = new StringBuilder();
 			if (grid == null)
 			{
@@ -36,7 +16,7 @@ namespace AbarimMUD.Commands.Player
 			else
 			{
 				sb.AppendLine("You are using:");
-				sb.AppendLine(grid.ToString());
+				sb.Append(grid.ToString());
 			}
 
 			context.Send(sb.ToString());

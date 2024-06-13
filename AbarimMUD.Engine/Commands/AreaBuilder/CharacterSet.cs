@@ -44,7 +44,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 						character.Name = cmdData;
 						context.Send($"Changed character name to '{cmdData}'");
 
-						var session = Session.FindSessionByCharacterName(cmdData);
+						var session = Session.FindSessionByCharacterName(name);
 						if (session != null)
 						{
 							session.OnCharacterNameChanged();
@@ -56,10 +56,10 @@ namespace AbarimMUD.Commands.AreaBuilder
 
 				case "desc":
 					{
-						character.Description = cmdData;
+						character.PlayerDescription = cmdData;
 						context.Send($"Changed {character.Name}'s desc to '{character.Description}'");
 
-						var session = Session.FindSessionByCharacterName(cmdData);
+						var session = Session.FindSessionByCharacterName(name);
 						if (session != null)
 						{
 							session.Context.Send($"Your description was changed to '{cmdData}'");
@@ -78,7 +78,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 						character.PlayerRace = race;
 						context.Send($"Changed {character.Name}'s race to '{race}'");
 
-						var session = Session.FindSessionByCharacterName(cmdData);
+						var session = Session.FindSessionByCharacterName(name);
 						if (session != null)
 						{
 							session.Context.Send($"Your race was changed to '{race.Name}'");
@@ -97,7 +97,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 						character.PlayerClass = cls;
 						context.Send($"Changed {character.Name}'s class to '{cls}'");
 
-						var session = Session.FindSessionByCharacterName(cmdData);
+						var session = Session.FindSessionByCharacterName(name);
 						if (session != null)
 						{
 							session.Context.Send($"Your class was changed to '{cls.Name}'");
@@ -117,7 +117,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 						character.PlayerLevel = newLevel;
 						context.Send($"Changed {character.Name}'s level to '{newLevel}'");
 
-						var session = Session.FindSessionByCharacterName(cmdData);
+						var session = Session.FindSessionByCharacterName(name);
 						if (session != null)
 						{
 							session.Context.Send($"Your level was changed to '{newLevel}'");
@@ -132,6 +132,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 					}
 			}
 
+			character.Restore();
 			character.Save();
 		}
 	}

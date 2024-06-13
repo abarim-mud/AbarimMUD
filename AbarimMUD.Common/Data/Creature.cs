@@ -9,6 +9,7 @@ namespace AbarimMUD.Data
 		private CreatureStats _stats = null;
 
 		public abstract string ShortDescription { get; }
+		public abstract string Description { get; }
 		public abstract Race Race { get; }
 
 		public abstract GameClass Class { get; }

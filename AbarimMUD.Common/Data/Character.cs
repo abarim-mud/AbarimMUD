@@ -36,7 +36,7 @@ namespace AbarimMUD.Data
 
 		public string Name { get; set; }
 
-		public string Description { get; set; }
+		public string PlayerDescription { get; set; }
 
 		public Race PlayerRace
 		{
@@ -78,6 +78,7 @@ namespace AbarimMUD.Data
 		public Sex PlayerSex { get; set; }
 
 		public override string ShortDescription => Name;
+		public override string Description => PlayerDescription;
 		public override Race Race => PlayerRace;
 		public override GameClass Class => PlayerClass;
 		public override int Level => PlayerLevel;
@@ -108,8 +109,6 @@ namespace AbarimMUD.Data
 		{
 			var result = Account.BuildAccountFolder();
 
-			result = Path.Combine(result, "characters");
-			
 			// Add character name in the path
 			result = Path.Combine(result, Name);
 

@@ -1,6 +1,8 @@
 ﻿using AbarimMUD.Data;
+using AbarimMUD.Utils;
 using System;
 using System.Linq;
+using System.Text;
 
 namespace AbarimMUD.Commands
 {
@@ -99,6 +101,32 @@ namespace AbarimMUD.Commands
 			}
 
 			return item;
+		}
+
+		public static AsciiGrid BuildEquipmentDesc(this Creature creature)
+		{
+			AsciiGrid grid = null;
+
+			var y = 0;
+			foreach (var eq in creature.Equipment.Items)
+			{
+				if (eq.Item == null)
+				{
+					continue;
+				}
+
+				if (grid == null)
+				{
+					grid = new AsciiGrid();
+				}
+
+				grid.SetValue(0, y, $"<worn on {eq.Slot.ToString().ToLower()}>");
+				grid.SetValue(1, y, eq.Item.ShortDescription);
+
+				++y;
+			}
+
+			return grid;
 		}
 	}
 }

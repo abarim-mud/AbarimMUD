@@ -149,5 +149,7 @@ namespace AbarimMUD
 
 			return values;
 		}
+
+		public static bool EqualsToIgnoreCase(this string name, string otherName) => string.Equals(name, otherName, StringComparison.OrdinalIgnoreCase);
 	}
 }
