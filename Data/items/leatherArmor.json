@@ -1,6 +1,9 @@
 {
   "Id": "leatherArmor",
-  "Keywords": ["leather", "armor"],
+  "Keywords": [
+    "leather",
+    "armor"
+  ],
   "ShortDescription": "a leather armor",
   "LongDescription": null,
   "Description": "Unset",
@@ -8,7 +11,7 @@
   "Affects": [],
   "ItemType": "Armor",
   "Value1": 3,
-  "Value2": 0,
+  "Value2": 20,
   "Value3": 0,
   "Value4": 0
 }

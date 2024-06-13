@@ -48,10 +48,40 @@ namespace AbarimMUD.Data
 				Armor = Race.NaturalArmor.CalculateValue(Level),
 			};
 
+			// Apply armor items
+			foreach (var item in Equipment.Items)
+			{
+				if (item.Item.ItemType != ItemType.Armor)
+				{
+					continue;
+				}
+
+				ArmorType armorType;
+				int armor;
+				item.Item.GetArmor(out armorType, out armor);
+
+				_stats.Armor += armor;
+			}
+
 			var attacksCount = Race.NaturalAttacksCount.CalculateValue(Level);
 			var penetration = (int)(Race.PenetrationModifier * Class.Penetration.CalculateValue(Level));
-			var minimumDamage = Race.BareHandedMinimumDamage.CalculateValue(Level);
-			var maximumDamage = Race.BareHandedMaximumDamage.CalculateValue(Level);
+
+			var weapon = Equipment[SlotType.Wield];
+
+			int minimumDamage, maximumDamage;
+			if (weapon == null)
+			{
+				// Barehanded damage
+				minimumDamage = Race.BareHandedMinimumDamage.CalculateValue(Level);
+				maximumDamage = Race.BareHandedMaximumDamage.CalculateValue(Level);
+			}
+			else
+			{
+				// Weapon damage
+				int weaponPenetration;
+				weapon.GetWeapon(out weaponPenetration, out minimumDamage, out maximumDamage);
+				penetration += weaponPenetration;
+			}
 
 			// Apply skill modifiers
 			foreach (var pair in Class.SkillsByLevels)
@@ -112,5 +142,13 @@ namespace AbarimMUD.Data
 		}
 
 		public abstract bool MatchesKeyword(string keyword);
+
+		public static void InvalidateAllCreaturesStats()
+		{
+			foreach(var creature in AllCreatures)
+			{
+				creature.InvalidateStats();
+			}
+		}
 	}
 }

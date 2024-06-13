@@ -62,6 +62,20 @@ namespace AbarimMUD.Data
 			}
 		}
 
+		public ItemInstance this[SlotType slot]
+		{
+			get
+			{
+				ItemInstance item;
+				if (!_items.TryGetValue(slot, out item))
+				{
+					return null;
+				}
+
+				return item;
+			}
+		}
+
 		static Equipment()
 		{
 			_slotsArmorsMap[SlotType.FingerLeft] = ArmorType.Ring;

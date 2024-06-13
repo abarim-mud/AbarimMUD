@@ -7,9 +7,9 @@ namespace AbarimMUD.Commands.AreaBuilder
 		protected override void InternalExecute(ExecutionContext context, string data)
 		{
 			var parts = data.SplitByWhitespace();
-			if (parts.Length < 3)
+			if (parts.Length < 4)
 			{
-				context.Send("Usage: itemweaponset _itemId_ _minimumDamage_ _maximumDamage_");
+				context.Send("Usage: itemweaponset _itemId_ _penetration_ _minimumDamage_ _maximumDamage_");
 				return;
 			}
 
@@ -19,23 +19,33 @@ namespace AbarimMUD.Commands.AreaBuilder
 				return;
 			}
 
+			int penetration;
+			if (!context.EnsureInt(parts[1], out penetration))
+			{
+				return;
+			}
+
 			int minimumDamage;
-			if (!context.EnsureInt(parts[1], out minimumDamage))
+			if (!context.EnsureInt(parts[2], out minimumDamage))
 			{
 				return;
 			}
 
 			int maximumDamage;
-			if (!context.EnsureInt(parts[2], out maximumDamage))
+			if (!context.EnsureInt(parts[3], out maximumDamage))
 			{
 				return;
 			}
 
-			item.Value1 = minimumDamage;
-			item.Value2 = maximumDamage;
+			item.Value1 = penetration;
+			item.Value2 = minimumDamage;
+			item.Value3 = maximumDamage;
 			context.Send($"Changed {item.Id}'s minimum-maximum damage to {minimumDamage}-{maximumDamage}");
 
 			item.Save();
+
+			Creature.InvalidateAllCreaturesStats();
 		}
 	}
 }
+	

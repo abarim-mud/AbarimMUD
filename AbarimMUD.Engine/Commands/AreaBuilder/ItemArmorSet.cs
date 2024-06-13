@@ -69,6 +69,8 @@ namespace AbarimMUD.Commands.AreaBuilder
 			}
 
 			item.Save();
+
+			Creature.InvalidateAllCreaturesStats();
 		}
 	}
 }
