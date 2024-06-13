@@ -130,7 +130,5 @@ namespace AbarimMUD.Utils
 
 			return result.ToString();
 		}
-
-
 	}
 }

@@ -6,28 +6,33 @@ namespace AbarimMUD.Commands.Player
 	{
 		protected override void InternalExecute(ExecutionContext context, string data)
 		{
-			var sd = new StringBuilder();
+			var sb = new StringBuilder();
 
 			foreach (var item in context.Creature.Inventory.Items)
 			{
-				sd.Append(item.Info.ShortDescription);
+				sb.Append(item.Info.ShortDescription);
 
 				if (item.Quantity != 1)
 				{
-					sd.Append($" ({item.Quantity})");
+					sb.Append($" ({item.Quantity})");
 				}
 
 				if (context.IsStaff)
 				{
-					sd.Append($" (#{item.Id})");
+					sb.Append($" (#{item.Id})");
 				}
 
-				sd.AppendLine();
+				sb.AppendLine();
 			}
 
-			sd.AppendLine();
+			if (context.Creature.Inventory.Items.Length == 0)
+			{
+				sb.AppendLine("You aren't carrying any items.");
+			}
 
-			context.Send(sd.ToString());
+			sb.AppendLine();
+
+			context.Send(sb.ToString());
 		}
 	}
 }

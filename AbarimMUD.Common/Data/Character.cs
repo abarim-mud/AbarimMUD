@@ -36,6 +36,8 @@ namespace AbarimMUD.Data
 
 		public string Name { get; set; }
 
+		public string Description { get; set; }
+
 		public Race PlayerRace
 		{
 			get => _race;
@@ -106,6 +108,8 @@ namespace AbarimMUD.Data
 		{
 			var result = Account.BuildAccountFolder();
 
+			result = Path.Combine(result, "characters");
+			
 			// Add character name in the path
 			result = Path.Combine(result, Name);
 

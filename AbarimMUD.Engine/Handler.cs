@@ -52,5 +52,9 @@ namespace AbarimMUD
 
 			return true;
 		}
+
+		public virtual void OnCharacterNameChanged()
+		{
+		}
 	}
 }

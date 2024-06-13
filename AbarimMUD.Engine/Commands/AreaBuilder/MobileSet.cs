@@ -16,10 +16,9 @@ namespace AbarimMUD.Commands.AreaBuilder
 			}
 
 			var id = parts[1];
-			var mobile = Mobile.GetMobileById(id);
+			var mobile = context.EnsureMobileById(id);
 			if (mobile == null)
 			{
-				context.Send(string.Format("Unable to find mobile with id {0}", id));
 				return;
 			}
 

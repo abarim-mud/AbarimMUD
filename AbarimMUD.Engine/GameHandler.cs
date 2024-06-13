@@ -17,10 +17,7 @@ namespace AbarimMUD
 			Logger.Info($"Connection {connection.RemoteIp}:{connection.RemotePort} belongs to {Session.Character.Name}");
 
 			// Switch logger to the player logger
-			var newLoggerName = Session.Character.BuildCharacterFolder();
-			newLoggerName = Path.Combine("Data/accounts", newLoggerName);
-			newLoggerName = Path.Combine(newLoggerName, "Logs/");
-			Logger = LogManager.GetLogger(newLoggerName);
+			OnCharacterNameChanged();
 
 			// Execute look command
 			Process("look");
@@ -38,5 +35,15 @@ namespace AbarimMUD
 				}*/
 
 		public override void Process(string data) => Session.Context.ParseAndExecute(data);
+
+		public override void OnCharacterNameChanged()
+		{
+			base.OnCharacterNameChanged();
+
+			var newLoggerName = Session.Character.BuildCharacterFolder();
+			newLoggerName = Path.Combine("Data/accounts", newLoggerName);
+			newLoggerName = Path.Combine(newLoggerName, "Logs/");
+			Logger = LogManager.GetLogger(newLoggerName);
+		}
 	}
 }

@@ -16,6 +16,8 @@ namespace AbarimMUD.Storage
 
 		public ItemType[] All => _cache.Values.ToArray();
 
+		public IReadOnlyDictionary<KeyType, ItemType> Cache => _cache;
+
 		internal GenericBaseStorage(Func<ItemType, KeyType> keyGetter, Func<KeyType, KeyType> keyConverter = null)
 		{
 			_keyGetter = keyGetter ?? throw new ArgumentNullException(nameof(keyGetter));
@@ -101,10 +103,15 @@ namespace AbarimMUD.Storage
 			}
 		}
 
+		protected void RemoveFromCache(KeyType key)
+		{
+			_cache.Remove(key);
+		}
+
 		public virtual void Remove(ItemType item)
 		{
 			var key = _keyGetter(item);
-			_cache.Remove(key);
+			RemoveFromCache(key);
 		}
 
 		public abstract void SaveAll();

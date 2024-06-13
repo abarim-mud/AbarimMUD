@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -6,6 +7,8 @@ namespace AbarimMUD.Storage
 {
 	public class MultipleFilesStorage<KeyType, ItemType> : GenericBaseStorage<KeyType, ItemType> where ItemType : class
 	{
+		private readonly Dictionary<KeyType, string> _files = new Dictionary<KeyType, string>();
+
 		private string SubfolderName { get; set; }
 
 		public ItemType this[KeyType index] => EnsureByKey(index);
@@ -34,6 +37,8 @@ namespace AbarimMUD.Storage
 			var entity = JsonDeserializeFromFile<ItemType>(filePath);
 
 			AddToCache(entity);
+			
+			_files[GetKey(entity)] = filePath;
 
 			return entity;
 		}
@@ -44,10 +49,46 @@ namespace AbarimMUD.Storage
 			var folder = Path.GetDirectoryName(path);
 			EnsureFolder(folder);
 			JsonSerializeToFile(path, entity);
+
+			_files[GetKey(entity)] = path;
 		}
 
 		public void Save(ItemType entity)
 		{
+			var key = GetKey(entity);
+			if (!Cache.ContainsKey(key))
+			{
+				// If the item isn't cached, check the possibility it was renamed
+				KeyValuePair<KeyType, ItemType>? existing = null;
+				foreach (var pair in Cache)
+				{
+					if (pair.Value == entity)
+					{
+						existing = pair;
+						break;
+					}
+				}
+
+				if (existing != null)
+				{
+					// It was renamed
+					// Delete the file
+					var existingKey = existing.Value.Key;
+					string path;
+					if (_files.TryGetValue(existingKey, out path))
+					{
+						File.Delete(path);
+						_files.Remove(existingKey);
+					} else
+					{
+						Log($"WARNING: Unable to find file for existing item {existingKey}");
+					}
+
+					// Remove from cache
+					RemoveFromCache(existingKey);
+				}
+			}
+
 			// Save the data
 			InternalSave(entity);
 
@@ -78,7 +119,9 @@ namespace AbarimMUD.Storage
 
 		}
 
-		protected virtual string BuildPath(ItemType entity) => Path.ChangeExtension(Path.Combine(Folder, GetKey(entity, false).ToString()), "json");
+		private string BuildPath(KeyType key) => Path.ChangeExtension(Path.Combine(Folder, key.ToString()), "json");
+
+		protected virtual string BuildPath(ItemType entity) => BuildPath(GetKey(entity, false));
 
 		public override void Remove(ItemType entity)
 		{

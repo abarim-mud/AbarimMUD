@@ -22,10 +22,7 @@ namespace AbarimMUD
 
 		public static Logger Logger { get; private set; } = LogManager.GetLogger("Logs/Server");
 
-		public static Server Instance
-		{
-			get { return _instance; }
-		}
+		public static Server Instance => _instance;
 
 		public Session[] Sessions
 		{

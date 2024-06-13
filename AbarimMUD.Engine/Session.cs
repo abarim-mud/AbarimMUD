@@ -122,11 +122,6 @@ namespace AbarimMUD
 			}
 
 			var input = _connection.GetInput();
-			if (string.IsNullOrEmpty(input))
-			{
-				return;
-			}
-
 			if (CurrentHandler != null)
 			{
 				CurrentHandler.Process(input);
@@ -147,6 +142,24 @@ namespace AbarimMUD
 			{
 				ev(this, EventArgs.Empty);
 			}
+		}
+
+		public void OnCharacterNameChanged()
+		{
+			CurrentHandler?.OnCharacterNameChanged();
+		}
+
+		public static Session FindSessionByCharacterName(string name)
+		{
+			foreach(var session in Server.Instance.Sessions)
+			{
+				if (session.Character != null && session.Character.Name == name)
+				{
+					return session;
+				}
+			}
+
+			return null;
 		}
 	}
 }

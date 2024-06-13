@@ -25,6 +25,8 @@ namespace AbarimMUD.Commands
 		public static readonly Look Look = new Look();
 		public static readonly Where Where = new Where();
 
+		public static readonly Score Score = new Score();
+
 		public static readonly Player.Inventory Inventory = new Player.Inventory();
 		public static readonly Wear Wear = new Wear();
 		public static readonly Remove Remove = new Remove();
@@ -36,6 +38,8 @@ namespace AbarimMUD.Commands
 		public static readonly Force Force = new Force();
 		public static readonly Areas Areas = new Areas();
 		public static readonly Goto Goto = new Goto();
+
+		public static readonly CharacterSet CharacterSet = new CharacterSet();
 
 		public static readonly RoomCreate RoomCreate = new RoomCreate();
 		public static readonly RoomSet RoomSet = new RoomSet();
