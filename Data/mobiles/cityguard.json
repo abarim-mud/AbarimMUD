@@ -1,20 +1,18 @@
 {
-  "Id": "blackDragon",
+  "Id": "cityguard",
   "Keywords": [
-    "black",
-    "dragon"
+    "city",
+    "guard",
+    "cityguard"
   ],
-  "ShortDescription": "a black dragon",
+  "ShortDescription": "a cityguard",
   "LongDescription": null,
   "Description": "Unset.",
-  "Race": "dragon",
+  "Race": "human",
   "Class": "warrior",
   "Level": 40,
   "Sex": "None",
-  "Flags": [
-    "Sentinel",
-    "Berserk"
-  ],
+  "Flags": [],
   "Wealth": 0,
   "Shop": null,
   "SpecialAttacks": []

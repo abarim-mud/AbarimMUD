@@ -2,6 +2,8 @@
   "Id": "warrior",
   "Name": "Warrior",
   "Description": "Master of armor and sword.",
+  "Inherits": null,
+  "IsPlayerClass": true,
   "SkillsByLevels": {
     "36": [
       "thirdAttack"

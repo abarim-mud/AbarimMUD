@@ -23,18 +23,23 @@ namespace AbarimMUD.Storage
 		{
 			base.SetReferences();
 
-			foreach(var cls in this)
+			foreach (var cls in this)
 			{
 				var newDict = new Dictionary<int, List<Skill>>();
 				foreach (var pair in cls.SkillsByLevels)
 				{
 					var newSkills = new List<Skill>();
-					foreach(var skill in pair.Value)
+					foreach (var skill in pair.Value)
 					{
-						newSkills.Add(Skill.EnsureSkillById(skill.Name));
+						newSkills.Add(Skill.EnsureSkillById(skill.Id));
 					}
 
 					newDict[pair.Key] = newSkills;
+				}
+
+				if (cls.Inherits != null)
+				{
+					cls.Inherits = GameClass.EnsureClassById(cls.Inherits.Id);
 				}
 
 				cls.SkillsByLevels = newDict;

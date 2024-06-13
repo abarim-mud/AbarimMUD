@@ -20,6 +20,8 @@
 			}
 
 			targetContext.Creature.Restore();
+
+			context.Send($"You fully restored {targetContext.ShortDescription}.");
 			targetContext.Send($"{context.ShortDescription} fully restored you.");
 		}
 	}

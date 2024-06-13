@@ -25,8 +25,8 @@ namespace AbarimMUD.Storage
 
 			foreach (var mobile in this)
 			{
-				mobile.Race = Race.EnsureRaceById(mobile.Race.Name);
-				mobile.Class = GameClass.EnsureClassById(mobile.Class.Name);
+				mobile.Race = Race.EnsureRaceById(mobile.Race.Id);
+				mobile.Class = GameClass.EnsureClassById(mobile.Class.Id);
 			}
 		}
 	}

@@ -94,6 +94,7 @@ namespace AbarimMUD.Commands
 
 		}
 
+		public static GameClass EnsureClassById(this ExecutionContext context, string id) => EnsureById(context, id, GameClass.GetClassById);
 		public static Item EnsureItemById(this ExecutionContext context, string id) => EnsureById(context, id, Item.GetItemById);
 		public static Mobile EnsureMobileById(this ExecutionContext context, string id) => EnsureById(context, id, Mobile.GetMobileById);
 		public static Character EnsureCharacterByName(this ExecutionContext context, string name) => EnsureById(context, name, Character.GetCharacterByName);

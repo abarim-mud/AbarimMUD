@@ -96,8 +96,8 @@ namespace AbarimMUD.Storage
 
 			foreach (var character in this)
 			{
-				character.PlayerRace = Race.EnsureRaceById(character.Race.Name);
-				character.PlayerClass = GameClass.EnsureClassById(character.Class.Name);
+				character.PlayerRace = Race.EnsureRaceById(character.Race.Id);
+				character.PlayerClass = GameClass.EnsureClassById(character.Class.Id);
 
 				foreach (var item in character.Inventory.Items)
 				{

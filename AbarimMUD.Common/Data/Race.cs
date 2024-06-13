@@ -2,7 +2,7 @@
 
 namespace AbarimMUD.Data
 {
-	public class Race
+	public class Race: IEntity
 	{
 		public static readonly MultipleFilesStorageString<Race> Storage = new MultipleFilesStorageString<Race>(r => r.Id, "races");
 
@@ -12,8 +12,8 @@ namespace AbarimMUD.Data
 		public float HitpointsModifier { get; set; } = 1.0f;
 		public float PenetrationModifier { get; set; } = 1.0f;
 		public RaceClassValueRange NaturalArmor;
-		public AttackType AttackType { get; set; }
 		public RaceClassValueRange NaturalAttacksCount;
+		public AttackType BareHandedAttackType { get; set; }
 		public RaceClassValueRange BareHandedMinimumDamage;
 		public RaceClassValueRange BareHandedMaximumDamage;
 

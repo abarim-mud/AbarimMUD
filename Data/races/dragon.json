@@ -3,7 +3,7 @@
   "Name": "Dragon",
   "HitpointsModifier": 10,
   "PenetrationModifier": 1,
-  "AttackType": "Claw",
+  "BareHandedAttackType": "Claw",
   "NaturalArmor": {
     "Level1Value": 10,
     "Level100Value": 100

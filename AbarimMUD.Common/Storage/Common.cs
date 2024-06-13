@@ -7,12 +7,12 @@ namespace AbarimMUD.Storage
 {
 	internal static class Common
 	{
-		public abstract class BaseEntityConverter<KeyType, ObjectType> : JsonConverter<ObjectType> where ObjectType : new()
+		public class EntityConverter<ObjectType> : JsonConverter<ObjectType> where ObjectType : class, new()
 		{
-			private readonly Func<ObjectType, KeyType> _getter;
-			private readonly Action<ObjectType, KeyType> _setter;
+			private readonly Func<ObjectType, string> _getter;
+			private readonly Action<ObjectType, string> _setter;
 
-			protected BaseEntityConverter(Func<ObjectType, KeyType> getter, Action<ObjectType, KeyType> setter)
+			public EntityConverter(Func<ObjectType, string> getter, Action<ObjectType, string> setter)
 			{
 				_getter = getter;
 				_setter = setter;
@@ -20,46 +20,34 @@ namespace AbarimMUD.Storage
 
 			public override ObjectType Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 			{
+				var value = reader.GetString();
+				if (string.IsNullOrEmpty(value))
+				{
+					return null;
+				}
+
 				var result = new ObjectType();
-				_setter(result, ReadValue(ref reader));
+				_setter(result, value);
 
 				return result;
 			}
 
 			public override void Write(Utf8JsonWriter writer, ObjectType value, JsonSerializerOptions options)
 			{
-				WriteValue(writer, _getter(value));
+				writer.WriteStringValue(_getter(value));
 			}
-
-			protected abstract KeyType ReadValue(ref Utf8JsonReader reader);
-			protected abstract void WriteValue(Utf8JsonWriter writer, KeyType value);
 		}
 
-		public class StringEntityConverter<ObjectType> : BaseEntityConverter<string, ObjectType> where ObjectType : new()
+		public class GameClassConverter: EntityConverter<GameClass>
 		{
-			public StringEntityConverter(Func<ObjectType, string> getter, Action<ObjectType, string> setter) : base(getter, setter)
+			public GameClassConverter(): base(e => e.Id, (e, v) => e.Id = v)
 			{
 			}
-
-			protected override string ReadValue(ref Utf8JsonReader reader) => reader.GetString();
-
-			protected override void WriteValue(Utf8JsonWriter writer, string value) => writer.WriteStringValue(value);
 		}
 
-		public class IntEntityConverter<ObjectType> : BaseEntityConverter<int, ObjectType> where ObjectType : new()
-		{
-			public IntEntityConverter(Func<ObjectType, int> getter, Action<ObjectType, int> setter) : base(getter, setter)
-			{
-			}
-
-			protected override int ReadValue(ref Utf8JsonReader reader) => reader.GetInt32();
-
-			protected override void WriteValue(Utf8JsonWriter writer, int value) => writer.WriteNumberValue(value);
-		}
-
-		public static readonly StringEntityConverter<Race> RaceConverter = new StringEntityConverter<Race>(e => e.Id, (e, v) => e.Name = v);
-		public static readonly StringEntityConverter<GameClass> ClassConverter = new StringEntityConverter<GameClass>(e => e.Id, (e, v) => e.Name = v);
-		public static readonly StringEntityConverter<Skill> SkillConverter = new StringEntityConverter<Skill>(e => e.Id, (e, v) => e.Name = v);
-		public static readonly StringEntityConverter<Item> ItemConverter = new StringEntityConverter<Item>(e => e.Id, (e, v) => e.Id = v);
+		public static readonly EntityConverter<Race> RaceConverter = new EntityConverter<Race>(e => e.Id, (e, v) => e.Id = v);
+		public static readonly EntityConverter<GameClass> ClassConverter = new GameClassConverter();
+		public static readonly EntityConverter<Skill> SkillConverter = new EntityConverter<Skill>(e => e.Id, (e, v) => e.Id = v);
+		public static readonly EntityConverter<Item> ItemConverter = new EntityConverter<Item>(e => e.Id, (e, v) => e.Id = v);
 	}
 }

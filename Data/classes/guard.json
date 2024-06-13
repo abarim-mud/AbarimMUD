@@ -1,0 +1,16 @@
+{
+  "Id": "guard",
+  "Name": "guard",
+  "Description": "guard",
+  "Inherits": "warrior",
+  "IsPlayerClass": false,
+  "SkillsByLevels": {},
+  "Hitpoints": {
+    "Level1Value": 0,
+    "Level100Value": 0
+  },
+  "Penetration": {
+    "Level1Value": 0,
+    "Level100Value": 0
+  }
+}

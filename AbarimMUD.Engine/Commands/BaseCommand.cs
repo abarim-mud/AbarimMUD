@@ -43,6 +43,9 @@ namespace AbarimMUD.Commands
 		public static readonly Areas Areas = new Areas();
 		public static readonly Goto Goto = new Goto();
 
+		public static readonly ClassCreate ClassCreate = new ClassCreate();
+		public static readonly ClassSet ClassSet = new ClassSet();
+
 		public static readonly CharacterSet CharacterSet = new CharacterSet();
 
 		public static readonly RoomCreate RoomCreate = new RoomCreate();

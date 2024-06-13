@@ -79,7 +79,7 @@ namespace AbarimMUD.Data
 				// Barehanded damage
 				minimumDamage = Race.BareHandedMinimumDamage.CalculateValue(Level);
 				maximumDamage = Race.BareHandedMaximumDamage.CalculateValue(Level);
-				attackType = Race.AttackType;
+				attackType = Race.BareHandedAttackType;
 			}
 			else
 			{

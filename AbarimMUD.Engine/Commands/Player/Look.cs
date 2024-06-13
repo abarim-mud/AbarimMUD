@@ -59,6 +59,7 @@ namespace AbarimMUD.Commands.Player
 				{
 					desc += string.Format(" (#{0})", mobile.Info.Id);
 				}
+
 				sb.AppendLine(desc);
 			}
 

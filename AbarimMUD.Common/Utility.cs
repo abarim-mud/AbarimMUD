@@ -152,6 +152,13 @@ namespace AbarimMUD
 
 		public static bool EqualsToIgnoreCase(this string name, string otherName) => string.Equals(name, otherName, StringComparison.OrdinalIgnoreCase);
 
+		public static T FindAttribute<T>(this MemberInfo property) where T : Attribute
+		{
+			var result = (from T a in property.GetCustomAttributes<T>(true) select a).FirstOrDefault();
+
+			return result;
+		}
+
 		public static T FindAttribute<T>(this Type type) where T : Attribute
 		{
 			var result = (from T a in type.GetCustomAttributes<T>(true) select a).FirstOrDefault();

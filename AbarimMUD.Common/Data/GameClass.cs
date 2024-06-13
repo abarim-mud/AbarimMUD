@@ -1,6 +1,7 @@
 ﻿using AbarimMUD.Storage;
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
 {
@@ -34,17 +35,22 @@ namespace AbarimMUD.Data
 		}
 	}
 
-	public class GameClass
+	public class GameClass: IEntity
 	{
 		public static readonly MultipleFilesStorageString<GameClass> Storage = new GameClasses();
 
 		public string Id { get; set; }
 		public string Name { get; set; }
 		public string Description { get; set; }
+
+		[JsonConverter(typeof(Common.GameClassConverter))]
+		public GameClass Inherits { get; set; }
 		
 		public RaceClassValueRange Hitpoints;
 		
 		public RaceClassValueRange Penetration;
+
+		public bool IsPlayerClass { get; set; }
 
 		public Dictionary<int, List<Skill>> SkillsByLevels { get; set; } = new Dictionary<int, List<Skill>>();
 

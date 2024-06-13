@@ -102,7 +102,7 @@ namespace AbarimMUD.Data
 		Shock
 	}
 
-	public class Mobile
+	public class Mobile: IEntity
 	{
 		public static readonly MultipleFilesStorageString<Mobile> Storage = new Mobiles();
 

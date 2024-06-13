@@ -3,40 +3,24 @@ using System.Collections.Generic;
 
 namespace AbarimMUD.Commands.AreaBuilder
 {
-	public class MobileCreate : AreaBuilderCommand
+	public class MobileCreate : GenericCreate<Mobile>
 	{
-		protected override void InternalExecute(ExecutionContext context, string data)
+		public MobileCreate() : base(id => Mobile.GetMobileById(id))
 		{
-			data = data.Trim();
-			if (string.IsNullOrEmpty(data))
-			{
-				context.Send("Usage: mobilecreate _newMobileId");
-				return;
-			}
+		}
 
-			var id = data;
-			var existing = Mobile.GetMobileById(id);
-			if (existing != null)
-			{
-				context.Send($"Id {id} is used by {existing} already");
-				return;
-			}
+		protected override void PreCreate(ExecutionContext context, Mobile newMobile)
+		{
+			newMobile.Keywords = new HashSet<string> { newMobile.Id };
+			newMobile.ShortDescription = newMobile.Id;
+			newMobile.Description = newMobile.Id;
+			newMobile.Race = Race.EnsureRaceById(Configuration.DefaultRace);
+			newMobile.Class = GameClass.EnsureClassById(Configuration.DefaultClass);
+			newMobile.Level = 1;
+		}
 
-			// Create new mobile
-			var newMobile = new Mobile
-			{
-				Id = id,
-				Keywords = new HashSet<string> { "unset" },
-				ShortDescription = "Unset",
-				Description = "Unset.",
-				Race = Race.EnsureRaceById(Configuration.DefaultRace),
-				Class = GameClass.EnsureClassById(Configuration.DefaultClass),
-				Level = 1,
-			};
-
-			newMobile.Create();
-			context.Send($"New mobile {newMobile} was created");
-
+		protected override void PostCreate(ExecutionContext context, Mobile newMobile)
+		{
 			MobileSpawn.Execute(context, newMobile.Id);
 		}
 	}
