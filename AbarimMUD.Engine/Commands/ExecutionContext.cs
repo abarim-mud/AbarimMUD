@@ -78,9 +78,9 @@ namespace AbarimMUD.Commands
 			if (!string.IsNullOrEmpty(text))
 			{
 				// Remove unneeded color clear at the end
-				if (text.EndsWith("[clear]".ToString()))
+				if (text.EndsWith("[reset]".ToString()))
 				{
-					text = text.Substring(0, text.Length - "[clear]".ToString().Length).TrimEnd();
+					text = text.Substring(0, text.Length - 7).TrimEnd();
 				}
 
 				var linesCount = text.Count(c => c.Equals('\n')) + 1;
@@ -99,7 +99,7 @@ namespace AbarimMUD.Commands
 				}
 
 				// Always append color reset
-				sb.Append("[clear]");
+				sb.Append("[reset]");
 
 				// Mandatory line end
 				sb.AppendLine();

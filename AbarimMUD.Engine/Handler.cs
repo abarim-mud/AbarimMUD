@@ -1,4 +1,5 @@
-﻿using NLog;
+﻿using AbarimMUD.Utils;
+using NLog;
 using System;
 
 namespace AbarimMUD
@@ -33,7 +34,7 @@ namespace AbarimMUD
 
 		public void SendLine(string text)
 		{
-			Session.Send(text + Connection.ConsoleCommand.NewLine);
+			Session.Send(text + AsciiRichText.NewLine);
 		}
 
 		protected void SendDebug(string data)

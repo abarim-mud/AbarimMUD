@@ -10,14 +10,14 @@ namespace AbarimMUD.Commands.Player
 
 			sb.Append("[magenta]");
 			sb.AppendLine(string.Format("You say '{0}'", data));
-			sb.Append("[clear]");
+			sb.Append("[reset]");
 			context.Send(sb.ToString());
 
 			// Show it to others
 			sb.Clear();
 			sb.Append("[magenta]");
 			sb.AppendLine(string.Format("{0} says '{1}'", context.ShortDescription, data));
-			sb.Append("[clear]");
+			sb.Append("[reset]");
 
 			foreach (var s in context.AllExceptMeInRoom())
 			{

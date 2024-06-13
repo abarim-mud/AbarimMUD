@@ -18,7 +18,7 @@ namespace AbarimMUD.Commands.Player
 			}
 
 			sb.AppendLine(name);
-			sb.Append("[clear]");
+			sb.Append("[reset]");
 
 			context.Send(sb.ToString());
 		}

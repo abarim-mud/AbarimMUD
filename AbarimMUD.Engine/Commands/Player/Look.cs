@@ -17,7 +17,7 @@ namespace AbarimMUD.Commands.Player
 			}
 
 			sb.AppendLine(name);
-			sb.Append("[clear]");
+			sb.Append("[reset]");
 			sb.Append("   ");
 			sb.AppendLine(room.Description);
 			sb.Append("[cyan]");
@@ -29,7 +29,7 @@ namespace AbarimMUD.Commands.Player
 				var exit = pair.Value;
 				if (!first)
 				{
-					sb.Append("[clear]");
+					sb.Append("[reset]");
 					sb.Append(" ");
 				}
 
@@ -44,7 +44,7 @@ namespace AbarimMUD.Commands.Player
 				first = false;
 			}
 
-			sb.AppendLine("[clear]");
+			sb.AppendLine("[reset]");
 
 			// Mobiles
 			foreach (var mobile in room.Mobiles)
@@ -113,7 +113,7 @@ namespace AbarimMUD.Commands.Player
 					sb.AppendLine($"Attack {i + 1}: {attack}");
 				}
 
-				sb.Append("[clear]");
+				sb.Append("[reset]");
 			}
 
 			return sb.ToString();
@@ -128,7 +128,7 @@ namespace AbarimMUD.Commands.Player
 			{
 				sb.Append("[cyan]");
 				sb.AppendLine("Item Id: " + item.Info.Id);
-				sb.Append("[clear]");
+				sb.Append("[reset]");
 			}
 
 			return sb.ToString();
