@@ -116,7 +116,7 @@ namespace AbarimMUD.Commands.Player
 				for (var i = 0; i < stats.Attacks.Length; i++)
 				{
 					var attack = stats.Attacks[i];
-					sb.AppendLine($"Attack {i + 1}: {attack}");
+					sb.AppendLine($"Attack #{i + 1}: {attack}");
 				}
 
 				sb.Append("[reset]");

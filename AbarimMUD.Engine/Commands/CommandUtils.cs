@@ -42,6 +42,18 @@ namespace AbarimMUD.Commands
 			return true;
 		}
 
+		public static bool EnsureEnum<T>(this ExecutionContext context, string value, out T result) where T : struct
+		{
+			if (!Enum.TryParse(value, true, out result))
+			{
+				context.Send($"Unable to parse enum '{value}'");
+				return false;
+			}
+
+			return true;
+		}
+
+
 		public static InventoryRecord EnsureItemInInventory(this ExecutionContext context, string name)
 		{
 			var item = context.Creature.Inventory.FindItem(name);

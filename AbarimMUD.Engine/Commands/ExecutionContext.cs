@@ -1,5 +1,4 @@
-﻿using System;
-using NLog;
+﻿using NLog;
 using System.Collections.Generic;
 using System.Text;
 using AbarimMUD.Data;
@@ -19,8 +18,6 @@ namespace AbarimMUD.Commands
 
 		public CreatureStats Stats => Creature.Stats;
 		public CreatureState State => Creature.State;
-		public Attack[] Attacks => Stats.Attacks;
-		public int ArmorClass => Stats.Armor;
 
 		public abstract Room CurrentRoom { get; set; }
 		public Area CurrentArea => CurrentRoom.Area;
@@ -142,7 +139,8 @@ namespace AbarimMUD.Commands
 				return;
 			}
 
-			Logger.Info("Command type is {0}.", cmd.GetType());
+			var type = command.GetType();
+			Logger.Info("Command type is {0}.", type);
 
 			var args = parts.Length > 1 ? parts[1] : string.Empty;
 			command.Execute(this, args);

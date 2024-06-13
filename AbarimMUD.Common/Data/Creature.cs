@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
 {
@@ -29,6 +30,9 @@ namespace AbarimMUD.Data
 		}
 
 		public CreatureState State { get; } = new CreatureState();
+
+		[JsonIgnore]
+		public Creature FightsWith { get; set; }
 
 		public void InvalidateStats()
 		{
@@ -69,17 +73,19 @@ namespace AbarimMUD.Data
 			var weapon = Equipment[SlotType.Wield];
 
 			int minimumDamage, maximumDamage;
+			AttackType attackType;
 			if (weapon == null)
 			{
 				// Barehanded damage
 				minimumDamage = Race.BareHandedMinimumDamage.CalculateValue(Level);
 				maximumDamage = Race.BareHandedMaximumDamage.CalculateValue(Level);
+				attackType = Race.AttackType;
 			}
 			else
 			{
 				// Weapon damage
 				int weaponPenetration;
-				weapon.GetWeapon(out weaponPenetration, out minimumDamage, out maximumDamage);
+				weapon.GetWeapon(out attackType, out weaponPenetration, out minimumDamage, out maximumDamage);
 				penetration += weaponPenetration;
 			}
 
@@ -106,7 +112,7 @@ namespace AbarimMUD.Data
 			}
 
 			// Build attack list
-			var attack = new Attack(Race.AttackType, penetration, new RandomRange(minimumDamage, maximumDamage));
+			var attack = new Attack(attackType, penetration, new RandomRange(minimumDamage, maximumDamage));
 			var attacksList = new List<Attack>();
 			for (var i = 0; i < attacksCount; ++i)
 			{

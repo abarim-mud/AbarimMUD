@@ -12,5 +12,7 @@
 		public static string DefaultCharacter = "Yang";
 		public static string DefaultRace = "human";
 		public static string DefaultClass = "warrior";
+
+		public static int PauseBetweenFightRoundsInMs { get; set; } = 3000;
 	}
 }

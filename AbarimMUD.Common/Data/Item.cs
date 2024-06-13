@@ -55,20 +55,13 @@ namespace AbarimMUD.Data
 			armor = Value2;
 		}
 
-		public void SetWeapon(int penetration, int minimumDamage, int maximumDamage)
-		{
-			ItemType = ItemType.Weapon;
-			Value1 = penetration;
-			Value2 = minimumDamage;
-			Value3 = maximumDamage;
-		}
-
-		public void GetWeapon(out int penetration, out int minimumDamage, out int maximumDamage)
+		public void GetWeapon(out AttackType attackType, out int penetration, out int minimumDamage, out int maximumDamage)
 		{
 			EnsureType(ItemType.Weapon);
-			penetration = Value1;
-			minimumDamage = Value2;
-			maximumDamage = Value3;
+			attackType = (AttackType)Value1;
+			penetration = Value2;
+			minimumDamage = Value3;
+			maximumDamage = Value4;
 		}
 
 		public bool MatchesKeyword(string keyword) => Keywords.StartsWithPattern(keyword);

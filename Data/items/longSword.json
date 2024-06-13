@@ -10,8 +10,8 @@
   "Material": "OldStyle",
   "Affects": [],
   "ItemType": "Weapon",
-  "Value1": 10,
-  "Value2": 2,
-  "Value3": 8,
-  "Value4": 0
+  "Value1": 3,
+  "Value2": 10,
+  "Value3": 2,
+  "Value4": 8
 }

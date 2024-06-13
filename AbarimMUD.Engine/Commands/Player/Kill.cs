@@ -6,6 +6,11 @@ namespace AbarimMUD.Commands.Player
 	{
 		protected override void InternalExecute(ExecutionContext context, string data)
 		{
+			if (context.Creature.FightsWith != null)
+			{
+				context.Send($"You're too busy fighting with someone else");
+			}
+
 			data = data.Trim();
 			if (string.IsNullOrEmpty(data))
 			{
@@ -16,7 +21,7 @@ namespace AbarimMUD.Commands.Player
 			var lookContext = context.CurrentRoom.Find(data);
 			if (lookContext == null)
 			{
-				context.Send($"There isnt {data} in this room");
+				context.Send($"There isnt '{data}' in this room");
 				return;
 			}
 
@@ -27,55 +32,7 @@ namespace AbarimMUD.Commands.Player
 				return;
 			}
 
-			// Attackers attacks first
-			var attacks = context.Attacks;
-
-			var playerMessage = new StringBuilder();
-			var roomMessage = new StringBuilder();
-			for (var i = 0; i < attacks.Length; ++i)
-			{
-				var attack = attacks[i];
-				var damage = Combat.CalculateDamage(attack, asMobileContext.ArmorClass);
-
-				if (damage.Damage <= 0)
-				{
-					playerMessage.AppendLine($"Your {attack.AttackType.GetAttackNoun()} couldn't pierce through armor of {asMobileContext.ShortDescription}.");
-					roomMessage.AppendLine($"{context.ShortDescription}'s {attack.AttackType.GetAttackNoun()} couldn't pierce through armor of {asMobileContext.ShortDescription}.");
-				}
-				else
-				{
-					playerMessage.AppendLine(Strings.GetAttackMessage(damage, "You", asMobileContext.ShortDescription, attack.AttackType));
-					roomMessage.AppendLine(Strings.GetAttackMessage(damage, context.ShortDescription, asMobileContext.ShortDescription, attack.AttackType));
-				}
-			}
-
-			playerMessage.AppendLine();
-			roomMessage.AppendLine();
-
-			// Defenders attacks
-			attacks = asMobileContext.Attacks;
-			for (var i = 0; i < attacks.Length; ++i)
-			{
-				var attack = attacks[i];
-				var damage = Combat.CalculateDamage(attack, context.ArmorClass);
-
-				if (damage.Damage <= 0)
-				{
-					playerMessage.AppendLine($"{asMobileContext.ShortDescription} couldn't pierce through your armor with {attack.AttackType.GetAttackNoun()}.");
-					roomMessage.AppendLine($"{asMobileContext.ShortDescription}'s {attack.AttackType.GetAttackNoun()} couldn't pierce through armor of {context.ShortDescription}.");
-				}
-				else
-				{
-					playerMessage.AppendLine(Strings.GetAttackMessage(damage, asMobileContext.ShortDescription, "you", attack.AttackType));
-					roomMessage.AppendLine(Strings.GetAttackMessage(damage, asMobileContext.ShortDescription, context.ShortDescription, attack.AttackType));
-				}
-			}
-
-			context.Send(playerMessage.ToString());
-			foreach (var ctx in context.AllExceptMeInRoom())
-			{
-				ctx.Send(roomMessage.ToString());
-			}
+			Server.Instance.StartFight(context.CurrentRoom, context.Creature, lookContext.Creature);
 		}
 	}
 }

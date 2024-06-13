@@ -29,8 +29,8 @@ namespace AbarimMUD.Data
 
 
 		public void GetArmor(out ArmorType armorType, out int armor) => Info.GetArmor(out armorType, out armor);
-		public void GetWeapon(out int penetration, out int minimumDamage, out int maximumDamage) =>
-			Info.GetWeapon(out penetration, out minimumDamage, out maximumDamage);
+		public void GetWeapon(out AttackType attackType, out int penetration, out int minimumDamage, out int maximumDamage) =>
+			Info.GetWeapon(out attackType, out penetration, out minimumDamage, out maximumDamage);
 
 		public static bool AreEqual(ItemInstance a, ItemInstance b) => a.Id == b.Id;
 	}

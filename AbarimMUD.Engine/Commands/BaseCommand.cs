@@ -9,6 +9,8 @@ namespace AbarimMUD.Commands
 {
 	public abstract class BaseCommand
 	{
+		public const string ExecuteName = "DoExecute";
+
 		private static readonly Dictionary<string, BaseCommand> _allCommands = new Dictionary<string, BaseCommand>();
 
 		// Players
@@ -35,7 +37,9 @@ namespace AbarimMUD.Commands
 		public static readonly Kill Kill = new Kill();
 
 		// Builders
+		public static readonly Peace Peace = new Peace();
 		public static readonly Force Force = new Force();
+		public static readonly Restore Restore = new Restore();
 		public static readonly Areas Areas = new Areas();
 		public static readonly Goto Goto = new Goto();
 

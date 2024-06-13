@@ -151,5 +151,23 @@ namespace AbarimMUD
 		}
 
 		public static bool EqualsToIgnoreCase(this string name, string otherName) => string.Equals(name, otherName, StringComparison.OrdinalIgnoreCase);
+
+		public static T FindAttribute<T>(this Type type) where T : Attribute
+		{
+			var result = (from T a in type.GetCustomAttributes<T>(true) select a).FirstOrDefault();
+
+			return result;
+		}
+
+		public static MethodInfo EnsureMethod(this Type type, string methodName)
+		{
+			var result = type.GetMethod(methodName);
+			if (result == null)
+			{
+				throw new Exception($"Unable to find method {methodName}");
+			}
+
+			return result;
+		}
 	}
 }
