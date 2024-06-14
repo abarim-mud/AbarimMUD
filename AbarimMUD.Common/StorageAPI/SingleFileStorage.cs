@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System;
+using AbarimMUD.StorageAPI;
 
 namespace AbarimMUD.Storage
 {
@@ -50,7 +51,31 @@ namespace AbarimMUD.Storage
 
 			var path = Path.ChangeExtension(Path.Combine(BaseFolder, FileName), "json");
 
-			JsonSerializeToFile(path, All);
+			var all = All;
+			try
+			{
+				foreach(var entity in all)
+				{
+					var asSE = entity as ISerializationEvents;
+					if (asSE != null)
+					{
+						asSE.OnSerializationStarted();
+					}
+				}
+
+				JsonSerializeToFile(path, All);
+			}
+			finally
+			{
+				foreach (var entity in all)
+				{
+					var asSE = entity as ISerializationEvents;
+					if (asSE != null)
+					{
+						asSE.OnSerializationEnded();
+					}
+				}
+			}
 		}
 
 		public override void Remove(ItemType entity)

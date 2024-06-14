@@ -52,11 +52,23 @@ namespace AbarimMUD.Commands.AreaBuilder
 			}
 
 			var s = parts[3];
-			if (property.Type == typeof(string))
+			if (s.EqualsToIgnoreCase("null"))
+			{
+				if (property.Type.IsClass || property.Type.IsNullable())
+				{
+					property.SetValue(item, null);
+				}
+				else
+				{
+					context.Send($"Property {property.Name} of type '{property.Type.Name}' can't be set to null.");
+					return;
+				}
+			}
+			else if (property.Type == typeof(string))
 			{
 				property.SetValue(item, s);
 			}
-			else if (property.Type == typeof(bool))
+			else if (property.Type == typeof(bool) || property.Type == typeof(bool?))
 			{
 				bool b;
 				if (!context.EnsureBool(s, out b))
@@ -66,7 +78,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 
 				property.SetValue(item, b);
 			}
-			else if (property.Type == typeof(RaceClassValueRange))
+			else if (property.Type == typeof(RaceClassValueRange) || property.Type == typeof(RaceClassValueRange?))
 			{
 				var parts2 = s.SplitByWhitespace();
 				if (parts2.Length < 2)

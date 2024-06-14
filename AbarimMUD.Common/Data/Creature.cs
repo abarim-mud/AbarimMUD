@@ -46,9 +46,10 @@ namespace AbarimMUD.Data
 				return;
 			}
 
+			Class.EnsureHitpointsRangeSet();
 			_stats = new CreatureStats
 			{
-				MaxHitpoints = (int)(Race.HitpointsModifier * Class.Hitpoints.CalculateValue(Level)),
+				MaxHitpoints = (int)(Race.HitpointsModifier * Class.Hitpoints.Value.CalculateValue(Level)),
 				Armor = Race.NaturalArmor.CalculateValue(Level),
 			};
 
@@ -68,7 +69,8 @@ namespace AbarimMUD.Data
 			}
 
 			var attacksCount = Race.NaturalAttacksCount.CalculateValue(Level);
-			var penetration = (int)(Race.PenetrationModifier * Class.Penetration.CalculateValue(Level));
+
+			var penetration = (int)(Race.PenetrationModifier * Class.Penetration.Value.CalculateValue(Level));
 
 			var weapon = Equipment[SlotType.Wield];
 
@@ -89,26 +91,47 @@ namespace AbarimMUD.Data
 				penetration += weaponPenetration;
 			}
 
-			// Apply skill modifiers
-			foreach (var pair in Class.SkillsByLevels)
+			var damageBonus = Class.DamageBonus;
+			if (damageBonus != null)
 			{
-				if (Level < pair.Key)
-				{
-					continue;
-				}
+				var bonus = damageBonus.CalculateValue(Level);
+				minimumDamage += bonus;
+				maximumDamage += bonus;
+			}
 
-				foreach (var skill in pair.Value)
+			var attacksCountBonus = Class.AttacksCountBonus;
+			if (attacksCountBonus != null)
+			{
+				var bonus = attacksCountBonus.CalculateValue(Level);
+				attacksCount += bonus;
+			}
+
+			// Apply skill modifiers
+			var cls = Class;
+			while (cls != null)
+			{
+				foreach (var pair in cls.SkillsByLevels)
 				{
-					foreach (var pair2 in skill.Modifiers)
+					if (Level < pair.Key)
 					{
-						switch (pair2.Key)
+						continue;
+					}
+
+					foreach (var skill in pair.Value)
+					{
+						foreach (var pair2 in skill.Modifiers)
 						{
-							case ModifierType.AttacksCount:
-								attacksCount += pair2.Value;
-								break;
+							switch (pair2.Key)
+							{
+								case ModifierType.AttacksCount:
+									attacksCount += pair2.Value;
+									break;
+							}
 						}
 					}
 				}
+
+				cls = cls.Inherits;
 			}
 
 			// Build attack list
@@ -151,7 +174,7 @@ namespace AbarimMUD.Data
 
 		public static void InvalidateAllCreaturesStats()
 		{
-			foreach(var creature in AllCreatures)
+			foreach (var creature in AllCreatures)
 			{
 				creature.InvalidateStats();
 			}

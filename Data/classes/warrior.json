@@ -3,12 +3,6 @@
   "Name": "Warrior",
   "Description": "Master of armor and sword.",
   "Inherits": null,
-  "IsPlayerClass": true,
-  "SkillsByLevels": {
-    "36": [
-      "thirdAttack"
-    ]
-  },
   "Hitpoints": {
     "Level1Value": 40,
     "Level100Value": 1500
@@ -16,5 +10,13 @@
   "Penetration": {
     "Level1Value": 10,
     "Level100Value": 100
+  },
+  "DamageBonus": null,
+  "AttacksCountBonus": null,
+  "IsPlayerClass": true,
+  "SkillsByLevels": {
+    "36": [
+      "thirdAttack"
+    ]
   }
 }

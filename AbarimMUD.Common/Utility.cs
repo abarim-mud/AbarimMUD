@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AbarimMUD.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -134,6 +135,31 @@ namespace AbarimMUD
 			}
 
 			return result;
+		}
+
+		public static int CalculateValue(this RaceClassValueRange? range, int level)
+		{
+			if (range == null)
+			{
+				return 0;
+			}
+
+			return range.Value.CalculateValue(level);
+		}
+
+		public static bool IsNullable(this Type type)
+		{
+			return type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>);
+		}
+
+		public static bool IsNullablePrimitive(this Type type)
+		{
+			return type.IsNullable() && type.GenericTypeArguments[0].IsPrimitive;
+		}
+
+		public static bool IsNullableEnum(this Type type)
+		{
+			return type.IsNullable() && type.GenericTypeArguments[0].IsEnum;
 		}
 	}
 }

@@ -3,8 +3,6 @@
   "Name": "Guard",
   "Description": "guard",
   "Inherits": "warrior",
-  "IsPlayerClass": false,
-  "SkillsByLevels": {},
   "Hitpoints": {
     "Level1Value": 50,
     "Level100Value": 5000
@@ -12,5 +10,15 @@
   "Penetration": {
     "Level1Value": 10,
     "Level100Value": 200
-  }
+  },
+  "DamageBonus": {
+    "Level1Value": 1,
+    "Level100Value": 50
+  },
+  "AttacksCountBonus": {
+    "Level1Value": 1,
+    "Level100Value": 3
+  },
+  "IsPlayerClass": false,
+  "SkillsByLevels": {}
 }

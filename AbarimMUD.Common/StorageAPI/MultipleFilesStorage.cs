@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AbarimMUD.StorageAPI;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -48,7 +49,25 @@ namespace AbarimMUD.Storage
 			var path = BuildPath(entity);
 			var folder = Path.GetDirectoryName(path);
 			EnsureFolder(folder);
-			JsonSerializeToFile(path, entity);
+
+			try
+			{
+				var asSE = entity as ISerializationEvents;
+				if (asSE != null)
+				{
+					asSE.OnSerializationStarted();
+				}
+
+				JsonSerializeToFile(path, entity);
+			}
+			finally
+			{
+				var asSE = entity as ISerializationEvents;
+				if (asSE != null)
+				{
+					asSE.OnSerializationEnded();
+				}
+			}
 
 			_files[GetKey(entity)] = path;
 		}
