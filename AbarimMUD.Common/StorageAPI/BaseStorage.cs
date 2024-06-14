@@ -9,8 +9,21 @@ namespace AbarimMUD.Storage
 	{
 		private DataContextSettings _settings;
 
-		protected string BaseFolder => _settings.Folder;
-		public bool Loaded => _settings != null;
+		private DataContextSettings Settings
+		{
+			get
+			{
+				if (_settings == null)
+				{
+					throw new Exception($"Settings are null. Make sure the DataContext.Load was called.");
+				}
+
+				return _settings;
+			}
+		}
+
+		protected string BaseFolder => Settings.Folder;
+		public bool Loaded => Settings != null;
 		public virtual string Name => GetType().Name;
 
 		internal void Load(DataContextSettings settings)
@@ -26,7 +39,7 @@ namespace AbarimMUD.Storage
 		{
 		}
 
-		protected void Log(string message) => _settings.Log(message);
+		protected void Log(string message) => Settings.Log(message);
 
 		protected void LogDoesntExist(string name)
 		{

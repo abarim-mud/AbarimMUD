@@ -11,24 +11,22 @@ namespace AbarimMUD.ExportAreasToMMB
 {
 	internal static class Program
 	{
-		public static string ExecutingAssemblyDirectory
-		{
-			get
-			{
-				string codeBase = Assembly.GetExecutingAssembly().Location;
-				UriBuilder uri = new UriBuilder(codeBase);
-				string path = Uri.UnescapeDataString(uri.Path);
-				return Path.GetDirectoryName(path);
-			}
-		}
-
 		static void Log(string message) => Console.WriteLine(message);
 
-		static void Process()
+		static void Process(string inputFolder, string outputFolder)
 		{
-			var dataDir = Path.Combine(ExecutingAssemblyDirectory, "../../../../Data");
-			DataContext.Initialize(dataDir, Console.WriteLine);
+			DataContext.Initialize(inputFolder, Log);
+
+			DataContext.Register(Race.Storage);
+			DataContext.Register(GameClass.Storage);
+			DataContext.Register(Mobile.Storage);
+			DataContext.Register(Item.Storage);
+			DataContext.Register(Skill.Storage);
 			DataContext.Register(Area.Storage);
+			DataContext.Register(Account.Storage);
+			DataContext.Register(Character.Storage);
+			DataContext.Register(Social.Storage);
+
 			DataContext.Load();
 
 			var mmbAreas = new List<MMBArea>();
@@ -122,10 +120,11 @@ namespace AbarimMUD.ExportAreasToMMB
 			}
 
 			// Save all areas and generate conversion script
-			if (!Directory.Exists("output"))
+			if (!Directory.Exists(outputFolder))
 			{
-				Directory.CreateDirectory("output");
+				Directory.CreateDirectory(outputFolder);
 			}
+
 			foreach (var area in mmbAreas)
 			{
 				var fileName = $"{area.Name}.json";
@@ -134,7 +133,7 @@ namespace AbarimMUD.ExportAreasToMMB
 				// Copy build options
 				var project = new MMBProject(area, new BuildOptions());
 				var data = project.ToJson();
-				File.WriteAllText(Path.Combine(@"output", fileName), data);
+				File.WriteAllText(Path.Combine(outputFolder, fileName), data);
 			}
 		}
 
@@ -142,7 +141,7 @@ namespace AbarimMUD.ExportAreasToMMB
 		{
 			try
 			{
-				Process();
+				Process(@"D:\Projects\AbarimMUD\Data", @"D:\Projects\abarim-mud.github.io\maps\json");
 			}
 			catch (Exception ex)
 			{
