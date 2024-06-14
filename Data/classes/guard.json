@@ -15,9 +15,16 @@
     "Level1Value": 1,
     "Level100Value": 50
   },
-  "AttacksCountBonus": {
-    "Level1Value": 1,
-    "Level100Value": 3
+  "LevelsBonuses": {
+    "50": {
+      "AttacksCount": 1
+    },
+    "75": {
+      "AttacksCount": 1
+    },
+    "100": {
+      "AttacksCount": 1
+    }
   },
   "IsPlayerClass": false,
   "SkillsByLevels": {}

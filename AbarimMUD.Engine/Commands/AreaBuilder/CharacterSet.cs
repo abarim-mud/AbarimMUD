@@ -69,7 +69,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 
 				case "race":
 					{
-						var race = context.EnsureRace(cmdData);
+						var race = context.EnsureRaceById(cmdData);
 						if (race == null)
 						{
 							return;

@@ -11,7 +11,7 @@ namespace AbarimMUD.Commands
 	public static class CommandUtils
 	{
 
-		public static Race EnsureRace(this ExecutionContext context, string name)
+		public static Race EnsureRaceById(this ExecutionContext context, string name)
 		{
 			var race = Race.GetRaceById(name);
 			if (race == null)

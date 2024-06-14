@@ -12,7 +12,7 @@
     "Level100Value": 100
   },
   "DamageBonus": null,
-  "AttacksCountBonus": null,
+  "LevelsBonuses": {},
   "IsPlayerClass": true,
   "SkillsByLevels": {
     "36": [

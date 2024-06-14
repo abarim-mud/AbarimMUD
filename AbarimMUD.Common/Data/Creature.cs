@@ -99,14 +99,7 @@ namespace AbarimMUD.Data
 				maximumDamage += bonus;
 			}
 
-			var attacksCountBonus = Class.AttacksCountBonus;
-			if (attacksCountBonus != null)
-			{
-				var bonus = attacksCountBonus.CalculateValue(Level);
-				attacksCount += bonus;
-			}
-
-			// Apply skill modifiers
+			// Apply skill modifiers amd bonuses
 			var cls = Class;
 			while (cls != null)
 			{
@@ -129,6 +122,25 @@ namespace AbarimMUD.Data
 							}
 						}
 					}
+				}
+
+				foreach (var pair in cls.LevelsBonuses)
+				{
+					if (Level < pair.Key)
+					{
+						continue;
+					}
+
+					foreach (var pair2 in pair.Value)
+					{
+						switch (pair2.Key)
+						{
+							case ModifierType.AttacksCount:
+								attacksCount += pair2.Value;
+								break;
+						}
+					}
+
 				}
 
 				cls = cls.Inherits;

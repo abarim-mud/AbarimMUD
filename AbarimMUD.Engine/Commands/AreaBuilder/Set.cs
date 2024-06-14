@@ -78,6 +78,16 @@ namespace AbarimMUD.Commands.AreaBuilder
 
 				property.SetValue(item, b);
 			}
+			else if (property.Type == typeof(int) || property.Type == typeof(int?))
+			{
+				int i;
+				if (!context.EnsureInt(s, out i))
+				{
+					return;
+				}
+
+				property.SetValue(item, i);
+			}
 			else if (property.Type == typeof(RaceClassValueRange) || property.Type == typeof(RaceClassValueRange?))
 			{
 				var parts2 = s.SplitByWhitespace();
@@ -116,6 +126,22 @@ namespace AbarimMUD.Commands.AreaBuilder
 				}
 
 				property.SetValue(item, cls);
+			}
+			else if (property.Type == typeof(Race))
+			{
+				var race = context.EnsureRaceById(s);
+				if (race == null)
+				{
+					return;
+				}
+
+				if (ReferenceEquals(race, item))
+				{
+					context.Send("Object can't reference itself.");
+					return;
+				}
+
+				property.SetValue(item, race);
 			}
 			else
 			{

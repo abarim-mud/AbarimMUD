@@ -69,7 +69,6 @@ namespace AbarimMUD.Data
 		private RaceClassValueRange? _hitpoints;
 		private RaceClassValueRange? _penetration;
 		private RaceClassValueRange? _damageBonus;
-		private RaceClassValueRange? _attacksCountBonus;
 
 		public string Id { get; set; }
 
@@ -159,29 +158,7 @@ namespace AbarimMUD.Data
 			}
 		}
 
-		public RaceClassValueRange? AttacksCountBonus
-		{
-			get
-			{
-				if (UseOriginalValues || Inherits == null || _attacksCountBonus != null)
-				{
-					return _attacksCountBonus;
-				}
-
-				return Inherits.AttacksCountBonus;
-			}
-
-			set
-			{
-				if (value == _attacksCountBonus)
-				{
-					return;
-				}
-
-				_attacksCountBonus = value;
-				Creature.InvalidateAllCreaturesStats();
-			}
-		}
+		public Dictionary<int, Dictionary<ModifierType, int>> LevelsBonuses { get; set; } = new Dictionary<int, Dictionary<ModifierType, int>>();
 
 		public bool IsPlayerClass { get; set; }
 
