@@ -57,9 +57,9 @@ namespace AbarimMUD.Commands
 		public static readonly RoomLinkClear RLinkClear = new RoomLinkClear();
 		public static readonly RoomSaveResets RoomSaveResets = new RoomSaveResets();
 
-		public static readonly MobileCreate MobileCreate = new MobileCreate();
+//		public static readonly MobileCreate MobileCreate = new MobileCreate();
 		public static readonly MobileSpawn MobileSpawn = new MobileSpawn();
-		public static readonly MobileSet MobileSet = new MobileSet();
+//		public static readonly MobileSet MobileSet = new MobileSet();
 
 		public static readonly ItemSearch ItemSearch = new ItemSearch();
 		public static readonly ItemCreate ItemCreate = new ItemCreate();

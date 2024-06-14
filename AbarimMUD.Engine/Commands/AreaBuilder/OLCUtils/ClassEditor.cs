@@ -131,7 +131,7 @@ namespace AbarimMUD.Commands.AreaBuilder.OLCUtils
 						break;
 					}
 
-					var entity = value as IEntity;
+					var entity = value as IHasId<string>;
 					if (entity != null)
 					{
 						stringValue = entity.Id;

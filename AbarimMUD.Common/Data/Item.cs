@@ -20,7 +20,7 @@ namespace AbarimMUD.Data
 		Wrist
 	}
 
-	public class Item: IEntity
+	public class Item: IStoredInFile
 	{
 		public static readonly MultipleFilesStorageString<Item> Storage = new Items();
 

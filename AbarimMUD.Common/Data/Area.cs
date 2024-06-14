@@ -15,25 +15,27 @@ namespace AbarimMUD.Data
 
 	public class AreaMobileReset
 	{
-		public string MobileId { get; set; }
+		public int MobileId { get; set; }
 		public int RoomId { get; set; }
 
 		public AreaMobileReset()
 		{
 		}
 
-		public AreaMobileReset(string mobileId, int roomId)
+		public AreaMobileReset(int mobileId, int roomId)
 		{
 			MobileId = mobileId;
 			RoomId = roomId;
 		}
 	}
 
-	public class Area
+	public class Area : IStoredInFile
 	{
 		public static readonly Areas Storage = new Areas();
 
 		private ObservableCollection<Room> _rooms;
+		private ObservableCollection<Mobile> _mobiles;
+		public string Id { get; set; }
 
 		public string Name { get; set; }
 
@@ -71,29 +73,65 @@ namespace AbarimMUD.Data
 
 				_rooms.CollectionChanged += OnRoomsChanged;
 
-				UpdateRooms();
+				UpdateEntities(Rooms);
+			}
+		}
+
+		public ObservableCollection<Mobile> Mobiles
+		{
+			get => _mobiles;
+			set
+			{
+				if (value == null)
+				{
+					throw new ArgumentNullException(nameof(value));
+				}
+
+				if (value == _mobiles)
+				{
+					return;
+				}
+
+				if (_mobiles != null)
+				{
+					_mobiles.CollectionChanged -= OnMobilesChanged;
+				}
+
+				_mobiles = value;
+
+				_mobiles.CollectionChanged += OnMobilesChanged;
+
+				UpdateEntities(Mobiles);
 			}
 		}
 
 		public List<AreaMobileReset> MobileResets { get; set; }
 
 		public event EventHandler RoomsChanged;
+		public event EventHandler MobilesChanged;
 
 		public Area()
 		{
 			Rooms = new ObservableCollection<Room>();
+			Mobiles = new ObservableCollection<Mobile>();
 			MobileResets = new List<AreaMobileReset>();
 		}
 
 		private void OnRoomsChanged(object sender, NotifyCollectionChangedEventArgs e)
 		{
-			UpdateRooms();
+			UpdateEntities(Rooms);
 			RoomsChanged?.Invoke(this, EventArgs.Empty);
 		}
 
-		private void UpdateRooms()
+		private void OnMobilesChanged(object sender, NotifyCollectionChangedEventArgs e)
 		{
-			foreach (var r in Rooms)
+			UpdateEntities(Mobiles);
+			MobilesChanged?.Invoke(this, EventArgs.Empty);
+		}
+
+		private void UpdateEntities(IEnumerable<AreaEntity> entities)
+		{
+			foreach (var r in entities)
 			{
 				r.Area = this;
 			}
@@ -105,6 +143,7 @@ namespace AbarimMUD.Data
 		public override string ToString() => $"{MinimumLevel}-{MaximumLevel} {Builders} {Name}";
 
 		public static int NextRoomId => Storage.NewRoomId;
+		public static int NextMobileId => Storage.NewMobileId;
 
 		public static Area GetAreaByName(string name) => Storage.GetByKey(name);
 		public static Area EnsureAreaByName(string name) => Storage.EnsureByKey(name);

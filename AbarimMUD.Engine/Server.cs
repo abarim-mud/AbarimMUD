@@ -62,7 +62,6 @@ namespace AbarimMUD
 
 			DataContext.Register(Race.Storage);
 			DataContext.Register(GameClass.Storage);
-			DataContext.Register(Mobile.Storage);
 			DataContext.Register(Item.Storage);
 			DataContext.Register(Skill.Storage);
 			DataContext.Register(Area.Storage);

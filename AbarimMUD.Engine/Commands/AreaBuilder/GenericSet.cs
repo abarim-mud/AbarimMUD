@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace AbarimMUD.Commands.AreaBuilder
 {
-	public class GenericSet<T> : AreaBuilderCommand where T : IEntity
+	public class GenericSet<T> : AreaBuilderCommand where T : IStoredInFile
 	{
 		private readonly Func<ExecutionContext, string, T> _itemGetter;
 
@@ -111,7 +111,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 			}
 
 			item.Save();
-			context.Send($"Changed {item.Id}'s {recordName} to '{s}'");
+			context.Send($"Changed {item.GetStringId()}'s {recordName} to '{s}'");
 		}
 	}
 }

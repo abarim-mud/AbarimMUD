@@ -4,7 +4,7 @@ using System;
 
 namespace AbarimMUD.Commands.AreaBuilder
 {
-	public abstract class GenericCreate<T> : AreaBuilderCommand where T : IEntity, new()
+	public abstract class GenericCreate<T> : AreaBuilderCommand where T : IStoredInFile, new()
 	{
 		private readonly Func<string, T> _itemGetter;
 
@@ -35,10 +35,8 @@ namespace AbarimMUD.Commands.AreaBuilder
 			}
 
 			// Create new mobile
-			var newEntity = new T
-			{
-				Id = id,
-			};
+			var newEntity = new T();
+			context.SetStringId(newEntity, id);
 
 			PreCreate(context, newEntity);
 

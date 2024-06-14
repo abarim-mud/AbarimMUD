@@ -1,14 +1,15 @@
-﻿using DikuLoad.Data;
+﻿using AbarimMUD.Data;
+using System.Linq;
 
 namespace AbarimMUD.Import.Diku
 {
 	internal static class Utility
 	{
-		public static Data.Direction ToAMDirection(this Direction dir) => (Data.Direction)dir;
+		public static Direction ToAMDirection(this DikuLoad.Data.Direction dir) => (Data.Direction)dir;
 
-		public static Data.Room ToAMRoom(this Room room)
+		public static Room ToAmRoom(this DikuLoad.Data.Room room)
 		{
-			var result = new Data.Room
+			var result = new Room
 			{
 				Id = room.VNum,
 				Name = room.Name,
@@ -22,7 +23,7 @@ namespace AbarimMUD.Import.Diku
 					continue;
 				}
 
-				var roomExit = new Data.RoomExit
+				var roomExit = new RoomExit
 				{
 					Direction = exit.Key.ToAMDirection(),
 					Tag = exit.Value.TargetRoom.VNum
@@ -34,9 +35,29 @@ namespace AbarimMUD.Import.Diku
 			return result;
 		}
 
-		public static Data.Area ToMMBArea(this Area area)
+		public static Mobile ToAmMobile(this DikuLoad.Data.Mobile mobile)
 		{
-			var result = new Data.Area
+			var raceId = string.IsNullOrEmpty(mobile.Race) ? "human" : mobile.Race;
+			var classId = "warrior";
+
+			var result = new Mobile
+			{
+				Id = mobile.VNum,
+				Keywords = mobile.Name.SplitByWhitespace().ToHashSet(),
+				ShortDescription = mobile.ShortDescription,
+				LongDescription = mobile.LongDescription,
+				Description = mobile.Description,
+				Race = Race.EnsureRaceById(raceId),
+				Class = GameClass.EnsureClassById(classId),
+				Level = mobile.Level,
+			};
+
+			return result;
+		}
+
+		public static Area ToAmArea(this DikuLoad.Data.Area area)
+		{
+			var result = new Area
 			{
 				Name = area.Name,
 				Credits = area.Builders,
@@ -46,7 +67,12 @@ namespace AbarimMUD.Import.Diku
 
 			foreach (var room in area.Rooms)
 			{
-				result.Rooms.Add(room.ToAMRoom());
+				result.Rooms.Add(room.ToAmRoom());
+			}
+
+			foreach (var mobile in area.Mobiles)
+			{
+				result.Mobiles.Add(mobile.ToAmMobile());
 			}
 
 			return result;

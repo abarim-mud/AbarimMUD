@@ -8,28 +8,28 @@ using System.Collections;
 namespace AbarimMUD.Commands.AreaBuilder.OLCUtils
 {
 
-	public interface IOLCStorage : IEnumerable<IEntity>
+	public interface IOLCStorage : IEnumerable<IStoredInFile>
 	{
-		IEntity FindById(string id);
+		IStoredInFile FindById(string id);
 	}
 
 	internal static class OLCManager
 	{
-		private class OLCRecord<T> : IOLCStorage where T : class, IEntity
+		private class OLCRecord<EntityType> : IOLCStorage where EntityType : class, IStoredInFile
 		{
-			private readonly MultipleFilesStorageString<T> _storage;
+			private readonly MultipleFilesStorageString<EntityType> _storage;
 
-			public OLCRecord(MultipleFilesStorageString<T> storage)
+			public OLCRecord(MultipleFilesStorageString<EntityType> storage)
 			{
 				_storage = storage ?? throw new ArgumentNullException(nameof(storage));
 			}
 
-			public IEntity FindById(string id)
+			public IStoredInFile FindById(string id)
 			{
 				return _storage.GetByKey(id);
 			}
 
-			public IEnumerator<IEntity> GetEnumerator() => _storage.GetEnumerator();
+			public IEnumerator<IStoredInFile> GetEnumerator() => _storage.GetEnumerator();
 
 			IEnumerator IEnumerable.GetEnumerator() => _storage.GetEnumerator();
 		}
@@ -46,7 +46,6 @@ namespace AbarimMUD.Commands.AreaBuilder.OLCUtils
 		{
 			_records["race"] = new OLCRecord<Race>(Race.Storage);
 			_records["class"] = new OLCRecord<GameClass>(GameClass.Storage);
-			_records["mobile"] = new OLCRecord<Mobile>(Mobile.Storage);
 			_records["item"] = new OLCRecord<Item>(Item.Storage);
 
 			_keys = _records.Keys.ToArray();

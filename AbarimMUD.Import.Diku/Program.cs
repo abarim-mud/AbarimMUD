@@ -19,7 +19,6 @@ namespace AbarimMUD.Import.Diku
 
 			DataContext.Register(Race.Storage);
 			DataContext.Register(GameClass.Storage);
-			DataContext.Register(Mobile.Storage);
 			DataContext.Register(Item.Storage);
 			DataContext.Register(Skill.Storage);
 			DataContext.Register(Area.Storage);
@@ -48,18 +47,30 @@ namespace AbarimMUD.Import.Diku
 					continue;
 				}
 
-				var area = dikuArea.ToMMBArea();
+				var area = dikuArea.ToAmArea();
+
+				// Set resets
+				foreach(var reset in dikuArea.Resets)
+				{
+					if (reset.ResetType != DikuLoad.Data.AreaResetType.NPC)
+					{
+						continue;
+					}
+
+					area.MobileResets.Add(new AreaMobileReset(reset.MobileVNum, reset.Value4));
+				}
+
 				area.Save();
 
 				++outputAreasCount;
 			}
 
 			// Update exits
-			foreach(var area in Area.Storage)
+			foreach (var area in Area.Storage)
 			{
-				foreach(var room in area.Rooms)
+				foreach (var room in area.Rooms)
 				{
-					foreach(var pair in room.Exits)
+					foreach (var pair in room.Exits)
 					{
 						var exit = pair.Value;
 						var roomId = (int)exit.Tag;

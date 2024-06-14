@@ -120,7 +120,6 @@ namespace AbarimMUD.Commands
 
 		public static GameClass EnsureClassById(this ExecutionContext context, string id) => EnsureById(context, id, GameClass.GetClassById);
 		public static Item EnsureItemById(this ExecutionContext context, string id) => EnsureById(context, id, Item.GetItemById);
-		public static Mobile EnsureMobileById(this ExecutionContext context, string id) => EnsureById(context, id, Mobile.GetMobileById);
 		public static Character EnsureCharacterByName(this ExecutionContext context, string name) => EnsureById(context, name, Character.GetCharacterByName);
 
 		public static Item EnsureItemType(this ExecutionContext context, string id, ItemType itemType)
@@ -164,6 +163,46 @@ namespace AbarimMUD.Commands
 			}
 
 			return grid;
+		}
+
+		public static string GetStringId(this IStoredInFile entity)
+		{
+			var asStringEntity = entity as IHasId<string>;
+			if (asStringEntity != null)
+			{
+				return asStringEntity.Id;
+			}
+
+			var asIntEntity = entity as IHasId<int>;
+			if (asIntEntity != null)
+			{
+				return asStringEntity.Id.ToString();
+			}
+
+			throw new Exception($"Can't determine id of {entity}");
+		}
+
+		public static void SetStringId(this ExecutionContext context, IStoredInFile entity, string value)
+		{
+			var asStringEntity = entity as IHasId<string>;
+			if (asStringEntity != null)
+			{
+				asStringEntity.Id = value;
+			}
+
+			var asIntEntity = entity as IHasId<int>;
+			if (asIntEntity != null)
+			{
+				int id;
+				if (!context.EnsureInt(value, out id))
+				{
+					return;
+				}
+
+				asIntEntity.Id = id;
+			}
+
+			throw new Exception($"Can't determine id of {entity}");
 		}
 	}
 }

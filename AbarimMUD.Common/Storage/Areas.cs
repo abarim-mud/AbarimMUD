@@ -8,6 +8,90 @@ namespace AbarimMUD.Storage
 {
 	public class Areas : MultipleFilesStorageString<Area>
 	{
+		private class EntityCache<T> where T : AreaEntity
+		{
+			private readonly Areas _areas;
+			private readonly Func<Area, IEnumerable<T>> _getter;
+			private readonly Dictionary<int, T> _cache = new Dictionary<int, T>();
+			private bool _dirty = true;
+			private int _nextId = 1;
+
+			public int NextId
+			{
+				get
+				{
+					Update();
+					var result = _nextId;
+					++_nextId;
+					return result;
+				}
+			}
+
+			public IReadOnlyDictionary<int, T> All => _cache;
+
+			public EntityCache(Areas areas, Func<Area, IEnumerable<T>> getter)
+			{
+				_areas = areas ?? throw new ArgumentNullException(nameof(areas));
+				_getter = getter ?? throw new ArgumentNullException(nameof(getter));
+			}
+
+			public void Invalidate()
+			{
+				_dirty = true;
+			}
+
+			private void Update()
+			{
+				if (!_dirty)
+				{
+					return;
+				}
+
+				_cache.Clear();
+				var maxId = 0;
+				foreach (var area in _areas)
+				{
+					var entities = _getter(area);
+					foreach (var entity in entities)
+					{
+						if (entity.Id > maxId)
+						{
+							maxId = entity.Id;
+						}
+
+						_cache[entity.Id] = entity;
+					}
+				}
+
+				_nextId = maxId + 1;
+				_dirty = false;
+			}
+
+			public T GetById(int id)
+			{
+				Update();
+
+				T result;
+				if (!_cache.TryGetValue(id, out result))
+				{
+					return null;
+				}
+
+				return result;
+			}
+
+			public T EnsureById(int id)
+			{
+				var result = GetById(id);
+				if (result == null)
+				{
+					throw new Exception($"Could not find {typeof(T).Name.ToLower()} with vnum {id}");
+				}
+
+				return result;
+			}
+		}
+
 		private class RoomExitConverter : JsonConverter<RoomExit>
 		{
 			public override RoomExit Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
@@ -34,24 +118,17 @@ namespace AbarimMUD.Storage
 
 		internal const string SubfolderName = "areas";
 
-		private bool _roomsDirty = true;
-		private int _nextRoomId = 1;
-		private readonly Dictionary<int, Room> _allRoomsCache = new Dictionary<int, Room>();
+		private readonly EntityCache<Room> _allRoomsCache;
+		private readonly EntityCache<Mobile> _allMobilesCache;
 
-		public int NewRoomId
-		{
-			get
-			{
-				var result = _nextRoomId;
-				++_nextRoomId;
-				return result;
-			}
-		}
+		public int NewRoomId => _allRoomsCache.NextId;
 
-		public IReadOnlyDictionary<int, Room> AllRooms => _allRoomsCache;
+		public int NewMobileId => _allMobilesCache.NextId;
 
 		internal Areas() : base(a => a.Name, SubfolderName)
 		{
+			_allRoomsCache = new EntityCache<Room>(this, a => a.Rooms);
+			_allMobilesCache = new EntityCache<Mobile>(this, a => a.Mobiles);
 		}
 
 		public override Area LoadEntity(string filePath)
@@ -59,15 +136,22 @@ namespace AbarimMUD.Storage
 			var area = base.LoadEntity(filePath);
 
 			area.RoomsChanged += Area_RoomsChanged;
+			area.MobilesChanged += Area_MobilesChanged;
 
-			_roomsDirty = true;
+			_allRoomsCache.Invalidate();
+			_allMobilesCache.Invalidate();
 
 			return area;
 		}
 
+		private void Area_MobilesChanged(object sender, EventArgs e)
+		{
+			_allMobilesCache.Invalidate();
+		}
+
 		private void Area_RoomsChanged(object sender, EventArgs e)
 		{
-			_roomsDirty = true;
+			_allRoomsCache.Invalidate();
 		}
 
 		protected override void ClearCache()
@@ -75,6 +159,7 @@ namespace AbarimMUD.Storage
 			foreach (var area in this)
 			{
 				area.RoomsChanged -= Area_RoomsChanged;
+				area.MobilesChanged -= Area_MobilesChanged;
 			}
 
 			base.ClearCache();
@@ -103,72 +188,29 @@ namespace AbarimMUD.Storage
 						exit.Tag = null;
 					}
 				}
-			}
 
-			UpdateAllRooms();
+				foreach (var mobile in area.Mobiles)
+				{
+					mobile.Race = Race.EnsureRaceById(mobile.Race.Id);
+					mobile.Class = GameClass.EnsureClassById(mobile.Class.Id);
+				}
+			}
 		}
 
 		protected override JsonSerializerOptions CreateJsonOptions()
 		{
 			var result = base.CreateJsonOptions();
 			result.Converters.Add(new RoomExitConverter());
+			result.Converters.Add(Common.RaceConverter);
+			result.Converters.Add(Common.ClassConverter);
+			result.Converters.Add(Common.ItemConverter);
 
 			return result;
 		}
 
-		protected override void InternalLoad()
-		{
-			base.InternalLoad();
-		}
-
-		private void UpdateAllRooms()
-		{
-			if (!_roomsDirty)
-			{
-				return;
-			}
-
-			_allRoomsCache.Clear();
-			var maxRoomId = 0;
-			foreach (var area in All)
-			{
-				foreach (var room in area.Rooms)
-				{
-					if (room.Id > maxRoomId)
-					{
-						maxRoomId = room.Id;
-					}
-
-					_allRoomsCache[room.Id] = room;
-				}
-			}
-
-			_nextRoomId = maxRoomId + 1;
-			_roomsDirty = false;
-		}
-
-		public Room GetRoomById(int id)
-		{
-			UpdateAllRooms();
-
-			Room result;
-			if (!_allRoomsCache.TryGetValue(id, out result))
-			{
-				return null;
-			}
-
-			return result;
-		}
-
-		public Room EnsureRoomById(int id)
-		{
-			var result = GetRoomById(id);
-			if (result == null)
-			{
-				throw new Exception($"Could not find room with vnum {id}");
-			}
-
-			return result;
-		}
+		public Room GetRoomById(int id) => _allRoomsCache.GetById(id);
+		public Room EnsureRoomById(int id) => _allRoomsCache.EnsureById(id);
+		public Mobile GetMobileById(int id) => _allMobilesCache.GetById(id);
+		public Mobile EnsureMobileById(int id) => _allMobilesCache.GetById(id);
 	}
 }

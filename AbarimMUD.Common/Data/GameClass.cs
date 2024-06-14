@@ -41,7 +41,7 @@ namespace AbarimMUD.Data
 		}
 	}
 
-	public class GameClass : IEntity
+	public class GameClass : IStoredInFile
 	{
 		public static readonly MultipleFilesStorageString<GameClass> Storage = new GameClasses();
 

@@ -136,8 +136,27 @@ namespace AbarimMUD.Common.Tests
 				TargetRoom = room
 			};
 
-			var mobileReset = new AreaMobileReset("resetMobile", 1);
-			area.MobileResets.Add(mobileReset);
+			var testRace = new Race
+			{
+				Id = "testRace"
+			};
+			testRace.Create();
+
+			var testClass = new GameClass
+			{
+				Id = "testClass"
+			};
+			testClass.Create();
+
+			var mobile = new Mobile
+			{
+				Id = Area.NextMobileId,
+				ShortDescription = "a test mobile",
+				Race = testRace,
+				Class = testClass,
+				Level = 1,
+			};
+			area.Mobiles.Add(mobile);
 			area.Create();
 
 			// Reload
@@ -155,8 +174,8 @@ namespace AbarimMUD.Common.Tests
 			Assert.That(area.Rooms[1].Exits.Count, Is.EqualTo(1));
 			Assert.That(area.Rooms[1].Exits.ContainsKey(Direction.Down), Is.True);
 			Assert.That(area.Rooms[1].Exits[Direction.Down].TargetRoom, Is.EqualTo(area.Rooms[0]));
-			Assert.That(area.MobileResets.Count, Is.EqualTo(1));
-			Assert.That(area.MobileResets[0].MobileId, Is.EqualTo("resetMobile"));
+			Assert.That(area.Mobiles.Count, Is.EqualTo(1));
+			Assert.That(area.Mobiles[0].ShortDescription, Is.EqualTo("a test mobile"));
 
 			DataContext.Unregister(Area.Storage);
 		}

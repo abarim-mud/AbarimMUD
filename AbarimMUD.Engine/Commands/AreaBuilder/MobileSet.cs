@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace AbarimMUD.Commands.AreaBuilder
 {
-	public sealed class MobileSet : AreaBuilderCommand
+/*	public sealed class MobileSet : AreaBuilderCommand
 	{
 		protected override void InternalExecute(ExecutionContext context, string data)
 		{
@@ -115,5 +115,5 @@ namespace AbarimMUD.Commands.AreaBuilder
 				mobileInstance.Restore();
 			}
 		}
-	}
+	}*/
 }

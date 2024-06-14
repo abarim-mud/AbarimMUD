@@ -1,6 +1,7 @@
 ﻿using AbarimMUD.Storage;
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
 {
@@ -102,11 +103,8 @@ namespace AbarimMUD.Data
 		Shock
 	}
 
-	public class Mobile: IEntity
+	public class Mobile: AreaEntity
 	{
-		public static readonly MultipleFilesStorageString<Mobile> Storage = new Mobiles();
-
-		public string Id { get; set; }
 		public HashSet<string> Keywords { get; set; } = new HashSet<string>();
 		public string ShortDescription { get; set; }
 		public string LongDescription { get; set; }
@@ -125,11 +123,8 @@ namespace AbarimMUD.Data
 
 		public override string ToString() => $"{ShortDescription} (#{Id})";
 
-		public void Create() => Storage.Create(this);
-		public void Save() => Storage.Save(this);
-
-		public static Mobile GetMobileById(string id) => Storage.GetByKey(id);
-		public static Mobile EnsureMobileById(string id) => Storage.EnsureByKey(id);
+		public static Mobile GetMobileById(int id) => Area.Storage.GetMobileById(id);
+		public static Mobile EnsureMobileById(int id) => Area.Storage.EnsureMobileById(id);
 	}
 
 	public static class MobileExtensions

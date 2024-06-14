@@ -2,7 +2,7 @@
 
 namespace AbarimMUD.Data
 {
-	public class Race: IEntity
+	public class Race: IStoredInFile
 	{
 		public static readonly MultipleFilesStorageString<Race> Storage = new MultipleFilesStorageString<Race>(r => r.Id, "races");
 

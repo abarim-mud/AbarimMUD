@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace AbarimMUD.Commands.AreaBuilder
 {
-	public class MobileCreate : GenericCreate<Mobile>
+/*	public class MobileCreate : GenericCreate<Mobile>
 	{
 		public MobileCreate() : base(id => Mobile.GetMobileById(id))
 		{
@@ -23,5 +23,5 @@ namespace AbarimMUD.Commands.AreaBuilder
 		{
 			MobileSpawn.Execute(context, newMobile.Id);
 		}
-	}
+	}*/
 }

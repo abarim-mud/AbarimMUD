@@ -32,12 +32,12 @@ namespace AbarimMUD.Commands.AreaBuilder
 			var asciiGrid = new AsciiGrid();
 			foreach (var entity in storage)
 			{
-				if (!string.IsNullOrEmpty(search) && !entity.Id.Contains(search, System.StringComparison.OrdinalIgnoreCase))
+				if (!string.IsNullOrEmpty(search) && !entity.GetStringId().Contains(search, System.StringComparison.OrdinalIgnoreCase))
 				{
 					continue;
 				}
 
-				asciiGrid.SetValue(0, count, entity.Id);
+				asciiGrid.SetValue(0, count, entity.GetStringId());
 
 				count++;
 			}

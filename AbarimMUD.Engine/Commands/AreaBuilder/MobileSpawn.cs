@@ -12,7 +12,12 @@ namespace AbarimMUD.Commands.AreaBuilder
 				return;
 			}
 
-			var id = data;
+			int id;
+			if (!context.EnsureInt(data, out id))
+			{
+				return;
+			}
+
 			var mobile = Mobile.GetMobileById(id);
 			if (mobile == null)
 			{
