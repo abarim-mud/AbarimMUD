@@ -12,10 +12,13 @@ namespace AbarimMUD.Commands.AreaBuilder.OLCUtils
 		private static readonly Dictionary<Type, ClassEditor> _classes = new Dictionary<Type, ClassEditor>();
 
 		private readonly Dictionary<string, Record> _records = new Dictionary<string, Record>();
+		private readonly string _propsString;
 
 		public Type EditedType { get; private set; }
 
 		public IReadOnlyDictionary<string, Record> Records => _records;
+
+		public string PropertiesString => _propsString;
 
 		private ClassEditor(Type type)
 		{
@@ -46,6 +49,8 @@ namespace AbarimMUD.Commands.AreaBuilder.OLCUtils
 
 				_records[field.Name.ToLower()] = new FieldRecord(field);
 			}
+
+			_propsString = string.Join('|', from pair in _records select pair.Key);
 		}
 
 		private static bool CanBeAdded(Type type)

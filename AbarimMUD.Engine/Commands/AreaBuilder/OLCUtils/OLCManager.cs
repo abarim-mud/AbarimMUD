@@ -9,6 +9,8 @@ namespace AbarimMUD.Commands.AreaBuilder.OLCUtils
 {
 	public interface IOLCStorage : IEnumerable
 	{
+		Type ObjectType { get; }
+
 		object FindById(ExecutionContext context, string id);
 		IEnumerable<object> Lookup(ExecutionContext context, string pattern);
 	}
@@ -18,6 +20,8 @@ namespace AbarimMUD.Commands.AreaBuilder.OLCUtils
 		private class OLCRecordString<EntityType> : IOLCStorage where EntityType : class, IStoredInFile
 		{
 			private readonly GenericBaseStorage<string, EntityType> _storage;
+
+			public Type ObjectType => typeof(EntityType);
 
 			public OLCRecordString(GenericBaseStorage<string, EntityType> storage)
 			{
@@ -46,10 +50,15 @@ namespace AbarimMUD.Commands.AreaBuilder.OLCUtils
 		private class OLCRecordInt<EntityType> : IOLCStorage where EntityType : class
 		{
 			private readonly Func<IReadOnlyDictionary<int, EntityType>> _dictGetter;
+			private readonly Func<EntityType, string> _nameGetter;
 
-			public OLCRecordInt(Func<IReadOnlyDictionary<int, EntityType>> dictGetter)
+			public Type ObjectType => typeof(EntityType);
+
+			public OLCRecordInt(Func<IReadOnlyDictionary<int, EntityType>> dictGetter,
+				Func<EntityType, string> nameGetter)
 			{
 				_dictGetter = dictGetter ?? throw new ArgumentNullException(nameof(dictGetter));
+				_nameGetter = nameGetter ?? throw new ArgumentNullException(nameof(nameGetter));
 			}
 
 			public object FindById(ExecutionContext context, string id)
@@ -80,36 +89,42 @@ namespace AbarimMUD.Commands.AreaBuilder.OLCUtils
 
 			public IEnumerable<object> Lookup(ExecutionContext context, string pattern)
 			{
-				do
+				pattern = pattern.Trim();
+
+				var isNum = false;
+				int num;
+
+				if (int.TryParse(pattern, out num))
 				{
-					var dict = _dictGetter();
-					if (string.IsNullOrEmpty(pattern))
-					{
-						// Return all
-						foreach(var pair in dict)
-						{
-							yield return pair.Value;
-						}
+					isNum = true;
+				}
 
-						break;
-					}
-
-					int num;
-					if (int.TryParse(pattern, out num))
+				var dict = _dictGetter();
+				foreach (var pair in dict)
+				{
+					if (!string.IsNullOrEmpty(pattern))
 					{
-						// Search by ids
-						foreach (var pair in dict)
+						if (isNum)
 						{
-							if (pair.Key.ToString().Contains(pattern))
+							if (!pair.Key.ToString().Contains(pattern))
 							{
-								yield return pair.Value;
+								// Filter by id
+								continue;
 							}
 						}
-
-						break;
+						else
+						{
+							var name = _nameGetter(pair.Value);
+							if (!name.Contains(pattern, StringComparison.OrdinalIgnoreCase))
+							{
+								// Filter by name
+								continue;
+							}
+						}
 					}
+
+					yield return pair.Value;
 				}
-				while (false);
 			}
 		}
 
@@ -127,8 +142,8 @@ namespace AbarimMUD.Commands.AreaBuilder.OLCUtils
 			_records["race"] = new OLCRecordString<Race>(Race.Storage);
 			_records["class"] = new OLCRecordString<GameClass>(GameClass.Storage);
 			_records["item"] = new OLCRecordString<Item>(Item.Storage);
-			_records["mobile"] = new OLCRecordInt<Mobile>(() => Area.Storage.AllMobiles);
-			_records["room"] = new OLCRecordInt<Room>(() => Area.Storage.AllRooms);
+			_records["mobile"] = new OLCRecordInt<Mobile>(() => Area.Storage.AllMobiles, m => m.ShortDescription);
+			_records["room"] = new OLCRecordInt<Room>(() => Area.Storage.AllRooms, r => r.Name);
 
 			_keys = _records.Keys.ToArray();
 			_keysString = string.Join('|', _keys);

@@ -45,9 +45,9 @@ namespace AbarimMUD.Commands
 
 		public static readonly Show Show = new Show();
 		public static readonly Info Info = new Info();
+		public static readonly Set Set = new Set();
 
 		public static readonly ClassCreate ClassCreate = new ClassCreate();
-		public static readonly ClassSet ClassSet = new ClassSet();
 
 		public static readonly CharacterSet CharacterSet = new CharacterSet();
 
@@ -59,12 +59,10 @@ namespace AbarimMUD.Commands
 
 //		public static readonly MobileCreate MobileCreate = new MobileCreate();
 		public static readonly MobileSpawn MobileSpawn = new MobileSpawn();
-//		public static readonly MobileSet MobileSet = new MobileSet();
 
 		public static readonly ItemSearch ItemSearch = new ItemSearch();
 		public static readonly ItemCreate ItemCreate = new ItemCreate();
 		public static readonly ItemSpawn ItemSpawn = new ItemSpawn();
-		public static readonly ItemSet ItemSet = new ItemSet();
 		public static readonly ItemArmorSet ItemArmorSet = new ItemArmorSet();
 		public static readonly ItemWeaponSet ItemWeaponSet = new ItemWeaponSet();
 
