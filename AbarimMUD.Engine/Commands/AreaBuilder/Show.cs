@@ -1,6 +1,5 @@
 ﻿using AbarimMUD.Commands.AreaBuilder.OLCUtils;
 using AbarimMUD.Utils;
-using System.Linq;
 using System.Text;
 
 namespace AbarimMUD.Commands.AreaBuilder
@@ -30,14 +29,11 @@ namespace AbarimMUD.Commands.AreaBuilder
 
 			var count = 0;
 			var asciiGrid = new AsciiGrid();
-			foreach (var entity in storage)
-			{
-				if (!string.IsNullOrEmpty(search) && !entity.GetStringId().Contains(search, System.StringComparison.OrdinalIgnoreCase))
-				{
-					continue;
-				}
 
-				asciiGrid.SetValue(0, count, entity.GetStringId());
+			var query = storage.Lookup(context, search);
+			foreach (var entity in query)
+			{
+				asciiGrid.SetValue(0, count, entity.ToString());
 
 				count++;
 			}

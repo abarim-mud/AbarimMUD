@@ -165,7 +165,7 @@ namespace AbarimMUD.Commands
 			return grid;
 		}
 
-		public static string GetStringId(this IStoredInFile entity)
+		public static string GetStringId(this object entity)
 		{
 			var asStringEntity = entity as IHasId<string>;
 			if (asStringEntity != null)
@@ -176,13 +176,13 @@ namespace AbarimMUD.Commands
 			var asIntEntity = entity as IHasId<int>;
 			if (asIntEntity != null)
 			{
-				return asStringEntity.Id.ToString();
+				return asIntEntity.Id.ToString();
 			}
 
 			throw new Exception($"Can't determine id of {entity}");
 		}
 
-		public static void SetStringId(this ExecutionContext context, IStoredInFile entity, string value)
+		public static void SetStringId(this ExecutionContext context, object entity, string value)
 		{
 			var asStringEntity = entity as IHasId<string>;
 			if (asStringEntity != null)

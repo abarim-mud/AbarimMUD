@@ -1,4 +1,5 @@
 ﻿using AbarimMUD.Data;
+using System;
 using System.Linq;
 
 namespace AbarimMUD.Import.Diku
@@ -50,6 +51,8 @@ namespace AbarimMUD.Import.Diku
 				Race = Race.EnsureRaceById(raceId),
 				Class = GameClass.EnsureClassById(classId),
 				Level = mobile.Level,
+				Sex = Enum.Parse<Sex>(mobile.Sex, true),
+				Wealth = mobile.Wealth,
 			};
 
 			return result;

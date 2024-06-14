@@ -25,7 +25,7 @@ namespace AbarimMUD.Utils
 		{
 			var key = GetKey(x, y);
 			string result;
-			if (!_values.TryGetValue(key, out result))
+			if (!_values.TryGetValue(key, out result) || result == null)
 			{
 				return string.Empty;
 			}
@@ -69,7 +69,8 @@ namespace AbarimMUD.Utils
 			{
 				for(var x = 0; x <= max.X; ++x)
 				{
-					var value = GetValue(x, y).PadRight(colWidths[x]);
+					var value = GetValue(x, y);
+					value = value.PadRight(colWidths[x]);
 					sb.Append(value);
 					if (x < max.X)
 					{

@@ -7,32 +7,112 @@ using System.Collections;
 
 namespace AbarimMUD.Commands.AreaBuilder.OLCUtils
 {
-
-	public interface IOLCStorage : IEnumerable<IStoredInFile>
+	public interface IOLCStorage : IEnumerable
 	{
-		IStoredInFile FindById(string id);
+		object FindById(ExecutionContext context, string id);
+		IEnumerable<object> Lookup(ExecutionContext context, string pattern);
 	}
 
 	internal static class OLCManager
 	{
-		private class OLCRecord<EntityType> : IOLCStorage where EntityType : class, IStoredInFile
+		private class OLCRecordString<EntityType> : IOLCStorage where EntityType : class, IStoredInFile
 		{
-			private readonly MultipleFilesStorageString<EntityType> _storage;
+			private readonly GenericBaseStorage<string, EntityType> _storage;
 
-			public OLCRecord(MultipleFilesStorageString<EntityType> storage)
+			public OLCRecordString(GenericBaseStorage<string, EntityType> storage)
 			{
 				_storage = storage ?? throw new ArgumentNullException(nameof(storage));
 			}
 
-			public IStoredInFile FindById(string id)
+			public object FindById(ExecutionContext context, string id) => _storage.GetByKey(id);
+
+			public IEnumerable<object> Lookup(ExecutionContext context, string pattern)
 			{
-				return _storage.GetByKey(id);
+				foreach (var entity in _storage)
+				{
+					if (!string.IsNullOrEmpty(pattern) &&
+						!entity.Id.Contains(pattern, StringComparison.OrdinalIgnoreCase))
+					{
+						continue;
+					}
+
+					yield return entity;
+				}
 			}
 
-			public IEnumerator<IStoredInFile> GetEnumerator() => _storage.GetEnumerator();
-
-			IEnumerator IEnumerable.GetEnumerator() => _storage.GetEnumerator();
+			public IEnumerator GetEnumerator() => _storage.GetEnumerator();
 		}
+
+		private class OLCRecordInt<EntityType> : IOLCStorage where EntityType : class
+		{
+			private readonly Func<IReadOnlyDictionary<int, EntityType>> _dictGetter;
+
+			public OLCRecordInt(Func<IReadOnlyDictionary<int, EntityType>> dictGetter)
+			{
+				_dictGetter = dictGetter ?? throw new ArgumentNullException(nameof(dictGetter));
+			}
+
+			public object FindById(ExecutionContext context, string id)
+			{
+				int num;
+				if (!context.EnsureInt(id, out num))
+				{
+					return null;
+				}
+
+				var dict = _dictGetter();
+
+				EntityType obj;
+				if (!dict.TryGetValue(num, out obj))
+				{
+					return null;
+				}
+
+				return obj;
+			}
+
+			public IEnumerator GetEnumerator()
+			{
+				var dict = _dictGetter();
+
+				return dict.Values.GetEnumerator();
+			}
+
+			public IEnumerable<object> Lookup(ExecutionContext context, string pattern)
+			{
+				do
+				{
+					var dict = _dictGetter();
+					if (string.IsNullOrEmpty(pattern))
+					{
+						// Return all
+						foreach(var pair in dict)
+						{
+							yield return pair.Value;
+						}
+
+						break;
+					}
+
+					int num;
+					if (int.TryParse(pattern, out num))
+					{
+						// Search by ids
+						foreach (var pair in dict)
+						{
+							if (pair.Key.ToString().Contains(pattern))
+							{
+								yield return pair.Value;
+							}
+						}
+
+						break;
+					}
+				}
+				while (false);
+			}
+		}
+
 
 		private static readonly string[] _keys;
 		private static readonly string _keysString;
@@ -44,9 +124,11 @@ namespace AbarimMUD.Commands.AreaBuilder.OLCUtils
 
 		static OLCManager()
 		{
-			_records["race"] = new OLCRecord<Race>(Race.Storage);
-			_records["class"] = new OLCRecord<GameClass>(GameClass.Storage);
-			_records["item"] = new OLCRecord<Item>(Item.Storage);
+			_records["race"] = new OLCRecordString<Race>(Race.Storage);
+			_records["class"] = new OLCRecordString<GameClass>(GameClass.Storage);
+			_records["item"] = new OLCRecordString<Item>(Item.Storage);
+			_records["mobile"] = new OLCRecordInt<Mobile>(() => Area.Storage.AllMobiles);
+			_records["room"] = new OLCRecordInt<Room>(() => Area.Storage.AllRooms);
 
 			_keys = _records.Keys.ToArray();
 			_keysString = string.Join('|', _keys);

@@ -27,7 +27,15 @@ namespace AbarimMUD.Storage
 				}
 			}
 
-			public IReadOnlyDictionary<int, T> All => _cache;
+			public IReadOnlyDictionary<int, T> All
+			{
+				get
+				{
+					Update();
+
+					return _cache;
+				}
+			}
 
 			public EntityCache(Areas areas, Func<Area, IEnumerable<T>> getter)
 			{
@@ -124,6 +132,9 @@ namespace AbarimMUD.Storage
 		public int NewRoomId => _allRoomsCache.NextId;
 
 		public int NewMobileId => _allMobilesCache.NextId;
+
+		public IReadOnlyDictionary<int, Room> AllRooms => _allRoomsCache.All;
+		public IReadOnlyDictionary<int, Mobile> AllMobiles => _allMobilesCache.All;
 
 		internal Areas() : base(a => a.Name, SubfolderName)
 		{

@@ -20,7 +20,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 				return;
 			}
 
-			var item = storage.FindById(parts[1]);
+			var item = storage.FindById(context, parts[1]);
 			if (item == null)
 			{
 				context.Send($"Unable to find item of type {key} by id '{parts[1]}'");
