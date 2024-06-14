@@ -11,6 +11,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 			if (parts.Length < 2)
 			{
 				context.Send($"Usage: info {OLCManager.KeysString} [_id_]");
+				return;
 			}
 
 			var key = parts[0].ToLower();

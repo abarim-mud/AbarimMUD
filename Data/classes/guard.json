@@ -1,6 +1,6 @@
 {
   "Id": "guard",
-  "Name": "guard",
+  "Name": "Guard",
   "Description": "guard",
   "Inherits": "warrior",
   "IsPlayerClass": false,
@@ -10,7 +10,7 @@
     "Level100Value": 5000
   },
   "Penetration": {
-    "Level1Value": 0,
-    "Level100Value": 0
+    "Level1Value": 10,
+    "Level100Value": 200
   }
 }

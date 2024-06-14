@@ -12,6 +12,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 			if (parts.Length < 1)
 			{
 				context.Send($"Usage: set {OLCManager.KeysString} _propertyName_ _id_ _params_");
+				return;
 			}
 
 			var objectType = parts[0].ToLower();
@@ -25,6 +26,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 			if (parts.Length < 2)
 			{
 				context.Send($"Usage: set {objectType} {editor.PropertiesString} _id_ _params_");
+				return;
 			}
 
 			var propertyName = parts[1].ToLower();
@@ -38,6 +40,7 @@ namespace AbarimMUD.Commands.AreaBuilder
 			if (parts.Length < 4)
 			{
 				context.Send($"Usage: set {objectType} {propertyName} _id_ _params_");
+				return;
 			}
 
 			var itemId = parts[2].ToLower();

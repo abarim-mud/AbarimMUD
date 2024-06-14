@@ -39,7 +39,13 @@ namespace AbarimMUD.Import.Diku
 		public static Mobile ToAmMobile(this DikuLoad.Data.Mobile mobile)
 		{
 			var raceId = string.IsNullOrEmpty(mobile.Race) ? "human" : mobile.Race;
-			var classId = "warrior";
+			var classId = "guard";
+
+			var newLevel = mobile.Level * 100 / 34;
+			if (newLevel > 100)
+			{
+				newLevel = 100;
+			}
 
 			var result = new Mobile
 			{
@@ -50,7 +56,7 @@ namespace AbarimMUD.Import.Diku
 				Description = mobile.Description,
 				Race = Race.EnsureRaceById(raceId),
 				Class = GameClass.EnsureClassById(classId),
-				Level = mobile.Level,
+				Level = newLevel,
 				Sex = Enum.Parse<Sex>(mobile.Sex, true),
 				Wealth = mobile.Wealth,
 			};
