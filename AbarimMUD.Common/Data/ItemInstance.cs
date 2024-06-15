@@ -32,6 +32,8 @@ namespace AbarimMUD.Data
 		public void GetWeapon(out AttackType attackType, out int penetration, out int minimumDamage, out int maximumDamage) =>
 			Info.GetWeapon(out attackType, out penetration, out minimumDamage, out maximumDamage);
 
+		public override string ToString() => Info.ToString();
+
 		public static bool AreEqual(ItemInstance a, ItemInstance b) => a.Id == b.Id;
 	}
 }

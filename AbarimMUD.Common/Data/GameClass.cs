@@ -319,13 +319,13 @@ namespace AbarimMUD.Data
 				stats.Attacks.Add(new Attack(attackType, penetration, minimumDamage, maximumDamage));
 			}
 
-			var xpAward = Math.Max(1, stats.MaxHitpoints);
-			xpAward *= Math.Max(1, stats.Armor / 10);
+			var xpAward = Math.Max(1, stats.MaxHitpoints / 100);
+			xpAward *= Math.Max(1, stats.Armor);
 
 			var attackXpFactor = 0;
 			foreach (var attack in stats.Attacks)
 			{
-				var t = Math.Max(1, attack.Penetration / 10);
+				var t = Math.Max(1, attack.Penetration / 5);
 				t *= Math.Max(1, attack.MinimumDamage + (attack.MaximumDamage - attack.MinimumDamage) / 2);
 
 				attackXpFactor += t;
@@ -342,6 +342,7 @@ namespace AbarimMUD.Data
 		{
 			var clone = new GameClass
 			{
+				Id = Id,
 				Name = Name,
 				Description = Description,
 				IsPlayerClass = IsPlayerClass,

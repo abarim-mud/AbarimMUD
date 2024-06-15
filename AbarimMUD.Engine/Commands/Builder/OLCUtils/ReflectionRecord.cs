@@ -20,6 +20,10 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 				{
 					p = Type.BuildEnumString();
 				}
+				else if (Type == typeof(ValueRange) || Type == typeof(ValueRange?))
+				{
+					p = "_level1Value_ _level100Value_";
+				}
 
 				return p;
 			}
@@ -45,7 +49,7 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 			}
 			else if (Type == typeof(string))
 			{
-				SetValue(item, s);
+				SetValue(item, string.Join(' ', values));
 			}
 			else if (Type == typeof(bool) || Type == typeof(bool?))
 			{
@@ -82,6 +86,30 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 				}
 
 				SetValue(item, v);
+			}
+			else if (Type == typeof(HashSet<string>) || 
+				Type == typeof(List<string>) || 
+				Type == typeof(string[]))
+			{
+				object val;
+				if(Type == typeof(HashSet<string>))
+				{
+					val = new HashSet<string>(values);
+				} else if(Type == typeof(List<string>))
+				{
+					val = new List<string>(values);
+				} else
+				{
+					var arr = new string[values.Count];
+					for(var i = 0; i < arr.Length; ++i)
+					{
+						arr[i] = values[i];
+					}
+
+					val = arr;
+				}
+
+				SetValue(item, val);
 			}
 			else if (Type == typeof(ValueRange) || Type == typeof(ValueRange?))
 			{

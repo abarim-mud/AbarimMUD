@@ -1,17 +1,17 @@
 {
-  "Id": "leatherArmor",
+  "Id": "leatherPants",
   "Keywords": [
     "leather",
-    "armor"
+    "pants"
   ],
-  "ShortDescription": "a leather armor",
+  "ShortDescription": "a leather pants",
   "LongDescription": null,
   "Description": "Unset",
   "Material": "OldStyle",
   "Affects": [],
   "ItemType": "Armor",
-  "Value1": 3,
-  "Value2": 10,
+  "Value1": 4,
+  "Value2": 8,
   "Value3": 0,
   "Value4": 0
 }

@@ -98,10 +98,11 @@ namespace AbarimMUD.Commands.Builder
 				return;
 			}
 
-			var paramsCount = property.ParamsString.SplitByWhitespace().Length;
+			var paramsString = property.ParamsString;
+			var paramsCount = paramsString.SplitByWhitespace().Length;
 			if (parts.Length < 3 + paramsCount)
 			{
-				context.Send($"Usage: set {objectType} {propertyName} {property.ParamsString} _id_");
+				context.Send($"Usage: set {objectType} {propertyName} {paramsString} _id_");
 				return;
 			}
 
@@ -109,7 +110,6 @@ namespace AbarimMUD.Commands.Builder
 			var obj = context.EnsureItemById(storage, objectId);
 			if (obj == null)
 			{
-				context.Send($"Unable to find item of type {objectType} by id '{objectId}'");
 				return;
 			}
 

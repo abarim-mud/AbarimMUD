@@ -11,6 +11,7 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 	{
 		bool RequiresId { get; }
 		Type ObjectType { get; }
+		bool CanSpawn { get; }
 
 		object FindById(ExecutionContext context, string id);
 		IEnumerable<object> Lookup(ExecutionContext context, string pattern);
@@ -25,10 +26,12 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 			public Type ObjectType => typeof(EntityType);
 
 			public bool RequiresId => true;
+			public bool CanSpawn { get; private set; }
 
-			public OLCRecordString(GenericBaseStorage<string, EntityType> storage)
+			public OLCRecordString(GenericBaseStorage<string, EntityType> storage, bool canSpawn)
 			{
 				_storage = storage ?? throw new ArgumentNullException(nameof(storage));
+				CanSpawn = canSpawn;
 			}
 
 			public object FindById(ExecutionContext context, string id) => _storage.GetByKey(id);
@@ -57,12 +60,15 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 
 			public Type ObjectType => typeof(EntityType);
 			public bool RequiresId => false;
+			public bool CanSpawn { get; private set; }
 
 			public OLCRecordInt(Func<IReadOnlyDictionary<int, EntityType>> dictGetter,
-				Func<EntityType, string> nameGetter)
+				Func<EntityType, string> nameGetter,
+				bool canSpawn)
 			{
 				_dictGetter = dictGetter ?? throw new ArgumentNullException(nameof(dictGetter));
 				_nameGetter = nameGetter ?? throw new ArgumentNullException(nameof(nameGetter));
+				CanSpawn = canSpawn;
 			}
 
 			public object FindById(ExecutionContext context, string id)
@@ -135,22 +141,25 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 
 		private static readonly string[] _keys;
 		private static readonly string _keysString;
+		private static readonly string _spawnString;
 		private static readonly Dictionary<string, IOLCStorage> _records = new Dictionary<string, IOLCStorage>();
 
 		public static string[] Keys => _keys;
 
 		public static string KeysString => _keysString;
+		public static string SpawnString => _spawnString;
 
 		static OLCManager()
 		{
-			_records["class"] = new OLCRecordString<GameClass>(GameClass.Storage);
-			_records["item"] = new OLCRecordString<Item>(Item.Storage);
-			_records["character"] = new OLCRecordString<Character>(Character.Storage);
-			_records["mobile"] = new OLCRecordInt<Mobile>(() => Area.Storage.AllMobiles, m => m.ShortDescription);
-			_records["room"] = new OLCRecordInt<Room>(() => Area.Storage.AllRooms, r => r.Name);
+			_records["class"] = new OLCRecordString<GameClass>(GameClass.Storage, false);
+			_records["item"] = new OLCRecordString<Item>(Item.Storage, true);
+			_records["character"] = new OLCRecordString<Character>(Character.Storage, false);
+			_records["mobile"] = new OLCRecordInt<Mobile>(() => Area.Storage.AllMobiles, m => m.ShortDescription, true);
+			_records["room"] = new OLCRecordInt<Room>(() => Area.Storage.AllRooms, r => r.Name, false);
 
 			_keys = _records.Keys.ToArray();
 			_keysString = string.Join('|', _keys);
+			_spawnString = string.Join('|', (from r in _records where r.Value.CanSpawn select r.Key));
 		}
 
 		public static IOLCStorage GetStorage(string key)

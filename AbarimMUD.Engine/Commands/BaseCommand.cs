@@ -48,18 +48,12 @@ namespace AbarimMUD.Commands
 		public static readonly Set Set = new Set();
 		public static readonly Create Create = new Create();
 		public static readonly CreateCopy CreateCopy = new CreateCopy();
+		public static readonly Spawn Spawn = new Spawn();
 
 		public static readonly RoomCreate RoomCreate = new RoomCreate();
 		public static readonly RoomLink RoomLink = new RoomLink();
 		public static readonly RoomLinkClear RLinkClear = new RoomLinkClear();
 		public static readonly RoomSaveResets RoomSaveResets = new RoomSaveResets();
-
-		//		public static readonly MobileCreate MobileCreate = new MobileCreate();
-		public static readonly MobileSpawn MobileSpawn = new MobileSpawn();
-
-		public static readonly ItemSpawn ItemSpawn = new ItemSpawn();
-		public static readonly ItemArmorSet ItemArmorSet = new ItemArmorSet();
-		public static readonly ItemWeaponSet ItemWeaponSet = new ItemWeaponSet();
 
 		// Owner
 		public static readonly SetType SetType = new SetType();

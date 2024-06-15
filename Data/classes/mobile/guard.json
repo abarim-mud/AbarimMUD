@@ -8,10 +8,13 @@
     "Level1Value": 50,
     "Level100Value": 5000
   },
-  "ArmorRange": null,
+  "ArmorRange": {
+    "Level1Value": 1,
+    "Level100Value": 200
+  },
   "AttackType": "Slash",
   "PenetrationRange": {
-    "Level1Value": 10,
+    "Level1Value": 1,
     "Level100Value": 200
   },
   "MinimumDamageRange": {

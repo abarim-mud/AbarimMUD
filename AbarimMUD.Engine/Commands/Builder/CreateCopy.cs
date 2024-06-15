@@ -54,6 +54,12 @@ namespace AbarimMUD.Commands.Builder
 				newId = parts[2];
 			}
 
+			if (!string.IsNullOrEmpty(newId) && storage.FindById(context, newId) != null)
+			{
+				context.Send($"Id {newId} is used already.");
+				return;
+			}
+
 			var asCloneable = obj as ICloneable;
 			if (asCloneable == null)
 			{
@@ -72,11 +78,16 @@ namespace AbarimMUD.Commands.Builder
 					return;
 				}
 
-				property.SetStringValue(context, newObject, new[] { newId });
+				if (!property.SetStringValue(context, newObject, new[] { newId }))
+				{
+					return;
+				}
 			}
 
 			context.SaveObject(newObject);
 			context.Send($"Created new object {newObject.GetStringId()} of type {objectType}");
+
+			Spawn.Execute(context, $"item {newId}");
 		}
 	}
 }

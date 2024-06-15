@@ -45,7 +45,7 @@ namespace AbarimMUD.Data
 	public class Equipment
 	{
 		private static readonly Dictionary<SlotType, ArmorType> _slotsArmorsMap = new Dictionary<SlotType, ArmorType>();
-		private readonly Dictionary<SlotType, ItemInstance> _items = new Dictionary<SlotType, ItemInstance>();
+		private readonly SortedDictionary<SlotType, ItemInstance> _items = new SortedDictionary<SlotType, ItemInstance>();
 
 		public WearItem[] Items
 		{
@@ -81,8 +81,9 @@ namespace AbarimMUD.Data
 			_slotsArmorsMap[SlotType.FingerLeft] = ArmorType.Ring;
 			_slotsArmorsMap[SlotType.FingerRight] = ArmorType.Ring;
 			_slotsArmorsMap[SlotType.Neck] = ArmorType.Amulet;
-			_slotsArmorsMap[SlotType.Body] = ArmorType.Body;
 			_slotsArmorsMap[SlotType.Head] = ArmorType.Head;
+			_slotsArmorsMap[SlotType.Body] = ArmorType.Body;
+			_slotsArmorsMap[SlotType.Hands] = ArmorType.Hands;
 			_slotsArmorsMap[SlotType.Legs] = ArmorType.Legs;
 			_slotsArmorsMap[SlotType.WristLeft] = ArmorType.Wrist;
 			_slotsArmorsMap[SlotType.WristRight] = ArmorType.Wrist;

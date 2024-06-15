@@ -1,5 +1,6 @@
 ﻿using AbarimMUD.Attributes;
 using AbarimMUD.Storage;
+using System;
 using System.Collections.Generic;
 
 namespace AbarimMUD.Data
@@ -21,7 +22,7 @@ namespace AbarimMUD.Data
 		Wrist
 	}
 
-	public class Item : IStoredInFile
+	public class Item : IStoredInFile, ICloneable
 	{
 		public static readonly MultipleFilesStorageString<Item> Storage = new Items();
 
@@ -145,6 +146,33 @@ namespace AbarimMUD.Data
 		}
 
 		public bool MatchesKeyword(string keyword) => Keywords.StartsWithPattern(keyword);
+
+		public Item CloneItem()
+		{
+			var result = new Item
+			{
+				Id = Id,
+				ShortDescription = ShortDescription,
+				LongDescription = LongDescription,
+				Description = Description,
+				Material = Material,
+				Affects = Affects,
+				ItemType = ItemType,
+				_value1 = _value1,
+				_value2 = _value2,
+				_value3 = _value3,
+				_value4 = _value4,
+			};
+
+			foreach(var keyword in Keywords)
+			{
+				result.Keywords.Add(keyword);
+			}
+
+			return result;
+		}
+
+		public object Clone() => CloneItem();
 
 		public override string ToString() => $"{ShortDescription} (#{Id})";
 

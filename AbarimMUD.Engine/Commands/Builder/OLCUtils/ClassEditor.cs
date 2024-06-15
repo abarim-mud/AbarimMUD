@@ -80,6 +80,13 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 
 		private static bool CanBeAdded(Type type)
 		{
+			if (type == typeof(HashSet<string>) ||
+				type == typeof(List<string>) ||
+				type == typeof(string[]))
+			{
+				return true;
+			}
+
 			if (type != typeof(string) && typeof(IEnumerable).IsAssignableFrom(type))
 			{
 				return false;
