@@ -119,11 +119,21 @@ namespace AbarimMUD
 			return result;
 		}
 
+		public static bool HasAttribute<T>(this MemberInfo property) where T : Attribute
+		{
+			return property.FindAttribute<T>() != null;
+		}
+
 		public static T FindAttribute<T>(this Type type) where T : Attribute
 		{
 			var result = (from T a in type.GetCustomAttributes<T>(true) select a).FirstOrDefault();
 
 			return result;
+		}
+
+		public static bool HasAttribute<T>(this Type type) where T : Attribute
+		{
+			return type.FindAttribute<T>() != null;
 		}
 
 		public static MethodInfo EnsureMethod(this Type type, string methodName)

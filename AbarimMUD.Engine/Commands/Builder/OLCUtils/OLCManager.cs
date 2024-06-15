@@ -145,6 +145,7 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 		{
 			_records["class"] = new OLCRecordString<GameClass>(GameClass.Storage);
 			_records["item"] = new OLCRecordString<Item>(Item.Storage);
+			_records["character"] = new OLCRecordString<Character>(Character.Storage);
 			_records["mobile"] = new OLCRecordInt<Mobile>(() => Area.Storage.AllMobiles, m => m.ShortDescription);
 			_records["room"] = new OLCRecordInt<Room>(() => Area.Storage.AllRooms, r => r.Name);
 

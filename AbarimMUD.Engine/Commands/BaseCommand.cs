@@ -49,12 +49,7 @@ namespace AbarimMUD.Commands
 		public static readonly Create Create = new Create();
 		public static readonly CreateCopy CreateCopy = new CreateCopy();
 
-		public static readonly ClassCreate ClassCreate = new ClassCreate();
-
-		public static readonly CharacterSet CharacterSet = new CharacterSet();
-
 		public static readonly RoomCreate RoomCreate = new RoomCreate();
-		public static readonly RoomSet RoomSet = new RoomSet();
 		public static readonly RoomLink RoomLink = new RoomLink();
 		public static readonly RoomLinkClear RLinkClear = new RoomLinkClear();
 		public static readonly RoomSaveResets RoomSaveResets = new RoomSaveResets();
@@ -62,8 +57,6 @@ namespace AbarimMUD.Commands
 		//		public static readonly MobileCreate MobileCreate = new MobileCreate();
 		public static readonly MobileSpawn MobileSpawn = new MobileSpawn();
 
-		public static readonly ItemSearch ItemSearch = new ItemSearch();
-		public static readonly ItemCreate ItemCreate = new ItemCreate();
 		public static readonly ItemSpawn ItemSpawn = new ItemSpawn();
 		public static readonly ItemArmorSet ItemArmorSet = new ItemArmorSet();
 		public static readonly ItemWeaponSet ItemWeaponSet = new ItemWeaponSet();

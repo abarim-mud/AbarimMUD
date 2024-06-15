@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using AbarimMUD.Attributes;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
@@ -15,7 +16,11 @@ namespace AbarimMUD.Data
 
 		public abstract int Level { get; }
 		public abstract Sex Sex { get; }
+
+		[OLCIgnore]
 		public Equipment Equipment { get; set; } = new Equipment();
+
+		[OLCIgnore]
 		public Inventory Inventory { get; set; } = new Inventory();
 
 		public CreatureStats Stats

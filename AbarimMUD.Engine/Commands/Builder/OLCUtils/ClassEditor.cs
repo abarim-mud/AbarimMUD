@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using AbarimMUD.Data;
 using System.Text.Json.Serialization;
+using AbarimMUD.Attributes;
 
 namespace AbarimMUD.Commands.Builder.OLCUtils
 {
@@ -26,9 +27,7 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 			EditedType = type ?? throw new ArgumentNullException(nameof(type));
 
 			// Add properties
-			var props = type.GetProperties(BindingFlags.Instance | BindingFlags.Public |
-				BindingFlags.GetProperty | BindingFlags.SetProperty);
-
+			var props = type.GetProperties(BindingFlags.Instance | BindingFlags.Public);
 			foreach (var prop in props)
 			{
 				if (!CanBeAdded(prop) || !CanBeAdded(prop.PropertyType))
@@ -36,11 +35,22 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 					continue;
 				}
 
-				_records[prop.Name.ToLower()] = new PropertyRecord(prop);
+				if (!prop.CanRead || !prop.CanWrite)
+				{
+					continue;
+				}
+
+				var name = prop.Name.ToLower();
+				var olcAlias = prop.FindAttribute<OLCAliasAttribute>();
+				if (olcAlias != null)
+				{
+					name = olcAlias.Alias;
+				}
+
+				_records[name] = new PropertyRecord(prop);
 			}
 
-			var fields = type.GetFields(BindingFlags.Instance | BindingFlags.Public |
-				BindingFlags.SetField | BindingFlags.GetField);
+			var fields = type.GetFields(BindingFlags.Instance | BindingFlags.Public);
 			foreach (var field in fields)
 			{
 				if (!CanBeAdded(field) || !CanBeAdded(field.FieldType))
@@ -48,7 +58,14 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 					continue;
 				}
 
-				_records[field.Name.ToLower()] = new FieldRecord(field);
+				var name = field.Name.ToLower();
+				var olcAlias = field.FindAttribute<OLCAliasAttribute>();
+				if (olcAlias != null)
+				{
+					name = olcAlias.Alias;
+				}
+
+				_records[name] = new FieldRecord(field);
 			}
 
 			_propsString = string.Join('|', from pair in _records select pair.Key);
@@ -66,7 +83,8 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 
 		private static bool CanBeAdded(MemberInfo memberInfo)
 		{
-			return memberInfo.FindAttribute<JsonIgnoreAttribute>() == null;
+			return !memberInfo.HasAttribute<OLCIgnoreAttribute>() &&
+				!memberInfo.HasAttribute<JsonIgnoreAttribute>();
 		}
 
 		public static ClassEditor GetEditor(Type type)

@@ -1,4 +1,5 @@
-﻿using AbarimMUD.Storage;
+﻿using AbarimMUD.Attributes;
+using AbarimMUD.Storage;
 using System;
 using System.IO;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace AbarimMUD.Data
 		Owner
 	}
 
-	public sealed class Character : Creature
+	public sealed class Character : Creature, IStoredInFile
 	{
 		public static readonly MultipleFilesStorageString<Character> Storage = new Characters();
 
@@ -33,9 +34,19 @@ namespace AbarimMUD.Data
 			get { return Role >= Role.Builder; }
 		}
 
+		[JsonIgnore]
+		public string Id
+		{
+			get => Name;
+			set => Name = value;
+		}
+
 		public string Name { get; set; }
 
+		[OLCAlias("description")]
 		public string PlayerDescription { get; set; }
+
+		[OLCAlias("class")]
 
 		public GameClass PlayerClass
 		{
@@ -48,6 +59,7 @@ namespace AbarimMUD.Data
 			}
 		}
 
+		[OLCAlias("level")]
 		public int PlayerLevel
 		{
 			get => _level;
@@ -63,6 +75,7 @@ namespace AbarimMUD.Data
 			}
 		}
 
+		[OLCAlias("sex")]
 		public Sex PlayerSex { get; set; }
 
 		public override string ShortDescription => Name;
@@ -71,23 +84,18 @@ namespace AbarimMUD.Data
 		public override int Level => PlayerLevel;
 		public override Sex Sex => PlayerSex;
 
+		[JsonIgnore]
 		public int CurrentRoomId { get; set; }
-
-		public int CurrentHP { get; set; }
-		public int CurrentIP { get; set; }
-		public int CurrentMV { get; set; }
 
 		[JsonIgnore]
 		public object Tag { get; set; }
 
 		public Character()
 		{
-			Role = Role.Player;
-
-			CurrentHP = 200;
-			CurrentIP = 100;
-			CurrentMV = 250;
 		}
+
+		public override string ToString() => $"{Name}, {Role}, {Class.Name}, {Level}";
+
 
 		public void Create() => Storage.Create(this);
 		public void Save() => Storage.Save(this);
