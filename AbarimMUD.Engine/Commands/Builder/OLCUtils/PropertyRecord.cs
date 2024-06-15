@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace AbarimMUD.Commands.Builder.OLCUtils
 {
-	internal class PropertyRecord : Record
+	internal class PropertyRecord : ReflectionRecord
 	{
 		private readonly PropertyInfo _propertyInfo;
 
@@ -23,11 +23,6 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 		public override void SetValue(object obj, object value)
 		{
 			_propertyInfo.SetValue(obj, value);
-		}
-
-		public override T FindAttribute<T>()
-		{
-			return _propertyInfo.FindAttribute<T>();
 		}
 	}
 }

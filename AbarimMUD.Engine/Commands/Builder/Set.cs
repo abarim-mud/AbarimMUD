@@ -1,12 +1,75 @@
 ﻿using AbarimMUD.Commands.Builder.OLCUtils;
+using AbarimMUD.Data;
+using System;
+using System.Collections.Generic;
 
 namespace AbarimMUD.Commands.Builder
 {
 	public class Set : BuilderCommand
 	{
+		static Set()
+		{
+			var itemEditor = ClassEditor.GetEditor<Item>();
+
+			itemEditor.RegisterCustomEditor("armor", $"{typeof(ArmorType).BuildEnumString()} _armor_", SetArmor);
+			itemEditor.RegisterCustomEditor("weapon", $"{typeof(AttackType).BuildEnumString()} _penetration_ _minimumDamage_ _maximumDamage_", SetWeapon);
+		}
+
+		private static bool SetArmor(ExecutionContext context, object obj, IReadOnlyList<string> values)
+		{
+			ArmorType armorType;
+			if (!context.EnsureEnum(values[0], out armorType))
+			{
+				return false;
+			}
+
+			int armor;
+			if (!context.EnsureInt(values[1], out armor))
+			{
+				return false;
+			}
+
+			var item = (Item)obj;
+			item.SetArmor(armorType, armor);
+
+			return true;
+		}
+
+		private static bool SetWeapon(ExecutionContext context, object obj, IReadOnlyList<string> values)
+		{
+			AttackType attackType;
+			if (!context.EnsureEnum(values[0], out attackType))
+			{
+				return false;
+			}
+
+			int penetration;
+			if (!context.EnsureInt(values[1], out penetration))
+			{
+				return false;
+			}
+
+			int minimumDamage;
+			if (!context.EnsureInt(values[2], out minimumDamage))
+			{
+				return false;
+			}
+
+			int maximumDamage;
+			if (!context.EnsureInt(values[3], out maximumDamage))
+			{
+				return false;
+			}
+
+			var item = (Item)obj;
+			item.SetWeapon(attackType, penetration, minimumDamage, maximumDamage);
+
+			return true;
+		}
+
 		protected override void InternalExecute(ExecutionContext context, string data)
 		{
-			var parts = data.SplitByWhitespace(4);
+			var parts = data.SplitByWhitespace();
 			if (parts.Length < 1)
 			{
 				context.Send($"Usage: set {OLCManager.KeysString} _propertyName_ _params_ _id_");
@@ -35,22 +98,14 @@ namespace AbarimMUD.Commands.Builder
 				return;
 			}
 
-			if (parts.Length < 4)
+			var paramsCount = property.ParamsString.SplitByWhitespace().Length;
+			if (parts.Length < 3 + paramsCount)
 			{
-				var p = "_params_";
-
-				if (property.Type.IsEnum || property.Type.IsNullableEnum())
-				{
-					p = property.Type.BuildEnumString();
-				}
-
-				context.Send($"Usage: set {objectType} {propertyName} {p} _id_");
+				context.Send($"Usage: set {objectType} {propertyName} {property.ParamsString} _id_");
 				return;
 			}
 
-			var newValue = parts[2];
-
-			var objectId = parts[3].ToLower();
+			var objectId = parts[parts.Length - 1].ToLower();
 			var obj = context.EnsureItemById(storage, objectId);
 			if (obj == null)
 			{
@@ -58,14 +113,15 @@ namespace AbarimMUD.Commands.Builder
 				return;
 			}
 
-			if (!property.SetStringValue(context, obj, newValue))
+			var args = new ArraySegment<string>(parts, 2, parts.Length - 3);
+			if (!property.SetStringValue(context, obj, args))
 			{
 				return;
 			}
 
 			// Save
 			context.SaveObject(obj);
-			context.Send($"Changed {obj.GetStringId()}'s {property.Name} to '{parts[3]}'");
+			context.Send($"Changed {obj.GetStringId()}'s {property.Name} to '{string.Join(' ', args)}'");
 		}
 	}
 }

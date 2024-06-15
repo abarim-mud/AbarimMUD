@@ -1,25 +1,36 @@
 ﻿using AbarimMUD.Data;
 using System;
+using System.Collections.Generic;
 
 namespace AbarimMUD.Commands.Builder.OLCUtils
 {
-	public abstract class Record
+	public abstract class ReflectionRecord : IRecord
 	{
-		public bool HasSetter { get; set; }
-
 		public abstract string Name { get; }
-
 		public abstract Type Type { get; }
 		public string TypeName => Type.Name.ToLower();
-		public string Category { get; set; }
+
+		public string ParamsString
+		{
+			get
+			{
+				var p = "_params_";
+
+				if (Type.IsEnum || Type.IsNullableEnum())
+				{
+					p = Type.BuildEnumString();
+				}
+
+				return p;
+			}
+		}
 
 		public abstract object GetValue(object obj);
 		public abstract void SetValue(object obj, object value);
 
-		public abstract T FindAttribute<T>() where T : Attribute;
-
-		public bool SetStringValue(ExecutionContext context, object item, string s)
+		public virtual bool SetStringValue(ExecutionContext context, object item, IReadOnlyList<string> values)
 		{
+			var s = values[0];
 			if (s.EqualsToIgnoreCase("null"))
 			{
 				if (Type.IsClass || Type.IsNullable())
@@ -74,21 +85,14 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 			}
 			else if (Type == typeof(ValueRange) || Type == typeof(ValueRange?))
 			{
-				var parts2 = s.SplitByWhitespace();
-				if (parts2.Length < 2)
-				{
-					context.Send($"Usage: set {TypeName} {Name} _id_ _level1Value_ _level100Value_");
-					return false;
-				}
-
 				int level1Value;
-				if (!context.EnsureInt(parts2[0], out level1Value))
+				if (!context.EnsureInt(values[0], out level1Value))
 				{
 					return false;
 				}
 
 				int level100Value;
-				if (!context.EnsureInt(parts2[1], out level100Value))
+				if (!context.EnsureInt(values[1], out level100Value))
 				{
 					return false;
 				}

@@ -13,14 +13,23 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 	{
 		private static readonly Dictionary<Type, ClassEditor> _classes = new Dictionary<Type, ClassEditor>();
 
-		private readonly Dictionary<string, Record> _records = new Dictionary<string, Record>();
-		private readonly string _propsString;
+		private readonly Dictionary<string, IRecord> _records = new Dictionary<string, IRecord>();
+		private string _propsString = null;
 
 		public Type EditedType { get; private set; }
 
-		public IReadOnlyDictionary<string, Record> Records => _records;
+		public string PropertiesString
+		{
+			get
+			{
+				if (_propsString == null)
+				{
+					_propsString = string.Join('|', from pair in _records select pair.Key);
+				}
 
-		public string PropertiesString => _propsString;
+				return _propsString;
+			}
+		}
 
 		private ClassEditor(Type type)
 		{
@@ -67,8 +76,6 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 
 				_records[name] = new FieldRecord(field);
 			}
-
-			_propsString = string.Join('|', from pair in _records select pair.Key);
 		}
 
 		private static bool CanBeAdded(Type type)
@@ -102,9 +109,20 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 
 		public static ClassEditor GetEditor<T>() => GetEditor(typeof(T));
 
-		public Record FindByName(string name)
+		public void RegisterCustomEditor(string name, string paramsStr, SetStringValuesDelegate setter)
 		{
-			Record record;
+			if (FindByName(name) != null)
+			{
+				throw new Exception($"Can't register custom editor for property {name}, since there's a record");
+			}
+
+			_records[name] = new DelegateRecord(name, paramsStr, setter);
+			_propsString = null;
+		}
+
+		public IRecord FindByName(string name)
+		{
+			IRecord record;
 			if (_records.TryGetValue(name.ToLower(), out record))
 			{
 				return record;
@@ -118,9 +136,15 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 			var values = new Dictionary<string, string>();
 			foreach (var pair in _records)
 			{
-				var rec = pair.Value;
-				var value = rec.GetValue(obj);
+				var irec = pair.Value;
+				var rec = irec as ReflectionRecord;
 
+				if (rec == null)
+				{
+					continue;
+				}
+
+				var value = rec.GetValue(obj);
 				var stringValue = string.Empty;
 
 				do

@@ -21,9 +21,11 @@ namespace AbarimMUD.Data
 		Wrist
 	}
 
-	public class Item: IStoredInFile
+	public class Item : IStoredInFile
 	{
 		public static readonly MultipleFilesStorageString<Item> Storage = new Items();
+
+		private int _value1, _value2, _value3, _value4;
 
 		public string Id { get; set; }
 		public HashSet<string> Keywords { get; set; } = new HashSet<string>();
@@ -37,10 +39,74 @@ namespace AbarimMUD.Data
 		public Material Material { get; set; }
 		public Affect[] Affects { get; set; } = new Affect[0];
 		public ItemType ItemType { get; set; }
-		public int Value1 { get; set; }
-		public int Value2 { get; set; }
-		public int Value3 { get; set; }
-		public int Value4 { get; set; }
+
+		[OLCIgnore]
+		public int Value1
+		{
+			get => _value1;
+
+			set
+			{
+				if (value == _value1)
+				{
+					return;
+				}
+
+				_value1 = value;
+				Creature.InvalidateAllCreaturesStats();
+			}
+		}
+
+		[OLCIgnore]
+		public int Value2
+		{
+			get => _value2;
+
+			set
+			{
+				if (value == _value2)
+				{
+					return;
+				}
+
+				_value2 = value;
+				Creature.InvalidateAllCreaturesStats();
+			}
+		}
+
+		[OLCIgnore]
+		public int Value3
+		{
+			get => _value3;
+
+			set
+			{
+				if (value == _value3)
+				{
+					return;
+				}
+
+				_value3 = value;
+				Creature.InvalidateAllCreaturesStats();
+			}
+		}
+
+		[OLCIgnore]
+		public int Value4
+		{
+			get => _value4;
+
+			set
+			{
+				if (value == _value4)
+				{
+					return;
+				}
+
+				_value4 = value;
+				Creature.InvalidateAllCreaturesStats();
+			}
+		}
 
 		private void EnsureType(ItemType itemType)
 		{
@@ -58,6 +124,15 @@ namespace AbarimMUD.Data
 			EnsureType(ItemType.Armor);
 			armorType = (ArmorType)Value1;
 			armor = Value2;
+		}
+
+		public void SetWeapon(AttackType attackType, int penetration, int minimumDamage, int maximumDamage)
+		{
+			ItemType = ItemType.Weapon;
+			Value1 = (int)attackType;
+			Value2 = penetration;
+			Value3 = minimumDamage;
+			Value4 = maximumDamage;
 		}
 
 		public void GetWeapon(out AttackType attackType, out int penetration, out int minimumDamage, out int maximumDamage)

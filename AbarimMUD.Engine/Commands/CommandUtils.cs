@@ -128,6 +128,8 @@ namespace AbarimMUD.Commands
 			return string.Join('|', list);
 		}
 
+		public static string BuildEnumString<T>() where T : struct, Enum => typeof(T).BuildEnumString();
+
 		private static T EnsureById<T>(this ExecutionContext context, string id, Func<string, T> getter)
 		{
 			var item = getter(id);

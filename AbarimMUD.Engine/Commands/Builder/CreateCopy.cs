@@ -26,7 +26,8 @@ namespace AbarimMUD.Commands.Builder
 				if (!storage.RequiresId)
 				{
 					context.Send($"Usage: createcopy {objectType} _templateId_");
-				} else
+				}
+				else
 				{
 					context.Send($"Usage: createcopy {objectType} _templateId_ _id_");
 				}
@@ -71,7 +72,7 @@ namespace AbarimMUD.Commands.Builder
 					return;
 				}
 
-				property.SetStringValue(context, newObject, newId);
+				property.SetStringValue(context, newObject, new[] { newId });
 			}
 
 			context.SaveObject(newObject);
