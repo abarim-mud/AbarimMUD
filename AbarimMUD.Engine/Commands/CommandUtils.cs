@@ -2,6 +2,7 @@
 using AbarimMUD.Data;
 using AbarimMUD.Utils;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace AbarimMUD.Commands
@@ -112,6 +113,19 @@ namespace AbarimMUD.Commands
 		public static string JoinForUsage<T>() where T : struct, Enum
 		{
 			return string.Join('|', from e in Enum.GetValues<T>() select e.ToString().ToLower());
+		}
+
+		public static string BuildEnumString(this Type enumType)
+		{
+			var values = Enum.GetValues(enumType);
+			var list = new List<string>();
+
+			foreach(var v in values)
+			{
+				list.Add(v.ToString().ToLower());
+			}
+
+			return string.Join('|', list);
 		}
 
 		private static T EnsureById<T>(this ExecutionContext context, string id, Func<string, T> getter)

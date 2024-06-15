@@ -130,5 +130,20 @@ namespace AbarimMUD.Data
 				creature.InvalidateStats();
 			}
 		}
+
+		public static void InvalidateMobiles(Mobile mobile)
+		{
+			foreach (var creature in AllCreatures)
+			{
+				var asMobile = creature as MobileInstance;
+				if (asMobile == null || asMobile.Info != mobile)
+				{
+					continue;
+				}
+
+				asMobile.InvalidateStats();
+				asMobile.Restore();
+			}
+		}
 	}
 }

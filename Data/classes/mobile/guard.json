@@ -9,7 +9,7 @@
     "Level100Value": 5000
   },
   "ArmorRange": null,
-  "AttackType": null,
+  "AttackType": "Slash",
   "PenetrationRange": {
     "Level1Value": 10,
     "Level100Value": 200

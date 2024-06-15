@@ -1,4 +1,5 @@
-﻿using AbarimMUD.Storage;
+﻿using AbarimMUD.Attributes;
+using AbarimMUD.Storage;
 using System.Collections.Generic;
 
 namespace AbarimMUD.Data
@@ -26,7 +27,11 @@ namespace AbarimMUD.Data
 
 		public string Id { get; set; }
 		public HashSet<string> Keywords { get; set; } = new HashSet<string>();
+
+		[OLCAlias("short")]
 		public string ShortDescription { get; set; }
+
+		[OLCAlias("long")]
 		public string LongDescription { get; set; }
 		public string Description { get; set; }
 		public Material Material { get; set; }

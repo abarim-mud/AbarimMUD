@@ -1,7 +1,6 @@
-﻿using AbarimMUD.Storage;
+﻿using AbarimMUD.Attributes;
 using System;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
 {
@@ -103,14 +102,52 @@ namespace AbarimMUD.Data
 		Shock
 	}
 
-	public class Mobile: AreaEntity
+	public class Mobile : AreaEntity
 	{
+		private GameClass _class;
+		private int _level;
+
 		public HashSet<string> Keywords { get; set; } = new HashSet<string>();
+
+		[OLCAlias("short")]
 		public string ShortDescription { get; set; }
+
+		[OLCAlias("long")]
 		public string LongDescription { get; set; }
 		public string Description { get; set; }
-		public GameClass Class { get; set; }
-		public int Level { get; set; }
+
+		public GameClass Class
+		{
+			get => _class;
+
+			set
+			{
+				if (value == _class)
+				{
+					return;
+				}
+
+				_class = value;
+				Creature.InvalidateMobiles(this);
+			}
+		}
+
+		public int Level
+		{
+			get => _level;
+
+			set
+			{
+				if (value == _level)
+				{
+					return;
+				}
+
+				_level = value;
+				Creature.InvalidateMobiles(this);
+			}
+		}
+
 		public Sex Sex { get; set; }
 		public HashSet<MobileFlags> Flags { get; set; } = new HashSet<MobileFlags>();
 		public int Wealth { get; set; }

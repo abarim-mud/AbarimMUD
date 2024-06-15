@@ -9,7 +9,7 @@ namespace AbarimMUD.Commands.Builder
 			var parts = data.SplitByWhitespace(4);
 			if (parts.Length < 1)
 			{
-				context.Send($"Usage: set {OLCManager.KeysString} _propertyName_ _id_ _params_");
+				context.Send($"Usage: set {OLCManager.KeysString} _propertyName_ _params_ _id_");
 				return;
 			}
 
@@ -23,7 +23,7 @@ namespace AbarimMUD.Commands.Builder
 			var editor = ClassEditor.GetEditor(storage.ObjectType);
 			if (parts.Length < 2)
 			{
-				context.Send($"Usage: set {objectType} {editor.PropertiesString} _id_ _params_");
+				context.Send($"Usage: set {objectType} {editor.PropertiesString} _params_ _id_");
 				return;
 			}
 
@@ -37,26 +37,35 @@ namespace AbarimMUD.Commands.Builder
 
 			if (parts.Length < 4)
 			{
-				context.Send($"Usage: set {objectType} {propertyName} _id_ _params_");
+				var p = "_params_";
+
+				if (property.Type.IsEnum || property.Type.IsNullableEnum())
+				{
+					p = property.Type.BuildEnumString();
+				}
+
+				context.Send($"Usage: set {objectType} {propertyName} {p} _id_");
 				return;
 			}
 
-			var itemId = parts[2].ToLower();
-			var item = context.EnsureItemById(storage, itemId);
-			if (item == null)
+			var newValue = parts[2];
+
+			var objectId = parts[3].ToLower();
+			var obj = context.EnsureItemById(storage, objectId);
+			if (obj == null)
 			{
-				context.Send($"Unable to find item of type {objectType} by id '{itemId}'");
+				context.Send($"Unable to find item of type {objectType} by id '{objectId}'");
 				return;
 			}
 
-			if (!property.SetStringValue(context, item, parts[3]))
+			if (!property.SetStringValue(context, obj, newValue))
 			{
 				return;
 			}
 
 			// Save
-			context.SaveObject(item);
-			context.Send($"Changed {item.GetStringId()}'s {property.Name} to '{parts[3]}'");
+			context.SaveObject(obj);
+			context.Send($"Changed {obj.GetStringId()}'s {property.Name} to '{parts[3]}'");
 		}
 	}
 }

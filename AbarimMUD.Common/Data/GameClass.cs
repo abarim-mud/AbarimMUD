@@ -1,4 +1,5 @@
-﻿using AbarimMUD.Storage;
+﻿using AbarimMUD.Attributes;
+using AbarimMUD.Storage;
 using AbarimMUD.StorageAPI;
 using System;
 using System.Collections.Generic;
@@ -65,6 +66,7 @@ namespace AbarimMUD.Data
 		[JsonConverter(typeof(Common.GameClassConverter))]
 		public GameClass Inherits { get; set; }
 
+		[OLCAlias("hprange")]
 		public ValueRange? HitpointsRange
 		{
 			get
@@ -137,6 +139,7 @@ namespace AbarimMUD.Data
 			}
 		}
 
+		[OLCAlias("penrange")]
 		public ValueRange? PenetrationRange
 		{
 			get
@@ -161,6 +164,7 @@ namespace AbarimMUD.Data
 			}
 		}
 
+		[OLCAlias("mindamrange")]
 		public ValueRange? MinimumDamageRange
 		{
 			get
@@ -185,6 +189,7 @@ namespace AbarimMUD.Data
 			}
 		}
 
+		[OLCAlias("maxdamrange")]
 		public ValueRange? MaximumDamageRange
 		{
 			get
@@ -267,9 +272,13 @@ namespace AbarimMUD.Data
 
 			// Calculate attacks' values
 			var attackType = AttackType ?? DefaultAttackType;
-			var penetration = PenetrationRange.CalculateValue(level, DefaultPenetration);
-			var minimumDamage = MinimumDamageRange.CalculateValue(level, DefaultMinimumDamage);
-			var maximumDamage = MaximumDamageRange.CalculateValue(level, DefaultMaximumDamage);
+
+			// We use sqrt growth type for players and linear growth type for mobs
+			var growthType = IsPlayerClass ? ValueRangeGrowthType.Sqrt : ValueRangeGrowthType.Linear;
+			
+			var penetration = PenetrationRange.CalculateValue(level, growthType, DefaultPenetration);
+			var minimumDamage = MinimumDamageRange.CalculateValue(level, growthType, DefaultMinimumDamage);
+			var maximumDamage = MaximumDamageRange.CalculateValue(level, growthType, DefaultMaximumDamage);
 
 			// Add attacks
 			if (Attacks != null)

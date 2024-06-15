@@ -147,14 +147,16 @@ namespace AbarimMUD
 			return result;
 		}
 
-		public static int CalculateValue(this ValueRange? range, int level, int defaultValue = 0)
+		public static int CalculateValue(this ValueRange? range, int level,
+			ValueRangeGrowthType growthType = ValueRangeGrowthType.Linear,
+			int defaultValue = 0)
 		{
 			if (range == null)
 			{
 				return defaultValue;
 			}
 
-			return range.Value.CalculateValue(level);
+			return range.Value.CalculateValue(level, growthType);
 		}
 
 		public static bool IsNullable(this Type type)
