@@ -49,7 +49,7 @@ namespace AbarimMUD
 				var stats = creature.Stats;
 				var targetStats = creature.FightsWith.Stats;
 				var attacks = stats.Attacks;
-				for (var i = 0; i < attacks.Length; ++i)
+				for (var i = 0; i < attacks.Count; ++i)
 				{
 					var attack = attacks[i];
 					var damage = Combat.CalculateDamage(attack, targetStats.Armor);

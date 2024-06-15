@@ -202,7 +202,6 @@ namespace AbarimMUD.Storage
 
 				foreach (var mobile in area.Mobiles)
 				{
-					mobile.Race = Race.EnsureRaceById(mobile.Race.Id);
 					mobile.Class = GameClass.EnsureClassById(mobile.Class.Id);
 				}
 			}
@@ -212,7 +211,6 @@ namespace AbarimMUD.Storage
 		{
 			var result = base.CreateJsonOptions();
 			result.Converters.Add(new RoomExitConverter());
-			result.Converters.Add(Common.RaceConverter);
 			result.Converters.Add(Common.ClassConverter);
 			result.Converters.Add(Common.ItemConverter);
 

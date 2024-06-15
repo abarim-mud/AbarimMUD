@@ -60,7 +60,6 @@ namespace AbarimMUD
 
 			DataContext.Initialize(Configuration.DataFolder, Logger.Info);
 
-			DataContext.Register(Race.Storage);
 			DataContext.Register(GameClass.Storage);
 			DataContext.Register(Item.Storage);
 			DataContext.Register(Skill.Storage);
@@ -72,7 +71,6 @@ namespace AbarimMUD
 			DataContext.Load();
 
 			GameClass.Storage.SaveAll();
-			Race.Storage.SaveAll();
 		}
 
 		public void Start()

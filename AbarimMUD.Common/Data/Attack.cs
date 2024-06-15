@@ -2,23 +2,24 @@
 {
 	public class Attack
 	{
-		private int _penetration;
-
 		public AttackType AttackType { get; set; }
 
-		public int Penetration
-		{
-			get => _penetration;
-			set
-			{
-				_penetration = value;
-			}
-		}
+		public int Penetration { get; set; }
 
 		public RandomRange DamageRange;
 
-		public Attack()
+		public int MinimumDamage
 		{
+			get => DamageRange.Minimum;
+
+			set => DamageRange.Minimum = value;
+		}
+
+		public int MaximumDamage
+		{
+			get => DamageRange.Maximum;
+
+			set => DamageRange.Maximum = value;
 		}
 
 		public Attack(AttackType attackType, int penetration, RandomRange damageRange)

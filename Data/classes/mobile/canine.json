@@ -1,0 +1,38 @@
+{
+  "Id": "canine",
+  "Name": "Canine",
+  "Description": "canine",
+  "IsPlayerClass": false,
+  "Inherits": null,
+  "HitpointsRange": {
+    "Level1Value": 50,
+    "Level100Value": 8000
+  },
+  "ArmorRange": {
+    "Level1Value": 10,
+    "Level100Value": 200
+  },
+  "AttackType": "Bite",
+  "PenetrationRange": {
+    "Level1Value": 10,
+    "Level100Value": 200
+  },
+  "MinimumDamageRange": {
+    "Level1Value": 1,
+    "Level100Value": 10
+  },
+  "MaximumDamageRange": {
+    "Level1Value": 10,
+    "Level100Value": 80
+  },
+  "Attacks": [
+    1,
+    10,
+    20,
+    40,
+    60,
+    80,
+    100
+  ],
+  "SkillsByLevels": {}
+}

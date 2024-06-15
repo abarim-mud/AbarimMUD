@@ -11,8 +11,6 @@ namespace AbarimMUD.Data
 
 		public abstract string ShortDescription { get; }
 		public abstract string Description { get; }
-		public abstract Race Race { get; }
-
 		public abstract GameClass Class { get; }
 
 		public abstract int Level { get; }
@@ -46,12 +44,36 @@ namespace AbarimMUD.Data
 				return;
 			}
 
-			Class.EnsureHitpointsRangeSet();
-			_stats = new CreatureStats
+			_stats = Class.CreateStats(Level);
+
+			// Apply weapon to attacks
+			var weapon = Equipment[SlotType.Wield];
+			if (weapon != null)
 			{
-				MaxHitpoints = (int)(Race.HitpointsModifier * Class.Hitpoints.Value.CalculateValue(Level)),
-				Armor = Race.NaturalArmor.CalculateValue(Level),
-			};
+				AttackType attackType;
+				int weaponPenetration, weaponMinimumDamage, weaponMaximumDamage;
+				weapon.GetWeapon(out attackType, out weaponPenetration,
+					out weaponMinimumDamage, out weaponMaximumDamage);
+
+				foreach (var attack in _stats.Attacks)
+				{
+					attack.AttackType = attackType;
+					attack.Penetration += weaponPenetration;
+
+					if (Class.IsPlayerClass)
+					{
+						// Replace damage with weapon values
+						attack.MinimumDamage = weaponMinimumDamage;
+						attack.MaximumDamage = weaponMaximumDamage;
+					}
+					else
+					{
+						// Add weapon values to damage
+						attack.MinimumDamage += weaponMinimumDamage;
+						attack.MaximumDamage += weaponMaximumDamage;
+					}
+				}
+			}
 
 			// Apply armor items
 			foreach (var item in Equipment.Items)
@@ -67,94 +89,6 @@ namespace AbarimMUD.Data
 
 				_stats.Armor += armor;
 			}
-
-			var attacksCount = Race.NaturalAttacksCount.CalculateValue(Level);
-
-			var penetration = (int)(Race.PenetrationModifier * Class.Penetration.Value.CalculateValue(Level));
-
-			var weapon = Equipment[SlotType.Wield];
-
-			int minimumDamage, maximumDamage;
-			AttackType attackType;
-			if (weapon == null)
-			{
-				// Barehanded damage
-				minimumDamage = Race.BareHandedMinimumDamage.CalculateValue(Level);
-				maximumDamage = Race.BareHandedMaximumDamage.CalculateValue(Level);
-				attackType = Race.BareHandedAttackType;
-			}
-			else
-			{
-				// Weapon damage
-				int weaponPenetration;
-				weapon.GetWeapon(out attackType, out weaponPenetration, out minimumDamage, out maximumDamage);
-				penetration += weaponPenetration;
-			}
-
-			var damageBonus = Class.DamageBonus;
-			if (damageBonus != null)
-			{
-				var bonus = damageBonus.CalculateValue(Level);
-				minimumDamage += bonus;
-				maximumDamage += bonus;
-			}
-
-			// Apply skill modifiers amd bonuses
-			var cls = Class;
-			while (cls != null)
-			{
-				foreach (var pair in cls.SkillsByLevels)
-				{
-					if (Level < pair.Key)
-					{
-						continue;
-					}
-
-					foreach (var skill in pair.Value)
-					{
-						foreach (var pair2 in skill.Modifiers)
-						{
-							switch (pair2.Key)
-							{
-								case ModifierType.AttacksCount:
-									attacksCount += pair2.Value;
-									break;
-							}
-						}
-					}
-				}
-
-				foreach (var pair in cls.LevelsBonuses)
-				{
-					if (Level < pair.Key)
-					{
-						continue;
-					}
-
-					foreach (var pair2 in pair.Value)
-					{
-						switch (pair2.Key)
-						{
-							case ModifierType.AttacksCount:
-								attacksCount += pair2.Value;
-								break;
-						}
-					}
-
-				}
-
-				cls = cls.Inherits;
-			}
-
-			// Build attack list
-			var attack = new Attack(attackType, penetration, new RandomRange(minimumDamage, maximumDamage));
-			var attacksList = new List<Attack>();
-			for (var i = 0; i < attacksCount; ++i)
-			{
-				attacksList.Add(attack);
-			}
-
-			_stats.Attacks = attacksList.ToArray();
 		}
 
 		public void Restore()

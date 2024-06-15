@@ -1,4 +1,4 @@
-﻿using AbarimMUD.Commands.AreaBuilder;
+﻿using AbarimMUD.Commands.Builder;
 using AbarimMUD.Commands.Owner;
 using AbarimMUD.Commands.Player;
 using System.Collections.Generic;
@@ -46,6 +46,8 @@ namespace AbarimMUD.Commands
 		public static readonly Show Show = new Show();
 		public static readonly Info Info = new Info();
 		public static readonly Set Set = new Set();
+		public static readonly Create Create = new Create();
+		public static readonly CreateCopy CreateCopy = new CreateCopy();
 
 		public static readonly ClassCreate ClassCreate = new ClassCreate();
 
@@ -57,7 +59,7 @@ namespace AbarimMUD.Commands
 		public static readonly RoomLinkClear RLinkClear = new RoomLinkClear();
 		public static readonly RoomSaveResets RoomSaveResets = new RoomSaveResets();
 
-//		public static readonly MobileCreate MobileCreate = new MobileCreate();
+		//		public static readonly MobileCreate MobileCreate = new MobileCreate();
 		public static readonly MobileSpawn MobileSpawn = new MobileSpawn();
 
 		public static readonly ItemSearch ItemSearch = new ItemSearch();

@@ -25,16 +25,8 @@ namespace AbarimMUD.Common.Tests
 
 			DataContext.Register(Account.Storage);
 			DataContext.Register(Character.Storage);
-			DataContext.Register(Race.Storage);
 			DataContext.Register(GameClass.Storage);
 			DataContext.Load();
-
-			var testRace = new Race
-			{
-				Id = "testRace",
-				Name = "Test Race"
-			};
-			testRace.Create();
 
 			var testClass = new GameClass
 			{
@@ -54,7 +46,6 @@ namespace AbarimMUD.Common.Tests
 			{
 				Account = newAcc,
 				Name = "char1",
-				PlayerRace = testRace,
 				PlayerClass = testClass,
 				PlayerLevel = 1,
 
@@ -65,7 +56,6 @@ namespace AbarimMUD.Common.Tests
 			{
 				Account = newAcc,
 				Name = "char2",
-				PlayerRace = testRace,
 				PlayerClass = testClass,
 				PlayerLevel = 1,
 			};
@@ -136,12 +126,6 @@ namespace AbarimMUD.Common.Tests
 				TargetRoom = room
 			};
 
-			var testRace = new Race
-			{
-				Id = "testRace"
-			};
-			testRace.Create();
-
 			var testClass = new GameClass
 			{
 				Id = "testClass"
@@ -152,7 +136,6 @@ namespace AbarimMUD.Common.Tests
 			{
 				Id = Area.NextMobileId,
 				ShortDescription = "a test mobile",
-				Race = testRace,
 				Class = testClass,
 				Level = 1,
 			};

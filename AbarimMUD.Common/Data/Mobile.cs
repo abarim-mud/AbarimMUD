@@ -109,7 +109,6 @@ namespace AbarimMUD.Data
 		public string ShortDescription { get; set; }
 		public string LongDescription { get; set; }
 		public string Description { get; set; }
-		public Race Race { get; set; }
 		public GameClass Class { get; set; }
 		public int Level { get; set; }
 		public Sex Sex { get; set; }

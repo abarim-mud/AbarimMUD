@@ -1,27 +1,13 @@
-﻿using AbarimMUD.Commands.AreaBuilder.OLCUtils;
+﻿using AbarimMUD.Commands.Builder.OLCUtils;
 using AbarimMUD.Data;
 using AbarimMUD.Utils;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace AbarimMUD.Commands
 {
 	public static class CommandUtils
 	{
-
-		public static Race EnsureRaceById(this ExecutionContext context, string name)
-		{
-			var race = Race.GetRaceById(name);
-			if (race == null)
-			{
-				context.Send($"Unable to find race '{name}'");
-			}
-
-			return race;
-		}
-
 		public static GameClass EnsureClass(this ExecutionContext context, string name)
 		{
 			var cls = GameClass.GetClassById(name);
@@ -55,11 +41,22 @@ namespace AbarimMUD.Commands
 			return true;
 		}
 
+		public static bool EnsureEnum(this ExecutionContext context, string value, Type enumType, out object result)
+		{
+			if (!Enum.TryParse(enumType, value, true, out result))
+			{
+				context.Send($"Unable to parse enum '{value}' of type {enumType.Name}");
+				return false;
+			}
+
+			return true;
+		}
+
 		public static bool EnsureEnum<T>(this ExecutionContext context, string value, out T result) where T : struct
 		{
 			if (!Enum.TryParse(value, true, out result))
 			{
-				context.Send($"Unable to parse enum '{value}'");
+				context.Send($"Unable to parse enum '{value}' of type {typeof(T).Name}");
 				return false;
 			}
 
@@ -77,6 +74,18 @@ namespace AbarimMUD.Commands
 			return result;
 		}
 
+		public static object EnsureItemById(this ExecutionContext context, IOLCStorage storage, string id)
+		{
+			var item = storage.FindById(context, id);
+			if (item == null)
+			{
+				var objectType = storage.ObjectType.Name.ToLower();
+				context.Send($"Unable to find item of type {objectType} by id '{id}'");
+				return null;
+			}
+
+			return item;
+		}
 
 		public static InventoryRecord EnsureItemInInventory(this ExecutionContext context, string name)
 		{
@@ -119,7 +128,6 @@ namespace AbarimMUD.Commands
 		}
 
 		public static GameClass EnsureClassById(this ExecutionContext context, string id) => EnsureById(context, id, GameClass.GetClassById);
-		public static Item EnsureItemById(this ExecutionContext context, string id) => EnsureById(context, id, Item.GetItemById);
 		public static Character EnsureCharacterByName(this ExecutionContext context, string name) => EnsureById(context, name, Character.GetCharacterByName);
 
 		public static Item EnsureItemType(this ExecutionContext context, string id, ItemType itemType)
@@ -203,6 +211,29 @@ namespace AbarimMUD.Commands
 			}
 
 			throw new Exception($"Can't determine id of {entity}");
+		}
+
+		public static void SaveObject(this ExecutionContext context, object item)
+		{
+			do
+			{
+				var asStoredInFile = item as IStoredInFile;
+				if (asStoredInFile != null)
+				{
+					asStoredInFile.Save();
+					break;
+				}
+
+				var asAreaEntity = item as AreaEntity;
+				if (asAreaEntity != null)
+				{
+					asAreaEntity.Area.Save();
+					break;
+				}
+
+				context.Send($"ERROR: Unable to save entity of type {item.GetType().Name}");
+			}
+			while (false);
 		}
 	}
 }

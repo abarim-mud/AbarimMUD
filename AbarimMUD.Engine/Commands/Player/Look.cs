@@ -105,7 +105,6 @@ namespace AbarimMUD.Commands.Player
 					sb.AppendLine("Mobile Id: " + mobile.Info.Id);
 				}
 
-				sb.AppendLine("Race: " + creature.Race.Name);
 				sb.AppendLine("Class: " + creature.Class.Name);
 				sb.AppendLine("Level: " + creature.Level);
 
@@ -114,7 +113,7 @@ namespace AbarimMUD.Commands.Player
 				var stats = creature.Stats;
 				sb.AppendLine($"Hitpoints: {creature.State.Hitpoints}/{stats.MaxHitpoints}");
 				sb.AppendLine("Armor Class: " + creature.Stats.Armor);
-				for (var i = 0; i < stats.Attacks.Length; i++)
+				for (var i = 0; i < stats.Attacks.Count; i++)
 				{
 					var attack = stats.Attacks[i];
 					sb.AppendLine($"Attack #{i + 1}: {attack}");

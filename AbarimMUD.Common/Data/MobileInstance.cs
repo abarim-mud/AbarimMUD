@@ -13,8 +13,6 @@ namespace AbarimMUD.Data
 		public override string ShortDescription => Info.ShortDescription;
 		public override string Description => Info.Description;
 
-		public override Race Race => Info.Race;
-
 		public override GameClass Class => Info.Class;
 
 		public override int Level => Info.Level;

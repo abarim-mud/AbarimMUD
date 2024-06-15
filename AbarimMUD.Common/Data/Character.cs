@@ -18,7 +18,6 @@ namespace AbarimMUD.Data
 	{
 		public static readonly MultipleFilesStorageString<Character> Storage = new Characters();
 
-		private Race _race;
 		private GameClass _class;
 		private int _level;
 
@@ -37,17 +36,6 @@ namespace AbarimMUD.Data
 		public string Name { get; set; }
 
 		public string PlayerDescription { get; set; }
-
-		public Race PlayerRace
-		{
-			get => _race;
-
-			set
-			{
-				_race = value;
-				InvalidateStats();
-			}
-		}
 
 		public GameClass PlayerClass
 		{
@@ -79,7 +67,6 @@ namespace AbarimMUD.Data
 
 		public override string ShortDescription => Name;
 		public override string Description => PlayerDescription;
-		public override Race Race => PlayerRace;
 		public override GameClass Class => PlayerClass;
 		public override int Level => PlayerLevel;
 		public override Sex Sex => PlayerSex;

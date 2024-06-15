@@ -32,7 +32,6 @@ namespace AbarimMUD.Storage
 		protected override JsonSerializerOptions CreateJsonOptions()
 		{
 			var result = base.CreateJsonOptions();
-			result.Converters.Add(Common.RaceConverter);
 			result.Converters.Add(Common.ClassConverter);
 			result.Converters.Add(Common.ItemConverter);
 
@@ -96,7 +95,6 @@ namespace AbarimMUD.Storage
 
 			foreach (var character in this)
 			{
-				character.PlayerRace = Race.EnsureRaceById(character.Race.Id);
 				character.PlayerClass = GameClass.EnsureClassById(character.Class.Id);
 
 				foreach (var item in character.Inventory.Items)

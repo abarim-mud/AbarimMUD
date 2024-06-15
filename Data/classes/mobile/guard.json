@@ -1,0 +1,34 @@
+{
+  "Id": "guard",
+  "Name": "Guard",
+  "Description": "guard",
+  "IsPlayerClass": false,
+  "Inherits": null,
+  "HitpointsRange": {
+    "Level1Value": 50,
+    "Level100Value": 5000
+  },
+  "ArmorRange": null,
+  "AttackType": null,
+  "PenetrationRange": {
+    "Level1Value": 10,
+    "Level100Value": 200
+  },
+  "MinimumDamageRange": {
+    "Level1Value": 1,
+    "Level100Value": 10
+  },
+  "MaximumDamageRange": {
+    "Level1Value": 10,
+    "Level100Value": 60
+  },
+  "Attacks": [
+    1,
+    1,
+    25,
+    50,
+    75,
+    100
+  ],
+  "SkillsByLevels": {}
+}

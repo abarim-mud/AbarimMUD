@@ -45,7 +45,6 @@ namespace AbarimMUD.Storage
 			}
 		}
 
-		public static readonly EntityConverter<Race> RaceConverter = new EntityConverter<Race>(e => e.Id, (e, v) => e.Id = v);
 		public static readonly EntityConverter<GameClass> ClassConverter = new GameClassConverter();
 		public static readonly EntityConverter<Skill> SkillConverter = new EntityConverter<Skill>(e => e.Id, (e, v) => e.Id = v);
 		public static readonly EntityConverter<Item> ItemConverter = new EntityConverter<Item>(e => e.Id, (e, v) => e.Id = v);

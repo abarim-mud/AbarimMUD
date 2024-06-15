@@ -5,7 +5,6 @@ namespace AbarimMUD.Data
 {
 	public enum ModifierType
 	{
-		AttacksCount
 	}
 
 	public class Skill : IStoredInFile

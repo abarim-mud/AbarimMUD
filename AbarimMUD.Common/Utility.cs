@@ -137,11 +137,11 @@ namespace AbarimMUD
 			return result;
 		}
 
-		public static int CalculateValue(this RaceClassValueRange? range, int level)
+		public static int CalculateValue(this ValueRange? range, int level, int defaultValue = 0)
 		{
 			if (range == null)
 			{
-				return 0;
+				return defaultValue;
 			}
 
 			return range.Value.CalculateValue(level);
@@ -160,6 +160,11 @@ namespace AbarimMUD
 		public static bool IsNullableEnum(this Type type)
 		{
 			return type.IsNullable() && type.GenericTypeArguments[0].IsEnum;
+		}
+
+		public static Type GetNullableType(this Type type)
+		{
+			return type.GenericTypeArguments[0];
 		}
 	}
 }
