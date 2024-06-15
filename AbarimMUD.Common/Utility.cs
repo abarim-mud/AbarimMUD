@@ -1,6 +1,7 @@
 ﻿using AbarimMUD.Data;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Text.Json;
@@ -10,7 +11,15 @@ namespace AbarimMUD
 {
 	public static class Utility
 	{
+		private static readonly NumberFormatInfo _bigNumbersFormatCulture;
+
 		public static Random Random { get; } = new Random();
+
+		static Utility()
+		{
+			_bigNumbersFormatCulture = (NumberFormatInfo)CultureInfo.InvariantCulture.NumberFormat.Clone();
+			_bigNumbersFormatCulture.NumberGroupSeparator = ",";
+		}
 
 		public static bool RollPercentage(int percentage)
 		{
@@ -177,6 +186,11 @@ namespace AbarimMUD
 		public static Type GetNullableType(this Type type)
 		{
 			return type.GenericTypeArguments[0];
+		}
+
+		public static string FormatBigNumber(this int number)
+		{
+			return number.ToString("#,0", _bigNumbersFormatCulture);
 		}
 	}
 }

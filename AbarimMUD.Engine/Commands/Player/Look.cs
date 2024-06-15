@@ -86,7 +86,7 @@ namespace AbarimMUD.Commands.Player
 			{
 				sb.AppendLine(creature.Description);
 			}
-			
+
 			var grid = creature.BuildEquipmentDesc();
 			if (grid != null)
 			{
@@ -117,6 +117,11 @@ namespace AbarimMUD.Commands.Player
 				{
 					var attack = stats.Attacks[i];
 					sb.AppendLine($"Attack #{i + 1}: {attack}");
+				}
+
+				if (mobile != null)
+				{
+					sb.AppendLine("Xp Award: " + stats.XpAward.FormatBigNumber());
 				}
 
 				sb.Append("[reset]");

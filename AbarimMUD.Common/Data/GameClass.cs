@@ -37,7 +37,7 @@ namespace AbarimMUD.Data
 		public const int DefaultMinimumDamage = 1;
 		public const int DefaultMaximumDamage = 4;
 
-		public static readonly ValueRange DefaultHitpoints = new ValueRange(0, 100);
+		public static readonly ValueRange DefaultHitpoints = new ValueRange(1, 100);
 		public static readonly ValueRange DefaultArmor = new ValueRange(0, 0);
 		public static readonly MultipleFilesStorageString<GameClass> Storage = new GameClasses();
 
@@ -275,7 +275,7 @@ namespace AbarimMUD.Data
 
 			// We use sqrt growth type for players and linear growth type for mobs
 			var growthType = IsPlayerClass ? ValueRangeGrowthType.Sqrt : ValueRangeGrowthType.Linear;
-			
+
 			var penetration = PenetrationRange.CalculateValue(level, growthType, DefaultPenetration);
 			var minimumDamage = MinimumDamageRange.CalculateValue(level, growthType, DefaultMinimumDamage);
 			var maximumDamage = MaximumDamageRange.CalculateValue(level, growthType, DefaultMaximumDamage);
@@ -318,6 +318,22 @@ namespace AbarimMUD.Data
 				// Add default single attack
 				stats.Attacks.Add(new Attack(attackType, penetration, minimumDamage, maximumDamage));
 			}
+
+			var xpAward = Math.Max(1, stats.MaxHitpoints);
+			xpAward *= Math.Max(1, stats.Armor / 10);
+
+			var attackXpFactor = 0;
+			foreach (var attack in stats.Attacks)
+			{
+				var t = Math.Max(1, attack.Penetration / 10);
+				t *= Math.Max(1, attack.MinimumDamage + (attack.MaximumDamage - attack.MinimumDamage) / 2);
+
+				attackXpFactor += t;
+			}
+
+			xpAward *= attackXpFactor;
+
+			stats.XpAward = xpAward;
 
 			return stats;
 		}
