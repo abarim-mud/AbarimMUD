@@ -25,18 +25,17 @@ namespace AbarimMUD.Data
 
 			set
 			{
-				if (value == null)
-				{
-					throw new ArgumentNullException("value");
-				}
-
 				if (_room != null)
 				{
 					_room.Mobiles.Remove(this);
 				}
 
 				_room = value;
-				_room.Mobiles.Add(this);
+
+				if (_room != null)
+				{
+					_room.Mobiles.Add(this);
+				}
 			}
 		}
 		public MobileInstance(Mobile mobile)
@@ -49,5 +48,13 @@ namespace AbarimMUD.Data
 		}
 
 		public override bool MatchesKeyword(string keyword) => Info.MatchesKeyword(keyword);
+
+
+		public override void Slain()
+		{
+			base.Slain();
+
+			Room = null;
+		}
 	}
 }

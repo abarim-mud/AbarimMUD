@@ -9,6 +9,6 @@ namespace AbarimMUD.Data
 		public int MaxMovement { get; internal set; }
 		public List<Attack> Attacks { get; } = new List<Attack>();
 		public int Armor { get; internal set; }
-		public int XpAward { get; internal set; }
+		public long XpAward { get; internal set; }
 	}
 }

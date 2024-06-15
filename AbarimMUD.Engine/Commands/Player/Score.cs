@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using AbarimMUD.Data;
+using System.Text;
 
 namespace AbarimMUD.Commands.Player
 {
@@ -18,6 +19,13 @@ namespace AbarimMUD.Commands.Player
 			{
 				var attack = stats.Attacks[i];
 				sb.AppendLine($"Attack #{i + 1}: {attack}");
+			}
+
+			var asCharacter = context.Creature as Character;
+			if (asCharacter != null)
+			{
+				sb.AppendLine($"Experience: {asCharacter.Experience.FormatBigNumber()}");
+				sb.AppendLine($"Gold: {asCharacter.Wealth.FormatBigNumber()}");
 			}
 
 			context.Send(sb.ToString());

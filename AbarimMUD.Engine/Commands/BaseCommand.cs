@@ -49,6 +49,7 @@ namespace AbarimMUD.Commands
 		public static readonly Create Create = new Create();
 		public static readonly CreateCopy CreateCopy = new CreateCopy();
 		public static readonly Spawn Spawn = new Spawn();
+		public static readonly Slain Slain = new Slain();
 
 		public static readonly RoomCreate RoomCreate = new RoomCreate();
 		public static readonly RoomLink RoomLink = new RoomLink();

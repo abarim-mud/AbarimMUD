@@ -78,6 +78,9 @@ namespace AbarimMUD.Data
 		[OLCAlias("sex")]
 		public Sex PlayerSex { get; set; }
 
+		public long Wealth { get; set; }
+		public long Experience { get; set; }
+
 		public override string ShortDescription => Name;
 		public override string Description => PlayerDescription;
 		public override GameClass Class => PlayerClass;

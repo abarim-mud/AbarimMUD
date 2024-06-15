@@ -35,6 +35,9 @@ namespace AbarimMUD.Data
 		public CreatureState State { get; } = new CreatureState();
 
 		[JsonIgnore]
+		public bool IsAlive { get; protected set; } = true;
+
+		[JsonIgnore]
 		public Creature FightsWith { get; set; }
 
 		public void InvalidateStats()
@@ -144,6 +147,12 @@ namespace AbarimMUD.Data
 				asMobile.InvalidateStats();
 				asMobile.Restore();
 			}
+		}
+
+		public virtual void Slain()
+		{
+			IsAlive = false;
+			AllCreatures.Remove(this);
 		}
 	}
 }

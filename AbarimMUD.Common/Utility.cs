@@ -192,5 +192,10 @@ namespace AbarimMUD
 		{
 			return number.ToString("#,0", _bigNumbersFormatCulture);
 		}
+
+		public static string FormatBigNumber(this long number)
+		{
+			return number.ToString("#,0", _bigNumbersFormatCulture);
+		}
 	}
 }
