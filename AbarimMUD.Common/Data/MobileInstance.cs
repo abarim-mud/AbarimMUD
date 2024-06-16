@@ -49,12 +49,13 @@ namespace AbarimMUD.Data
 
 		public override bool MatchesKeyword(string keyword) => Info.MatchesKeyword(keyword);
 
-
 		public override void Slain()
 		{
 			base.Slain();
 
 			Room = null;
 		}
+
+		public override string ToString() => Info.ToString();
 	}
 }

@@ -2,12 +2,6 @@
 
 namespace AbarimMUD.Data
 {
-	public enum ValueRangeGrowthType
-	{
-		Linear,
-		Sqrt
-	}
-
 	public struct ValueRange
 	{
 		public int Level1Value;
@@ -19,7 +13,7 @@ namespace AbarimMUD.Data
 			Level100Value = level100Value;
 		}
 
-		public int CalculateValue(int level, ValueRangeGrowthType growthType = ValueRangeGrowthType.Linear)
+		public int CalculateValue(int level)
 		{
 			if (level < 1)
 			{
@@ -36,17 +30,8 @@ namespace AbarimMUD.Data
 				return Level100Value;
 			}
 
+			// Simple linear interpolation
 			var k = (level - 1) / 99.0f;
-			if (growthType == ValueRangeGrowthType.Linear)
-			{
-				// Linear interpolation
-			}
-			else
-			{
-				// Sqrt interpolation
-				k = (float)Math.Sqrt(k);
-			}
-
 			var value = Level1Value + k * (Level100Value - Level1Value);
 
 			return (int)value;

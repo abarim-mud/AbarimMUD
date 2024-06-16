@@ -5,8 +5,12 @@
   "IsPlayerClass": true,
   "Inherits": null,
   "HitpointsRange": {
-    "Level1Value": 40,
+    "Level1Value": 100,
     "Level100Value": 1500
+  },
+  "HitpointsRegenRange": {
+    "Level1Value": 20,
+    "Level100Value": 100
   },
   "ArmorRange": null,
   "AttackType": null,

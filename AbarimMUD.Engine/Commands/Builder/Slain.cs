@@ -40,8 +40,8 @@ namespace AbarimMUD.Commands.Builder
 				// Append level up messages
 				for (var level = lastLevel + 1; level <= character.Level; ++level)
 				{
-					var previousHp = character.Class.HitpointsRange.CalculateValue(level - 1, ValueRangeGrowthType.Sqrt);
-					var newHp = character.Class.HitpointsRange.CalculateValue(level, ValueRangeGrowthType.Sqrt);
+					var previousHp = character.Class.HitpointsRange.CalculateValue(level - 1);
+					var newHp = character.Class.HitpointsRange.CalculateValue(level);
 					sb.AppendLine($"Welcome to the level {level}! You gained {newHp - previousHp} hitpoints.");
 				}
 

@@ -8,6 +8,10 @@
     "Level1Value": 50,
     "Level100Value": 5000
   },
+  "HitpointsRegenRange": {
+    "Level1Value": 20,
+    "Level100Value": 200
+  },
   "ArmorRange": {
     "Level1Value": 1,
     "Level100Value": 200

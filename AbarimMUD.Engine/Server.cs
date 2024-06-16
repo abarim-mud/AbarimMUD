@@ -21,6 +21,7 @@ namespace AbarimMUD
 		private readonly AutoResetEvent _mainThreadEvent = new AutoResetEvent(false);
 		private readonly Service _webService = new Service();
 		private readonly List<Fight> _fights = new List<Fight>();
+		private DateTime? _lastRegenDt;
 
 		public static Logger Logger { get; private set; } = LogManager.GetLogger("Logs/Server");
 
@@ -167,6 +168,46 @@ namespace AbarimMUD
 					try
 					{
 						Debug.WriteLine("Tick");
+
+						var now = DateTime.Now;
+						if (_lastRegenDt == null)
+						{
+							_lastRegenDt = now;
+						}
+						else if ((now - _lastRegenDt.Value).TotalMilliseconds >= 1000)
+						{
+							var secondsPassed = (float)(now - _lastRegenDt.Value).TotalSeconds;
+
+							// Process creature
+							foreach (var creature in Creature.AllCreatures)
+							{
+								if (creature.State.Hitpoints >= creature.Stats.MaxHitpoints)
+								{
+									continue;
+								}
+
+								var hpRegen = creature.Stats.HitpointsRegen * secondsPassed / 60.0f;
+
+								creature.State.FractionalRegen += hpRegen;
+
+								if (creature.State.FractionalRegen > 1)
+								{
+									// Update real hp
+									var hpUpdate = (int)creature.State.FractionalRegen;
+									creature.State.Hitpoints += hpUpdate;
+									creature.State.FractionalRegen -= hpUpdate;
+
+									if (creature.State.Hitpoints >= creature.Stats.MaxHitpoints)
+									{
+										// Full
+										creature.State.Hitpoints = creature.Stats.MaxHitpoints;
+										creature.State.FractionalRegen = 0;
+									}
+								}
+							}
+
+							_lastRegenDt = now;
+						}
 
 						// Process player input
 						foreach (var session in Sessions)

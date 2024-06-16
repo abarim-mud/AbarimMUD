@@ -51,6 +51,8 @@ namespace AbarimMUD.Commands
 		public static readonly Spawn Spawn = new Spawn();
 		public static readonly Slain Slain = new Slain();
 
+		public static readonly ShowLevels ShowLevels = new ShowLevels();
+
 		public static readonly RoomCreate RoomCreate = new RoomCreate();
 		public static readonly RoomLink RoomLink = new RoomLink();
 		public static readonly RoomLinkClear RLinkClear = new RoomLinkClear();

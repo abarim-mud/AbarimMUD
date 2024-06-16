@@ -111,7 +111,7 @@ namespace AbarimMUD.Commands.Player
 				sb.AppendLine();
 
 				var stats = creature.Stats;
-				sb.AppendLine($"Hitpoints: {creature.State.Hitpoints}/{stats.MaxHitpoints}");
+				sb.AppendLine($"Hitpoints: {creature.State.Hitpoints}/{stats.MaxHitpoints} + {stats.HitpointsRegen}");
 				sb.AppendLine("Armor Class: " + creature.Stats.Armor);
 				for (var i = 0; i < stats.Attacks.Count; i++)
 				{

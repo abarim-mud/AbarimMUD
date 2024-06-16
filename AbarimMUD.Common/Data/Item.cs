@@ -54,7 +54,7 @@ namespace AbarimMUD.Data
 				}
 
 				_value1 = value;
-				Creature.InvalidateAllCreaturesStats();
+				InvalidateCreaturesWithThisItem();
 			}
 		}
 
@@ -71,7 +71,7 @@ namespace AbarimMUD.Data
 				}
 
 				_value2 = value;
-				Creature.InvalidateAllCreaturesStats();
+				InvalidateCreaturesWithThisItem();
 			}
 		}
 
@@ -88,7 +88,7 @@ namespace AbarimMUD.Data
 				}
 
 				_value3 = value;
-				Creature.InvalidateAllCreaturesStats();
+				InvalidateCreaturesWithThisItem();
 			}
 		}
 
@@ -105,7 +105,7 @@ namespace AbarimMUD.Data
 				}
 
 				_value4 = value;
-				Creature.InvalidateAllCreaturesStats();
+				InvalidateCreaturesWithThisItem();
 			}
 		}
 
@@ -164,7 +164,7 @@ namespace AbarimMUD.Data
 				_value4 = _value4,
 			};
 
-			foreach(var keyword in Keywords)
+			foreach (var keyword in Keywords)
 			{
 				result.Keywords.Add(keyword);
 			}
@@ -178,6 +178,21 @@ namespace AbarimMUD.Data
 
 		public void Create() => Storage.Create(this);
 		public void Save() => Storage.Save(this);
+
+		private void InvalidateCreaturesWithThisItem()
+		{
+			foreach (var creature in Creature.AllCreatures)
+			{
+				foreach (var item in creature.Equipment.Items)
+				{
+					if (item.Item.Info.Id == Id)
+					{
+						creature.InvalidateStats();
+						break;
+					}
+				}
+			}
+		}
 
 		public static Item GetItemById(string id) => Storage.GetByKey(id);
 		public static Item EnsureItemById(string id) => Storage.EnsureByKey(id);

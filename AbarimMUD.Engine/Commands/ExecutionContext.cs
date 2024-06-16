@@ -111,9 +111,10 @@ namespace AbarimMUD.Commands
 			InternalSend(data);
 		}
 
-		public void ParseAndExecute(string data)
+		private void ParseAndExecuteLine(string line)
 		{
-			var parts = data.SplitByWhitespace(2);
+			line = line.Trim();
+			var parts = line.SplitByWhitespace(2);
 			if (parts.Length == 0)
 			{
 				Send(string.Empty);
@@ -144,6 +145,16 @@ namespace AbarimMUD.Commands
 
 			var args = parts.Length > 1 ? parts[1] : string.Empty;
 			command.Execute(this, args);
+
+		}
+
+		public void ParseAndExecute(string data)
+		{
+			var lines = data.Split("\n");
+			foreach (var line in lines)
+			{
+				ParseAndExecuteLine(line);
+			}
 		}
 	}
 }

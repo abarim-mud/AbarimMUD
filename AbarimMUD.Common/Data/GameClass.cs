@@ -38,10 +38,12 @@ namespace AbarimMUD.Data
 		public const int DefaultMaximumDamage = 4;
 
 		public static readonly ValueRange DefaultHitpoints = new ValueRange(1, 100);
+		public static readonly ValueRange DefaultHitpointsRegen = new ValueRange(1, 50);
 		public static readonly ValueRange DefaultArmor = new ValueRange(0, 0);
 		public static readonly MultipleFilesStorageString<GameClass> Storage = new GameClasses();
 
 		private ValueRange? _hitpointsRange;
+		private ValueRange? _hitpointsRegenRange;
 		private ValueRange? _armorRange;
 		private AttackType? _attackType;
 		private ValueRange? _penetrationRange;
@@ -87,9 +89,35 @@ namespace AbarimMUD.Data
 				}
 
 				_hitpointsRange = value;
-				Creature.InvalidateAllCreaturesStats();
+				InvalidateCreaturesOfThisClass();
 			}
 		}
+
+		[OLCAlias("hpregenrange")]
+		public ValueRange? HitpointsRegenRange
+		{
+			get
+			{
+				if (UseOriginalValues || Inherits == null || _hitpointsRegenRange != null)
+				{
+					return _hitpointsRegenRange;
+				}
+
+				return Inherits.HitpointsRegenRange;
+			}
+
+			set
+			{
+				if (value == _hitpointsRegenRange)
+				{
+					return;
+				}
+
+				_hitpointsRegenRange = value;
+				InvalidateCreaturesOfThisClass();
+			}
+		}
+
 
 		public ValueRange? ArmorRange
 		{
@@ -111,7 +139,7 @@ namespace AbarimMUD.Data
 				}
 
 				_armorRange = value;
-				Creature.InvalidateAllCreaturesStats();
+				InvalidateCreaturesOfThisClass();
 			}
 		}
 
@@ -135,7 +163,7 @@ namespace AbarimMUD.Data
 				}
 
 				_attackType = value;
-				Creature.InvalidateAllCreaturesStats();
+				InvalidateCreaturesOfThisClass();
 			}
 		}
 
@@ -160,7 +188,7 @@ namespace AbarimMUD.Data
 				}
 
 				_penetrationRange = value;
-				Creature.InvalidateAllCreaturesStats();
+				InvalidateCreaturesOfThisClass();
 			}
 		}
 
@@ -185,7 +213,7 @@ namespace AbarimMUD.Data
 				}
 
 				_minimumDamageRange = value;
-				Creature.InvalidateAllCreaturesStats();
+				InvalidateCreaturesOfThisClass();
 			}
 		}
 
@@ -210,7 +238,7 @@ namespace AbarimMUD.Data
 				}
 
 				_maximumDamageRange = value;
-				Creature.InvalidateAllCreaturesStats();
+				InvalidateCreaturesOfThisClass();
 			}
 		}
 
@@ -235,7 +263,7 @@ namespace AbarimMUD.Data
 
 				_attacks = value;
 
-				Creature.InvalidateAllCreaturesStats();
+				InvalidateCreaturesOfThisClass();
 			}
 		}
 
@@ -262,11 +290,13 @@ namespace AbarimMUD.Data
 		public CreatureStats CreateStats(int level)
 		{
 			var hitpoints = HitpointsRange ?? DefaultHitpoints;
+			var hitpointsRegen = HitpointsRegenRange ?? DefaultHitpointsRegen;
 			var armor = ArmorRange ?? DefaultArmor;
 
 			var stats = new CreatureStats
 			{
 				MaxHitpoints = hitpoints.CalculateValue(level),
+				HitpointsRegen = hitpointsRegen.CalculateValue(level),
 				Armor = armor.CalculateValue(level),
 			};
 
@@ -274,11 +304,9 @@ namespace AbarimMUD.Data
 			var attackType = AttackType ?? DefaultAttackType;
 
 			// We use sqrt growth type for players and linear growth type for mobs
-			var growthType = IsPlayerClass ? ValueRangeGrowthType.Sqrt : ValueRangeGrowthType.Linear;
-
-			var penetration = PenetrationRange.CalculateValue(level, growthType, DefaultPenetration);
-			var minimumDamage = MinimumDamageRange.CalculateValue(level, growthType, DefaultMinimumDamage);
-			var maximumDamage = MaximumDamageRange.CalculateValue(level, growthType, DefaultMaximumDamage);
+			var penetration = PenetrationRange.CalculateValue(level, DefaultPenetration);
+			var minimumDamage = MinimumDamageRange.CalculateValue(level, DefaultMinimumDamage);
+			var maximumDamage = MaximumDamageRange.CalculateValue(level, DefaultMaximumDamage);
 
 			// Add attacks
 			if (Attacks != null)
@@ -336,6 +364,17 @@ namespace AbarimMUD.Data
 			stats.XpAward = xpAward;
 
 			return stats;
+		}
+
+		private void InvalidateCreaturesOfThisClass()
+		{
+			foreach(var creature in Creature.AllCreatures)
+			{
+				if (creature.Class.Id == Id)
+				{
+					creature.InvalidateStats();
+				}
+			}
 		}
 
 		public GameClass CloneClass()

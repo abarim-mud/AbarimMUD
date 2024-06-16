@@ -27,7 +27,7 @@ namespace AbarimMUD.Commands.Player
 
 			var stats = context.Creature.Stats;
 			var state = context.Creature.State;
-			sb.AppendLine($"Hitpoints: {state.Hitpoints}/{stats.MaxHitpoints}");
+			sb.AppendLine($"Hitpoints: {state.Hitpoints}/{stats.MaxHitpoints} + {stats.HitpointsRegen}");
 			sb.AppendLine("Armor: " + stats.Armor);
 			for (var i = 0; i < stats.Attacks.Count; i++)
 			{
