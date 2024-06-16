@@ -1,6 +1,7 @@
-﻿using AbarimMUD.Commands;
-using NLog;
+﻿using NLog;
 using System.IO;
+using System.Linq;
+using System.Text;
 
 namespace AbarimMUD
 {
@@ -44,6 +45,13 @@ namespace AbarimMUD
 			newLoggerName = Path.Combine("Data/accounts", newLoggerName);
 			newLoggerName = Path.Combine(newLoggerName, "Logs/");
 			Logger = LogManager.GetLogger(newLoggerName);
+		}
+
+		public override void BeforeOutputSent(StringBuilder sb)
+		{
+			base.BeforeOutputSent(sb);
+
+			Session.Context.BeforeOutputSent(sb);
 		}
 	}
 }

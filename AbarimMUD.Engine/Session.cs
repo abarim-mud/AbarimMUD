@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using AbarimMUD.Commands;
 using AbarimMUD.Data;
 using NLog;
@@ -12,6 +13,8 @@ namespace AbarimMUD
 		private readonly PlayerExecutionContext _context;
 		private Character _character;
 		private Room _room;
+		private readonly StringBuilder _output = new StringBuilder();
+		private bool _hasOutput = false;
 
 		public Connection Connection => _connection;
 
@@ -137,7 +140,21 @@ namespace AbarimMUD
 
 		public void Send(string text)
 		{
-			_connection.Send(text);
+			_output.Append(text);
+			_hasOutput = true;
+		}
+
+		public void FlushOutput()
+		{
+			if (!_hasOutput)
+			{
+				return;
+			}
+
+			CurrentHandler.BeforeOutputSent(_output);
+			_connection.Send(_output.ToString());
+			_output.Clear();
+			_hasOutput = false;
 		}
 
 		public void Disconnect()

@@ -1,6 +1,7 @@
 ﻿using AbarimMUD.Utils;
 using NLog;
 using System;
+using System.Text;
 
 namespace AbarimMUD
 {
@@ -37,9 +38,8 @@ namespace AbarimMUD
 			Session.Send(text + AsciiRichText.NewLine);
 		}
 
-		protected void SendDebug(string data)
+		public virtual void BeforeOutputSent(StringBuilder output)
 		{
-			Session.Send(data);
 		}
 
 		protected bool CheckPassword(string pwd)

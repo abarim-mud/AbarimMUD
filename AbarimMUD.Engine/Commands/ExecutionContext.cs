@@ -67,11 +67,22 @@ namespace AbarimMUD.Commands
 			}
 		}
 
-		public void Send(string text, bool? forceDotAtTheEnd = null)
+		public void Send(string text)
 		{
-			var sb = new StringBuilder();
+			InternalSend(text + "\n");
+		}
+
+		public void BeforeOutputSent(StringBuilder sb)
+		{
+			var text = sb.ToString();
+			text = text.TrimEnd();
+
+			// Rebuild the output, applying varios changes
+			sb.Clear();
 
 			text = text.TrimEnd();
+
+			bool? forceDotAtTheEnd = null;
 			if (!string.IsNullOrEmpty(text))
 			{
 				// Remove unneeded color clear at the end
@@ -87,7 +98,6 @@ namespace AbarimMUD.Commands
 					// While multi-line string does not
 					forceDotAtTheEnd = linesCount == 1;
 				}
-
 				sb.Append(text);
 
 				if (forceDotAtTheEnd.Value && !text.EndsWith("."))
@@ -105,10 +115,6 @@ namespace AbarimMUD.Commands
 			// Line break before stats
 			sb.AppendLine();
 			sb.Append(string.Format("<{0}hp {1}ma {2}mv -> ", State.Hitpoints, State.Mana, State.Movement));
-
-			var data = sb.ToString();
-
-			InternalSend(data);
 		}
 
 		private void ParseAndExecuteLine(string line)
