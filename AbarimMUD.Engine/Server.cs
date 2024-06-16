@@ -54,12 +54,14 @@ namespace AbarimMUD
 			};
 		}
 
-		private void LoadDatabase()
+		private void LoadDatabase(string dataFolder)
 		{
 			Logger.Info("Loading Database");
 
-			DataContext.Initialize(Configuration.DataFolder, Logger.Info);
+			DataContext.Initialize(dataFolder, Logger.Info);
 
+			DataContext.Register(Configuration.Storage);
+			DataContext.Register(LevelInfo.Storage);
 			DataContext.Register(GameClass.Storage);
 			DataContext.Register(Item.Storage);
 			DataContext.Register(Skill.Storage);
@@ -67,39 +69,69 @@ namespace AbarimMUD
 			DataContext.Register(Account.Storage);
 			DataContext.Register(Character.Storage);
 			DataContext.Register(Social.Storage);
-
+			
 			DataContext.Load();
 
-			GameClass.Storage.SaveAll();
+			Configuration.Save();
+/*			long minimumXp = 2000;
+			long maximumXp = 20000000000;
+			int levels = 100;
+
+			var values = new Dictionary<int, long>();
+			for (var level = 1; level <= levels; ++level)
+			{
+				var k = (float)(level - 1) / (levels - 1);
+
+				k *= (k * k * k * k);
+				var xp = (long)(minimumXp + (maximumXp - minimumXp) * k);
+
+				// Round up to 3 first numbers
+				var numbers = xp.ToString().Length;
+
+				var d = xp / Math.Pow(10, numbers - 3);
+				d = Math.Round(d);
+
+				// Get rid of trailing 1 or 9
+				xp = (long)d;
+
+				var moves = 0;
+				while (xp > 10)
+				{
+					var lastNum = xp % 10;
+					if (lastNum == 1)
+					{
+						xp -= 1;
+					}
+					else if (lastNum == 9)
+					{
+						xp += 1;
+					}
+					else
+					{
+						break;
+					}
+
+					++moves;
+					xp /= 10;
+				}
+
+				xp *= (long)Math.Pow(10, numbers + moves - 3);
+				values[level] = xp;
+			}
+
+			foreach(var pair in values)
+			{
+				LevelInfo.Storage.Create(new LevelInfo(pair.Key, pair.Value));
+			}*/
+
+			LevelInfo.Storage.SaveAll();
 		}
 
-		public void Start()
+		public void Start(string dataFolder)
 		{
 			try
 			{
-				LoadDatabase();
-
-				if (Area.Storage.Count == 0)
-				{
-					Logger.Info("No areas exist. Creating test area with single room.");
-					var newArea = new Area
-					{
-						Name = "Test Area"
-					};
-
-					// Create new room
-					var newRoom = new Room
-					{
-						Id = Area.NextRoomId,
-						Name = "Empty",
-						Description = "Empty"
-					};
-
-					newArea.Rooms.Add(newRoom);
-					newArea.Save();
-
-					Configuration.StartRoomId = newRoom.Id;
-				}
+				LoadDatabase(dataFolder);
 
 				Logger.Info("Spawning areas");
 				foreach (var area in Area.Storage)

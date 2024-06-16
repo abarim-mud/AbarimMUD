@@ -71,6 +71,16 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 
 				SetValue(item, i);
 			}
+			else if (Type == typeof(long) || Type == typeof(long?))
+			{
+				long i;
+				if (!context.EnsureLong(s, out i))
+				{
+					return false;
+				}
+
+				SetValue(item, i);
+			}
 			else if (Type.IsEnum || Type.IsNullableEnum())
 			{
 				var enumType = Type;

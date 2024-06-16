@@ -21,7 +21,7 @@ namespace AbarimMUD.Data
 
 		private GameClass _class;
 		private int _level;
-
+		private long _experience;
 
 		[JsonIgnore]
 		public Account Account { get; set; }
@@ -79,7 +79,24 @@ namespace AbarimMUD.Data
 		public Sex PlayerSex { get; set; }
 
 		public long Wealth { get; set; }
-		public long Experience { get; set; }
+
+		public long Experience
+		{
+			get => _experience;
+
+			set
+			{
+				if (value == _experience)
+				{
+					return;
+				}
+
+				_experience = value;
+
+				// Process level ups
+				UpdateLevel();
+			}
+		}
 
 		public override string ShortDescription => Name;
 		public override string Description => PlayerDescription;
@@ -97,11 +114,45 @@ namespace AbarimMUD.Data
 		{
 		}
 
+		private void UpdateLevel()
+		{
+			if (_level == 0)
+			{
+				// Level not set
+				return;
+			}
+
+			var changed = false;
+			while (_level < Configuration.MaximumLevel)
+			{
+				var levelInfo = LevelInfo.GetLevelInfo(_level + 1);
+				if (_experience < levelInfo.Experience)
+				{
+					break;
+				}
+
+				changed = true;
+				_experience -= levelInfo.Experience;
+				++_level;
+			}
+
+			if (changed)
+			{
+				InvalidateStats();
+				Save();
+			}
+		}
+
 		public override string ToString() => $"{Name}, {Role}, {Class.Name}, {Level}";
 
-
 		public void Create() => Storage.Create(this);
-		public void Save() => Storage.Save(this);
+		public void Save()
+		{
+			if (Account != null)
+			{
+				Storage.Save(this);
+			}
+		}
 
 		public string BuildCharacterFolder()
 		{

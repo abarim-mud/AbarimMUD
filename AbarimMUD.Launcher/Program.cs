@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text.Json;
 
 namespace AbarimMUD
 {
@@ -6,11 +9,9 @@ namespace AbarimMUD
 	{
 		static void Main(string[] args)
 		{
-			Configuration.DataFolder = @"D:\Projects\AbarimMUD\Data";
-
 			try
 			{
-				Server.Instance.Start();
+				Server.Instance.Start(@"D:\Projects\AbarimMUD\Data");
 			}
 			catch (Exception ex)
 			{

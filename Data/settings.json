@@ -1,0 +1,10 @@
+{
+  "MaximumLevel": 40,
+  "ServerPort": 6101,
+  "WebServiceUrl": "http://localhost:8080/AbarimMUD/",
+  "SplashFile": null,
+  "StartRoomId": 3001,
+  "DefaultCharacter": "Yang",
+  "DefaultClass": "warrior",
+  "PauseBetweenFightRoundsInMs": 3000
+}

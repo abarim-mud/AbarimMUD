@@ -7,6 +7,26 @@ namespace AbarimMUD.Storage
 {
 	public abstract class BaseStorage
 	{
+		private class LongConverterType : JsonConverter<long>
+		{
+			public override long Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+			{
+				if (reader.TokenType == JsonTokenType.String)
+				{
+					return reader.GetString().ParseBigNumber();
+				}
+
+				return reader.GetInt64();
+			}
+
+			public override void Write(Utf8JsonWriter writer, long value, JsonSerializerOptions options)
+			{
+				writer.WriteStringValue(value.FormatBigNumber());
+			}
+		}
+
+		private static readonly LongConverterType LongConverter = new LongConverterType();
+
 		private DataContextSettings _settings;
 
 		private DataContextSettings Settings
@@ -58,6 +78,7 @@ namespace AbarimMUD.Storage
 			};
 
 			result.Converters.Add(new JsonStringEnumConverter());
+			result.Converters.Add(LongConverter);
 
 			return result;
 		}

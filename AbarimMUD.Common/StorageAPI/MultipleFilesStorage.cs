@@ -50,9 +50,9 @@ namespace AbarimMUD.Storage
 			var folder = Path.GetDirectoryName(path);
 			EnsureFolder(folder);
 
+			var asSE = entity as ISerializationEvents;
 			try
 			{
-				var asSE = entity as ISerializationEvents;
 				if (asSE != null)
 				{
 					asSE.OnSerializationStarted();
@@ -62,7 +62,6 @@ namespace AbarimMUD.Storage
 			}
 			finally
 			{
-				var asSE = entity as ISerializationEvents;
 				if (asSE != null)
 				{
 					asSE.OnSerializationEnded();

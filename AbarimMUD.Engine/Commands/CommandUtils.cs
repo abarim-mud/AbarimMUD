@@ -31,6 +31,17 @@ namespace AbarimMUD.Commands
 			return true;
 		}
 
+		public static bool EnsureLong(this ExecutionContext context, string value, out long result)
+		{
+			if (!value.TryParseBigNumber(out result))
+			{
+				context.Send($"Unable to parse number '{value}'");
+				return false;
+			}
+
+			return true;
+		}
+
 		public static bool EnsureBool(this ExecutionContext context, string value, out bool result)
 		{
 			if (!bool.TryParse(value, out result))

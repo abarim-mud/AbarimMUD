@@ -26,10 +26,10 @@ namespace AbarimMUD.Storage
 				return;
 			}
 
-			var socials = JsonDeserializeFromFile<ItemType[]>(path);
-			foreach (var social in socials)
+			var entities = JsonDeserializeFromFile<ItemType[]>(path);
+			foreach (var entity in entities)
 			{
-				AddToCache(social);
+				AddToCache(entity);
 			}
 		}
 

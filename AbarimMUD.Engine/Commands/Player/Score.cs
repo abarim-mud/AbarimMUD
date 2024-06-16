@@ -10,6 +10,20 @@ namespace AbarimMUD.Commands.Player
 			var sb = new StringBuilder();
 
 			sb.AppendLine($"You are {context.ShortDescription}, {context.Creature.Class.Name} of level {context.Creature.Level}.");
+			var asCharacter = context.Creature as Character;
+			if (asCharacter != null)
+			{
+				if (asCharacter.Level < Configuration.MaximumLevel)
+				{
+					var nextLevelInfo = LevelInfo.GetLevelInfo(asCharacter.Level + 1);
+					sb.AppendLine($"Experience: {asCharacter.Experience.FormatBigNumber()}/{nextLevelInfo.Experience.FormatBigNumber()}");
+				}
+				else
+				{
+					sb.AppendLine($"Experience: {asCharacter.Experience.FormatBigNumber()}");
+				}
+				sb.AppendLine($"Gold: {asCharacter.Wealth.FormatBigNumber()}");
+			}
 
 			var stats = context.Creature.Stats;
 			var state = context.Creature.State;
@@ -19,13 +33,6 @@ namespace AbarimMUD.Commands.Player
 			{
 				var attack = stats.Attacks[i];
 				sb.AppendLine($"Attack #{i + 1}: {attack}");
-			}
-
-			var asCharacter = context.Creature as Character;
-			if (asCharacter != null)
-			{
-				sb.AppendLine($"Experience: {asCharacter.Experience.FormatBigNumber()}");
-				sb.AppendLine($"Gold: {asCharacter.Wealth.FormatBigNumber()}");
 			}
 
 			context.Send(sb.ToString());

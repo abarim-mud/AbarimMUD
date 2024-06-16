@@ -3,7 +3,7 @@ using System.Text;
 
 namespace AbarimMUD.Commands.Builder
 {
-	public class Slain: BuilderCommand
+	public class Slain : BuilderCommand
 	{
 		protected override void InternalExecute(ExecutionContext context, string data)
 		{
@@ -32,13 +32,21 @@ namespace AbarimMUD.Commands.Builder
 			if (character != null && targetMobile != null)
 			{
 				var xpAward = targetMobile.Stats.XpAward;
+
+				var lastLevel = character.Level;
 				character.Experience += xpAward;
 				sb.AppendLine($"Total exp for kill is {xpAward.FormatBigNumber()}.");
 
+				// Append level up messages
+				for (var level = lastLevel + 1; level <= character.Level; ++level)
+				{
+					var previousHp = character.Class.HitpointsRange.CalculateValue(level - 1, ValueRangeGrowthType.Sqrt);
+					var newHp = character.Class.HitpointsRange.CalculateValue(level, ValueRangeGrowthType.Sqrt);
+					sb.AppendLine($"Welcome to the level {level}! You gained {newHp - previousHp} hitpoints.");
+				}
+
 				character.Wealth += targetMobile.Info.Wealth;
 				sb.AppendLine($"You get {targetMobile.Info.Wealth.FormatBigNumber()} from the corpse of {targetMobile.ShortDescription}.");
-
-				character.Save();
 			}
 
 			context.Send(sb.ToString());

@@ -11,6 +11,7 @@ namespace AbarimMUD
 {
 	public static class Utility
 	{
+		private const string NumberGroupSeparator = ",";
 		private static readonly NumberFormatInfo _bigNumbersFormatCulture;
 
 		public static Random Random { get; } = new Random();
@@ -18,7 +19,7 @@ namespace AbarimMUD
 		static Utility()
 		{
 			_bigNumbersFormatCulture = (NumberFormatInfo)CultureInfo.InvariantCulture.NumberFormat.Clone();
-			_bigNumbersFormatCulture.NumberGroupSeparator = ",";
+			_bigNumbersFormatCulture.NumberGroupSeparator = NumberGroupSeparator;
 		}
 
 		public static bool RollPercentage(int percentage)
@@ -196,6 +197,20 @@ namespace AbarimMUD
 		public static string FormatBigNumber(this long number)
 		{
 			return number.ToString("#,0", _bigNumbersFormatCulture);
+		}
+
+		public static long ParseBigNumber(this string value)
+		{
+			value = value.Replace(NumberGroupSeparator, "");
+
+			return long.Parse(value);
+		}
+
+		public static bool TryParseBigNumber(this string value, out long number)
+		{
+			value = value.Replace(NumberGroupSeparator, "");
+
+			return long.TryParse(value, out number);
 		}
 	}
 }
