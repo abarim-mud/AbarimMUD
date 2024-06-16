@@ -1,6 +1,5 @@
 ﻿using AbarimMUD.Commands.Builder.OLCUtils;
 using AbarimMUD.Utils;
-using System.Text;
 
 namespace AbarimMUD.Commands.Builder
 {
@@ -12,6 +11,7 @@ namespace AbarimMUD.Commands.Builder
 			if (parts.Length < 1)
 			{
 				context.Send($"Usage: show {OLCManager.KeysString} [_searchPattern_]");
+				return;
 			}
 
 			var key = parts[0].ToLower();
@@ -44,12 +44,8 @@ namespace AbarimMUD.Commands.Builder
 			}
 			else
 			{
-				var sb = new StringBuilder();
-
-				sb.Append(asciiGrid.ToString());
-				sb.AppendLine($"Total Count: {count}");
-
-				context.Send(sb.ToString());
+				context.Send(asciiGrid.ToString());
+				context.Send($"Total Count: {count}");
 			}
 		}
 	}

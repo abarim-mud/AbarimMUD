@@ -43,6 +43,7 @@ namespace AbarimMUD.Commands.Player
 
 			context.Logger.Info("Moved to room with id {0}", exit.TargetRoom.Id);
 
+			context.Send($"You went {_dir.ToString().ToLower()}.");
 			new Look().Execute(context, string.Empty);
 		}
 	}

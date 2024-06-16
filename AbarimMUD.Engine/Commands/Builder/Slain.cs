@@ -1,5 +1,4 @@
 ﻿using AbarimMUD.Data;
-using System.Text;
 
 namespace AbarimMUD.Commands.Builder
 {
@@ -23,11 +22,15 @@ namespace AbarimMUD.Commands.Builder
 
 			lookContext.Creature.Slain();
 
-			var sb = new StringBuilder();
-			sb.AppendLine($"{lookContext.Creature.ShortDescription} is dead! R.I.P.");
+			var ripMessage = $"{lookContext.Creature.ShortDescription} is dead! R.I.P.";
+			context.Send(ripMessage);
+
+			foreach (var roomContext in context.AllExceptMeInRoom())
+			{
+				roomContext.Send(ripMessage);
+			}
 
 			var character = context.Creature as Character;
-
 			var targetMobile = lookContext.Creature as MobileInstance;
 			if (character != null && targetMobile != null)
 			{
@@ -35,21 +38,25 @@ namespace AbarimMUD.Commands.Builder
 
 				var lastLevel = character.Level;
 				character.Experience += xpAward;
-				sb.AppendLine($"Total exp for kill is {xpAward.FormatBigNumber()}.");
+				context.Send($"Total exp for kill is {xpAward.FormatBigNumber()}.");
 
 				// Append level up messages
 				for (var level = lastLevel + 1; level <= character.Level; ++level)
 				{
 					var previousHp = character.Class.HitpointsRange.CalculateValue(level - 1);
 					var newHp = character.Class.HitpointsRange.CalculateValue(level);
-					sb.AppendLine($"Welcome to the level {level}! You gained {newHp - previousHp} hitpoints.");
+					context.Send($"Welcome to the level {level}! You gained {newHp - previousHp} hitpoints.");
 				}
 
 				character.Wealth += targetMobile.Info.Wealth;
-				sb.AppendLine($"You get {targetMobile.Info.Wealth.FormatBigNumber()} from the corpse of {targetMobile.ShortDescription}.");
-			}
+				context.Send($"You get {targetMobile.Info.Wealth.FormatBigNumber()} from the corpse of {targetMobile.ShortDescription}.");
 
-			context.Send(sb.ToString());
+				var roomMessage = $"{context.ShortDescription} gets gold coins from the corpse of {targetMobile.ShortDescription}.";
+				foreach (var roomContext in context.AllExceptMeInRoom())
+				{
+					roomContext.Send(roomMessage);
+				}
+			}
 		}
 	}
 }

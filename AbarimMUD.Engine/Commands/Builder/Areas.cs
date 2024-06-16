@@ -1,6 +1,5 @@
 ﻿using AbarimMUD.Data;
 using System.Linq;
-using System.Text;
 
 namespace AbarimMUD.Commands.Builder
 {
@@ -38,18 +37,14 @@ namespace AbarimMUD.Commands.Builder
 
 		protected override void InternalExecute(ExecutionContext context, string data)
 		{
-			var sb = new StringBuilder();
-
 			var areas = (from a in Area.Storage orderby AreaNumericValue(a) select a).ToList();
 			foreach (var area in areas)
 			{
-				sb.AppendLine(area.ToString());
+				context.Send(area.ToString());
 			}
 
-			sb.AppendLine();
-			sb.Append($"Total areas count: {areas.Count}");
-
-			context.Send(sb.ToString());
+			context.Send();
+			context.Send($"Total areas count: {areas.Count}");
 		}
 	}
 }

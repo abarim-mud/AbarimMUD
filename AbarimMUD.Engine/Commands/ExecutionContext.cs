@@ -67,7 +67,7 @@ namespace AbarimMUD.Commands
 			}
 		}
 
-		public void Send(string text)
+		public void Send(string text = "")
 		{
 			InternalSend(text + "\n");
 		}

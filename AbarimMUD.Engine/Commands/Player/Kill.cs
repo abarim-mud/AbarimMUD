@@ -1,6 +1,4 @@
-﻿using System.Text;
-
-namespace AbarimMUD.Commands.Player
+﻿namespace AbarimMUD.Commands.Player
 {
 	public class Kill : PlayerCommand
 	{
