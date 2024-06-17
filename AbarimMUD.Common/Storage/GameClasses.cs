@@ -7,7 +7,7 @@ using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Storage
 {
-	internal class GameClasses : MultipleFilesStorageString<GameClass>
+	internal class GameClasses : MultipleFilesStorage<GameClass>
 	{
 		private class AttackInfoConverter : JsonConverter<AttackInfo>
 		{

@@ -17,7 +17,7 @@ namespace AbarimMUD.Data
 
 	public sealed class Character : Creature, IStoredInFile
 	{
-		public static readonly MultipleFilesStorageString<Character> Storage = new Characters();
+		public static readonly MultipleFilesStorage<Character> Storage = new Characters();
 
 		private GameClass _class;
 		private int _level;

@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace AbarimMUD.Storage
 {
-	internal class Accounts : MultipleFilesStorageString<Account>
+	internal class Accounts : MultipleFilesStorage<Account>
 	{
 		internal const string SubfolderName = "accounts";
 		private const string AccountFileName = "account.json";

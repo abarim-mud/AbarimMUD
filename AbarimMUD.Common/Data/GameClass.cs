@@ -67,7 +67,7 @@ namespace AbarimMUD.Data
 		public static readonly ValueRange DefaultHitpoints = new ValueRange(1, 100);
 		public static readonly ValueRange DefaultHitpointsRegen = new ValueRange(1, 50);
 		public static readonly ValueRange DefaultArmor = new ValueRange(0, 0);
-		public static readonly MultipleFilesStorageString<GameClass> Storage = new GameClasses();
+		public static readonly MultipleFilesStorage<GameClass> Storage = new GameClasses();
 
 		private ValueRange? _hitpointsRange;
 		private ValueRange? _hitpointsRegenRange;
@@ -315,14 +315,6 @@ namespace AbarimMUD.Data
 
 		public Dictionary<int, Skill[]> SkillsByLevels { get; set; } = new Dictionary<int, Skill[]>();
 
-		public override string ToString() => Name;
-
-		public void Create() => Storage.Create(this);
-		public void Save() => Storage.Save(this);
-
-		public static GameClass GetClassById(string name) => Storage.GetByKey(name);
-		public static GameClass EnsureClassById(string name) => Storage.EnsureByKey(name);
-
 		public void OnSerializationStarted()
 		{
 			UseOriginalValues = true;
@@ -450,5 +442,13 @@ namespace AbarimMUD.Data
 		}
 
 		public object Clone() => CloneClass();
+
+		public override string ToString() => Name;
+
+		public void Create() => Storage.Create(this);
+		public void Save() => Storage.Save(this);
+
+		public static GameClass GetClassById(string name) => Storage.GetByKey(name);
+		public static GameClass EnsureClassById(string name) => Storage.EnsureByKey(name);
 	}
 }

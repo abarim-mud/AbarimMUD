@@ -9,7 +9,7 @@ namespace AbarimMUD.Data
 
 	public class Skill : IStoredInFile
 	{
-		public static readonly MultipleFilesStorageString<Skill> Storage = new MultipleFilesStorageString<Skill>(r => r.Id, "skills");
+		public static readonly MultipleFilesStorage<Skill> Storage = new MultipleFilesStorage<Skill>(r => r.Id, "skills");
 
 		public string Id { get; set; }
 		public string Name { get; set; }

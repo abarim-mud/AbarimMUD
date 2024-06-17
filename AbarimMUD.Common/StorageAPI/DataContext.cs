@@ -1,5 +1,7 @@
-﻿using System;
+﻿using AbarimMUD.Utils;
+using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace AbarimMUD.Storage
 {
@@ -54,6 +56,7 @@ namespace AbarimMUD.Storage
 		public static void Load()
 		{
 			EnsureInitialized();
+
 			foreach (var storage in _storages)
 			{
 				storage.Load(_settings);

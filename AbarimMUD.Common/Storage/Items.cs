@@ -3,7 +3,7 @@ using System.Text.Json;
 
 namespace AbarimMUD.Storage
 {
-	internal class Items : MultipleFilesStorageString<Item>
+	internal class Items : MultipleFilesStorage<Item>
 	{
 		public Items() : base(m => m.Id, "items")
 		{

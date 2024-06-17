@@ -101,6 +101,18 @@ namespace AbarimMUD.Commands.Builder
 				return;
 			}
 
+			if (propertyName == "id")
+			{
+				// When changing id make sure it wont override existing item
+				var newId = parts[2];
+				if (storage.FindById(context, newId) != null)
+				{
+					context.Send($"Id {newId} is used already.");
+					return;
+				}
+
+			}
+
 			var args = new ArraySegment<string>(parts, 2, parts.Length - 3);
 			if (!property.SetStringValue(context, obj, args))
 			{

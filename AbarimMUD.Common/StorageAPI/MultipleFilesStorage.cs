@@ -6,18 +6,17 @@ using System.Linq;
 
 namespace AbarimMUD.Storage
 {
-	public class MultipleFilesStorage<KeyType, ItemType> : GenericBaseStorage<KeyType, ItemType> where ItemType : class
+	public class MultipleFilesStorage<ItemType> : GenericBaseStorage<string, ItemType> where ItemType : class
 	{
-		private readonly Dictionary<KeyType, string> _files = new Dictionary<KeyType, string>();
-
 		private string SubfolderName { get; set; }
 
-		public ItemType this[KeyType index] => EnsureByKey(index);
+		public ItemType this[string index] => EnsureByKey(index);
 		public override string Name => SubfolderName;
 
 		public string Folder => Path.Combine(BaseFolder, SubfolderName);
 
-		public MultipleFilesStorage(Func<ItemType, KeyType> keyGetter, string subFolderName, Func<KeyType, KeyType> keyConverter = null) : base(keyGetter, keyConverter)
+		public MultipleFilesStorage(Func<ItemType, string> keyGetter, string subFolderName, bool ignoreCase = true) :
+			base(keyGetter, ignoreCase ? (key => key.ToLower()) : null)
 		{
 			SubfolderName = subFolderName;
 		}
@@ -38,8 +37,6 @@ namespace AbarimMUD.Storage
 			var entity = JsonDeserializeFromFile<ItemType>(filePath);
 
 			AddToCache(entity);
-			
-			_files[GetKey(entity)] = filePath;
 
 			return entity;
 		}
@@ -67,8 +64,6 @@ namespace AbarimMUD.Storage
 					asSE.OnSerializationEnded();
 				}
 			}
-
-			_files[GetKey(entity)] = path;
 		}
 
 		public void Save(ItemType entity)
@@ -77,7 +72,7 @@ namespace AbarimMUD.Storage
 			if (!Cache.ContainsKey(key))
 			{
 				// If the item isn't cached, check the possibility it was renamed
-				KeyValuePair<KeyType, ItemType>? existing = null;
+				KeyValuePair<string, ItemType>? existing = null;
 				foreach (var pair in Cache)
 				{
 					if (pair.Value == entity)
@@ -92,17 +87,16 @@ namespace AbarimMUD.Storage
 					// It was renamed
 					// Delete the file
 					var existingKey = existing.Value.Key;
-					string path;
-					if (_files.TryGetValue(existingKey, out path))
+					var path = BuildPath(existingKey);
+					if (File.Exists(path))
 					{
 						File.Delete(path);
-						_files.Remove(existingKey);
-					} else
+					}
+					else
 					{
 						Log($"WARNING: Unable to find file for existing item {existingKey}");
 					}
 
-					// Remove from cache
 					RemoveFromCache(existingKey);
 				}
 			}
@@ -137,7 +131,7 @@ namespace AbarimMUD.Storage
 
 		}
 
-		private string BuildPath(KeyType key) => Path.ChangeExtension(Path.Combine(Folder, key.ToString()), "json");
+		private string BuildPath(string key) => Path.ChangeExtension(Path.Combine(Folder, key), "json");
 
 		protected virtual string BuildPath(ItemType entity) => BuildPath(GetKey(entity, false));
 

@@ -2,9 +2,9 @@
   "Id": "leatherHelmet",
   "Keywords": [
     "leather",
-    "helm"
+    "helmet"
   ],
-  "ShortDescription": "a leather helm",
+  "ShortDescription": "a leather helmet",
   "LongDescription": null,
   "Description": "Unset",
   "Affects": [],

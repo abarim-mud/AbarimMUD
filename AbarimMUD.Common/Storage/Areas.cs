@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Storage
 {
-	public class Areas : MultipleFilesStorageString<Area>
+	public class Areas : MultipleFilesStorage<Area>
 	{
 		private class EntityCache<T> where T : AreaEntity
 		{

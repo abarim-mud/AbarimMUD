@@ -10,8 +10,8 @@
   "Affects": [],
   "ItemType": "Weapon",
   "AttackType": "Slash",
-  "Value1": 3,
-  "Value2": 10,
-  "Value3": 5,
-  "Value4": 10
+  "Value1": 10,
+  "Value2": 4,
+  "Value3": 10,
+  "Value4": 0
 }

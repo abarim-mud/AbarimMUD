@@ -5,7 +5,7 @@
 		IdType Id { get; set; }
 	}
 
-	public interface IStoredInFile: IHasId<string>
+	public interface IStoredInFile : IHasId<string>
 	{
 		void Save();
 		void Create();

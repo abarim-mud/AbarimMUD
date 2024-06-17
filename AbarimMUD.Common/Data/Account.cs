@@ -5,7 +5,7 @@ namespace AbarimMUD.Data
 {
 	public sealed class Account
 	{
-		public static readonly MultipleFilesStorageString<Account> Storage = new Accounts();
+		public static readonly MultipleFilesStorage<Account> Storage = new Accounts();
 
 		public string Name { get; set; }
 

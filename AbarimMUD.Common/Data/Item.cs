@@ -20,7 +20,7 @@ namespace AbarimMUD.Data
 
 	public class Item : IStoredInFile, ICloneable
 	{
-		public static readonly MultipleFilesStorageString<Item> Storage = new Items();
+		public static readonly MultipleFilesStorage<Item> Storage = new Items();
 
 		private int _value1, _value2, _value3, _value4;
 
