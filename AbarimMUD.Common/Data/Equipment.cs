@@ -44,7 +44,7 @@ namespace AbarimMUD.Data
 
 	public class Equipment
 	{
-		private static readonly Dictionary<SlotType, ArmorType> _slotsArmorsMap = new Dictionary<SlotType, ArmorType>();
+		private static readonly Dictionary<SlotType, ItemType> _slotsArmorsMap = new Dictionary<SlotType, ItemType>();
 		private readonly SortedDictionary<SlotType, ItemInstance> _items = new SortedDictionary<SlotType, ItemInstance>();
 
 		public WearItem[] Items
@@ -78,60 +78,49 @@ namespace AbarimMUD.Data
 
 		static Equipment()
 		{
-			_slotsArmorsMap[SlotType.FingerLeft] = ArmorType.Ring;
-			_slotsArmorsMap[SlotType.FingerRight] = ArmorType.Ring;
-			_slotsArmorsMap[SlotType.Neck] = ArmorType.Amulet;
-			_slotsArmorsMap[SlotType.Head] = ArmorType.Head;
-			_slotsArmorsMap[SlotType.Body] = ArmorType.Body;
-			_slotsArmorsMap[SlotType.Hands] = ArmorType.Hands;
-			_slotsArmorsMap[SlotType.Legs] = ArmorType.Legs;
-			_slotsArmorsMap[SlotType.WristLeft] = ArmorType.Wrist;
-			_slotsArmorsMap[SlotType.WristRight] = ArmorType.Wrist;
+			_slotsArmorsMap[SlotType.FingerLeft] = ItemType.Ring;
+			_slotsArmorsMap[SlotType.FingerRight] = ItemType.Ring;
+			_slotsArmorsMap[SlotType.Neck] = ItemType.Amulet;
+			_slotsArmorsMap[SlotType.Head] = ItemType.Helmet;
+			_slotsArmorsMap[SlotType.Body] = ItemType.Armor;
+			_slotsArmorsMap[SlotType.WristLeft] = ItemType.Bracelet;
+			_slotsArmorsMap[SlotType.WristRight] = ItemType.Bracelet;
+			_slotsArmorsMap[SlotType.Hands] = ItemType.Gloves;
+			_slotsArmorsMap[SlotType.Legs] = ItemType.Leggings;
+			_slotsArmorsMap[SlotType.Feet] = ItemType.Boots;
 		}
 
 		internal bool? Wear(ItemInstance item)
 		{
-			if (item.ItemType == ItemType.Armor)
+			// Get all possible free slots
+			var possibleSlots = (from s in _slotsArmorsMap where s.Value == item.ItemType select s.Key).ToArray();
+
+			if (possibleSlots.Length == 0)
 			{
-				ArmorType armorType;
-				int armor;
-
-				item.GetArmor(out armorType, out armor);
-
-				// Get all possible free slots
-				var possibleSlots = (from s in _slotsArmorsMap where s.Value == armorType select s.Key).ToArray();
-
-				SlotType? freeSlot = null;
-				foreach (var slot in possibleSlots)
-				{
-					if (!_items.ContainsKey(slot))
-					{
-						freeSlot = slot;
-						break;
-					}
-				}
-
-				if (freeSlot == null)
-				{
-					return false;
-				}
-
-				_items[freeSlot.Value] = item;
-
-				return true;
-			}
-			else if (item.ItemType == ItemType.Weapon)
-			{
-				if (_items.ContainsKey(SlotType.Wield))
-				{
-					return false;
-				}
-
-				_items[SlotType.Wield] = item;
-				return true;
+				// Item can't be worn at all
+				return null;
 			}
 
-			return null;
+			SlotType? freeSlot = null;
+			foreach (var slot in possibleSlots)
+			{
+				if (!_items.ContainsKey(slot))
+				{
+					freeSlot = slot;
+					break;
+				}
+			}
+
+			if (freeSlot == null)
+			{
+				// No free slots
+				return false;
+			}
+
+			// Wear the item
+			_items[freeSlot.Value] = item;
+
+			return true;
 		}
 
 		internal ItemInstance Remove(SlotType type)

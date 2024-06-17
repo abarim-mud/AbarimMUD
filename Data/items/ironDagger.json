@@ -1,0 +1,17 @@
+{
+  "Id": "ironDagger",
+  "Keywords": [
+    "iron",
+    "dagger"
+  ],
+  "ShortDescription": "an iron dagger",
+  "LongDescription": null,
+  "Description": "Unset",
+  "Affects": [],
+  "ItemType": "Weapon",
+  "AttackType": "Pierce",
+  "Value1": 12,
+  "Value2": 10,
+  "Value3": 2,
+  "Value4": 6
+}

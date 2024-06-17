@@ -84,7 +84,7 @@ namespace AbarimMUD.Commands.Player
 
 			if (!string.IsNullOrEmpty(creature.Description))
 			{
-				sb.AppendLine(creature.Description);
+				sb.AppendLine(creature.Description.TrimEnd());
 			}
 
 			var grid = creature.BuildEquipmentDesc();

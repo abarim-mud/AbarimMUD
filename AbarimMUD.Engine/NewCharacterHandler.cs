@@ -34,6 +34,11 @@ namespace AbarimMUD
 			Send("Please, enter you new character name: ");
 		}
 
+		private static GameClass[] GetAvailableClasses()
+		{
+			return (from c in GameClass.Storage where c.Flags.HasFlag(GameClassFlags.Player) && !c.Flags.HasFlag(GameClassFlags.Abstract) select c).ToArray();
+		}
+
 		private void SendChoosePrimaryClassPrompt()
 		{
 			var sb = new StringBuilder();
@@ -41,9 +46,15 @@ namespace AbarimMUD
 
 			var index = 1;
 
-			var classes = GameClass.Storage.ToArray();
+			var classes = GetAvailableClasses();
 			foreach (var c in classes)
 			{
+				if (!c.Flags.HasFlag(GameClassFlags.Player) || c.Flags.HasFlag(GameClassFlags.Abstract))
+				{
+					continue;
+				}
+
+
 				sb.AppendLine(string.Format("{0}) {1} - {2}", index, c.Name, c.Description));
 				++index;
 			}
@@ -116,7 +127,7 @@ namespace AbarimMUD
 				return;
 			}
 
-			var classes = GameClass.Storage.ToArray();
+			var classes = GetAvailableClasses();
 			_character.PlayerClass = classes[index - 1];
 
 			_mode = Mode.Gender;
@@ -155,7 +166,20 @@ namespace AbarimMUD
 
 			if (data == "y")
 			{
-				_character.CurrentRoomId = 0;
+				// Grant initial gear
+				var cls = _character.Class;
+				if (cls.EqSets != null && cls.EqSets.Length > 0)
+				{
+					foreach(var item in cls.EqSets[0].Items)
+					{
+						var newItem = new ItemInstance(item);
+						if (_character.Wear(newItem) != true)
+						{
+							// If an item can't be worn, put it to the inventory
+							_character.Inventory.AddItem(newItem, 1);
+						}
+					}
+				}
 
 				// First character becomes owner
 				if (Character.Storage.Count == 0)

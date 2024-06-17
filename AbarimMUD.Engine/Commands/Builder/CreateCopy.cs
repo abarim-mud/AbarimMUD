@@ -87,7 +87,10 @@ namespace AbarimMUD.Commands.Builder
 			context.SaveObject(newObject);
 			context.Send($"Created new object {newObject.GetStringId()} of type {objectType}");
 
-			Spawn.Execute(context, $"item {newId}");
+			if (storage.CanSpawn)
+			{
+				Spawn.Execute(context, $"item {newId}");
+			}
 		}
 	}
 }

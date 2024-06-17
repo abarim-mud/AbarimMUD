@@ -1,5 +1,5 @@
 {
-  "Id": "leatherHelm",
+  "Id": "leatherHelmet",
   "Keywords": [
     "leather",
     "helm"
@@ -7,11 +7,11 @@
   "ShortDescription": "a leather helm",
   "LongDescription": null,
   "Description": "Unset",
-  "Material": "OldStyle",
   "Affects": [],
-  "ItemType": "Armor",
-  "Value1": 2,
-  "Value2": 5,
+  "ItemType": "Helmet",
+  "AttackType": "Hit",
+  "Value1": 5,
+  "Value2": 0,
   "Value3": 0,
   "Value4": 0
 }

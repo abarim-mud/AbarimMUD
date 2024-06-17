@@ -1,16 +1,16 @@
 {
-  "Id": "warrior",
-  "Name": "Warrior",
-  "Description": "Master of armor and sword.",
+  "Id": "thief",
+  "Name": "Thief",
+  "Description": "Master of dagger and shadows.",
   "Flags": "Player",
   "Inherits": null,
   "HitpointsRange": {
     "Level1Value": 100,
-    "Level100Value": 1500
+    "Level100Value": 1200
   },
   "HitpointsRegenRange": {
     "Level1Value": 20,
-    "Level100Value": 100
+    "Level100Value": 80
   },
   "ArmorRange": null,
   "AttackType": null,
@@ -28,9 +28,20 @@
   },
   "Attacks": [
     1,
-    1,
-    25
+    2,
+    30
   ],
-  "EqSets": null,
+  "EqSets": [
+    {
+      "MinimumLevel": 1,
+      "Items": [
+        "ironDagger",
+        "leatherHelmet",
+        "leatherArmor",
+        "leatherPants",
+        "leatherGloves"
+      ]
+    }
+  ],
   "SkillsByLevels": {}
 }

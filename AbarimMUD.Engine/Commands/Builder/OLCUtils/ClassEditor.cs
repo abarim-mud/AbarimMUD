@@ -103,6 +103,11 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 
 		public static ClassEditor GetEditor(Type type)
 		{
+			if (type.IsNullable())
+			{
+				type = type.GetNullableType();
+			}
+
 			ClassEditor result;
 
 			if (!_classes.TryGetValue(type, out result))

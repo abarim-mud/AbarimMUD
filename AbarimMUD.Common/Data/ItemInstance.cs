@@ -28,9 +28,9 @@ namespace AbarimMUD.Data
 		public bool MatchesKeyword(string keyword) => Info.MatchesKeyword(keyword);
 
 
-		public void GetArmor(out ArmorType armorType, out int armor) => Info.GetArmor(out armorType, out armor);
-		public void GetWeapon(out AttackType attackType, out int penetration, out int minimumDamage, out int maximumDamage) =>
-			Info.GetWeapon(out attackType, out penetration, out minimumDamage, out maximumDamage);
+		public void GetArmor(out int armor) => Info.GetArmor(out armor);
+		public void GetWeapon(out int penetration, out int minimumDamage, out int maximumDamage) =>
+			Info.GetWeapon(out penetration, out minimumDamage, out maximumDamage);
 
 		public override string ToString() => Info.ToString();
 

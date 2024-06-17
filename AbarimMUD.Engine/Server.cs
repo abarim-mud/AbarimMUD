@@ -126,7 +126,27 @@ namespace AbarimMUD
 							LevelInfo.Storage.Create(new LevelInfo(pair.Key, pair.Value));
 						}*/
 
-			LevelInfo.Storage.SaveAll();
+			/*			LevelInfo.Storage.SaveAll();
+
+						var thief = GameClass.EnsureClassById("thief");
+
+						var eqSet = new EqSet
+						{
+							MinimumLevel = 1,
+							Items = new Item[]
+							{
+								Item.EnsureItemById("ironDagger"),
+								Item.EnsureItemById("leatherHelm"),
+								Item.EnsureItemById("leatherArmor"),
+								Item.EnsureItemById("leatherPants"),
+								Item.EnsureItemById("leatherGloves"),
+							}
+						};
+
+						thief.EqSets = new EqSet[] { eqSet };
+
+						GameClass.Storage.SaveAll();*/
+			Item.Storage.SaveAll();
 		}
 
 		private void WorldTick()

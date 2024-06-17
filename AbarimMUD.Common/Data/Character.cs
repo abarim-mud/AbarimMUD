@@ -105,9 +105,6 @@ namespace AbarimMUD.Data
 		public override Sex Sex => PlayerSex;
 
 		[JsonIgnore]
-		public int CurrentRoomId { get; set; }
-
-		[JsonIgnore]
 		public object Tag { get; set; }
 
 		public Character()

@@ -72,13 +72,13 @@ namespace AbarimMUD.Commands
 			InternalSend(text + "\n");
 		}
 
-		public void BeforeOutputSent(StringBuilder sb)
+		public void BeforeOutputSent(StringBuilder output)
 		{
-			var text = sb.ToString();
+			var text = output.ToString();
 			text = text.TrimEnd();
 
 			// Rebuild the output, applying varios changes
-			sb.Clear();
+			output.Clear();
 
 			text = text.TrimEnd();
 
@@ -98,23 +98,31 @@ namespace AbarimMUD.Commands
 					// While multi-line string does not
 					forceDotAtTheEnd = linesCount == 1;
 				}
-				sb.Append(text);
+				output.Append(text);
 
 				if (forceDotAtTheEnd.Value && !text.EndsWith("."))
 				{
-					sb.Append('.');
+					output.Append('.');
 				}
 
 				// Always append color reset
-				sb.Append("[reset]");
+				output.Append("[reset]");
 
 				// Mandatory line end
-				sb.AppendLine();
+				output.AppendLine();
 			}
 
 			// Line break before stats
-			sb.AppendLine();
-			sb.Append(string.Format("<{0}hp {1}ma {2}mv -> ", State.Hitpoints, State.Mana, State.Movement));
+			output.AppendLine();
+
+			if (Creature.FightsWith == null)
+			{
+				output.Append($"<{State.Hitpoints}hp {State.Mana}ma {State.Movement}mv -> ");
+			} else
+			{
+				var targetHpPercentage = Creature.FightsWith.State.Hitpoints * 100 / Creature.FightsWith.Stats.MaxHitpoints;
+				output.Append($"<{State.Hitpoints}hp {State.Mana}ma {State.Movement}mv {targetHpPercentage}-> ");
+			}
 		}
 
 		private void ParseAndExecuteLine(string line)

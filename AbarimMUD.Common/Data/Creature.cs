@@ -58,17 +58,14 @@ namespace AbarimMUD.Data
 			var weapon = Equipment[SlotType.Wield];
 			if (weapon != null)
 			{
-				AttackType attackType;
 				int weaponPenetration, weaponMinimumDamage, weaponMaximumDamage;
-				weapon.GetWeapon(out attackType, out weaponPenetration,
-					out weaponMinimumDamage, out weaponMaximumDamage);
-
+				weapon.GetWeapon(out weaponPenetration, out weaponMinimumDamage, out weaponMaximumDamage);
 				foreach (var attack in _stats.Attacks)
 				{
-					attack.AttackType = attackType;
+					attack.AttackType = weapon.Info.AttackType;
 					attack.Penetration += weaponPenetration;
 
-					if (Class.IsPlayerClass)
+					if (Class.Flags.HasFlag(GameClassFlags.Player))
 					{
 						// Replace damage with weapon values
 						attack.MinimumDamage = weaponMinimumDamage;
@@ -86,14 +83,13 @@ namespace AbarimMUD.Data
 			// Apply armor items
 			foreach (var item in Equipment.Items)
 			{
-				if (item.Item.ItemType != ItemType.Armor)
+				if (!item.Item.ItemType.IsArmor())
 				{
 					continue;
 				}
 
-				ArmorType armorType;
 				int armor;
-				item.Item.GetArmor(out armorType, out armor);
+				item.Item.GetArmor(out armor);
 
 				_stats.Armor += armor;
 			}

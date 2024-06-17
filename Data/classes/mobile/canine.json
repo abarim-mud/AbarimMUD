@@ -2,7 +2,7 @@
   "Id": "canine",
   "Name": "Canine",
   "Description": "canine",
-  "IsPlayerClass": false,
+  "Flags": "Mobile",
   "Inherits": null,
   "HitpointsRange": {
     "Level1Value": 50,
@@ -38,5 +38,6 @@
     80,
     100
   ],
+  "EqSets": null,
   "SkillsByLevels": {}
 }

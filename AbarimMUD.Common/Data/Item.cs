@@ -7,19 +7,15 @@ namespace AbarimMUD.Data
 {
 	public enum ItemType
 	{
-		Weapon,
-		Armor
-	}
-
-	public enum ArmorType
-	{
 		Ring,
 		Amulet,
-		Head,
-		Body,
-		Legs,
-		Hands,
-		Wrist
+		Helmet,
+		Armor,
+		Bracelet,
+		Gloves,
+		Leggings,
+		Boots,
+		Weapon,
 	}
 
 	public class Item : IStoredInFile, ICloneable
@@ -37,9 +33,9 @@ namespace AbarimMUD.Data
 		[OLCAlias("long")]
 		public string LongDescription { get; set; }
 		public string Description { get; set; }
-		public Material Material { get; set; }
 		public Affect[] Affects { get; set; } = new Affect[0];
 		public ItemType ItemType { get; set; }
+		public AttackType AttackType { get; set; }
 
 		[OLCIgnore]
 		public int Value1
@@ -111,38 +107,41 @@ namespace AbarimMUD.Data
 
 		private void EnsureType(ItemType itemType)
 		{
+			if (ItemType != itemType)
+			{
+				throw new Exception($"Item {Id} of type {ItemType} isn't {itemType}");
+			}
 		}
 
-		public void SetArmor(ArmorType armorType, int armor)
+		public void SetArmor(int armor)
 		{
-			ItemType = ItemType.Armor;
-			Value1 = (int)armorType;
-			Value2 = armor;
+			Value1 = armor;
 		}
 
-		public void GetArmor(out ArmorType armorType, out int armor)
+		public void GetArmor(out int armor)
 		{
-			EnsureType(ItemType.Armor);
-			armorType = (ArmorType)Value1;
+			if (!ItemType.IsArmor())
+			{
+				throw new Exception($"Item {Id} of type {ItemType} isn't armor.");
+			}
+
 			armor = Value2;
 		}
 
-		public void SetWeapon(AttackType attackType, int penetration, int minimumDamage, int maximumDamage)
+		public void SetWeapon(int penetration, int minimumDamage, int maximumDamage)
 		{
 			ItemType = ItemType.Weapon;
-			Value1 = (int)attackType;
-			Value2 = penetration;
-			Value3 = minimumDamage;
-			Value4 = maximumDamage;
+			Value1 = penetration;
+			Value2 = minimumDamage;
+			Value3 = maximumDamage;
 		}
 
-		public void GetWeapon(out AttackType attackType, out int penetration, out int minimumDamage, out int maximumDamage)
+		public void GetWeapon(out int penetration, out int minimumDamage, out int maximumDamage)
 		{
 			EnsureType(ItemType.Weapon);
-			attackType = (AttackType)Value1;
-			penetration = Value2;
-			minimumDamage = Value3;
-			maximumDamage = Value4;
+			penetration = Value1;
+			minimumDamage = Value2;
+			maximumDamage = Value3;
 		}
 
 		public bool MatchesKeyword(string keyword) => Keywords.StartsWithPattern(keyword);
@@ -155,7 +154,7 @@ namespace AbarimMUD.Data
 				ShortDescription = ShortDescription,
 				LongDescription = LongDescription,
 				Description = Description,
-				Material = Material,
+				AttackType = AttackType,
 				Affects = Affects,
 				ItemType = ItemType,
 				_value1 = _value1,
@@ -196,5 +195,28 @@ namespace AbarimMUD.Data
 
 		public static Item GetItemById(string id) => Storage.GetByKey(id);
 		public static Item EnsureItemById(string id) => Storage.EnsureByKey(id);
+	}
+
+	public static class ItemExtensions
+	{
+		private static readonly bool[] _armorTypes;
+
+		static ItemExtensions()
+		{
+			_armorTypes = new bool[Enum.GetValues(typeof(Item)).Length];
+
+			Array.Fill(_armorTypes, false);
+
+			_armorTypes[(int)ItemType.Ring] = true;
+			_armorTypes[(int)ItemType.Amulet] = true;
+			_armorTypes[(int)ItemType.Helmet] = true;
+			_armorTypes[(int)ItemType.Armor] = true;
+			_armorTypes[(int)ItemType.Bracelet] = true;
+			_armorTypes[(int)ItemType.Gloves] = true;
+			_armorTypes[(int)ItemType.Leggings] = true;
+			_armorTypes[(int)ItemType.Boots] = true;
+		}
+
+		public static bool IsArmor(this ItemType type) => _armorTypes[(int)type];
 	}
 }

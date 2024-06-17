@@ -34,7 +34,8 @@ namespace AbarimMUD.Storage
 					value.MaximumDamageRange == null)
 				{
 					writer.WriteNumberValue(value.MinimumLevel);
-				} else
+				}
+				else
 				{
 					JsonSerializer.Serialize(writer, value);
 				}
@@ -52,6 +53,7 @@ namespace AbarimMUD.Storage
 			var result = base.CreateJsonOptions();
 
 			result.Converters.Add(Common.SkillConverter);
+			result.Converters.Add(Common.ItemConverter);
 			result.Converters.Add(AttackConverter);
 
 			return result;
@@ -63,10 +65,11 @@ namespace AbarimMUD.Storage
 
 			var folder = Path.GetDirectoryName(result);
 			var fileName = Path.GetFileName(result);
-			if (entity.IsPlayerClass)
+			if (entity.Flags.HasFlag(GameClassFlags.Player))
 			{
 				result = Path.Combine(folder, "player");
-			} else
+			}
+			else
 			{
 				result = Path.Combine(folder, "mobile");
 			}
@@ -99,9 +102,20 @@ namespace AbarimMUD.Storage
 					cls.Inherits = GameClass.EnsureClassById(cls.Inherits.Id);
 				}
 
-				foreach(var pair in newDict)
+				foreach (var pair in newDict)
 				{
 					cls.SkillsByLevels[pair.Key] = pair.Value.ToArray();
+				}
+
+				if (cls.EqSets != null)
+				{
+					foreach (var eqSet in cls.EqSets)
+					{
+						for (var i = 0; i < eqSet.Items.Length; ++i)
+						{
+							eqSet.Items[i] = Item.EnsureItemById(eqSet.Items[i].Id);
+						}
+					}
 				}
 			}
 		}

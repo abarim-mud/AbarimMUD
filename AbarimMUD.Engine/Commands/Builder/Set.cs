@@ -11,58 +11,46 @@ namespace AbarimMUD.Commands.Builder
 		{
 			var itemEditor = ClassEditor.GetEditor<Item>();
 
-			itemEditor.RegisterCustomEditor("armor", $"{typeof(ArmorType).BuildEnumString()} _armor_", SetArmor);
-			itemEditor.RegisterCustomEditor("weapon", $"{typeof(AttackType).BuildEnumString()} _penetration_ _minimumDamage_ _maximumDamage_", SetWeapon);
+			itemEditor.RegisterCustomEditor("armor", $"_armor_", SetArmor);
+			itemEditor.RegisterCustomEditor("weapon", $"_penetration_ _minimumDamage_ _maximumDamage_", SetWeapon);
 		}
 
 		private static bool SetArmor(ExecutionContext context, object obj, IReadOnlyList<string> values)
 		{
-			ArmorType armorType;
-			if (!context.EnsureEnum(values[0], out armorType))
-			{
-				return false;
-			}
-
 			int armor;
-			if (!context.EnsureInt(values[1], out armor))
+			if (!context.EnsureInt(values[0], out armor))
 			{
 				return false;
 			}
 
 			var item = (Item)obj;
-			item.SetArmor(armorType, armor);
+			item.SetArmor(armor);
 
 			return true;
 		}
 
 		private static bool SetWeapon(ExecutionContext context, object obj, IReadOnlyList<string> values)
 		{
-			AttackType attackType;
-			if (!context.EnsureEnum(values[0], out attackType))
-			{
-				return false;
-			}
-
 			int penetration;
-			if (!context.EnsureInt(values[1], out penetration))
+			if (!context.EnsureInt(values[0], out penetration))
 			{
 				return false;
 			}
 
 			int minimumDamage;
-			if (!context.EnsureInt(values[2], out minimumDamage))
+			if (!context.EnsureInt(values[1], out minimumDamage))
 			{
 				return false;
 			}
 
 			int maximumDamage;
-			if (!context.EnsureInt(values[3], out maximumDamage))
+			if (!context.EnsureInt(values[2], out maximumDamage))
 			{
 				return false;
 			}
 
 			var item = (Item)obj;
-			item.SetWeapon(attackType, penetration, minimumDamage, maximumDamage);
+			item.SetWeapon(penetration, minimumDamage, maximumDamage);
 
 			return true;
 		}

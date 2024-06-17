@@ -30,6 +30,33 @@ namespace AbarimMUD.Data
 		}
 	}
 
+	[Flags]
+	public enum GameClassFlags
+	{
+		None = 0,
+
+		/// <summary>
+		/// Could be used only as base class
+		/// </summary>
+		Abstract = 1 << 0,
+
+		/// <summary>
+		/// Could be used by a player
+		/// </summary>
+		Player = 1 << 1,
+
+		/// <summary>
+		/// Could be used by a mobile
+		/// </summary>
+		Mobile = 1 << 2,
+	}
+
+	public class EqSet
+	{
+		public int MinimumLevel { get; set; }
+		public Item[] Items { get; set; }
+	}
+
 	public class GameClass : IStoredInFile, ISerializationEvents, ICloneable
 	{
 		public const AttackType DefaultAttackType = Data.AttackType.Hit;
@@ -50,12 +77,13 @@ namespace AbarimMUD.Data
 		private ValueRange? _minimumDamageRange;
 		private ValueRange? _maximumDamageRange;
 		private AttackInfo[] _attacks;
+		private EqSet[] _eqSets;
 
 		public string Id { get; set; }
 
 		public string Name { get; set; }
 		public string Description { get; set; }
-		public bool IsPlayerClass { get; set; }
+		public GameClassFlags Flags { get; set; }
 
 		/// <summary>
 		/// Determines whether inherited properties such as HitPointsRage
@@ -267,6 +295,24 @@ namespace AbarimMUD.Data
 			}
 		}
 
+		public EqSet[] EqSets
+		{
+			get
+			{
+				if (UseOriginalValues || Inherits == null || _eqSets != null)
+				{
+					return _eqSets;
+				}
+
+				return Inherits.EqSets;
+			}
+
+			set
+			{
+				_eqSets = value;
+			}
+		}
+
 		public Dictionary<int, Skill[]> SkillsByLevels { get; set; } = new Dictionary<int, Skill[]>();
 
 		public override string ToString() => Name;
@@ -368,7 +414,7 @@ namespace AbarimMUD.Data
 
 		private void InvalidateCreaturesOfThisClass()
 		{
-			foreach(var creature in Creature.AllCreatures)
+			foreach (var creature in Creature.AllCreatures)
 			{
 				if (creature.Class.Id == Id)
 				{
@@ -384,9 +430,10 @@ namespace AbarimMUD.Data
 				Id = Id,
 				Name = Name,
 				Description = Description,
-				IsPlayerClass = IsPlayerClass,
+				Flags = Flags,
 				Inherits = Inherits,
 				_hitpointsRange = _hitpointsRange,
+				_hitpointsRegenRange = _hitpointsRegenRange,
 				_armorRange = _armorRange,
 				_penetrationRange = _penetrationRange,
 				_minimumDamageRange = _minimumDamageRange,

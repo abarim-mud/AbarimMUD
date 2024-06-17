@@ -10,6 +10,7 @@ namespace AbarimMUD.Commands.Builder
 			if (parts.Length < 1)
 			{
 				context.Send($"Usage: create {OLCManager.KeysString} [_id_]");
+				return;
 			}
 
 			var objectType = parts[0].ToLower();

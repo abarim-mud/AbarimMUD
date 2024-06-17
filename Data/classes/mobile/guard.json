@@ -2,7 +2,7 @@
   "Id": "guard",
   "Name": "Guard",
   "Description": "guard",
-  "IsPlayerClass": false,
+  "Flags": "Mobile",
   "Inherits": null,
   "HitpointsRange": {
     "Level1Value": 50,
@@ -37,5 +37,6 @@
     75,
     100
   ],
+  "EqSets": null,
   "SkillsByLevels": {}
 }
