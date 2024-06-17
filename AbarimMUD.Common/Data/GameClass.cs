@@ -69,16 +69,17 @@ namespace AbarimMUD.Data
 		public static readonly ValueRange DefaultArmor = new ValueRange(0, 0);
 		public static readonly MultipleFilesStorage<GameClass> Storage = new GameClasses();
 
+		private AttackType? _attackType;
 		private ValueRange? _hitpointsRange;
 		private ValueRange? _hitpointsRegenRange;
 		private ValueRange? _armorRange;
-		private AttackType? _attackType;
 		private ValueRange? _penetrationRange;
 		private ValueRange? _minimumDamageRange;
 		private ValueRange? _maximumDamageRange;
 		private AttackInfo[] _attacks;
 		private EqSet[] _eqSets;
 
+		[OLCIgnore]
 		public string Id { get; set; }
 
 		public string Name { get; set; }

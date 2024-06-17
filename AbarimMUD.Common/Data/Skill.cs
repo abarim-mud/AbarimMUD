@@ -1,4 +1,5 @@
-﻿using AbarimMUD.Storage;
+﻿using AbarimMUD.Attributes;
+using AbarimMUD.Storage;
 using System.Collections.Generic;
 
 namespace AbarimMUD.Data
@@ -11,6 +12,7 @@ namespace AbarimMUD.Data
 	{
 		public static readonly MultipleFilesStorage<Skill> Storage = new MultipleFilesStorage<Skill>(r => r.Id, "skills");
 
+		[OLCIgnore]
 		public string Id { get; set; }
 		public string Name { get; set; }
 		public Dictionary<ModifierType, int> Modifiers { get; set; }

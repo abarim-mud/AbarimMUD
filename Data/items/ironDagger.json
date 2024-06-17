@@ -10,8 +10,8 @@
   "Affects": [],
   "ItemType": "Weapon",
   "AttackType": "Pierce",
-  "Value1": 12,
-  "Value2": 10,
-  "Value3": 2,
-  "Value4": 6
+  "Value1": 10,
+  "Value2": 2,
+  "Value3": 6,
+  "Value4": 0
 }

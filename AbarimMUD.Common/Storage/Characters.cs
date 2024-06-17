@@ -34,6 +34,7 @@ namespace AbarimMUD.Storage
 			var result = base.CreateJsonOptions();
 			result.Converters.Add(Common.ClassConverter);
 			result.Converters.Add(Common.ItemConverter);
+			result.Converters.Add(Common.SkillConverter);
 
 			return result;
 		}
@@ -91,26 +92,6 @@ namespace AbarimMUD.Storage
 			foreach (var record in _tempCache)
 			{
 				record.Character.Account = Account.EnsureAccountByName(record.AccountName);
-			}
-
-			foreach (var character in this)
-			{
-				character.PlayerClass = GameClass.EnsureClassById(character.Class.Id);
-
-				foreach (var item in character.Inventory.Items)
-				{
-					item.Info = Item.EnsureItemById(item.Info.Id);
-				}
-
-				foreach (var eq in character.Equipment.Items)
-				{
-					if (eq.Item == null)
-					{
-						continue;
-					}
-
-					eq.Item.Info = Item.EnsureItemById(eq.Item.Info.Id);
-				}
 			}
 
 			_tempCache.Clear();

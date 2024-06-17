@@ -41,6 +41,7 @@ namespace AbarimMUD.Data
 			set => Name = value;
 		}
 
+		[OLCIgnore]
 		public string Name { get; set; }
 
 		[OLCAlias("description")]

@@ -199,11 +199,6 @@ namespace AbarimMUD.Storage
 						exit.Tag = null;
 					}
 				}
-
-				foreach (var mobile in area.Mobiles)
-				{
-					mobile.Class = GameClass.EnsureClassById(mobile.Class.Id);
-				}
 			}
 		}
 

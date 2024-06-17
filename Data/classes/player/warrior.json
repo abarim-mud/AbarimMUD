@@ -31,6 +31,18 @@
     1,
     25
   ],
-  "EqSets": null,
+  "EqSets": [
+    {
+      "MinimumLevel": 1,
+      "Items": [
+        "ironSword",
+        "ironHelmet",
+        "ironArmor",
+        "ironGloves",
+        "ironGreaves",
+        "ironBoots"
+      ]
+    }
+  ],
   "SkillsByLevels": {}
 }

@@ -1,4 +1,5 @@
-﻿using AbarimMUD.Storage;
+﻿using AbarimMUD.Attributes;
+using AbarimMUD.Storage;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -35,6 +36,8 @@ namespace AbarimMUD.Data
 
 		private ObservableCollection<Room> _rooms;
 		private ObservableCollection<Mobile> _mobiles;
+
+		[OLCIgnore]
 		public string Id { get; set; }
 
 		public string Name { get; set; }

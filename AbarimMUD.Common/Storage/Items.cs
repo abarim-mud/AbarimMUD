@@ -15,10 +15,5 @@ namespace AbarimMUD.Storage
 
 			return result;
 		}
-
-		protected internal override void SetReferences()
-		{
-			base.SetReferences();
-		}
 	}
 }

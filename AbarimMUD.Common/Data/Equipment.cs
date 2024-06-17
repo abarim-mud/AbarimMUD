@@ -88,6 +88,7 @@ namespace AbarimMUD.Data
 			_slotsArmorsMap[SlotType.Hands] = ItemType.Gloves;
 			_slotsArmorsMap[SlotType.Legs] = ItemType.Leggings;
 			_slotsArmorsMap[SlotType.Feet] = ItemType.Boots;
+			_slotsArmorsMap[SlotType.Wield] = ItemType.Weapon;
 		}
 
 		internal bool? Wear(ItemInstance item)

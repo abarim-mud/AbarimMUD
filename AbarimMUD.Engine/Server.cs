@@ -64,9 +64,9 @@ namespace AbarimMUD
 
 			DataContext.Register(Configuration.Storage);
 			DataContext.Register(LevelInfo.Storage);
-			DataContext.Register(GameClass.Storage);
 			DataContext.Register(Item.Storage);
 			DataContext.Register(Skill.Storage);
+			DataContext.Register(GameClass.Storage);
 			DataContext.Register(Area.Storage);
 			DataContext.Register(Account.Storage);
 			DataContext.Register(Character.Storage);
@@ -146,7 +146,7 @@ namespace AbarimMUD
 						thief.EqSets = new EqSet[] { eqSet };
 
 						GameClass.Storage.SaveAll();*/
-			Item.Storage.SaveAll();
+			GameClass.Storage.SaveAll();
 		}
 
 		private void WorldTick()

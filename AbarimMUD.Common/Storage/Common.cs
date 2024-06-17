@@ -7,15 +7,15 @@ namespace AbarimMUD.Storage
 {
 	internal static class Common
 	{
-		public class EntityConverter<ObjectType> : JsonConverter<ObjectType> where ObjectType : class, new()
+		public class EntityConverter<ObjectType> : JsonConverter<ObjectType> where ObjectType : class
 		{
-			private readonly Func<ObjectType, string> _getter;
-			private readonly Action<ObjectType, string> _setter;
+			private readonly Func<ObjectType, string> _objToId;
+			private readonly Func<string, ObjectType> _idToObj;
 
-			public EntityConverter(Func<ObjectType, string> getter, Action<ObjectType, string> setter)
+			public EntityConverter(Func<ObjectType, string> objToId, Func<string, ObjectType> idToObj)
 			{
-				_getter = getter;
-				_setter = setter;
+				_objToId = objToId ?? throw new ArgumentNullException(nameof(objToId));
+				_idToObj = idToObj ?? throw new ArgumentNullException(nameof(idToObj));
 			}
 
 			public override ObjectType Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
@@ -26,27 +26,25 @@ namespace AbarimMUD.Storage
 					return null;
 				}
 
-				var result = new ObjectType();
-				_setter(result, value);
-
-				return result;
+				return _idToObj(value);
 			}
 
 			public override void Write(Utf8JsonWriter writer, ObjectType value, JsonSerializerOptions options)
 			{
-				writer.WriteStringValue(_getter(value));
+				writer.WriteStringValue(_objToId(value));
 			}
 		}
 
 		public class GameClassConverter: EntityConverter<GameClass>
 		{
-			public GameClassConverter(): base(e => e.Id, (e, v) => e.Id = v)
+			public GameClassConverter(): base(c => c.Id, id => GameClass.EnsureClassById(id))
 			{
+
 			}
 		}
 
 		public static readonly EntityConverter<GameClass> ClassConverter = new GameClassConverter();
-		public static readonly EntityConverter<Skill> SkillConverter = new EntityConverter<Skill>(e => e.Id, (e, v) => e.Id = v);
-		public static readonly EntityConverter<Item> ItemConverter = new EntityConverter<Item>(e => e.Id, (e, v) => e.Id = v);
+		public static readonly EntityConverter<Skill> SkillConverter = new EntityConverter<Skill>(s => s.Id, id => Skill.EnsureSkillById(id));
+		public static readonly EntityConverter<Item> ItemConverter = new EntityConverter<Item>(i => i.Id, id => Item.EnsureItemById(id));
 	}
 }

@@ -1,6 +1,5 @@
 ﻿using AbarimMUD.Data;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -85,37 +84,9 @@ namespace AbarimMUD.Storage
 
 			foreach (var cls in this)
 			{
-				var newDict = new Dictionary<int, List<Skill>>();
-				foreach (var pair in cls.SkillsByLevels)
-				{
-					var newSkills = new List<Skill>();
-					foreach (var skill in pair.Value)
-					{
-						newSkills.Add(Skill.EnsureSkillById(skill.Id));
-					}
-
-					newDict[pair.Key] = newSkills;
-				}
-
 				if (cls.Inherits != null)
 				{
 					cls.Inherits = GameClass.EnsureClassById(cls.Inherits.Id);
-				}
-
-				foreach (var pair in newDict)
-				{
-					cls.SkillsByLevels[pair.Key] = pair.Value.ToArray();
-				}
-
-				if (cls.EqSets != null)
-				{
-					foreach (var eqSet in cls.EqSets)
-					{
-						for (var i = 0; i < eqSet.Items.Length; ++i)
-						{
-							eqSet.Items[i] = Item.EnsureItemById(eqSet.Items[i].Id);
-						}
-					}
 				}
 			}
 		}

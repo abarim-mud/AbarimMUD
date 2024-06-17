@@ -1,4 +1,5 @@
-﻿using AbarimMUD.Storage;
+﻿using AbarimMUD.Attributes;
+using AbarimMUD.Storage;
 using System.IO;
 
 namespace AbarimMUD.Data
@@ -7,6 +8,7 @@ namespace AbarimMUD.Data
 	{
 		public static readonly MultipleFilesStorage<Account> Storage = new Accounts();
 
+		[OLCIgnore]
 		public string Name { get; set; }
 
 		public string PasswordHash { get; set; }

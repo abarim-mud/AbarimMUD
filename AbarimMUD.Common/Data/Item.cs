@@ -24,6 +24,7 @@ namespace AbarimMUD.Data
 
 		private int _value1, _value2, _value3, _value4;
 
+		[OLCIgnore]
 		public string Id { get; set; }
 		public HashSet<string> Keywords { get; set; } = new HashSet<string>();
 
@@ -125,7 +126,7 @@ namespace AbarimMUD.Data
 				throw new Exception($"Item {Id} of type {ItemType} isn't armor.");
 			}
 
-			armor = Value2;
+			armor = Value1;
 		}
 
 		public void SetWeapon(int penetration, int minimumDamage, int maximumDamage)
@@ -203,7 +204,7 @@ namespace AbarimMUD.Data
 
 		static ItemExtensions()
 		{
-			_armorTypes = new bool[Enum.GetValues(typeof(Item)).Length];
+			_armorTypes = new bool[Enum.GetValues(typeof(ItemType)).Length];
 
 			Array.Fill(_armorTypes, false);
 

@@ -1,16 +1,16 @@
 {
-  "Id": "leatherHelmet",
+  "Id": "ironArmor",
   "Keywords": [
-    "leather",
-    "helmet"
+    "iron",
+    "armor"
   ],
-  "ShortDescription": "a leather helmet",
+  "ShortDescription": "an iron armor",
   "LongDescription": null,
   "Description": "Unset",
   "Affects": [],
-  "ItemType": "Helmet",
+  "ItemType": "Armor",
   "AttackType": "Hit",
-  "Value1": 6,
+  "Value1": 20,
   "Value2": 0,
   "Value3": 0,
   "Value4": 0

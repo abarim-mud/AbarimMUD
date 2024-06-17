@@ -1,4 +1,6 @@
-﻿namespace AbarimMUD.Data
+﻿using AbarimMUD.Attributes;
+
+namespace AbarimMUD.Data
 {
 	public interface IHasId<IdType>
 	{
