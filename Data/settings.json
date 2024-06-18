@@ -6,5 +6,6 @@
   "StartRoomId": 3001,
   "DefaultCharacter": "Yang",
   "DefaultClass": "warrior",
-  "PauseBetweenFightRoundsInMs": 3000
+  "PauseBetweenFightRoundsInMs": 3000,
+  "NegativeRegen": 20
 }

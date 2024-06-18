@@ -18,6 +18,7 @@ namespace AbarimMUD.Data
 			public string DefaultClass { get; set; }
 
 			public int PauseBetweenFightRoundsInMs { get; set; }
+			public int NegativeRegen { get; set; }
 		}
 
 		public static BaseStorage Storage => InternalStorage;
@@ -32,6 +33,11 @@ namespace AbarimMUD.Data
 		public static string DefaultCharacter => Instance.DefaultCharacter;
 		public static string DefaultClass => Instance.DefaultClass;
 		public static int PauseBetweenFightRoundsInMs => Instance.PauseBetweenFightRoundsInMs;
+
+		/// <summary>
+		/// Negative regen rate(per minute), used when values(hp/mana/mv) are higher than their maxes
+		/// </summary>
+		public static int NegativeRegen => Instance.NegativeRegen;
 
 		public static void Save() => InternalStorage.Save();
 	}

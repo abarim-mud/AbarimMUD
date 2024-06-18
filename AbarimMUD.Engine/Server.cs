@@ -173,26 +173,32 @@ namespace AbarimMUD
 				// Process creature
 				foreach (var creature in Creature.AllCreatures)
 				{
-					if (creature.State.Hitpoints >= creature.Stats.MaxHitpoints)
+					if (creature.State.Hitpoints == creature.Stats.MaxHitpoints)
 					{
 						continue;
 					}
 
-					var hpRegen = creature.Stats.HitpointsRegen * secondsPassed / 60.0f;
+					float hpRegen;
+					if (creature.State.Hitpoints < creature.Stats.MaxHitpoints)
+					{
+						hpRegen = creature.Stats.HitpointsRegen * secondsPassed / 60.0f;
+					} else
+					{
+						hpRegen = -Configuration.NegativeRegen * secondsPassed / 60.0f;
+					}
 
 					creature.State.FractionalRegen += hpRegen;
 
-					if (creature.State.FractionalRegen > 1)
+					if (Math.Abs(creature.State.FractionalRegen) > 1)
 					{
 						// Update real hp
 						var hpUpdate = (int)creature.State.FractionalRegen;
 						creature.State.Hitpoints += hpUpdate;
 						creature.State.FractionalRegen -= hpUpdate;
 
-						if (creature.State.Hitpoints >= creature.Stats.MaxHitpoints)
+						if (creature.State.Hitpoints == creature.Stats.MaxHitpoints)
 						{
 							// Full
-							creature.State.Hitpoints = creature.Stats.MaxHitpoints;
 							creature.State.FractionalRegen = 0;
 						}
 					}
