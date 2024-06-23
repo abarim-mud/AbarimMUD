@@ -39,7 +39,8 @@ namespace AbarimMUD.Combat
 				attacker.Send($"You get {targetMobile.Info.Wealth.FormatBigNumber()} from the corpse of {targetMobile.ShortDescription}.");
 				attacker.Send($"You buried the corpse of {targetMobile.ShortDescription}.");
 
-				var roomMessage = $"{attacker.ShortDescription} gets gold coins from the corpse of {targetMobile.ShortDescription}.";
+				var roomMessage = $"{attacker.ShortDescription} gets gold coins from the corpse of {targetMobile.ShortDescription}.\n" +
+					$"{attacker.ShortDescription} buries the corpse {targetMobile.ShortDescription}.";
 				foreach (var roomContext in attacker.AllExceptMeInRoom())
 				{
 					roomContext.Send(roomMessage);

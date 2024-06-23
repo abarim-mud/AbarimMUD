@@ -30,6 +30,11 @@ namespace AbarimMUD.Commands.Player
 				t.Send(string.Format("{0} leaves {1}.", context.ShortDescription, dirName));
 			}
 
+			// Perform the movement
+			context.CurrentRoom = exit.TargetRoom;
+			context.Logger.Info("Moved to room with id {0}", exit.TargetRoom.Id);
+			context.Send($"You went {_dir.ToString().ToLower()}.");
+			
 			// Notify inhabits of the destination room about the arrival
 			dirName = _dir.GetOppositeDirection().GetName();
 
@@ -39,11 +44,6 @@ namespace AbarimMUD.Commands.Player
 				t.Send(string.Format("{0} arrives from {1}.", context.ShortDescription, dirName));
 			}
 
-			context.CurrentRoom = exit.TargetRoom;
-
-			context.Logger.Info("Moved to room with id {0}", exit.TargetRoom.Id);
-
-			context.Send($"You went {_dir.ToString().ToLower()}.");
 			new Look().Execute(context, string.Empty);
 		}
 	}
