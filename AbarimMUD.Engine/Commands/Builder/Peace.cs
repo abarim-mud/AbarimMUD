@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using AbarimMUD.Combat;
+using System.Linq;
 using System.Text;
 
 namespace AbarimMUD.Commands.Builder
@@ -9,7 +10,7 @@ namespace AbarimMUD.Commands.Builder
 		{
 			var playerMessage = new StringBuilder();
 			var roomMessage = new StringBuilder();
-			foreach (var fight in Server.Instance.Fights)
+			foreach (var fight in Fight.AllFights)
 			{
 				if (!fight.Finished && fight.Room == context.CurrentRoom)
 				{

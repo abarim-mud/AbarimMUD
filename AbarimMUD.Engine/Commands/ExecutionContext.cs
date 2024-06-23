@@ -24,6 +24,8 @@ namespace AbarimMUD.Commands
 
 
 		public bool IsStaff => Role >= Role.Builder;
+		public ExecutionContext FightsWith { get; set; }
+		public bool IsAlive => Creature.IsAlive;
 
 		protected abstract void InternalSend(string text);
 
@@ -115,12 +117,12 @@ namespace AbarimMUD.Commands
 			// Line break before stats
 			output.AppendLine();
 
-			if (Creature.FightsWith == null)
+			if (FightsWith == null)
 			{
 				output.Append($"<{State.Hitpoints}hp {State.Mana}ma {State.Movement}mv -> ");
 			} else
 			{
-				var targetHpPercentage = Creature.FightsWith.State.Hitpoints * 100 / Creature.FightsWith.Stats.MaxHitpoints;
+				var targetHpPercentage = FightsWith.Creature.State.Hitpoints * 100 / FightsWith.Creature.Stats.MaxHitpoints;
 				output.Append($"<{State.Hitpoints}hp {State.Mana}ma {State.Movement}mv {targetHpPercentage}-> ");
 			}
 		}

@@ -3,13 +3,16 @@ using System.Net;
 using System.Net.Sockets;
 using NLog;
 using AbarimMUD.WebService;
-using System.Threading;
 using System.Diagnostics;
 using System.Collections.ObjectModel;
 using System.Linq;
 using AbarimMUD.Data;
 using AbarimMUD.Storage;
 using System.Collections.Generic;
+using AbarimMUD.Combat;
+using AbarimMUD.Commands;
+using System.Threading;
+using ExecutionContext = AbarimMUD.Commands.ExecutionContext;
 
 namespace AbarimMUD
 {
@@ -21,7 +24,6 @@ namespace AbarimMUD
 		private Session[] _sessionsCopy = null;
 		private readonly AutoResetEvent _mainThreadEvent = new AutoResetEvent(false);
 		private readonly Service _webService = new Service();
-		private readonly List<Fight> _fights = new List<Fight>();
 		private DateTime? _lastRegenDt;
 
 		public static Logger Logger { get; private set; } = LogManager.GetLogger("Logs/Server");
@@ -45,8 +47,6 @@ namespace AbarimMUD
 				return _sessionsCopy;
 			}
 		}
-
-		public IReadOnlyList<Fight> Fights => _fights;
 
 		private Server()
 		{
@@ -151,14 +151,7 @@ namespace AbarimMUD
 
 		private void WorldTick()
 		{
-			// Process fights
-			foreach (var fight in _fights)
-			{
-				fight.DoRound();
-			}
-
-			// Remove finished fights
-			_fights.RemoveAll(f => f.Finished);
+			Fight.Process();
 
 			// Creatures run
 			var now = DateTime.Now;
@@ -182,7 +175,8 @@ namespace AbarimMUD
 					if (creature.State.Hitpoints < creature.Stats.MaxHitpoints)
 					{
 						hpRegen = creature.Stats.HitpointsRegen * secondsPassed / 60.0f;
-					} else
+					}
+					else
 					{
 						hpRegen = -Configuration.NegativeRegen * secondsPassed / 60.0f;
 					}
@@ -294,14 +288,6 @@ namespace AbarimMUD
 				Logger.Error(ex);
 				throw;
 			}
-		}
-
-		public void StartFight(Room room, Creature attacker, Creature target)
-		{
-			var fight = new Fight(room, attacker, target);
-			fight.DoRound();
-
-			_fights.Add(fight);
 		}
 
 		void EndAccept(IAsyncResult result)

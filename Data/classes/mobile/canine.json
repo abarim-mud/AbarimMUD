@@ -5,8 +5,8 @@
   "Flags": "Mobile",
   "Inherits": null,
   "HitpointsRange": {
-    "Level1Value": 50,
-    "Level100Value": 8000
+    "Level1Value": 20,
+    "Level100Value": 4000
   },
   "HitpointsRegenRange": {
     "Level1Value": 20,
@@ -14,12 +14,12 @@
   },
   "ArmorRange": {
     "Level1Value": 10,
-    "Level100Value": 200
+    "Level100Value": 100
   },
   "AttackType": "Bite",
   "PenetrationRange": {
     "Level1Value": 10,
-    "Level100Value": 200
+    "Level100Value": 100
   },
   "MinimumDamageRange": {
     "Level1Value": 1,

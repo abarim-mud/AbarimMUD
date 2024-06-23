@@ -18,7 +18,7 @@ namespace AbarimMUD
 		public override string ToString() => $"{InitialDamage}-{ArmorAbsorbedDamage}={Damage}";
 	}
 
-	public static class Combat
+	public static class CombatCalc
 	{
 		public static DamageResult CalculateDamage(Attack attack, int armorClass)
 		{

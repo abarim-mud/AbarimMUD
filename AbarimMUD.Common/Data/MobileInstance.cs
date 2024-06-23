@@ -52,9 +52,9 @@ namespace AbarimMUD.Data
 		public override void Slain()
 		{
 			base.Slain();
-
+			AllCreatures.Remove(this);
 			Room = null;
-		}
+		} 
 
 		public override string ToString() => Info.ToString();
 	}

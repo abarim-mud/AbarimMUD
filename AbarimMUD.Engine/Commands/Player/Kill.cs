@@ -1,12 +1,15 @@
-﻿namespace AbarimMUD.Commands.Player
+﻿using AbarimMUD.Combat;
+
+namespace AbarimMUD.Commands.Player
 {
 	public class Kill : PlayerCommand
 	{
 		protected override void InternalExecute(ExecutionContext context, string data)
 		{
-			if (context.Creature.FightsWith != null)
+			if (context.FightsWith != null)
 			{
 				context.Send($"You're too busy fighting with someone else");
+				return;
 			}
 
 			data = data.Trim();
@@ -30,7 +33,8 @@
 				return;
 			}
 
-			Server.Instance.StartFight(context.CurrentRoom, context.Creature, lookContext.Creature);
+			context.SingleAttack(0, lookContext);
+			Fight.Start(context, lookContext);
 		}
 	}
 }
