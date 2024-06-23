@@ -11,10 +11,9 @@ namespace AbarimMUD.Commands
 			// Search among characters
 			foreach (var c in room.Characters)
 			{
-				var context = (PlayerExecutionContext)c.Tag;
-				if (context.MatchesKeyword(keyword))
+				if (c.MatchesKeyword(keyword))
 				{
-					return context;
+					return (ExecutionContext)c.Tag;
 				}
 			}
 
@@ -23,7 +22,12 @@ namespace AbarimMUD.Commands
 			{
 				if (m.MatchesKeyword(keyword))
 				{
-					return new MobileExecutionContext(m);
+					if (m.Tag == null)
+					{
+						return new ExecutionContext(m);
+					}
+
+					return (ExecutionContext)m.Tag;
 				}
 			}
 

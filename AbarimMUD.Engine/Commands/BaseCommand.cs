@@ -35,6 +35,7 @@ namespace AbarimMUD.Commands
 		public static readonly Player.Equipment Equipment = new Player.Equipment();
 
 		public static readonly Kill Kill = new Kill();
+		public static readonly Backstab Backstab = new Backstab();
 
 		// Builders
 		public static readonly Peace Peace = new Peace();

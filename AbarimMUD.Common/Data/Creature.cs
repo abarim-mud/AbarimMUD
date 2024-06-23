@@ -1,4 +1,5 @@
 ﻿using AbarimMUD.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
@@ -16,6 +17,10 @@ namespace AbarimMUD.Data
 
 		public abstract int Level { get; }
 		public abstract Sex Sex { get; }
+
+		[JsonIgnore]
+		[OLCIgnore]
+		public abstract Room Room { get; set; }
 
 		[OLCIgnore]
 		public Equipment Equipment { get; set; } = new Equipment();
@@ -35,7 +40,24 @@ namespace AbarimMUD.Data
 		public CreatureState State { get; } = new CreatureState();
 
 		[JsonIgnore]
-		public bool IsAlive { get; protected set; } = true;
+		public bool IsAlive => State.Hitpoints >= 0;
+
+		[JsonIgnore]
+		public object Tag { get; set; }
+
+		public event EventHandler Dead;
+
+		public Creature()
+		{
+			State.HitpointsChanged += (s, e) =>
+			{
+				if (State.Hitpoints < 0)
+				{
+					Slain();
+					Dead?.Invoke(this, EventArgs.Empty);
+				}
+			};
+		}
 
 		public void InvalidateStats()
 		{
@@ -142,9 +164,30 @@ namespace AbarimMUD.Data
 			}
 		}
 
-		public virtual void Slain()
+		public Skill GetSkill(string skillName)
 		{
-			IsAlive = false;
+			foreach(var pair in Class.SkillsByLevels)
+			{
+				if (pair.Key > Level)
+				{
+					// Since SkillsByLevels is SortedDictionary, we could break upon reaching the first out-of-level pair
+					break;
+				}
+
+				foreach(var skill in pair.Value)
+				{
+					if (skill.Name.EqualsToIgnoreCase(skillName))
+					{
+						return skill;
+					}
+				}
+			}
+
+			return null;
+		}
+
+		protected virtual void Slain()
+		{ 
 		}
 	}
 }

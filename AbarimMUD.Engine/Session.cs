@@ -10,9 +10,7 @@ namespace AbarimMUD
 	{
 		private readonly Connection _connection;
 		private Handler _currentHandler;
-		private readonly PlayerExecutionContext _context;
 		private Character _character;
-		private Room _room;
 		private readonly StringBuilder _output = new StringBuilder();
 		private bool _hasOutput = false;
 
@@ -49,38 +47,10 @@ namespace AbarimMUD
 			set
 			{
 				_character = value;
-				_character.Tag = Context;
-
 				_character.Restore();
-
-				_room = Room.EnsureRoomById(Configuration.StartRoomId);
-				_room.AddCharacter(_character);
+				_character.Room = Room.EnsureRoomById(Configuration.StartRoomId);
 				Creature.AllCreatures.Add(_character);
 			}
-		}
-
-		public Room CurrentRoom
-		{
-			get
-			{
-				return _room;
-			}
-			set
-			{
-				if (value == null)
-				{
-					throw new ArgumentNullException("value");
-				}
-
-				_room.RemoveCharacter(Character);
-				_room = value;
-				_room.AddCharacter(Character);
-			}
-		}
-
-		public PlayerExecutionContext Context
-		{
-			get { return _context; }
 		}
 
 		public event EventHandler Disconnected;
@@ -93,7 +63,6 @@ namespace AbarimMUD
 			}
 
 			_connection = connection;
-			_context = new PlayerExecutionContext(this);
 
 			if (!firstSession || string.IsNullOrEmpty(Configuration.DefaultCharacter))
 			{
@@ -175,7 +144,7 @@ namespace AbarimMUD
 
 		public static Session FindSessionByCharacterName(string name)
 		{
-			foreach(var session in Server.Instance.Sessions)
+			foreach (var session in Server.Instance.Sessions)
 			{
 				if (session.Character != null && session.Character.Name.EqualsToIgnoreCase(name))
 				{

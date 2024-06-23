@@ -60,14 +60,13 @@ namespace AbarimMUD.Commands.Player
 					desc += string.Format(" (#{0})", mobile.Info.Id);
 				}
 
-				sb.AppendLine(desc);
+				sb.AppendLine(desc.Trim());
 			}
 
 			// Characters
 			foreach (var character in room.Characters)
 			{
-				var asPlayer = context as PlayerExecutionContext;
-				if (asPlayer != null && asPlayer.Session.Character == character)
+				if (character == context.Creature)
 				{
 					continue;
 				}

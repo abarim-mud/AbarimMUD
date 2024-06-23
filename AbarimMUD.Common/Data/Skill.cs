@@ -6,6 +6,7 @@ namespace AbarimMUD.Data
 {
 	public enum ModifierType
 	{
+		BackstabCount
 	}
 
 	public class Skill : IStoredInFile
@@ -15,7 +16,7 @@ namespace AbarimMUD.Data
 		[OLCIgnore]
 		public string Id { get; set; }
 		public string Name { get; set; }
-		public Dictionary<ModifierType, int> Modifiers { get; set; }
+		public Dictionary<ModifierType, int> Modifiers { get; set; } = new Dictionary<ModifierType, int>();
 
 		public void Create() => Storage.Create(this);
 		public void Save() => Storage.Save(this);

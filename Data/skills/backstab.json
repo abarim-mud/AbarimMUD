@@ -1,0 +1,7 @@
+{
+  "Id": "backstab",
+  "Name": "Backstab",
+  "Modifiers": {
+    "BackstabCount": 1
+  }
+}

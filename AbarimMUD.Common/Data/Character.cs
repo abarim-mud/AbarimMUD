@@ -22,6 +22,8 @@ namespace AbarimMUD.Data
 		private GameClass _class;
 		private int _level;
 		private long _experience;
+		private Room _room;
+
 
 		[JsonIgnore]
 		public Account Account { get; set; }
@@ -105,8 +107,25 @@ namespace AbarimMUD.Data
 		public override int Level => PlayerLevel;
 		public override Sex Sex => PlayerSex;
 
-		[JsonIgnore]
-		public object Tag { get; set; }
+		public override Room Room
+		{
+			get { return _room; }
+
+			set
+			{
+				if (_room != null)
+				{
+					_room.Characters.Remove(this);
+				}
+
+				_room = value;
+
+				if (_room != null)
+				{
+					_room.Characters.Add(this);
+				}
+			}
+		}
 
 		public Character()
 		{

@@ -23,9 +23,6 @@ namespace AbarimMUD.Combat
 			Side1.Add(attacker ?? throw new ArgumentNullException(nameof(attacker)));
 			Side2.Add(target ?? throw new ArgumentNullException(nameof(target)));
 
-			attacker.FightsWith = target;
-			target.FightsWith = attacker;
-
 			_lastRound = DateTime.Now;
 
 			Room = attacker.CurrentRoom;
@@ -112,6 +109,33 @@ namespace AbarimMUD.Combat
 			if (!attacker.IsAlive || !target.IsAlive)
 			{
 				return;
+			}
+
+			if (attacker == target)
+			{
+				return;
+			}
+
+			attacker.FightsWith = target;
+			if (target.FightsWith == null)
+			{
+				target.FightsWith = attacker;
+			}
+
+			// Add to existing fight
+			foreach (var f in AllFights)
+			{
+				if (f.Side1.Contains(target))
+				{
+					f.Side2.Add(attacker);
+					return;
+				}
+
+				if (f.Side2.Contains(target))
+				{
+					f.Side1.Add(attacker);
+					return;
+				}
 			}
 
 			var fight = new Fight(attacker, target);

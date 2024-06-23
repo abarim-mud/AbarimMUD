@@ -1,4 +1,5 @@
 ﻿using AbarimMUD.Combat;
+using AbarimMUD.Data;
 
 namespace AbarimMUD.Commands.Player
 {
@@ -19,22 +20,27 @@ namespace AbarimMUD.Commands.Player
 				return;
 			}
 
-			var lookContext = context.CurrentRoom.Find(data);
-			if (lookContext == null)
+			var target = context.CurrentRoom.Find(data);
+			if (target == null)
 			{
 				context.Send($"There isnt '{data}' in this room");
 				return;
 			}
 
-			var asMobileContext = lookContext as MobileExecutionContext;
-			if (asMobileContext == null)
+			if (target == context)
 			{
-				context.Send($"You can't attack {data}");
+				context.Send("You can't attack yourself.");
 				return;
 			}
 
-			context.SingleAttack(0, lookContext);
-			Fight.Start(context, lookContext);
+			if (target.Creature is Character)
+			{
+				context.Send($"You can't attack {target.ShortDescription}");
+				return;
+			}
+
+			context.SingleAttack(0, target);
+			Fight.Start(context, target);
 		}
 	}
 }

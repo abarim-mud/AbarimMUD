@@ -19,7 +19,7 @@ namespace AbarimMUD.Data
 
 		public override Sex Sex => Info.Sex;
 
-		public Room Room
+		public override Room Room
 		{
 			get { return _room; }
 
@@ -38,6 +38,7 @@ namespace AbarimMUD.Data
 				}
 			}
 		}
+
 		public MobileInstance(Mobile mobile)
 		{
 			Info = mobile ?? throw new ArgumentNullException(nameof(mobile));
@@ -49,12 +50,12 @@ namespace AbarimMUD.Data
 
 		public override bool MatchesKeyword(string keyword) => Info.MatchesKeyword(keyword);
 
-		public override void Slain()
+		protected override void Slain()
 		{
 			base.Slain();
 			AllCreatures.Remove(this);
 			Room = null;
-		} 
+		}
 
 		public override string ToString() => Info.ToString();
 	}

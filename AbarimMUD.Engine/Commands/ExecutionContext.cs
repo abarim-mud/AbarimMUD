@@ -3,31 +3,97 @@ using System.Collections.Generic;
 using System.Text;
 using AbarimMUD.Data;
 using System.Linq;
+using System;
 
 namespace AbarimMUD.Commands
 {
-	public abstract class ExecutionContext
+	public class ExecutionContext
 	{
-		public abstract Creature Creature { get; }
+		private Creature _creature;
+		private ExecutionContext _fightsWith;
 
-		public abstract Role Role { get; }
+		public Session Session { get; private set; }
+		public Creature Creature
+		{
+			get => _creature;
 
-		public abstract Logger Logger { get; }
+			set
+			{
+				_creature = value;
+
+				_creature.Dead += OnDead;
+			}
+		}
+
+		public Role Role
+		{
+			get
+			{
+				var asCharacter = Creature as Character;
+				if (asCharacter != null)
+				{
+					return asCharacter.Role;
+				}
+
+				return Role.Player;
+			}
+		}
 
 		public string ShortDescription => Creature.ShortDescription;
 
 		public CreatureStats Stats => Creature.Stats;
 		public CreatureState State => Creature.State;
 
-		public abstract Room CurrentRoom { get; set; }
+		public Room CurrentRoom
+		{
+			get => Creature.Room;
+			set => Creature.Room = value;
+		}
+
 		public Area CurrentArea => CurrentRoom.Area;
 
 
 		public bool IsStaff => Role >= Role.Builder;
-		public ExecutionContext FightsWith { get; set; }
+
+		public ExecutionContext FightsWith
+		{
+			get => _fightsWith;
+
+			set
+			{
+				if (value == _fightsWith)
+				{
+					return;
+				}
+
+				if (_fightsWith != null)
+				{
+					_fightsWith.Creature.Dead -= FightsWithIsDead;
+				}
+
+				_fightsWith = value;
+
+				if (_fightsWith != null)
+				{
+					_fightsWith.Creature.Dead += FightsWithIsDead;
+				}
+			}
+		}
+
 		public bool IsAlive => Creature.IsAlive;
 
-		protected abstract void InternalSend(string text);
+		public ExecutionContext(Session session)
+		{
+			Session = session ?? throw new ArgumentNullException(nameof(session));
+			Creature = Session.Character;
+			Session.Character.Tag = this;
+		}
+
+		public ExecutionContext(MobileInstance mobile)
+		{
+			Creature = mobile ?? throw new ArgumentException(nameof(Creature));
+			mobile.Tag = this;
+		}
 
 		public bool MatchesKeyword(string keyword) => Creature.MatchesKeyword(keyword);
 
@@ -35,12 +101,18 @@ namespace AbarimMUD.Commands
 		{
 			foreach (var s in Server.Instance.Sessions)
 			{
-				if (s.Context == this)
+				if (s == Session)
 				{
 					continue;
 				}
 
-				yield return s.Context;
+				var asGameHandler = s.CurrentHandler as GameHandler;
+				if (asGameHandler == null)
+				{
+					continue;
+				}
+
+				yield return asGameHandler.Context;
 			}
 		}
 
@@ -71,7 +143,12 @@ namespace AbarimMUD.Commands
 
 		public void Send(string text = "")
 		{
-			InternalSend(text + "\n");
+			if (Session == null)
+			{
+				return;
+			}
+
+			Session.Send(text + "\n");
 		}
 
 		public void BeforeOutputSent(StringBuilder output)
@@ -120,11 +197,22 @@ namespace AbarimMUD.Commands
 			if (FightsWith == null)
 			{
 				output.Append($"<{State.Hitpoints}hp {State.Mana}ma {State.Movement}mv -> ");
-			} else
+			}
+			else
 			{
 				var targetHpPercentage = FightsWith.Creature.State.Hitpoints * 100 / FightsWith.Creature.Stats.MaxHitpoints;
 				output.Append($"<{State.Hitpoints}hp {State.Mana}ma {State.Movement}mv {targetHpPercentage}-> ");
 			}
+		}
+
+		private void Log(string message)
+		{
+			if (Session == null)
+			{
+				return;
+			}
+
+			Session.Logger.Info(message);
 		}
 
 		private void ParseAndExecuteLine(string line)
@@ -139,29 +227,24 @@ namespace AbarimMUD.Commands
 
 			var cmd = parts[0];
 
-			Logger.Info("Processing command: {0}", cmd);
-
 			var command = BaseCommand.FindCommand(cmd);
 			if (command == null)
 			{
-				Logger.Info("Command is unrecognized.");
 				Send("Arglebargle, glop-glyf!?!");
 				return;
 			}
 
 			if (command.RequiredType > Role)
 			{
-				Logger.Info("Command is not available for this character.");
 				Send("Arglebargle, glop-glyf!?!");
 				return;
 			}
 
 			var type = command.GetType();
-			Logger.Info("Command type is {0}.", type);
+			Log($"Command type is {type}.");
 
 			var args = parts.Length > 1 ? parts[1] : string.Empty;
 			command.Execute(this, args);
-
 		}
 
 		public void ParseAndExecute(string data)
@@ -171,6 +254,16 @@ namespace AbarimMUD.Commands
 			{
 				ParseAndExecuteLine(line);
 			}
+		}
+
+		private void FightsWithIsDead(object sender, EventArgs e)
+		{
+			FightsWith = null;
+		}
+
+		private void OnDead(object sender, EventArgs e)
+		{
+			FightsWith = null;
 		}
 	}
 }

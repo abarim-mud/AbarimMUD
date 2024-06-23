@@ -44,5 +44,12 @@
       ]
     }
   ],
-  "SkillsByLevels": {}
+  "SkillsByLevels": {
+    "1": [
+      "backstab"
+    ],
+	"20": [
+	  "secondStab"
+	]
+  }
 }

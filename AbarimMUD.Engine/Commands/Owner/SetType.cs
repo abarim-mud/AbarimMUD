@@ -60,13 +60,13 @@ namespace AbarimMUD.Commands.Owner
 				type.ToString()));
 
 			// Check if it's online
-			foreach (var s in Server.Instance.Sessions)
+			foreach (var ctx in context.AllExceptMe())
 			{
-				if (s.Character != null && s.Character.Name == character.Name)
+				if (ctx.Session.Character.Name == character.Name)
 				{
 					// It's online
 					// Inform him or her that the type had been changed
-					s.Context.Send(string.Format("Your type had been changed from {0} to {1}", oldType.ToString(),
+					ctx.Send(string.Format("Your type had been changed from {0} to {1}", oldType.ToString(),
 						type.ToString()));
 				}
 			}

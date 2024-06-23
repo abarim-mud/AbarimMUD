@@ -10,9 +10,7 @@ using AbarimMUD.Data;
 using AbarimMUD.Storage;
 using System.Collections.Generic;
 using AbarimMUD.Combat;
-using AbarimMUD.Commands;
 using System.Threading;
-using ExecutionContext = AbarimMUD.Commands.ExecutionContext;
 
 namespace AbarimMUD
 {
@@ -73,80 +71,6 @@ namespace AbarimMUD
 			DataContext.Register(Social.Storage);
 
 			DataContext.Load();
-
-			Configuration.Save();
-			/*			long minimumXp = 2000;
-						long maximumXp = 20000000000;
-						int levels = 100;
-
-						var values = new Dictionary<int, long>();
-						for (var level = 1; level <= levels; ++level)
-						{
-							var k = (float)(level - 1) / (levels - 1);
-
-							k *= (k * k * k * k);
-							var xp = (long)(minimumXp + (maximumXp - minimumXp) * k);
-
-							// Round up to 3 first numbers
-							var numbers = xp.ToString().Length;
-
-							var d = xp / Math.Pow(10, numbers - 3);
-							d = Math.Round(d);
-
-							// Get rid of trailing 1 or 9
-							xp = (long)d;
-
-							var moves = 0;
-							while (xp > 10)
-							{
-								var lastNum = xp % 10;
-								if (lastNum == 1)
-								{
-									xp -= 1;
-								}
-								else if (lastNum == 9)
-								{
-									xp += 1;
-								}
-								else
-								{
-									break;
-								}
-
-								++moves;
-								xp /= 10;
-							}
-
-							xp *= (long)Math.Pow(10, numbers + moves - 3);
-							values[level] = xp;
-						}
-
-						foreach(var pair in values)
-						{
-							LevelInfo.Storage.Create(new LevelInfo(pair.Key, pair.Value));
-						}*/
-
-			/*			LevelInfo.Storage.SaveAll();
-
-						var thief = GameClass.EnsureClassById("thief");
-
-						var eqSet = new EqSet
-						{
-							MinimumLevel = 1,
-							Items = new Item[]
-							{
-								Item.EnsureItemById("ironDagger"),
-								Item.EnsureItemById("leatherHelm"),
-								Item.EnsureItemById("leatherArmor"),
-								Item.EnsureItemById("leatherPants"),
-								Item.EnsureItemById("leatherGloves"),
-							}
-						};
-
-						thief.EqSets = new EqSet[] { eqSet };
-
-						GameClass.Storage.SaveAll();*/
-			GameClass.Storage.SaveAll();
 		}
 
 		private void WorldTick()

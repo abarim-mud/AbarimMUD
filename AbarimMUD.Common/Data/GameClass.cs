@@ -3,6 +3,7 @@ using AbarimMUD.Storage;
 using AbarimMUD.StorageAPI;
 using System;
 using System.Collections.Generic;
+using System.Reflection.Emit;
 using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
@@ -314,7 +315,7 @@ namespace AbarimMUD.Data
 			}
 		}
 
-		public Dictionary<int, Skill[]> SkillsByLevels { get; set; } = new Dictionary<int, Skill[]>();
+		public SortedDictionary<int, Skill[]> SkillsByLevels { get; set; } = new SortedDictionary<int, Skill[]>();
 
 		public void OnSerializationStarted()
 		{
@@ -401,6 +402,24 @@ namespace AbarimMUD.Data
 			xpAward *= attackXpFactor;
 
 			stats.XpAward = xpAward;
+
+			// Apply skills
+			foreach (var pair in SkillsByLevels)
+			{
+				if (pair.Key > level)
+				{
+					// Since SkillsByLevels is SortedDictionary, we could break upon reaching the first out-of-level pair
+					break;
+				}
+
+				foreach (var skill in pair.Value)
+				{
+					foreach (var mod in skill.Modifiers)
+					{
+						stats.ApplyModifier(mod.Key, mod.Value);
+					}
+				}
+			}
 
 			return stats;
 		}

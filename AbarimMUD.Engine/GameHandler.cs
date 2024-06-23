@@ -1,15 +1,18 @@
-﻿using NLog;
+﻿using AbarimMUD.Commands;
+using NLog;
 using System.IO;
-using System.Linq;
 using System.Text;
 
 namespace AbarimMUD
 {
 	public sealed class GameHandler : Handler
 	{
+		public ExecutionContext Context { get; private set; }
+
 		public GameHandler(Session session)
 			: base(session)
 		{
+			Context = new ExecutionContext(session);
 		}
 
 		public override void OnSet()
@@ -24,18 +27,7 @@ namespace AbarimMUD
 			Process("look");
 		}
 
-		/*		public override void BeforeSend(StringBuilder sb)
-				{
-					base.BeforeSend(sb);
-
-					// Add prompt if execution depth is 1(top command)
-					var c = Session.Character;
-
-					sb.Append(ConsoleCommand.NewLine);
-					sb.Append(string.Format("<{0}hp {1}ip {2}mv -> ", c.CurrentHP, c.CurrentIP, c.CurrentMV));
-				}*/
-
-		public override void Process(string data) => Session.Context.ParseAndExecute(data);
+		public override void Process(string data) => Context.ParseAndExecute(data);
 
 		public override void OnCharacterNameChanged()
 		{
@@ -51,7 +43,7 @@ namespace AbarimMUD
 		{
 			base.BeforeOutputSent(sb);
 
-			Session.Context.BeforeOutputSent(sb);
+			Context.BeforeOutputSent(sb);
 		}
 	}
 }

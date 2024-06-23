@@ -1,0 +1,7 @@
+{
+  "Id": "secondStab",
+  "Name": "Second Stab",
+  "Modifiers": {
+    "BackstabCount": 1
+  }
+}

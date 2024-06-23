@@ -18,6 +18,11 @@ namespace AbarimMUD.Data
 		Weapon,
 	}
 
+	public enum ItemFlags
+	{
+		Stab
+	}
+
 	public class Item : IStoredInFile, ICloneable
 	{
 		public static readonly MultipleFilesStorage<Item> Storage = new Items();
@@ -37,6 +42,8 @@ namespace AbarimMUD.Data
 		public Affect[] Affects { get; set; } = new Affect[0];
 		public ItemType ItemType { get; set; }
 		public AttackType AttackType { get; set; }
+
+		public HashSet<ItemFlags> Flags { get; set; } = new HashSet<ItemFlags>();
 
 		[OLCIgnore]
 		public int Value1
