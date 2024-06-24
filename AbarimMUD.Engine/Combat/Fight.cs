@@ -2,60 +2,130 @@
 using AbarimMUD.Data;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 
 namespace AbarimMUD.Combat
 {
+	public enum FightSide
+	{
+		Side1,
+		Side2
+	}
+
 	public class Fight
 	{
 		private static readonly List<Fight> _allFights = new List<Fight>();
 
 		private DateTime _lastRound;
+		private List<ExecutionContext> _participants = new List<ExecutionContext>();
 
 		public Room Room { get; private set; }
-		public List<ExecutionContext> Side1 = new List<ExecutionContext>();
-		public List<ExecutionContext> Side2 = new List<ExecutionContext>();
-		public bool Finished => Side1.Count == 0 || Side2.Count == 0;
+
+		public bool Finished { get; private set; }
+
+		public IReadOnlyCollection<ExecutionContext> Participants => _participants;
 
 		public static IReadOnlyList<Fight> AllFights => _allFights;
 
 		private Fight(ExecutionContext attacker, ExecutionContext target)
 		{
-			Side1.Add(attacker ?? throw new ArgumentNullException(nameof(attacker)));
-			Side2.Add(target ?? throw new ArgumentNullException(nameof(target)));
-
 			_lastRound = DateTime.Now;
 
 			Room = attacker.CurrentRoom;
+
+			Add(FightSide.Side1, attacker, target);
 		}
 
-		private void ProcessSide(List<ExecutionContext> side, List<ExecutionContext> otherSide)
+		public void Add(FightSide fightSide, ExecutionContext attacker, ExecutionContext target)
 		{
-			foreach (var creature in side)
+			// Set FightsInfos
+			if (attacker.FightInfo.Fight == null)
 			{
-				var stats = creature.Stats;
-				for (var i = 0; i < creature.Stats.Attacks.Count; ++i)
+				attacker.FightInfo.Fight = this;
+				attacker.FightInfo.Side = fightSide;
+				attacker.FightInfo.Target = target;
+			}
+
+			if (target.FightInfo.Fight == null)
+			{
+				target.FightInfo.Fight = this;
+				target.FightInfo.Side = fightSide.GetOppositeSide();
+				target.FightInfo.Target = attacker;
+			}
+
+			// Update participants
+			if (!_participants.Contains(attacker))
+			{
+				_participants.Add(attacker);
+			}
+
+			if (!_participants.Contains(target))
+			{
+				_participants.Add(target);
+			}
+		}
+
+		public void LeaveFight(ExecutionContext participant)
+		{
+			if (!_participants.Contains(participant))
+			{
+				return;
+			}
+
+			// Null targets
+			foreach (var p in _participants)
+			{
+				if (p == participant)
 				{
-					var target = creature.FightsWith;
-					creature.SingleAttack(i, target);
+					continue;
+				}
 
-					if (!target.Creature.IsAlive)
-					{
-						// Target is dead
-						otherSide.Remove(target);
-
-						if (otherSide.Count == 0)
-						{
-							// No more targets
-							goto finish;
-						}
-
-						// Choose next target
-						creature.FightsWith = otherSide[0];
-					}
+				if (p.FightInfo.Target == participant)
+				{
+					p.FightInfo.Target = null;
 				}
 			}
 
-		finish:;
+			_participants.Remove(participant);
+
+			ValidateFight();
+		}
+
+		private void ValidateFight()
+		{
+			var side1Count = 0;
+			var side2Count = 0;
+
+			foreach (var p in _participants)
+			{
+				if (p.FightInfo.Side == FightSide.Side1)
+				{
+					++side1Count;
+				}
+				else
+				{
+					++side2Count;
+				}
+			}
+
+			if (side1Count == 0 || side2Count == 0)
+			{
+				End();
+			}
+		}
+
+		private ExecutionContext GetNextTarget(FightSide targetSide)
+		{
+			foreach (var p in _participants)
+			{
+				if (p.FightInfo.Side == targetSide)
+				{
+					return p;
+				}
+			}
+
+			return null;
 		}
 
 		public void DoRound()
@@ -76,70 +146,73 @@ namespace AbarimMUD.Combat
 				return;
 			}
 
-			ProcessSide(Side1, Side2);
-
-			if (Finished)
+			foreach (var creature in _participants)
 			{
-				return;
+				for (var i = 0; i < creature.Stats.Attacks.Count; ++i)
+				{
+					if (creature.FightInfo.Target == null)
+					{
+						// Choose next target
+						var targetSide = creature.FightInfo.Side.GetOppositeSide();
+						var target = (from p in _participants where p.FightInfo.Side == targetSide select p).FirstOrDefault();
+
+						if (target == null)
+						{
+							Debug.Assert(false);
+
+							// This should neven happen
+							// Still end fight in such case
+							End();
+							goto finish;
+						}
+
+						creature.FightInfo.Target = target;
+					}
+
+					creature.SingleAttack(i, creature.FightInfo.Target);
+
+					// If the target dies, it should trigger removal of dead participant and the fight validation
+					// Which may result in the fight finish
+					if (Finished)
+					{
+						goto finish;
+					}
+				}
 			}
 
-			ProcessSide(Side2, Side1);
+		finish:;
 		}
 
 		public void End()
 		{
-			// Nullify FightsWith
-			foreach (var creature in Side1)
+			foreach (var p in _participants)
 			{
-				creature.FightsWith = null;
+				p.FightInfo.Fight = null;
+				p.FightInfo.Target = null;
 			}
 
-			foreach (var creature in Side2)
-			{
-				creature.FightsWith = null;
-			}
-
-			// Clear both sides
-			Side1.Clear();
-			Side2.Clear();
+			_participants.Clear();
+			Finished = true;
 		}
 
 		public static void Start(ExecutionContext attacker, ExecutionContext target)
 		{
-			if (!attacker.IsAlive || !target.IsAlive)
+			if (!attacker.IsAlive || !target.IsAlive || attacker == target || attacker.FightInfo.Fight != null)
 			{
 				return;
 			}
 
-			if (attacker == target)
+			if (target.FightInfo.Fight != null)
 			{
-				return;
+				// Add to existing fight
+				target.FightInfo.Fight.Add(target.FightInfo.Side.GetOppositeSide(), attacker, target);
 			}
-
-			attacker.FightsWith = target;
-			if (target.FightsWith == null)
+			else
 			{
-				target.FightsWith = attacker;
+				// Create new fight
+				var fight = new Fight(attacker, target);
+				_allFights.Add(fight);
 			}
-
-			// Add to existing fight
-			foreach (var f in AllFights)
-			{
-				if (f.Side1.Contains(target))
-				{
-					f.Side2.Add(attacker);
-					return;
-				}
-
-				if (f.Side2.Contains(target))
-				{
-					f.Side1.Add(attacker);
-					return;
-				}
-			}
-
-			var fight = new Fight(attacker, target);
-			_allFights.Add(fight);
 		}
 
 		public static void Process()
@@ -152,6 +225,14 @@ namespace AbarimMUD.Combat
 
 			// Remove finished fights
 			_allFights.RemoveAll(f => f.Finished);
+		}
+	}
+
+	public static class FightExtensions
+	{
+		public static FightSide GetOppositeSide(this FightSide side)
+		{
+			return side == FightSide.Side1 ? FightSide.Side2 : FightSide.Side1;
 		}
 	}
 }

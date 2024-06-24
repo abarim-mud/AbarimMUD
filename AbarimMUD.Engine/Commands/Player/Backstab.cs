@@ -7,7 +7,7 @@ namespace AbarimMUD.Commands.Player
 	{
 		protected override void InternalExecute(ExecutionContext context, string data)
 		{
-			if (context.FightsWith != null)
+			if (context.IsFighting)
 			{
 				context.Send($"You're too busy fighting with someone else.");
 				return;

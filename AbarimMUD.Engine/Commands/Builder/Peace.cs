@@ -14,8 +14,8 @@ namespace AbarimMUD.Commands.Builder
 			{
 				if (!fight.Finished && fight.Room == context.CurrentRoom)
 				{
-					var side1Name = string.Join(", ", from s in fight.Side1 select s.ShortDescription);
-					var side2Name = string.Join(", ", from s in fight.Side2 select s.ShortDescription);
+					var side1Name = string.Join(", ", from s in fight.Participants where s.FightInfo.Side == FightSide.Side1 select s.ShortDescription);
+					var side2Name = string.Join(", ", from s in fight.Participants where s.FightInfo.Side == FightSide.Side2 select s.ShortDescription);
 					playerMessage.AppendLine($"You stopped fight between {side1Name} and {side2Name}.");
 					roomMessage.AppendLine($"{context.ShortDescription} stopped fight between {side1Name} and {side2Name}.");
 					fight.End();

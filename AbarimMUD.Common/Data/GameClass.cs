@@ -387,7 +387,7 @@ namespace AbarimMUD.Data
 				stats.Attacks.Add(new Attack(attackType, penetration, minimumDamage, maximumDamage));
 			}
 
-			long xpAward = Math.Max(1, stats.MaxHitpoints / 100);
+			long xpAward = Math.Max(1, stats.MaxHitpoints);
 			xpAward *= Math.Max(1, stats.Armor);
 
 			long attackXpFactor = 0;

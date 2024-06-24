@@ -1,10 +1,10 @@
 {
-  "Id": "ironDagger",
+  "Id": "mithrilDagger",
   "Keywords": [
-    "iron",
+    "mithril",
     "dagger"
   ],
-  "ShortDescription": "an iron dagger",
+  "ShortDescription": "a mithril dagger",
   "LongDescription": null,
   "Description": "Unset",
   "Affects": [],
@@ -13,8 +13,8 @@
   "Flags": [
     "Stab"
   ],
-  "Value1": 10,
-  "Value2": 2,
-  "Value3": 6,
+  "Value1": 30,
+  "Value2": 3,
+  "Value3": 18,
   "Value4": 0
 }

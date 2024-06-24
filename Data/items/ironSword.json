@@ -10,6 +10,7 @@
   "Affects": [],
   "ItemType": "Weapon",
   "AttackType": "Slash",
+  "Flags": [],
   "Value1": 10,
   "Value2": 4,
   "Value3": 10,

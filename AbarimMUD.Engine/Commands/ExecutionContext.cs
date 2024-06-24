@@ -4,20 +4,20 @@ using System.Text;
 using AbarimMUD.Data;
 using System.Linq;
 using System;
+using AbarimMUD.Combat;
 
 namespace AbarimMUD.Commands
 {
 	public class ExecutionContext
 	{
 		private Creature _creature;
-		private ExecutionContext _fightsWith;
 
 		public Session Session { get; private set; }
 		public Creature Creature
 		{
 			get => _creature;
 
-			set
+			private set
 			{
 				_creature = value;
 
@@ -56,30 +56,8 @@ namespace AbarimMUD.Commands
 
 		public bool IsStaff => Role >= Role.Builder;
 
-		public ExecutionContext FightsWith
-		{
-			get => _fightsWith;
-
-			set
-			{
-				if (value == _fightsWith)
-				{
-					return;
-				}
-
-				if (_fightsWith != null)
-				{
-					_fightsWith.Creature.Dead -= FightsWithIsDead;
-				}
-
-				_fightsWith = value;
-
-				if (_fightsWith != null)
-				{
-					_fightsWith.Creature.Dead += FightsWithIsDead;
-				}
-			}
-		}
+		public FightInfo FightInfo { get; } = new FightInfo();
+		public bool IsFighting => FightInfo.Fight != null;
 
 		public bool IsAlive => Creature.IsAlive;
 
@@ -195,13 +173,14 @@ namespace AbarimMUD.Commands
 			// Line break before stats
 			output.AppendLine();
 
-			if (FightsWith == null)
+			var target = FightInfo.Target;
+			if (target == null)
 			{
 				output.Append($"<{State.Hitpoints}hp {State.Mana}ma {State.Movement}mv -> ");
 			}
 			else
 			{
-				var targetHpPercentage = FightsWith.Creature.State.Hitpoints * 100 / FightsWith.Creature.Stats.MaxHitpoints;
+				var targetHpPercentage = target.Creature.State.Hitpoints * 100 / target.Creature.Stats.MaxHitpoints;
 				output.Append($"<{State.Hitpoints}hp {State.Mana}ma {State.Movement}mv {targetHpPercentage}-> ");
 			}
 		}
@@ -257,19 +236,24 @@ namespace AbarimMUD.Commands
 			}
 		}
 
-		private void FightsWithIsDead(object sender, EventArgs e)
+		public void LeaveFight()
 		{
-			FightsWith = null;
-		}
+			if (FightInfo.Fight == null)
+			{
+				return;
+			}
 
-		private void OnDead(object sender, EventArgs e)
-		{
-			FightsWith = null;
+			FightInfo.Fight.LeaveFight(this);
 		}
 
 		private void OnRoomChanged(object sender, EventArgs e)
 		{
-			FightsWith = null;
+			LeaveFight();
+		}
+
+		private void OnDead(object sender, EventArgs e)
+		{
+			LeaveFight();
 		}
 	}
 }
