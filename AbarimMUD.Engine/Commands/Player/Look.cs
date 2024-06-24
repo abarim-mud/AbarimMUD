@@ -77,6 +77,33 @@ namespace AbarimMUD.Commands.Player
 			return sb.ToString();
 		}
 
+		private string BuildCreatureHealthState(Creature creature)
+		{
+			var hpPercentage = creature.State.Hitpoints * 100 / creature.Stats.MaxHitpoints;
+
+			if (hpPercentage >= 100)
+			{
+				return "is in excellent condition.";
+			} else if (hpPercentage >= 90)
+			{
+				return "has a few scratches.";
+			} else if (hpPercentage >= 75)
+			{
+				return "has some small wounds and bruises.";
+			} else if (hpPercentage >= 50)
+			{
+				return "has quite a few wounds.";
+			} else if (hpPercentage >= 30)
+			{
+				return "has some big nasty wounds and scratches.";
+			} else if (hpPercentage >= 15)
+			{
+				return "looks pretty hurt.";
+			}
+
+			return "is in awful condition.";
+		}
+
 		private string BuildCreatureDescription(ExecutionContext context, Creature creature)
 		{
 			var sb = new StringBuilder();
@@ -86,9 +113,12 @@ namespace AbarimMUD.Commands.Player
 				sb.AppendLine(creature.Description.TrimEnd());
 			}
 
+			sb.AppendLine($"{creature.ShortDescription} {BuildCreatureHealthState(creature)}");
+
 			var grid = creature.BuildEquipmentDesc();
 			if (grid != null)
 			{
+				sb.AppendLine();
 				sb.AppendLine($"{creature.ShortDescription} is using:");
 				sb.Append(grid.ToString());
 			}

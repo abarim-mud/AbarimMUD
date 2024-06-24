@@ -46,6 +46,7 @@ namespace AbarimMUD.Data
 		public object Tag { get; set; }
 
 		public event EventHandler Dead;
+		public abstract event EventHandler RoomChanged;
 
 		public Creature()
 		{

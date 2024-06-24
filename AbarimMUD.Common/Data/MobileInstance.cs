@@ -36,8 +36,12 @@ namespace AbarimMUD.Data
 				{
 					_room.Mobiles.Add(this);
 				}
+
+				RoomChanged?.Invoke(this, EventArgs.Empty);
 			}
 		}
+
+		public override event EventHandler RoomChanged;
 
 		public MobileInstance(Mobile mobile)
 		{

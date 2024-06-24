@@ -22,6 +22,7 @@ namespace AbarimMUD.Commands
 				_creature = value;
 
 				_creature.Dead += OnDead;
+				_creature.RoomChanged += OnRoomChanged;
 			}
 		}
 
@@ -262,6 +263,11 @@ namespace AbarimMUD.Commands
 		}
 
 		private void OnDead(object sender, EventArgs e)
+		{
+			FightsWith = null;
+		}
+
+		private void OnRoomChanged(object sender, EventArgs e)
 		{
 			FightsWith = null;
 		}
