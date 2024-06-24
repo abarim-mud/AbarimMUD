@@ -46,10 +46,11 @@
   ],
   "SkillsByLevels": {
     "1": [
-      "backstab"
+      "backstab",
+      "backstabMastery"
     ],
-	"20": [
-	  "secondStab"
-	]
+    "20": [
+      "secondStab"
+    ]
   }
 }

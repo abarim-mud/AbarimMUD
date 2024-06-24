@@ -126,8 +126,6 @@ namespace AbarimMUD.Combat
 			var attack = attacker.Stats.Attacks[0];
 			for(var i = 0; i < attacker.Stats.BackstabCount; ++i)
 			{
-				var mult = CombatCalc.BackstabMult(attacker.Creature.Level);
-
 				// Roll 5% miss chance
 				var missed = Utility.RollPercentage(5);
 				if (missed)
@@ -144,7 +142,7 @@ namespace AbarimMUD.Combat
 				}
 
 				var damage = new DamageResult();
-				for(var j = 0; j < mult; ++j)
+				for(var j = 0; j < attacker.Stats.BackstabMultiplier; ++j)
 				{
 					var damage2 = CombatCalc.CalculateDamage(attack, target.Stats.Armor);
 

@@ -402,6 +402,7 @@ namespace AbarimMUD.Data
 			xpAward *= attackXpFactor;
 
 			stats.XpAward = xpAward;
+			stats.BackstabMultiplier = CombatCalc.BackstabMult(level);
 
 			// Apply skills
 			foreach (var pair in SkillsByLevels)

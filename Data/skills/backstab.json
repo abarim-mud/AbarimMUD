@@ -1,6 +1,7 @@
 {
   "Id": "backstab",
   "Name": "Backstab",
+  "IsPrime": false,
   "Modifiers": {
     "BackstabCount": 1
   }

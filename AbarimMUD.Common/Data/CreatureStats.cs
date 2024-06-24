@@ -10,6 +10,7 @@ namespace AbarimMUD.Data
 		public int HitpointsRegen { get; internal set; }
 		public List<Attack> Attacks { get; } = new List<Attack>();
 		public int BackstabCount { get; internal set; }
+		public int BackstabMultiplier { get; internal set; }
 		public int Armor { get; internal set; }
 		public long XpAward { get; internal set; }
 
@@ -24,6 +25,10 @@ namespace AbarimMUD.Data
 			{
 				case ModifierType.BackstabCount:
 					BackstabCount += value;
+					break;
+
+				case ModifierType.BackstabMultiplier:
+					BackstabMultiplier += value;
 					break;
 			}
 		}

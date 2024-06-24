@@ -1,6 +1,7 @@
 {
   "Id": "secondStab",
   "Name": "Second Stab",
+  "IsPrime": false,
   "Modifiers": {
     "BackstabCount": 1
   }

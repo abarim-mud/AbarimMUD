@@ -31,6 +31,17 @@ namespace AbarimMUD.Commands.Player
 				var attack = stats.Attacks[i];
 				context.Send($"Attack #{i + 1}: {attack}");
 			}
+
+			if (stats.BackstabCount > 0)
+			{
+				if (stats.BackstabCount == 1)
+				{
+					context.Send($"You can do single backstab with multiplier equal to {stats.BackstabMultiplier}.");
+				} else
+				{
+					context.Send($"You can do {stats.BackstabCount} backstabs with multiplier equal to {stats.BackstabMultiplier}.");
+				}
+			}
 		}
 	}
 }
