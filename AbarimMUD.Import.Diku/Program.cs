@@ -13,14 +13,15 @@ namespace AbarimMUD.Import.Diku
 	{
 		private static void Log(string message) => Console.WriteLine(message);
 
-		static void Process(SourceType sourceType, string nameFilter, string inputFolder, string outputFolder)
+		static void Process(SourceType sourceType, string[] areasNames, string inputFolder, string outputFolder)
 		{
 			DataContext.Initialize(outputFolder, Log);
 
-			DataContext.Register(Race.Storage);
-			DataContext.Register(GameClass.Storage);
+			DataContext.Register(Configuration.Storage);
+			DataContext.Register(LevelInfo.Storage);
 			DataContext.Register(Item.Storage);
 			DataContext.Register(Skill.Storage);
+			DataContext.Register(GameClass.Storage);
 			DataContext.Register(Area.Storage);
 			DataContext.Register(Account.Storage);
 			DataContext.Register(Character.Storage);
@@ -30,7 +31,7 @@ namespace AbarimMUD.Import.Diku
 
 			var settings = new ImporterSettings(inputFolder, sourceType)
 			{
-				AreaNameFilter = nameFilter
+				AreasNames = areasNames,
 			};
 
 			var importer = new Importer(settings);
@@ -91,7 +92,7 @@ namespace AbarimMUD.Import.Diku
 			try
 			{
 				Process(SourceType.Circle,
-					"Northern Midgaard",
+					new[] { "Northern Midgaard", "Newbie Zone" },
 					@"D:\Projects\chaos\tbamud\lib\world",
 					@"D:\Projects\AbarimMUD\Data");
 			}
