@@ -165,6 +165,14 @@ namespace AbarimMUD.Storage
 			_allRoomsCache.Invalidate();
 		}
 
+		protected override void AddToCache(Area entity)
+		{
+			base.AddToCache(entity);
+
+			_allMobilesCache.Invalidate();
+			_allRoomsCache.Invalidate();
+		}
+
 		protected override void ClearCache()
 		{
 			foreach (var area in this)
@@ -172,6 +180,9 @@ namespace AbarimMUD.Storage
 				area.RoomsChanged -= Area_RoomsChanged;
 				area.MobilesChanged -= Area_MobilesChanged;
 			}
+
+			_allMobilesCache.Invalidate();
+			_allRoomsCache.Invalidate();
 
 			base.ClearCache();
 		}

@@ -38,7 +38,7 @@ namespace AbarimMUD.Storage
 			return key;
 		}
 
-		protected void AddToCache(ItemType entity)
+		protected virtual void AddToCache(ItemType entity)
 		{
 			var key = GetKey(entity);
 			_cache[key] = entity;

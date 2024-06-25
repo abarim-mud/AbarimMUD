@@ -140,6 +140,7 @@ namespace AbarimMUD.Data
 			}
 		}
 
+
 		public void Create() => Storage.Create(this);
 		public void Save() => Storage.Save(this);
 

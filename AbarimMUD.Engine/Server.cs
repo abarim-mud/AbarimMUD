@@ -71,6 +71,9 @@ namespace AbarimMUD
 			DataContext.Register(Social.Storage);
 
 			DataContext.Load();
+
+			Skill.Storage.SaveAll();
+			GameClass.Storage.SaveAll();
 		}
 
 		private void WorldTick()
@@ -137,8 +140,19 @@ namespace AbarimMUD
 				{
 					foreach (var mobileReset in area.MobileResets)
 					{
-						var mobile = Mobile.EnsureMobileById(mobileReset.MobileId);
-						var room = Room.EnsureRoomById(mobileReset.RoomId);
+						var mobile = Mobile.GetMobileById(mobileReset.MobileId);
+						if (mobile == null)
+						{
+							Logger.Warn($"{area.Name}: Couldn't find mobile with id {mobileReset.MobileId}");
+							continue;
+						}
+
+						var room = Room.GetRoomById(mobileReset.RoomId);
+						if (room == null)
+						{
+							Logger.Warn($"{area.Name}: Couldn't find room with id {mobileReset.RoomId}");
+							continue;
+						}
 
 						// Spawn
 						var newMobile = new MobileInstance(mobile)
