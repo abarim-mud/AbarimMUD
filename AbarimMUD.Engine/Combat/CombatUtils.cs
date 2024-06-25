@@ -8,11 +8,11 @@ namespace AbarimMUD.Combat
 		public static void Slain(this ExecutionContext attacker, ExecutionContext target)
 		{
 			var ripMessage = $"{target.Creature.ShortDescription} is dead! R.I.P.";
-			attacker.Send(ripMessage);
+			attacker.SendBattleMessage(ripMessage);
 
 			foreach (var roomContext in attacker.AllExceptMeInRoom())
 			{
-				roomContext.Send(ripMessage);
+				roomContext.SendBattleMessage(ripMessage);
 			}
 
 			var character = attacker.Creature as Character;
@@ -112,7 +112,7 @@ namespace AbarimMUD.Combat
 				}
 
 				var context = (ExecutionContext)character.Tag;
-				context.Send(message);
+				context.SendBattleMessage(message);
 			}
 
 			if (target.Creature.State.Hitpoints < 0)
@@ -130,12 +130,12 @@ namespace AbarimMUD.Combat
 				var missed = Utility.RollPercentage(5);
 				if (missed)
 				{
-					attacker.Send($"{target.ShortDescription} quickly avoids your backstab and you nearly cut your own finger!");
+					attacker.SendBattleMessage($"{target.ShortDescription} quickly avoids your backstab and you nearly cut your own finger!");
 
 					var roomMessage = $"{target.ShortDescription} quickly avoids {attacker.ShortDescription}'s backstab and {attacker.ShortDescription} nearly cuts their own finger!";
 					foreach(var ch in attacker.AllExceptMeInRoom())
 					{
-						ch.Send(roomMessage);
+						ch.SendBattleMessage(roomMessage);
 					}
 
 					return;
@@ -152,12 +152,12 @@ namespace AbarimMUD.Combat
 				target.Creature.State.Hitpoints -= damage.Damage;
 				if (target.Creature.State.Hitpoints < 0)
 				{
-					attacker.Send($"{target.ShortDescription} makes a strange sound but is suddenly very silent as you place {weapon.Info.ShortDescription} in its back ({damage}).");
+					attacker.SendBattleMessage($"{target.ShortDescription} makes a strange sound but is suddenly very silent as you place {weapon.Info.ShortDescription} in its back ({damage}).");
 
 					var roomMessage = $"{target.ShortDescription} makes a strange sound but is suddenly very silent as {attacker.ShortDescription} places {weapon.Info.ShortDescription} in its back ({damage}).";
 					foreach(var ch in  attacker.AllExceptMeInRoom())
 					{
-						ch.Send(roomMessage);
+						ch.SendBattleMessage(roomMessage);
 					}
 
 					attacker.Slain(target);
@@ -166,16 +166,16 @@ namespace AbarimMUD.Combat
 
 				if (damage.Damage <= 0)
 				{
-					attacker.Send($"Your backstab couldn't pierce through the armor of {target.ShortDescription}.");
+					attacker.SendBattleMessage($"Your backstab couldn't pierce through the armor of {target.ShortDescription}.");
 
 					var roomMessage = $"{attacker.ShortDescription}'s backstab couldn't pierce through the armor of {target.ShortDescription}.";
 					foreach (var ch in attacker.AllExceptMeInRoom())
 					{
-						ch.Send(roomMessage);
+						ch.SendBattleMessage(roomMessage);
 					}
 				} else
 				{
-					attacker.Send($"You place {weapon.ShortDescription} in the back of {target.ShortDescription}, resulting in some strange noises and some blood ({damage})!");
+					attacker.SendBattleMessage($"You place {weapon.ShortDescription} in the back of {target.ShortDescription}, resulting in some strange noises and some blood ({damage})!");
 
 					var roomMessage = $"{attacker.ShortDescription} places {weapon.ShortDescription} in the back of {target.ShortDescription}, resulting in some strange noises and some blood ({damage})!";
 					foreach (var ch in attacker.AllExceptMeInRoom())

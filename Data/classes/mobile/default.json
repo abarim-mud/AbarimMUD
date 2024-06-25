@@ -1,0 +1,42 @@
+{
+  "Id": "default",
+  "Name": "Default",
+  "Description": "Default",
+  "Flags": "Mobile",
+  "Inherits": null,
+  "HitpointsRange": {
+    "Level1Value": 10,
+    "Level100Value": 1000
+  },
+  "HitpointsRegenRange": {
+    "Level1Value": 10,
+    "Level100Value": 100
+  },
+  "ArmorRange": {
+    "Level1Value": 1,
+    "Level100Value": 100
+  },
+  "AttackType": "Slash",
+  "PenetrationRange": {
+    "Level1Value": 1,
+    "Level100Value": 100
+  },
+  "MinimumDamageRange": {
+    "Level1Value": 1,
+    "Level100Value": 10
+  },
+  "MaximumDamageRange": {
+    "Level1Value": 10,
+    "Level100Value": 60
+  },
+  "Attacks": [
+    1,
+    10,
+    20,
+    30,
+    75,
+    100
+  ],
+  "EqSets": null,
+  "SkillsByLevels": {}
+}

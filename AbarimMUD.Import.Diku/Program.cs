@@ -92,7 +92,7 @@ namespace AbarimMUD.Import.Diku
 			try
 			{
 				Process(SourceType.Circle,
-					null,
+					new[] { "Northern Midgaard", "Newbie Zone" },
 					@"D:\Projects\chaos\tbamud\lib\world",
 					@"D:\Projects\AbarimMUD\Data");
 			}

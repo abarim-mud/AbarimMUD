@@ -46,6 +46,22 @@ namespace AbarimMUD.Commands.Player
 
 			sb.AppendLine("[reset]");
 
+			if (room.Characters.Count > 0 || room.Mobiles.Count > 0)
+			{
+				sb.Append("[yellow]");
+			}
+
+			// Characters
+			foreach (var character in room.Characters)
+			{
+				if (character == context.Creature)
+				{
+					continue;
+				}
+
+				sb.AppendLine(string.Format("{0} is standing here.", character.Name));
+			}
+
 			// Mobiles
 			foreach (var mobile in room.Mobiles)
 			{
@@ -63,16 +79,11 @@ namespace AbarimMUD.Commands.Player
 				sb.AppendLine(desc.Trim());
 			}
 
-			// Characters
-			foreach (var character in room.Characters)
+			if (room.Mobiles.Count > 0 || room.Characters.Count > 0)
 			{
-				if (character == context.Creature)
-				{
-					continue;
-				}
-
-				sb.AppendLine(string.Format("{0} is standing here.", character.Name));
+				sb.Append("[reset]");
 			}
+
 
 			return sb.ToString();
 		}

@@ -130,6 +130,17 @@ namespace AbarimMUD.Commands
 			Session.Send(text + "\n");
 		}
 
+		public void SendBattleMessage(string text)
+		{
+			if (string.IsNullOrWhiteSpace(text))
+			{
+				Send();
+				return;
+			}
+
+			Send("[yellow]" + text + "[reset]");
+		}
+
 		public void BeforeOutputSent(StringBuilder output)
 		{
 			var text = output.ToString();
@@ -173,15 +184,18 @@ namespace AbarimMUD.Commands
 			// Line break before stats
 			output.AppendLine();
 
+
+			output.Append($"<[green]{State.Hitpoints}[reset]hp [green]{State.Mana}[reset]ma [green]{State.Movement}[reset]mv ");
+
 			var target = FightInfo.Target;
 			if (target == null)
 			{
-				output.Append($"<{State.Hitpoints}hp {State.Mana}ma {State.Movement}mv -> ");
+				output.Append("-> ");
 			}
 			else
 			{
 				var targetHpPercentage = target.Creature.State.Hitpoints * 100 / target.Creature.Stats.MaxHitpoints;
-				output.Append($"<{State.Hitpoints}hp {State.Mana}ma {State.Movement}mv {targetHpPercentage}-> ");
+				output.Append($"[yellow]{targetHpPercentage}[reset]-> ");
 			}
 		}
 
