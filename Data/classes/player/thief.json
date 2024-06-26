@@ -5,7 +5,7 @@
   "Flags": "Player",
   "Inherits": null,
   "HitpointsRange": {
-    "Level1Value": 100,
+    "Level1Value": 30,
     "Level100Value": 1200
   },
   "HitpointsRegenRange": {

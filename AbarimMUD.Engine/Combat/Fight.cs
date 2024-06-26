@@ -87,6 +87,8 @@ namespace AbarimMUD.Combat
 				}
 			}
 
+			participant.FightInfo.Fight = null;
+			participant.FightInfo.Target = null;
 			_participants.Remove(participant);
 
 			ValidateFight();

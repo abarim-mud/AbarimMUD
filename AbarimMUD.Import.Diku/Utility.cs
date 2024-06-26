@@ -40,7 +40,11 @@ namespace AbarimMUD.Import.Diku
 		{
 			var classId = "default";
 
-			mobile.Level = Math.Max(1, mobile.Level);
+			var level = mobile.Level * 40 / 34;
+			if (level < 1)
+			{
+				level = 1;
+			}
 
 			var result = new Mobile
 			{
@@ -50,7 +54,7 @@ namespace AbarimMUD.Import.Diku
 				LongDescription = mobile.LongDescription,
 				Description = mobile.Description,
 				Class = GameClass.EnsureClassById(classId),
-				Level = mobile.Level,
+				Level = level,
 				Sex = Enum.Parse<Sex>(mobile.Sex, true),
 				Wealth = mobile.Wealth,
 			};

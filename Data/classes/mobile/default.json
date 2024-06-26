@@ -9,31 +9,33 @@
     "Level100Value": 1000
   },
   "HitpointsRegenRange": {
-    "Level1Value": 10,
-    "Level100Value": 100
+    "Level1Value": 20,
+    "Level100Value": 200
   },
   "ArmorRange": {
-    "Level1Value": 1,
-    "Level100Value": 100
+    "Level1Value": 10,
+    "Level100Value": 500
   },
   "AttackType": "Slash",
   "PenetrationRange": {
-    "Level1Value": 1,
-    "Level100Value": 100
+    "Level1Value": 10,
+    "Level100Value": 200
   },
   "MinimumDamageRange": {
     "Level1Value": 1,
-    "Level100Value": 10
+    "Level100Value": 50
   },
   "MaximumDamageRange": {
     "Level1Value": 10,
-    "Level100Value": 60
+    "Level100Value": 300
   },
   "Attacks": [
     1,
+    5,
     10,
     20,
     30,
+    40,
     75,
     100
   ],

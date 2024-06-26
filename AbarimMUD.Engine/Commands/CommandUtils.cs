@@ -104,7 +104,7 @@ namespace AbarimMUD.Commands
 			var item = context.Creature.Inventory.FindItem(name);
 			if (item == null)
 			{
-				context.Send($"Unable to find item '{name}'");
+				context.Send($"You don't have an item '{name}'");
 			}
 
 			return item;
