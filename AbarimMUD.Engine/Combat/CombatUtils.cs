@@ -130,8 +130,8 @@ namespace AbarimMUD.Combat
 
 			for (var i = 0; i < attacker.Stats.BackstabCount; ++i)
 			{
-				var missed = Utility.RollPercentage(successChancePercentage);
-				if (missed)
+				var success = Utility.RollPercentage(successChancePercentage);
+				if (!success)
 				{
 					attacker.SendBattleMessage($"{target.ShortDescription} quickly avoids your backstab and you nearly cut your own finger!");
 
