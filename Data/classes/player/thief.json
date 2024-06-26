@@ -36,11 +36,11 @@
       "MinimumLevel": 1,
       "Items": [
         "ironDagger",
-        "leatherHelmet",
-        "leatherArmor",
-        "leatherGloves",
-        "leatherPants",
-        "leatherBoots"
+        "ironHelmet",
+        "ironArmor",
+        "ironGloves",
+        "ironGreaves",
+        "ironBoots"
       ]
     }
   ],

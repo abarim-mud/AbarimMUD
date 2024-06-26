@@ -6,6 +6,7 @@
   "Inherits": null,
   "HitpointsRange": {
     "1": 10,
+    "10": 100,
     "40": 1000,
     "100": 2000
   },
@@ -15,14 +16,15 @@
   },
   "ArmorRange": {
     "1": 10,
+    "10": 20,
     "40": 200,
     "100": 400
   },
   "AttackType": "Slash",
   "PenetrationRange": {
     "1": 10,
-    "40": 200,
-    "100": 400
+    "40": 100,
+    "100": 200
   },
   "MinimumDamageRange": {
     "1": 1,
