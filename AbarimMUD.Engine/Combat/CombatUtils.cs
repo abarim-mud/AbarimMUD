@@ -125,11 +125,11 @@ namespace AbarimMUD.Combat
 		{
 			// Success chance % is equal to (100 + penetration - armor) / 2
 			var attack = attacker.Stats.Attacks[0];
-			var successChancePercentage = (100 + attack.Penetration - target.Stats.Armor) / 2;
-			attacker.SendBattleMessage($"Backstab success chance: {successChancePercentage}%");
 
 			for (var i = 0; i < attacker.Stats.BackstabCount; ++i)
 			{
+				var successChancePercentage = (100 - (i * 30) + attack.Penetration - target.Stats.Armor) / 2;
+				attacker.SendBattleMessage($"Backstab success chance: {successChancePercentage}%");
 				var success = Utility.RollPercentage(successChancePercentage);
 				if (!success)
 				{

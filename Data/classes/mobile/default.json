@@ -5,29 +5,32 @@
   "Flags": "Mobile",
   "Inherits": null,
   "HitpointsRange": {
-    "Level1Value": 10,
-    "Level100Value": 1000
+    "1": 10,
+    "40": 1000,
+    "100": 2000
   },
   "HitpointsRegenRange": {
-    "Level1Value": 20,
-    "Level100Value": 200
+    "1": 20,
+    "100": 200
   },
   "ArmorRange": {
-    "Level1Value": 10,
-    "Level100Value": 500
+    "1": 10,
+    "40": 200,
+    "100": 400
   },
   "AttackType": "Slash",
   "PenetrationRange": {
-    "Level1Value": 10,
-    "Level100Value": 200
+    "1": 10,
+    "40": 200,
+    "100": 400
   },
   "MinimumDamageRange": {
-    "Level1Value": 1,
-    "Level100Value": 50
+    "1": 1,
+    "100": 50
   },
   "MaximumDamageRange": {
-    "Level1Value": 10,
-    "Level100Value": 300
+    "1": 10,
+    "100": 300
   },
   "Attacks": [
     1,

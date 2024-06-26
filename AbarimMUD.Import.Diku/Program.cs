@@ -2,10 +2,6 @@
 using AbarimMUD.Storage;
 using DikuLoad.Import.Ascii;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
 
 namespace AbarimMUD.Import.Diku
 {

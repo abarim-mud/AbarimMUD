@@ -3,7 +3,6 @@ using AbarimMUD.Storage;
 using AbarimMUD.StorageAPI;
 using System;
 using System.Collections.Generic;
-using System.Reflection.Emit;
 using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
@@ -12,15 +11,15 @@ namespace AbarimMUD.Data
 	{
 		public int MinimumLevel { get; set; }
 		public AttackType? AttackType { get; set; }
-		public ValueRange? PenetrationRange { get; set; }
-		public ValueRange? MinimumDamageRange { get; set; }
-		public ValueRange? MaximumDamageRange { get; set; }
+		public ValueRange PenetrationRange { get; set; }
+		public ValueRange MinimumDamageRange { get; set; }
+		public ValueRange MaximumDamageRange { get; set; }
 
 		public AttackInfo()
 		{
 		}
 
-		public AttackInfo(int minimumLevel, AttackType attackType, ValueRange? penetration,
+		public AttackInfo(int minimumLevel, AttackType attackType, ValueRange penetration,
 			ValueRange minimumDamageRange, ValueRange maximumDamageRange)
 		{
 			MinimumLevel = minimumLevel;
@@ -71,12 +70,12 @@ namespace AbarimMUD.Data
 		public static readonly MultipleFilesStorage<GameClass> Storage = new GameClasses();
 
 		private AttackType? _attackType;
-		private ValueRange? _hitpointsRange;
-		private ValueRange? _hitpointsRegenRange;
-		private ValueRange? _armorRange;
-		private ValueRange? _penetrationRange;
-		private ValueRange? _minimumDamageRange;
-		private ValueRange? _maximumDamageRange;
+		private ValueRange _hitpointsRange;
+		private ValueRange _hitpointsRegenRange;
+		private ValueRange _armorRange;
+		private ValueRange _penetrationRange;
+		private ValueRange _minimumDamageRange;
+		private ValueRange _maximumDamageRange;
 		private AttackInfo[] _attacks;
 		private EqSet[] _eqSets;
 
@@ -99,7 +98,7 @@ namespace AbarimMUD.Data
 		public GameClass Inherits { get; set; }
 
 		[OLCAlias("hprange")]
-		public ValueRange? HitpointsRange
+		public ValueRange HitpointsRange
 		{
 			get
 			{
@@ -124,7 +123,7 @@ namespace AbarimMUD.Data
 		}
 
 		[OLCAlias("hpregenrange")]
-		public ValueRange? HitpointsRegenRange
+		public ValueRange HitpointsRegenRange
 		{
 			get
 			{
@@ -149,7 +148,7 @@ namespace AbarimMUD.Data
 		}
 
 
-		public ValueRange? ArmorRange
+		public ValueRange ArmorRange
 		{
 			get
 			{
@@ -198,7 +197,7 @@ namespace AbarimMUD.Data
 		}
 
 		[OLCAlias("penrange")]
-		public ValueRange? PenetrationRange
+		public ValueRange PenetrationRange
 		{
 			get
 			{
@@ -223,7 +222,7 @@ namespace AbarimMUD.Data
 		}
 
 		[OLCAlias("mindamrange")]
-		public ValueRange? MinimumDamageRange
+		public ValueRange MinimumDamageRange
 		{
 			get
 			{
@@ -248,7 +247,7 @@ namespace AbarimMUD.Data
 		}
 
 		[OLCAlias("maxdamrange")]
-		public ValueRange? MaximumDamageRange
+		public ValueRange MaximumDamageRange
 		{
 			get
 			{
@@ -393,12 +392,14 @@ namespace AbarimMUD.Data
 			long attackXpFactor = 0;
 			foreach (var attack in stats.Attacks)
 			{
-				long t = Math.Max(1, attack.Penetration / 5);
-				t *= Math.Max(1, attack.MinimumDamage + (attack.MaximumDamage - attack.MinimumDamage) / 2);
+				long t = Math.Max(1, attack.Penetration);
+
+				t *= Math.Max(1, attack.AverageDamage);
 
 				attackXpFactor += t;
 			}
 
+			attackXpFactor = Math.Max(1, attackXpFactor / 1000);
 			xpAward *= attackXpFactor;
 
 			stats.XpAward = xpAward;

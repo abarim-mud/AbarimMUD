@@ -5,26 +5,26 @@
   "Flags": "Player",
   "Inherits": null,
   "HitpointsRange": {
-    "Level1Value": 40,
-    "Level100Value": 1500
+    "1": 40,
+    "100": 1500
   },
   "HitpointsRegenRange": {
-    "Level1Value": 20,
-    "Level100Value": 100
+    "1": 20,
+    "100": 100
   },
   "ArmorRange": null,
   "AttackType": null,
   "PenetrationRange": {
-    "Level1Value": 10,
-    "Level100Value": 100
+    "1": 10,
+    "100": 100
   },
   "MinimumDamageRange": {
-    "Level1Value": 1,
-    "Level100Value": 1
+    "1": 1,
+    "100": 1
   },
   "MaximumDamageRange": {
-    "Level1Value": 4,
-    "Level100Value": 4
+    "1": 4,
+    "100": 4
   },
   "Attacks": [
     1,

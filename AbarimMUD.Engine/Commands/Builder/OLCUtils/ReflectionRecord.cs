@@ -20,7 +20,7 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 				{
 					p = Type.BuildEnumString();
 				}
-				else if (Type == typeof(ValueRange) || Type == typeof(ValueRange?))
+				else if (Type == typeof(ValueRange))
 				{
 					p = "_level1Value_ _level100Value_";
 				}
@@ -121,7 +121,7 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 
 				SetValue(item, val);
 			}
-			else if (Type == typeof(ValueRange) || Type == typeof(ValueRange?))
+			else if (Type == typeof(ValueRange))
 			{
 				int level1Value;
 				if (!context.EnsureInt(values[0], out level1Value))

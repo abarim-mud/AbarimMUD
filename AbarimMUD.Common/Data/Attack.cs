@@ -22,6 +22,8 @@
 			set => DamageRange.Maximum = value;
 		}
 
+		public int AverageDamage => MinimumDamage + (MaximumDamage - MinimumDamage) / 2;
+
 		public Attack(AttackType attackType, int penetration, RandomRange damageRange)
 		{
 			AttackType = attackType;

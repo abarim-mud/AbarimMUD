@@ -1,5 +1,6 @@
 ﻿using AbarimMUD.Data;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -41,7 +42,24 @@ namespace AbarimMUD.Storage
 			}
 		}
 
+		private class ValueRangeConverterType: JsonConverter<ValueRange>
+		{
+			public override ValueRange Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+			{
+				var doc = JsonDocument.ParseValue(ref reader);
+				var values = JsonSerializer.Deserialize<SortedDictionary<int, int>>(doc);
+
+				return new ValueRange(values);
+			}
+
+			public override void Write(Utf8JsonWriter writer, ValueRange value, JsonSerializerOptions options)
+			{
+				JsonSerializer.Serialize(writer, value.Values);
+			}
+		}
+
 		private static readonly AttackInfoConverter AttackConverter = new AttackInfoConverter();
+		private static readonly ValueRangeConverterType ValueRangeConverter = new ValueRangeConverterType();
 
 		public GameClasses() : base(c => c.Id, "classes")
 		{
@@ -54,6 +72,7 @@ namespace AbarimMUD.Storage
 			result.Converters.Add(Common.SkillConverter);
 			result.Converters.Add(Common.ItemConverter);
 			result.Converters.Add(AttackConverter);
+			result.Converters.Add(ValueRangeConverter);
 
 			return result;
 		}
