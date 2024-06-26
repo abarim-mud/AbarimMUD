@@ -115,8 +115,10 @@ namespace AbarimMUD.Commands.Player
 			return "is in awful condition.";
 		}
 
-		private string BuildCreatureDescription(ExecutionContext context, Creature creature)
+		private string BuildCreatureDescription(ExecutionContext context, ExecutionContext lookContext)
 		{
+			var creature = lookContext.Creature;
+
 			var sb = new StringBuilder();
 
 			if (!string.IsNullOrEmpty(creature.Description))
@@ -151,7 +153,9 @@ namespace AbarimMUD.Commands.Player
 				sb.AppendLine();
 
 				var stats = creature.Stats;
-				sb.AppendLine($"Hitpoints: {creature.State.Hitpoints}/{stats.MaxHitpoints} + {stats.HitpointsRegen}");
+
+				var regen = stats.GetHitpointsRegen(lookContext.IsFighting);
+				sb.AppendLine($"Hitpoints: {creature.State.Hitpoints}/{stats.MaxHitpoints} + {regen}");
 				sb.AppendLine("Armor Class: " + creature.Stats.Armor);
 				for (var i = 0; i < stats.Attacks.Count; i++)
 				{
@@ -207,7 +211,7 @@ namespace AbarimMUD.Commands.Player
 				{
 					sb.AppendLine($"You look at {lookContext.ShortDescription}.");
 					sb.AppendLine();
-					sb.AppendLine(BuildCreatureDescription(context, lookContext.Creature));
+					sb.AppendLine(BuildCreatureDescription(context, lookContext));
 
 					if (lookContext != context)
 					{

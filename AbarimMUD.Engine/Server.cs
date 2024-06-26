@@ -101,7 +101,8 @@ namespace AbarimMUD
 					float hpRegen;
 					if (creature.State.Hitpoints < creature.Stats.MaxHitpoints)
 					{
-						hpRegen = creature.Stats.HitpointsRegen * secondsPassed / 60.0f;
+						var ctx = (Commands.ExecutionContext)creature.Tag;
+						hpRegen = creature.Stats.GetHitpointsRegen(ctx.IsFighting) * secondsPassed / 60.0f;
 					}
 					else
 					{
