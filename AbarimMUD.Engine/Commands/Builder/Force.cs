@@ -13,7 +13,7 @@
 
 			var target = args[0];
 			var command = args[1];
-			var targetContext = context.CurrentRoom.Find(target);
+			var targetContext = context.Room.Find(target);
 			if (targetContext == null)
 			{
 				context.Send(string.Format("There isnt '{0}' in this room", target));

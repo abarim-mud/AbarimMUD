@@ -39,6 +39,7 @@ namespace AbarimMUD.Commands
 		public static readonly Backstab Backstab = new Backstab();
 
 		// Builders
+		public static readonly Recall recall = new Recall();
 		public static readonly Peace Peace = new Peace();
 		public static readonly Force Force = new Force();
 		public static readonly Restore Restore = new Restore();

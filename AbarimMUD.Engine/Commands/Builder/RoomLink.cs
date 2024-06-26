@@ -29,7 +29,7 @@ namespace AbarimMUD.Commands.Builder
 				return;
 			}
 
-			var sourceRoom = context.CurrentRoom;
+			var sourceRoom = context.Room;
 			if (sourceRoom.Id == id)
 			{
 				context.Send("You can't link the room to itself");

@@ -13,7 +13,7 @@ namespace AbarimMUD.Commands.Builder
 				return;
 			}
 
-			var lookContext = context.CurrentRoom.Find(data);
+			var lookContext = context.Room.Find(data);
 			if (lookContext == null)
 			{
 				context.Send($"There isnt '{data}' in this room");

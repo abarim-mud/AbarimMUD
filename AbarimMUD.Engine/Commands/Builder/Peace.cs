@@ -12,7 +12,7 @@ namespace AbarimMUD.Commands.Builder
 			var roomMessage = new StringBuilder();
 			foreach (var fight in Fight.AllFights)
 			{
-				if (!fight.Finished && fight.Room == context.CurrentRoom)
+				if (!fight.Finished && fight.Room == context.Room)
 				{
 					var side1Name = string.Join(", ", from s in fight.Participants where s.FightInfo.Side == FightSide.Side1 select s.ShortDescription);
 					var side2Name = string.Join(", ", from s in fight.Participants where s.FightInfo.Side == FightSide.Side2 select s.ShortDescription);

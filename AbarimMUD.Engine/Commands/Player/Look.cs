@@ -201,12 +201,12 @@ namespace AbarimMUD.Commands.Player
 				if (string.IsNullOrEmpty(data))
 				{
 					// Look room
-					sb.AppendLine(BuildRoomDescription(context, context.CurrentRoom));
+					sb.AppendLine(BuildRoomDescription(context, context.Room));
 					break;
 				}
 
 				// Look for creature in room
-				var lookContext = context.CurrentRoom.Find(data);
+				var lookContext = context.Room.Find(data);
 				if (lookContext != null)
 				{
 					sb.AppendLine($"You look at {lookContext.ShortDescription}.");

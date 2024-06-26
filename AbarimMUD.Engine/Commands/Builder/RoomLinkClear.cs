@@ -21,7 +21,7 @@ namespace AbarimMUD.Commands.Builder
 				return;
 			}
 
-			var sourceRoom = context.CurrentRoom;
+			var sourceRoom = context.Room;
 			RoomExit roomExit;
 			if (!sourceRoom.Exits.TryGetValue(exitType, out roomExit))
 			{

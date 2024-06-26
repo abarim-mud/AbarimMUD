@@ -32,7 +32,7 @@ namespace AbarimMUD.Combat
 		{
 			_lastRound = DateTime.Now;
 
-			Room = attacker.CurrentRoom;
+			Room = attacker.Room;
 
 			Add(FightSide.Side1, attacker, target);
 		}

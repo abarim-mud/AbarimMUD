@@ -58,7 +58,7 @@ namespace AbarimMUD.Combat
 			var damage = CombatCalc.CalculateDamage(attack, targetStats.Armor);
 
 			target.Creature.State.Hitpoints -= damage.Damage;
-			var room = attacker.CurrentRoom;
+			var room = attacker.Room;
 			foreach (var character in room.Characters)
 			{
 				string message;
@@ -123,11 +123,14 @@ namespace AbarimMUD.Combat
 
 		public static void Backstab(this ExecutionContext attacker, ItemInstance weapon, ExecutionContext target)
 		{
+			// Success chance % is equal to (100 + penetration - armor) / 2
 			var attack = attacker.Stats.Attacks[0];
-			for(var i = 0; i < attacker.Stats.BackstabCount; ++i)
+			var successChancePercentage = (100 + attack.Penetration - target.Stats.Armor) / 2;
+			attacker.SendBattleMessage($"Backstab success chance: {successChancePercentage}%");
+
+			for (var i = 0; i < attacker.Stats.BackstabCount; ++i)
 			{
-				// Roll 5% miss chance
-				var missed = Utility.RollPercentage(5);
+				var missed = Utility.RollPercentage(successChancePercentage);
 				if (missed)
 				{
 					attacker.SendBattleMessage($"{target.ShortDescription} quickly avoids your backstab and you nearly cut your own finger!");

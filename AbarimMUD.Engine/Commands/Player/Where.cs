@@ -6,7 +6,7 @@ namespace AbarimMUD.Commands.Player
 	{
 		protected override void InternalExecute(ExecutionContext context, string data)
 		{
-			var area = context.CurrentRoom.Area;
+			var area = context.Room.Area;
 
 			var sb = new StringBuilder();
 			sb.Append("[cyan]");

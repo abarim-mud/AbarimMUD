@@ -9,7 +9,7 @@ namespace AbarimMUD.Commands.Builder
 		{
 			// Remove existing room resets
 			var area = context.CurrentArea;
-			var toDelete = (from r in area.MobileResets where r.RoomId == context.CurrentRoom.Id select r).ToList();
+			var toDelete = (from r in area.MobileResets where r.RoomId == context.Room.Id select r).ToList();
 
 			foreach(var d in toDelete)
 			{
@@ -17,14 +17,14 @@ namespace AbarimMUD.Commands.Builder
 			}
 
 			// Add new
-			foreach(var mobile in context.CurrentRoom.Mobiles)
+			foreach(var mobile in context.Room.Mobiles)
 			{
-				area.MobileResets.Add(new AreaMobileReset(mobile.Info.Id, context.CurrentRoom.Id));
+				area.MobileResets.Add(new AreaMobileReset(mobile.Info.Id, context.Room.Id));
 			};
 
 			area.Save();
 
-			context.Send($"{toDelete.Count} mobile resets were removed. {context.CurrentRoom.Mobiles.Count} mobile resets were added.");
+			context.Send($"{toDelete.Count} mobile resets were removed. {context.Room.Mobiles.Count} mobile resets were added.");
 		}
 	}
 }

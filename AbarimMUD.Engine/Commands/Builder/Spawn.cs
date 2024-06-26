@@ -51,7 +51,7 @@ namespace AbarimMUD.Commands.Builder
 						var mobile = (Mobile)obj;
 						var newMobile = new MobileInstance(mobile)
 						{
-							Room = context.CurrentRoom
+							Room = context.Room
 						};
 
 						foreach (var ctx in context.AllInRoom())

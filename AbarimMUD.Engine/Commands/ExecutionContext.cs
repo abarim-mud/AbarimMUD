@@ -45,13 +45,13 @@ namespace AbarimMUD.Commands
 		public CreatureStats Stats => Creature.Stats;
 		public CreatureState State => Creature.State;
 
-		public Room CurrentRoom
+		public Room Room
 		{
 			get => Creature.Room;
 			set => Creature.Room = value;
 		}
 
-		public Area CurrentArea => CurrentRoom.Area;
+		public Area CurrentArea => Room.Area;
 
 
 		public bool IsStaff => Role >= Role.Builder;
@@ -97,7 +97,7 @@ namespace AbarimMUD.Commands
 
 		public IEnumerable<ExecutionContext> AllExceptMeInRoom()
 		{
-			var room = CurrentRoom;
+			var room = Room;
 			foreach (var c in room.Characters)
 			{
 				var context = (ExecutionContext)c.Tag;
@@ -112,7 +112,7 @@ namespace AbarimMUD.Commands
 
 		public IEnumerable<ExecutionContext> AllInRoom()
 		{
-			var room = CurrentRoom;
+			var room = Room;
 			foreach (var c in room.Characters)
 			{
 				var context = (ExecutionContext)c.Tag;

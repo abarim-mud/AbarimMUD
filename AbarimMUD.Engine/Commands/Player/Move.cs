@@ -14,7 +14,7 @@ namespace AbarimMUD.Commands.Player
 
 		protected override void InternalExecute(ExecutionContext context, string data)
 		{
-			var sourceRoom = context.CurrentRoom;
+			var sourceRoom = context.Room;
 
 			RoomExit exit;
 			if (!sourceRoom.Exits.TryGetValue(_dir, out exit) || exit.TargetRoom == null)
@@ -31,8 +31,7 @@ namespace AbarimMUD.Commands.Player
 			}
 
 			// Perform the movement
-			context.CurrentRoom = exit.TargetRoom;
-			context.Send($"You went {_dir.ToString().ToLower()}.");
+			context.Room = exit.TargetRoom;
 			
 			// Notify inhabits of the destination room about the arrival
 			dirName = _dir.GetOppositeDirection().GetName();
@@ -43,7 +42,7 @@ namespace AbarimMUD.Commands.Player
 				t.Send(string.Format("{0} arrives from {1}.", context.ShortDescription, dirName));
 			}
 
-			new Look().Execute(context, string.Empty);
+			Look.Execute(context);
 		}
 	}
 }

@@ -18,7 +18,7 @@ namespace AbarimMUD.Commands.Builder
 			area.Rooms.Add(newRoom);
 			area.Save();
 
-			context.Send($"New room (#{newRoom.Id}) had been created for the area '{context.CurrentRoom.Area.Name}'");
+			context.Send($"New room (#{newRoom.Id}) had been created for the area '{context.Room.Area.Name}'");
 			Goto.Execute(context, newRoom.Id.ToString());
 		}
 	}

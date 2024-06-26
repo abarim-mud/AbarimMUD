@@ -20,7 +20,7 @@ namespace AbarimMUD.Commands.Player
 				return;
 			}
 
-			var target = context.CurrentRoom.Find(data);
+			var target = context.Room.Find(data);
 			if (target == null)
 			{
 				context.Send($"There isnt '{data}' in this room");

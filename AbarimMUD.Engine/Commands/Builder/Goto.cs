@@ -21,10 +21,10 @@ namespace AbarimMUD.Commands.Builder
 				return;
 			}
 
-			context.CurrentRoom = newRoom;
+			context.Room = newRoom;
 			context.Send("You had been transfered!");
 
-			new Look().Execute(context);
+			Look.Execute(context);
 		}
 	}
 }
