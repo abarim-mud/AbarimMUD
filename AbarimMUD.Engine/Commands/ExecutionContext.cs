@@ -10,6 +10,9 @@ namespace AbarimMUD.Commands
 	public class ExecutionContext
 	{
 		private Creature _creature;
+		private Queue<string> _commandQueue = new Queue<string>();
+		private DateTime? _commandLagStart = null;
+		private int _lagInMs = 0;
 
 		public Session Session { get; private set; }
 		public Creature Creature
@@ -208,36 +211,73 @@ namespace AbarimMUD.Commands
 			Session.Logger.Info(message);
 		}
 
-		private void ParseAndExecuteLine(string line)
+		private bool WaitingCommandLag()
 		{
-			line = line.Trim();
-			var parts = line.SplitByWhitespace(2);
-			if (parts.Length == 0)
+			if (_commandLagStart == null)
 			{
-				Send(string.Empty);
+				return false;
+			}
+
+			if ((DateTime.Now - _commandLagStart.Value).TotalMilliseconds < _lagInMs)
+			{
+				return true;
+			}
+
+			_commandLagStart = null;
+			_lagInMs = 0;
+			
+			return false;
+		}
+
+		public void ProcessCommandQueue()
+		{
+			if (WaitingCommandLag())
+			{
 				return;
 			}
 
-			var cmd = parts[0];
-
-			var command = BaseCommand.FindCommand(cmd);
-			if (command == null)
+			while (_commandQueue.Count > 0)
 			{
-				Send("Arglebargle, glop-glyf!?!");
-				return;
+				var line = _commandQueue.Dequeue();
+				line = line.Trim();
+				var parts = line.SplitByWhitespace(2);
+				if (parts.Length == 0)
+				{
+					Send(string.Empty);
+					continue;
+				}
+
+				var cmd = parts[0];
+
+				var command = BaseCommand.FindCommand(cmd);
+				if (command == null)
+				{
+					Send("Arglebargle, glop-glyf!?!");
+					continue;
+				}
+
+				if (command.RequiredType > Role)
+				{
+					Send("Arglebargle, glop-glyf!?!");
+					continue;
+				}
+
+				var type = command.GetType();
+				Log($"Command type is {type}.");
+
+				var args = parts.Length > 1 ? parts[1] : string.Empty;
+				if (command.Execute(this, args))
+				{
+					var lagInMs = command.CalculateLagInMs(this, args);
+					if(lagInMs > 0)
+					{
+						// Command has lag
+						_commandLagStart = DateTime.Now;
+						_lagInMs = lagInMs;
+						break;
+					}
+				}
 			}
-
-			if (command.RequiredType > Role)
-			{
-				Send("Arglebargle, glop-glyf!?!");
-				return;
-			}
-
-			var type = command.GetType();
-			Log($"Command type is {type}.");
-
-			var args = parts.Length > 1 ? parts[1] : string.Empty;
-			command.Execute(this, args);
 		}
 
 		public void ParseAndExecute(string data)
@@ -245,8 +285,19 @@ namespace AbarimMUD.Commands
 			var lines = data.Split("\n");
 			foreach (var line in lines)
 			{
-				ParseAndExecuteLine(line);
+				if (line.Trim() == "|")
+				{
+					// Special command used to clear the command queue
+					_commandQueue.Clear();
+					Send("Cleared the command queue.");
+				}
+				else
+				{
+					_commandQueue.Enqueue(line);
+				}
 			}
+
+			ProcessCommandQueue();
 		}
 
 		public void LeaveFight()

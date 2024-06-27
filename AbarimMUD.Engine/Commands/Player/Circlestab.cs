@@ -77,7 +77,7 @@ namespace AbarimMUD.Commands.Player
 
 		public override int CalculateLagInMs(ExecutionContext context, string data = "")
 		{
-			return Configuration.PauseBetweenFightRoundsInMs;
+			return Configuration.PauseBetweenFightRoundsInMs * 2 / 3;
 		}
 	}
 }

@@ -159,6 +159,9 @@ namespace AbarimMUD
 						creature.State.Moves = currentValue;
 						creature.State.FractionalMovesRegen = fractionalValue;
 					}
+
+					// Command queue
+					ctx.ProcessCommandQueue();
 				}
 
 				_lastRegenDt = now;
