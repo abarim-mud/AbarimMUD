@@ -55,27 +55,27 @@ namespace AbarimMUD.Commands.Builder
 			return true;
 		}
 
-		protected override void InternalExecute(ExecutionContext context, string data)
+		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
 			var parts = data.SplitByWhitespace();
 			if (parts.Length < 1)
 			{
 				context.Send($"Usage: set {OLCManager.KeysString} _propertyName_ _params_ _id_");
-				return;
+				return false;
 			}
 
 			var objectType = parts[0].ToLower();
 			var storage = context.EnsureStorage(objectType);
 			if (storage == null)
 			{
-				return;
+				return false;
 			}
 
 			var editor = ClassEditor.GetEditor(storage.ObjectType);
 			if (parts.Length < 2)
 			{
 				context.Send($"Usage: set {objectType} {editor.PropertiesString} _params_ _id_");
-				return;
+				return false;
 			}
 
 			var propertyName = parts[1].ToLower();
@@ -83,7 +83,7 @@ namespace AbarimMUD.Commands.Builder
 			if (property == null)
 			{
 				context.Send($"Unable to find property {propertyName} in object of type {objectType}");
-				return;
+				return false;
 			}
 
 			var paramsString = property.ParamsString;
@@ -91,14 +91,14 @@ namespace AbarimMUD.Commands.Builder
 			if (parts.Length < 3 + paramsCount)
 			{
 				context.Send($"Usage: set {objectType} {propertyName} {paramsString} _id_");
-				return;
+				return false;
 			}
 
 			var objectId = parts[parts.Length - 1].ToLower();
 			var obj = context.EnsureItemById(storage, objectId);
 			if (obj == null)
 			{
-				return;
+				return false;
 			}
 
 			if (propertyName == "id")
@@ -108,7 +108,7 @@ namespace AbarimMUD.Commands.Builder
 				if (storage.FindById(context, newId) != null)
 				{
 					context.Send($"Id {newId} is used already.");
-					return;
+					return false;
 				}
 
 			}
@@ -116,12 +116,14 @@ namespace AbarimMUD.Commands.Builder
 			var args = new ArraySegment<string>(parts, 2, parts.Length - 3);
 			if (!property.SetStringValue(context, obj, args))
 			{
-				return;
+				return false;
 			}
 
 			// Save
 			context.SaveObject(obj);
 			context.Send($"Changed {obj.GetStringId()}'s {property.Name} to '{string.Join(' ', args)}'");
+
+			return true;
 		}
 	}
 }

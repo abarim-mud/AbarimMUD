@@ -5,7 +5,7 @@ namespace AbarimMUD.Commands.Builder
 {
 	public sealed class RoomSaveResets : BuilderCommand
 	{
-		protected override void InternalExecute(ExecutionContext context, string data)
+		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
 			// Remove existing room resets
 			var area = context.CurrentArea;
@@ -25,6 +25,8 @@ namespace AbarimMUD.Commands.Builder
 			area.Save();
 
 			context.Send($"{toDelete.Count} mobile resets were removed. {context.Room.Mobiles.Count} mobile resets were added.");
+
+			return true;
 		}
 	}
 }

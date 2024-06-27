@@ -2,7 +2,7 @@
 {
 	public class Equipment : PlayerCommand
 	{
-		protected override void InternalExecute(ExecutionContext context, string data)
+		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
 			var grid = context.Creature.BuildEquipmentDesc();
 			if (grid == null)
@@ -14,6 +14,8 @@
 				context.Send("You are using:");
 				context.Send(grid.ToString());
 			}
+
+			return true;
 		}
 	}
 }

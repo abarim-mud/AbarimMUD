@@ -5,13 +5,13 @@ namespace AbarimMUD.Commands.Player
 {
 	public class Circlestab : PlayerCommand
 	{
-		protected override void InternalExecute(ExecutionContext context, string data)
+		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
 			// Check the player has the skill
 			if (context.Creature.GetSkill("circlestab") == null)
 			{
 				context.Send($"You don't know how to circlestab.");
-				return;
+				return false;
 			}
 
 			// Check the player weapon can stab
@@ -19,20 +19,20 @@ namespace AbarimMUD.Commands.Player
 			if (weapon == null)
 			{
 				context.Send($"You can't circlestab with the bare hands.");
-				return;
+				return false;
 			}
 
 			if (!weapon.Info.Flags.Contains(ItemFlags.Stab))
 			{
 				context.Send($"You can't circlestab with this weapon.");
-				return;
+				return false;
 			}
 
 			data = data.Trim();
 			if (!context.IsFighting && string.IsNullOrEmpty(data))
 			{
 				context.Send($"Circlestab who?");
-				return;
+				return false;
 			}
 
 			ExecutionContext target = null;
@@ -42,26 +42,26 @@ namespace AbarimMUD.Commands.Player
 				if (target == null)
 				{
 					context.Send($"There isnt '{data}' in this room");
-					return;
+					return false;
 				}
 
 				if (target == context)
 				{
 					context.Send("You can't circlestab yourself.");
-					return;
+					return false;
 				}
 
 				if (target.Creature is Character)
 				{
 					context.Send($"You can't attack {target.ShortDescription}");
-					return;
+					return false;
 				}
 			}
 
 			if (context.State.Moves < CombatCalc.CirclestabMovesCost())
 			{
 				context.Send($"You're too tired to circlestab.");
-				return;
+				return false;
 			}
 
 			if (target == null)
@@ -71,6 +71,13 @@ namespace AbarimMUD.Commands.Player
 
 			context.Circlestab(weapon, target);
 			Fight.Start(context, target);
+
+			return true;
+		}
+
+		public override int CalculateLagInMs(ExecutionContext context, string data = "")
+		{
+			return Configuration.PauseBetweenFightRoundsInMs;
 		}
 	}
 }

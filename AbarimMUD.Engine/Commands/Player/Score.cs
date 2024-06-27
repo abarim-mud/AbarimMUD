@@ -4,7 +4,7 @@ namespace AbarimMUD.Commands.Player
 {
 	public class Score : PlayerCommand
 	{
-		protected override void InternalExecute(ExecutionContext context, string data)
+		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
 			context.Send($"You are {context.ShortDescription}, {context.Creature.Class.Name} of level {context.Creature.Level}.");
 			var asCharacter = context.Creature as Character;
@@ -51,6 +51,8 @@ namespace AbarimMUD.Commands.Player
 					context.Send($"You can do {stats.BackstabCount} backstabs with multiplier equal to {stats.BackstabMultiplier}.");
 				}
 			}
+
+			return true;
 		}
 	}
 }

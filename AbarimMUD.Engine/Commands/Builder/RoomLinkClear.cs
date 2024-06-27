@@ -5,20 +5,20 @@ namespace AbarimMUD.Commands.Builder
 {
 	public sealed class RoomLinkClear : BuilderCommand
 	{
-		protected override void InternalExecute(ExecutionContext context, string data)
+		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
 			var exit = data.Trim().ToLower();
 			if (string.IsNullOrEmpty(exit))
 			{
 				context.Send("Usage: roomlinkclear east|west|south|north|up|down");
-				return;
+				return false;
 			}
 
 			Direction exitType;
 			if (!Enum.TryParse(exit, out exitType))
 			{
 				context.Send(string.Format("Unable to resolve exit {0}", exit));
-				return;
+				return false;
 			}
 
 			var sourceRoom = context.Room;
@@ -26,7 +26,7 @@ namespace AbarimMUD.Commands.Builder
 			if (!sourceRoom.Exits.TryGetValue(exitType, out roomExit))
 			{
 				context.Send(string.Format("The room isnt connected to anything at the direction {0}", exitType.ToString()));
-				return;
+				return false;
 			}
 
 			sourceRoom.DisconnectRoom(exitType);
@@ -39,6 +39,8 @@ namespace AbarimMUD.Commands.Builder
 			{
 				context.Send(string.Format("Cleared the link from the room {0} exit to {1}", exitType));
 			}
+
+			return true;
 		}
 	}
 }

@@ -4,7 +4,7 @@ namespace AbarimMUD.Commands.Player
 {
 	public sealed class Gossip : PlayerCommand
 	{
-		protected override void InternalExecute(ExecutionContext context, string data)
+		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
 			var sd = new StringBuilder();
 
@@ -24,6 +24,8 @@ namespace AbarimMUD.Commands.Player
 			{
 				s.Send(sd.ToString());
 			}
+
+			return true;
 		}
 	}
 }

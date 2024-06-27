@@ -4,19 +4,19 @@ namespace AbarimMUD.Commands.Player
 {
 	public class Wear : PlayerCommand
 	{
-		protected override void InternalExecute(ExecutionContext context, string data)
+		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
 			data = data.Trim();
 			if (string.IsNullOrEmpty(data))
 			{
 				context.Send("Usage: wear <itemName>");
-				return;
+				return false;
 			}
 
 			var item = context.EnsureItemInInventory(data);
 			if (item == null)
 			{
-				return;
+				return false;
 			}
 
 			var result = context.Creature.Wear(item.Item);
@@ -29,14 +29,18 @@ namespace AbarimMUD.Commands.Player
 			else if (result == false)
 			{
 				context.Send($"You can't wear {item.ShortDescription}, since that slot is occupied");
+				return false;
 			}
 			else
 			{
 				context.Send($"{item.ShortDescription} can't be worn");
+				return false;
 			}
 
 			var asCharacter = context.Creature as Character;
 			asCharacter?.Save();
+
+			return true;
 		}
 	}
 }

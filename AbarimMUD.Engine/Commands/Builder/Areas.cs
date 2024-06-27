@@ -35,7 +35,7 @@ namespace AbarimMUD.Commands.Builder
 			return result;
 		}
 
-		protected override void InternalExecute(ExecutionContext context, string data)
+		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
 			var areas = (from a in Area.Storage orderby AreaNumericValue(a) select a).ToList();
 			foreach (var area in areas)
@@ -45,6 +45,8 @@ namespace AbarimMUD.Commands.Builder
 
 			context.Send();
 			context.Send($"Total areas count: {areas.Count}");
+
+			return true;
 		}
 	}
 }

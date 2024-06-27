@@ -5,33 +5,33 @@ namespace AbarimMUD.Commands.Builder
 {
 	public class Spawn : BuilderCommand
 	{
-		protected override void InternalExecute(ExecutionContext context, string data)
+		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
 			var parts = data.SplitByWhitespace();
 			if (parts.Length < 2)
 			{
 				context.Send($"Usage: spawn {OLCManager.SpawnString} _id_");
-				return;
+				return false;
 			}
 
 			var objectType = parts[0].ToLower();
 			var storage = context.EnsureStorage(objectType);
 			if (storage == null)
 			{
-				return;
+				return false;
 			}
 
 			if (!storage.CanSpawn)
 			{
 				context.Send($"Object of type {objectType} can't be spawned.");
-				return;
+				return false;
 			}
 
 			var objectId = parts[1].ToLower();
 			var obj = context.EnsureItemById(storage, objectId);
 			if (obj == null)
 			{
-				return;
+				return false;
 			}
 
 			switch (objectType)
@@ -73,8 +73,10 @@ namespace AbarimMUD.Commands.Builder
 
 				default:
 					context.Send($"Spawn of {objectType} isn't implemented.");
-					break;
+					return false;
 			}
+
+			return true;
 		}
 	}
 }

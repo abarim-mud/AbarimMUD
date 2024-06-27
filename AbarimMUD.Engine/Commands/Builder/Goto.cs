@@ -5,26 +5,28 @@ namespace AbarimMUD.Commands.Builder
 {
 	public sealed class Goto : BuilderCommand
 	{
-		protected override void InternalExecute(ExecutionContext context, string data)
+		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
 			int id;
 			if (!int.TryParse(data, out id))
 			{
 				context.Send("Usage: goto _roomId_");
-				return;
+				return false;
 			}
 
 			var newRoom = Room.GetRoomById(id);
 			if (newRoom == null)
 			{
 				context.Send(string.Format("Unable to find room with id {0}", id));
-				return;
+				return false;
 			}
 
 			context.Room = newRoom;
 			context.Send("You had been transfered!");
 
 			Look.Execute(context);
+
+			return true;
 		}
 	}
 }

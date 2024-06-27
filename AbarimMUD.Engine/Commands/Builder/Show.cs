@@ -5,20 +5,20 @@ namespace AbarimMUD.Commands.Builder
 {
 	public class Show : BuilderCommand
 	{
-		protected override void InternalExecute(ExecutionContext context, string data)
+		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
 			var parts = data.SplitByWhitespace();
 			if (parts.Length < 1)
 			{
 				context.Send($"Usage: show {OLCManager.KeysString} [_searchPattern_]");
-				return;
+				return false;
 			}
 
 			var key = parts[0].ToLower();
 			var storage = context.EnsureStorage(key);
 			if (storage == null)
 			{
-				return;
+				return false;
 			}
 
 			var search = string.Empty;
@@ -47,6 +47,8 @@ namespace AbarimMUD.Commands.Builder
 				context.Send(asciiGrid.ToString());
 				context.Send($"Total Count: {count}");
 			}
+
+			return true;
 		}
 	}
 }

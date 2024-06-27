@@ -15,13 +15,13 @@ namespace AbarimMUD.Commands.Owner
 			_namesToTypes["owner"] = Role.Owner;
 		}
 
-		protected override void InternalExecute(ExecutionContext context, string data)
+		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
 			var parts = data.SplitByWhitespace();
 			if (parts.Length < 2)
 			{
 				context.Send("Usage: settype <character> player|area|world|lowadmin|highadmin|owner");
-				return;
+				return false;
 			}
 
 			var characterName = parts[0];
@@ -31,7 +31,7 @@ namespace AbarimMUD.Commands.Owner
 			if (character == null)
 			{
 				context.Send(string.Format("Could not find character '{0}'", characterName));
-				return;
+				return false;
 			}
 
 			var typeName = parts[1];
@@ -41,13 +41,13 @@ namespace AbarimMUD.Commands.Owner
 			if (!_namesToTypes.TryGetValue(typeName.ToLower(), out type))
 			{
 				context.Send(string.Format("Could not resolve type '{0}'", typeName));
-				return;
+				return false;
 			}
 
 			if (character.Role == type)
 			{
 				context.Send(string.Format("{0}'s type is {1} already.", character.Name, type.ToString()));
-				return;
+				return false;
 			}
 
 			var oldType = character.Role;
@@ -70,6 +70,8 @@ namespace AbarimMUD.Commands.Owner
 						type.ToString()));
 				}
 			}
+
+			return true;
 		}
 	}
 }

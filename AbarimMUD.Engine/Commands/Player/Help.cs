@@ -2,7 +2,7 @@
 {
 	public sealed class Help : PlayerCommand
 	{
-		protected override void InternalExecute(ExecutionContext context, string data)
+		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
 			var count = 0;
 			foreach (var ac in AllCommands)
@@ -15,6 +15,8 @@
 			}
 
 			context.Send($"Total commands: {count}");
+
+			return true;
 		}
 	}
 }

@@ -5,20 +5,20 @@ namespace AbarimMUD.Commands.Builder
 {
 	public class CreateCopy : BuilderCommand
 	{
-		protected override void InternalExecute(ExecutionContext context, string data)
+		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
 			var parts = data.SplitByWhitespace(4);
 			if (parts.Length < 1)
 			{
 				context.Send($"Usage: createcopy {OLCManager.KeysString} _templateId_ [_id_]");
-				return;
+				return false;
 			}
 
 			var objectType = parts[0].ToLower();
 			var storage = context.EnsureStorage(objectType);
 			if (storage == null)
 			{
-				return;
+				return false;
 			}
 
 			if (parts.Length < 2)
@@ -32,14 +32,14 @@ namespace AbarimMUD.Commands.Builder
 					context.Send($"Usage: createcopy {objectType} _templateId_ _id_");
 				}
 
-				return;
+				return false;
 			}
 
 			var objId = parts[1].ToLower();
 			var obj = context.EnsureItemById(storage, objId);
 			if (obj == null)
 			{
-				return;
+				return false;
 			}
 
 			var newId = string.Empty;
@@ -48,7 +48,7 @@ namespace AbarimMUD.Commands.Builder
 				if (parts.Length < 3)
 				{
 					context.Send($"Usage: createcopy {objectType} _templateId_ _id_");
-					return;
+					return false;
 				}
 
 				newId = parts[2];
@@ -57,14 +57,14 @@ namespace AbarimMUD.Commands.Builder
 			if (!string.IsNullOrEmpty(newId) && storage.FindById(context, newId) != null)
 			{
 				context.Send($"Id {newId} is used already.");
-				return;
+				return false;
 			}
 
 			var asCloneable = obj as ICloneable;
 			if (asCloneable == null)
 			{
 				context.Send($"Object of type {objectType} can't be copied.");
-				return;
+				return false;
 			}
 
 			var newObject = asCloneable.Clone();
@@ -75,12 +75,12 @@ namespace AbarimMUD.Commands.Builder
 				if (property == null)
 				{
 					context.Send($"Object of type {objectType} lacks 'Id' property.");
-					return;
+					return false;
 				}
 
 				if (!property.SetStringValue(context, newObject, new[] { newId }))
 				{
-					return;
+					return false;
 				}
 			}
 
@@ -91,6 +91,8 @@ namespace AbarimMUD.Commands.Builder
 			{
 				Spawn.Execute(context, $"item {newId}");
 			}
+
+			return true;
 		}
 	}
 }

@@ -66,6 +66,7 @@ namespace AbarimMUD.Commands
 		public static readonly SetType SetType = new SetType();
 
 		public abstract Role RequiredType { get; }
+
 		public static int ExecutionDepth { get; set; }
 
 		public static IReadOnlyDictionary<string, BaseCommand> AllCommands = _allCommands;
@@ -102,20 +103,24 @@ namespace AbarimMUD.Commands
 			return null;
 		}
 
-		public void Execute(ExecutionContext context, string data = "")
+		public virtual int CalculateLagInMs(ExecutionContext context, string data = "")
+		{
+			return 0;
+		}
+
+		public bool Execute(ExecutionContext context, string data = "")
 		{
 			try
 			{
 				++ExecutionDepth;
-				InternalExecute(context, data);
+				return InternalExecute(context, data);
 			}
 			finally
 			{
 				--ExecutionDepth;
 			}
-
 		}
 
-		protected abstract void InternalExecute(ExecutionContext context, string data);
+		protected abstract bool InternalExecute(ExecutionContext context, string data);
 	}
 }

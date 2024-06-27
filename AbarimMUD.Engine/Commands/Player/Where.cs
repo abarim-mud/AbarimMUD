@@ -4,7 +4,7 @@ namespace AbarimMUD.Commands.Player
 {
 	public sealed class Where : PlayerCommand
 	{
-		protected override void InternalExecute(ExecutionContext context, string data)
+		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
 			var area = context.Room.Area;
 
@@ -21,6 +21,8 @@ namespace AbarimMUD.Commands.Player
 			sb.Append("[reset]");
 
 			context.Send(sb.ToString());
+
+			return true;
 		}
 	}
 }

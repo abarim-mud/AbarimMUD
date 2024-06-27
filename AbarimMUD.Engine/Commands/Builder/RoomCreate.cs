@@ -4,7 +4,7 @@ namespace AbarimMUD.Commands.Builder
 {
 	public class RoomCreate : BuilderCommand
 	{
-		protected override void InternalExecute(ExecutionContext context, string data)
+		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
 			// Create new room
 			var newRoom = new Room
@@ -20,6 +20,8 @@ namespace AbarimMUD.Commands.Builder
 
 			context.Send($"New room (#{newRoom.Id}) had been created for the area '{context.Room.Area.Name}'");
 			Goto.Execute(context, newRoom.Id.ToString());
+
+			return true;
 		}
 	}
 }

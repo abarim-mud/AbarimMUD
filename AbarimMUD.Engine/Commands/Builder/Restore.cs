@@ -2,13 +2,13 @@
 {
 	public class Restore : BuilderCommand
 	{
-		protected override void InternalExecute(ExecutionContext context, string data)
+		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
 			var args = data.SplitByWhitespace();
 			if (args.Length < 1)
 			{
 				context.Send("Usage: restore _target_");
-				return;
+				return false;
 			}
 
 			var target = args[0];
@@ -16,7 +16,7 @@
 			if (targetContext == null)
 			{
 				context.Send(string.Format("There isnt '{0}' in this room", target));
-				return;
+				return false;
 			}
 
 			targetContext.Creature.Restore();
@@ -27,6 +27,8 @@
 			{
 				targetContext.Send($"{context.ShortDescription} fully restored you.");
 			}
+
+			return true;
 		}
 	}
 }

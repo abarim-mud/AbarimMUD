@@ -4,19 +4,19 @@ namespace AbarimMUD.Commands.Player
 {
 	public class Junk: PlayerCommand
 	{
-		protected override void InternalExecute(ExecutionContext context, string data)
+		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
 			data = data.Trim();
 			if (string.IsNullOrEmpty(data))
 			{
 				context.Send("Usage: junk <itemName>");
-				return;
+				return false;
 			}
 
 			var item = context.EnsureItemInInventory(data);
 			if (item == null)
 			{
-				return;
+				return false;
 			}
 
 			// Remove from inv
@@ -25,6 +25,8 @@ namespace AbarimMUD.Commands.Player
 
 			var asCharacter = context.Creature as Character;
 			asCharacter?.Save();
+
+			return true;
 		}
 	}
 }

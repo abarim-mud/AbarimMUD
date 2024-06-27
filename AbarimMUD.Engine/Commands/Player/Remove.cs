@@ -4,19 +4,19 @@ namespace AbarimMUD.Commands.Player
 {
 	public class Remove : PlayerCommand
 	{
-		protected override void InternalExecute(ExecutionContext context, string data)
+		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
 			data = data.Trim();
 			if (string.IsNullOrEmpty(data))
 			{
 				context.Send("Usage: wear <itemName>");
-				return;
+				return false;
 			}
 
 			var item = context.EnsureItemWorn(data);
 			if (item == null)
 			{
-				return;
+				return false;
 			}
 
 			var removedItem = context.Creature.Remove(item.Slot);
@@ -29,6 +29,8 @@ namespace AbarimMUD.Commands.Player
 
 			var asCharacter = context.Creature as Character;
 			asCharacter?.Save();
+
+			return true;
 		}
 	}
 }

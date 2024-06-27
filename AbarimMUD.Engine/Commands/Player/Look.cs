@@ -189,7 +189,7 @@ namespace AbarimMUD.Commands.Player
 			return sb.ToString();
 		}
 
-		protected override void InternalExecute(ExecutionContext context, string data)
+		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
 			data = data.Trim();
 
@@ -243,6 +243,8 @@ namespace AbarimMUD.Commands.Player
 			} while (false);
 
 			context.Send(sb.ToString());
+
+			return true;
 		}
 	}
 }

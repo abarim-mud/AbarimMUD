@@ -4,7 +4,7 @@ namespace AbarimMUD.Commands.Player
 {
 	public sealed class Say : PlayerCommand
 	{
-		protected override void InternalExecute(ExecutionContext context, string data)
+		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
 			var sb = new StringBuilder();
 
@@ -23,6 +23,8 @@ namespace AbarimMUD.Commands.Player
 			{
 				s.Send(sb.ToString());
 			}
+
+			return true;
 		}
 	}
 }

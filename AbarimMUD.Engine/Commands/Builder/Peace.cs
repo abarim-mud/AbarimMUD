@@ -6,7 +6,7 @@ namespace AbarimMUD.Commands.Builder
 {
 	public class Peace : BuilderCommand
 	{
-		protected override void InternalExecute(ExecutionContext context, string data)
+		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
 			var playerMessage = new StringBuilder();
 			var roomMessage = new StringBuilder();
@@ -27,6 +27,8 @@ namespace AbarimMUD.Commands.Builder
 			{
 				ctx.Send(roomMessage.ToString());
 			}
+
+			return true;
 		}
 	}
 }

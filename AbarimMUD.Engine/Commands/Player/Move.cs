@@ -12,7 +12,7 @@ namespace AbarimMUD.Commands.Player
 			_dir = dir;
 		}
 
-		protected override void InternalExecute(ExecutionContext context, string data)
+		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
 			var sourceRoom = context.Room;
 
@@ -20,13 +20,13 @@ namespace AbarimMUD.Commands.Player
 			if (!sourceRoom.Exits.TryGetValue(_dir, out exit) || exit.TargetRoom == null)
 			{
 				context.Send("Alas, you cannot go that way...");
-				return;
+				return false;
 			}
 
 			if (context.State.Moves <= 0)
 			{
 				context.Send("You're too tired to move.");
-				return;
+				return false;
 			}
 
 			// Notify inhabits of the source room about the leave
@@ -50,6 +50,8 @@ namespace AbarimMUD.Commands.Player
 			}
 
 			Look.Execute(context);
+
+			return true;
 		}
 	}
 }

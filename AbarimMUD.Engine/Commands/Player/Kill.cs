@@ -5,42 +5,44 @@ namespace AbarimMUD.Commands.Player
 {
 	public class Kill : PlayerCommand
 	{
-		protected override void InternalExecute(ExecutionContext context, string data)
+		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
 			if (context.IsFighting)
 			{
 				context.Send($"You're too busy fighting with someone else");
-				return;
+				return false;
 			}
 
 			data = data.Trim();
 			if (string.IsNullOrEmpty(data))
 			{
 				context.Send($"Kill who?");
-				return;
+				return false;
 			}
 
 			var target = context.Room.Find(data);
 			if (target == null)
 			{
 				context.Send($"There isnt '{data}' in this room");
-				return;
+				return false;
 			}
 
 			if (target == context)
 			{
 				context.Send("You can't attack yourself.");
-				return;
+				return false;
 			}
 
 			if (target.Creature is Character)
 			{
 				context.Send($"You can't attack {target.ShortDescription}");
-				return;
+				return false;
 			}
 
 			context.SingleAttack(0, target);
 			Fight.Start(context, target);
+
+			return true;
 		}
 	}
 }
