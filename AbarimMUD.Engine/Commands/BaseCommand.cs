@@ -39,6 +39,7 @@ namespace AbarimMUD.Commands
 		public static readonly Autoskill Autoskill = new Autoskill();
 
 		public static readonly Kill Kill = new Kill();
+		public static readonly Kick Kick = new Kick();
 		public static readonly Backstab Backstab = new Backstab();
 		public static readonly Circlestab Circlestab = new Circlestab();
 

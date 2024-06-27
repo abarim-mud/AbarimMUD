@@ -62,6 +62,7 @@ namespace AbarimMUD.Commands
 		public bool IsFighting => FightInfo.Fight != null;
 
 		public bool IsAlive => Creature.IsAlive;
+		public int Level => Creature.Level;
 
 		public bool HasCommands => _commandQueue.Count > 0;
 

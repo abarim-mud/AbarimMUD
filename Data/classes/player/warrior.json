@@ -60,5 +60,9 @@
       ]
     }
   ],
-  "SkillsByLevels": {}
+  "SkillsByLevels": {
+    "1": [
+      "kick"
+    ]
+  }
 }

@@ -1,5 +1,6 @@
 ﻿using AbarimMUD.Commands;
 using AbarimMUD.Data;
+using System;
 
 namespace AbarimMUD.Combat
 {
@@ -217,7 +218,7 @@ namespace AbarimMUD.Combat
 			var damage = new DamageResult();
 
 			var circleMultiplier = attacker.Stats.BackstabMultiplier / 3;
-			for (var j = 0; j < attacker.Stats.BackstabMultiplier / 3; ++j)
+			for (var j = 0; j < circleMultiplier; ++j)
 			{
 				var damage2 = CombatCalc.CalculateDamage(attack, target.Stats.Armor);
 
@@ -251,9 +252,70 @@ namespace AbarimMUD.Combat
 			}
 			else
 			{
-				attacker.SendBattleMessage($"You quickly move from the {target.ShortDescription}'s eyesight and stab it with {weapon.ShortDescription} ({damage})!");
+				attacker.SendBattleMessage($"You quickly move from {target.ShortDescription}'s eyesight and stab it with {weapon.ShortDescription} ({damage})!");
 
-				var roomMessage = $"{attacker.ShortDescription} quickly moves from the {target.ShortDescription}'s eyesight and stabs it with {weapon.ShortDescription} ({damage})!";
+				var roomMessage = $"{attacker.ShortDescription} quickly moves from {target.ShortDescription}'s eyesight and stabs it with {weapon.ShortDescription} ({damage})!";
+				foreach (var ch in attacker.AllExceptMeInRoom())
+				{
+					ch.Send(roomMessage);
+				}
+			}
+		}
+
+		public static void Kick(this ExecutionContext attacker, ExecutionContext target)
+		{
+			// Success chance % is equal to (100 + penetration - armor) / 2
+			var attack = attacker.Stats.Attacks[0];
+			var successChancePercentage = (100 + attack.Penetration - target.Stats.Armor) / 2;
+			attacker.SendInfoMessage($"Kick success chance: {successChancePercentage}%");
+			var success = Utility.RollPercentage(successChancePercentage);
+			if (!success)
+			{
+				attacker.SendBattleMessage($"You miss {target.ShortDescription} with your kick!");
+
+				var roomMessage = $"{attacker.ShortDescription} misses {target.ShortDescription} with your kick!";
+				foreach (var ch in attacker.AllExceptMeInRoom())
+				{
+					ch.SendBattleMessage(roomMessage);
+				}
+
+				return;
+			}
+
+
+			var kickDamage = Math.Max(1, Math.Min(attacker.Level, 40) / 2);
+			var damage = CombatCalc.CalculateDamage(attack.Penetration, new RandomRange(kickDamage, kickDamage + 4), target.Stats.Armor);
+
+			target.Creature.State.Hitpoints -= damage.Damage;
+			if (target.Creature.State.Hitpoints < 0)
+			{
+				attacker.SendBattleMessage($"Your masterful kick put the end of the life of {target.ShortDescription}!");
+
+				var roomMessage = $"{attacker.ShortDescription}'s masterful kick puts the end of the life of {target.ShortDescription}!";
+				foreach (var ch in attacker.AllExceptMeInRoom())
+				{
+					ch.SendBattleMessage(roomMessage);
+				}
+
+				attacker.Slain(target);
+				return;
+			}
+
+			if (damage.Damage <= 0)
+			{
+				attacker.SendBattleMessage($"Your kick can't break through the armor of {target.ShortDescription}!");
+
+				var roomMessage = $"{attacker.ShortDescription}'s kick can't break through the armor of {target.ShortDescription}!";
+				foreach (var ch in attacker.AllExceptMeInRoom())
+				{
+					ch.SendBattleMessage(roomMessage);
+				}
+			}
+			else
+			{
+				attacker.SendBattleMessage($"You kick {target.ShortDescription} ({damage})!");
+
+				var roomMessage = $"{attacker.ShortDescription} kicks {target.ShortDescription} ({damage})!";
 				foreach (var ch in attacker.AllExceptMeInRoom())
 				{
 					ch.Send(roomMessage);

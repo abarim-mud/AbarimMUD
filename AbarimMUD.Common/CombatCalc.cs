@@ -32,11 +32,11 @@ namespace AbarimMUD
 
 	public static class CombatCalc
 	{
-		public static DamageResult CalculateDamage(Attack attack, int armorClass)
+		public static DamageResult CalculateDamage(int penetration, RandomRange damageRange, int armorClass)
 		{
 			var result = new DamageResult
 			{
-				InitialDamage = attack.DamageRange.Generate()
+				InitialDamage = damageRange.Generate()
 			};
 
 			if (result.InitialDamage <= 0)
@@ -44,11 +44,14 @@ namespace AbarimMUD
 				return result;
 			}
 
-			var armorFactor = Utility.Clamp((100 + armorClass - attack.Penetration) / 200.0f);
+			var armorFactor = Utility.Clamp((100 + armorClass - penetration) / 200.0f);
 			result.ArmorAbsorbedDamage = (int)(armorFactor * result.InitialDamage);
 
 			return result;
 		}
+
+		public static DamageResult CalculateDamage(Attack attack, int armorClass) =>
+			CalculateDamage(attack.Penetration, attack.DamageRange, armorClass);
 
 		public static int BackstabMult(int level)
 		{
