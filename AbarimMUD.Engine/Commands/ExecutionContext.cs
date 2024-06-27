@@ -157,6 +157,27 @@ namespace AbarimMUD.Commands
 			Send("[yellow]" + text + "[reset]");
 		}
 
+		private static string BuildStat(int value, int maxValue, bool percValue = false)
+		{
+			string color = "green";
+			var perc = value * 100 / maxValue;
+
+			if (perc < 25)
+			{
+				color = "red";
+			} else if (perc < 80)
+			{
+				color = "yellow";
+			}
+
+			if (percValue)
+			{
+				value = perc;
+			}
+
+			return $"[{color}]{value}[reset]";
+		}
+
 		public void BeforeOutputSent(StringBuilder output)
 		{
 			var text = output.ToString();
@@ -201,7 +222,7 @@ namespace AbarimMUD.Commands
 			output.AppendLine();
 
 
-			output.Append($"<[green]{State.Hitpoints}[reset]hp [green]{State.Mana}[reset]ma [green]{State.Moves}[reset]mv ");
+			output.Append($"<{BuildStat(State.Hitpoints, Stats.MaxHitpoints)}hp {BuildStat(State.Mana, Stats.MaxMana)}ma {BuildStat(State.Moves, Stats.MaxMoves)}mv ");
 
 			var target = FightInfo.Target;
 			if (target == null)
@@ -210,8 +231,7 @@ namespace AbarimMUD.Commands
 			}
 			else
 			{
-				var targetHpPercentage = target.Creature.State.Hitpoints * 100 / target.Creature.Stats.MaxHitpoints;
-				output.Append($"[yellow]{targetHpPercentage}[reset]-> ");
+				output.Append($"{BuildStat(target.Creature.State.Hitpoints, target.Creature.Stats.MaxHitpoints, true)}-> ");
 			}
 		}
 
