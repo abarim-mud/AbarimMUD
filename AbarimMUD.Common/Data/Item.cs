@@ -20,7 +20,8 @@ namespace AbarimMUD.Data
 
 	public enum ItemFlags
 	{
-		Stab
+		Stab,
+		Artefact
 	}
 
 	public class Item : IStoredInFile, ICloneable
