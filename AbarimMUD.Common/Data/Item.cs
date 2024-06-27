@@ -29,7 +29,6 @@ namespace AbarimMUD.Data
 
 		private int _value1, _value2, _value3, _value4;
 
-		[OLCIgnore]
 		public string Id { get; set; }
 		public HashSet<string> Keywords { get; set; } = new HashSet<string>();
 
@@ -188,7 +187,7 @@ namespace AbarimMUD.Data
 
 		private void InvalidateCreaturesWithThisItem()
 		{
-			foreach (var creature in Creature.AllCreatures)
+			foreach (var creature in Creature.ActiveCreatures)
 			{
 				foreach (var item in creature.Equipment.Items)
 				{

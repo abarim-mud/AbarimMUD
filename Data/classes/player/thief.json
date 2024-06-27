@@ -44,7 +44,7 @@
   },
   "Attacks": [
     1,
-    2,
+    1,
     30
   ],
   "EqSets": [
@@ -63,10 +63,12 @@
   "SkillsByLevels": {
     "1": [
       "backstab",
-      "backstabMastery",
+      "backstabMastery"
+    ],
+    "8": [
       "circlestab"
     ],
-    "20": [
+    "25": [
       "secondStab"
     ]
   }

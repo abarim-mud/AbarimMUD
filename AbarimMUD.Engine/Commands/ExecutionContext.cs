@@ -63,6 +63,8 @@ namespace AbarimMUD.Commands
 
 		public bool IsAlive => Creature.IsAlive;
 
+		public bool HasCommands => _commandQueue.Count > 0;
+
 		public ExecutionContext(Session session)
 		{
 			Session = session ?? throw new ArgumentNullException(nameof(session));
@@ -130,6 +132,17 @@ namespace AbarimMUD.Commands
 			}
 
 			Session.Send(text + "\n");
+		}
+
+		public void SendInfoMessage(string text)
+		{
+			if (string.IsNullOrWhiteSpace(text))
+			{
+				Send();
+				return;
+			}
+
+			Send("[green]" + text + "[reset]");
 		}
 
 		public void SendBattleMessage(string text)
@@ -211,7 +224,7 @@ namespace AbarimMUD.Commands
 			Session.Logger.Info(message);
 		}
 
-		private bool WaitingCommandLag()
+		public bool WaitingCommandLag()
 		{
 			if (_commandLagStart == null)
 			{
@@ -231,12 +244,7 @@ namespace AbarimMUD.Commands
 
 		public void ProcessCommandQueue()
 		{
-			if (WaitingCommandLag())
-			{
-				return;
-			}
-
-			while (_commandQueue.Count > 0)
+			while (!WaitingCommandLag() && _commandQueue.Count > 0)
 			{
 				var line = _commandQueue.Dequeue();
 				line = line.Trim();
@@ -266,18 +274,19 @@ namespace AbarimMUD.Commands
 				Log($"Command type is {type}.");
 
 				var args = parts.Length > 1 ? parts[1] : string.Empty;
-				if (command.Execute(this, args))
-				{
-					var lagInMs = command.CalculateLagInMs(this, args);
-					if(lagInMs > 0)
-					{
-						// Command has lag
-						_commandLagStart = DateTime.Now;
-						_lagInMs = lagInMs;
-						break;
-					}
-				}
+				command.Execute(this, args);
 			}
+		}
+
+		public void StartCommandLag(int lagInMs)
+		{
+			if (lagInMs <= 0)
+			{
+				return;
+			}
+
+			_commandLagStart = DateTime.Now;
+			_lagInMs = lagInMs;
 		}
 
 		public void ParseAndExecute(string data)

@@ -1,6 +1,7 @@
 ﻿using AbarimMUD.Attributes;
 using AbarimMUD.Storage;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Json.Serialization;
@@ -17,11 +18,12 @@ namespace AbarimMUD.Data
 
 	public sealed class Character : Creature, IStoredInFile
 	{
+		public static readonly List<Character> ActiveCharacters = new List<Character>();
+
 		public static readonly MultipleFilesStorage<Character> Storage = new Characters();
 
 		private GameClass _class;
 		private int _level;
-		private long _experience;
 		private Room _room;
 
 
@@ -83,23 +85,9 @@ namespace AbarimMUD.Data
 
 		public long Wealth { get; set; }
 
-		public long Experience
-		{
-			get => _experience;
+		public long Experience { get; set; }
 
-			set
-			{
-				if (value == _experience)
-				{
-					return;
-				}
-
-				_experience = value;
-
-				// Process level ups
-				UpdateLevel();
-			}
-		}
+		public string Autoskill { get; set; }
 
 		public override string ShortDescription => Name;
 		public override string Description => PlayerDescription;
@@ -107,6 +95,8 @@ namespace AbarimMUD.Data
 		public override int Level => PlayerLevel;
 		public override Sex Sex => PlayerSex;
 
+		[JsonIgnore]
+		[OLCIgnore]
 		public override Room Room
 		{
 			get { return _room; }
@@ -143,24 +133,23 @@ namespace AbarimMUD.Data
 				return;
 			}
 
-			var changed = false;
+			var leveled = false;
 			while (_level < Configuration.MaximumLevel)
 			{
 				var levelInfo = LevelInfo.GetLevelInfo(_level + 1);
-				if (_experience < levelInfo.Experience)
+				if (Experience < levelInfo.Experience)
 				{
 					break;
 				}
 
-				changed = true;
-				_experience -= levelInfo.Experience;
+				leveled = true;
+				Experience -= levelInfo.Experience;
 				++_level;
 			}
 
-			if (changed)
+			if (leveled)
 			{
 				InvalidateStats();
-				Save();
 			}
 		}
 
@@ -183,6 +172,16 @@ namespace AbarimMUD.Data
 			result = Path.Combine(result, Name);
 
 			return result;
+		}
+
+		public void GainXp(long experience)
+		{
+			Experience += experience;
+
+			// Process level ups
+			UpdateLevel();
+
+			Save();
 		}
 
 		public override bool MatchesKeyword(string keyword) => Name.StartsWith(keyword, StringComparison.OrdinalIgnoreCase);

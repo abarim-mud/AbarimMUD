@@ -7,7 +7,7 @@ namespace AbarimMUD.Data
 {
 	public abstract class Creature
 	{
-		public static readonly List<Creature> AllCreatures = new List<Creature>();
+		public static readonly List<Creature> ActiveCreatures = new List<Creature>();
 
 		private CreatureStats _stats = null;
 
@@ -146,7 +146,7 @@ namespace AbarimMUD.Data
 
 		public static void InvalidateAllCreaturesStats()
 		{
-			foreach (var creature in AllCreatures)
+			foreach (var creature in ActiveCreatures)
 			{
 				creature.InvalidateStats();
 			}
@@ -154,7 +154,7 @@ namespace AbarimMUD.Data
 
 		public static void InvalidateMobiles(Mobile mobile)
 		{
-			foreach (var creature in AllCreatures)
+			foreach (var creature in ActiveCreatures)
 			{
 				var asMobile = creature as MobileInstance;
 				if (asMobile == null || asMobile.Info != mobile)

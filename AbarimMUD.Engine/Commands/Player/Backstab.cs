@@ -82,5 +82,10 @@ namespace AbarimMUD.Commands.Player
 		{
 			return Configuration.PauseBetweenFightRoundsInMs * 2 / 3;
 		}
+
+		public override CommandCost CalculateCost(ExecutionContext context, string data = "")
+		{
+			return new CommandCost(0, 0, CombatCalc.BackstabMovesCost());
+		}
 	}
 }

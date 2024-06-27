@@ -117,19 +117,6 @@ namespace AbarimMUD.Combat
 			}
 		}
 
-		private ExecutionContext GetNextTarget(FightSide targetSide)
-		{
-			foreach (var p in _participants)
-			{
-				if (p.FightInfo.Side == targetSide)
-				{
-					return p;
-				}
-			}
-
-			return null;
-		}
-
 		public void DoRound()
 		{
 			if (Finished)

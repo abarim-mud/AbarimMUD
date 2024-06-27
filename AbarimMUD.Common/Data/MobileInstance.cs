@@ -49,7 +49,7 @@ namespace AbarimMUD.Data
 
 			Restore();
 
-			AllCreatures.Add(this);
+			ActiveCreatures.Add(this);
 		}
 
 		public override bool MatchesKeyword(string keyword) => Info.MatchesKeyword(keyword);
@@ -57,7 +57,7 @@ namespace AbarimMUD.Data
 		protected override void Slain()
 		{
 			base.Slain();
-			AllCreatures.Remove(this);
+			ActiveCreatures.Remove(this);
 			Room = null;
 		}
 

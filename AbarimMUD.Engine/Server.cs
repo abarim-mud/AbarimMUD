@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using AbarimMUD.Combat;
 using System.Threading;
 using AbarimMUD.Commands.Builder;
+using AbarimMUD.Commands;
 
 namespace AbarimMUD
 {
@@ -126,7 +127,7 @@ namespace AbarimMUD
 				var secondsPassed = (float)(now - _lastRegenDt.Value).TotalSeconds;
 
 				// Process creature
-				foreach (var creature in Creature.AllCreatures)
+				foreach (var creature in Creature.ActiveCreatures)
 				{
 					var ctx = (Commands.ExecutionContext)creature.Tag;
 
@@ -162,6 +163,31 @@ namespace AbarimMUD
 
 					// Command queue
 					ctx.ProcessCommandQueue();
+				}
+
+				// Process characters
+				foreach(var character in Character.ActiveCharacters)
+				{
+					// Autoskill
+					var ctx = (Commands.ExecutionContext)character.Tag;
+					if (ctx.IsFighting && !ctx.WaitingCommandLag() && !string.IsNullOrEmpty(character.Autoskill))
+					{
+						var command = BaseCommand.FindCommand(character.Autoskill);
+						if (command != null)
+						{
+							var cost = command.CalculateCost(ctx);
+							if (cost.Hitpoints < ctx.State.Hitpoints &&
+								cost.Mana < ctx.State.Mana &&
+								cost.Moves < ctx.State.Moves)
+							{
+								ctx.SendInfoMessage($"Performing autoskill {character.Autoskill}");
+								if (!command.Execute(ctx))
+								{
+									ctx.ParseAndExecute("autoskill off");
+								}
+							}
+						}
+					}
 				}
 
 				_lastRegenDt = now;

@@ -4,10 +4,11 @@ using AbarimMUD.Commands.Player;
 using System.Collections.Generic;
 using AbarimMUD.Data;
 using System.Reflection;
+using System;
 
 namespace AbarimMUD.Commands
 {
-    public abstract class BaseCommand
+	public abstract class BaseCommand
 	{
 		public const string ExecuteName = "DoExecute";
 
@@ -34,6 +35,8 @@ namespace AbarimMUD.Commands
 		public static readonly Remove Remove = new Remove();
 		public static readonly Junk Junk = new Junk();
 		public static readonly Player.Equipment Equipment = new Player.Equipment();
+
+		public static readonly Autoskill Autoskill = new Autoskill();
 
 		public static readonly Kill Kill = new Kill();
 		public static readonly Backstab Backstab = new Backstab();
@@ -66,6 +69,8 @@ namespace AbarimMUD.Commands
 		public static readonly SetType SetType = new SetType();
 
 		public abstract Role RequiredType { get; }
+		public virtual bool CanAutoskill => false;
+		public string Name { get; private set; }
 
 		public static int ExecutionDepth { get; set; }
 
@@ -73,7 +78,7 @@ namespace AbarimMUD.Commands
 
 		static BaseCommand()
 		{
-			// Use reflection to build dictionary of commands
+			// Use reflection to build dictionary of commands and set their names
 			var staticFields = typeof(BaseCommand).GetFields(BindingFlags.Public | BindingFlags.Static);
 
 			foreach (var field in staticFields)
@@ -84,7 +89,10 @@ namespace AbarimMUD.Commands
 				}
 
 				var name = field.Name.ToLower();
-				_allCommands[name] = (BaseCommand)field.GetValue(null);
+
+				var cmd = (BaseCommand)field.GetValue(null);
+				cmd.Name = name;
+				_allCommands[name] = cmd;
 			}
 		}
 
@@ -108,12 +116,32 @@ namespace AbarimMUD.Commands
 			return 0;
 		}
 
+		public virtual CommandCost CalculateCost(ExecutionContext context, string data = "")
+		{
+			return CommandCost.Zero;
+		}
+
 		public bool Execute(ExecutionContext context, string data = "")
 		{
+			if (context.WaitingCommandLag())
+			{
+				return false;
+			}
+
 			try
 			{
 				++ExecutionDepth;
-				return InternalExecute(context, data);
+				var result = InternalExecute(context, data);
+				if (result)
+				{
+					var lagInMs = CalculateLagInMs(context, data);
+					if (lagInMs > 0)
+					{
+						context.StartCommandLag(lagInMs);
+					}
+				}
+
+				return result;
 			}
 			finally
 			{

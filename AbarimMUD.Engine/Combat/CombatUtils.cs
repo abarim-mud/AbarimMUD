@@ -22,7 +22,7 @@ namespace AbarimMUD.Combat
 				var xpAward = targetMobile.Stats.XpAward;
 
 				var lastLevel = character.Level;
-				character.Experience += xpAward;
+				character.GainXp(xpAward);
 				attacker.Send($"Total exp for kill is {xpAward.FormatBigNumber()}.");
 
 				// Append level up messages
@@ -131,7 +131,7 @@ namespace AbarimMUD.Combat
 			for (var i = 0; i < attacker.Stats.BackstabCount; ++i)
 			{
 				var successChancePercentage = (100 - (i * 30) + attack.Penetration - target.Stats.Armor) / 2;
-				attacker.SendBattleMessage($"Backstab success chance: {successChancePercentage}%");
+				attacker.SendInfoMessage($"Backstab success chance: {successChancePercentage}%");
 				var success = Utility.RollPercentage(successChancePercentage);
 				if (!success)
 				{
@@ -199,7 +199,7 @@ namespace AbarimMUD.Combat
 			// Success chance % is equal to (100 + penetration - armor) / 2
 			var attack = attacker.Stats.Attacks[0];
 			var successChancePercentage = (100 + attack.Penetration - target.Stats.Armor) / 2;
-			attacker.SendBattleMessage($"Circlestab success chance: {successChancePercentage}%");
+			attacker.SendInfoMessage($"Circlestab success chance: {successChancePercentage}%");
 			var success = Utility.RollPercentage(successChancePercentage);
 			if (!success)
 			{
@@ -227,9 +227,9 @@ namespace AbarimMUD.Combat
 			target.Creature.State.Hitpoints -= damage.Damage;
 			if (target.Creature.State.Hitpoints < 0)
 			{
-				attacker.SendBattleMessage($"{target.ShortDescription} makes a strange sound but is suddenly very silent as you place {weapon.Info.ShortDescription} in its back ({damage}).");
+				attacker.SendBattleMessage($"You struck {target.ShortDescription} right in the heart!");
 
-				var roomMessage = $"{target.ShortDescription} makes a strange sound but is suddenly very silent as {attacker.ShortDescription} places {weapon.Info.ShortDescription} in its back ({damage}).";
+				var roomMessage = $"{attacker.ShortDescription} strucks {target.ShortDescription} right in the heart!";
 				foreach (var ch in attacker.AllExceptMeInRoom())
 				{
 					ch.SendBattleMessage(roomMessage);
@@ -251,9 +251,9 @@ namespace AbarimMUD.Combat
 			}
 			else
 			{
-				attacker.SendBattleMessage($"You quickly move from the {target.ShortDescription}'s field of view and stab it with {weapon.ShortDescription} ({damage})!");
+				attacker.SendBattleMessage($"You quickly move from the {target.ShortDescription}'s eyesight and stab it with {weapon.ShortDescription} ({damage})!");
 
-				var roomMessage = $"{attacker.ShortDescription} quickly moves from the {target.ShortDescription}'s field of view and stabs it with {weapon.ShortDescription} ({damage})!";
+				var roomMessage = $"{attacker.ShortDescription} quickly moves from the {target.ShortDescription}'s eyesight and stabs it with {weapon.ShortDescription} ({damage})!";
 				foreach (var ch in attacker.AllExceptMeInRoom())
 				{
 					ch.Send(roomMessage);

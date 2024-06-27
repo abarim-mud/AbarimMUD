@@ -539,7 +539,7 @@ namespace AbarimMUD.Data
 
 		private void InvalidateCreaturesOfThisClass()
 		{
-			foreach (var creature in Creature.AllCreatures)
+			foreach (var creature in Creature.ActiveCreatures)
 			{
 				if (creature.Class.Id == Id)
 				{

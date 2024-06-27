@@ -5,6 +5,8 @@ namespace AbarimMUD.Commands.Player
 {
 	public class Circlestab : PlayerCommand
 	{
+		public override bool CanAutoskill => true;
+
 		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
 			// Check the player has the skill
@@ -78,6 +80,11 @@ namespace AbarimMUD.Commands.Player
 		public override int CalculateLagInMs(ExecutionContext context, string data = "")
 		{
 			return Configuration.PauseBetweenFightRoundsInMs * 2 / 3;
+		}
+
+		public override CommandCost CalculateCost(ExecutionContext context, string data = "")
+		{
+			return new CommandCost(0, 0, CombatCalc.CirclestabMovesCost());
 		}
 	}
 }

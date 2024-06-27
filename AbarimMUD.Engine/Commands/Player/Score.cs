@@ -1,4 +1,5 @@
 ﻿using AbarimMUD.Data;
+using AbarimMUD.Storage;
 
 namespace AbarimMUD.Commands.Player
 {
@@ -19,7 +20,17 @@ namespace AbarimMUD.Commands.Player
 				{
 					context.Send($"Experience: {asCharacter.Experience.FormatBigNumber()}");
 				}
+
 				context.Send($"Gold: {asCharacter.Wealth.FormatBigNumber()}");
+
+				if (string.IsNullOrEmpty(asCharacter.Autoskill))
+				{
+					context.Send("You didnt set the autoskill.");
+				}
+				else
+				{
+					context.Send($"You current autoskill is {asCharacter.Autoskill}.");
+				}
 			}
 
 			var stats = context.Creature.Stats;
