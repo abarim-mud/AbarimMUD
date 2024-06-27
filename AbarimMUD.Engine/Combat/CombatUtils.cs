@@ -123,9 +123,11 @@ namespace AbarimMUD.Combat
 
 		public static void Backstab(this ExecutionContext attacker, ItemInstance weapon, ExecutionContext target)
 		{
+			var moves = CombatCalc.BackstabMovesCost();
+			attacker.State.Moves -= moves;
+
 			// Success chance % is equal to (100 + penetration - armor) / 2
 			var attack = attacker.Stats.Attacks[0];
-
 			for (var i = 0; i < attacker.Stats.BackstabCount; ++i)
 			{
 				var successChancePercentage = (100 - (i * 30) + attack.Penetration - target.Stats.Armor) / 2;

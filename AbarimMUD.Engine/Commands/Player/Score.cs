@@ -27,6 +27,13 @@ namespace AbarimMUD.Commands.Player
 
 			var regen = stats.GetHitpointsRegen(context.IsFighting);
 			context.Send($"Hitpoints: {state.Hitpoints}/{stats.MaxHitpoints} + {regen}");
+
+			regen = stats.GetManaRegen(context.IsFighting);
+			context.Send($"Mana: {state.Mana}/{stats.MaxMana} + {regen}");
+
+			regen = stats.GetMovesRegen(context.IsFighting);
+			context.Send($"Moves: {state.Moves}/{stats.MaxMoves} + {regen}");
+
 			context.Send("Armor: " + stats.Armor);
 			for (var i = 0; i < stats.Attacks.Count; i++)
 			{

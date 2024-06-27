@@ -120,6 +120,8 @@ namespace AbarimMUD.Data
 			var stats = Stats;
 
 			State.Hitpoints = stats.MaxHitpoints;
+			State.Mana = stats.MaxMana;
+			State.Moves = stats.MaxMoves;
 		}
 
 		public bool? Wear(ItemInstance item)

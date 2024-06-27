@@ -16,6 +16,7 @@ namespace AbarimMUD.Data
 			public int StartRoomId { get; set; }
 			public string DefaultCharacter { get; set; }
 			public string DefaultClass { get; set; }
+			public int PeaceRegenMultiplier { get; set; } = 2;
 
 			public int PauseBetweenFightRoundsInMs { get; set; }
 			public int NegativeRegen { get; set; }
@@ -33,6 +34,7 @@ namespace AbarimMUD.Data
 		public static string DefaultCharacter => Instance.DefaultCharacter;
 		public static string DefaultClass => Instance.DefaultClass;
 		public static int PauseBetweenFightRoundsInMs => Instance.PauseBetweenFightRoundsInMs;
+		public static int PeaceRegenMultiplier => Instance.PeaceRegenMultiplier;
 
 		/// <summary>
 		/// Negative regen rate(per minute), used when values(hp/mana/mv) are higher than their maxes

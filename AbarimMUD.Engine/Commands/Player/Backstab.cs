@@ -48,7 +48,6 @@ namespace AbarimMUD.Commands.Player
 				return;
 			}
 
-
 			if (target == context)
 			{
 				context.Send("You can't backstab yourself.");
@@ -64,6 +63,12 @@ namespace AbarimMUD.Commands.Player
 			if (target.Creature.State.Hitpoints < target.Creature.Stats.MaxHitpoints)
 			{
 				context.Send($"You can't backstab a wounded creature.");
+				return;
+			}
+
+			if (context.State.Moves < CombatCalc.BackstabMovesCost())
+			{
+				context.Send($"You're too tired to sneak on anyone.");
 				return;
 			}
 

@@ -23,6 +23,12 @@ namespace AbarimMUD.Commands.Player
 				return;
 			}
 
+			if (context.State.Moves <= 0)
+			{
+				context.Send("You're too tired to move.");
+				return;
+			}
+
 			// Notify inhabits of the source room about the leave
 			var dirName = _dir.GetName();
 			foreach (var t in context.AllExceptMeInRoom())
@@ -32,6 +38,7 @@ namespace AbarimMUD.Commands.Player
 
 			// Perform the movement
 			context.Room = exit.TargetRoom;
+			--context.State.Moves;
 			
 			// Notify inhabits of the destination room about the arrival
 			dirName = _dir.GetOppositeDirection().GetName();

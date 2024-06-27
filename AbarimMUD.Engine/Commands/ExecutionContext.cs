@@ -185,7 +185,7 @@ namespace AbarimMUD.Commands
 			output.AppendLine();
 
 
-			output.Append($"<[green]{State.Hitpoints}[reset]hp [green]{State.Mana}[reset]ma [green]{State.Movement}[reset]mv ");
+			output.Append($"<[green]{State.Hitpoints}[reset]hp [green]{State.Mana}[reset]ma [green]{State.Moves}[reset]mv ");
 
 			var target = FightInfo.Target;
 			if (target == null)

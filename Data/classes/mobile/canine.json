@@ -8,9 +8,25 @@
     "1": 20,
     "100": 4000
   },
+  "ManaRange": {
+    "1": 100,
+    "100": 200
+  },
+  "MovesRange": {
+    "1": 100,
+    "100": 200
+  },
   "HitpointsRegenRange": {
     "1": 20,
     "100": 300
+  },
+  "ManaRegenRange": {
+    "1": 1,
+    "100": 50
+  },
+  "MovesRegenRange": {
+    "1": 1,
+    "100": 50
   },
   "ArmorRange": {
     "1": 10,

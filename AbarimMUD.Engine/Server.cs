@@ -11,6 +11,7 @@ using AbarimMUD.Storage;
 using System.Collections.Generic;
 using AbarimMUD.Combat;
 using System.Threading;
+using AbarimMUD.Commands.Builder;
 
 namespace AbarimMUD
 {
@@ -72,8 +73,42 @@ namespace AbarimMUD
 
 			DataContext.Load();
 
-			Skill.Storage.SaveAll();
 			GameClass.Storage.SaveAll();
+		}
+
+		private bool ProcessRegen(ref int currentValue, int maxValue, ref float fractionalValue, int regenValue, float secondsPassed)
+		{
+			if (currentValue == maxValue)
+			{
+				return false;
+			}
+
+			float r;
+			if (currentValue < maxValue)
+			{
+				r = regenValue * secondsPassed / 60.0f;
+			}
+			else
+			{
+				r = -Configuration.NegativeRegen * secondsPassed / 60.0f;
+			}
+
+			fractionalValue += r;
+			if (Math.Abs(fractionalValue) > 1)
+			{
+				// Update real hp
+				var hpUpdate = (int)fractionalValue;
+				currentValue += hpUpdate;
+				fractionalValue -= hpUpdate;
+				if (currentValue >= maxValue)
+				{
+					// Full
+					currentValue = maxValue;
+					fractionalValue = 0;
+				}
+			}
+
+			return true;
 		}
 
 		private void WorldTick()
@@ -93,36 +128,36 @@ namespace AbarimMUD
 				// Process creature
 				foreach (var creature in Creature.AllCreatures)
 				{
-					if (creature.State.Hitpoints == creature.Stats.MaxHitpoints)
+					var ctx = (Commands.ExecutionContext)creature.Tag;
+
+					// Hitpoints regen
+					var currentValue = creature.State.Hitpoints;
+					var fractionalValue = creature.State.FractionalHitpointsRegen;
+					if (ProcessRegen(ref currentValue, creature.Stats.MaxHitpoints, ref fractionalValue,
+						creature.Stats.GetHitpointsRegen(ctx.IsFighting), secondsPassed))
 					{
-						continue;
+						creature.State.Hitpoints = currentValue;
+						creature.State.FractionalHitpointsRegen = fractionalValue;
 					}
 
-					float hpRegen;
-					if (creature.State.Hitpoints < creature.Stats.MaxHitpoints)
+					// Mana regen
+					currentValue = creature.State.Mana;
+					fractionalValue = creature.State.FractionalManaRegen;
+					if (ProcessRegen(ref currentValue, creature.Stats.MaxMana, ref fractionalValue,
+						creature.Stats.GetManaRegen(ctx.IsFighting), secondsPassed))
 					{
-						var ctx = (Commands.ExecutionContext)creature.Tag;
-						hpRegen = creature.Stats.GetHitpointsRegen(ctx.IsFighting) * secondsPassed / 60.0f;
+						creature.State.Mana = currentValue;
+						creature.State.FractionalManaRegen = fractionalValue;
 					}
-					else
+
+					// Moves regen
+					currentValue = creature.State.Moves;
+					fractionalValue = creature.State.FractionalMovesRegen;
+					if (ProcessRegen(ref currentValue, creature.Stats.MaxMoves, ref fractionalValue,
+						creature.Stats.GetMovesRegen(ctx.IsFighting), secondsPassed))
 					{
-						hpRegen = -Configuration.NegativeRegen * secondsPassed / 60.0f;
-					}
-
-					creature.State.FractionalRegen += hpRegen;
-
-					if (Math.Abs(creature.State.FractionalRegen) > 1)
-					{
-						// Update real hp
-						var hpUpdate = (int)creature.State.FractionalRegen;
-						creature.State.Hitpoints += hpUpdate;
-						creature.State.FractionalRegen -= hpUpdate;
-
-						if (creature.State.Hitpoints == creature.Stats.MaxHitpoints)
-						{
-							// Full
-							creature.State.FractionalRegen = 0;
-						}
+						creature.State.Moves = currentValue;
+						creature.State.FractionalMovesRegen = fractionalValue;
 					}
 				}
 
@@ -160,6 +195,8 @@ namespace AbarimMUD
 						{
 							Room = room
 						};
+
+						new Commands.ExecutionContext(newMobile);
 					}
 				}
 

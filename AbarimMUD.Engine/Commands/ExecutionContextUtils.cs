@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using AbarimMUD.Data;
+﻿using AbarimMUD.Data;
 
 namespace AbarimMUD.Commands
 {
@@ -22,11 +20,6 @@ namespace AbarimMUD.Commands
 			{
 				if (m.MatchesKeyword(keyword))
 				{
-					if (m.Tag == null)
-					{
-						return new ExecutionContext(m);
-					}
-
 					return (ExecutionContext)m.Tag;
 				}
 			}

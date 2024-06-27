@@ -66,12 +66,16 @@ namespace AbarimMUD.Data
 
 		public static readonly ValueRange DefaultHitpoints = new ValueRange(1, 100);
 		public static readonly ValueRange DefaultHitpointsRegen = new ValueRange(1, 50);
+		public static readonly ValueRange DefaultMana = new ValueRange(100, 200);
+		public static readonly ValueRange DefaultManaRegen = new ValueRange(1, 50);
+		public static readonly ValueRange DefaultMoves = new ValueRange(100, 200);
+		public static readonly ValueRange DefaultMovesRegen = new ValueRange(1, 50);
 		public static readonly ValueRange DefaultArmor = new ValueRange(0, 0);
 		public static readonly MultipleFilesStorage<GameClass> Storage = new GameClasses();
 
 		private AttackType? _attackType;
-		private ValueRange _hitpointsRange;
-		private ValueRange _hitpointsRegenRange;
+		private ValueRange _hitpointsRange, _manaRange = DefaultMana, _movesRange;
+		private ValueRange _hitpointsRegenRange, _manaRegenRange = DefaultManaRegen, _movesRegenRange;
 		private ValueRange _armorRange;
 		private ValueRange _penetrationRange;
 		private ValueRange _minimumDamageRange;
@@ -122,6 +126,56 @@ namespace AbarimMUD.Data
 			}
 		}
 
+		[OLCAlias("manarange")]
+		public ValueRange ManaRange
+		{
+			get
+			{
+				if (UseOriginalValues || Inherits == null || _manaRange != null)
+				{
+					return _manaRange;
+				}
+
+				return Inherits.ManaRange;
+			}
+
+			set
+			{
+				if (value == _manaRange)
+				{
+					return;
+				}
+
+				_manaRange = value;
+				InvalidateCreaturesOfThisClass();
+			}
+		}
+
+		[OLCAlias("mvrange")]
+		public ValueRange MovesRange
+		{
+			get
+			{
+				if (UseOriginalValues || Inherits == null || _movesRange != null)
+				{
+					return _movesRange;
+				}
+
+				return Inherits.MovesRange;
+			}
+
+			set
+			{
+				if (value == _movesRange)
+				{
+					return;
+				}
+
+				_movesRange = value;
+				InvalidateCreaturesOfThisClass();
+			}
+		}
+
 		[OLCAlias("hpregenrange")]
 		public ValueRange HitpointsRegenRange
 		{
@@ -147,6 +201,55 @@ namespace AbarimMUD.Data
 			}
 		}
 
+		[OLCAlias("manaregenrange")]
+		public ValueRange ManaRegenRange
+		{
+			get
+			{
+				if (UseOriginalValues || Inherits == null || _manaRegenRange != null)
+				{
+					return _manaRegenRange;
+				}
+
+				return Inherits.ManaRegenRange;
+			}
+
+			set
+			{
+				if (value == _manaRegenRange)
+				{
+					return;
+				}
+
+				_manaRegenRange = value;
+				InvalidateCreaturesOfThisClass();
+			}
+		}
+
+		[OLCAlias("mvregenrange")]
+		public ValueRange MovesRegenRange
+		{
+			get
+			{
+				if (UseOriginalValues || Inherits == null || _movesRegenRange != null)
+				{
+					return _movesRegenRange;
+				}
+
+				return Inherits.MovesRegenRange;
+			}
+
+			set
+			{
+				if (value == _movesRegenRange)
+				{
+					return;
+				}
+
+				_movesRegenRange = value;
+				InvalidateCreaturesOfThisClass();
+			}
+		}
 
 		public ValueRange ArmorRange
 		{
@@ -330,12 +433,20 @@ namespace AbarimMUD.Data
 		{
 			var hitpoints = HitpointsRange ?? DefaultHitpoints;
 			var hitpointsRegen = HitpointsRegenRange ?? DefaultHitpointsRegen;
+			var mana = ManaRange ?? DefaultMana;
+			var manaRegen = ManaRegenRange ?? DefaultManaRegen;
+			var moves = MovesRange ?? DefaultMoves;
+			var movesRegen = MovesRegenRange ?? DefaultMovesRegen;
 			var armor = ArmorRange ?? DefaultArmor;
 
 			var stats = new CreatureStats
 			{
 				MaxHitpoints = hitpoints.CalculateValue(level),
 				HitpointsRegen = hitpointsRegen.CalculateValue(level),
+				MaxMana = mana.CalculateValue(level),
+				ManaRegen = manaRegen.CalculateValue(level),
+				MaxMoves = moves.CalculateValue(level),
+				MovesRegen = movesRegen.CalculateValue(level),
 				Armor = armor.CalculateValue(level),
 			};
 
@@ -448,6 +559,10 @@ namespace AbarimMUD.Data
 				Inherits = Inherits,
 				_hitpointsRange = _hitpointsRange,
 				_hitpointsRegenRange = _hitpointsRegenRange,
+				_manaRange = _manaRange,
+				_manaRegenRange = _manaRegenRange,
+				_movesRange = _movesRange,
+				_movesRegenRange = _movesRegenRange,
 				_armorRange = _armorRange,
 				_penetrationRange = _penetrationRange,
 				_minimumDamageRange = _minimumDamageRange,

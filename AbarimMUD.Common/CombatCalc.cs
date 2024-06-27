@@ -56,5 +56,7 @@ namespace AbarimMUD
 
 			return 2 + level / 5;
 		}
+
+		public static int BackstabMovesCost() => 20;
 	}
 }

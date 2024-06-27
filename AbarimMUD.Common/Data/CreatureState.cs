@@ -4,7 +4,7 @@ namespace AbarimMUD.Data
 {
 	public class CreatureState
 	{
-		private int _hitpoints;
+		private int _hitpoints, _mana, _moves;
 
 		public int Hitpoints
 		{
@@ -22,12 +22,45 @@ namespace AbarimMUD.Data
 			}
 		}
 
-		public float FractionalRegen { get; set; }
+		public int Mana
+		{
+			get => _mana;
 
-		public int Mana { get; set; }
+			set
+			{
+				if (value == _mana)
+				{
+					return;
+				}
 
-		public int Movement { get; set; }
+				_mana = value;
+				ManaChanged?.Invoke(this, EventArgs.Empty);
+			}
+		}
+
+		public int Moves
+		{
+			get => _moves;
+
+			set
+			{
+				if (value == _moves)
+				{
+					return;
+				}
+
+				_moves = value;
+				MovesChanged?.Invoke(this, EventArgs.Empty);
+			}
+		}
+
+		public float FractionalHitpointsRegen { get; set; }
+		public float FractionalManaRegen { get; set; }
+		public float FractionalMovesRegen { get; set; }
+
 
 		public event EventHandler HitpointsChanged;
+		public event EventHandler ManaChanged;
+		public event EventHandler MovesChanged;
 	}
 }
