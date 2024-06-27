@@ -68,7 +68,7 @@ namespace AbarimMUD.Commands.Player
 
 			if (context.State.Moves < CombatCalc.BackstabMovesCost())
 			{
-				context.Send($"You're too tired to sneak on anyone.");
+				context.Send($"You're too tired to backstab.");
 				return;
 			}
 

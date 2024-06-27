@@ -58,5 +58,7 @@ namespace AbarimMUD
 		}
 
 		public static int BackstabMovesCost() => 20;
+		public static int CirclestabMovesCost() => 8;
+
 	}
 }

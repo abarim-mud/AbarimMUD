@@ -37,6 +37,7 @@ namespace AbarimMUD.Commands
 
 		public static readonly Kill Kill = new Kill();
 		public static readonly Backstab Backstab = new Backstab();
+		public static readonly Circlestab Circlestab = new Circlestab();
 
 		// Builders
 		public static readonly Recall recall = new Recall();

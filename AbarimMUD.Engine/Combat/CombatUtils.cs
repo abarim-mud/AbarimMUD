@@ -171,9 +171,9 @@ namespace AbarimMUD.Combat
 
 				if (damage.Damage <= 0)
 				{
-					attacker.SendBattleMessage($"Your backstab couldn't pierce through the armor of {target.ShortDescription}.");
+					attacker.SendBattleMessage($"Your blade scratches the armor of {target.ShortDescription} with the grinding sound!");
 
-					var roomMessage = $"{attacker.ShortDescription}'s backstab couldn't pierce through the armor of {target.ShortDescription}.";
+					var roomMessage = $"{attacker.ShortDescription}'s blade scratches the armor of {target.ShortDescription} with the grinding sound!";
 					foreach (var ch in attacker.AllExceptMeInRoom())
 					{
 						ch.SendBattleMessage(roomMessage);
@@ -187,6 +187,76 @@ namespace AbarimMUD.Combat
 					{
 						ch.Send(roomMessage);
 					}
+				}
+			}
+		}
+
+		public static void Circlestab(this ExecutionContext attacker, ItemInstance weapon, ExecutionContext target)
+		{
+			var moves = CombatCalc.CirclestabMovesCost();
+			attacker.State.Moves -= moves;
+
+			// Success chance % is equal to (100 + penetration - armor) / 2
+			var attack = attacker.Stats.Attacks[0];
+			var successChancePercentage = (100 + attack.Penetration - target.Stats.Armor) / 2;
+			attacker.SendBattleMessage($"Circlestab success chance: {successChancePercentage}%");
+			var success = Utility.RollPercentage(successChancePercentage);
+			if (!success)
+			{
+				attacker.SendBattleMessage($"{target.ShortDescription} quickly avoids your circlestab and you nearly cut your own finger!");
+
+				var roomMessage = $"{target.ShortDescription} quickly avoids {attacker.ShortDescription}'s circlestab and {attacker.ShortDescription} nearly cuts their own finger!";
+				foreach (var ch in attacker.AllExceptMeInRoom())
+				{
+					ch.SendBattleMessage(roomMessage);
+				}
+
+				return;
+			}
+
+			var damage = new DamageResult();
+
+			var circleMultiplier = attacker.Stats.BackstabMultiplier / 3;
+			for (var j = 0; j < attacker.Stats.BackstabMultiplier / 3; ++j)
+			{
+				var damage2 = CombatCalc.CalculateDamage(attack, target.Stats.Armor);
+
+				damage += damage2;
+			}
+
+			target.Creature.State.Hitpoints -= damage.Damage;
+			if (target.Creature.State.Hitpoints < 0)
+			{
+				attacker.SendBattleMessage($"{target.ShortDescription} makes a strange sound but is suddenly very silent as you place {weapon.Info.ShortDescription} in its back ({damage}).");
+
+				var roomMessage = $"{target.ShortDescription} makes a strange sound but is suddenly very silent as {attacker.ShortDescription} places {weapon.Info.ShortDescription} in its back ({damage}).";
+				foreach (var ch in attacker.AllExceptMeInRoom())
+				{
+					ch.SendBattleMessage(roomMessage);
+				}
+
+				attacker.Slain(target);
+				return;
+			}
+
+			if (damage.Damage <= 0)
+			{
+				attacker.SendBattleMessage($"Your blade scratches the armor of {target.ShortDescription} with the grinding sound!");
+
+				var roomMessage = $"{attacker.ShortDescription}'s blade scratches the armor of {target.ShortDescription} with the grinding sound!";
+				foreach (var ch in attacker.AllExceptMeInRoom())
+				{
+					ch.SendBattleMessage(roomMessage);
+				}
+			}
+			else
+			{
+				attacker.SendBattleMessage($"You quickly move from the {target.ShortDescription}'s field of view and stab it with {weapon.ShortDescription} ({damage})!");
+
+				var roomMessage = $"{attacker.ShortDescription} quickly moves from the {target.ShortDescription}'s field of view and stabs it with {weapon.ShortDescription} ({damage})!";
+				foreach (var ch in attacker.AllExceptMeInRoom())
+				{
+					ch.Send(roomMessage);
 				}
 			}
 		}
