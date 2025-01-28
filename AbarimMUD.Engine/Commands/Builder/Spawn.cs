@@ -54,6 +54,8 @@ namespace AbarimMUD.Commands.Builder
 							Room = context.Room
 						};
 
+						new ExecutionContext(newMobile);
+
 						foreach (var ctx in context.AllInRoom())
 						{
 							if (ctx.IsStaff)

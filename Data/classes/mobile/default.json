@@ -6,8 +6,6 @@
   "Inherits": null,
   "HitpointsRange": {
     "1": 10,
-    "10": 100,
-    "40": 1000,
     "100": 2000
   },
   "ManaRange": {
@@ -20,7 +18,7 @@
   },
   "HitpointsRegenRange": {
     "1": 20,
-    "100": 200
+    "100": 100
   },
   "ManaRegenRange": {
     "1": 1,
@@ -32,14 +30,11 @@
   },
   "ArmorRange": {
     "1": 10,
-    "10": 20,
-    "40": 200,
-    "100": 400
+    "100": 200
   },
   "AttackType": "Slash",
   "PenetrationRange": {
     "1": 10,
-    "40": 100,
     "100": 200
   },
   "MinimumDamageRange": {

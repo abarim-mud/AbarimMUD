@@ -127,11 +127,10 @@ namespace AbarimMUD.Combat
 			var moves = CombatCalc.BackstabMovesCost();
 			attacker.State.Moves -= moves;
 
-			// Success chance % is equal to (100 + penetration - armor) / 2
-			var attack = attacker.Stats.Attacks[0];
+			// Success chance 95 - (i * 20)
 			for (var i = 0; i < attacker.Stats.BackstabCount; ++i)
 			{
-				var successChancePercentage = (100 - (i * 30) + attack.Penetration - target.Stats.Armor) / 2;
+				var successChancePercentage = 95 - (i * 20);
 				attacker.SendInfoMessage($"Backstab success chance: {successChancePercentage}%");
 				var success = Utility.RollPercentage(successChancePercentage);
 				if (!success)
@@ -148,7 +147,8 @@ namespace AbarimMUD.Combat
 				}
 
 				var damage = new DamageResult();
-				for(var j = 0; j < attacker.Stats.BackstabMultiplier; ++j)
+				var attack = attacker.Stats.Attacks[0];
+				for (var j = 0; j < attacker.Stats.BackstabMultiplier; ++j)
 				{
 					var damage2 = CombatCalc.CalculateDamage(attack, target.Stats.Armor);
 
@@ -197,9 +197,8 @@ namespace AbarimMUD.Combat
 			var moves = CombatCalc.CirclestabMovesCost();
 			attacker.State.Moves -= moves;
 
-			// Success chance % is equal to (100 + penetration - armor) / 2
-			var attack = attacker.Stats.Attacks[0];
-			var successChancePercentage = (100 + attack.Penetration - target.Stats.Armor) / 2;
+			// Success chance is 95%
+			var successChancePercentage = 95;
 			attacker.SendInfoMessage($"Circlestab success chance: {successChancePercentage}%");
 			var success = Utility.RollPercentage(successChancePercentage);
 			if (!success)
@@ -218,6 +217,7 @@ namespace AbarimMUD.Combat
 			var damage = new DamageResult();
 
 			var circleMultiplier = attacker.Stats.BackstabMultiplier / 3;
+			var attack = attacker.Stats.Attacks[0];
 			for (var j = 0; j < circleMultiplier; ++j)
 			{
 				var damage2 = CombatCalc.CalculateDamage(attack, target.Stats.Armor);
@@ -264,9 +264,8 @@ namespace AbarimMUD.Combat
 
 		public static void Kick(this ExecutionContext attacker, ExecutionContext target)
 		{
-			// Success chance % is equal to (100 + penetration - armor) / 2
-			var attack = attacker.Stats.Attacks[0];
-			var successChancePercentage = (100 + attack.Penetration - target.Stats.Armor) / 2;
+			// Success chance is 95%
+			var successChancePercentage = 95;
 			attacker.SendInfoMessage($"Kick success chance: {successChancePercentage}%");
 			var success = Utility.RollPercentage(successChancePercentage);
 			if (!success)
@@ -284,6 +283,8 @@ namespace AbarimMUD.Combat
 
 
 			var kickDamage = Math.Max(1, Math.Min(attacker.Level, 40) / 2);
+
+			var attack = attacker.Stats.Attacks[0];
 			var damage = CombatCalc.CalculateDamage(attack.Penetration, new RandomRange(kickDamage, kickDamage + 4), target.Stats.Armor);
 
 			target.Creature.State.Hitpoints -= damage.Damage;
