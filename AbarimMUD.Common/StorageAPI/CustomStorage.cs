@@ -6,7 +6,7 @@ namespace AbarimMUD.Storage
 	{
 		private T _item;
 
-		public string Folder => BaseFolder;
+		public string Folder => DataContext.Folder;
 
 		public string Filename { get; private set; }
 

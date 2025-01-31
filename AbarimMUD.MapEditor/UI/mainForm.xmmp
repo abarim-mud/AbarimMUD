@@ -1,0 +1,41 @@
+<Project>
+  <Project.ExportOptions Namespace="AbarimMUD.MapEditor.UI" Class="MainForm" OutputPath="D:\Projects\AbarimMUD\AbarimMUD.MapEditor\UI" />
+  <Panel>
+    <VerticalStackPanel Spacing="8">
+      <HorizontalMenu Id="_mainMenu">
+        <MenuItem Text="&amp;File">
+          <MenuItem Text="&amp;Open" ShortcutText="Ctrl+O" Id="_menuItemFileOpen" />
+          <MenuItem Text="&amp;Save" ShortcutText="Ctrl+S" Id="_menuItemFileSave" />
+          <MenuItem Text="S&amp;ave As..." Id="_menuItemFileSaveAs" />
+        </MenuItem>
+        <MenuItem Text="&amp;Help">
+          <MenuItem Text="&amp;About" Id="_menuHelpAbout" />
+        </MenuItem>
+      </HorizontalMenu>
+      <Label Text="Status" TextColor="#0379FFFF" Id="_labelStatus" />
+      <HorizontalSplitPane StackPanel.ProportionType="Fill">
+        <ListView HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Id="_listAreas">
+          <Label Text="Midgaard.json" />
+        </ListView>
+        <TabControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+          <TabItem Text="Map">
+            <Panel>
+              <ScrollViewer Id="_panelMap" />
+              <VerticalStackPanel Spacing="8" Id="_panelConnectionIssues">
+                <Label Text="Rooms: 10" TextColor="#0379FFFF" Id="_labelRoomsCount" />
+                <Label Text="Grid Size: 10x10" TextColor="#0379FFFF" Id="_labelGridSize" />
+              </VerticalStackPanel>
+            </Panel>
+          </TabItem>
+          <TabItem Text="Mobiles">
+            <HorizontalStackPanel>
+              <ListView Id="_listMobiles">
+                <Label Text="a rat" />
+              </ListView>
+            </HorizontalStackPanel>
+          </TabItem>
+        </TabControl>
+      </HorizontalSplitPane>
+    </VerticalStackPanel>
+  </Panel>
+</Project>

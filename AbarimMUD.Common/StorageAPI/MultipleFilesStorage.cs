@@ -13,7 +13,7 @@ namespace AbarimMUD.Storage
 		public ItemType this[string index] => EnsureByKey(index);
 		public override string Name => SubfolderName;
 
-		public string Folder => Path.Combine(BaseFolder, SubfolderName);
+		public string Folder => Path.Combine(DataContext.Folder, SubfolderName);
 
 		public MultipleFilesStorage(Func<ItemType, string> keyGetter, string subFolderName, bool ignoreCase = true) :
 			base(keyGetter, ignoreCase ? (key => key.ToLower()) : null)

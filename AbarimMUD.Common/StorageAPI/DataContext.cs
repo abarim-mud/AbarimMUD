@@ -1,37 +1,21 @@
-﻿using AbarimMUD.Utils;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
 
 namespace AbarimMUD.Storage
 {
 	public static class DataContext
 	{
-		private static DataContextSettings _settings;
+		private static string _folder;
 		private static readonly List<BaseStorage> _storages = new List<BaseStorage>();
 
-		public static string Folder
-		{
-			get
-			{
-				EnsureInitialized();
+		public static Action<string> Logger { get; set; }
 
-				return _settings.Folder;
-			}
-		}
+		public static string Folder => _folder;
 
-		private static void Log(string message) => _settings.Log(message);
-
-		public static void Initialize(string path, Action<string> log)
-		{
-			_settings = new DataContextSettings(path, log);
-
-			Log($"Database initialized at folder '{_settings.Folder}'");
-		}
+		internal static void Log(string message) => Logger?.Invoke(message);
 
 		public static void Register(BaseStorage storage)
 		{
-			EnsureInitialized();
 			if (_storages.Contains(storage))
 			{
 				return;
@@ -43,7 +27,6 @@ namespace AbarimMUD.Storage
 
 		public static void Unregister(BaseStorage storage)
 		{
-			EnsureInitialized();
 			if (!_storages.Contains(storage))
 			{
 				return;
@@ -53,27 +36,26 @@ namespace AbarimMUD.Storage
 			_storages.Remove(storage);
 		}
 
-		public static void Load()
+		public static void Load(string folder)
 		{
-			EnsureInitialized();
+			if (string.IsNullOrEmpty(folder))
+			{
+				throw new ArgumentNullException(nameof(folder));
+			}
+
+			Log($"Loading data from '{folder}'");
+
+			_folder = folder;
 
 			foreach (var storage in _storages)
 			{
-				storage.Load(_settings);
+				storage.Load();
 			}
 
 			foreach (var storage in _storages)
 			{
 				Log($"Setting references for {storage.Name}");
 				storage.SetReferences();
-			}
-		}
-
-		private static void EnsureInitialized()
-		{
-			if (_settings == null)
-			{
-				throw new Exception($"Database isn't initialized. Call DataStorage.Initialize first.");
 			}
 		}
 	}

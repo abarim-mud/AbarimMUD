@@ -19,7 +19,7 @@ namespace AbarimMUD.Storage
 		{
 			ClearCache();
 
-			var path = Path.Combine(BaseFolder, FileName);
+			var path = Path.Combine(DataContext.Folder, FileName);
 			if (!File.Exists(path))
 			{
 				LogDoesntExist(path);
@@ -47,9 +47,9 @@ namespace AbarimMUD.Storage
 
 		public override void SaveAll()
 		{
-			EnsureFolder(BaseFolder);
+			EnsureFolder(DataContext.Folder);
 
-			var path = Path.ChangeExtension(Path.Combine(BaseFolder, FileName), "json");
+			var path = Path.ChangeExtension(Path.Combine(DataContext.Folder, FileName), "json");
 
 			var all = All;
 			try

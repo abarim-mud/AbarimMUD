@@ -25,7 +25,7 @@ namespace AbarimMUD.Import.Diku
 
 			DataContext.Load();
 
-			var settings = new ImporterSettings(inputFolder, sourceType)
+			var settings = new ImporterSettings(inputFolder, sourceType, SubSourceType.Default)
 			{
 				AreasNames = areasNames,
 			};
@@ -88,7 +88,7 @@ namespace AbarimMUD.Import.Diku
 			try
 			{
 				Process(SourceType.Circle,
-					new[] { "Northern Midgaard", "Newbie Zone", "Sewer, First Level", "Second Sewer" },
+					new[] { "Northern Midgaard" },
 					@"D:\Projects\chaos\tbamud\lib\world",
 					@"D:\Projects\AbarimMUD\Data");
 			}

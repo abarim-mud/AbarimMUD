@@ -1,35 +1,20 @@
-﻿using System;
-using System.Text.Json;
+﻿using System.Text.Json;
 using AbarimMUD.Utils;
 
 namespace AbarimMUD.Storage
 {
 	public abstract class BaseStorage
 	{
-		private DataContextSettings _settings;
+		public bool Loaded { get; private set; }
 
-		private DataContextSettings Settings
-		{
-			get
-			{
-				if (_settings == null)
-				{
-					throw new Exception($"Settings are null. Make sure the DataContext.Load was called.");
-				}
-
-				return _settings;
-			}
-		}
-
-		protected string BaseFolder => Settings.Folder;
-		public bool Loaded => Settings != null;
 		public virtual string Name => GetType().Name;
 
-		internal void Load(DataContextSettings settings)
+		internal void Load()
 		{
-			_settings = settings ?? throw new ArgumentNullException(nameof(settings));
-
+			Loaded = false;
 			InternalLoad();
+
+			Loaded = true;
 		}
 
 		protected abstract void InternalLoad();
@@ -38,7 +23,7 @@ namespace AbarimMUD.Storage
 		{
 		}
 
-		protected void Log(string message) => Settings.Log(message);
+		protected void Log(string message) => DataContext.Log(message);
 
 		protected void LogDoesntExist(string name)
 		{

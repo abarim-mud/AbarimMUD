@@ -854,7 +854,6 @@
       "Owner": null,
       "Exits": {
         "North": 3065,
-        "East": 18600,
         "South": 3060,
         "West": 3066
       },
