@@ -1,4 +1,4 @@
-﻿namespace AbarimMUD.Data
+﻿namespace AbarimMUD.Utils
 {
 	public struct RandomRange
 	{

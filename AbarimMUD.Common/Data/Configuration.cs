@@ -1,4 +1,5 @@
 ﻿using AbarimMUD.Storage;
+using AbarimMUD.Utils;
 
 namespace AbarimMUD.Data
 {
@@ -25,6 +26,7 @@ namespace AbarimMUD.Data
 
 			public int PauseBetweenFightRoundsInMs { get; set; }
 			public int NegativeRegen { get; set; }
+			public RandomRange CharacterBarehandedDamage { get; set; } = new RandomRange(1, 4);
 		}
 
 		public static BaseStorage Storage => InternalStorage;
@@ -48,6 +50,7 @@ namespace AbarimMUD.Data
 		/// Negative regen rate(per minute), used when values(hp/mana/mv) are higher than their maxes
 		/// </summary>
 		public static int NegativeRegen => Instance.NegativeRegen;
+		public static RandomRange CharacterBarehandedDamage => Instance.CharacterBarehandedDamage;
 
 		public static void Save() => InternalStorage.Save();
 	}

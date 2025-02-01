@@ -188,7 +188,39 @@ namespace AbarimMUD.Data
 			Save();
 		}
 
-		protected override CreatureStats CreateClassStats(int level) => Class.CreateStats(level);
+		protected override CreatureStats CreateBaseStats()
+		{
+			var result = Class.CreateStats(Level);
+
+			// By default there's one attack
+			var attacksCount = 1;
+
+			// Default attack
+			var attack = new Attack(AttackType.Hit, 0, Configuration.CharacterBarehandedDamage.Minimum, Configuration.CharacterBarehandedDamage.Maximum);
+
+			// Apply skills
+			foreach(var pair in Skills)
+			{
+				// Apply all levels up to learned one
+				for(var level = 0; level <= (int)pair.Value.Level; ++level)
+				{
+					var def = pair.Value.Skill.Levels[level];
+
+					foreach(var modPair in def.Modifiers)
+					{
+						result.ApplyModifier(modPair.Key, modPair.Value);
+					}
+				}
+			}
+
+			// Set attacks
+			for(var i = 0; i < attacksCount; ++i)
+			{
+				result.Attacks.Add(attack);
+			}
+
+			return result;
+		}
 
 		public override bool MatchesKeyword(string keyword) => Name.StartsWith(keyword, StringComparison.OrdinalIgnoreCase);
 

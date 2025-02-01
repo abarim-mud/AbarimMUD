@@ -6,6 +6,11 @@
   "StartRoomId": 3001,
   "DefaultCharacter": "Yang",
   "DefaultClass": "warrior",
+  "HitpointsRegenPercentagePerMinute": 20,
+  "ManaRegenPercentagePerMinute": 20,
+  "MovesRegenPercentagePerMinute": 20,
+  "PeaceRegenMultiplier": 2,
   "PauseBetweenFightRoundsInMs": 3000,
-  "NegativeRegen": 20
+  "NegativeRegen": 20,
+  "CharacterBarehandedDamage": "1-4"
 }

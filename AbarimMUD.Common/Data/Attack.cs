@@ -1,4 +1,6 @@
-﻿namespace AbarimMUD.Data
+﻿using AbarimMUD.Utils;
+
+namespace AbarimMUD.Data
 {
 	public class Attack
 	{

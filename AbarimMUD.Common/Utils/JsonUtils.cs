@@ -26,6 +26,27 @@ namespace AbarimMUD.Utils
 			}
 		}
 
+		private class RandomRangeConverterType: JsonConverter<RandomRange>
+		{
+			public override RandomRange Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+			{
+				var value = reader.GetString();
+				var parts = value.Split('-');
+
+				if (parts.Length != 2)
+				{
+					throw new Exception($"Unable to parse RandomRange '{value}'");
+				}
+
+				return new RandomRange(int.Parse(parts[0].Trim()), int.Parse(parts[1].Trim()));
+			}
+
+			public override void Write(Utf8JsonWriter writer, RandomRange value, JsonSerializerOptions options)
+			{
+				writer.WriteStringValue($"{value.Minimum}-{value.Maximum}");
+			}
+		}
+
 		private class ValueRangeConverterType : JsonConverter<ValueRange>
 		{
 			public override ValueRange Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
@@ -43,6 +64,7 @@ namespace AbarimMUD.Utils
 		}
 
 		private static readonly LongConverterType LongConverter = new LongConverterType();
+		private static readonly RandomRangeConverterType RandomRangeConverter = new RandomRangeConverterType();
 		private static readonly ValueRangeConverterType ValueRangeConverter = new ValueRangeConverterType();
 
 		public static JsonSerializerOptions CreateOptions()
@@ -58,6 +80,7 @@ namespace AbarimMUD.Utils
 
 			result.Converters.Add(new JsonStringEnumConverter());
 			result.Converters.Add(LongConverter);
+			result.Converters.Add(RandomRangeConverter);
 			result.Converters.Add(ValueRangeConverter);
 
 			return result;

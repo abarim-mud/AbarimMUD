@@ -65,7 +65,7 @@ namespace AbarimMUD.Data
 			_stats = null;
 		}
 
-		protected abstract CreatureStats CreateClassStats(int level);
+		protected abstract CreatureStats CreateBaseStats();
 
 		private void UpdateStats()
 		{
@@ -74,7 +74,7 @@ namespace AbarimMUD.Data
 				return;
 			}
 
-			_stats = CreateClassStats(Level);
+			_stats = CreateBaseStats();
 
 			// Apply weapon to attacks
 			var weapon = Equipment[SlotType.Wield];

@@ -63,7 +63,7 @@ namespace AbarimMUD.Data
 			Room = null;
 		}
 
-		protected override CreatureStats CreateClassStats(int level) => Class.CreateStats(level);
+		protected override CreatureStats CreateBaseStats() => Class.CreateStats(Level);
 
 		public override string ToString() => Info.ToString();
 	}

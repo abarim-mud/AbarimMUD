@@ -66,7 +66,8 @@ namespace AbarimMUD
 
 			// PlayerClass.Storage.SaveAll();
 			// MobileClass.Storage.SaveAll();
-			Skill.Storage.SaveAll();
+			// Skill.Storage.SaveAll();
+			Configuration.Save();
 		}
 
 		private bool ProcessRegen(ref int currentValue, int maxValue, ref float fractionalValue, int regenValue, float secondsPassed)
