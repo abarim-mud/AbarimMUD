@@ -1,0 +1,11 @@
+<Project>
+  <PropertyGroup>
+    <Authors>AbarimMUDTeam</Authors>
+    <Product>AbarimMUD</Product>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/abarim-mud/AbarimMUD</PackageProjectUrl>
+    <RootNamespace>AbarimMUD</RootNamespace>
+    <Description>C# Diku Based MUD Engine</Description>
+    <VersionPrefix>0.3.0</VersionPrefix>
+  </PropertyGroup>
+</Project>
