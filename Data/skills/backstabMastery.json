@@ -1,8 +1,0 @@
-{
-  "Id": "backstabMastery",
-  "Name": "Backstab Mastery",
-  "IsPrime": true,
-  "Modifiers": {
-    "BackstabMultiplier": 1
-  }
-}

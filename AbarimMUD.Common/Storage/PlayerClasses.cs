@@ -14,8 +14,33 @@ namespace AbarimMUD.Storage
 			var result = base.CreateJsonOptions();
 
 			result.Converters.Add(Common.ItemConverter);
+			result.Converters.Add(Common.SkillConverter);
 
 			return result;
+		}
+
+		protected internal override void SetReferences()
+		{
+			base.SetReferences();
+
+			foreach(var cls in this)
+			{
+				if (cls.StartingEquipment != null)
+				{
+					for(var i = 0; i < cls.StartingEquipment.Length; ++i)
+					{
+						cls.StartingEquipment[i] = Item.EnsureItemById(cls.StartingEquipment[i].Id);
+					}
+				}
+
+				if (cls.StartingSkills != null)
+				{
+					for (var i = 0; i < cls.StartingSkills.Length; ++i)
+					{
+						cls.StartingSkills[i] = Skill.EnsureSkillById(cls.StartingSkills[i].Id);
+					}
+				}
+			}
 		}
 	}
 }

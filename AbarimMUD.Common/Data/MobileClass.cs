@@ -3,7 +3,6 @@ using AbarimMUD.Storage;
 using AbarimMUD.StorageAPI;
 using AbarimMUD.Utils;
 using System;
-using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
@@ -31,9 +30,9 @@ namespace AbarimMUD.Data
 		}
 	}
 
-	public class EqSet
+	public class MobileLoot
 	{
-		public int MinimumLevel { get; set; }
+		public int MaximumLevel { get; set; }
 		public Item[] Items { get; set; }
 	}
 
@@ -57,7 +56,7 @@ namespace AbarimMUD.Data
 		private ValueRange _minimumDamageRange;
 		private ValueRange _maximumDamageRange;
 		private AttackInfo[] _attacks;
-		private EqSet[] _eqSets;
+		private MobileLoot[] _loot;
 
 		[OLCIgnore]
 		public string Id { get; set; }
@@ -73,7 +72,7 @@ namespace AbarimMUD.Data
 		[JsonIgnore]
 		public bool UseOriginalValues { get; set; }
 
-		[JsonConverter(typeof(Common.GameClassConverter))]
+		[JsonConverter(typeof(Common.MobileClassConverterType))]
 		public MobileClass Inherits { get; set; }
 
 		[OLCAlias("hprange")]
@@ -299,21 +298,21 @@ namespace AbarimMUD.Data
 			}
 		}
 
-		public EqSet[] EqSets
+		public MobileLoot[] Loot
 		{
 			get
 			{
-				if (UseOriginalValues || Inherits == null || _eqSets != null)
+				if (UseOriginalValues || Inherits == null || _loot != null)
 				{
-					return _eqSets;
+					return _loot;
 				}
 
-				return Inherits.EqSets;
+				return Inherits.Loot;
 			}
 
 			set
 			{
-				_eqSets = value;
+				_loot = value;
 			}
 		}
 

@@ -90,6 +90,8 @@ namespace AbarimMUD.Data
 
 		public long Experience { get; set; }
 
+		public Dictionary<string, SkillValue> Skills { get; set; } = new Dictionary<string, SkillValue>();
+
 		public string Autoskill { get; set; }
 
 		public override string ShortDescription => Name;

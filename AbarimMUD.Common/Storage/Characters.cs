@@ -32,9 +32,10 @@ namespace AbarimMUD.Storage
 		protected override JsonSerializerOptions CreateJsonOptions()
 		{
 			var result = base.CreateJsonOptions();
-			result.Converters.Add(Common.ClassConverter);
+			result.Converters.Add(Common.PlayerClassConverter);
 			result.Converters.Add(Common.ItemConverter);
 			result.Converters.Add(Common.SkillConverter);
+			result.Converters.Add(Common.SkillValueConverter);
 
 			return result;
 		}
@@ -89,12 +90,37 @@ namespace AbarimMUD.Storage
 		{
 			base.SetReferences();
 
+			// Reference accounts
 			foreach (var record in _tempCache)
 			{
 				record.Character.Account = Account.EnsureAccountByName(record.AccountName);
 			}
 
 			_tempCache.Clear();
+
+			// Reference classes, items, skills, etc
+			foreach (var ch in this)
+			{
+				ch.Class = PlayerClass.EnsureClassById(ch.Class.Id);
+
+				foreach(var wearItem in ch.Equipment.Items)
+				{
+					wearItem.Item.Info = Item.EnsureItemById(wearItem.Item.Info.Id);
+				}
+
+				foreach(var invItem in ch.Inventory.Items)
+				{
+					invItem.Item.Info = Item.EnsureItemById(invItem.Item.Info.Id);
+				}
+
+				if (ch.Skills != null)
+				{
+					foreach (var pair in ch.Skills)
+					{
+						pair.Value.Skill = Skill.EnsureSkillById(pair.Key);
+					}
+				}
+			}
 		}
 	}
 }

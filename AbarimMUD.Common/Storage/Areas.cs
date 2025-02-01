@@ -210,6 +210,11 @@ namespace AbarimMUD.Storage
 						exit.Tag = null;
 					}
 				}
+
+				for(var i = 0; i < area.Mobiles.Count; ++i)
+				{
+					area.Mobiles[i].Class = MobileClass.EnsureClassById(area.Mobiles[i].Class.Id);
+				}
 			}
 		}
 
@@ -217,8 +222,7 @@ namespace AbarimMUD.Storage
 		{
 			var result = base.CreateJsonOptions();
 			result.Converters.Add(new RoomExitConverter());
-			result.Converters.Add(Common.ClassConverter);
-			result.Converters.Add(Common.ItemConverter);
+			result.Converters.Add(Common.MobileClassConverter);
 
 			return result;
 		}

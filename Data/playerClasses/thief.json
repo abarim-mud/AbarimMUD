@@ -14,12 +14,15 @@
     "1": 100,
     "100": 200
   },
-  "Equipment": [
+  "StartingEquipment": [
     "daggerOfPilferer",
     "leatherHelmet",
     "leatherArmor",
     "leatherGloves",
     "leatherPants",
     "leatherBoots"
+  ],
+  "StartingSkills": [
+    "backstab"
   ]
 }

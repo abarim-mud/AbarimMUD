@@ -162,9 +162,9 @@ namespace AbarimMUD
 			{
 				// Grant initial gear
 				var cls = _character.Class;
-				if (cls.Equipment != null && cls.Equipment.Length > 0)
+				if (cls.StartingEquipment != null)
 				{
-					foreach(var item in cls.Equipment)
+					foreach(var item in cls.StartingEquipment)
 					{
 						var newItem = new ItemInstance(item);
 						if (_character.Wear(newItem) != true)
@@ -172,6 +172,14 @@ namespace AbarimMUD
 							// If an item can't be worn, put it to the inventory
 							_character.Inventory.AddItem(newItem, 1);
 						}
+					}
+				}
+
+				if (cls.StartingSkills != null && cls.StartingSkills.Length > 0)
+				{
+					foreach(var skill in cls.StartingSkills)
+					{
+						_character.Skills[skill.Id] = new SkillValue(skill);
 					}
 				}
 

@@ -50,7 +50,6 @@ namespace AbarimMUD.Storage
 		{
 			var result = base.CreateJsonOptions();
 
-			result.Converters.Add(Common.SkillConverter);
 			result.Converters.Add(Common.ItemConverter);
 			result.Converters.Add(AttackConverter);
 
@@ -66,6 +65,20 @@ namespace AbarimMUD.Storage
 				if (cls.Inherits != null)
 				{
 					cls.Inherits = MobileClass.EnsureClassById(cls.Inherits.Id);
+				}
+
+				if (cls.Loot != null)
+				{
+					foreach (var eqSet in cls.Loot)
+					{
+						if (eqSet.Items != null)
+						{
+							for (var i = 0; i < eqSet.Items.Length; ++i)
+							{
+								eqSet.Items[i] = Item.GetItemById(eqSet.Items[i].Id);
+							}
+						}
+					}
 				}
 			}
 		}

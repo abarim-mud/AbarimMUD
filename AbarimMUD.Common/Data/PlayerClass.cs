@@ -68,7 +68,8 @@ namespace AbarimMUD.Data
 			}
 		}
 
-		public Item[] Equipment { get; set; }
+		public Item[] StartingEquipment { get; set; }
+		public Skill[] StartingSkills { get; set; }
 
 		public CreatureStats CreateStats(int level)
 		{

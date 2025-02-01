@@ -1,8 +1,33 @@
 {
   "Id": "backstab",
   "Name": "Backstab",
-  "IsPrime": false,
-  "Modifiers": {
-    "BackstabCount": 1
-  }
+  "Levels": [
+    {
+      "Modifiers": {
+        "BackstabCount": 1,
+        "BackstabMultiplier": 3
+      }
+    },
+    {
+      "Modifiers": {
+        "BackstabMultiplier": 2
+      }
+    },
+    {
+      "Modifiers": {
+        "BackstabCount": 1,
+        "BackstabMultiplier": 2
+      }
+    },
+    {
+      "Modifiers": {
+        "BackstabMultiplier": 2
+      }
+    },
+    {
+      "Modifiers": {
+        "BackstabMultiplier": 2
+      }
+    }
+  ]
 }
