@@ -1,6 +1,7 @@
 ﻿using AbarimMUD.Attributes;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace AbarimMUD.Data
 {
@@ -107,6 +108,7 @@ namespace AbarimMUD.Data
 		private GameClass _class;
 		private int _level;
 
+		[Browsable(false)]
 		public HashSet<string> Keywords { get; set; } = new HashSet<string>();
 
 		[OLCAlias("short")]
@@ -114,8 +116,10 @@ namespace AbarimMUD.Data
 
 		[OLCAlias("long")]
 		public string LongDescription { get; set; }
+
 		public string Description { get; set; }
 
+		[Browsable(false)]
 		public GameClass Class
 		{
 			get => _class;
@@ -149,10 +153,15 @@ namespace AbarimMUD.Data
 		}
 
 		public Sex Sex { get; set; }
+
+		[Browsable(false)]
 		public HashSet<MobileFlags> Flags { get; set; } = new HashSet<MobileFlags>();
 		public int Wealth { get; set; }
 
+		[Browsable(false)]
 		public Shop Shop { get; set; }
+
+		[Browsable(false)]
 		public List<MobileSpecialAttack> SpecialAttacks { get; set; } = new List<MobileSpecialAttack>();
 
 		public bool MatchesKeyword(string keyword) => Keywords.StartsWithPattern(keyword);

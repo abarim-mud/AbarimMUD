@@ -60,21 +60,11 @@ namespace AbarimMUD
 		{
 			Logger.Info("Loading Database");
 
-			DataContext.Initialize(dataFolder, Logger.Info);
+			StorageUtility.InitializeStorage(Logger.Info);
 
-			DataContext.Register(Configuration.Storage);
-			DataContext.Register(LevelInfo.Storage);
-			DataContext.Register(Item.Storage);
-			DataContext.Register(Skill.Storage);
-			DataContext.Register(GameClass.Storage);
-			DataContext.Register(Area.Storage);
-			DataContext.Register(Account.Storage);
-			DataContext.Register(Character.Storage);
-			DataContext.Register(Social.Storage);
+			DataContext.Load(dataFolder);
 
-			DataContext.Load();
-
-			GameClass.Storage.SaveAll();
+//			GameClass.Storage.SaveAll();
 		}
 
 		private bool ProcessRegen(ref int currentValue, int maxValue, ref float fractionalValue, int regenValue, float secondsPassed)

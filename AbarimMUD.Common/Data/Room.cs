@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
@@ -47,6 +48,8 @@ namespace AbarimMUD.Data
 	{
 		public string Name { get; set; }
 		public string Description { get; set; }
+
+		[Browsable(false)]
 		public HashSet<RoomFlags> Flags { get; set; }
 		public SectorType SectorType { get; set; }
 		public int HealRate { get; set; }
@@ -55,11 +58,14 @@ namespace AbarimMUD.Data
 		public string ExtraDescription { get; set; }
 		public string Owner { get; set; }
 
+		[Browsable(false)]
 		public Dictionary<Direction, RoomExit> Exits { get; set; }
 
+		[Browsable(false)]
 		[JsonIgnore]
 		public List<MobileInstance> Mobiles { get; } = new List<MobileInstance>();
 
+		[Browsable(false)]
 		[JsonIgnore]
 		public List<Character> Characters { get; } = new List<Character>();
 

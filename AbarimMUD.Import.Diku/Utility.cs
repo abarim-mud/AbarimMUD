@@ -40,7 +40,7 @@ namespace AbarimMUD.Import.Diku
 		{
 			var classId = "default";
 
-			var level = mobile.Level * 40 / 34;
+			var level = mobile.Level;
 			if (level < 1)
 			{
 				level = 1;

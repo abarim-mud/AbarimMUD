@@ -4,11 +4,11 @@ using System.Xml;
 using System.Xml.Serialization;
 using Microsoft.Xna.Framework;
 
-namespace AbarimMUD.MapEditor
+namespace AbarimMUD.MapViewer
 {
 	public class State
 	{
-		public const string StateFileName = "AbarimMUD.MapEditor.config";
+		public const string StateFileName = "AbarimMUD.MapViewer.config";
 
 		public static string StateFilePath
 		{
@@ -21,7 +21,7 @@ namespace AbarimMUD.MapEditor
 
 		public Point Size { get; set; }
 		public string EditedFolder { get; set; }
-		public float SplitPosition { get; set; } = 0.25f;
+		public float SplitPosition { get; set; } = 0.2f;
 
 		public State()
 		{

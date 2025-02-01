@@ -4,9 +4,9 @@ using Myra;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Concurrent;
-using AbarimMUD.MapEditor.UI;
+using AbarimMUD.MapViewer.UI;
 
-namespace AbarimMUD.MapEditor
+namespace AbarimMUD.MapViewer
 {
 	public class EditorGame : Game
 	{
@@ -75,9 +75,9 @@ namespace AbarimMUD.MapEditor
 						_mainForm.OnMenuFileOpenSelected();
 					}
 
-					if (_desktop.IsKeyDown(Keys.S))
+					if (_desktop.IsKeyDown(Keys.R))
 					{
-						_mainForm.Save(false);
+						_mainForm.OnMenuFileReload();
 					}
 				}
 			};

@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\MUDMapBuilder\MUDMapBuilder\MUDMapBuilder.csproj" />
+    <ProjectReference Include="..\..\Myra\src\Myra\Myra.MonoGame.csproj" />
     <ProjectReference Include="..\AbarimMUD.Common\AbarimMUD.Common.csproj" />
   </ItemGroup>
 

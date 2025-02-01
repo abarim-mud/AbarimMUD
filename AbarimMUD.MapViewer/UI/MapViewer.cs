@@ -9,7 +9,7 @@ using System;
 using System.IO;
 
 
-namespace AbarimMUD.MapEditor.UI
+namespace AbarimMUD.MapViewer.UI
 {
 	public class MapViewer : Image
 	{

@@ -3,7 +3,7 @@ using AbarimMUD.Storage;
 using AssetManagementBase;
 using System;
 
-namespace AbarimMUD.MapEditor
+namespace AbarimMUD.MapViewer
 {
 	internal class Program
 	{

@@ -7,7 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 
-namespace AbarimMUD.MapEditor
+namespace AbarimMUD.MapViewer
 {
 	internal static class Utility
 	{
@@ -19,6 +19,17 @@ namespace AbarimMUD.MapEditor
 				UriBuilder uri = new UriBuilder(codeBase);
 				string path = Uri.UnescapeDataString(uri.Path);
 				return Path.GetDirectoryName(path);
+			}
+		}
+
+		public static string Version
+		{
+			get
+			{
+				var assembly = typeof(Utility).Assembly;
+				var name = new AssemblyName(assembly.FullName);
+
+				return name.Version.ToString();
 			}
 		}
 
@@ -40,12 +51,17 @@ namespace AbarimMUD.MapEditor
 
 				var mmbArea = new MMBArea
 				{
-					Name = sourceArea.Name
+					Name = sourceArea.Name,
+					Tag = sourceArea
 				};
 
 				foreach (var room in sourceArea.Rooms)
 				{
-					var mmbRoom = new MMBRoom(room.Id, room.Name, false);
+					var mmbRoom = new MMBRoom(room.Id, room.Name, false)
+					{
+						Tag = room
+					};
+					
 					mmbArea.Add(mmbRoom);
 
 					foreach (var exit in room.Exits)
