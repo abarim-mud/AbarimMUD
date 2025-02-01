@@ -8,14 +8,6 @@ namespace AbarimMUD.Data
 		public int MaxMana { get; internal set; }
 		public int MaxMoves { get; internal set; }
 
-		/// <summary>
-		/// It's internal since real regen depends on whether the creature is fighting or not
-		/// Use GetHitpointsRegen method to get the real regen
-		/// </summary>
-		internal int HitpointsRegen { get; set; }
-		internal int ManaRegen { get; set; }
-		internal int MovesRegen { get; set; }
-
 		public List<Attack> Attacks { get; } = new List<Attack>();
 		public int BackstabCount { get; internal set; }
 		public int BackstabMultiplier { get; internal set; }
@@ -43,8 +35,7 @@ namespace AbarimMUD.Data
 
 		public int GetHitpointsRegen(bool isFighting)
 		{
-			var result = HitpointsRegen;
-
+			var result = (int)(Configuration.HitpointsRegenPercentagePerMinute * MaxHitpoints / 100.0f);
 			if (!isFighting)
 			{
 				result *= Configuration.PeaceRegenMultiplier;
@@ -55,8 +46,7 @@ namespace AbarimMUD.Data
 
 		public int GetManaRegen(bool isFighting)
 		{
-			var result = ManaRegen;
-
+			var result = (int)(Configuration.ManaRegenPercentagePerMinute * MaxMana / 100.0f);
 			if (!isFighting)
 			{
 				result *= Configuration.PeaceRegenMultiplier;
@@ -67,8 +57,7 @@ namespace AbarimMUD.Data
 
 		public int GetMovesRegen(bool isFighting)
 		{
-			var result = MovesRegen;
-
+			var result = (int)(Configuration.MovesRegenPercentagePerMinute * MaxMoves / 100.0f);
 			if (!isFighting)
 			{
 				result *= Configuration.PeaceRegenMultiplier;

@@ -9,17 +9,6 @@ namespace AbarimMUD.Commands
 {
 	public static class CommandUtils
 	{
-		public static GameClass EnsureClass(this ExecutionContext context, string name)
-		{
-			var cls = GameClass.GetClassById(name);
-			if (cls == null)
-			{
-				context.Send($"Unable to find class '{name}'");
-			}
-
-			return cls;
-		}
-
 		public static bool EnsureInt(this ExecutionContext context, string value, out int result)
 		{
 			if (!int.TryParse(value, out result))
@@ -154,7 +143,7 @@ namespace AbarimMUD.Commands
 
 		}
 
-		public static GameClass EnsureClassById(this ExecutionContext context, string id) => EnsureById(context, id, GameClass.GetClassById);
+		public static MobileClass EnsureMobileClassById(this ExecutionContext context, string id) => EnsureById(context, id, MobileClass.GetClassById);
 		public static Character EnsureCharacterByName(this ExecutionContext context, string name) => EnsureById(context, name, Character.GetCharacterByName);
 
 		public static Item EnsureItemType(this ExecutionContext context, string id, ItemType itemType)

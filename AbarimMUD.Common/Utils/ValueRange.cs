@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AbarimMUD.Data
+namespace AbarimMUD.Utils
 {
 	public class ValueRange
 	{
@@ -29,7 +29,7 @@ namespace AbarimMUD.Data
 			}
 
 			int? lastKey = null;
-			foreach(var pair in values)
+			foreach (var pair in values)
 			{
 				if (lastKey != null && lastKey.Value == pair.Key)
 				{

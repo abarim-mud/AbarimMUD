@@ -34,9 +34,9 @@ namespace AbarimMUD
 			Send("Please, enter you new character name: ");
 		}
 
-		private static GameClass[] GetAvailableClasses()
+		private static PlayerClass[] GetAvailablePlayerClasses()
 		{
-			return (from c in GameClass.Storage where c.Flags.HasFlag(GameClassFlags.Player) && !c.Flags.HasFlag(GameClassFlags.Abstract) select c).ToArray();
+			return PlayerClass.Storage.ToArray();
 		}
 
 		private void SendChoosePrimaryClassPrompt()
@@ -46,15 +46,9 @@ namespace AbarimMUD
 
 			var index = 1;
 
-			var classes = GetAvailableClasses();
+			var classes = GetAvailablePlayerClasses();
 			foreach (var c in classes)
 			{
-				if (!c.Flags.HasFlag(GameClassFlags.Player) || c.Flags.HasFlag(GameClassFlags.Abstract))
-				{
-					continue;
-				}
-
-
 				sb.AppendLine(string.Format("{0}) {1} - {2}", index, c.Name, c.Description));
 				++index;
 			}
@@ -120,15 +114,15 @@ namespace AbarimMUD
 		private void ProcessPrimaryClass(string data)
 		{
 			int index;
-			if (!int.TryParse(data, out index) || index < 1 || index > GameClass.Storage.Count)
+			if (!int.TryParse(data, out index) || index < 1 || index > PlayerClass.Storage.Count)
 			{
 				Send("Invalid selection.");
 				SendChoosePrimaryClassPrompt();
 				return;
 			}
 
-			var classes = GetAvailableClasses();
-			_character.PlayerClass = classes[index - 1];
+			var classes = GetAvailablePlayerClasses();
+			_character.Class = classes[index - 1];
 
 			_mode = Mode.Gender;
 			SendGenderPrompt();
@@ -168,9 +162,9 @@ namespace AbarimMUD
 			{
 				// Grant initial gear
 				var cls = _character.Class;
-				if (cls.EqSets != null && cls.EqSets.Length > 0)
+				if (cls.Equipment != null && cls.Equipment.Length > 0)
 				{
-					foreach(var item in cls.EqSets[0].Items)
+					foreach(var item in cls.Equipment)
 					{
 						var newItem = new ItemInstance(item);
 						if (_character.Wear(newItem) != true)

@@ -9,11 +9,13 @@ namespace AbarimMUD.Data
 
 		public Mobile Info { get; }
 
+		public MobileClass Class => Info.Class;
+
+		public override string ClassName => Class.Name;
+
 		public HashSet<string> Keywords => Info.Keywords;
 		public override string ShortDescription => Info.ShortDescription;
 		public override string Description => Info.Description;
-
-		public override GameClass Class => Info.Class;
 
 		public override int Level => Info.Level;
 
@@ -60,6 +62,8 @@ namespace AbarimMUD.Data
 			ActiveCreatures.Remove(this);
 			Room = null;
 		}
+
+		protected override CreatureStats CreateClassStats(int level) => Class.CreateStats(level);
 
 		public override string ToString() => Info.ToString();
 	}

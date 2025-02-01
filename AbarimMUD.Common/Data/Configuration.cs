@@ -16,6 +16,11 @@ namespace AbarimMUD.Data
 			public int StartRoomId { get; set; }
 			public string DefaultCharacter { get; set; }
 			public string DefaultClass { get; set; }
+
+			public int HitpointsRegenPercentagePerMinute { get; set; } = 20;
+			public int ManaRegenPercentagePerMinute { get; set; } = 20;
+			public int MovesRegenPercentagePerMinute { get; set; } = 20;
+
 			public int PeaceRegenMultiplier { get; set; } = 2;
 
 			public int PauseBetweenFightRoundsInMs { get; set; }
@@ -34,6 +39,9 @@ namespace AbarimMUD.Data
 		public static string DefaultCharacter => Instance.DefaultCharacter;
 		public static string DefaultClass => Instance.DefaultClass;
 		public static int PauseBetweenFightRoundsInMs => Instance.PauseBetweenFightRoundsInMs;
+		public static int HitpointsRegenPercentagePerMinute => Instance.HitpointsRegenPercentagePerMinute;
+		public static int ManaRegenPercentagePerMinute => Instance.ManaRegenPercentagePerMinute;
+		public static int MovesRegenPercentagePerMinute => Instance.MovesRegenPercentagePerMinute;
 		public static int PeaceRegenMultiplier => Instance.PeaceRegenMultiplier;
 
 		/// <summary>

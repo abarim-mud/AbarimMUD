@@ -1,6 +1,7 @@
 ﻿using AbarimMUD.Attributes;
 using AbarimMUD.Storage;
 using AbarimMUD.StorageAPI;
+using AbarimMUD.Utils;
 using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
@@ -30,34 +31,13 @@ namespace AbarimMUD.Data
 		}
 	}
 
-	[Flags]
-	public enum GameClassFlags
-	{
-		None = 0,
-
-		/// <summary>
-		/// Could be used only as base class
-		/// </summary>
-		Abstract = 1 << 0,
-
-		/// <summary>
-		/// Could be used by a player
-		/// </summary>
-		Player = 1 << 1,
-
-		/// <summary>
-		/// Could be used by a mobile
-		/// </summary>
-		Mobile = 1 << 2,
-	}
-
 	public class EqSet
 	{
 		public int MinimumLevel { get; set; }
 		public Item[] Items { get; set; }
 	}
 
-	public class GameClass : IStoredInFile, ISerializationEvents, ICloneable
+	public class MobileClass : IStoredInFile, ISerializationEvents, ICloneable
 	{
 		public const AttackType DefaultAttackType = Data.AttackType.Hit;
 		public const int DefaultPenetration = 0;
@@ -65,17 +45,13 @@ namespace AbarimMUD.Data
 		public const int DefaultMaximumDamage = 4;
 
 		public static readonly ValueRange DefaultHitpoints = new ValueRange(1, 100);
-		public static readonly ValueRange DefaultHitpointsRegen = new ValueRange(1, 50);
 		public static readonly ValueRange DefaultMana = new ValueRange(100, 200);
-		public static readonly ValueRange DefaultManaRegen = new ValueRange(1, 50);
 		public static readonly ValueRange DefaultMoves = new ValueRange(100, 200);
-		public static readonly ValueRange DefaultMovesRegen = new ValueRange(1, 50);
 		public static readonly ValueRange DefaultArmor = new ValueRange(0, 0);
-		public static readonly MultipleFilesStorage<GameClass> Storage = new GameClasses();
+		public static readonly MultipleFilesStorage<MobileClass> Storage = new MobileClasses();
 
 		private AttackType? _attackType;
 		private ValueRange _hitpointsRange, _manaRange = DefaultMana, _movesRange;
-		private ValueRange _hitpointsRegenRange, _manaRegenRange = DefaultManaRegen, _movesRegenRange;
 		private ValueRange _armorRange;
 		private ValueRange _penetrationRange;
 		private ValueRange _minimumDamageRange;
@@ -88,7 +64,6 @@ namespace AbarimMUD.Data
 
 		public string Name { get; set; }
 		public string Description { get; set; }
-		public GameClassFlags Flags { get; set; }
 
 		/// <summary>
 		/// Determines whether inherited properties such as HitPointsRage
@@ -99,7 +74,7 @@ namespace AbarimMUD.Data
 		public bool UseOriginalValues { get; set; }
 
 		[JsonConverter(typeof(Common.GameClassConverter))]
-		public GameClass Inherits { get; set; }
+		public MobileClass Inherits { get; set; }
 
 		[OLCAlias("hprange")]
 		public ValueRange HitpointsRange
@@ -172,81 +147,6 @@ namespace AbarimMUD.Data
 				}
 
 				_movesRange = value;
-				InvalidateCreaturesOfThisClass();
-			}
-		}
-
-		[OLCAlias("hpregenrange")]
-		public ValueRange HitpointsRegenRange
-		{
-			get
-			{
-				if (UseOriginalValues || Inherits == null || _hitpointsRegenRange != null)
-				{
-					return _hitpointsRegenRange;
-				}
-
-				return Inherits.HitpointsRegenRange;
-			}
-
-			set
-			{
-				if (value == _hitpointsRegenRange)
-				{
-					return;
-				}
-
-				_hitpointsRegenRange = value;
-				InvalidateCreaturesOfThisClass();
-			}
-		}
-
-		[OLCAlias("manaregenrange")]
-		public ValueRange ManaRegenRange
-		{
-			get
-			{
-				if (UseOriginalValues || Inherits == null || _manaRegenRange != null)
-				{
-					return _manaRegenRange;
-				}
-
-				return Inherits.ManaRegenRange;
-			}
-
-			set
-			{
-				if (value == _manaRegenRange)
-				{
-					return;
-				}
-
-				_manaRegenRange = value;
-				InvalidateCreaturesOfThisClass();
-			}
-		}
-
-		[OLCAlias("mvregenrange")]
-		public ValueRange MovesRegenRange
-		{
-			get
-			{
-				if (UseOriginalValues || Inherits == null || _movesRegenRange != null)
-				{
-					return _movesRegenRange;
-				}
-
-				return Inherits.MovesRegenRange;
-			}
-
-			set
-			{
-				if (value == _movesRegenRange)
-				{
-					return;
-				}
-
-				_movesRegenRange = value;
 				InvalidateCreaturesOfThisClass();
 			}
 		}
@@ -417,8 +317,6 @@ namespace AbarimMUD.Data
 			}
 		}
 
-		public SortedDictionary<int, Skill[]> SkillsByLevels { get; set; } = new SortedDictionary<int, Skill[]>();
-
 		public void OnSerializationStarted()
 		{
 			UseOriginalValues = true;
@@ -432,28 +330,21 @@ namespace AbarimMUD.Data
 		public CreatureStats CreateStats(int level)
 		{
 			var hitpoints = HitpointsRange ?? DefaultHitpoints;
-			var hitpointsRegen = HitpointsRegenRange ?? DefaultHitpointsRegen;
 			var mana = ManaRange ?? DefaultMana;
-			var manaRegen = ManaRegenRange ?? DefaultManaRegen;
 			var moves = MovesRange ?? DefaultMoves;
-			var movesRegen = MovesRegenRange ?? DefaultMovesRegen;
 			var armor = ArmorRange ?? DefaultArmor;
 
 			var stats = new CreatureStats
 			{
 				MaxHitpoints = hitpoints.CalculateValue(level),
-				HitpointsRegen = hitpointsRegen.CalculateValue(level),
 				MaxMana = mana.CalculateValue(level),
-				ManaRegen = manaRegen.CalculateValue(level),
 				MaxMoves = moves.CalculateValue(level),
-				MovesRegen = movesRegen.CalculateValue(level),
 				Armor = armor.CalculateValue(level),
 			};
 
 			// Calculate attacks' values
 			var attackType = AttackType ?? DefaultAttackType;
 
-			// We use sqrt growth type for players and linear growth type for mobs
 			var penetration = PenetrationRange.CalculateValue(level, DefaultPenetration);
 			var minimumDamage = MinimumDamageRange.CalculateValue(level, DefaultMinimumDamage);
 			var maximumDamage = MaximumDamageRange.CalculateValue(level, DefaultMaximumDamage);
@@ -514,25 +405,6 @@ namespace AbarimMUD.Data
 			xpAward *= attackXpFactor;
 
 			stats.XpAward = xpAward;
-			stats.BackstabMultiplier = CombatCalc.BackstabMult(level);
-
-			// Apply skills
-			foreach (var pair in SkillsByLevels)
-			{
-				if (pair.Key > level)
-				{
-					// Since SkillsByLevels is SortedDictionary, we could break upon reaching the first out-of-level pair
-					break;
-				}
-
-				foreach (var skill in pair.Value)
-				{
-					foreach (var mod in skill.Modifiers)
-					{
-						stats.ApplyModifier(mod.Key, mod.Value);
-					}
-				}
-			}
 
 			return stats;
 		}
@@ -541,39 +413,36 @@ namespace AbarimMUD.Data
 		{
 			foreach (var creature in Creature.ActiveCreatures)
 			{
-				if (creature.Class.Id == Id)
+				var asMobile = creature as MobileInstance;
+				if (asMobile == null)
+				{
+					continue;
+				}
+
+				if (asMobile.Class.Id == Id)
 				{
 					creature.InvalidateStats();
 				}
 			}
 		}
 
-		public GameClass CloneClass()
+		public MobileClass CloneClass()
 		{
-			var clone = new GameClass
+			var clone = new MobileClass
 			{
 				Id = Id,
 				Name = Name,
 				Description = Description,
-				Flags = Flags,
 				Inherits = Inherits,
 				_hitpointsRange = _hitpointsRange,
-				_hitpointsRegenRange = _hitpointsRegenRange,
 				_manaRange = _manaRange,
-				_manaRegenRange = _manaRegenRange,
 				_movesRange = _movesRange,
-				_movesRegenRange = _movesRegenRange,
 				_armorRange = _armorRange,
 				_penetrationRange = _penetrationRange,
 				_minimumDamageRange = _minimumDamageRange,
 				_maximumDamageRange = _maximumDamageRange,
 				_attacks = _attacks,
 			};
-
-			foreach (var pair in SkillsByLevels)
-			{
-				clone.SkillsByLevels[pair.Key] = pair.Value;
-			}
 
 			return clone;
 		}
@@ -585,7 +454,7 @@ namespace AbarimMUD.Data
 		public void Create() => Storage.Create(this);
 		public void Save() => Storage.Save(this);
 
-		public static GameClass GetClassById(string name) => Storage.GetByKey(name);
-		public static GameClass EnsureClassById(string name) => Storage.EnsureByKey(name);
+		public static MobileClass GetClassById(string name) => Storage.GetByKey(name);
+		public static MobileClass EnsureClassById(string name) => Storage.EnsureByKey(name);
 	}
 }

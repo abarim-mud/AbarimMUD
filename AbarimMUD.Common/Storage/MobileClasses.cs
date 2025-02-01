@@ -1,13 +1,11 @@
 ﻿using AbarimMUD.Data;
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Storage
 {
-	internal class GameClasses : MultipleFilesStorage<GameClass>
+	internal class MobileClasses : MultipleFilesStorage<MobileClass>
 	{
 		private class AttackInfoConverter : JsonConverter<AttackInfo>
 		{
@@ -42,26 +40,9 @@ namespace AbarimMUD.Storage
 			}
 		}
 
-		private class ValueRangeConverterType: JsonConverter<ValueRange>
-		{
-			public override ValueRange Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-			{
-				var doc = JsonDocument.ParseValue(ref reader);
-				var values = JsonSerializer.Deserialize<SortedDictionary<int, int>>(doc);
-
-				return new ValueRange(values);
-			}
-
-			public override void Write(Utf8JsonWriter writer, ValueRange value, JsonSerializerOptions options)
-			{
-				JsonSerializer.Serialize(writer, value.Values);
-			}
-		}
-
 		private static readonly AttackInfoConverter AttackConverter = new AttackInfoConverter();
-		private static readonly ValueRangeConverterType ValueRangeConverter = new ValueRangeConverterType();
 
-		public GameClasses() : base(c => c.Id, "classes")
+		public MobileClasses() : base(c => c.Id, "mobileClasses")
 		{
 		}
 
@@ -72,27 +53,6 @@ namespace AbarimMUD.Storage
 			result.Converters.Add(Common.SkillConverter);
 			result.Converters.Add(Common.ItemConverter);
 			result.Converters.Add(AttackConverter);
-			result.Converters.Add(ValueRangeConverter);
-
-			return result;
-		}
-
-		protected override string BuildPath(GameClass entity)
-		{
-			var result = base.BuildPath(entity);
-
-			var folder = Path.GetDirectoryName(result);
-			var fileName = Path.GetFileName(result);
-			if (entity.Flags.HasFlag(GameClassFlags.Player))
-			{
-				result = Path.Combine(folder, "player");
-			}
-			else
-			{
-				result = Path.Combine(folder, "mobile");
-			}
-
-			result = Path.Combine(result, fileName);
 
 			return result;
 		}
@@ -105,7 +65,7 @@ namespace AbarimMUD.Storage
 			{
 				if (cls.Inherits != null)
 				{
-					cls.Inherits = GameClass.EnsureClassById(cls.Inherits.Id);
+					cls.Inherits = MobileClass.EnsureClassById(cls.Inherits.Id);
 				}
 			}
 		}

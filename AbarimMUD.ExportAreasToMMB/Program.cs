@@ -18,7 +18,7 @@ namespace AbarimMUD.ExportAreasToMMB
 			DataContext.Initialize(inputFolder, Log);
 
 			DataContext.Register(Race.Storage);
-			DataContext.Register(GameClass.Storage);
+			DataContext.Register(MobileClass.Storage);
 			DataContext.Register(Mobile.Storage);
 			DataContext.Register(Item.Storage);
 			DataContext.Register(Skill.Storage);

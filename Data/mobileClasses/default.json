@@ -2,7 +2,6 @@
   "Id": "default",
   "Name": "Default",
   "Description": "Default",
-  "Flags": "Mobile",
   "Inherits": null,
   "HitpointsRange": {
     "1": 10,
@@ -15,18 +14,6 @@
   "MovesRange": {
     "1": 100,
     "100": 200
-  },
-  "HitpointsRegenRange": {
-    "1": 20,
-    "100": 100
-  },
-  "ManaRegenRange": {
-    "1": 1,
-    "100": 50
-  },
-  "MovesRegenRange": {
-    "1": 1,
-    "100": 50
   },
   "ArmorRange": {
     "1": 10,
@@ -55,6 +42,5 @@
     75,
     100
   ],
-  "EqSets": null,
-  "SkillsByLevels": {}
+  "EqSets": null
 }

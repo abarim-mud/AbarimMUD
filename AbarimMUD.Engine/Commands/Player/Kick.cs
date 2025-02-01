@@ -10,7 +10,7 @@ namespace AbarimMUD.Commands.Player
 		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
 			// Check the player has the skill
-			if (context.Creature.GetSkill("kick") == null)
+/*			if (context.Creature.GetSkill("kick") == null)
 			{
 				context.Send($"You don't know how to kick.");
 				return false;
@@ -52,7 +52,7 @@ namespace AbarimMUD.Commands.Player
 			}
 
 			context.Kick(target);
-			Fight.Start(context, target);
+			Fight.Start(context, target);*/
 
 			return true;
 		}

@@ -151,7 +151,7 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 
 		static OLCManager()
 		{
-			_records["class"] = new OLCRecordString<GameClass>(GameClass.Storage, false);
+			_records["mobileClass"] = new OLCRecordString<MobileClass>(MobileClass.Storage, false);
 			_records["item"] = new OLCRecordString<Item>(Item.Storage, true);
 			_records["character"] = new OLCRecordString<Character>(Character.Storage, false);
 			_records["mobile"] = new OLCRecordInt<Mobile>(() => Area.Storage.AllMobiles, m => m.ShortDescription, true);
@@ -164,13 +164,15 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 
 		public static IOLCStorage GetStorage(string key)
 		{
-			IOLCStorage result;
-			if (!_records.TryGetValue(key, out result))
+			foreach(var pair in _records)
 			{
-				return null;
+				if (pair.Key.StartsWith(key, StringComparison.InvariantCultureIgnoreCase))
+				{
+					return pair.Value;
+				}
 			}
 
-			return result;
+			return null;
 		}
 	}
 }

@@ -35,15 +35,15 @@ namespace AbarimMUD.Storage
 			}
 		}
 
-		public class GameClassConverter: EntityConverter<GameClass>
+		public class GameClassConverter: EntityConverter<MobileClass>
 		{
-			public GameClassConverter(): base(c => c.Id, id => GameClass.EnsureClassById(id))
+			public GameClassConverter(): base(c => c.Id, id => MobileClass.EnsureClassById(id))
 			{
 
 			}
 		}
 
-		public static readonly EntityConverter<GameClass> ClassConverter = new GameClassConverter();
+		public static readonly EntityConverter<MobileClass> ClassConverter = new GameClassConverter();
 		public static readonly EntityConverter<Skill> SkillConverter = new EntityConverter<Skill>(s => s.Id, id => Skill.EnsureSkillById(id));
 		public static readonly EntityConverter<Item> ItemConverter = new EntityConverter<Item>(i => i.Id, id => Item.EnsureItemById(id));
 	}

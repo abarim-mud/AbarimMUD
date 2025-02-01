@@ -105,7 +105,7 @@ namespace AbarimMUD.Data
 
 	public class Mobile : AreaEntity
 	{
-		private GameClass _class;
+		private MobileClass _class;
 		private int _level;
 
 		[Browsable(false)]
@@ -120,7 +120,7 @@ namespace AbarimMUD.Data
 		public string Description { get; set; }
 
 		[Browsable(false)]
-		public GameClass Class
+		public MobileClass Class
 		{
 			get => _class;
 

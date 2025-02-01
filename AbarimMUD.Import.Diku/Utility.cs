@@ -53,7 +53,7 @@ namespace AbarimMUD.Import.Diku
 				ShortDescription = mobile.ShortDescription,
 				LongDescription = mobile.LongDescription,
 				Description = mobile.Description,
-				Class = GameClass.EnsureClassById(classId),
+				Class = MobileClass.EnsureClassById(classId),
 				Level = level,
 				Sex = Enum.Parse<Sex>(mobile.Sex, true),
 				Wealth = mobile.Wealth,

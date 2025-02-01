@@ -1,6 +1,7 @@
 ﻿using AbarimMUD.Attributes;
 using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
@@ -13,8 +14,8 @@ namespace AbarimMUD.Data
 
 		public abstract string ShortDescription { get; }
 		public abstract string Description { get; }
-		public abstract GameClass Class { get; }
 
+		public abstract string ClassName { get; }
 		public abstract int Level { get; }
 		public abstract Sex Sex { get; }
 
@@ -65,6 +66,8 @@ namespace AbarimMUD.Data
 			_stats = null;
 		}
 
+		protected abstract CreatureStats CreateClassStats(int level);
+
 		private void UpdateStats()
 		{
 			if (_stats != null)
@@ -72,7 +75,7 @@ namespace AbarimMUD.Data
 				return;
 			}
 
-			_stats = Class.CreateStats(Level);
+			_stats = CreateClassStats(Level);
 
 			// Apply weapon to attacks
 			var weapon = Equipment[SlotType.Wield];
@@ -85,14 +88,16 @@ namespace AbarimMUD.Data
 					attack.AttackType = weapon.Info.AttackType;
 					attack.Penetration += weaponPenetration;
 
-					if (Class.Flags.HasFlag(GameClassFlags.Player))
+					if (this is Character)
 					{
+						// Player
 						// Replace damage with weapon values
 						attack.MinimumDamage = weaponMinimumDamage;
 						attack.MaximumDamage = weaponMaximumDamage;
 					}
 					else
 					{
+						// Mobile
 						// Add weapon values to damage
 						attack.MinimumDamage += weaponMinimumDamage;
 						attack.MaximumDamage += weaponMaximumDamage;
@@ -167,30 +172,8 @@ namespace AbarimMUD.Data
 			}
 		}
 
-		public Skill GetSkill(string skillName)
-		{
-			foreach(var pair in Class.SkillsByLevels)
-			{
-				if (pair.Key > Level)
-				{
-					// Since SkillsByLevels is SortedDictionary, we could break upon reaching the first out-of-level pair
-					break;
-				}
-
-				foreach(var skill in pair.Value)
-				{
-					if (skill.Name.EqualsToIgnoreCase(skillName))
-					{
-						return skill;
-					}
-				}
-			}
-
-			return null;
-		}
-
 		protected virtual void Slain()
-		{ 
+		{
 		}
 	}
 }

@@ -22,7 +22,7 @@ namespace AbarimMUD.Data
 
 		public static readonly MultipleFilesStorage<Character> Storage = new Characters();
 
-		private GameClass _class;
+		private PlayerClass _class;
 		private int _level;
 		private Room _room;
 
@@ -48,12 +48,13 @@ namespace AbarimMUD.Data
 		[OLCIgnore]
 		public string Name { get; set; }
 
+
 		[OLCAlias("description")]
 		public string PlayerDescription { get; set; }
 
 		[OLCAlias("class")]
 
-		public GameClass PlayerClass
+		public PlayerClass Class
 		{
 			get => _class;
 
@@ -63,6 +64,8 @@ namespace AbarimMUD.Data
 				InvalidateStats();
 			}
 		}
+
+		public override string ClassName => Class.Name;
 
 		[OLCAlias("level")]
 		public int PlayerLevel
@@ -91,7 +94,6 @@ namespace AbarimMUD.Data
 
 		public override string ShortDescription => Name;
 		public override string Description => PlayerDescription;
-		public override GameClass Class => PlayerClass;
 		public override int Level => PlayerLevel;
 		public override Sex Sex => PlayerSex;
 
@@ -183,6 +185,8 @@ namespace AbarimMUD.Data
 
 			Save();
 		}
+
+		protected override CreatureStats CreateClassStats(int level) => Class.CreateStats(level);
 
 		public override bool MatchesKeyword(string keyword) => Name.StartsWith(keyword, StringComparison.OrdinalIgnoreCase);
 

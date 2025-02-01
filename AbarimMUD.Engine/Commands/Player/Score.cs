@@ -7,7 +7,7 @@ namespace AbarimMUD.Commands.Player
 	{
 		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
-			context.Send($"You are {context.ShortDescription}, {context.Creature.Class.Name} of level {context.Creature.Level}.");
+			context.Send($"You are {context.ShortDescription}, {context.Creature.ClassName} of level {context.Creature.Level}.");
 			var asCharacter = context.Creature as Character;
 			if (asCharacter != null)
 			{

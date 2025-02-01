@@ -1,4 +1,5 @@
 ﻿using AbarimMUD.Data;
+using AbarimMUD.Utils;
 using System;
 using System.Collections.Generic;
 
@@ -137,9 +138,9 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 
 				SetValue(item, new ValueRange(level1Value, level100Value));
 			}
-			else if (Type == typeof(GameClass))
+			else if (Type == typeof(MobileClass))
 			{
-				var cls = context.EnsureClassById(s);
+				var cls = context.EnsureMobileClassById(s);
 				if (cls == null)
 				{
 					return false;

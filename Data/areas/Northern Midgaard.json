@@ -1480,7 +1480,7 @@
       "ShortDescription": "the beastly fido",
       "LongDescription": "A beastly fido is mucking through the garbage looking for food here.\r\n",
       "Description": "The fido is a small dog that has a foul smell and pieces of rotted meat\r\nhanging around his teeth.\r\n",
-      "Class": "default",
+      "Class": "canine",
       "Level": 1,
       "Sex": "Neutral",
       "Flags": [],

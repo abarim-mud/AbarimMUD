@@ -2,6 +2,7 @@
 using System.Text.Json;
 using System;
 using System.IO;
+using System.Collections.Generic;
 
 namespace AbarimMUD.Utils
 {
@@ -25,7 +26,24 @@ namespace AbarimMUD.Utils
 			}
 		}
 
+		private class ValueRangeConverterType : JsonConverter<ValueRange>
+		{
+			public override ValueRange Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+			{
+				var doc = JsonDocument.ParseValue(ref reader);
+				var values = JsonSerializer.Deserialize<SortedDictionary<int, int>>(doc);
+
+				return new ValueRange(values);
+			}
+
+			public override void Write(Utf8JsonWriter writer, ValueRange value, JsonSerializerOptions options)
+			{
+				JsonSerializer.Serialize(writer, value.Values);
+			}
+		}
+
 		private static readonly LongConverterType LongConverter = new LongConverterType();
+		private static readonly ValueRangeConverterType ValueRangeConverter = new ValueRangeConverterType();
 
 		public static JsonSerializerOptions CreateOptions()
 		{
@@ -40,6 +58,7 @@ namespace AbarimMUD.Utils
 
 			result.Converters.Add(new JsonStringEnumConverter());
 			result.Converters.Add(LongConverter);
+			result.Converters.Add(ValueRangeConverter);
 
 			return result;
 		}
