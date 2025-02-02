@@ -112,7 +112,7 @@ namespace AbarimMUD.Data
 			get
 			{
 				var result = 0;
-				foreach(var pair in Skills)
+				foreach (var pair in Skills)
 				{
 					result += ((int)pair.Value.Level + 1);
 				}
@@ -266,7 +266,7 @@ namespace AbarimMUD.Data
 
 					if (def.Abilities != null)
 					{
-						foreach(var ab in def.Abilities)
+						foreach (var ab in def.Abilities)
 						{
 							if (ab.PrimeClass != null && ab.PrimeClass.Id != Class.Id)
 							{
@@ -301,6 +301,34 @@ namespace AbarimMUD.Data
 		}
 
 		public override bool MatchesKeyword(string keyword) => Name.StartsWith(keyword, StringComparison.OrdinalIgnoreCase);
+
+		public void Train(Skill skill)
+		{
+			SkillValue skillValue = null;
+			foreach (var pair in Skills)
+			{
+				if (skill != null && skill.Id == pair.Value.Skill.Id)
+				{
+					skillValue = pair.Value;
+				}
+			}
+
+			if (skillValue != null && skillValue.Level == SkillLevel.Master)
+			{
+				return;
+			}
+
+			if (skillValue == null)
+			{
+				Skills[skill.Id] = new SkillValue(skill);
+			}
+			else
+			{
+				++skillValue.Level;
+			}
+
+			InvalidateStats();
+		}
 
 		public static Character GetCharacterByName(string name) => Storage.GetByKey(name);
 		public static Character EnsureCharacterByName(string name) => Storage.EnsureByKey(name);

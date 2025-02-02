@@ -6,7 +6,7 @@
     {
       "Modifiers": {
         "BackstabCount": 1,
-        "BackstabMultiplier": 3
+        "BackstabMultiplier": 2
       },
       "Abilities": [
         "backstab",

@@ -179,7 +179,7 @@ namespace AbarimMUD
 				{
 					foreach(var skill in cls.StartingSkills)
 					{
-						_character.Skills[skill.Id] = new SkillValue(skill);
+						_character.Train(skill);
 					}
 				}
 

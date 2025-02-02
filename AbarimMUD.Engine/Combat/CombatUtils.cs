@@ -36,12 +36,12 @@ namespace AbarimMUD.Combat
 
 					if (level % 2 == 0)
 					{
-						attacker.Send("You gained 1 skill point");
+						attacker.Send("You gained 1 skill point.");
 					}
 				}
 
 				character.Wealth += targetMobile.Info.Wealth;
-				attacker.Send($"You get {targetMobile.Info.Wealth.FormatBigNumber()} from the corpse of {targetMobile.ShortDescription}.");
+				attacker.Send($"You get {targetMobile.Info.Wealth.FormatBigNumber()} gold coins from the corpse of {targetMobile.ShortDescription}.");
 				attacker.Send($"You bury the corpse of {targetMobile.ShortDescription}.");
 
 				var roomMessage = $"{attacker.ShortDescription} gets gold coins from the corpse of {targetMobile.ShortDescription}.\n" +
