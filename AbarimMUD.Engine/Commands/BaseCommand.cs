@@ -25,6 +25,7 @@ namespace AbarimMUD.Commands
 
 		public static readonly Say Say = new Say();
 		public static readonly Gossip Gossip = new Gossip();
+		public static readonly Tell Tell = new Tell();
 		public static readonly Look Look = new Look();
 		public static readonly Where Where = new Where();
 

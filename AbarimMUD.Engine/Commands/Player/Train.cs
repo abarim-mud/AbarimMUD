@@ -10,7 +10,7 @@
 				return false;
 			}
 
-			BaseCommand.Say.Execute((ExecutionContext)context.Room.Mobiles[0].Tag, "let's train");
+			Tell.Execute((ExecutionContext)context.Room.Mobiles[0].Tag, $"{context.Creature.ShortDescription} let's train");
 			return true;
 		}
 	}
