@@ -31,6 +31,8 @@ namespace AbarimMUD.Commands
 		public static readonly Score Score = new Score();
 		public static readonly Skills Skills = new Skills();
 
+		public static readonly Train Train = new Train();
+
 		public static readonly Player.Inventory Inventory = new Player.Inventory();
 		public static readonly Wear Wear = new Wear();
 		public static readonly Remove Remove = new Remove();
