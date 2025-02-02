@@ -123,10 +123,9 @@ namespace AbarimMUD.Combat
 			}
 		}
 
-		public static void Backstab(this ExecutionContext attacker, ItemInstance weapon, ExecutionContext target)
+		public static void Backstab(this ExecutionContext attacker, Ability ability, ItemInstance weapon, ExecutionContext target)
 		{
-			var moves = CombatCalc.BackstabMovesCost();
-			attacker.State.Moves -= moves;
+			attacker.State.Moves -= ability.MovesCost;
 
 			// Success chance 95 - (i * 20)
 			for (var i = 0; i < attacker.Stats.BackstabCount; ++i)
@@ -193,10 +192,9 @@ namespace AbarimMUD.Combat
 			}
 		}
 
-		public static void Circlestab(this ExecutionContext attacker, ItemInstance weapon, ExecutionContext target)
+		public static void Circlestab(this ExecutionContext attacker, Ability circlestab, ItemInstance weapon, ExecutionContext target)
 		{
-			var moves = CombatCalc.CirclestabMovesCost();
-			attacker.State.Moves -= moves;
+			attacker.State.Moves -= circlestab.MovesCost;
 
 			// Success chance is 95%
 			var successChancePercentage = 95;

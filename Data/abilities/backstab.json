@@ -1,0 +1,6 @@
+{
+  "Id": "backstab",
+  "Name": "backstab",
+  "Type": "Physical",
+  "MovesCost": 20
+}

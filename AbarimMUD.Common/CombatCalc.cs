@@ -53,16 +53,5 @@ namespace AbarimMUD
 
 		public static DamageResult CalculateDamage(Attack attack, int armorClass) =>
 			CalculateDamage(attack.Penetration, attack.DamageRange, armorClass);
-
-		public static int BackstabMult(int level)
-		{
-			level = Math.Min(level, 40);
-
-			return 2 + level / 5;
-		}
-
-		public static int BackstabMovesCost() => 20;
-		public static int CirclestabMovesCost() => 8;
-
 	}
 }

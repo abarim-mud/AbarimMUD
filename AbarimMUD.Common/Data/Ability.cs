@@ -14,12 +14,56 @@ namespace AbarimMUD.Data
 	{
 		public static readonly MultipleFilesStorage<Ability> Storage = new Abilities();
 
+		private static Ability _kick;
+		private static Ability _backstab;
+		private static Ability _circlestab;
+
+		public static Ability Kick
+		{
+			get
+			{
+				if (_kick == null)
+				{
+					_kick = EnsureAbilityById("kick");
+				}
+
+				return _kick;
+			}
+		}
+
+		public static Ability Backstab
+		{
+			get
+			{
+				if (_backstab == null)
+				{
+					_backstab = EnsureAbilityById("backstab");
+				}
+
+				return _backstab;
+			}
+		}
+
+		public static Ability Circlestab
+		{
+			get
+			{
+				if (_circlestab == null)
+				{
+					_circlestab = EnsureAbilityById("circlestab");
+				}
+
+				return _circlestab;
+			}
+		}
+
 		[OLCIgnore]
 		public string Id { get; set; }
 		public string Name { get; set; }
 		public AbilityType Type { get; set; }
 		public Dictionary<ModifierType, int> Modifiers { get; set; }
 		public PlayerClass PrimeClass { get; set; }
+		public int MovesCost { get; set; }
 
 		public void Create() => Storage.Create(this);
 		public void Save() => Storage.Save(this);

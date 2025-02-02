@@ -14,7 +14,8 @@ namespace AbarimMUD.Commands.Player
 			}
 
 			// Check the player has the skill
-			if (context.Creature.Stats.BackstabCount == 0)
+			var ab = context.Stats.GetAbility("backstab");
+			if (ab == null || context.Creature.Stats.BackstabCount == 0)
 			{
 				context.Send($"You don't know how to backstab.");
 				return false;
@@ -66,13 +67,13 @@ namespace AbarimMUD.Commands.Player
 				return false;
 			}
 
-			if (context.State.Moves < CombatCalc.BackstabMovesCost())
+			if (context.State.Moves < ab.MovesCost)
 			{
 				context.Send($"You're too tired to backstab.");
 				return false;
 			}
 
-			context.Backstab(weapon, target);
+			context.Backstab(ab, weapon, target);
 			Fight.Start(context, target);
 
 			return true;
@@ -85,7 +86,7 @@ namespace AbarimMUD.Commands.Player
 
 		public override CommandCost CalculateCost(ExecutionContext context, string data = "")
 		{
-			return new CommandCost(0, 0, CombatCalc.BackstabMovesCost());
+			return new CommandCost(0, 0, Ability.Backstab.MovesCost);
 		}
 	}
 }

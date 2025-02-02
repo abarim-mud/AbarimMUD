@@ -2,5 +2,6 @@
   "Id": "circlestab",
   "Name": "Circlestab",
   "Type": "Physical",
-  "PrimeClass": "thief"
+  "PrimeClass": "thief",
+  "MovesCost": 8
 }

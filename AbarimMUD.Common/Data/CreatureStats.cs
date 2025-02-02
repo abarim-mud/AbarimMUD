@@ -49,9 +49,9 @@ namespace AbarimMUD.Data
 			return result;
 		}
 
-		public Ability GetAbility(AbilityType type, string id)
+		public Ability GetAbility(string id)
 		{
-			return (from ab in Abilities where ab.Type == type && string.Equals(ab.Id, id, System.StringComparison.InvariantCultureIgnoreCase) select ab).FirstOrDefault();
+			return (from ab in Abilities where string.Equals(ab.Id, id, System.StringComparison.InvariantCultureIgnoreCase) select ab).FirstOrDefault();
 		}
 	}
 }

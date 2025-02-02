@@ -8,6 +8,7 @@
         "BackstabMultiplier": 3
       },
       "Abilities": [
+        "backstab",
         "backstabMastery"
       ]
     },

@@ -10,7 +10,7 @@ namespace AbarimMUD.Commands.Player
 		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
 			// Check the player has the skill
-			var ab = context.Creature.Stats.GetAbility(AbilityType.Physical, "circlestab");
+			var ab = context.Creature.Stats.GetAbility("circlestab");
 			if (ab == null)
 			{
 				context.Send($"You don't know how to circlestab.");
@@ -61,7 +61,7 @@ namespace AbarimMUD.Commands.Player
 				}
 			}
 
-			if (context.State.Moves < CombatCalc.CirclestabMovesCost())
+			if (context.State.Moves < ab.MovesCost)
 			{
 				context.Send($"You're too tired to circlestab.");
 				return false;
@@ -72,7 +72,7 @@ namespace AbarimMUD.Commands.Player
 				target = context.FightInfo.Target;
 			}
 
-			context.Circlestab(weapon, target);
+			context.Circlestab(ab, weapon, target);
 			Fight.Start(context, target);
 
 			return true;
@@ -85,7 +85,7 @@ namespace AbarimMUD.Commands.Player
 
 		public override CommandCost CalculateCost(ExecutionContext context, string data = "")
 		{
-			return new CommandCost(0, 0, CombatCalc.CirclestabMovesCost());
+			return new CommandCost(0, 0, Ability.Circlestab.MovesCost);
 		}
 	}
 }

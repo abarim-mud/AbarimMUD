@@ -1,5 +1,6 @@
 {
   "Id": "kick",
   "Name": "Kick",
-  "Type": "Physical"
+  "Type": "Physical",
+  "MovesCost": 0
 }

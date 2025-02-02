@@ -10,7 +10,7 @@ namespace AbarimMUD.Commands.Player
 		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
 			// Check the player has the skill
-			if (context.Creature.Stats.GetAbility(AbilityType.Physical, "kick") == null)
+			if (context.Creature.Stats.GetAbility("kick") == null)
 			{
 				context.Send($"You don't know how to kick.");
 				return false;
@@ -60,6 +60,11 @@ namespace AbarimMUD.Commands.Player
 		public override int CalculateLagInMs(ExecutionContext context, string data = "")
 		{
 			return Configuration.PauseBetweenFightRoundsInMs;
+		}
+
+		public override CommandCost CalculateCost(ExecutionContext context, string data = "")
+		{
+			return new CommandCost(0, 0, Ability.Kick.MovesCost);
 		}
 	}
 }
