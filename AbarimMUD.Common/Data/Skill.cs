@@ -14,22 +14,15 @@ namespace AbarimMUD.Data
 		Master
 	}
 
-	public enum ModifierType
-	{
-		AttacksCount,
-		WeaponPenetration,
-		BackstabCount,
-		BackstabMultiplier
-	}
-
 	public class SkillLevelDefinition
 	{
 		public Dictionary<ModifierType, int> Modifiers { get; set; } = new Dictionary<ModifierType, int>();
+		public Ability[] Abilities { get; set; }
 	}
 
 	public class Skill : IStoredInFile
 	{
-		public static readonly MultipleFilesStorage<Skill> Storage = new MultipleFilesStorage<Skill>(r => r.Id, "skills");
+		public static readonly MultipleFilesStorage<Skill> Storage = new Skills();
 
 		[OLCIgnore]
 		public string Id { get; set; }

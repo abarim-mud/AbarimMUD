@@ -10,7 +10,8 @@ namespace AbarimMUD.Commands.Player
 		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
 			// Check the player has the skill
-/*			if (context.Creature.GetSkill("circlestab") == null)
+			var ab = context.Creature.Stats.GetAbility(AbilityType.Physical, "circlestab");
+			if (ab == null)
 			{
 				context.Send($"You don't know how to circlestab.");
 				return false;
@@ -72,7 +73,7 @@ namespace AbarimMUD.Commands.Player
 			}
 
 			context.Circlestab(weapon, target);
-			Fight.Start(context, target);*/
+			Fight.Start(context, target);
 
 			return true;
 		}

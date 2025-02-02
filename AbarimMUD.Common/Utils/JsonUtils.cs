@@ -72,7 +72,7 @@ namespace AbarimMUD.Utils
 			var result = new JsonSerializerOptions
 			{
 				WriteIndented = true,
-				DefaultIgnoreCondition = JsonIgnoreCondition.Never,
+				DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
 				IncludeFields = true,
 				IgnoreReadOnlyFields = true,
 				IgnoreReadOnlyProperties = true,

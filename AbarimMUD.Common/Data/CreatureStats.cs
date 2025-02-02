@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace AbarimMUD.Data
 {
@@ -13,6 +14,7 @@ namespace AbarimMUD.Data
 		public int BackstabMultiplier { get; internal set; }
 		public int Armor { get; internal set; }
 		public long XpAward { get; internal set; }
+		public List<Ability> Abilities { get; } = new List<Ability>();
 
 		public int GetHitpointsRegen(bool isFighting)
 		{
@@ -45,6 +47,11 @@ namespace AbarimMUD.Data
 			}
 
 			return result;
+		}
+
+		public Ability GetAbility(AbilityType type, string id)
+		{
+			return (from ab in Abilities where ab.Type == type && string.Equals(ab.Id, id, System.StringComparison.InvariantCultureIgnoreCase) select ab).FirstOrDefault();
 		}
 	}
 }

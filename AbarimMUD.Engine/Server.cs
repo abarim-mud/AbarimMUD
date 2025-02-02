@@ -11,7 +11,6 @@ using AbarimMUD.Storage;
 using System.Collections.Generic;
 using AbarimMUD.Combat;
 using System.Threading;
-using AbarimMUD.Commands.Builder;
 using AbarimMUD.Commands;
 
 namespace AbarimMUD
@@ -64,10 +63,11 @@ namespace AbarimMUD
 
 			DataContext.Load(dataFolder);
 
-			PlayerClass.Storage.SaveAll();
+			// PlayerClass.Storage.SaveAll();
 			// MobileClass.Storage.SaveAll();
-			// Skill.Storage.SaveAll();
+			Skill.Storage.SaveAll();
 			// Configuration.Save();
+			Ability.Storage.SaveAll();
 		}
 
 		private bool ProcessRegen(ref int currentValue, int maxValue, ref float fractionalValue, int regenValue, float secondsPassed)

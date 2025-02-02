@@ -1,0 +1,9 @@
+{
+  "Id": "backstabMastery",
+  "Name": "Backstab Mastery",
+  "Type": "Passive",
+  "Modifiers": {
+    "BackstabMultiplier": 1
+  },
+  "PrimeClass": "thief"
+}

@@ -188,6 +188,25 @@ namespace AbarimMUD.Data
 			Save();
 		}
 
+		private static void ApplyModifier(ModifierType type, int val, ref int attacksCount, Attack attack, CreatureStats stats)
+		{
+			switch (type)
+			{
+				case ModifierType.AttacksCount:
+					attacksCount += val;
+					break;
+				case ModifierType.WeaponPenetration:
+					attack.Penetration += val;
+					break;
+				case ModifierType.BackstabCount:
+					stats.BackstabCount += val;
+					break;
+				case ModifierType.BackstabMultiplier:
+					stats.BackstabMultiplier += val;
+					break;
+			}
+		}
+
 		protected override CreatureStats CreateBaseStats()
 		{
 			var result = Class.CreateStats(Level);
@@ -208,21 +227,31 @@ namespace AbarimMUD.Data
 
 					foreach (var modPair in def.Modifiers)
 					{
-						var val = modPair.Value;
-						switch (modPair.Key)
+						ApplyModifier(modPair.Key, modPair.Value, ref attacksCount, attack, result);
+					}
+
+					if (def.Abilities != null)
+					{
+						foreach(var ab in def.Abilities)
 						{
-							case ModifierType.AttacksCount:
-								attacksCount += val;
-								break;
-							case ModifierType.WeaponPenetration:
-								attack.Penetration += val;
-								break;
-							case ModifierType.BackstabCount:
-								result.BackstabCount += val;
-								break;
-							case ModifierType.BackstabMultiplier:
-								result.BackstabMultiplier += val;
-								break;
+							if (ab.PrimeClass != null && ab.PrimeClass.Id != Class.Id)
+							{
+								// Prime ability
+								continue;
+							}
+
+							if (ab.Modifiers != null)
+							{
+								foreach (var modPair in ab.Modifiers)
+								{
+									ApplyModifier(modPair.Key, modPair.Value, ref attacksCount, attack, result);
+								}
+							}
+
+							if (ab.Type != AbilityType.Passive)
+							{
+								result.Abilities.Add(ab);
+							}
 						}
 					}
 				}

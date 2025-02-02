@@ -5,7 +5,7 @@ using System.Text.Json;
 
 namespace AbarimMUD.Storage
 {
-	public class Characters : MultipleFilesStorage<Character>
+	internal class Characters : MultipleFilesStorage<Character>
 	{
 		private class CharacterRecord
 		{

@@ -39,7 +39,6 @@ namespace AbarimMUD.Data
 		[OLCAlias("long")]
 		public string LongDescription { get; set; }
 		public string Description { get; set; }
-		public Affect[] Affects { get; set; } = new Affect[0];
 		public ItemType ItemType { get; set; }
 		public AttackType AttackType { get; set; }
 
@@ -163,7 +162,6 @@ namespace AbarimMUD.Data
 				LongDescription = LongDescription,
 				Description = Description,
 				AttackType = AttackType,
-				Affects = Affects,
 				ItemType = ItemType,
 				_value1 = _value1,
 				_value2 = _value2,

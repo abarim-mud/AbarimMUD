@@ -6,7 +6,10 @@
       "Modifiers": {
         "AttacksCount": 1,
         "WeaponPenetration": 20
-      }
+      },
+      "Abilities": [
+        "kick"
+      ]
     },
     {
       "Modifiers": {
