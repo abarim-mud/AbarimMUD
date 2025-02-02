@@ -1,6 +1,7 @@
 {
   "Id": "backstab",
   "Name": "Backstab",
+  "Class": "rogue",
   "Levels": [
     {
       "Modifiers": {

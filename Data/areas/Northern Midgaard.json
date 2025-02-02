@@ -1,23 +1,16 @@
 {
-  "Id": null,
   "Name": "Northern Midgaard",
   "Credits": "DikuMUD",
-  "Builders": null,
   "Version": 0,
-  "ResetMessage": null,
   "MinimumLevel": "1",
   "MaximumLevel": "100",
   "Rooms": [
     {
       "Name": "The Reading Room",
       "Description": "You are in a small, simple room which is mostly empty, save a few\r\nwooden desks and benches.  To the east you hear the bustle of the Temple\r\nof Midgaard, a sharp contrast to the relative quiet of this peaceful\r\nroom.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "East": 3001
       },
@@ -26,13 +19,9 @@
     {
       "Name": "The Temple Of Midgaard",
       "Description": "You are in the southern end of the temple hall in the Temple of Midgaard.\r\nThe temple has been constructed from giant marble blocks, eternal in\r\nappearance, and most of the walls are covered by ancient wall paintings\r\npicturing Gods, giants and peasants.\r\n   Large steps lead down through the grand temple gate, descending the huge\r\nmound upon which the temple is built and ends on the temple square below.\r\nTo the west, you see the Reading Room.  The donation room is in a small\r\nalcove to your east.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 3054,
         "East": 3063,
@@ -45,13 +34,9 @@
     {
       "Name": "The Clerics\u0027 Inner Sanctum",
       "Description": "This is the inner sanctum.  A picture of the mighty Thor, is hanging on\r\nthe wall, just above the altar which is set against the western wall.  A well\r\nin the middle of the floor leads down into darkness.  Vile smells waft from\r\nthe depths.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "East": 3003
       },
@@ -60,13 +45,9 @@
     {
       "Name": "The Bar Of Divination",
       "Description": "The bar is one of the finest in the land, lucky it is members only.  Fine\r\nfurniture is set all around the room.  A small sign is hanging on the wall.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "South": 3004,
         "West": 3002
@@ -76,13 +57,9 @@
     {
       "Name": "The Entrance To The Clerics\u0027 Guild",
       "Description": "The entrance hall is a small modest room, reflecting the true nature of\r\nthe Clerics.  The exit leads east to the temple square.  A small entrance to\r\nthe bar is in the northern wall.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 3003,
         "East": 3005
@@ -92,13 +69,9 @@
     {
       "Name": "The Temple Square",
       "Description": "You are standing on the temple square.  Huge marble steps lead up to the\r\ntemple gate.  The entrance to the Clerics\u0027 Guild is to the west, and the old\r\nGrunting Boar Inn, is to the east.  Just south of here you see the market\r\nsquare, the center of Midgaard.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 3001,
         "East": 3006,
@@ -110,13 +83,9 @@
     {
       "Name": "The Entrance Hall Of The Grunting Boar Inn",
       "Description": "You are standing in the entrance hall of the Grunting Boar Inn.  The hall\r\nhas been wisely decorated with simple, functional furniture.  The heavy smell\r\nof dust and aging paper drifts in from the Post Office to the north.  A small\r\nstaircase leads up to the reception and the bar is to the east.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 3062,
         "East": 3007,
@@ -128,13 +97,9 @@
     {
       "Name": "The Grunting Boar",
       "Description": "You are standing in the bar.  The bar is set against the northern wall, old\r\narchaic writing, carvings and symbols cover its top.  A fireplace is built into\r\nthe western wall, and through the southeastern windows you can see the temple\r\nsquare.  This place makes you feel like home.\r\nA small sign with big letters is fastened to the bar.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "West": 3006
       },
@@ -143,13 +108,9 @@
     {
       "Name": "The Reception",
       "Description": "You are standing in the reception.  The staircase leads down to the\r\nentrance hall.  An exit to the north leads to the Cryogenic Center.\r\nThere is a small sign on the counter.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 3064,
         "Down": 3006
@@ -159,13 +120,9 @@
     {
       "Name": "The Bakery",
       "Description": "You are standing inside the small bakery.  A sweet scent of danish and\r\nfine bread fills the room.  The bread and Danish are arranged in fine order\r\non the shelves, and seem to be of the finest quality.\r\nA small sign is on the counter.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "South": 3013
       },
@@ -174,13 +131,9 @@
     {
       "Name": "The General Store",
       "Description": "You are inside the general store.  All sorts of items are stacked on shelves\r\nbehind the counter, safely out of your reach.\r\nA small note hangs on the wall.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "South": 3015
       },
@@ -189,13 +142,9 @@
     {
       "Name": "The Weapon Shop",
       "Description": "The smell of worked metals and various quenching oils fills the room.  Every\r\navailable space in the room including the ceiling is loaded with various\r\nequipment and weaponry.  There is a small note on the counter.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "South": 3016
       },
@@ -204,13 +153,9 @@
     {
       "Name": "Main Street",
       "Description": "You are at the end of the main street of Midgaard.  South of here is the\r\nentrance to the Guild of Magic Users.  The street continues east towards the\r\nmarket square.  The magic shop is to the north and to the west is the city\r\ngate.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 3033,
         "East": 3013,
@@ -222,13 +167,9 @@
     {
       "Name": "Main Street",
       "Description": "You are on the main street passing through the City of Midgaard.  South of\r\nhere is the entrance to the Armory, and the bakery is to the north.  East of\r\nhere is the market square.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 3009,
         "East": 3014,
@@ -240,13 +181,9 @@
     {
       "Name": "Market Square",
       "Description": "You are standing on the market square, the famous Square of Midgaard.\r\nA large, peculiar looking statue is standing in the middle of the square.\r\nRoads lead in every direction, north to the temple square, south to the\r\ncommon square, east and westbound is the main street.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 3005,
         "East": 3015,
@@ -258,13 +195,9 @@
     {
       "Name": "Main Street",
       "Description": "You are on the main street crossing through town.  To the north is the\r\ngeneral store, and the main street continues east.  To the west you see and\r\nhear the market place, to the south a small door leads into the Pet Shop.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 3010,
         "East": 3016,
@@ -276,13 +209,9 @@
     {
       "Name": "Main Street",
       "Description": "The main street, to the north is the weapon shop and to the south is the\r\nGuild of Swordsmen.  To the east you leave town and to the west the street\r\nleads to the market square.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 3011,
         "East": 3041,
@@ -294,13 +223,9 @@
     {
       "Name": "The Entrance To The Mages\u0027 Guild",
       "Description": "The entrance hall to this guild is a small, poor lighted room.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 3012,
         "South": 3018
@@ -310,13 +235,9 @@
     {
       "Name": "The Mages\u0027 Bar",
       "Description": "The bar is one of the weirdest in the land.  Mystical images float around\r\nthe air.  Illusions of fine furniture appear all around the room.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 3017,
         "East": 3019
@@ -326,13 +247,9 @@
     {
       "Name": "The Mages\u0027 Laboratory",
       "Description": "This is the Magical Experiments Laboratory.  Dark smoke-stained stones arch\r\nover numerous huge oaken tables, most of these cluttered with strange- looking\r\npipes and flasks.  The floor is covered with half-erased pentagrams and even\r\nweirder symbols, and a blackboard in a dark corner has only been partially\r\ncleaned, some painful-looking letters faintly visible.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "West": 3018
       },
@@ -341,13 +258,9 @@
     {
       "Name": "The Armory",
       "Description": "The armory has a wide assortment of armor displayed on the walls and in the\r\nwindows. Helmets, shields, and suits of armor are for sale. To the north is\r\nthe main street. On the wall is a small note.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 3013
       },
@@ -356,13 +269,9 @@
     {
       "Name": "The Entrance Hall To The Guild Of Swordsmen",
       "Description": "The entrance hall to the Guild of Swordsmen.  A place where one has to be\r\ncareful not to say something wrong (or right).  To the east is the bar and to\r\nthe north is the main street.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 3016,
         "East": 3022
@@ -372,13 +281,9 @@
     {
       "Name": "The Bar Of Swordsmen",
       "Description": "The bar of swordsmen, once upon a time beautifully furnished.  But now the\r\nfurniture is all around you in small pieces.  To the south is the yard, and\r\nto the west is the entrance hall.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "South": 3023,
         "West": 3021
@@ -388,13 +293,9 @@
     {
       "Name": "The Tournament And Practice Yard",
       "Description": "This is the practice yard of the fighters.  To the north is the bar.\r\nA well leads down into darkness.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 3022
       },
@@ -403,13 +304,9 @@
     {
       "Name": "The Eastern End Of Poor Alley",
       "Description": "You are at the poor alley.  South of here is the Grubby Inn and to the\r\neast you see common square.  The alley continues further west.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "East": 3025,
         "South": 3048,
@@ -420,13 +317,9 @@
     {
       "Name": "The Common Square",
       "Description": "The common square, people pass you, talking to each other.  To the west is\r\nthe poor alley and to the east is the dark alley.  To the north, this square\r\nis connected to the market square.  From the south you notice a nasty smell.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 3014,
         "East": 3026,
@@ -438,13 +331,9 @@
     {
       "Name": "The Dark Alley",
       "Description": "The dark alley, to the west is the common square and to the south is the\r\nGuild of Thieves.  The alley continues east.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "East": 3045,
         "South": 3027,
@@ -455,13 +344,9 @@
     {
       "Name": "The Entrance Hall To The Guild Of Thieves",
       "Description": "The entrance hall to the thieves\u0027 and assassins\u0027 guild.  A place where you\r\ncan lose both your life and your money, if you are not careful.  To the north\r\nis the dark alley and to the east is the thieves\u0027 bar.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 3026,
         "East": 3028
@@ -471,13 +356,9 @@
     {
       "Name": "The Thieves\u0027 Bar",
       "Description": "The bar of the thieves.  Once upon a time this place was beautifully\r\nfurnished, but now it seems almost empty.  To the south is the yard, and to\r\nthe west is the entrance hall.\r\n   (Maybe the furniture has been stolen?!)\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "South": 3029,
         "West": 3027
@@ -487,13 +368,9 @@
     {
       "Name": "The Secret Yard",
       "Description": "The secret practice yard of thieves and assassins.  To the north is the\r\nbar.  A well leads down into darkness.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 3028
       },
@@ -502,13 +379,9 @@
     {
       "Name": "The Dump",
       "Description": "The dump, where the people from the city drop their garbage.  Through the\r\ngarbage you can see a large junction of pipes, looks like the entrance to the\r\nsewer system.  North of here you see the common square.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 3025
       },
@@ -517,13 +390,9 @@
     {
       "Name": "The Pet Shop",
       "Description": "The Pet Shop is a small crowded store, full of cages and animals of\r\nvarious sizes.  There is a sign on the wall.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 3015
       },
@@ -532,26 +401,18 @@
     {
       "Name": "PETSHOP STOREROOM",
       "Description": "Make two rooms and some pets.  The rooms MUST be sequential.  If the first\r\nroom is 315 then the second must be 316.  The second room is known as the\r\nstoreroom.  All that is required in the storeroom is to load one of each mob you\r\nwish to be a pet.  This room can not have any exits and will never be used by\r\nmortals.  Although a pet shopkeeper is not required it is recommended.  After\r\nall of this is done ask your coder to implement the petshop.  It will not work\r\nuntil the code is changed and the MUD is rebooted.  The cost of pets is 300\r\ntimes their level.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {},
       "Id": 3032
     },
     {
       "Name": "The Magic Shop",
       "Description": "Behind the counter you see various items, neatly placed in racks,\r\npresumably most of them are magic.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "South": 3012
       },
@@ -560,13 +421,9 @@
     {
       "Name": "Inside The West Gate Of Midgaard",
       "Description": "You are by two small towers that have been built into the city wall and\r\nconnected with a footbridge across the heavy wooden gate.  Main Street leads\r\neast and Wall Road leads south from here.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "East": 3012,
         "South": 3042,
@@ -577,13 +434,9 @@
     {
       "Name": "Inside The East Gate Of Midgaard",
       "Description": "You are by two small towers that have been built into the city wall and\r\nconnected with a footbridge across the heavy wooden gate.  Main Street leads\r\nwest from here.  To the south you see the Water Shop.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "East": 3053,
         "South": 3058,
@@ -594,13 +447,9 @@
     {
       "Name": "Wall Road",
       "Description": "You are walking next to the western city wall.  The road continues further\r\nsouth and the city gate is just north of here.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 3040,
         "South": 3043
@@ -610,13 +459,9 @@
     {
       "Name": "Wall Road",
       "Description": "You are walking next to the western city wall.  Wall Road continues further\r\nnorth and south.  A small, poor alley leads east.\r\nSome letters have been written on the wall here.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 3042,
         "East": 3044,
@@ -627,13 +472,9 @@
     {
       "Name": "Poor Alley",
       "Description": "You are on Poor Alley, which continues further east.  You see the\r\ncity wall to the west.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "East": 3024,
         "West": 3043
@@ -643,13 +484,9 @@
     {
       "Name": "The Dark Alley At The Levee",
       "Description": "You are standing in the alley which continues east and west.  South of\r\nhere you see the levee.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "East": 3046,
         "South": 3049,
@@ -660,13 +497,9 @@
     {
       "Name": "The Eastern End Of The Alley",
       "Description": "You are standing at the eastern end of the alley, the city wall is just\r\neast, blocking any further movement.  A small warehouse is directly south of\r\nhere.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "South": 3050,
         "West": 3045
@@ -676,13 +509,9 @@
     {
       "Name": "Wall Road",
       "Description": "You are standing on the road next to the western city wall, which\r\ncontinues north.  South of here is a bridge across the river.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 3043,
         "South": 3051
@@ -692,13 +521,9 @@
     {
       "Name": "Grubby Inn",
       "Description": "You are inside the old Grubby Inn.  This place has not been cleaned for\r\nseveral decades; vile smells make you dizzy.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 3024
       },
@@ -707,13 +532,9 @@
     {
       "Name": "The Levee",
       "Description": "You are at the levee.  South of here you see the river gently flowing west.\r\nThe river bank is very low making it possible to enter the river.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 3045
       },
@@ -722,13 +543,9 @@
     {
       "Name": "The Deserted Warehouse",
       "Description": "You are inside the warehouse.  The room is decorated with various old\r\nitems from ships.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 3046
       },
@@ -737,13 +554,9 @@
     {
       "Name": "On The Bridge",
       "Description": "You are standing on the stone bridge crosses the river.  The bridge is\r\nbuilt out from the western city wall and the river flows west through an\r\nopening in the wall ten feet below the bridge.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 3047
       },
@@ -752,13 +565,9 @@
     {
       "Name": "Outside The West Gate Of Midgaard",
       "Description": "You are by two small towers that have been built into the city wall and\r\nconnected with a footbridge across the heavy wooden gate.  To the west you\r\ncan see the edge of a big forest.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "East": 3040
       },
@@ -767,13 +576,9 @@
     {
       "Name": "Outside The East Gate Of Midgaard",
       "Description": "You are by two small towers that have been built into the city wall and\r\nconnected with a footbridge across the heavy wooden gate.  To the east the\r\nplains stretch out in the distance.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "West": 3041
       },
@@ -782,13 +587,9 @@
     {
       "Name": "By The Temple Altar",
       "Description": "You are by the temple altar in the northern end of the Temple of Midgaard.\r\nA huge altar made from white polished marble dominates this part of the temple.\r\nTowering behind the altar is a ten foot tall sitting statue of Odin, the King of\r\nthe Gods. To the north, steps lead out the back of the temple towards the\r\ncountryside.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 3059,
         "South": 3001
@@ -798,13 +599,9 @@
     {
       "Name": "Ye Olde Water Shoppe",
       "Description": "You are standing in the center of a small wooden shop whose walls are\r\ncovered with racks upon racks of water jugs.  Several large barrels with\r\nspigots are stacked in the corner.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 3041
       },
@@ -813,13 +610,9 @@
     {
       "Name": "Behind The Temple Altar",
       "Description": "You are on a dirt path leading away from the Temple Altar which is south\r\nof here.  To the north, the path continues through the lush contryside of\r\nMidgaard towards the Dragonhelm Mountains far off to the north.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 3060,
         "South": 3054
@@ -829,13 +622,9 @@
     {
       "Name": "The Great Field Of Midgaard",
       "Description": "You are walking on a wide dirt path through the lush, green, fresh\r\nMidgaard countryside.  You can see to the horizon to the north, east,\r\nand west; the busy city of Midgaard lies to the south.  All around you\r\nis healthy green grass and an occasional large oak tree.  The sun feels\r\nwonderful on your face and a pleasant wind blows through your hair.  Birds\r\nchirp quietly to themselves and you can smell the faint scent of flowers\r\nand freshly cut grass.  You feel like you could lie down in the grass and\r\nstay here forever, surrounded by powerful beauty in all directions.\r\n   The path you are on continues north through the field and south back\r\nto Midgaard.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 3061,
         "South": 3059
@@ -845,13 +634,9 @@
     {
       "Name": "The Great Field Of Midgaard",
       "Description": "You are walking on a wide dirt path through the lush, green, fresh\r\nMidgaard countryside.  You can see to the horizon to the north, east,\r\nand west; the busy city of Midgaard lies to the south.  All around you\r\nis healthy green grass and an occasional large oak tree.  The sun feels\r\nwonderful on your face and a pleasant wind blows through your hair.  Birds\r\nchirp quietly to themselves and you can smell the faint scent of flowers\r\nand freshly cut grass.  You feel like you could lie down in the grass and\r\nstay here forever, surrounded by powerful beauty in all directions.\r\n   There is a strange structure on the eastern side of the path.  A small\r\ndirt path splits off of the main path and leads off to the west.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 3065,
         "East": 18600,
@@ -863,13 +648,9 @@
     {
       "Name": "The Post Office",
       "Description": "You are in the central post office for Midgaard.  Piles of assorted mail\r\nlay untouched in the corners, collecting cobwebs.  Several large crates have\r\nbeen pried open by curious customs agents, and are now stacked along the west\r\nwall, hiding plenty of \u0027WANTED\u0027 posters.\r\nThere is a sign posted on the wall here.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "South": 3006
       },
@@ -878,13 +659,9 @@
     {
       "Name": "The Midgaard Donation Room",
       "Description": "You are in a small, undecorated room just off of the main temple.  There\r\nare a couple of small wooden benches here where people occasionally sit\r\nwhile they wait for items to appear.  The temple is to the west.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "West": 3001
       },
@@ -893,13 +670,9 @@
     {
       "Name": "The Cryogenic Center",
       "Description": "You are standing in an impossibly white sterile room with cylindrical\r\nbody-length canisters lined up against the walls.  The Reception is to the\r\nsouth.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "South": 3008
       },
@@ -908,13 +681,9 @@
     {
       "Name": "The Great Field Of Midgaard",
       "Description": "You are walking on a wide dirt path through the lush, green, fresh\r\nMidgaard countryside.  You can see to the horizon to the north, east,\r\nand west; the busy city of Midgaard lies to the south.  All around you\r\nis healthy green grass and an occasional large oak tree.  The sun feels\r\nwonderful on your face and a pleasant wind blows through your hair.  Birds\r\nchirp quietly to themselves and you can smell the faint scent of flowers\r\nand freshly cut grass.  You feel like you could lie down in the grass and\r\nstay here forever, surrounded by powerful beauty in all directions.\r\n   The way north appears to be blocked by a large plot device and you cannot\r\nsee any way around it.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "South": 3061
       },
@@ -923,13 +692,9 @@
     {
       "Name": "The Dirt Path",
       "Description": "You are walking along a narrow dirt path through the lush, green,\r\nfresh Midgaard countryside.  You can see to the horizon to the north\r\nand east; the busy city of Midgaard lies to the south.  All around\r\nyou is healthy green grass and an occasional large oak tree.  The sun\r\nfeels wonderful on your face and a pleasant wind blows through your\r\nhair.  Birds chirp quietly to themselves and you can smell the faint\r\nscent of flowers and freshly cut grass.  You feel like you could lie\r\ndown in the grass and stay here forever, surrounded by powerful beauty\r\nin all directions.\r\n   There is a large rusty gate sitting in a stone archway just to the\r\nwest.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "East": 3061
       },
@@ -949,7 +714,6 @@
       "Sex": "Neutral",
       "Flags": [],
       "Wealth": 330,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 3000
     },
@@ -965,7 +729,6 @@
       "Sex": "Neutral",
       "Flags": [],
       "Wealth": 330,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 3001
     },
@@ -981,7 +744,6 @@
       "Sex": "Neutral",
       "Flags": [],
       "Wealth": 330,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 3002
     },
@@ -997,7 +759,6 @@
       "Sex": "Neutral",
       "Flags": [],
       "Wealth": 330,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 3003
     },
@@ -1013,7 +774,6 @@
       "Sex": "Neutral",
       "Flags": [],
       "Wealth": 330,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 3004
     },
@@ -1029,7 +789,6 @@
       "Sex": "Male",
       "Flags": [],
       "Wealth": 330,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 3005
     },
@@ -1046,7 +805,6 @@
       "Sex": "Neutral",
       "Flags": [],
       "Wealth": 330,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 3006
     },
@@ -1062,7 +820,6 @@
       "Sex": "Neutral",
       "Flags": [],
       "Wealth": 330,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 3007
     },
@@ -1079,7 +836,6 @@
       "Sex": "Neutral",
       "Flags": [],
       "Wealth": 330,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 3008
     },
@@ -1096,7 +852,6 @@
       "Sex": "Neutral",
       "Flags": [],
       "Wealth": 330,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 3009
     },
@@ -1112,7 +867,6 @@
       "Sex": "Neutral",
       "Flags": [],
       "Wealth": 330,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 3010
     },
@@ -1130,7 +884,6 @@
       "Sex": "Male",
       "Flags": [],
       "Wealth": 300,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 3011
     },
@@ -1147,7 +900,6 @@
       "Sex": "Male",
       "Flags": [],
       "Wealth": 300,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 3012
     },
@@ -1165,7 +917,6 @@
       "Sex": "Male",
       "Flags": [],
       "Wealth": 100,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 3013
     },
@@ -1183,7 +934,6 @@
       "Sex": "Male",
       "Flags": [],
       "Wealth": 340,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 3020
     },
@@ -1201,7 +951,6 @@
       "Sex": "Neutral",
       "Flags": [],
       "Wealth": 340,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 3021
     },
@@ -1218,9 +967,9 @@
       "Class": "default",
       "Level": 100,
       "Sex": "Male",
+      "Guildmaster": "rogue",
       "Flags": [],
       "Wealth": 340,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 3022
     },
@@ -1235,9 +984,9 @@
       "Class": "default",
       "Level": 100,
       "Sex": "Neutral",
+      "Guildmaster": "warrior",
       "Flags": [],
       "Wealth": 340,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 3023
     },
@@ -1254,7 +1003,6 @@
       "Sex": "Neutral",
       "Flags": [],
       "Wealth": 330,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 3024
     },
@@ -1272,7 +1020,6 @@
       "Sex": "Neutral",
       "Flags": [],
       "Wealth": 330,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 3025
     },
@@ -1289,7 +1036,6 @@
       "Sex": "Neutral",
       "Flags": [],
       "Wealth": 330,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 3026
     },
@@ -1306,7 +1052,6 @@
       "Sex": "Neutral",
       "Flags": [],
       "Wealth": 330,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 3027
     },
@@ -1322,7 +1067,6 @@
       "Sex": "Neutral",
       "Flags": [],
       "Wealth": 240,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 3040
     },
@@ -1338,7 +1082,6 @@
       "Sex": "Neutral",
       "Flags": [],
       "Wealth": 230,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 3041
     },
@@ -1354,7 +1097,6 @@
       "Sex": "Neutral",
       "Flags": [],
       "Wealth": 230,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 3042
     },
@@ -1370,7 +1112,6 @@
       "Sex": "Neutral",
       "Flags": [],
       "Wealth": 230,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 3043
     },
@@ -1386,7 +1127,6 @@
       "Sex": "Neutral",
       "Flags": [],
       "Wealth": 230,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 3044
     },
@@ -1402,7 +1142,6 @@
       "Sex": "Neutral",
       "Flags": [],
       "Wealth": 230,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 3045
     },
@@ -1418,7 +1157,6 @@
       "Sex": "Neutral",
       "Flags": [],
       "Wealth": 330,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 3046
     },
@@ -1435,7 +1173,6 @@
       "Sex": "Neutral",
       "Flags": [],
       "Wealth": 170,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 3059
     },
@@ -1452,7 +1189,6 @@
       "Sex": "Neutral",
       "Flags": [],
       "Wealth": 100,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 3060
     },
@@ -1468,7 +1204,6 @@
       "Sex": "Neutral",
       "Flags": [],
       "Wealth": 10,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 3061
     },
@@ -1485,7 +1220,6 @@
       "Sex": "Neutral",
       "Flags": [],
       "Wealth": 10,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 3062
     },
@@ -1501,7 +1235,6 @@
       "Sex": "Neutral",
       "Flags": [],
       "Wealth": 50,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 3063
     },
@@ -1517,7 +1250,6 @@
       "Sex": "Neutral",
       "Flags": [],
       "Wealth": 20,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 3064
     },
@@ -1533,7 +1265,6 @@
       "Sex": "Male",
       "Flags": [],
       "Wealth": 10,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 3065
     },
@@ -1550,7 +1281,6 @@
       "Sex": "Neutral",
       "Flags": [],
       "Wealth": 10,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 3066
     },
@@ -1567,7 +1297,6 @@
       "Sex": "Neutral",
       "Flags": [],
       "Wealth": 100,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 3067
     },
@@ -1586,7 +1315,6 @@
       "Sex": "None",
       "Flags": [],
       "Wealth": 200,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 3068
     },
@@ -1604,7 +1332,6 @@
       "Sex": "Neutral",
       "Flags": [],
       "Wealth": 100,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 3089
     },
@@ -1621,7 +1348,6 @@
       "Sex": "None",
       "Flags": [],
       "Wealth": 10,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 3090
     },
@@ -1638,7 +1364,6 @@
       "Sex": "None",
       "Flags": [],
       "Wealth": 10,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 3091
     },
@@ -1655,7 +1380,6 @@
       "Sex": "None",
       "Flags": [],
       "Wealth": 20,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 3092
     },
@@ -1672,7 +1396,6 @@
       "Sex": "None",
       "Flags": [],
       "Wealth": 30,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 3093
     },
@@ -1689,7 +1412,6 @@
       "Sex": "None",
       "Flags": [],
       "Wealth": 40,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 3094
     },
@@ -1706,7 +1428,6 @@
       "Sex": "Male",
       "Flags": [],
       "Wealth": 330,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 3095
     }

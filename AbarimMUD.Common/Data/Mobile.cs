@@ -155,6 +155,9 @@ namespace AbarimMUD.Data
 		public Sex Sex { get; set; }
 
 		[Browsable(false)]
+		public PlayerClass Guildmaster { get; set; }
+
+		[Browsable(false)]
 		public HashSet<MobileFlags> Flags { get; set; } = new HashSet<MobileFlags>();
 		public int Wealth { get; set; }
 

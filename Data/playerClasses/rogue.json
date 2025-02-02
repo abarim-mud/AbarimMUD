@@ -1,6 +1,6 @@
 {
-  "Id": "thief",
-  "Name": "Thief",
+  "Id": "rogue",
+  "Name": "Rogue",
   "Description": "Master of dagger and shadows.",
   "HitpointsRange": {
     "1": 30,

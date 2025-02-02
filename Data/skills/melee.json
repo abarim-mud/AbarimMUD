@@ -1,6 +1,7 @@
 {
   "Id": "melee",
   "Name": "Melee",
+  "Class": "warrior",
   "Levels": [
     {
       "Modifiers": {

@@ -213,7 +213,18 @@ namespace AbarimMUD.Storage
 
 				for(var i = 0; i < area.Mobiles.Count; ++i)
 				{
-					area.Mobiles[i].Class = MobileClass.EnsureClassById(area.Mobiles[i].Class.Id);
+					var mobile = area.Mobiles[i];
+					if (mobile.Class == null)
+					{
+						throw new Exception($"Mobile {mobile.Id} does not have Class set.");
+					}
+
+					mobile.Class = MobileClass.EnsureClassById(mobile.Class.Id);
+
+					if (mobile.Guildmaster != null)
+					{
+						mobile.Guildmaster = PlayerClass.EnsureClassById(mobile.Guildmaster.Id);
+					}
 				}
 			}
 		}
@@ -223,6 +234,7 @@ namespace AbarimMUD.Storage
 			var result = base.CreateJsonOptions();
 			result.Converters.Add(new RoomExitConverter());
 			result.Converters.Add(Common.MobileClassConverter);
+			result.Converters.Add(Common.PlayerClassConverter);
 
 			return result;
 		}

@@ -57,11 +57,11 @@ namespace AbarimMUD.MapViewer
 
 				foreach (var room in sourceArea.Rooms)
 				{
-					var mmbRoom = new MMBRoom(room.Id, room.Name, false)
+					var mmbRoom = new MMBRoom(room.Id, room.Name)
 					{
 						Tag = room
 					};
-					
+
 					mmbArea.Add(mmbRoom);
 
 					foreach (var exit in room.Exits)
@@ -107,8 +107,8 @@ namespace AbarimMUD.MapViewer
 					var areaExit = room.Clone();
 
 					areaExit.Name = $"To {area.Name}";
-					areaExit.IsExitToOtherArea = true;
-
+					areaExit.Color = Color.Blue;
+					areaExit.FrameColor = Color.Blue;
 
 					allAreaExits[room.Id] = areaExit;
 				}
@@ -169,7 +169,14 @@ namespace AbarimMUD.MapViewer
 						color = Color.Red;
 					}
 
-					room.Contents.Add(new MMBRoomContentRecord($"{mobile.ShortDescription} #{mobile.Id}", color));
+					var mobileName = $"{mobile.ShortDescription} #{mobile.Id}";
+
+					if (mobile.Guildmaster != null)
+					{
+						mobileName += $"({mobile.Guildmaster.Name} gm)";
+					}
+
+					room.Contents.Add(new MMBRoomContentRecord(mobileName, color));
 				}
 			}
 

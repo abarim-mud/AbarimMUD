@@ -24,9 +24,9 @@ namespace AbarimMUD.Data
 	{
 		public static readonly MultipleFilesStorage<Skill> Storage = new Skills();
 
-		[OLCIgnore]
 		public string Id { get; set; }
 		public string Name { get; set; }
+		public PlayerClass Class { get; set; }
 		public SkillLevelDefinition[] Levels { get; set; }
 
 		public void Create() => Storage.Create(this);

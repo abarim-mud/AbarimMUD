@@ -89,7 +89,7 @@ namespace AbarimMUD.Data
 
 			set
 			{
-				if (value < 1)
+				if (value < 0)
 				{
 					throw new ArgumentOutOfRangeException(nameof(value));
 				}
@@ -106,6 +106,20 @@ namespace AbarimMUD.Data
 		public long Experience { get; set; }
 
 		public Dictionary<string, SkillValue> Skills { get; set; } = new Dictionary<string, SkillValue>();
+
+		public int SpentSkillPointsCount
+		{
+			get
+			{
+				var result = 0;
+				foreach(var pair in Skills)
+				{
+					result += ((int)pair.Value.Level + 1);
+				}
+
+				return result;
+			}
+		}
 
 		public string Autoskill { get; set; }
 

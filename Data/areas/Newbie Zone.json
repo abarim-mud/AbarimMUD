@@ -1,23 +1,16 @@
 {
-  "Id": null,
   "Name": "Newbie Zone",
   "Credits": "Maynard",
-  "Builders": null,
   "Version": 0,
-  "ResetMessage": null,
   "MinimumLevel": "1",
   "MaximumLevel": "7",
   "Rooms": [
     {
       "Name": "The Entrance To The Newbie Zone",
       "Description": "Ahhh... the entrance to the newbie zone!  Just the place you have\r\nbeen looking for.  Well, when you\u0027ve readied yourself you can enter\r\nto the north.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 18601,
         "West": 3061
@@ -27,13 +20,9 @@
     {
       "Name": "The Beginning Of The Passage",
       "Description": "You find yourself entering a long corridor.  You can hear the sound\r\nof creatures roaming about, but you can\u0027t tell where the sound emanates\r\nfrom exactly.\r\n   Exits lead to the east along the hallway, and south back to the\r\nentrance.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "East": 18602,
         "South": 18600
@@ -43,13 +32,9 @@
     {
       "Name": "The Dirty Hallway",
       "Description": "You continue wandering down the hallway.  Nothing much different here,\r\nbut you are positive you here noises behind the door to the south, and\r\ncoming from the east.  The walls are a bit slimy and moldy here... yeech,\r\ncouldn\u0027t they hire someone to clean this place?  What will the newbies\r\nthink?  Oh well, you can continue along the hallway to the east or west.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "East": 18603,
         "South": 18606,
@@ -60,13 +45,9 @@
     {
       "Name": "A Nexus",
       "Description": "Well... you\u0027ve reached an intersection of two passages, to the north\r\nand east, the passage brightens, while the darker hallway continues to\r\nthe south.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 18644,
         "East": 18646,
@@ -78,13 +59,9 @@
     {
       "Name": "A Narrow Passage",
       "Description": "The thin passage is plain and undecorated, but still clean.  It\r\nends abruptly to the south at a small oak door, behind which you hear\r\nmovement...\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 18647,
         "South": 18612
@@ -94,13 +71,9 @@
     {
       "Name": "The Dark Pit",
       "Description": "Ick... a dark damp dirty pit.  Even worse, what is that dark damp\r\ndirty thing looking at you from the corner?  Ewww... maybe you should\r\ngo back up where it is a bit safer, unless you think you can tackle\r\nthat thing in the corner.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "Up": 18606
       },
@@ -109,13 +82,9 @@
     {
       "Name": "A Small Room",
       "Description": "Hmmm... this is an interesting little room.  Ack, and there is\r\nan interesting little creature staring at you too.  He looks a bit\r\nsurprised at your intrusion.  You can leave via the doors north or\r\neast, or you can stay and annoy him a bit more.  There also appears\r\nto be some type of well down here also, but it has a rather secure\r\ngrate covering it.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 18602,
         "East": 18607,
@@ -126,13 +95,9 @@
     {
       "Name": "More Of The Hallway",
       "Description": "Oh joy!  More of this annoying passage.  Perhaps there is something\r\nmore exciting through that door to the west?  Or you can keep searching\r\nthe hallways to the north or south.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 18603,
         "South": 18611,
@@ -143,13 +108,9 @@
     {
       "Name": "An Open Field By The Great Field",
       "Description": "Finally, you are in an open field... it is so nice to breathe fresh air\r\nagain!  You can return to that dank, smelly place to the east, or take the\r\nexit to the north which appears to lead into a large field.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 3061,
         "East": 18609
@@ -159,13 +120,9 @@
     {
       "Name": "The End Of The Passage",
       "Description": "Ahhh... at last, the end of the hallway... you can exit into open\r\nair to the west,or return to the east and make sure you didn\u0027t miss\r\nanything.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "East": 18610,
         "West": 18608
@@ -175,13 +132,9 @@
     {
       "Name": "A Brighter Hallway",
       "Description": "The hallway continues on in a east-west direction... and it seems to\r\nbe brightening up to the west.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "East": 18611,
         "West": 18609
@@ -191,13 +144,9 @@
     {
       "Name": "Another Corner",
       "Description": "Another corner of the passage, and just as untidy as the rest of\r\nthis place (maybe more so?).  There is a door to the east though...\r\nwonder where that leads?  Oh, and the hallway continues west and\r\nnorth.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 18607,
         "East": 18612,
@@ -208,13 +157,9 @@
     {
       "Name": "The Alchemist\u0027s Room",
       "Description": "Lots of bottles and flasks lie about this room, but it all looks like\r\nworthless clutter.  It appears whatever alchemist has been working here\r\nis really very adept at his art.  There are a lot of formulae and spells\r\nwritten on the walls too... couldn\u0027t he buy some paper?  There is a door\r\nto the north, and also a dark stairway in the corner leading down, with a\r\nlarge sign next to it that you probably should read...\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 18604,
         "West": 18611,
@@ -225,13 +170,9 @@
     {
       "Name": "A Turn In The Passage",
       "Description": "This corner is much like all the others... except you see a strange\r\nglow coming from the south.  Could be an exit... you hope.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "East": 18621,
         "South": 18629
@@ -241,13 +182,9 @@
     {
       "Name": "A T-Intersection In The Passage",
       "Description": "This is an intersection of a long east-west passage with a corridor\r\nleading south.  The air seems a bit clearer here though, as if you were\r\napproaching an exit.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "East": 18622,
         "South": 18633,
@@ -258,13 +195,9 @@
     {
       "Name": "Another Corner",
       "Description": "The passage turns from north to west here.  The walls are still\r\ncovered with the same disgusting green fungus you have seen all\r\nalong, and you hear sounds of creatures moving all around you...\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "South": 18628,
         "West": 18621
@@ -274,13 +207,9 @@
     {
       "Name": "A Corner In The Hallway",
       "Description": "You can hear creatures moving all around you... and it is not\r\na comforting sound at all.  The furnishing is nothing to speak of\r\neither, plain gray brick walls with green fungus (or something)\r\ngrowing on them.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "East": 18624,
         "South": 18627
@@ -290,13 +219,9 @@
     {
       "Name": "Another Turn",
       "Description": "Hmmm... the passage turns south here.  You beginning to realize you\r\ncan easily lose your bearings if you aren\u0027t careful, and you don\u0027t think\r\nyou would like spending too much time here...\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "South": 18630,
         "West": 18623
@@ -306,13 +231,9 @@
     {
       "Name": "A Large Room",
       "Description": "The passage opens into a large oval room.  There really isn\u0027t much of\r\ninterest here though.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "East": 18626,
         "South": 18631
@@ -322,13 +243,9 @@
     {
       "Name": "A Long East-West Passage",
       "Description": "This is a long, narrow passage leading east and west.  The walls are\r\ndamp and covered with mildew and fungus.  There is a very unhealthy air\r\nabout this place and you\u0027re beginning to want out of here... soon.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "East": 18627,
         "West": 18625
@@ -338,13 +255,9 @@
     {
       "Name": "A Crossing Of Corridors",
       "Description": "Here a narrow east-west passage crosses with a wider passage to the\r\nnorth and south.  The air is dank, and has an odor of decay and debris.\r\nNot a nice place at all really...\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 18623,
         "East": 18628,
@@ -356,13 +269,9 @@
     {
       "Name": "A Corner Room",
       "Description": "This room is hardly more than a crossing of passages.  You do sense a\r\nslight breeze wafting down the passage to the north though, but it smells\r\naltogether bad...\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 18622,
         "West": 18627
@@ -372,13 +281,9 @@
     {
       "Name": "The Red Room",
       "Description": "It takes you a moment to realize that the red glow here is coming\r\nfrom a round portal on the floor.  It looks almost as if someone had\r\npainted a picture of a dirt running through a field on the floor of\r\nthis room.  Oddly enough, it is so realistic you can feel the wind in\r\nthe field coming out of the picture.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 18620,
         "East": 18630,
@@ -389,13 +294,9 @@
     {
       "Name": "A Branching Passage",
       "Description": "The north-south passage branches to the east here.  There is a queer red\r\nglow coming from that way as well, along with a faint breeze.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 18624,
         "South": 18634,
@@ -406,13 +307,9 @@
     {
       "Name": "A Passage",
       "Description": "Ick... this place is just disgusting.  You try and stay clear of the\r\nwalls, but the passage is so narrow you keep bumping them anyway.  You\r\nare almost convinced that the fungus coating the walls is grabbing at\r\nyou too.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 18625,
         "East": 18632,
@@ -423,13 +320,9 @@
     {
       "Name": "The Entrance",
       "Description": "It is dark, dank, disgusting and cold up here.  Plus you here the\r\nsounds of creatures all around you... and somehow they don\u0027t sound\r\nfriendly.  It is probably wise to exercise some degree of caution\r\nhere... no telling what you may run into here.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 18627,
         "South": 18635,
@@ -441,13 +334,9 @@
     {
       "Name": "Another Corner",
       "Description": "Well... what is there to say.  More fungus, more weird sounds, and a\r\nslight breeze from the north.  Bet you want to sign a lease, don\u0027t ya...\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 18621,
         "East": 18634
@@ -457,13 +346,9 @@
     {
       "Name": "An Intersection Of Passages",
       "Description": "Cold, smelly, and coated with green fungus... just like last week\u0027s\r\nleft-overs.  Furthermore you want nothing to do with either, you just\r\nwant out right now.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 18630,
         "South": 18637,
@@ -474,13 +359,9 @@
     {
       "Name": "A Turn In The Passage",
       "Description": "This place is just plain nauseating... it certainly smells as if\r\nsomething (or someone) died in here.  You hope you aren\u0027t next, but\r\nfrom the sounds you hear all around you, it seems as if something has\r\nother ideas about that.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 18632,
         "East": 18636
@@ -490,13 +371,9 @@
     {
       "Name": "A Branch To The South",
       "Description": "The east-west passage branches of to the south here.  All around you\r\nis the odour of death.  Actually, the mold and fungus on the walls is\r\ndoing great, but otherwise... well... you don\u0027t want to think about what\r\nelse lives here.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "East": 18637,
         "South": 18639,
@@ -507,13 +384,9 @@
     {
       "Name": "Yet Another Corner",
       "Description": "The passage turns here and heads north.  You sense something up ahead\r\nthat way, but you aren\u0027t sure what.  You aren\u0027t sure if you want to know\r\nwhat either at this point.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 18634,
         "West": 18636
@@ -523,13 +396,9 @@
     {
       "Name": "A Large Room",
       "Description": "You almost stumble as you enter this room... the sudden feeling of no\r\nwalls on either side of you makes you a bit nervous.  Suddenly you are\r\nvulnerable on all sides.  You can\u0027t even tell how big a room this is,\r\nbecause it extends to the east farther than your light will reach...\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 18631,
         "East": 18639
@@ -539,13 +408,9 @@
     {
       "Name": "A Large Room",
       "Description": "As you enter, you light glints of the wall to the east.  There appears\r\nto be words scrawled on the wall, and a crude picture.  To the west the\r\nroom extends beyond the reach of your light, and the dark shadows make you\r\nparanoid... anything could be hiding there.  You are painfully aware of\r\nhow exposed you are without walls around you.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 18636,
         "West": 18638
@@ -555,13 +420,9 @@
     {
       "Name": "The Statue\u0027s Room",
       "Description": "Here, the passage enters a small room.  Exits lead to the east and south,\r\nand you notice a wonderful, large (and tastefully done) statue to the north.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "East": 18641,
         "South": 18644
@@ -571,13 +432,9 @@
     {
       "Name": "The Hallway",
       "Description": "As you continue wandering down the hallway, you notice banners,\r\npictures, and other fine decorations adorning the walls all along\r\nthis passage.  It seems very different from the dismal passage where\r\nyou entered.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "East": 18642,
         "West": 18640
@@ -587,13 +444,9 @@
     {
       "Name": "The North Stairs",
       "Description": "Here, the hall opens into a wide room, with a high domed roof.  Now that\r\nthat you have come clear of the enclosed passage, you can see that the stair\r\nleads upward to an open air balcony overlooking the area.  To the south the\r\nroom continues, and another stair is visible matching the one in front of\r\nyou.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "South": 18647,
         "West": 18641,
@@ -604,13 +457,9 @@
     {
       "Name": "The Balcony",
       "Description": "Here you can look out and observe the world around.  Constructed in a\r\nsemi-circle around the dome of the room, the balcony allows you to look\r\nout in almost any direction.  Wandering to the north end, you can see that\r\nthe Great Fields north of Midgaard continue off towards the Dragonhelm\r\nMountains to the north.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "South": 18645,
         "Down": 18642
@@ -620,13 +469,9 @@
     {
       "Name": "A Bright Hallway",
       "Description": "Wow!  What a change from the dismal passage to the south.  Whoever\r\nkeeps this room up must really like newbies.  The walls and floor are\r\nclean, and tastefully decorated.  You also notice an interesting design\r\non the floor.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 18640,
         "South": 18603
@@ -636,13 +481,9 @@
     {
       "Name": "The Balcony",
       "Description": "Here you can look out and observe the world around.  Constructed in a\r\nsemi-circle around the dome of the room, the balcony allows you to look out\r\nin almost any direction.  Wandering to the south end, you can see the great\r\ncity of Midgaard off to the south-west.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 18643,
         "Down": 18647
@@ -652,13 +493,9 @@
     {
       "Name": "A Bright Hallway",
       "Description": "Wow!  What a change from the dismal passage to the west.  Whoever keeps\r\nthis  room up must really like newbies.  The walls and floor are clean, and\r\ntastefully decorated.  You also notice an interesting design on the floor.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "East": 18647,
         "West": 18603
@@ -668,13 +505,9 @@
     {
       "Name": "The South Stairs",
       "Description": "Here, the hall opens into a wide room, with a high domed roof.  Now that\r\nthat you have come clear of the enclosed passage, you can see that the stair\r\nleads upward to an open air balcony overlooking the area.  to the north the\r\nroom continues, and another stair is visible matching the one in front of\r\nyou.\r\n",
-      "Flags": null,
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "ExtraKeyword": null,
-      "ExtraDescription": null,
-      "Owner": null,
       "Exits": {
         "North": 18642,
         "South": 18604,
@@ -698,7 +531,6 @@
       "Sex": "None",
       "Flags": [],
       "Wealth": 50,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 18601
     },
@@ -715,7 +547,6 @@
       "Sex": "Neutral",
       "Flags": [],
       "Wealth": 20,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 18602
     },
@@ -734,7 +565,6 @@
       "Sex": "Neutral",
       "Flags": [],
       "Wealth": 40,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 18603
     },
@@ -753,7 +583,6 @@
       "Sex": "Neutral",
       "Flags": [],
       "Wealth": 30,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 18604
     },
@@ -770,7 +599,6 @@
       "Sex": "Neutral",
       "Flags": [],
       "Wealth": 50,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 18605
     },
@@ -790,7 +618,6 @@
       "Sex": "None",
       "Flags": [],
       "Wealth": 10,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 18606
     },
@@ -807,7 +634,6 @@
       "Sex": "None",
       "Flags": [],
       "Wealth": 40,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 18607
     },
@@ -825,7 +651,6 @@
       "Sex": "Neutral",
       "Flags": [],
       "Wealth": 30,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 18608
     },
@@ -841,7 +666,6 @@
       "Sex": "Neutral",
       "Flags": [],
       "Wealth": 70,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 18609
     },
@@ -858,7 +682,6 @@
       "Sex": "None",
       "Flags": [],
       "Wealth": 60,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 18610
     },
@@ -876,7 +699,6 @@
       "Sex": "Neutral",
       "Flags": [],
       "Wealth": 20,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 18611
     },
@@ -894,7 +716,6 @@
       "Sex": "Neutral",
       "Flags": [],
       "Wealth": 10,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 18612
     },
@@ -911,7 +732,6 @@
       "Sex": "Male",
       "Flags": [],
       "Wealth": 30,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 18613
     },
@@ -928,7 +748,6 @@
       "Sex": "Neutral",
       "Flags": [],
       "Wealth": 40,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 18614
     },
@@ -945,7 +764,6 @@
       "Sex": "Neutral",
       "Flags": [],
       "Wealth": 50,
-      "Shop": null,
       "SpecialAttacks": [],
       "Id": 18615
     }

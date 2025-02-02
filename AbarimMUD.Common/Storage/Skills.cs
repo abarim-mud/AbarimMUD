@@ -1,4 +1,5 @@
 ﻿using AbarimMUD.Data;
+using System;
 using System.Text.Json;
 
 namespace AbarimMUD.Storage
@@ -14,6 +15,7 @@ namespace AbarimMUD.Storage
 			var result = base.CreateJsonOptions();
 
 			result.Converters.Add(Common.AbilityConverter);
+			result.Converters.Add(Common.PlayerClassConverter);
 
 			return result;
 		}
@@ -24,6 +26,13 @@ namespace AbarimMUD.Storage
 
 			foreach (var skill in this)
 			{
+				if (skill.Class == null)
+				{
+					throw new Exception($"Skill {skill.Id} doesn't have Class.");
+				}
+
+				skill.Class = PlayerClass.EnsureClassById(skill.Class.Id);
+
 				foreach(var def in skill.Levels)
 				{
 					if (def.Abilities != null)

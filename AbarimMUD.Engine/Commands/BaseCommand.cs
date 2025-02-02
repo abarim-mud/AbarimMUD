@@ -30,7 +30,6 @@ namespace AbarimMUD.Commands
 		public static readonly Where Where = new Where();
 
 		public static readonly Score Score = new Score();
-		public static readonly Skills Skills = new Skills();
 
 		public static readonly Train Train = new Train();
 
