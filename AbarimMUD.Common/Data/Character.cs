@@ -199,24 +199,39 @@ namespace AbarimMUD.Data
 			var attack = new Attack(AttackType.Hit, 0, Configuration.CharacterBarehandedDamage.Minimum, Configuration.CharacterBarehandedDamage.Maximum);
 
 			// Apply skills
-			foreach(var pair in Skills)
+			foreach (var pair in Skills)
 			{
 				// Apply all levels up to learned one
-				for(var level = 0; level <= (int)pair.Value.Level; ++level)
+				for (var level = 0; level <= (int)pair.Value.Level; ++level)
 				{
 					var def = pair.Value.Skill.Levels[level];
 
-					foreach(var modPair in def.Modifiers)
+					foreach (var modPair in def.Modifiers)
 					{
-						result.ApplyModifier(modPair.Key, modPair.Value);
+						var val = modPair.Value;
+						switch (modPair.Key)
+						{
+							case ModifierType.AttacksCount:
+								attacksCount += val;
+								break;
+							case ModifierType.WeaponPenetration:
+								attack.Penetration += val;
+								break;
+							case ModifierType.BackstabCount:
+								result.BackstabCount += val;
+								break;
+							case ModifierType.BackstabMultiplier:
+								result.BackstabMultiplier += val;
+								break;
+						}
 					}
 				}
 			}
 
 			// Set attacks
-			for(var i = 0; i < attacksCount; ++i)
+			for (var i = 0; i < attacksCount; ++i)
 			{
-				result.Attacks.Add(attack);
+				result.Attacks.Add(attack.Clone());
 			}
 
 			return result;

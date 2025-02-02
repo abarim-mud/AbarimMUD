@@ -37,6 +37,8 @@ namespace AbarimMUD.Data
 		{
 		}
 
+		public Attack Clone() => new Attack(AttackType, Penetration, DamageRange);
+
 		public override string ToString()
 		{
 			return $"{AttackType}, {Penetration}, {DamageRange}";

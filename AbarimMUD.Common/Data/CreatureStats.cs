@@ -14,25 +14,6 @@ namespace AbarimMUD.Data
 		public int Armor { get; internal set; }
 		public long XpAward { get; internal set; }
 
-		internal void ApplyModifier(ModifierType modifier, int value)
-		{
-			if (value == 0)
-			{
-				return;
-			}
-
-			switch (modifier)
-			{
-				case ModifierType.BackstabCount:
-					BackstabCount += value;
-					break;
-
-				case ModifierType.BackstabMultiplier:
-					BackstabMultiplier += value;
-					break;
-			}
-		}
-
 		public int GetHitpointsRegen(bool isFighting)
 		{
 			var result = (int)(Configuration.HitpointsRegenPercentagePerMinute * MaxHitpoints / 100.0f);

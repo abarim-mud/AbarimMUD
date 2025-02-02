@@ -23,6 +23,7 @@
     "leatherBoots"
   ],
   "StartingSkills": [
-    "backstab"
+    "backstab",
+    "melee"
   ]
 }

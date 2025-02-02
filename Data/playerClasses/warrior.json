@@ -14,12 +14,15 @@
     "1": 100,
     "100": 200
   },
-  "Equipment": [
+  "StartingEquipment": [
     "ironSword",
     "ironHelmet",
     "ironArmor",
     "ironGloves",
     "ironGreaves",
     "ironBoots"
+  ],
+  "StartingSkills": [
+    "melee"
   ]
 }

@@ -15,19 +15,9 @@ namespace AbarimMUD.ExportAreasToMMB
 
 		static void Process(string inputFolder, string outputFolder)
 		{
-			DataContext.Initialize(inputFolder, Log);
+			StorageUtility.InitializeStorage(Log);
 
-			DataContext.Register(Race.Storage);
-			DataContext.Register(MobileClass.Storage);
-			DataContext.Register(Mobile.Storage);
-			DataContext.Register(Item.Storage);
-			DataContext.Register(Skill.Storage);
-			DataContext.Register(Area.Storage);
-			DataContext.Register(Account.Storage);
-			DataContext.Register(Character.Storage);
-			DataContext.Register(Social.Storage);
-
-			DataContext.Load();
+			DataContext.Load(inputFolder);
 
 			var mmbAreas = new List<MMBArea>();
 			foreach (var area in Area.Storage)

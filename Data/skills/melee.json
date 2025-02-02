@@ -1,0 +1,33 @@
+{
+  "Id": "melee",
+  "Name": "Melee",
+  "Levels": [
+    {
+      "Modifiers": {
+        "AttacksCount": 1,
+        "WeaponPenetration": 20
+      }
+    },
+    {
+      "Modifiers": {
+        "WeaponPenetration": 20
+      }
+    },
+    {
+      "Modifiers": {
+        "AttacksCount": 1,
+        "WeaponPenetration": 20
+      }
+    },
+    {
+      "Modifiers": {
+        "WeaponPenetration": 20
+      }
+    },
+    {
+      "Modifiers": {
+        "WeaponPenetration": 20
+      }
+    }
+  ]
+}

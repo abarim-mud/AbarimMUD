@@ -63,6 +63,16 @@ namespace AbarimMUD.Commands.Player
 				}
 			}
 
+
+			if (asCharacter != null)
+			{
+				context.Send("Skills:");
+				foreach (var pair in asCharacter.Skills)
+				{
+					context.Send($"{pair.Value.Skill.Name}: {pair.Value.Level}");
+				}
+			}
+
 			return true;
 		}
 	}
