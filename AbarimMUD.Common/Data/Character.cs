@@ -23,7 +23,7 @@ namespace AbarimMUD.Data
 		public static readonly MultipleFilesStorage<Character> Storage = new Characters();
 
 		private PlayerClass _class;
-		private int _level;
+		private int _level, _skillPoints;
 		private Room _room;
 
 
@@ -80,6 +80,21 @@ namespace AbarimMUD.Data
 
 				_level = value;
 				InvalidateStats();
+			}
+		}
+
+		public int SkillPoints
+		{
+			get => _skillPoints;
+
+			set
+			{
+				if (value < 1)
+				{
+					throw new ArgumentOutOfRangeException(nameof(value));
+				}
+
+				_skillPoints = value;
 			}
 		}
 
@@ -149,6 +164,11 @@ namespace AbarimMUD.Data
 				leveled = true;
 				Experience -= levelInfo.Experience;
 				++_level;
+
+				if (_level % 2 == 0)
+				{
+					++SkillPoints;
+				}
 			}
 
 			if (leveled)

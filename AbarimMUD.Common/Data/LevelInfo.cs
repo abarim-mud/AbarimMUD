@@ -4,7 +4,7 @@ namespace AbarimMUD.Data
 {
 	public class LevelInfo
 	{
-		public static readonly SingleFileStorage<int, LevelInfo> Storage = new LevelInfos();
+		public static readonly SingleFileStorage<int, LevelInfo> Storage = new SingleFileStorage<int, LevelInfo>(l => l.Level, "levels.json");
 
 		public int Level { get; set; }
 

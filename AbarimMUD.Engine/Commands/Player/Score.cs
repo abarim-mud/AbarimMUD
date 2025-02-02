@@ -30,6 +30,20 @@ namespace AbarimMUD.Commands.Player
 				{
 					context.Send($"You current autoskill is {asCharacter.Autoskill}.");
 				}
+
+				if (asCharacter.SkillPoints == 0)
+				{
+					context.Send("You have zero skill points.");
+
+				}
+				else if (asCharacter.SkillPoints == 1)
+				{
+					context.Send("You have 1 skill point.");
+				}
+				else
+				{
+					context.Send($"You have {asCharacter.SkillPoints} skill point.");
+				}
 			}
 
 			var stats = context.Creature.Stats;
@@ -56,19 +70,10 @@ namespace AbarimMUD.Commands.Player
 				if (stats.BackstabCount == 1)
 				{
 					context.Send($"You can do single backstab with multiplier equal to {stats.BackstabMultiplier}.");
-				} else
+				}
+				else
 				{
 					context.Send($"You can do {stats.BackstabCount} backstabs with multiplier equal to {stats.BackstabMultiplier}.");
-				}
-			}
-
-
-			if (asCharacter != null)
-			{
-				context.Send("Skills:");
-				foreach (var pair in asCharacter.Skills)
-				{
-					context.Send($"{pair.Value.Skill.Name}: {pair.Value.Level}");
 				}
 			}
 

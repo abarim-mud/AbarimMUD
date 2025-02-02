@@ -33,6 +33,11 @@ namespace AbarimMUD.Combat
 					var previousHp = character.Class.HitpointsRange.CalculateValue(level - 1);
 					var newHp = character.Class.HitpointsRange.CalculateValue(level);
 					attacker.Send($"Welcome to the level {level}! You gained {newHp - previousHp} hitpoints.");
+
+					if (level % 2 == 0)
+					{
+						attacker.Send("You gained 1 skill point");
+					}
 				}
 
 				character.Wealth += targetMobile.Info.Wealth;
