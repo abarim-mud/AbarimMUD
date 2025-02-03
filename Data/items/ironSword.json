@@ -5,14 +5,12 @@
     "sword"
   ],
   "ShortDescription": "an iron sword",
-  "LongDescription": null,
   "Description": "Unset",
-  "Affects": [],
   "ItemType": "Weapon",
   "AttackType": "Slash",
+  "Affects": {
+    "WeaponPenetration": 10
+  },
   "Flags": [],
-  "Value1": 10,
-  "Value2": 4,
-  "Value3": 10,
-  "Value4": 0
+  "DamageRange": "4-10"
 }

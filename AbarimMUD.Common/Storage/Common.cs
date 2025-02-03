@@ -1,5 +1,7 @@
 ﻿using AbarimMUD.Data;
+using AbarimMUD.Utils;
 using System;
+using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -69,11 +71,73 @@ namespace AbarimMUD.Storage
 			}
 		}
 
+		public class AffectsConverterType: JsonConverter<Dictionary<ModifierType, Affect>>
+		{
+			private static JsonSerializerOptions _defaultOptions;
+
+			public static JsonSerializerOptions DefaultOptions
+			{
+				get
+				{
+					if (_defaultOptions == null)
+					{
+						_defaultOptions = JsonUtils.CreateOptions();
+					}
+
+					return _defaultOptions;
+				}
+			}
+
+			public override Dictionary<ModifierType, Affect> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+			{
+				var result = new Dictionary<ModifierType, Affect>();
+				var doc = JsonDocument.ParseValue(ref reader);
+
+				foreach(var pair in doc.RootElement.EnumerateObject())
+				{
+					var modifier = Enum.Parse<ModifierType>(pair.Name);
+
+					if (pair.Value.ValueKind == JsonValueKind.Number)
+					{
+						// No duration
+						result[modifier] = new Affect(modifier, pair.Value.GetInt32());
+					} else
+					{
+						// Duration
+						result[modifier] = JsonSerializer.Deserialize<Affect>(pair.Value, DefaultOptions);
+						result[modifier].Type = modifier;
+					}
+				}
+
+				return result;
+			}
+
+			public override void Write(Utf8JsonWriter writer, Dictionary<ModifierType, Affect> value, JsonSerializerOptions options)
+			{
+				var newDict = new Dictionary<ModifierType, object>();
+				
+				foreach(var pair in value)
+				{
+					// If there's no duration, then write just value
+					if (pair.Value.DurationInSeconds == null)
+					{
+						newDict[pair.Key] = pair.Value.Value;
+					}  else
+					{
+						newDict[pair.Key] = pair.Value;
+					}
+				}
+
+				JsonSerializer.Serialize(writer, newDict);
+			}
+		}
+
 		public static readonly EntityConverter<MobileClass> MobileClassConverter = new MobileClassConverterType();
 		public static readonly EntityConverter<PlayerClass> PlayerClassConverter = new EntityConverter<PlayerClass>(s => s.Id);
 		public static readonly EntityConverter<Skill> SkillConverter = new EntityConverter<Skill>(s => s.Id);
 		public static readonly EntityConverter<Item> ItemConverter = new EntityConverter<Item>(i => i.Id);
 		public static readonly EntityConverter<Ability> AbilityConverter = new EntityConverter<Ability>(s => s.Id);
 		public static readonly SkillValueConverterType SkillValueConverter = new SkillValueConverterType();
+		public static readonly AffectsConverterType AffectsConverter = new AffectsConverterType();
 	}
 }

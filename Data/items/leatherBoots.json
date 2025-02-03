@@ -5,14 +5,11 @@
     "boots"
   ],
   "ShortDescription": "a leather boots",
-  "LongDescription": null,
   "Description": "Unset",
-  "Affects": [],
   "ItemType": "Boots",
   "AttackType": "Hit",
-  "Flags": [],
-  "Value1": 2,
-  "Value2": 0,
-  "Value3": 0,
-  "Value4": 0
+  "Affects": {
+    "Armor": 2
+  },
+  "Flags": []
 }

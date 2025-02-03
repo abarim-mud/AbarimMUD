@@ -1,5 +1,6 @@
 ﻿using AbarimMUD.Attributes;
 using AbarimMUD.Storage;
+using AbarimMUD.Utils;
 using System;
 using System.Collections.Generic;
 
@@ -16,6 +17,7 @@ namespace AbarimMUD.Data
 		Leggings,
 		Boots,
 		Weapon,
+		Potion,
 	}
 
 	public enum ItemFlags
@@ -28,8 +30,6 @@ namespace AbarimMUD.Data
 	{
 		public static readonly MultipleFilesStorage<Item> Storage = new Items();
 
-		private int _value1, _value2, _value3, _value4;
-
 		public string Id { get; set; }
 		public HashSet<string> Keywords { get; set; } = new HashSet<string>();
 
@@ -41,115 +41,11 @@ namespace AbarimMUD.Data
 		public string Description { get; set; }
 		public ItemType ItemType { get; set; }
 		public AttackType AttackType { get; set; }
+		public Dictionary<ModifierType, Affect> Affects { get; set; } = new Dictionary<ModifierType, Affect>();
+
 
 		public HashSet<ItemFlags> Flags { get; set; } = new HashSet<ItemFlags>();
-
-		[OLCIgnore]
-		public int Value1
-		{
-			get => _value1;
-
-			set
-			{
-				if (value == _value1)
-				{
-					return;
-				}
-
-				_value1 = value;
-				InvalidateCreaturesWithThisItem();
-			}
-		}
-
-		[OLCIgnore]
-		public int Value2
-		{
-			get => _value2;
-
-			set
-			{
-				if (value == _value2)
-				{
-					return;
-				}
-
-				_value2 = value;
-				InvalidateCreaturesWithThisItem();
-			}
-		}
-
-		[OLCIgnore]
-		public int Value3
-		{
-			get => _value3;
-
-			set
-			{
-				if (value == _value3)
-				{
-					return;
-				}
-
-				_value3 = value;
-				InvalidateCreaturesWithThisItem();
-			}
-		}
-
-		[OLCIgnore]
-		public int Value4
-		{
-			get => _value4;
-
-			set
-			{
-				if (value == _value4)
-				{
-					return;
-				}
-
-				_value4 = value;
-				InvalidateCreaturesWithThisItem();
-			}
-		}
-
-		private void EnsureType(ItemType itemType)
-		{
-			if (ItemType != itemType)
-			{
-				throw new Exception($"Item {Id} of type {ItemType} isn't {itemType}");
-			}
-		}
-
-		public void SetArmor(int armor)
-		{
-			Value1 = armor;
-		}
-
-		public void GetArmor(out int armor)
-		{
-			if (!ItemType.IsArmor())
-			{
-				throw new Exception($"Item {Id} of type {ItemType} isn't armor.");
-			}
-
-			armor = Value1;
-		}
-
-		public void SetWeapon(int penetration, int minimumDamage, int maximumDamage)
-		{
-			ItemType = ItemType.Weapon;
-			Value1 = penetration;
-			Value2 = minimumDamage;
-			Value3 = maximumDamage;
-		}
-
-		public void GetWeapon(out int penetration, out int minimumDamage, out int maximumDamage)
-		{
-			EnsureType(ItemType.Weapon);
-			penetration = Value1;
-			minimumDamage = Value2;
-			maximumDamage = Value3;
-		}
+		public RandomRange? DamageRange { get; set; }
 
 		public bool MatchesKeyword(string keyword) => Keywords.StartsWithPattern(keyword);
 
@@ -163,11 +59,14 @@ namespace AbarimMUD.Data
 				Description = Description,
 				AttackType = AttackType,
 				ItemType = ItemType,
-				_value1 = _value1,
-				_value2 = _value2,
-				_value3 = _value3,
-				_value4 = _value4,
+				Affects = Affects,
+				DamageRange = DamageRange,
 			};
+
+			foreach (var flag in Flags)
+			{
+				result.Flags.Add(flag);
+			}
 
 			foreach (var keyword in Keywords)
 			{

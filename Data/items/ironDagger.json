@@ -5,16 +5,14 @@
     "dagger"
   ],
   "ShortDescription": "an iron dagger",
-  "LongDescription": null,
   "Description": "Unset",
-  "Affects": [],
   "ItemType": "Weapon",
   "AttackType": "Pierce",
+  "Affects": {
+    "WeaponPenetration": 10
+  },
   "Flags": [
     "Stab"
   ],
-  "Value1": 10,
-  "Value2": 2,
-  "Value3": 6,
-  "Value4": 0
+  "DamageRange": "2-6"
 }

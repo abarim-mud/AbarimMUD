@@ -78,44 +78,25 @@ namespace AbarimMUD.Data
 
 			// Apply weapon to attacks
 			var weapon = Equipment[SlotType.Wield];
-			if (weapon != null)
+			if (weapon != null && weapon.Info.DamageRange != null)
 			{
-				int weaponPenetration, weaponMinimumDamage, weaponMaximumDamage;
-				weapon.GetWeapon(out weaponPenetration, out weaponMinimumDamage, out weaponMaximumDamage);
 				foreach (var attack in _stats.Attacks)
 				{
 					attack.AttackType = weapon.Info.AttackType;
-					attack.Penetration += weaponPenetration;
 
 					if (this is Character)
 					{
 						// Player
 						// Replace damage with weapon values
-						attack.MinimumDamage = weaponMinimumDamage;
-						attack.MaximumDamage = weaponMaximumDamage;
+						attack.DamageRange = weapon.Info.DamageRange.Value;
 					}
 					else
 					{
 						// Mobile
 						// Add weapon values to damage
-						attack.MinimumDamage += weaponMinimumDamage;
-						attack.MaximumDamage += weaponMaximumDamage;
+						attack.DamageRange += weapon.Info.DamageRange.Value;
 					}
 				}
-			}
-
-			// Apply armor items
-			foreach (var item in Equipment.Items)
-			{
-				if (!item.Item.ItemType.IsArmor())
-				{
-					continue;
-				}
-
-				int armor;
-				item.Item.GetArmor(out armor);
-
-				_stats.Armor += armor;
 			}
 		}
 

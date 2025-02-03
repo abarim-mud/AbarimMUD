@@ -39,6 +39,7 @@ namespace AbarimMUD.Commands
 		public static readonly Remove Remove = new Remove();
 		public static readonly Junk Junk = new Junk();
 		public static readonly Player.Equipment Equipment = new Player.Equipment();
+		public static readonly Use Use = new Use();
 
 		public static readonly Autoskill Autoskill = new Autoskill();
 

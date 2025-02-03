@@ -1,0 +1,19 @@
+{
+  "Id": "novicePotionOfHealing",
+  "Keywords": [
+    "novice",
+    "potion",
+    "healing"
+  ],
+  "ShortDescription": "a novice potion of healing",
+  "Description": "Unset",
+  "ItemType": "Potion",
+  "AttackType": "Hit",
+  "Affects": {
+    "HpRegen": {
+      "Value": 10,
+      "DurationInSeconds": 60
+    }
+  },
+  "Flags": []
+}

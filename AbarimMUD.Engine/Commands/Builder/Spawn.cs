@@ -78,6 +78,12 @@ namespace AbarimMUD.Commands.Builder
 					return false;
 			}
 
+			var character = context.Creature as Character;
+			if (character != null)
+			{
+				character.Save();
+			}
+
 			return true;
 		}
 	}

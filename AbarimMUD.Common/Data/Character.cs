@@ -292,6 +292,19 @@ namespace AbarimMUD.Data
 				}
 			}
 
+			// Apply equipment
+			foreach(var item in Equipment.Items)
+			{
+				if (item.Item.Info.Affects != null)
+				{
+					foreach(var pair in item.Item.Info.Affects)
+					{
+						var affect = pair.Value;
+						ApplyModifier(affect.Type, affect.Value, ref attacksCount, attack, result);
+					}
+				}
+			}
+
 			// Set attacks
 			for (var i = 0; i < attacksCount; ++i)
 			{

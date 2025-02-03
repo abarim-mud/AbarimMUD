@@ -11,8 +11,8 @@ namespace AbarimMUD.Commands.Builder
 		{
 			var itemEditor = ClassEditor.GetEditor<Item>();
 
-			itemEditor.RegisterCustomEditor("armor", $"_armor_", SetArmor);
-			itemEditor.RegisterCustomEditor("weapon", $"_penetration_ _minimumDamage_ _maximumDamage_", SetWeapon);
+			itemEditor.RegisterCustomEditor("armor", "_armor_", SetArmor);
+			itemEditor.RegisterCustomEditor("weapon", "_penetration_ _minimumDamage_ _maximumDamage_", SetWeapon);
 		}
 
 		private static bool SetArmor(ExecutionContext context, object obj, IReadOnlyList<string> values)
@@ -24,7 +24,9 @@ namespace AbarimMUD.Commands.Builder
 			}
 
 			var item = (Item)obj;
-			item.SetArmor(armor);
+
+			
+//			item.SetArmor(armor);
 
 			return true;
 		}
@@ -50,7 +52,7 @@ namespace AbarimMUD.Commands.Builder
 			}
 
 			var item = (Item)obj;
-			item.SetWeapon(penetration, minimumDamage, maximumDamage);
+//			item.SetWeapon(penetration, minimumDamage, maximumDamage);
 
 			return true;
 		}

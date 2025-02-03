@@ -28,10 +28,6 @@ namespace AbarimMUD.Data
 		public bool MatchesKeyword(string keyword) => Info.MatchesKeyword(keyword);
 
 
-		public void GetArmor(out int armor) => Info.GetArmor(out armor);
-		public void GetWeapon(out int penetration, out int minimumDamage, out int maximumDamage) =>
-			Info.GetWeapon(out penetration, out minimumDamage, out maximumDamage);
-
 		public override string ToString() => Info.ToString();
 
 		public static bool AreEqual(ItemInstance a, ItemInstance b) => a.Id == b.Id;

@@ -5,14 +5,11 @@
     "armor"
   ],
   "ShortDescription": "a leather armor",
-  "LongDescription": null,
   "Description": "Unset",
-  "Affects": [],
   "ItemType": "Armor",
   "AttackType": "Hit",
-  "Flags": [],
-  "Value1": 4,
-  "Value2": 0,
-  "Value3": 0,
-  "Value4": 0
+  "Affects": {
+    "Armor": 4
+  },
+  "Flags": []
 }

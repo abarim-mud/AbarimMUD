@@ -13,6 +13,8 @@ namespace AbarimMUD.Storage
 		{
 			var result = base.CreateJsonOptions();
 
+			result.Converters.Add(Common.AffectsConverter);
+
 			return result;
 		}
 	}

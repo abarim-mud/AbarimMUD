@@ -5,16 +5,14 @@
     "dagger"
   ],
   "ShortDescription": "a death dagger",
-  "LongDescription": null,
   "Description": "Unset",
-  "Affects": [],
   "ItemType": "Weapon",
   "AttackType": "Pierce",
+  "Affects": {
+    "WeaponPenetration": 50
+  },
   "Flags": [
     "Stab"
   ],
-  "Value1": 50,
-  "Value2": 50,
-  "Value3": 80,
-  "Value4": 0
+  "DamageRange": "50-80"
 }

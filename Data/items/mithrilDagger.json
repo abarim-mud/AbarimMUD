@@ -5,16 +5,14 @@
     "dagger"
   ],
   "ShortDescription": "a mithril dagger",
-  "LongDescription": null,
   "Description": "Unset",
-  "Affects": [],
   "ItemType": "Weapon",
   "AttackType": "Pierce",
+  "Affects": {
+    "WeaponPenetration": 30
+  },
   "Flags": [
     "Stab"
   ],
-  "Value1": 30,
-  "Value2": 3,
-  "Value3": 18,
-  "Value4": 0
+  "DamageRange": "3-18"
 }
