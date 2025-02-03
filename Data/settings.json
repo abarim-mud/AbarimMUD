@@ -2,7 +2,6 @@
   "MaximumLevel": 40,
   "ServerPort": 6101,
   "WebServiceUrl": "http://localhost:8080/AbarimMUD/",
-  "SplashFile": null,
   "StartRoomId": 3001,
   "DefaultCharacter": "Yang",
   "DefaultClass": "warrior",
@@ -12,5 +11,19 @@
   "PeaceRegenMultiplier": 2,
   "PauseBetweenFightRoundsInMs": 3000,
   "NegativeRegen": 20,
-  "CharacterBarehandedDamage": "1-4"
+  "CharacterBarehandedDamage": "1-4",
+  "PrimarySkillsLevelsConstraints": [
+    1,
+    5,
+    10,
+    15,
+    20
+  ],
+  "NonPrimarySkillsLevelsConstraints": [
+    1,
+    10,
+    20,
+    30,
+    40
+  ]
 }

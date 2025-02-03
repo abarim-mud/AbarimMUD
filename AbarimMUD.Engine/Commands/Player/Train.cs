@@ -8,14 +8,14 @@ namespace AbarimMUD.Commands.Player
 	{
 		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
-			var asCharacter = context.Creature as Character;
-			if (asCharacter == null)
+			var character = context.Creature as Character;
+			if (character == null)
 			{
 				context.Send("You can't train.");
 				return false;
 			}
 
-			var spentSkillPoints = asCharacter.SpentSkillPointsCount;
+			var spentSkillPoints = character.SpentSkillPointsCount;
 			if (spentSkillPoints >= SkillCostInfo.Storage.Count)
 			{
 				context.Send($"You can't train anymore.");
@@ -31,7 +31,9 @@ namespace AbarimMUD.Commands.Player
 				return false;
 			}
 
-			var trainableSkills = (from s in Skill.Storage where s.Class.Id == trainer.Info.Guildmaster.Id select s).ToList();
+			var trainerContext = (ExecutionContext)trainer.Tag;
+
+			var trainableSkills = (from s in Skill.Storage where s.Class.Id.EqualsToIgnoreCase(trainer.Info.Guildmaster.Id) select s).ToList();
 
 			Skill skillToTrain = null;
 			if (!string.IsNullOrEmpty(data))
@@ -41,7 +43,7 @@ namespace AbarimMUD.Commands.Player
 
 			// Remove maxed out skills
 			SkillValue skillValue = null;
-			foreach(var pair in asCharacter.Skills)
+			foreach(var pair in character.Skills)
 			{
 				if (skillToTrain != null && skillToTrain.Id == pair.Value.Skill.Id)
 				{
@@ -58,7 +60,7 @@ namespace AbarimMUD.Commands.Player
 			{
 				if (trainableSkills.Count == 0)
 				{
-					Tell.Execute((ExecutionContext)trainer.Tag, $"{context.Creature.ShortDescription} There's nothing I could teach you anymore.");
+					Tell.Execute(trainerContext, $"{context.Creature.ShortDescription} There's nothing I could teach you anymore.");
 				}
 				else
 				{
@@ -73,39 +75,56 @@ namespace AbarimMUD.Commands.Player
 						}
 					}
 					var skillNames = (from s in trainableSkills select s.Name).ToList();
-					Tell.Execute((ExecutionContext)trainer.Tag, $"{context.Creature.ShortDescription} I could teach you one of the following: {sb.ToString()}. It would cost you {price} gold.");
+					Tell.Execute(trainerContext, $"{context.Creature.ShortDescription} I could teach you one of the following: {sb.ToString()}. It would cost you {price} gold.");
 				}
 			} else
 			{
 				if (skillToTrain == null)
 				{
-					Tell.Execute((ExecutionContext)trainer.Tag, $"{context.Creature.ShortDescription} I don't know '{data}'.");
+					Tell.Execute(trainerContext, $"{context.Creature.ShortDescription} I don't know '{data}'.");
 					return false;
 				}
 
 				if (skillValue != null && skillValue.Level == SkillLevel.Master)
 				{
-					Tell.Execute((ExecutionContext)trainer.Tag, $"{context.Creature.ShortDescription} You are master in '{data}' already.");
+					Tell.Execute(trainerContext, $"{context.Creature.ShortDescription} You are master in '{data}' already.");
 					return false;
 				}
 
-				if (asCharacter.SkillPoints < skillToTrain.Cost)
+				var levelConstraint = 1;
+				if(character.Class.Id.EqualsToIgnoreCase(trainer.Info.Guildmaster.Id))
 				{
-					Tell.Execute((ExecutionContext)trainer.Tag, $"{context.Creature.ShortDescription} Unfortunately you don't have enough skill points.");
-					return false;
-				}
-
-				if (asCharacter.Gold < price)
+					// Skill of the primary class
+					levelConstraint = Configuration.PrimarySkillsLevelsConstraints[(int)skillValue.Level + 1];
+				} else
 				{
-					Tell.Execute((ExecutionContext)trainer.Tag, $"{context.Creature.ShortDescription} Unfortunately you don't have enough gold.");
+					// Skill not of the primary class
+					levelConstraint = Configuration.NonPrimarySkillsLevelsConstraints[(int)skillValue.Level + 1];
+				}
+
+				if (character.Level < levelConstraint)
+				{
+					Tell.Execute(trainerContext, $"{context.Creature.ShortDescription} You need to have at least level {levelConstraint} to learn that.");
 					return false;
 				}
 
-				asCharacter.Train(skillToTrain);
-				asCharacter.Gold -= price;
-				asCharacter.SkillPoints -= skillToTrain.Cost;
+				if (character.SkillPoints < skillToTrain.Cost)
+				{
+					Tell.Execute(trainerContext, $"{context.Creature.ShortDescription} Unfortunately you don't have enough skill points.");
+					return false;
+				}
 
-				asCharacter.Save();
+				if (character.Gold < price)
+				{
+					Tell.Execute(trainerContext, $"{context.Creature.ShortDescription} Unfortunately you don't have enough gold.");
+					return false;
+				}
+
+				character.Train(skillToTrain);
+				character.Gold -= price;
+				character.SkillPoints -= skillToTrain.Cost;
+
+				character.Save();
 
 				if (skillValue == null)
 				{

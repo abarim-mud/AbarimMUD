@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using AbarimMUD.Data;
 using System.Reflection;
 using System;
+using AbarimMUD.Commands.Administrator;
 
 namespace AbarimMUD.Commands
 {
@@ -68,6 +69,9 @@ namespace AbarimMUD.Commands
 		public static readonly RoomLink RoomLink = new RoomLink();
 		public static readonly RoomLinkClear RLinkClear = new RoomLinkClear();
 		public static readonly RoomSaveResets RoomSaveResets = new RoomSaveResets();
+
+		// Administrator
+		public static readonly Award Award = new Award();
 
 		// Owner
 		public static readonly SetType SetType = new SetType();

@@ -1,12 +1,15 @@
 ﻿using AbarimMUD.Storage;
 using AbarimMUD.Utils;
+using System;
+using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
 {
 	public static class Configuration
 	{
 		private static readonly CustomStorage<ConfigurationInstance> InternalStorage = new CustomStorage<ConfigurationInstance>("settings.json");
-
 
 		private class ConfigurationInstance
 		{
@@ -27,6 +30,11 @@ namespace AbarimMUD.Data
 			public int PauseBetweenFightRoundsInMs { get; set; }
 			public int NegativeRegen { get; set; }
 			public RandomRange CharacterBarehandedDamage { get; set; } = new RandomRange(1, 4);
+
+			public int[] PrimarySkillsLevelsConstraints { get; set; } = new[] { 1, 5, 10, 15, 20 };
+
+
+			public int[] NonPrimarySkillsLevelsConstraints { get; set; } = new[] { 1, 10, 20, 30, 40 };
 		}
 
 		public static BaseStorage Storage => InternalStorage;
@@ -51,6 +59,11 @@ namespace AbarimMUD.Data
 		/// </summary>
 		public static int NegativeRegen => Instance.NegativeRegen;
 		public static RandomRange CharacterBarehandedDamage => Instance.CharacterBarehandedDamage;
+
+		public static int[] PrimarySkillsLevelsConstraints => Instance.PrimarySkillsLevelsConstraints;
+
+
+		public static int[] NonPrimarySkillsLevelsConstraints => Instance.NonPrimarySkillsLevelsConstraints;
 
 		public static void Save() => InternalStorage.Save();
 	}

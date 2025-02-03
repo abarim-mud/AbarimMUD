@@ -24,9 +24,11 @@ namespace AbarimMUD.Combat
 				var xpAward = targetMobile.Stats.XpAward;
 				attacker.Send($"Total exp for kill is {xpAward.FormatBigNumber()}.");
 
+				character.Gold += targetMobile.Info.Wealth;
+
+				// Awarding Xp will do the save
 				attacker.AwardXp(xpAward);
 
-				character.Gold += targetMobile.Info.Wealth;
 				attacker.Send($"You get {targetMobile.Info.Wealth.FormatBigNumber()} gold coins from the corpse of {targetMobile.ShortDescription}.");
 				attacker.Send($"You bury the corpse of {targetMobile.ShortDescription}.");
 
