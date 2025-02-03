@@ -22,25 +22,11 @@ namespace AbarimMUD.Combat
 			if (character != null && targetMobile != null)
 			{
 				var xpAward = targetMobile.Stats.XpAward;
-
-				var lastLevel = character.Level;
-				character.GainXp(xpAward);
 				attacker.Send($"Total exp for kill is {xpAward.FormatBigNumber()}.");
 
-				// Append level up messages
-				for (var level = lastLevel + 1; level <= character.Level; ++level)
-				{
-					var previousHp = character.Class.HitpointsRange.CalculateValue(level - 1);
-					var newHp = character.Class.HitpointsRange.CalculateValue(level);
-					attacker.Send($"Welcome to the level {level}! You gained {newHp - previousHp} hitpoints.");
+				attacker.AwardXp(xpAward);
 
-					if (level % 2 == 0)
-					{
-						attacker.Send("You gained 1 skill point.");
-					}
-				}
-
-				character.Wealth += targetMobile.Info.Wealth;
+				character.Gold += targetMobile.Info.Wealth;
 				attacker.Send($"You get {targetMobile.Info.Wealth.FormatBigNumber()} gold coins from the corpse of {targetMobile.ShortDescription}.");
 				attacker.Send($"You bury the corpse of {targetMobile.ShortDescription}.");
 

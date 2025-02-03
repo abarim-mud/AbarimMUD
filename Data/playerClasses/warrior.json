@@ -24,5 +24,6 @@
   ],
   "StartingSkills": [
     "melee"
-  ]
+  ],
+  "StartingGold": 2000
 }

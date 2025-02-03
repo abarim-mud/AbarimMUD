@@ -1,5 +1,6 @@
 ﻿using AbarimMUD.Data;
 using System.Linq;
+using System.Text;
 
 namespace AbarimMUD.Commands.Player
 {
@@ -61,8 +62,18 @@ namespace AbarimMUD.Commands.Player
 				}
 				else
 				{
+					var sb = new StringBuilder();
+					for(var i = 0; i < trainableSkills.Count; ++i)
+					{
+						sb.Append($"{trainableSkills[i].Name} ({trainableSkills[i].Cost} sp)");
+
+						if (i < trainableSkills.Count - 1)
+						{
+							sb.Append(", ");
+						}
+					}
 					var skillNames = (from s in trainableSkills select s.Name).ToList();
-					Tell.Execute((ExecutionContext)trainer.Tag, $"{context.Creature.ShortDescription} I could teach you one of the following: {string.Join(", ", skillNames)}. It would cost you {price} gold.");
+					Tell.Execute((ExecutionContext)trainer.Tag, $"{context.Creature.ShortDescription} I could teach you one of the following: {sb.ToString()}. It would cost you {price} gold.");
 				}
 			} else
 			{
@@ -78,21 +89,21 @@ namespace AbarimMUD.Commands.Player
 					return false;
 				}
 
-				if (asCharacter.SkillPoints <= 0)
+				if (asCharacter.SkillPoints < skillToTrain.Cost)
 				{
-					Tell.Execute((ExecutionContext)trainer.Tag, $"{context.Creature.ShortDescription} Unfortunately you don't have any skill points left.");
+					Tell.Execute((ExecutionContext)trainer.Tag, $"{context.Creature.ShortDescription} Unfortunately you don't have enough skill points.");
 					return false;
 				}
 
-				if (asCharacter.Wealth < price)
+				if (asCharacter.Gold < price)
 				{
 					Tell.Execute((ExecutionContext)trainer.Tag, $"{context.Creature.ShortDescription} Unfortunately you don't have enough gold.");
 					return false;
 				}
 
 				asCharacter.Train(skillToTrain);
-				asCharacter.Wealth -= price;
-				--asCharacter.SkillPoints;
+				asCharacter.Gold -= price;
+				asCharacter.SkillPoints -= skillToTrain.Cost;
 
 				asCharacter.Save();
 

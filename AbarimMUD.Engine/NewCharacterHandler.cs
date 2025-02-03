@@ -183,6 +183,8 @@ namespace AbarimMUD
 					}
 				}
 
+				_character.Gold = cls.StartingGold;
+
 				// First character becomes owner
 				if (Character.Storage.Count == 0)
 				{

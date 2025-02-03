@@ -101,7 +101,7 @@ namespace AbarimMUD.Data
 		[OLCAlias("sex")]
 		public Sex PlayerSex { get; set; }
 
-		public long Wealth { get; set; }
+		public long Gold { get; set; }
 
 		public long Experience { get; set; }
 
@@ -179,7 +179,8 @@ namespace AbarimMUD.Data
 				Experience -= levelInfo.Experience;
 				++_level;
 
-				if (_level % 2 == 0)
+				++SkillPoints;
+				if (_level % 10 == 0)
 				{
 					++SkillPoints;
 				}

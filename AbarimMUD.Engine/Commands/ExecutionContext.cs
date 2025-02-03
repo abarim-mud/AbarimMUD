@@ -165,7 +165,8 @@ namespace AbarimMUD.Commands
 			if (perc < 25)
 			{
 				color = "red";
-			} else if (perc < 80)
+			}
+			else if (perc < 80)
 			{
 				color = "yellow";
 			}
@@ -259,7 +260,7 @@ namespace AbarimMUD.Commands
 
 			_commandLagStart = null;
 			_lagInMs = 0;
-			
+
 			return false;
 		}
 
@@ -348,6 +349,36 @@ namespace AbarimMUD.Commands
 		private void OnDead(object sender, EventArgs e)
 		{
 			LeaveFight();
+		}
+
+		public void AwardXp(long xpAward)
+		{
+			var character = Creature as Character;
+			if (character == null)
+			{
+				return;
+			}
+
+			var lastLevel = character.Level;
+			character.GainXp(xpAward);
+
+			// Append level up messages
+			for (var level = lastLevel + 1; level <= character.Level; ++level)
+			{
+				var previousHp = character.Class.HitpointsRange.CalculateValue(level - 1);
+				var newHp = character.Class.HitpointsRange.CalculateValue(level);
+
+				Send($"Welcome to the level {level}! You gained {newHp - previousHp} hitpoints.");
+
+				if (level % 10 == 0)
+				{
+					Send("You gained 2 skill points.");
+				}
+				else
+				{
+					Send("You gained 1 skill points.");
+				}
+			}
 		}
 	}
 }
