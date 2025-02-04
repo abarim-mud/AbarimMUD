@@ -40,6 +40,7 @@ namespace AbarimMUD.Commands
 
 		public static readonly Fightskill Fightskill = new Fightskill();
 
+		public static readonly Consider Consider = new Consider();
 		public static readonly Kill Kill = new Kill();
 		public static readonly Kick Kick = new Kick();
 		public static readonly Backstab Backstab = new Backstab();
