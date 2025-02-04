@@ -121,7 +121,7 @@ namespace AbarimMUD.Data
 			}
 		}
 
-		public string Autoskill { get; set; }
+		public string Fightskill { get; set; }
 
 		public override string ShortDescription => Name;
 		public override string Description => PlayerDescription;

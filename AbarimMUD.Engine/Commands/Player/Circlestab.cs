@@ -5,7 +5,7 @@ namespace AbarimMUD.Commands.Player
 {
 	public class Circlestab : PlayerCommand
 	{
-		public override bool CanAutoskill => true;
+		public override bool CanFightskill => true;
 
 		protected override bool InternalExecute(ExecutionContext context, string data)
 		{

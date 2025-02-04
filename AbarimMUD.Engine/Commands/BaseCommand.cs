@@ -38,7 +38,7 @@ namespace AbarimMUD.Commands
 		public static readonly Player.Equipment Equipment = new Player.Equipment();
 		public static readonly Use Use = new Use();
 
-		public static readonly Autoskill Autoskill = new Autoskill();
+		public static readonly Fightskill Autoskill = new Fightskill();
 
 		public static readonly Kill Kill = new Kill();
 		public static readonly Kick Kick = new Kick();
@@ -75,7 +75,7 @@ namespace AbarimMUD.Commands
 		public static readonly SetType SetType = new SetType();
 
 		public abstract Role RequiredType { get; }
-		public virtual bool CanAutoskill => false;
+		public virtual bool CanFightskill => false;
 		public string Name { get; private set; }
 
 		public static int ExecutionDepth { get; set; }

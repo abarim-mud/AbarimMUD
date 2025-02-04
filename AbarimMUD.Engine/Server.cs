@@ -67,10 +67,10 @@ namespace AbarimMUD
 			// PlayerClass.Storage.SaveAll();
 			// MobileClass.Storage.SaveAll();
 			// Skill.Storage.SaveAll();
-			// Configuration.Save();
+			Configuration.Save();
 			// Ability.Storage.SaveAll();
 			// SkillCostInfo.Storage.SaveAll();
-			Item.Storage.SaveAll();
+			// Item.Storage.SaveAll();
 		}
 
 		private bool ProcessRegen(ref int currentValue, int maxValue, ref float fractionalValue, int regenValue, float secondsPassed)
@@ -166,9 +166,9 @@ namespace AbarimMUD
 				{
 					// Autoskill
 					var ctx = (Commands.ExecutionContext)character.Tag;
-					if (ctx.IsFighting && !ctx.WaitingCommandLag() && !string.IsNullOrEmpty(character.Autoskill))
+					if (ctx.IsFighting && !ctx.WaitingCommandLag() && !string.IsNullOrEmpty(character.Fightskill))
 					{
-						var command = BaseCommand.FindCommand(character.Autoskill);
+						var command = BaseCommand.FindCommand(character.Fightskill);
 						if (command != null)
 						{
 							var cost = command.CalculateCost(ctx);
@@ -176,7 +176,7 @@ namespace AbarimMUD
 								cost.Mana < ctx.State.Mana &&
 								cost.Moves < ctx.State.Moves)
 							{
-								ctx.SendInfoMessage($"Performing autoskill {character.Autoskill}");
+								ctx.SendInfoMessage($"Performing autoskill {character.Fightskill}");
 								if (!command.Execute(ctx))
 								{
 									ctx.ParseAndExecute("autoskill off");
