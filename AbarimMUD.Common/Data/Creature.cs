@@ -82,7 +82,10 @@ namespace AbarimMUD.Data
 			{
 				foreach (var attack in _stats.Attacks)
 				{
-					attack.AttackType = weapon.Info.AttackType;
+					if (weapon.Info.AttackType != null)
+					{
+						attack.AttackType = weapon.Info.AttackType.Value;
+					}
 
 					if (this is Character)
 					{

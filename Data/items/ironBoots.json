@@ -7,7 +7,6 @@
   "ShortDescription": "an iron boots",
   "Description": "Unset",
   "ItemType": "Boots",
-  "AttackType": "Hit",
   "Affects": {
     "Armor": 4
   },

@@ -7,7 +7,6 @@
   "ShortDescription": "a leather boots",
   "Description": "Unset",
   "ItemType": "Boots",
-  "AttackType": "Hit",
   "Affects": {
     "Armor": 2
   },

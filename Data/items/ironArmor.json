@@ -7,7 +7,6 @@
   "ShortDescription": "an iron armor",
   "Description": "Unset",
   "ItemType": "Armor",
-  "AttackType": "Hit",
   "Affects": {
     "Armor": 8
   },

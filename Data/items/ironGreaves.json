@@ -7,7 +7,6 @@
   "ShortDescription": "an iron greaves",
   "Description": "Unset",
   "ItemType": "Leggings",
-  "AttackType": "Hit",
   "Affects": {
     "Armor": 8
   },

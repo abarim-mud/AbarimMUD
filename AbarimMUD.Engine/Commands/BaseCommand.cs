@@ -4,15 +4,12 @@ using AbarimMUD.Commands.Player;
 using System.Collections.Generic;
 using AbarimMUD.Data;
 using System.Reflection;
-using System;
 using AbarimMUD.Commands.Administrator;
 
 namespace AbarimMUD.Commands
 {
 	public abstract class BaseCommand
 	{
-		public const string ExecuteName = "DoExecute";
-
 		private static readonly Dictionary<string, BaseCommand> _allCommands = new Dictionary<string, BaseCommand>();
 
 		// Players

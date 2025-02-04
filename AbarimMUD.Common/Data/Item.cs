@@ -40,7 +40,7 @@ namespace AbarimMUD.Data
 		public string LongDescription { get; set; }
 		public string Description { get; set; }
 		public ItemType ItemType { get; set; }
-		public AttackType AttackType { get; set; }
+		public AttackType? AttackType { get; set; }
 		public Dictionary<ModifierType, Affect> Affects { get; set; } = new Dictionary<ModifierType, Affect>();
 
 

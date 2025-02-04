@@ -7,7 +7,6 @@
   "ShortDescription": "a leather helmet",
   "Description": "Unset",
   "ItemType": "Helmet",
-  "AttackType": "Hit",
   "Affects": {
     "Armor": 2
   },

@@ -7,7 +7,6 @@
   "ShortDescription": "a leather gloves",
   "Description": "Unset",
   "ItemType": "Gloves",
-  "AttackType": "Hit",
   "Affects": {
     "Armor": 2
   },

@@ -7,7 +7,6 @@
   "ShortDescription": "a leather pants",
   "Description": "Unset",
   "ItemType": "Leggings",
-  "AttackType": "Hit",
   "Affects": {
     "Armor": 4
   },

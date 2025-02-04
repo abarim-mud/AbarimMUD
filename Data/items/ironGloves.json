@@ -7,7 +7,6 @@
   "ShortDescription": "an iron gloves",
   "Description": "Unset",
   "ItemType": "Gloves",
-  "AttackType": "Hit",
   "Affects": {
     "Armor": 4
   },
