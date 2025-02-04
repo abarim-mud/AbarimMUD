@@ -38,7 +38,7 @@ namespace AbarimMUD.Commands
 		public static readonly Player.Equipment Equipment = new Player.Equipment();
 		public static readonly Use Use = new Use();
 
-		public static readonly Fightskill Autoskill = new Fightskill();
+		public static readonly Fightskill Fightskill = new Fightskill();
 
 		public static readonly Kill Kill = new Kill();
 		public static readonly Kick Kick = new Kick();
