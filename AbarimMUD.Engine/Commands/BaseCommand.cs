@@ -46,7 +46,7 @@ namespace AbarimMUD.Commands
 		public static readonly Circlestab Circlestab = new Circlestab();
 
 		// Builders
-		public static readonly Recall recall = new Recall();
+		public static readonly Recall Recall = new Recall();
 		public static readonly Peace Peace = new Peace();
 		public static readonly Force Force = new Force();
 		public static readonly Restore Restore = new Restore();

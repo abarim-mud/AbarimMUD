@@ -35,6 +35,7 @@ namespace AbarimMUD.Data
 
 
 			public int[] NonPrimarySkillsLevelsConstraints { get; set; } = new[] { 1, 10, 20, 30, 40 };
+			public int RecallManaCost { get; set; } = 35;
 		}
 
 		public static BaseStorage Storage => InternalStorage;
@@ -62,8 +63,9 @@ namespace AbarimMUD.Data
 
 		public static int[] PrimarySkillsLevelsConstraints => Instance.PrimarySkillsLevelsConstraints;
 
-
 		public static int[] NonPrimarySkillsLevelsConstraints => Instance.NonPrimarySkillsLevelsConstraints;
+
+		public static int RecallManaCost => Instance.RecallManaCost;
 
 		public static void Save() => InternalStorage.Save();
 	}
