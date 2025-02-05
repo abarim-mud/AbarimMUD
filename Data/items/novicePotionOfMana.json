@@ -1,0 +1,19 @@
+{
+  "Id": "novicePotionOfMana",
+  "Keywords": [
+    "novice",
+    "potion",
+    "mana"
+  ],
+  "ShortDescription": "a novice potion of mana",
+  "Description": "Unset",
+  "ItemType": "Potion",
+  "Affects": {
+    "ManaRegen": {
+      "Value": 60,
+      "DurationInSeconds": 60,
+      "AffectSlotName": "potionOfMana"
+    }
+  },
+  "Flags": []
+}

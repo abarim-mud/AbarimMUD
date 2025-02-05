@@ -1,0 +1,19 @@
+{
+  "Id": "novicePotionOfMoves",
+  "Keywords": [
+    "novice",
+    "potion",
+    "moves"
+  ],
+  "ShortDescription": "a novice potion of moves",
+  "Description": "Unset",
+  "ItemType": "Potion",
+  "Affects": {
+    "MovesRegen": {
+      "Value": 60,
+      "DurationInSeconds": 60,
+      "AffectSlotName": "potionOfMoves"
+    }
+  },
+  "Flags": []
+}
