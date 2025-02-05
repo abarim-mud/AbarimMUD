@@ -248,7 +248,7 @@ namespace AbarimMUD.Data
 				case ModifierType.ManaRegen:
 					stats.ManaRegenBonus += val;
 					break;
-				case ModifierType.MoveRegen:
+				case ModifierType.MovesRegen:
 					stats.MovesRegenBonus += val;
 					break;
 			}

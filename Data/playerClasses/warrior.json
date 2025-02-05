@@ -25,5 +25,27 @@
   "StartingSkills": [
     "melee"
   ],
+  "StartingInventory": {
+    "Items": [
+      {
+        "Item": {
+          "Info": "novicePotionOfHealing"
+        },
+        "Quantity": 5
+      },
+      {
+        "Item": {
+          "Info": "novicePotionOfMana"
+        },
+        "Quantity": 5
+      },
+      {
+        "Item": {
+          "Info": "novicePotionOfMoves"
+        },
+        "Quantity": 5
+      }
+    ]
+  },
   "StartingGold": 2000
 }

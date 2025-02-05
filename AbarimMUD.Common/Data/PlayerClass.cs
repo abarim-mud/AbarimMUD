@@ -70,6 +70,7 @@ namespace AbarimMUD.Data
 
 		public Item[] StartingEquipment { get; set; }
 		public Skill[] StartingSkills { get; set; }
+		public Inventory StartingInventory { get; set; }
 		public int StartingGold { get; set; }
 
 		public CreatureStats CreateStats(int level)

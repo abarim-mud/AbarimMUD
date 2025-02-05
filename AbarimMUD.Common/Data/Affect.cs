@@ -11,7 +11,7 @@ namespace AbarimMUD.Data
 		Armor,
 		HpRegen,
 		ManaRegen,
-		MoveRegen,
+		MovesRegen,
 	}
 
 	public class Affect

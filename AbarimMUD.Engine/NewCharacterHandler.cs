@@ -164,7 +164,7 @@ namespace AbarimMUD
 				var cls = _character.Class;
 				if (cls.StartingEquipment != null)
 				{
-					foreach(var item in cls.StartingEquipment)
+					foreach (var item in cls.StartingEquipment)
 					{
 						var newItem = new ItemInstance(item);
 						if (_character.Wear(newItem) != true)
@@ -177,9 +177,17 @@ namespace AbarimMUD
 
 				if (cls.StartingSkills != null && cls.StartingSkills.Length > 0)
 				{
-					foreach(var skill in cls.StartingSkills)
+					foreach (var skill in cls.StartingSkills)
 					{
 						_character.Train(skill);
+					}
+				}
+
+				if (cls.StartingInventory != null)
+				{
+					foreach (var inv in cls.StartingInventory.Items)
+					{
+						_character.Inventory.AddItem(inv.Item, inv.Quantity);
 					}
 				}
 
