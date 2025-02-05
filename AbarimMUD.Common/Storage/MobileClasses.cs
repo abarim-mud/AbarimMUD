@@ -26,10 +26,7 @@ namespace AbarimMUD.Storage
 
 			public override void Write(Utf8JsonWriter writer, AttackInfo value, JsonSerializerOptions options)
 			{
-				if (value.AttackType == null &&
-					value.PenetrationRange == null &&
-					value.MinimumDamageRange == null &&
-					value.MaximumDamageRange == null)
+				if (value.IsDefaultAttack)
 				{
 					writer.WriteNumberValue(value.MinimumLevel);
 				}
@@ -62,11 +59,6 @@ namespace AbarimMUD.Storage
 
 			foreach (var cls in this)
 			{
-				if (cls.Inherits != null)
-				{
-					cls.Inherits = MobileClass.EnsureClassById(cls.Inherits.Id);
-				}
-
 				if (cls.Loot != null)
 				{
 					foreach (var eqSet in cls.Loot)

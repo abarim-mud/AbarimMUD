@@ -8,6 +8,7 @@
   "ShortDescription": "a novice potion of moves",
   "Description": "Unset",
   "ItemType": "Potion",
+  "Price": 100,
   "Affects": {
     "MovesRegen": {
       "Value": 60,

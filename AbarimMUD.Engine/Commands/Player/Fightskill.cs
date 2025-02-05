@@ -2,7 +2,7 @@
 
 namespace AbarimMUD.Commands.Player
 {
-	public class Fightskill : PlayerCommand
+	public class FightSkill : PlayerCommand
 	{
 		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
@@ -22,7 +22,7 @@ namespace AbarimMUD.Commands.Player
 
 			if (data.EqualsToIgnoreCase("off"))
 			{
-				character.Fightskill = string.Empty;
+				character.FightSkill = string.Empty;
 				character.Save();
 
 				context.Send("Cleared the current fightskill.");
@@ -42,7 +42,7 @@ namespace AbarimMUD.Commands.Player
 				return false;
 			}
 
-			character.Fightskill = command.Name;
+			character.FightSkill = command.Name;
 			character.Save();
 			context.Send($"fightskill was set to {command.Name}.");
 

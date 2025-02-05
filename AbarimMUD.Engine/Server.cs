@@ -186,9 +186,9 @@ namespace AbarimMUD
 				{
 					// Autoskill
 					var ctx = (Commands.ExecutionContext)character.Tag;
-					if (ctx.IsFighting && !ctx.WaitingCommandLag() && !string.IsNullOrEmpty(character.Fightskill))
+					if (ctx.IsFighting && !ctx.WaitingCommandLag() && !string.IsNullOrEmpty(character.FightSkill))
 					{
-						var command = BaseCommand.FindCommand(character.Fightskill);
+						var command = BaseCommand.FindCommand(character.FightSkill);
 						if (command != null)
 						{
 							var cost = command.CalculateCost(ctx);
@@ -196,7 +196,7 @@ namespace AbarimMUD
 								cost.Mana < ctx.State.Mana &&
 								cost.Moves < ctx.State.Moves)
 							{
-								ctx.SendInfoMessage($"Performing autoskill {character.Fightskill}");
+								ctx.SendInfoMessage($"Performing autoskill {character.FightSkill}");
 								if (!command.Execute(ctx))
 								{
 									ctx.ParseAndExecute("autoskill off");

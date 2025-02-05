@@ -8,6 +8,7 @@
   "ShortDescription": "a novice potion of healing",
   "Description": "Unset",
   "ItemType": "Potion",
+  "Price": 100,
   "Affects": {
     "HpRegen": {
       "Value": 60,

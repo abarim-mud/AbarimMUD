@@ -530,7 +530,6 @@
       "Level": 5,
       "Sex": "None",
       "Flags": [],
-      "Wealth": 50,
       "SpecialAttacks": [],
       "Id": 18601
     },
@@ -546,7 +545,6 @@
       "Level": 2,
       "Sex": "Neutral",
       "Flags": [],
-      "Wealth": 20,
       "SpecialAttacks": [],
       "Id": 18602
     },
@@ -564,7 +562,6 @@
       "Level": 4,
       "Sex": "Neutral",
       "Flags": [],
-      "Wealth": 40,
       "SpecialAttacks": [],
       "Id": 18603
     },
@@ -582,7 +579,6 @@
       "Level": 3,
       "Sex": "Neutral",
       "Flags": [],
-      "Wealth": 30,
       "SpecialAttacks": [],
       "Id": 18604
     },
@@ -598,7 +594,6 @@
       "Level": 5,
       "Sex": "Neutral",
       "Flags": [],
-      "Wealth": 50,
       "SpecialAttacks": [],
       "Id": 18605
     },
@@ -617,7 +612,6 @@
       "Level": 1,
       "Sex": "None",
       "Flags": [],
-      "Wealth": 10,
       "SpecialAttacks": [],
       "Id": 18606
     },
@@ -633,7 +627,6 @@
       "Level": 4,
       "Sex": "None",
       "Flags": [],
-      "Wealth": 40,
       "SpecialAttacks": [],
       "Id": 18607
     },
@@ -650,7 +643,6 @@
       "Level": 3,
       "Sex": "Neutral",
       "Flags": [],
-      "Wealth": 30,
       "SpecialAttacks": [],
       "Id": 18608
     },
@@ -665,7 +657,6 @@
       "Level": 7,
       "Sex": "Neutral",
       "Flags": [],
-      "Wealth": 70,
       "SpecialAttacks": [],
       "Id": 18609
     },
@@ -681,7 +672,6 @@
       "Level": 6,
       "Sex": "None",
       "Flags": [],
-      "Wealth": 60,
       "SpecialAttacks": [],
       "Id": 18610
     },
@@ -698,7 +688,6 @@
       "Level": 2,
       "Sex": "Neutral",
       "Flags": [],
-      "Wealth": 20,
       "SpecialAttacks": [],
       "Id": 18611
     },
@@ -715,7 +704,6 @@
       "Level": 1,
       "Sex": "Neutral",
       "Flags": [],
-      "Wealth": 10,
       "SpecialAttacks": [],
       "Id": 18612
     },
@@ -731,7 +719,6 @@
       "Level": 3,
       "Sex": "Male",
       "Flags": [],
-      "Wealth": 30,
       "SpecialAttacks": [],
       "Id": 18613
     },
@@ -747,7 +734,6 @@
       "Level": 4,
       "Sex": "Neutral",
       "Flags": [],
-      "Wealth": 40,
       "SpecialAttacks": [],
       "Id": 18614
     },
@@ -763,7 +749,6 @@
       "Level": 5,
       "Sex": "Neutral",
       "Flags": [],
-      "Wealth": 50,
       "SpecialAttacks": [],
       "Id": 18615
     }

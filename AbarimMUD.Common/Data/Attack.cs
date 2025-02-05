@@ -8,7 +8,7 @@ namespace AbarimMUD.Data
 
 		public int Penetration { get; set; }
 
-		public RandomRange DamageRange;
+		public ValueRange DamageRange;
 
 		public int MinimumDamage
 		{
@@ -26,14 +26,14 @@ namespace AbarimMUD.Data
 
 		public int AverageDamage => MinimumDamage + (MaximumDamage - MinimumDamage) / 2;
 
-		public Attack(AttackType attackType, int penetration, RandomRange damageRange)
+		public Attack(AttackType attackType, int penetration, ValueRange damageRange)
 		{
 			AttackType = attackType;
 			Penetration = penetration;
 			DamageRange = damageRange;
 		}
 
-		public Attack(AttackType attackType, int penetration, int min, int max) : this(attackType, penetration, new RandomRange(min, max))
+		public Attack(AttackType attackType, int penetration, int min, int max) : this(attackType, penetration, new ValueRange(min, max))
 		{
 		}
 

@@ -7,6 +7,7 @@
   "ShortDescription": "an iron helmet",
   "Description": "Unset",
   "ItemType": "Helmet",
+  "Price": 400,
   "Affects": {
     "Armor": 4
   },

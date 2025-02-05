@@ -29,7 +29,7 @@ namespace AbarimMUD.Data
 
 			public int PauseBetweenFightRoundsInMs { get; set; }
 			public int NegativeRegen { get; set; }
-			public RandomRange CharacterBarehandedDamage { get; set; } = new RandomRange(1, 4);
+			public ValueRange CharacterBarehandedDamage { get; set; } = new ValueRange(1, 4);
 
 			public int[] PrimarySkillsLevelsConstraints { get; set; } = new[] { 1, 5, 10, 15, 20 };
 
@@ -59,7 +59,7 @@ namespace AbarimMUD.Data
 		/// Negative regen rate(per minute), used when values(hp/mana/mv) are higher than their maxes
 		/// </summary>
 		public static int NegativeRegen => Instance.NegativeRegen;
-		public static RandomRange CharacterBarehandedDamage => Instance.CharacterBarehandedDamage;
+		public static ValueRange CharacterBarehandedDamage => Instance.CharacterBarehandedDamage;
 
 		public static int[] PrimarySkillsLevelsConstraints => Instance.PrimarySkillsLevelsConstraints;
 

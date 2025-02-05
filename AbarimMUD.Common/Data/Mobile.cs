@@ -159,8 +159,7 @@ namespace AbarimMUD.Data
 
 		[Browsable(false)]
 		public HashSet<MobileFlags> Flags { get; set; } = new HashSet<MobileFlags>();
-		public int Wealth { get; set; }
-
+		
 		[Browsable(false)]
 		public Shop Shop { get; set; }
 

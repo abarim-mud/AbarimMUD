@@ -8,6 +8,7 @@
   "ShortDescription": "a novice potion of mana",
   "Description": "Unset",
   "ItemType": "Potion",
+  "Price": 100,
   "Affects": {
     "ManaRegen": {
       "Value": 60,

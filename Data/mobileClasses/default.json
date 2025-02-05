@@ -2,36 +2,14 @@
   "Id": "default",
   "Name": "Default",
   "Description": "Default",
-  "Inherits": null,
-  "HitpointsRange": {
-    "1": 10,
-    "100": 2000
-  },
-  "ManaRange": {
-    "1": 100,
-    "100": 200
-  },
-  "MovesRange": {
-    "1": 100,
-    "100": 200
-  },
-  "ArmorRange": {
-    "1": 10,
-    "100": 200
-  },
+  "HitpointsRange": "10-2000",
+  "ManaRange": "100-200",
+  "MovesRange": "100-200",
+  "ArmorRange": "10-200",
   "AttackType": "Slash",
-  "PenetrationRange": {
-    "1": 10,
-    "100": 200
-  },
-  "MinimumDamageRange": {
-    "1": 1,
-    "100": 50
-  },
-  "MaximumDamageRange": {
-    "1": 10,
-    "100": 300
-  },
+  "PenetrationRange": "10-200",
+  "MinimumDamageRange": "1-50",
+  "MaximumDamageRange": "10-300",
   "Attacks": [
     1,
     5,
@@ -42,5 +20,5 @@
     75,
     100
   ],
-  "EqSets": null
+  "GoldRange": "50-5000"
 }

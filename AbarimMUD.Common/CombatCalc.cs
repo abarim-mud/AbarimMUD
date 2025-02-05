@@ -33,11 +33,11 @@ namespace AbarimMUD
 
 	public static class CombatCalc
 	{
-		public static DamageResult CalculateDamage(int penetration, RandomRange damageRange, int armorClass)
+		public static DamageResult CalculateDamage(int penetration, ValueRange damageRange, int armorClass)
 		{
 			var result = new DamageResult
 			{
-				InitialDamage = damageRange.Generate()
+				InitialDamage = damageRange.Random()
 			};
 
 			if (result.InitialDamage <= 0)

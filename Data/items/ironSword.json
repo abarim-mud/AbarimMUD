@@ -7,6 +7,7 @@
   "ShortDescription": "an iron sword",
   "Description": "Unset",
   "ItemType": "Weapon",
+  "Price": 800,
   "AttackType": "Slash",
   "Affects": {
     "WeaponPenetration": 10

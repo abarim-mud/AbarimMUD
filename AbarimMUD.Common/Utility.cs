@@ -158,16 +158,6 @@ namespace AbarimMUD
 			return result;
 		}
 
-		public static int CalculateValue(this ValueRange range, int level, int defaultValue = 0)
-		{
-			if (range == null)
-			{
-				return defaultValue;
-			}
-
-			return range.CalculateValue(level);
-		}
-
 		public static bool IsNullable(this Type type)
 		{
 			return type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>);

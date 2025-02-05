@@ -3,14 +3,14 @@ using AbarimMUD.Storage;
 using AbarimMUD.StorageAPI;
 using AbarimMUD.Utils;
 using System;
-using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
 {
 	public class AttackInfo
 	{
 		public int MinimumLevel { get; set; }
-		public AttackType? AttackType { get; set; }
+		public bool IsDefaultAttack { get; set; } = true;
+		public AttackType AttackType { get; set; }
 		public ValueRange PenetrationRange { get; set; }
 		public ValueRange MinimumDamageRange { get; set; }
 		public ValueRange MaximumDamageRange { get; set; }
@@ -23,6 +23,7 @@ namespace AbarimMUD.Data
 			ValueRange minimumDamageRange, ValueRange maximumDamageRange)
 		{
 			MinimumLevel = minimumLevel;
+			IsDefaultAttack = false;
 			AttackType = attackType;
 			PenetrationRange = penetration;
 			MinimumDamageRange = minimumDamageRange;
@@ -40,21 +41,22 @@ namespace AbarimMUD.Data
 	{
 		public const AttackType DefaultAttackType = Data.AttackType.Hit;
 		public const int DefaultPenetration = 0;
-		public const int DefaultMinimumDamage = 1;
-		public const int DefaultMaximumDamage = 4;
 
+		public static readonly ValueRange DefaultDamageRange = new ValueRange(1, 4);
 		public static readonly ValueRange DefaultHitpoints = new ValueRange(1, 100);
 		public static readonly ValueRange DefaultMana = new ValueRange(100, 200);
 		public static readonly ValueRange DefaultMoves = new ValueRange(100, 200);
 		public static readonly ValueRange DefaultArmor = new ValueRange(0, 0);
+		public static readonly ValueRange DefaultGold = new ValueRange(0, 1000);
 		public static readonly MultipleFilesStorage<MobileClass> Storage = new MobileClasses();
 
-		private AttackType? _attackType;
-		private ValueRange _hitpointsRange, _manaRange = DefaultMana, _movesRange;
-		private ValueRange _armorRange;
+		private AttackType _attackType = Data.AttackType.Hit;
+		private ValueRange _hitpointsRange = DefaultHitpoints, _manaRange = DefaultMana, _movesRange = DefaultMoves;
+		private ValueRange _armorRange = DefaultArmor;
 		private ValueRange _penetrationRange;
-		private ValueRange _minimumDamageRange;
-		private ValueRange _maximumDamageRange;
+		private ValueRange _minimumDamageRange = DefaultDamageRange;
+		private ValueRange _maximumDamageRange = DefaultDamageRange;
+		private ValueRange _goldRange = DefaultGold;
 		private AttackInfo[] _attacks;
 		private MobileLoot[] _loot;
 
@@ -64,29 +66,10 @@ namespace AbarimMUD.Data
 		public string Name { get; set; }
 		public string Description { get; set; }
 
-		/// <summary>
-		/// Determines whether inherited properties such as HitPointsRage
-		/// Should return their original values
-		/// Automatically set to true during the serialization
-		/// </summary>
-		[JsonIgnore]
-		public bool UseOriginalValues { get; set; }
-
-		[JsonConverter(typeof(Common.MobileClassConverterType))]
-		public MobileClass Inherits { get; set; }
-
 		[OLCAlias("hprange")]
 		public ValueRange HitpointsRange
 		{
-			get
-			{
-				if (UseOriginalValues || Inherits == null || _hitpointsRange != null)
-				{
-					return _hitpointsRange;
-				}
-
-				return Inherits.HitpointsRange;
-			}
+			get => _hitpointsRange;
 
 			set
 			{
@@ -103,15 +86,7 @@ namespace AbarimMUD.Data
 		[OLCAlias("manarange")]
 		public ValueRange ManaRange
 		{
-			get
-			{
-				if (UseOriginalValues || Inherits == null || _manaRange != null)
-				{
-					return _manaRange;
-				}
-
-				return Inherits.ManaRange;
-			}
+			get => _manaRange;
 
 			set
 			{
@@ -128,15 +103,7 @@ namespace AbarimMUD.Data
 		[OLCAlias("mvrange")]
 		public ValueRange MovesRange
 		{
-			get
-			{
-				if (UseOriginalValues || Inherits == null || _movesRange != null)
-				{
-					return _movesRange;
-				}
-
-				return Inherits.MovesRange;
-			}
+			get => _movesRange;
 
 			set
 			{
@@ -152,15 +119,7 @@ namespace AbarimMUD.Data
 
 		public ValueRange ArmorRange
 		{
-			get
-			{
-				if (UseOriginalValues || Inherits == null || _armorRange != null)
-				{
-					return _armorRange;
-				}
-
-				return Inherits.ArmorRange;
-			}
+			get => _armorRange;
 
 			set
 			{
@@ -174,17 +133,10 @@ namespace AbarimMUD.Data
 			}
 		}
 
-		public AttackType? AttackType
-		{
-			get
-			{
-				if (UseOriginalValues || Inherits == null || _attackType != null)
-				{
-					return _attackType;
-				}
 
-				return Inherits.AttackType;
-			}
+		public AttackType AttackType
+		{
+			get => _attackType;
 
 			set
 			{
@@ -201,15 +153,7 @@ namespace AbarimMUD.Data
 		[OLCAlias("penrange")]
 		public ValueRange PenetrationRange
 		{
-			get
-			{
-				if (UseOriginalValues || Inherits == null || _penetrationRange != null)
-				{
-					return _penetrationRange;
-				}
-
-				return Inherits.PenetrationRange;
-			}
+			get => _penetrationRange;
 
 			set
 			{
@@ -226,15 +170,7 @@ namespace AbarimMUD.Data
 		[OLCAlias("mindamrange")]
 		public ValueRange MinimumDamageRange
 		{
-			get
-			{
-				if (UseOriginalValues || Inherits == null || _minimumDamageRange != null)
-				{
-					return _minimumDamageRange;
-				}
-
-				return Inherits.MinimumDamageRange;
-			}
+			get => _minimumDamageRange;
 
 			set
 			{
@@ -251,15 +187,7 @@ namespace AbarimMUD.Data
 		[OLCAlias("maxdamrange")]
 		public ValueRange MaximumDamageRange
 		{
-			get
-			{
-				if (UseOriginalValues || Inherits == null || _maximumDamageRange != null)
-				{
-					return _maximumDamageRange;
-				}
-
-				return Inherits.MaximumDamageRange;
-			}
+			get => _maximumDamageRange;
 
 			set
 			{
@@ -275,15 +203,7 @@ namespace AbarimMUD.Data
 
 		public AttackInfo[] Attacks
 		{
-			get
-			{
-				if (UseOriginalValues || Inherits == null || _attacks != null)
-				{
-					return _attacks;
-				}
-
-				return Inherits.Attacks;
-			}
+			get => _attacks;
 
 			set
 			{
@@ -298,17 +218,25 @@ namespace AbarimMUD.Data
 			}
 		}
 
-		public MobileLoot[] Loot
+		public ValueRange GoldRange
 		{
-			get
+			get => _goldRange;
+
+			set
 			{
-				if (UseOriginalValues || Inherits == null || _loot != null)
+				if (value == _goldRange)
 				{
-					return _loot;
+					return;
 				}
 
-				return Inherits.Loot;
+				_goldRange = value;
+				InvalidateCreaturesOfThisClass();
 			}
+		}
+
+		public MobileLoot[] Loot
+		{
+			get => _loot;
 
 			set
 			{
@@ -318,35 +246,26 @@ namespace AbarimMUD.Data
 
 		public void OnSerializationStarted()
 		{
-			UseOriginalValues = true;
 		}
 
 		public void OnSerializationEnded()
 		{
-			UseOriginalValues = false;
 		}
 
 		public CreatureStats CreateStats(int level)
 		{
-			var hitpoints = HitpointsRange ?? DefaultHitpoints;
-			var mana = ManaRange ?? DefaultMana;
-			var moves = MovesRange ?? DefaultMoves;
-			var armor = ArmorRange ?? DefaultArmor;
-
 			var stats = new CreatureStats
 			{
-				MaxHitpoints = hitpoints.CalculateValue(level),
-				MaxMana = mana.CalculateValue(level),
-				MaxMoves = moves.CalculateValue(level),
-				Armor = armor.CalculateValue(level),
+				MaxHitpoints = HitpointsRange.CalculateValue(level),
+				MaxMana = ManaRange.CalculateValue(level),
+				MaxMoves = MovesRange.CalculateValue(level),
+				Armor = ArmorRange.CalculateValue(level),
 			};
 
 			// Calculate attacks' values
-			var attackType = AttackType ?? DefaultAttackType;
-
-			var penetration = PenetrationRange.CalculateValue(level, DefaultPenetration);
-			var minimumDamage = MinimumDamageRange.CalculateValue(level, DefaultMinimumDamage);
-			var maximumDamage = MaximumDamageRange.CalculateValue(level, DefaultMaximumDamage);
+			var penetration = PenetrationRange.CalculateValue(level);
+			var minimumDamage = MinimumDamageRange.CalculateValue(level);
+			var maximumDamage = MaximumDamageRange.CalculateValue(level);
 
 			// Add attacks
 			if (Attacks != null)
@@ -358,24 +277,10 @@ namespace AbarimMUD.Data
 						continue;
 					}
 
-					var thisAttackType = attackInfo.AttackType ?? attackType;
-					var thisPenetration = penetration;
-					if (attackInfo.PenetrationRange != null)
-					{
-						thisPenetration = attackInfo.PenetrationRange.CalculateValue(level);
-					}
-
-					var thisMinimumDamage = minimumDamage;
-					if (attackInfo.MinimumDamageRange != null)
-					{
-						thisMinimumDamage = attackInfo.MinimumDamageRange.CalculateValue(level);
-					}
-
-					var thisMaximumDamage = maximumDamage;
-					if (attackInfo.MaximumDamageRange != null)
-					{
-						thisMaximumDamage = attackInfo.MaximumDamageRange.CalculateValue(level);
-					}
+					var thisAttackType = attackInfo.IsDefaultAttack ? attackInfo.AttackType : AttackType;
+					var thisPenetration = attackInfo.IsDefaultAttack ? penetration : attackInfo.PenetrationRange.CalculateValue(level);
+					var thisMinimumDamage = attackInfo.IsDefaultAttack ? minimumDamage : attackInfo.MinimumDamageRange.CalculateValue(level);
+					var thisMaximumDamage = attackInfo.IsDefaultAttack ? maximumDamage : attackInfo.MaximumDamageRange.CalculateValue(level);
 
 					var attack = new Attack(thisAttackType, thisPenetration, thisMinimumDamage, thisMaximumDamage);
 					stats.Attacks.Add(attack);
@@ -384,7 +289,7 @@ namespace AbarimMUD.Data
 			else
 			{
 				// Add default single attack
-				stats.Attacks.Add(new Attack(attackType, penetration, minimumDamage, maximumDamage));
+				stats.Attacks.Add(new Attack(AttackType, penetration, minimumDamage, maximumDamage));
 			}
 
 			long xpAward = Math.Max(1, stats.MaxHitpoints);
@@ -432,7 +337,6 @@ namespace AbarimMUD.Data
 				Id = Id,
 				Name = Name,
 				Description = Description,
-				Inherits = Inherits,
 				_hitpointsRange = _hitpointsRange,
 				_manaRange = _manaRange,
 				_movesRange = _movesRange,
@@ -441,6 +345,7 @@ namespace AbarimMUD.Data
 				_minimumDamageRange = _minimumDamageRange,
 				_maximumDamageRange = _maximumDamageRange,
 				_attacks = _attacks,
+				_goldRange = _goldRange,
 			};
 
 			return clone;

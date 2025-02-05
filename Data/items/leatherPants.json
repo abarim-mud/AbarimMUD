@@ -7,6 +7,7 @@
   "ShortDescription": "a leather pants",
   "Description": "Unset",
   "ItemType": "Leggings",
+  "Price": 800,
   "Affects": {
     "Armor": 4
   },

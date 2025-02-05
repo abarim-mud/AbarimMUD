@@ -43,6 +43,8 @@ namespace AbarimMUD.Data
 			}
 		}
 
+		public int Gold => Info.Class.GoldRange.CalculateValue(Level);
+
 		public override event EventHandler RoomChanged;
 
 		public MobileInstance(Mobile mobile)

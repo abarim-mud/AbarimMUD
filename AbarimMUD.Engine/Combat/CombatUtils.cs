@@ -24,12 +24,13 @@ namespace AbarimMUD.Combat
 				var xpAward = targetMobile.Stats.XpAward;
 				attacker.Send($"Total exp for kill is {xpAward.FormatBigNumber()}.");
 
-				character.Gold += targetMobile.Info.Wealth;
+				var gold = targetMobile.Gold;
+				character.Gold += gold;
 
 				// Awarding Xp will do the save
 				attacker.AwardXp(xpAward);
 
-				attacker.Send($"You get {targetMobile.Info.Wealth.FormatBigNumber()} gold coins from the corpse of {targetMobile.ShortDescription}.");
+				attacker.Send($"You get {gold.FormatBigNumber()} gold coins from the corpse of {targetMobile.ShortDescription}.");
 				attacker.Send($"You bury the corpse of {targetMobile.ShortDescription}.");
 
 				var roomMessage = $"{attacker.ShortDescription} gets gold coins from the corpse of {targetMobile.ShortDescription}.\n" +
@@ -277,7 +278,7 @@ namespace AbarimMUD.Combat
 			var kickDamage = Math.Max(1, Math.Min(attacker.Level, 40) / 2);
 
 			var attack = attacker.Stats.Attacks[0];
-			var damage = CombatCalc.CalculateDamage(attack.Penetration, new RandomRange(kickDamage, kickDamage + 4), target.Stats.Armor);
+			var damage = CombatCalc.CalculateDamage(attack.Penetration, new ValueRange(kickDamage, kickDamage + 4), target.Stats.Armor);
 
 			target.Creature.State.Hitpoints -= damage.Damage;
 			if (target.Creature.State.Hitpoints < 0)

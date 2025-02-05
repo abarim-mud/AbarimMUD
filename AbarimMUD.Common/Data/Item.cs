@@ -40,12 +40,13 @@ namespace AbarimMUD.Data
 		public string LongDescription { get; set; }
 		public string Description { get; set; }
 		public ItemType ItemType { get; set; }
+		public int Price { get; set; } = 100;
 		public AttackType? AttackType { get; set; }
 		public Dictionary<ModifierType, Affect> Affects { get; set; } = new Dictionary<ModifierType, Affect>();
 
 
 		public HashSet<ItemFlags> Flags { get; set; } = new HashSet<ItemFlags>();
-		public RandomRange? DamageRange { get; set; }
+		public ValueRange? DamageRange { get; set; }
 
 		public bool MatchesKeyword(string keyword) => Keywords.StartsWithPattern(keyword);
 

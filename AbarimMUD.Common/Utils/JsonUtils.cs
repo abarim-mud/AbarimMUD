@@ -26,9 +26,9 @@ namespace AbarimMUD.Utils
 			}
 		}
 
-		private class RandomRangeConverterType: JsonConverter<RandomRange>
+		private class RandomRangeConverterType: JsonConverter<ValueRange>
 		{
-			public override RandomRange Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+			public override ValueRange Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 			{
 				var value = reader.GetString();
 				var parts = value.Split('-');
@@ -38,34 +38,18 @@ namespace AbarimMUD.Utils
 					throw new Exception($"Unable to parse RandomRange '{value}'");
 				}
 
-				return new RandomRange(int.Parse(parts[0].Trim()), int.Parse(parts[1].Trim()));
+				return new ValueRange(int.Parse(parts[0].Trim()), int.Parse(parts[1].Trim()));
 			}
 
-			public override void Write(Utf8JsonWriter writer, RandomRange value, JsonSerializerOptions options)
+			public override void Write(Utf8JsonWriter writer, ValueRange value, JsonSerializerOptions options)
 			{
 				writer.WriteStringValue($"{value.Minimum}-{value.Maximum}");
 			}
 		}
 
-		private class ValueRangeConverterType : JsonConverter<ValueRange>
-		{
-			public override ValueRange Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-			{
-				var doc = JsonDocument.ParseValue(ref reader);
-				var values = JsonSerializer.Deserialize<SortedDictionary<int, int>>(doc);
-
-				return new ValueRange(values);
-			}
-
-			public override void Write(Utf8JsonWriter writer, ValueRange value, JsonSerializerOptions options)
-			{
-				JsonSerializer.Serialize(writer, value.Values);
-			}
-		}
 
 		private static readonly LongConverterType LongConverter = new LongConverterType();
 		private static readonly RandomRangeConverterType RandomRangeConverter = new RandomRangeConverterType();
-		private static readonly ValueRangeConverterType ValueRangeConverter = new ValueRangeConverterType();
 
 		public static JsonSerializerOptions CreateOptions()
 		{
@@ -81,7 +65,6 @@ namespace AbarimMUD.Utils
 			result.Converters.Add(new JsonStringEnumConverter());
 			result.Converters.Add(LongConverter);
 			result.Converters.Add(RandomRangeConverter);
-			result.Converters.Add(ValueRangeConverter);
 
 			return result;
 		}
