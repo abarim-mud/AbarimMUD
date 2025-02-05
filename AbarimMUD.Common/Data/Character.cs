@@ -239,6 +239,18 @@ namespace AbarimMUD.Data
 				case ModifierType.BackstabMultiplier:
 					stats.BackstabMultiplier += val;
 					break;
+				case ModifierType.Armor:
+					stats.Armor += val;
+					break;
+				case ModifierType.HpRegen:
+					stats.HpRegenBonus += val;
+					break;
+				case ModifierType.ManaRegen:
+					stats.ManaRegenBonus += val;
+					break;
+				case ModifierType.MoveRegen:
+					stats.MovesRegenBonus += val;
+					break;
 			}
 		}
 

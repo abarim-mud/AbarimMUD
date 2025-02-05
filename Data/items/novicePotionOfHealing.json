@@ -10,8 +10,9 @@
   "ItemType": "Potion",
   "Affects": {
     "HpRegen": {
-      "Value": 10,
-      "DurationInSeconds": 60
+      "Value": 60,
+      "DurationInSeconds": 60,
+      "AffectSlotName": "potionOfHealing"
     }
   },
   "Flags": []

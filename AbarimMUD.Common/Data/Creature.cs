@@ -5,11 +5,41 @@ using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
 {
+	public class TemporaryAffect
+	{
+		public string Name { get; }
+		public Affect Affect { get; }
+		public DateTime Started { get; }
+
+		public TemporaryAffect(string name, Affect affect)
+		{
+			if (string.IsNullOrEmpty(name))
+			{
+				throw new ArgumentNullException("name");
+			}
+
+			if (affect == null)
+			{
+				throw new ArgumentNullException(nameof(affect));
+			}
+
+			if (affect.DurationInSeconds == null)
+			{
+				throw new ArgumentException("affect.DurationInSeconds isn't set");
+			}
+
+			Name = name;
+			Affect = affect;
+			Started = DateTime.Now;
+		}
+	}
+
 	public abstract class Creature
 	{
 		public static readonly List<Creature> ActiveCreatures = new List<Creature>();
 
 		private CreatureStats _stats = null;
+		private Dictionary<string, TemporaryAffect> _temporaryAffects = new Dictionary<string, TemporaryAffect>();
 
 		public abstract string ShortDescription { get; }
 		public abstract string Description { get; }
@@ -28,6 +58,7 @@ namespace AbarimMUD.Data
 		[OLCIgnore]
 		public Inventory Inventory { get; set; } = new Inventory();
 
+		[JsonIgnore]
 		public CreatureStats Stats
 		{
 			get
@@ -37,10 +68,14 @@ namespace AbarimMUD.Data
 			}
 		}
 
+		[JsonIgnore]
 		public CreatureState State { get; } = new CreatureState();
 
 		[JsonIgnore]
 		public bool IsAlive => State.Hitpoints >= 0;
+
+		[JsonIgnore]
+		public IReadOnlyDictionary<string, TemporaryAffect> TemporaryAffects => _temporaryAffects;
 
 		[JsonIgnore]
 		public object Tag { get; set; }
@@ -64,6 +99,41 @@ namespace AbarimMUD.Data
 		{
 			_stats = null;
 		}
+
+		private static void ApplyModifier(ModifierType type, int val, CreatureStats stats)
+		{
+			switch (type)
+			{
+				case ModifierType.AttacksCount:
+					stats.Attacks.Add(stats.Attacks[0].Clone());
+					break;
+				case ModifierType.WeaponPenetration:
+					foreach(var atk in stats.Attacks)
+					{
+						atk.Penetration += val;
+					}
+					break;
+				case ModifierType.BackstabCount:
+					stats.BackstabCount += val;
+					break;
+				case ModifierType.BackstabMultiplier:
+					stats.BackstabMultiplier += val;
+					break;
+				case ModifierType.Armor:
+					stats.Armor += val;
+					break;
+				case ModifierType.HpRegen:
+					stats.HpRegenBonus += val;
+					break;
+				case ModifierType.ManaRegen:
+					stats.ManaRegenBonus += val;
+					break;
+				case ModifierType.MoveRegen:
+					stats.MovesRegenBonus += val;
+					break;
+			}
+		}
+
 
 		protected abstract CreatureStats CreateBaseStats();
 
@@ -100,6 +170,13 @@ namespace AbarimMUD.Data
 						attack.DamageRange += weapon.Info.DamageRange.Value;
 					}
 				}
+			}
+
+			// Temporary affects
+			foreach(var pair in _temporaryAffects)
+			{
+				var affect = pair.Value.Affect;
+				ApplyModifier(affect.Type, affect.Value, _stats);
 			}
 		}
 
@@ -152,6 +229,21 @@ namespace AbarimMUD.Data
 
 				asMobile.InvalidateStats();
 				asMobile.Restore();
+			}
+		}
+
+		public void AddTemporaryAffect(string slot, string name, Affect affect)
+		{
+			_temporaryAffects[slot] = new TemporaryAffect(name, affect);
+			InvalidateStats();
+		}
+
+		public void RemoveTemporaryAffect(string slot)
+		{
+			if (_temporaryAffects.ContainsKey(slot))
+			{
+				_temporaryAffects.Remove(slot);
+				InvalidateStats();
 			}
 		}
 

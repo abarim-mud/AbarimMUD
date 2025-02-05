@@ -58,7 +58,6 @@ namespace AbarimMUD.Data
 		public float FractionalManaRegen { get; set; }
 		public float FractionalMovesRegen { get; set; }
 
-
 		public event EventHandler HitpointsChanged;
 		public event EventHandler ManaChanged;
 		public event EventHandler MovesChanged;

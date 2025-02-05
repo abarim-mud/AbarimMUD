@@ -128,7 +128,7 @@ namespace AbarimMUD.Storage
 					}
 				}
 
-				JsonSerializer.Serialize(writer, newDict);
+				JsonSerializer.Serialize(writer, newDict, DefaultOptions);
 			}
 		}
 

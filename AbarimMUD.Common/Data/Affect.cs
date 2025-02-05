@@ -20,6 +20,7 @@ namespace AbarimMUD.Data
 		public ModifierType Type { get; set; }
 		public int Value { get; set; }
 		public int? DurationInSeconds { get; set; }
+		public string AffectSlotName { get; set; }
 
 		public Affect()
 		{

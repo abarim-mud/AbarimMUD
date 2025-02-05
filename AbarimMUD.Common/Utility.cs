@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -209,6 +210,33 @@ namespace AbarimMUD
 			value = value.Replace(NumberGroupSeparator, "");
 
 			return long.TryParse(value, out number);
+		}
+
+		public static string FormatTime(this int seconds)
+		{
+			var hours = seconds / 3600;
+			seconds = seconds % 3600;
+
+			var minutes = seconds / 60;
+			seconds = seconds % 60;
+
+			var sb = new StringBuilder();
+			if (hours > 0)
+			{
+				sb.Append(hours.ToString("00"));
+				sb.Append(':');
+			}
+
+			if (minutes > 0)
+			{
+				sb.Append(minutes.ToString("00"));
+				sb.Append(":");
+			}
+
+			sb.Append(seconds.ToString("00"));
+
+			return sb.ToString();
+
 		}
 	}
 }

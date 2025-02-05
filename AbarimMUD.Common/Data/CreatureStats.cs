@@ -9,6 +9,10 @@ namespace AbarimMUD.Data
 		public int MaxMana { get; internal set; }
 		public int MaxMoves { get; internal set; }
 
+		public int HpRegenBonus { get; internal set; }
+		public int ManaRegenBonus { get; internal set; }
+		public int MovesRegenBonus { get; internal set; }
+
 		public List<Attack> Attacks { get; } = new List<Attack>();
 		public int BackstabCount { get; internal set; }
 		public int BackstabMultiplier { get; internal set; }
@@ -24,6 +28,8 @@ namespace AbarimMUD.Data
 				result *= Configuration.PeaceRegenMultiplier;
 			}
 
+			result += HpRegenBonus;
+
 			return result;
 		}
 
@@ -35,6 +41,8 @@ namespace AbarimMUD.Data
 				result *= Configuration.PeaceRegenMultiplier;
 			}
 
+			result += ManaRegenBonus;
+
 			return result;
 		}
 
@@ -45,6 +53,8 @@ namespace AbarimMUD.Data
 			{
 				result *= Configuration.PeaceRegenMultiplier;
 			}
+
+			result += MovesRegenBonus;
 
 			return result;
 		}

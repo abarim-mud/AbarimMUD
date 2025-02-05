@@ -24,6 +24,7 @@ namespace AbarimMUD
 		private readonly AutoResetEvent _mainThreadEvent = new AutoResetEvent(false);
 		private readonly Service _webService = new Service();
 		private DateTime? _lastRegenDt;
+		private readonly List<string> _toDelete = new List<string>();
 
 		public static Logger Logger { get; private set; } = LogManager.GetLogger("Logs/Server");
 
@@ -67,10 +68,10 @@ namespace AbarimMUD
 			// PlayerClass.Storage.SaveAll();
 			// MobileClass.Storage.SaveAll();
 			// Skill.Storage.SaveAll();
-			Configuration.Save();
+			// Configuration.Save();
 			// Ability.Storage.SaveAll();
 			// SkillCostInfo.Storage.SaveAll();
-			// Item.Storage.SaveAll();
+			Item.Storage.SaveAll();
 		}
 
 		private bool ProcessRegen(ref int currentValue, int maxValue, ref float fractionalValue, int regenValue, float secondsPassed)
@@ -155,6 +156,25 @@ namespace AbarimMUD
 					{
 						creature.State.Moves = currentValue;
 						creature.State.FractionalMovesRegen = fractionalValue;
+					}
+
+					// Remove expired effects
+					_toDelete.Clear();
+					foreach(var pair in creature.TemporaryAffects)
+					{
+						var ta = pair.Value;
+						var passed = now - ta.Started;
+
+						if (passed.TotalSeconds >= ta.Affect.DurationInSeconds.Value)
+						{
+							_toDelete.Add(pair.Key);
+							ctx.Send($"'{ta.Name}' wears off.");
+						}
+					}
+
+					foreach(var key in _toDelete)
+					{
+						creature.RemoveTemporaryAffect(key);
 					}
 
 					// Command queue

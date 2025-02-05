@@ -1,4 +1,5 @@
 ﻿using AbarimMUD.Data;
+using System;
 
 namespace AbarimMUD.Commands.Player
 {
@@ -94,6 +95,21 @@ namespace AbarimMUD.Commands.Player
 				else
 				{
 					context.Send($"Training next skill level would cost {SkillCostInfo.GetSkillCostInfo(spentSkillPoints).Gold.FormatBigNumber()} gold.");
+				}
+			}
+
+			if (context.Creature.TemporaryAffects.Count > 0)
+			{
+				context.Send("Affects:");
+
+				var now = DateTime.Now;
+
+				foreach(var pair in context.Creature.TemporaryAffects)
+				{
+					var tempAffect = pair.Value;
+					var left = tempAffect.Affect.DurationInSeconds.Value - (int)(now - tempAffect.Started).TotalSeconds;
+
+					context.Send($"{tempAffect.Name} ({left.FormatTime()})");
 				}
 			}
 
