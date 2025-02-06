@@ -95,7 +95,6 @@ namespace AbarimMUD.Data
 		{
 			// Get all possible free slots
 			var possibleSlots = (from s in _slotsArmorsMap where s.Value == item.ItemType select s.Key).ToArray();
-
 			if (possibleSlots.Length == 0)
 			{
 				// Item can't be worn at all

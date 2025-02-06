@@ -25,11 +25,33 @@ namespace AbarimMUD.Commands.Player
 
 				if (string.IsNullOrEmpty(asCharacter.FightSkill))
 				{
-					context.Send("You didnt set the autoskill.");
+					context.Send("You didnt set the fightskill.");
 				}
 				else
 				{
-					context.Send($"You current autoskill is {asCharacter.FightSkill}.");
+					context.Send($"You current fightskill is {asCharacter.FightSkill}.");
+				}
+
+				if (!string.IsNullOrEmpty(asCharacter.StabWeapon))
+				{
+					var message = $"Stabweapon is set to '{asCharacter.StabWeapon}'. ";
+					
+					bool isWielded;
+					var weapon = context.Creature.FindStabWeapon(asCharacter.StabWeapon, out isWielded);
+					if (weapon == null)
+					{
+						message += "It doesn't correspond to any item.";
+					} else
+					{
+						message += $"It corresponds to an item '{weapon.ShortDescription}'";
+
+						if (isWielded)
+						{
+							message += " (wielded)";
+						}
+					}
+
+					context.Send(message);
 				}
 			}
 

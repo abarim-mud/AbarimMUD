@@ -100,6 +100,14 @@ namespace AbarimMUD.Commands
 			}
 		}
 
+		public void SendAllExceptMe(string message)
+		{
+			foreach(var ctx in AllExceptMe())
+			{
+				ctx.Send(message);
+			}
+		}
+
 		public IEnumerable<ExecutionContext> AllExceptMeInRoom()
 		{
 			var room = Room;
@@ -112,6 +120,14 @@ namespace AbarimMUD.Commands
 				}
 
 				yield return context;
+			}
+		}
+
+		public void SendRoomExceptMe(string message)
+		{
+			foreach(var ctx in AllExceptMeInRoom())
+			{
+				ctx.Send(message);
 			}
 		}
 

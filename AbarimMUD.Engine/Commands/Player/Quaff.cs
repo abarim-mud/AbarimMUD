@@ -33,7 +33,12 @@ namespace AbarimMUD.Commands.Player
 				context.Creature.AddTemporaryAffect(affect.AffectSlotName, item.ShortDescription, affect);
 			}
 
-			context.Send($"You quaff '{item.ShortDescription}.'");
+			context.Send($"You quaff '{item.ShortDescription}'.");
+			context.SendRoomExceptMe($"{context.Creature.ShortDescription} quaffed {item.ShortDescription}.");
+
+			var asCharacter = context.Creature as Character;
+			asCharacter?.Save();
+
 
 			return true;
 		}

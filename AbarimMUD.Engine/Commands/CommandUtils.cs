@@ -120,7 +120,7 @@ namespace AbarimMUD.Commands
 			var values = Enum.GetValues(enumType);
 			var list = new List<string>();
 
-			foreach(var v in values)
+			foreach (var v in values)
 			{
 				list.Add(v.ToString().ToLower());
 			}
@@ -250,6 +250,96 @@ namespace AbarimMUD.Commands
 				context.Send($"ERROR: Unable to save entity of type {item.GetType().Name}");
 			}
 			while (false);
+		}
+
+		public static void GetItemWearTerms(this ItemType itemType, out string term1, out string term2, out string term3)
+		{
+			if (itemType == ItemType.Weapon)
+			{
+				term1 = "wield";
+				term2 = "wielded";
+				term3 = "wields";
+
+				return;
+			}
+
+			term1 = "wear";
+			term2 = "worn";
+			term3 = "wears";
+		}
+
+		public static bool WearItem(this ExecutionContext context, ItemInstance item)
+		{
+			var result = context.Creature.Wear(item);
+
+			string term1, term2, term3;
+			item.ItemType.GetItemWearTerms(out term1, out term2, out term3);
+			if (result == true)
+			{
+				// Remove from inv
+				context.Creature.Inventory.AddItem(item, -1);
+				context.Send($"You {term1} {item.ShortDescription}.");
+				context.SendRoomExceptMe($"{context.Creature.ShortDescription} {term3} {item.ShortDescription}.");
+
+				return true;
+			}
+			else if (result == false)
+			{
+				context.Send($"You can't {term1} {item.ShortDescription}, since that slot is occupied.");
+				return false;
+			}
+
+			context.Send($"{item.ShortDescription} can't be {term2}.");
+			return false;
+		}
+
+		public static bool RemoveItem(this ExecutionContext context, SlotType slot)
+		{
+			var removedItem = context.Creature.Remove(slot);
+			if (removedItem != null)
+			{
+				// Add to inv
+				context.Creature.Inventory.AddItem(removedItem, 1);
+
+				var term = slot == SlotType.Wield ? "wielding" : "wearing";
+				context.Send($"You stop {term} {removedItem.ShortDescription}.");
+
+				context.SendRoomExceptMe($"{context.Creature.ShortDescription} stops {term} {removedItem.ShortDescription}.");
+
+				return true;
+			}
+
+			return false;
+		}
+
+		public static ItemInstance FindStabWeapon(this Creature creature, string data, out bool isWielded)
+		{
+			isWielded = false;
+			if (string.IsNullOrEmpty(data))
+			{
+				return null;
+			}
+
+			var weapon = creature.Equipment[SlotType.Wield];
+			if (weapon == null || !weapon.MatchesKeyword(data) || !weapon.Info.Flags.Contains(ItemFlags.Stab))
+			{
+				// Check if there's such item in the inventory
+				var inv = (from i in creature.Inventory.Items
+						   where i.Item.MatchesKeyword(data) && i.Item.ItemType == ItemType.Weapon && i.Item.Info.Flags.Contains(ItemFlags.Stab)
+						   select i).FirstOrDefault();
+				if (inv == null)
+				{
+					return null;
+				}
+
+				weapon = inv.Item;
+			}
+			else
+			{
+				isWielded = true;
+			}
+
+			return weapon;
 		}
 	}
 }

@@ -33,6 +33,7 @@ namespace AbarimMUD.Commands
 
 		public static readonly Player.Inventory Inventory = new Player.Inventory();
 		public static readonly Wear Wear = new Wear();
+		public static readonly Wield Wield = new Wield();
 		public static readonly Remove Remove = new Remove();
 		public static readonly Junk Junk = new Junk();
 		public static readonly Player.Equipment Equipment = new Player.Equipment();

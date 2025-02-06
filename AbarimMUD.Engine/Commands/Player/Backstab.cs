@@ -22,17 +22,29 @@ namespace AbarimMUD.Commands.Player
 			}
 
 			// Check the player weapon can stab
-			var weapon = context.Creature.Equipment[Data.SlotType.Wield];
-			if (weapon == null)
+			var character = context.Creature as Character;
+			var weapon = context.Creature.Equipment[SlotType.Wield];
+			ItemInstance stabWeapon = null;
+			if (weapon == null || !weapon.Info.Flags.Contains(ItemFlags.Stab))
 			{
-				context.Send($"You can't stab with the bare hands.");
-				return false;
-			}
+				var baseMessage = weapon == null ?
+					"You can't stab with the bare hands." :
+					"You can't stab with this weapon.";
 
-			if (!weapon.Info.Flags.Contains(Data.ItemFlags.Stab))
-			{
-				context.Send($"You can't stab with this weapon.");
-				return false;
+				if (character == null || string.IsNullOrEmpty(character.StabWeapon))
+				{
+					context.Send(baseMessage);
+					return false;
+				}
+
+				bool isWielded;
+				stabWeapon = context.Creature.FindStabWeapon(character.StabWeapon, out isWielded);
+				if (stabWeapon == null)
+				{
+					context.Send(baseMessage);
+					context.Send($"StabWeapon '{character.StabWeapon}' doesn't correspond to any item");
+					return false;
+				}
 			}
 
 			data = data.Trim();
@@ -73,7 +85,43 @@ namespace AbarimMUD.Commands.Player
 				return false;
 			}
 
-			context.Backstab(ab, weapon, target);
+			if (weapon != null && weapon.Info.Flags.Contains(ItemFlags.Stab))
+			{
+				// Wielded weapon can stab
+				context.Backstab(ab, weapon, target);
+			} else if (weapon == null)
+			{
+				// Wield stab and remove, since figthing with bare hands
+				if (!context.WearItem(stabWeapon))
+				{
+					return false;
+				}
+				
+				context.Backstab(ab, stabWeapon, target);
+				
+				context.RemoveItem(SlotType.Wield);
+			} else
+			{
+				// Remove non-stab weapon, wield stab, stab, remove stab, wield non-stab
+				if (!context.RemoveItem(SlotType.Wield))
+				{
+					return false;
+				}
+
+				if (!context.WearItem(stabWeapon))
+				{
+					// If we can't wield stab weapon, wield non-stab back and return false
+					context.WearItem(weapon);
+					return false;
+				}
+
+				context.Backstab(ab, stabWeapon, target);
+				if (context.RemoveItem(SlotType.Wield))
+				{
+					context.WearItem(weapon);
+				}
+			}
+
 			Fight.Start(context, target);
 
 			return true;

@@ -19,12 +19,9 @@ namespace AbarimMUD.Commands.Player
 				return false;
 			}
 
-			var removedItem = context.Creature.Remove(item.Slot);
-			if (removedItem != null)
+			if (!context.RemoveItem(item.Slot))
 			{
-				// Add to inv
-				context.Creature.Inventory.AddItem(removedItem, 1);
-				context.Send($"You stop wearing {removedItem.ShortDescription}");
+				return false;
 			}
 
 			var asCharacter = context.Creature as Character;

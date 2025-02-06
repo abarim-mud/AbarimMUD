@@ -2,7 +2,7 @@
 
 namespace AbarimMUD.Commands.Player
 {
-	public class Wear : PlayerCommand
+	public class Wield : PlayerCommand
 	{
 		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
