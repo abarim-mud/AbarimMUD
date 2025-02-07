@@ -16,5 +16,6 @@
       "AffectSlotName": "potionOfMoves"
     }
   },
-  "Flags": []
+  "Flags": [],
+  "IsStockItem": true
 }

@@ -16,5 +16,6 @@
       "AffectSlotName": "potionOfHealing"
     }
   },
-  "Flags": []
+  "Flags": [],
+  "IsStockItem": true
 }

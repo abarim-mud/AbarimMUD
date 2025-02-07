@@ -31,6 +31,8 @@ namespace AbarimMUD.Commands
 
 		public static readonly Train Train = new Train();
 
+		public static readonly ListCommand List = new ListCommand();
+
 		public static readonly Player.Inventory Inventory = new Player.Inventory();
 		public static readonly Wear Wear = new Wear();
 		public static readonly Wield Wield = new Wield();

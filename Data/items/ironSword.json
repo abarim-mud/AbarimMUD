@@ -13,5 +13,6 @@
     "WeaponPenetration": 10
   },
   "Flags": [],
-  "DamageRange": "4-10"
+  "DamageRange": "4-10",
+  "IsStockItem": true
 }

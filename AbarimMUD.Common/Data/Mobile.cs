@@ -161,10 +161,9 @@ namespace AbarimMUD.Data
 		public HashSet<MobileFlags> Flags { get; set; } = new HashSet<MobileFlags>();
 		
 		[Browsable(false)]
-		public Shop Shop { get; set; }
-
-		[Browsable(false)]
 		public List<MobileSpecialAttack> SpecialAttacks { get; set; } = new List<MobileSpecialAttack>();
+
+		public StockItemType? Shop { get; set; }
 
 		public bool MatchesKeyword(string keyword) => Keywords.StartsWithPattern(keyword);
 

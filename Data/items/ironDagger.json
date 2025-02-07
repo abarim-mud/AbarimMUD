@@ -15,5 +15,6 @@
   "Flags": [
     "Stab"
   ],
-  "DamageRange": "2-6"
+  "DamageRange": "2-6",
+  "IsStockItem": true
 }

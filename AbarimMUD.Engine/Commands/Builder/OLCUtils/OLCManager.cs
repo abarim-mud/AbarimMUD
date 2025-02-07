@@ -151,7 +151,6 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 
 		static OLCManager()
 		{
-			_records["mobileClass"] = new OLCRecordString<MobileClass>(MobileClass.Storage, false);
 			_records["item"] = new OLCRecordString<Item>(Item.Storage, true);
 			_records["character"] = new OLCRecordString<Character>(Character.Storage, false);
 			_records["mobile"] = new OLCRecordInt<Mobile>(() => Area.Storage.AllMobiles, m => m.ShortDescription, true);

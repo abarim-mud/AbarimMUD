@@ -117,12 +117,24 @@ namespace AbarimMUD.Commands
 
 		public static string BuildEnumString(this Type enumType)
 		{
+			var isNullable = false;
+			if (enumType.IsNullableEnum())
+			{
+				enumType = enumType.GetNullableType();
+				isNullable = true;
+			}
+
 			var values = Enum.GetValues(enumType);
 			var list = new List<string>();
 
 			foreach (var v in values)
 			{
 				list.Add(v.ToString().ToLower());
+			}
+
+			if (isNullable)
+			{
+				list.Add("null");
 			}
 
 			return string.Join('|', list);

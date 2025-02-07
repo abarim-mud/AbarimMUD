@@ -8,7 +8,7 @@
   "ShortDescription": "a novice potion of mana",
   "Description": "Unset",
   "ItemType": "Potion",
-  "Price": 100,
+  "Price": 200,
   "Affects": {
     "ManaRegen": {
       "Value": 60,
@@ -16,5 +16,6 @@
       "AffectSlotName": "potionOfMana"
     }
   },
-  "Flags": []
+  "Flags": [],
+  "IsStockItem": true
 }

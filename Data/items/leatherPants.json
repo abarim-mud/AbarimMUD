@@ -11,5 +11,6 @@
   "Affects": {
     "Armor": 4
   },
-  "Flags": []
+  "Flags": [],
+  "IsStockItem": true
 }

@@ -18,6 +18,7 @@ namespace AbarimMUD.Data
 		Boots,
 		Weapon,
 		Potion,
+		Scroll
 	}
 
 	public enum ItemFlags
@@ -26,9 +27,23 @@ namespace AbarimMUD.Data
 		Artefact
 	}
 
+	public enum StockItemType
+	{
+		Blacksmith,
+		Alchemist,
+		Scribe,
+		Auctioneer
+	}
+
 	public class Item : IStoredInFile, ICloneable
 	{
 		public static readonly MultipleFilesStorage<Item> Storage = new Items();
+
+		private static readonly Dictionary<StockItemType, Item[]> _stockItems = new Dictionary<StockItemType, Item[]>();
+		private static bool _stockItemsDirty = true;
+
+		private ItemType _itemType;
+		private bool _isStockItem = false;
 
 		public string Id { get; set; }
 		public HashSet<string> Keywords { get; set; } = new HashSet<string>();
@@ -39,7 +54,22 @@ namespace AbarimMUD.Data
 		[OLCAlias("long")]
 		public string LongDescription { get; set; }
 		public string Description { get; set; }
-		public ItemType ItemType { get; set; }
+		public ItemType ItemType
+		{
+			get => _itemType;
+
+			set
+			{
+				if (value == _itemType)
+				{
+					return;
+				}
+
+				_itemType = value;
+				_stockItemsDirty = true;
+			}
+		}
+
 		public int Price { get; set; } = 100;
 		public AttackType? AttackType { get; set; }
 		public Dictionary<ModifierType, Affect> Affects { get; set; } = new Dictionary<ModifierType, Affect>();
@@ -47,6 +77,96 @@ namespace AbarimMUD.Data
 
 		public HashSet<ItemFlags> Flags { get; set; } = new HashSet<ItemFlags>();
 		public ValueRange? DamageRange { get; set; }
+		public bool IsStockItem
+		{
+			get => _isStockItem;
+
+			set
+			{
+				if (value == _isStockItem)
+				{
+					return;
+				}
+
+				_isStockItem = value;
+				_stockItemsDirty = true;
+			}
+		}
+
+		private static void AddItem(Dictionary<StockItemType, List<Item>> dict, StockItemType type, Item item)
+		{
+			List<Item> list;
+
+			if (!dict.TryGetValue(type, out list))
+			{
+				list = new List<Item>();
+				dict[type] = list;
+			}
+
+			list.Add(item);
+		}
+
+		private static void UpdateStockItems()
+		{
+			if (!_stockItemsDirty)
+			{
+				return;
+			}
+
+			var temp = new Dictionary<StockItemType, List<Item>>();
+			foreach (var item in Storage)
+			{
+				if (!item.IsStockItem)
+				{
+					continue;
+				}
+
+				switch (item.ItemType)
+				{
+					case ItemType.Ring:
+					case ItemType.Amulet:
+					case ItemType.Helmet:
+					case ItemType.Armor:
+					case ItemType.Bracelet:
+					case ItemType.Gloves:
+					case ItemType.Leggings:
+					case ItemType.Boots:
+					case ItemType.Weapon:
+						AddItem(temp, StockItemType.Blacksmith, item);
+						break;
+					case ItemType.Potion:
+						AddItem(temp, StockItemType.Alchemist, item);
+						break;
+					case ItemType.Scroll:
+						AddItem(temp, StockItemType.Scribe, item);
+						break;
+				}
+			}
+
+			_stockItems.Clear();
+
+			foreach (StockItemType type in Enum.GetValues(typeof(StockItemType)))
+			{
+				List<Item> items;
+				if (temp.TryGetValue(type, out items))
+				{
+					_stockItems[type] = items.ToArray();
+				}
+				else
+				{
+					_stockItems[type] = new Item[0];
+				}
+			}
+
+			_stockItemsDirty = false;
+		}
+
+		public static Item[] GetStockItems(StockItemType type)
+		{
+			UpdateStockItems();
+
+			return _stockItems[type];
+		}
 
 		public bool MatchesKeyword(string keyword) => Keywords.StartsWithPattern(keyword);
 
@@ -62,6 +182,7 @@ namespace AbarimMUD.Data
 				ItemType = ItemType,
 				Affects = Affects,
 				DamageRange = DamageRange,
+				IsStockItem = IsStockItem,
 			};
 
 			foreach (var flag in Flags)
