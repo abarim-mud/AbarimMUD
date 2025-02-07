@@ -36,6 +36,27 @@ namespace AbarimMUD.Data
 
 	public abstract class Creature
 	{
+		protected class ModifiersAccumulator
+		{
+			private readonly Dictionary<ModifierType, int> _modifiers = new Dictionary<ModifierType, int>();
+
+			public IReadOnlyDictionary<ModifierType, int> Modifiers => _modifiers;
+
+			public List<Ability> Abilities { get; } = new List<Ability>();
+
+			public void Add(ModifierType modifier, int value)
+			{
+				if (!_modifiers.ContainsKey(modifier))
+				{
+					_modifiers[modifier] = value;
+				}
+				else
+				{
+					_modifiers[modifier] += value;
+				}
+			}
+		}
+
 		public static readonly List<Creature> ActiveCreatures = new List<Creature>();
 
 		private CreatureStats _stats = null;
@@ -47,6 +68,7 @@ namespace AbarimMUD.Data
 		public abstract string ClassName { get; }
 		public abstract int Level { get; }
 		public abstract Sex Sex { get; }
+		public long Gold { get; set; }
 
 		[JsonIgnore]
 		[OLCIgnore]
@@ -100,42 +122,31 @@ namespace AbarimMUD.Data
 			_stats = null;
 		}
 
-		private static void ApplyModifier(ModifierType type, int val, CreatureStats stats)
+		protected virtual void EnumerateModifiers(ModifiersAccumulator result)
 		{
-			switch (type)
+			// Eq modifiers
+			// Apply equipment
+			foreach (var item in Equipment.Items)
 			{
-				case ModifierType.AttacksCount:
-					stats.Attacks.Add(stats.Attacks[0].Clone());
-					break;
-				case ModifierType.WeaponPenetration:
-					foreach(var atk in stats.Attacks)
+				if (item.Item.Info.Affects != null)
+				{
+					foreach (var pair in item.Item.Info.Affects)
 					{
-						atk.Penetration += val;
+						var affect = pair.Value;
+						result.Add(affect.Type, affect.Value);
 					}
-					break;
-				case ModifierType.BackstabCount:
-					stats.BackstabCount += val;
-					break;
-				case ModifierType.BackstabMultiplier:
-					stats.BackstabMultiplier += val;
-					break;
-				case ModifierType.Armor:
-					stats.Armor += val;
-					break;
-				case ModifierType.HpRegen:
-					stats.HpRegenBonus += val;
-					break;
-				case ModifierType.ManaRegen:
-					stats.ManaRegenBonus += val;
-					break;
-				case ModifierType.MovesRegen:
-					stats.MovesRegenBonus += val;
-					break;
+				}
+			}
+
+			// Temporary affects
+			foreach (var pair in _temporaryAffects)
+			{
+				var affect = pair.Value.Affect;
+				result.Add(affect.Type, affect.Value);
 			}
 		}
 
-
-		protected abstract CreatureStats CreateBaseStats();
+		protected abstract CreatureStats CreateBaseStats(int attacksCount);
 
 		private void UpdateStats()
 		{
@@ -144,7 +155,20 @@ namespace AbarimMUD.Data
 				return;
 			}
 
-			_stats = CreateBaseStats();
+			var modifiers = new ModifiersAccumulator();
+			EnumerateModifiers(modifiers);
+
+			// By default there's one attack
+			var attacksCount = 1;
+
+			// Apply modifier
+			int a;
+			if (modifiers.Modifiers.TryGetValue(ModifierType.AttacksCount, out a))
+			{
+				attacksCount += a;
+			}
+
+			_stats = CreateBaseStats(attacksCount);
 
 			// Apply weapon to attacks
 			var weapon = Equipment[SlotType.Wield];
@@ -172,12 +196,14 @@ namespace AbarimMUD.Data
 				}
 			}
 
-			// Temporary affects
-			foreach(var pair in _temporaryAffects)
+			// Apply modifiers
+			foreach (var pair in modifiers.Modifiers)
 			{
-				var affect = pair.Value.Affect;
-				ApplyModifier(affect.Type, affect.Value, _stats);
+				_stats.Apply(pair.Key, pair.Value);
 			}
+
+			// Add abilities
+			_stats.Abilities.AddRange(modifiers.Abilities);
 		}
 
 		public void Restore()

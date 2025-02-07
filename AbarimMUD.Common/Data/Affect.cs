@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
 {
@@ -12,6 +13,8 @@ namespace AbarimMUD.Data
 		HpRegen,
 		ManaRegen,
 		MovesRegen,
+		BuyPriceRebatePercentage,
+		SellPriceBonusPercentage
 	}
 
 	public class Affect

@@ -353,5 +353,7 @@ namespace AbarimMUD.Commands
 
 			return weapon;
 		}
+
+		public static ExecutionContext GetContext(this Creature creature) => (ExecutionContext)creature.Tag;
 	}
 }

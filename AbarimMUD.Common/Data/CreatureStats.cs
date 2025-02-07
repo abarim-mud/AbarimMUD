@@ -19,6 +19,8 @@ namespace AbarimMUD.Data
 		public int Armor { get; internal set; }
 		public long XpAward { get; internal set; }
 		public List<Ability> Abilities { get; } = new List<Ability>();
+		public int BuyPriceRebatePercentage { get; internal set; }
+		public int SellPriceBonusPercentage { get; internal set; }
 
 		public int GetHitpointsRegen(bool isFighting)
 		{
@@ -62,6 +64,65 @@ namespace AbarimMUD.Data
 		public Ability GetAbility(string id)
 		{
 			return (from ab in Abilities where string.Equals(ab.Id, id, System.StringComparison.InvariantCultureIgnoreCase) select ab).FirstOrDefault();
+		}
+
+		public int GetBuyPrice(int originalPrice)
+		{
+			var perc = Configuration.BaseBuyPricePercentage;
+
+			perc -= BuyPriceRebatePercentage;
+
+			return originalPrice * perc / 100;
+		}
+
+		public int GetSellPrice(int originalPrice)
+		{
+			var perc = Configuration.BaseSellPricePercentage;
+
+			perc += SellPriceBonusPercentage;
+
+			return originalPrice * perc / 100;
+		}
+
+		public void Apply(ModifierType type, int val)
+		{
+			switch (type)
+			{
+				case ModifierType.WeaponPenetration:
+					foreach (var atk in Attacks)
+					{
+						atk.Penetration += val;
+					}
+					break;
+				case ModifierType.BackstabCount:
+					BackstabCount += val;
+					break;
+				case ModifierType.BackstabMultiplier:
+					BackstabMultiplier += val;
+					break;
+				case ModifierType.Armor:
+					Armor += val;
+					break;
+				case ModifierType.HpRegen:
+					HpRegenBonus += val;
+					break;
+				case ModifierType.ManaRegen:
+					ManaRegenBonus += val;
+					break;
+				case ModifierType.MovesRegen:
+					MovesRegenBonus += val;
+					break;
+				case ModifierType.AttacksCount:
+					// This is calculated on earlier stage of Creature.UpdateStats
+					// Hence ignoring it here
+					break;
+				case ModifierType.BuyPriceRebatePercentage:
+					BuyPriceRebatePercentage += val;
+					break;
+				case ModifierType.SellPriceBonusPercentage:
+					SellPriceBonusPercentage += val;
+					break;
+			}
 		}
 	}
 }

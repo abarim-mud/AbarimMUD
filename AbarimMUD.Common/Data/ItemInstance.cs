@@ -9,6 +9,8 @@ namespace AbarimMUD.Data
 
 		public string Id => Info.Id;
 
+		public int Price => Info.Price;
+
 		[JsonIgnore]
 		public string ShortDescription => Info.ShortDescription;
 

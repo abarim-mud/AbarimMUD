@@ -4,7 +4,7 @@ using System.Text;
 
 namespace AbarimMUD.Commands.Player
 {
-	public class Train: PlayerCommand
+	public class Train : PlayerCommand
 	{
 		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
@@ -43,7 +43,7 @@ namespace AbarimMUD.Commands.Player
 
 			// Remove maxed out skills
 			SkillValue skillValue = null;
-			foreach(var pair in character.Skills)
+			foreach (var pair in character.Skills)
 			{
 				if (skillToTrain != null && skillToTrain.Id == pair.Value.Skill.Id)
 				{
@@ -65,7 +65,7 @@ namespace AbarimMUD.Commands.Player
 				else
 				{
 					var sb = new StringBuilder();
-					for(var i = 0; i < trainableSkills.Count; ++i)
+					for (var i = 0; i < trainableSkills.Count; ++i)
 					{
 						sb.Append($"{trainableSkills[i].Name} ({trainableSkills[i].Cost} sp)");
 
@@ -77,7 +77,8 @@ namespace AbarimMUD.Commands.Player
 					var skillNames = (from s in trainableSkills select s.Name).ToList();
 					Tell.Execute(trainerContext, $"{context.Creature.ShortDescription} I could teach you one of the following: {sb.ToString()}. It would cost you {price} gold.");
 				}
-			} else
+			}
+			else
 			{
 				if (skillToTrain == null)
 				{
@@ -92,14 +93,16 @@ namespace AbarimMUD.Commands.Player
 				}
 
 				var levelConstraint = 1;
-				if(character.Class.Id.EqualsToIgnoreCase(trainer.Info.Guildmaster.Id))
+				var skillNextLevel = skillValue != null ? ((int)skillValue.Level + 1) : 0;
+				if (character.Class.Id.EqualsToIgnoreCase(trainer.Info.Guildmaster.Id))
 				{
 					// Skill of the primary class
-					levelConstraint = Configuration.PrimarySkillsLevelsConstraints[(int)skillValue.Level + 1];
-				} else
+					levelConstraint = Configuration.PrimarySkillsLevelsConstraints[skillNextLevel];
+				}
+				else
 				{
 					// Skill not of the primary class
-					levelConstraint = Configuration.NonPrimarySkillsLevelsConstraints[(int)skillValue.Level + 1];
+					levelConstraint = Configuration.NonPrimarySkillsLevelsConstraints[skillNextLevel];
 				}
 
 				if (character.Level < levelConstraint)
@@ -129,12 +132,13 @@ namespace AbarimMUD.Commands.Player
 				if (skillValue == null)
 				{
 					context.Send($"You learned new skill: {skillToTrain.Name}.");
-				} else
+				}
+				else
 				{
 					context.Send($"You advanced {skillToTrain.Name} to the next level.");
 				}
 			}
-			
+
 			return true;
 		}
 	}

@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace AbarimMUD.Commands.Player
 {
-	public class ListCommand: PlayerCommand
+	public class ListCommand : PlayerCommand
 	{
 		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
@@ -25,8 +25,10 @@ namespace AbarimMUD.Commands.Player
 
 			for (var i = 0; i < items.Length; ++i)
 			{
+				var price = context.Creature.Stats.GetBuyPrice(items[i].Price);
+
 				grid.SetValue(0, i, items[i].ShortDescription);
-				grid.SetValue(1, i, items[i].Price.ToString());
+				grid.SetValue(1, i, price.ToString());
 				grid.SetValue(2, i, "infinite");
 			}
 

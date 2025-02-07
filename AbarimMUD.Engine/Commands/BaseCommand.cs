@@ -32,6 +32,8 @@ namespace AbarimMUD.Commands
 		public static readonly Train Train = new Train();
 
 		public static readonly ListCommand List = new ListCommand();
+		public static readonly Buy Buy = new Buy();
+		public static readonly Sell Sell = new Sell();
 
 		public static readonly Player.Inventory Inventory = new Player.Inventory();
 		public static readonly Wear Wear = new Wear();

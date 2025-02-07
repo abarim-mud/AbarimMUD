@@ -5,8 +5,9 @@
   "Levels": [
     {
       "Modifiers": {
+        "Armor": 2,
         "AttacksCount": 1,
-        "WeaponPenetration": 20
+        "WeaponPenetration": 10
       },
       "Abilities": [
         "kick"
@@ -14,23 +15,27 @@
     },
     {
       "Modifiers": {
-        "WeaponPenetration": 20
+        "Armor": 2,
+        "WeaponPenetration": 10
       }
     },
     {
       "Modifiers": {
+        "Armor": 2,
         "AttacksCount": 1,
-        "WeaponPenetration": 20
+        "WeaponPenetration": 10
       }
     },
     {
       "Modifiers": {
-        "WeaponPenetration": 20
+        "Armor": 2,
+        "WeaponPenetration": 10
       }
     },
     {
       "Modifiers": {
-        "WeaponPenetration": 20
+        "Armor": 2,
+        "WeaponPenetration": 10
       }
     }
   ],

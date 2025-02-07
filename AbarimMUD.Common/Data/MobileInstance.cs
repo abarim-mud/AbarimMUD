@@ -43,13 +43,12 @@ namespace AbarimMUD.Data
 			}
 		}
 
-		public int Gold => Info.Class.GoldRange.CalculateValue(Level);
-
 		public override event EventHandler RoomChanged;
 
 		public MobileInstance(Mobile mobile)
 		{
 			Info = mobile ?? throw new ArgumentNullException(nameof(mobile));
+			Gold = Info.Class.GoldRange.CalculateValue(Level);
 
 			Restore();
 
@@ -65,7 +64,12 @@ namespace AbarimMUD.Data
 			Room = null;
 		}
 
-		protected override CreatureStats CreateBaseStats() => Class.CreateStats(Level);
+		protected override CreatureStats CreateBaseStats(int attacksCount)
+		{
+			// Mobiles ignore attacksCount, since their attacks are set explicitly
+
+			return Class.CreateStats(Level);
+		}
 
 		public override string ToString() => Info.ToString();
 	}

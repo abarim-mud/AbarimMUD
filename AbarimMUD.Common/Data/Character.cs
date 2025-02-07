@@ -1,6 +1,7 @@
 ﻿using AbarimMUD.Attributes;
 using AbarimMUD.Storage;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -100,8 +101,6 @@ namespace AbarimMUD.Data
 
 		[OLCAlias("sex")]
 		public Sex PlayerSex { get; set; }
-
-		public long Gold { get; set; }
 
 		public long Experience { get; set; }
 
@@ -224,48 +223,11 @@ namespace AbarimMUD.Data
 			Save();
 		}
 
-		private static void ApplyModifier(ModifierType type, int val, ref int attacksCount, Attack attack, CreatureStats stats)
+		protected override void EnumerateModifiers(ModifiersAccumulator result)
 		{
-			switch (type)
-			{
-				case ModifierType.AttacksCount:
-					attacksCount += val;
-					break;
-				case ModifierType.WeaponPenetration:
-					attack.Penetration += val;
-					break;
-				case ModifierType.BackstabCount:
-					stats.BackstabCount += val;
-					break;
-				case ModifierType.BackstabMultiplier:
-					stats.BackstabMultiplier += val;
-					break;
-				case ModifierType.Armor:
-					stats.Armor += val;
-					break;
-				case ModifierType.HpRegen:
-					stats.HpRegenBonus += val;
-					break;
-				case ModifierType.ManaRegen:
-					stats.ManaRegenBonus += val;
-					break;
-				case ModifierType.MovesRegen:
-					stats.MovesRegenBonus += val;
-					break;
-			}
-		}
+			base.EnumerateModifiers(result);
 
-		protected override CreatureStats CreateBaseStats()
-		{
-			var result = Class.CreateStats(Level);
-
-			// By default there's one attack
-			var attacksCount = 1;
-
-			// Default attack
-			var attack = new Attack(AttackType.Hit, 0, Configuration.CharacterBarehandedDamage.Minimum, Configuration.CharacterBarehandedDamage.Maximum);
-
-			// Apply skills
+			// Apply skills and abilities
 			foreach (var pair in Skills)
 			{
 				// Apply all levels up to learned one
@@ -275,7 +237,7 @@ namespace AbarimMUD.Data
 
 					foreach (var modPair in def.Modifiers)
 					{
-						ApplyModifier(modPair.Key, modPair.Value, ref attacksCount, attack, result);
+						result.Add(modPair.Key, modPair.Value);
 					}
 
 					if (def.Abilities != null)
@@ -292,7 +254,7 @@ namespace AbarimMUD.Data
 							{
 								foreach (var modPair in ab.Modifiers)
 								{
-									ApplyModifier(modPair.Key, modPair.Value, ref attacksCount, attack, result);
+									result.Add(modPair.Key, modPair.Value);
 								}
 							}
 
@@ -304,19 +266,14 @@ namespace AbarimMUD.Data
 					}
 				}
 			}
+		}
 
-			// Apply equipment
-			foreach(var item in Equipment.Items)
-			{
-				if (item.Item.Info.Affects != null)
-				{
-					foreach(var pair in item.Item.Info.Affects)
-					{
-						var affect = pair.Value;
-						ApplyModifier(affect.Type, affect.Value, ref attacksCount, attack, result);
-					}
-				}
-			}
+		protected override CreatureStats CreateBaseStats(int attacksCount)
+		{
+			var result = Class.CreateStats(Level);
+
+			// Default attack
+			var attack = new Attack(AttackType.Hit, 0, Configuration.CharacterBarehandedDamage.Minimum, Configuration.CharacterBarehandedDamage.Maximum);
 
 			// Set attacks
 			for (var i = 0; i < attacksCount; ++i)
