@@ -121,26 +121,7 @@ namespace AbarimMUD.Data
 					continue;
 				}
 
-				switch (item.ItemType)
-				{
-					case ItemType.Ring:
-					case ItemType.Amulet:
-					case ItemType.Helmet:
-					case ItemType.Armor:
-					case ItemType.Bracelet:
-					case ItemType.Gloves:
-					case ItemType.Leggings:
-					case ItemType.Boots:
-					case ItemType.Weapon:
-						AddItem(temp, StockItemType.Blacksmith, item);
-						break;
-					case ItemType.Potion:
-						AddItem(temp, StockItemType.Alchemist, item);
-						break;
-					case ItemType.Scroll:
-						AddItem(temp, StockItemType.Scribe, item);
-						break;
-				}
+				AddItem(temp, item.ItemType.GetStockItemType(), item);
 			}
 
 			_stockItems.Clear();
@@ -227,6 +208,7 @@ namespace AbarimMUD.Data
 	public static class ItemExtensions
 	{
 		private static readonly bool[] _armorTypes;
+		private static readonly Dictionary<ItemType, StockItemType> _itemsStockTypes = new Dictionary<ItemType, StockItemType>();
 
 		static ItemExtensions()
 		{
@@ -242,8 +224,24 @@ namespace AbarimMUD.Data
 			_armorTypes[(int)ItemType.Gloves] = true;
 			_armorTypes[(int)ItemType.Leggings] = true;
 			_armorTypes[(int)ItemType.Boots] = true;
+
+			_itemsStockTypes[ItemType.Ring] = StockItemType.Blacksmith;
+			_itemsStockTypes[ItemType.Amulet] = StockItemType.Blacksmith;
+			_itemsStockTypes[ItemType.Helmet] = StockItemType.Blacksmith;
+			_itemsStockTypes[ItemType.Armor] = StockItemType.Blacksmith;
+			_itemsStockTypes[ItemType.Bracelet] = StockItemType.Blacksmith;
+			_itemsStockTypes[ItemType.Gloves] = StockItemType.Blacksmith;
+			_itemsStockTypes[ItemType.Leggings] = StockItemType.Blacksmith;
+			_itemsStockTypes[ItemType.Boots] = StockItemType.Blacksmith;
+			_itemsStockTypes[ItemType.Weapon] = StockItemType.Blacksmith;
+
+			_itemsStockTypes[ItemType.Potion] = StockItemType.Alchemist;
+
+			_itemsStockTypes[ItemType.Scroll] = StockItemType.Scribe;
 		}
 
 		public static bool IsArmor(this ItemType type) => _armorTypes[(int)type];
+
+		public static StockItemType GetStockItemType(this ItemType type) => _itemsStockTypes[type];
 	}
 }

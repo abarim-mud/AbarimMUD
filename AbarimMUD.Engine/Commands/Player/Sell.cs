@@ -28,11 +28,27 @@ namespace AbarimMUD.Commands.Player
 			}
 
 			var item = invItem.Item;
+			if (shopKeeper.Info.Shop != item.ItemType.GetStockItemType())
+			{
+				Tell.Execute(shopKeeper.GetContext(), $"{context.Creature.ShortDescription} I don't deal in those.");
+
+				return false;
+			}
 
 			var price = context.Creature.Stats.GetSellPrice(item.Price);
 
 			context.Creature.Gold += price;
 			context.Creature.Inventory.AddItem(item, -1);
+
+			var stockItems = Item.GetStockItems(shopKeeper.Info.Shop.Value);
+			var stockItem = (from i in stockItems where i.Id == item.Id select i).FirstOrDefault();
+
+			if (stockItem == null)
+			{
+				// Not a stock item
+				// Hence adding to the shopkeeper inventory
+				shopKeeper.Inventory.AddItem(item, 1);
+			}
 
 			var character = context.Creature as Character;
 			character?.Save();

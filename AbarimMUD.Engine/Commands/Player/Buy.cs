@@ -23,10 +23,19 @@ namespace AbarimMUD.Commands.Player
 
 			var items = Item.GetStockItems(shopKeeper.Info.Shop.Value);
 			var item = (from i in items where i.MatchesKeyword(data) select i).FirstOrDefault();
+			ItemInstance inventoryItem = null;
 			if (item == null)
 			{
-				Tell.Execute(shopKeeper.GetContext(), $"{context.Creature.ShortDescription} I don't have '{data}'.");
-				return false;
+				var invItem = shopKeeper.Inventory.FindItem(data);
+
+				if (invItem == null)
+				{
+					Tell.Execute(shopKeeper.GetContext(), $"{context.Creature.ShortDescription} I don't have '{data}'.");
+					return false;
+				}
+
+				inventoryItem = invItem.Item;
+				item = inventoryItem.Info;
 			}
 
 			var price = context.Creature.Stats.GetBuyPrice(item.Price);
@@ -38,6 +47,11 @@ namespace AbarimMUD.Commands.Player
 
 			context.Creature.Gold -= price;
 			context.Creature.Inventory.AddItem(new ItemInstance(item), 1);
+
+			if (inventoryItem != null)
+			{
+				shopKeeper.Inventory.AddItem(inventoryItem, -1);
+			}
 
 			var character = context.Creature as Character;
 			character?.Save();

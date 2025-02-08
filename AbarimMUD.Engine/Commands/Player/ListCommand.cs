@@ -23,13 +23,28 @@ namespace AbarimMUD.Commands.Player
 			grid.SetHeader(1, "Price");
 			grid.SetHeader(2, "Quantity");
 
+			var y = 0;
 			for (var i = 0; i < items.Length; ++i)
 			{
 				var price = context.Creature.Stats.GetBuyPrice(items[i].Price);
 
-				grid.SetValue(0, i, items[i].ShortDescription);
-				grid.SetValue(1, i, price.ToString());
-				grid.SetValue(2, i, "infinite");
+				grid.SetValue(0, y, items[i].ShortDescription);
+				grid.SetValue(1, y, price.ToString());
+				grid.SetValue(2, y, "infinite");
+
+				++y;
+			}
+
+			for(var i = 0; i < shopKeeper.Inventory.Items.Length; ++i)
+			{
+				var item = shopKeeper.Inventory.Items[i].Item;
+				var price = context.Creature.Stats.GetBuyPrice(item.Price);
+
+				grid.SetValue(0, y, item.ShortDescription);
+				grid.SetValue(1, y, price.ToString());
+				grid.SetValue(2, y, shopKeeper.Inventory.Items[i].Quantity.ToString());
+
+				++y;
 			}
 
 			context.Send("You can buy following items:");
