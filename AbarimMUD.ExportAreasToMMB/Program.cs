@@ -6,6 +6,7 @@ using MUDMapBuilder;
 using AbarimMUD.Storage;
 using System.Linq;
 using AbarimMUD.Data;
+using System.Drawing;
 
 namespace AbarimMUD.ExportAreasToMMB
 {
@@ -19,77 +20,62 @@ namespace AbarimMUD.ExportAreasToMMB
 
 			DataContext.Load(inputFolder);
 
-			var mmbAreas = new List<MMBArea>();
-			foreach (var area in Area.Storage)
+			// Convert DikuLoad areas to MMB Areas
+			// And build dict of all mobiles
+			var areas = new List<MMBArea>();
+			var allMobiles = new Dictionary<int, Mobile>();
+			foreach (var dikuArea in Area.Storage)
 			{
-				Log($"Processing area '{area.Name}'");
-
-				var mmbArea = new MMBArea
+				if (dikuArea.Rooms == null || dikuArea.Rooms.Count == 0)
 				{
-					Name = area.Name
-				};
-
-				foreach(var room in area.Rooms)
-				{
-					var mmbRoom = new MMBRoom(room.Id, room.Name, false);
-					Log($"{mmbRoom}");
-					mmbArea.Add(mmbRoom);
-
-					foreach (var exit in room.Exits)
-					{
-						if (exit.Value == null || exit.Value.TargetRoom == null)
-						{
-							continue;
-						}
-
-						var dir = (MMBDirection)exit.Key;
-						var targetRoomId = exit.Value.TargetRoom.Id;
-						mmbRoom.Connections[dir] = new MMBRoomConnection(dir, targetRoomId);
-					}
+					Console.WriteLine($"Warning: Area '{dikuArea.Name} has no rooms. Skipping.");
+					continue;
 				}
 
-				mmbAreas.Add(mmbArea);
+				areas.Add(dikuArea.ToMMBArea());
+
+				foreach (var mobile in dikuArea.Mobiles)
+				{
+					if (allMobiles.ContainsKey(mobile.Id))
+					{
+						throw new Exception($"Dublicate mobile. New mobile: {mobile}. Old mobile: {allMobiles[mobile.Id]}");
+					}
+
+					allMobiles[mobile.Id] = mobile;
+				}
 			}
 
-			// Build complete dictionary of rooms
+			// Build complete dictionary of rooms, mobiles and area exits
 			var allRooms = new Dictionary<int, MMBRoom>();
-			foreach (var area in mmbAreas)
+			var allAreaExits = new Dictionary<int, MMBRoom>();
+			foreach (var area in areas)
 			{
 				foreach (var room in area.Rooms)
 				{
 					if (allRooms.ContainsKey(room.Id))
 					{
-						throw new Exception($"Dublicate room id: {room.Id}");
+						throw new Exception($"Dublicate room id. New room: {room}. Old room: {allRooms[room.Id]}");
 					}
 
-					var areaExit = room.Clone();
-					areaExit.Name = $"To {area.Name}";
-					areaExit.IsExitToOtherArea = true;
+					allRooms[room.Id] = room;
 
-					allRooms[room.Id] = areaExit;
+					var areaExit = room.Clone();
+
+					areaExit.Name = $"To {area.Name} #{areaExit.Id}";
+					areaExit.FrameColor = Color.Blue;
+					areaExit.Color = Color.Blue;
+
+
+					allAreaExits[room.Id] = areaExit;
 				}
 			}
 
 			// Now add areas exits
-			foreach (var area in mmbAreas)
+			foreach (var area in areas)
 			{
 				var areaExits = new Dictionary<int, MMBRoom>();
 				foreach (var room in area.Rooms)
 				{
-					var toDelete = new List<MMBDirection>();
-					foreach (var exit in room.Connections)
-					{
-						if (!allRooms.ContainsKey(exit.Value.RoomId))
-						{
-							toDelete.Add(exit.Key);
-						}
-					}
-
-					foreach (var d in toDelete)
-					{
-						room.Connections.Remove(d);
-					}
-
 					foreach (var exit in room.Connections)
 					{
 						MMBRoom inAreaRoom;
@@ -99,7 +85,7 @@ namespace AbarimMUD.ExportAreasToMMB
 							continue;
 						}
 
-						areaExits[exit.Value.RoomId] = allRooms[exit.Value.RoomId];
+						areaExits[exit.Value.RoomId] = allAreaExits[exit.Value.RoomId];
 					}
 				}
 
@@ -109,13 +95,47 @@ namespace AbarimMUD.ExportAreasToMMB
 				}
 			}
 
+			// Finally add mobiles as content
+			foreach (var dikuArea in Area.Storage)
+			{
+				foreach (var reset in dikuArea.MobileResets)
+				{
+					Mobile mobile;
+					if (!allMobiles.TryGetValue(reset.MobileId, out mobile))
+					{
+						Console.WriteLine($"Warning: Unable to find mobile with Id {reset.MobileId}.");
+						continue;
+					}
+
+					MMBRoom room;
+					if (!allRooms.TryGetValue(reset.RoomId, out room))
+					{
+						Console.WriteLine($"Warning: Unable to find room with Id {reset.RoomId}.");
+						continue;
+					}
+
+					if (room.Contents == null)
+					{
+						room.Contents = new List<MMBRoomContentRecord>();
+					}
+
+					var color = Color.Green;
+					if (mobile.Flags.Contains(MobileFlags.Aggressive) && !mobile.Flags.Contains(MobileFlags.Wimpy))
+					{
+						color = Color.Red;
+					}
+
+					room.Contents.Add(new MMBRoomContentRecord($"{mobile.ShortDescription} #{mobile.Id}", color));
+				}
+			}
+
 			// Save all areas and generate conversion script
 			if (!Directory.Exists(outputFolder))
 			{
 				Directory.CreateDirectory(outputFolder);
 			}
 
-			foreach (var area in mmbAreas)
+			foreach (var area in areas)
 			{
 				var fileName = $"{area.Name}.json";
 				Log($"Saving {fileName}...");

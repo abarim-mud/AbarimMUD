@@ -165,6 +165,8 @@ namespace AbarimMUD.Data
 
 		public StockItemType? Shop { get; set; }
 
+		public int Gold { get; set; }
+
 		public bool MatchesKeyword(string keyword) => Keywords.StartsWithPattern(keyword);
 
 		public override string ToString() => $"{ShortDescription} (#{Id})";

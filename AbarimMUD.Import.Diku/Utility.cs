@@ -56,7 +56,7 @@ namespace AbarimMUD.Import.Diku
 				Class = MobileClass.EnsureClassById(classId),
 				Level = level,
 				Sex = Enum.Parse<Sex>(mobile.Sex, true),
-				Wealth = mobile.Wealth,
+				Gold = mobile.Wealth,
 			};
 
 			return result;
