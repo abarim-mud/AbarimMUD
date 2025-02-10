@@ -9,7 +9,7 @@ namespace AbarimMUD.Commands.Player
 			data = data.Trim();
 			if (string.IsNullOrEmpty(data))
 			{
-				context.Send("Usage: wear <itemName>");
+				context.Send("Usage: remove <itemName>");
 				return false;
 			}
 

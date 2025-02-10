@@ -15,7 +15,7 @@ namespace AbarimMUD.Commands.Builder
 			}
 
 			Direction exitType;
-			if (!Enum.TryParse(exit, out exitType))
+			if (!Enum.TryParse(exit, true, out exitType))
 			{
 				context.Send(string.Format("Unable to resolve exit {0}", exit));
 				return false;

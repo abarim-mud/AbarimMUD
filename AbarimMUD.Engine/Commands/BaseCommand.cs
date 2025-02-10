@@ -72,7 +72,7 @@ namespace AbarimMUD.Commands
 
 		public static readonly RoomCreate RoomCreate = new RoomCreate();
 		public static readonly RoomLink RoomLink = new RoomLink();
-		public static readonly RoomLinkClear RLinkClear = new RoomLinkClear();
+		public static readonly RoomLinkClear RoomLinkClear = new RoomLinkClear();
 		public static readonly RoomSaveResets RoomSaveResets = new RoomSaveResets();
 
 		// Administrator
