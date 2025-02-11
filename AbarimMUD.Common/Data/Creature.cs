@@ -65,7 +65,6 @@ namespace AbarimMUD.Data
 		public abstract string ShortDescription { get; }
 		public abstract string Description { get; }
 
-		public abstract string ClassName { get; }
 		public abstract int Level { get; }
 		public abstract Sex Sex { get; }
 		public long Gold { get; set; }

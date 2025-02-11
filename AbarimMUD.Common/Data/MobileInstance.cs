@@ -9,9 +9,9 @@ namespace AbarimMUD.Data
 
 		public Mobile Info { get; }
 
-		public MobileClass Class => Info.Class;
-
-		public override string ClassName => Class.Name;
+		public int MaxHitpoints { get; }
+		public int MaxMana { get; }
+		public int MaxMoves { get; }
 
 		public HashSet<string> Keywords => Info.Keywords;
 		public override string ShortDescription => Info.ShortDescription;
@@ -48,7 +48,10 @@ namespace AbarimMUD.Data
 		public MobileInstance(Mobile mobile)
 		{
 			Info = mobile ?? throw new ArgumentNullException(nameof(mobile));
-			Gold = Info.Class.GoldRange.CalculateValue(Level);
+			Gold = Info.Gold;
+			MaxHitpoints = Info.HitpointsRange.Random();
+			MaxMana = Info.ManaRange.Random();
+			MaxMoves = Info.MovesRange.Random();
 
 			Restore();
 
@@ -67,8 +70,13 @@ namespace AbarimMUD.Data
 		protected override CreatureStats CreateBaseStats(int attacksCount)
 		{
 			// Mobiles ignore attacksCount, since their attacks are set explicitly
+			var result = Info.CreateStats();
 
-			return Class.CreateStats(Level);
+			result.MaxHitpoints = MaxHitpoints;
+			result.MaxMana = MaxMana;
+			result.MaxMoves = MaxMoves;
+
+			return result;
 		}
 
 		public override string ToString() => Info.ToString();

@@ -40,13 +40,6 @@ namespace AbarimMUD.Storage
 			}
 		}
 
-		public class MobileClassConverterType : EntityConverter<MobileClass>
-		{
-			public MobileClassConverterType() : base(c => c.Id)
-			{
-			}
-		}
-
 		public class SkillValueConverterType : JsonConverter<SkillValue>
 		{
 			public override SkillValue Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
@@ -132,7 +125,6 @@ namespace AbarimMUD.Storage
 			}
 		}
 
-		public static readonly EntityConverter<MobileClass> MobileClassConverter = new MobileClassConverterType();
 		public static readonly EntityConverter<PlayerClass> PlayerClassConverter = new EntityConverter<PlayerClass>(s => s.Id);
 		public static readonly EntityConverter<Skill> SkillConverter = new EntityConverter<Skill>(s => s.Id);
 		public static readonly EntityConverter<Item> ItemConverter = new EntityConverter<Item>(i => i.Id);

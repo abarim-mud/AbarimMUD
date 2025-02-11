@@ -192,6 +192,7 @@ namespace AbarimMUD
 				}
 
 				_character.Gold = cls.StartingGold;
+				_character.SkillPoints = cls.StartingSkillPoints;
 
 				// First character becomes owner
 				if (Character.Storage.Count == 0)

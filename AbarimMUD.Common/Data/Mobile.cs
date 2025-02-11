@@ -1,4 +1,5 @@
 ﻿using AbarimMUD.Attributes;
+using AbarimMUD.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -103,9 +104,38 @@ namespace AbarimMUD.Data
 		Shock
 	}
 
+	public class MobileLoot
+	{
+		public Item Item { get; set; }
+		public int ProbabilityPercentage { get; set; }
+
+		public MobileLoot Clone() => new MobileLoot
+		{
+			Item = Item,
+			ProbabilityPercentage = ProbabilityPercentage
+		};
+	}
+
 	public class Mobile : AreaEntity
 	{
-		private MobileClass _class;
+		public const AttackType DefaultAttackType = AttackType.Hit;
+
+		public const int DefaultPenetration = 0;
+		public const int DefaultArmor = 0;
+		public const int DefaultGold = 100;
+		public static readonly ValueRange DefaultDamageRange = new ValueRange(1, 4);
+		public static readonly ValueRange DefaultHitpointsRange = new ValueRange(1, 100);
+		public static readonly ValueRange DefaultManaRange = new ValueRange(100, 200);
+		public static readonly ValueRange DefaultMovesRange = new ValueRange(100, 200);
+
+
+		private ValueRange _hitpointsRange = DefaultHitpointsRange, _manaRange = DefaultManaRange, _movesRange = DefaultMovesRange;
+		private int _armor = DefaultArmor;
+		private int _attacksCount = 1;
+		private AttackType _attackType = AttackType.Hit;
+		private int _penetration = DefaultPenetration;
+		private ValueRange _damageRange = DefaultDamageRange;
+		private int _gold = DefaultGold;
 		private int _level;
 
 		[Browsable(false)]
@@ -119,23 +149,6 @@ namespace AbarimMUD.Data
 
 		public string Description { get; set; }
 
-		[Browsable(false)]
-		public MobileClass Class
-		{
-			get => _class;
-
-			set
-			{
-				if (value == _class)
-				{
-					return;
-				}
-
-				_class = value;
-				Creature.InvalidateMobiles(this);
-			}
-		}
-
 		public int Level
 		{
 			get => _level;
@@ -148,18 +161,157 @@ namespace AbarimMUD.Data
 				}
 
 				_level = value;
-				Creature.InvalidateMobiles(this);
+				InvalidateCreaturesOfThisClass();
 			}
 		}
 
 		public Sex Sex { get; set; }
+
+		[OLCAlias("hprange")]
+		public ValueRange HitpointsRange
+		{
+			get => _hitpointsRange;
+
+			set
+			{
+				if (value == _hitpointsRange)
+				{
+					return;
+				}
+
+				_hitpointsRange = value;
+				InvalidateCreaturesOfThisClass();
+			}
+		}
+
+		[OLCAlias("manarange")]
+		public ValueRange ManaRange
+		{
+			get => _manaRange;
+
+			set
+			{
+				if (value == _manaRange)
+				{
+					return;
+				}
+
+				_manaRange = value;
+				InvalidateCreaturesOfThisClass();
+			}
+		}
+
+		[OLCAlias("mvrange")]
+		public ValueRange MovesRange
+		{
+			get => _movesRange;
+
+			set
+			{
+				if (value == _movesRange)
+				{
+					return;
+				}
+
+				_movesRange = value;
+				InvalidateCreaturesOfThisClass();
+			}
+		}
+
+		public int Armor
+		{
+			get => _armor;
+
+			set
+			{
+				if (value == _armor)
+				{
+					return;
+				}
+
+				_armor = value;
+				InvalidateCreaturesOfThisClass();
+			}
+		}
+
+		public int AttacksCount
+		{
+			get => _attacksCount;
+
+			set
+			{
+				if (value < 1)
+				{
+					value = 1;
+				}
+
+				if (value == _attacksCount)
+				{
+					return;
+				}
+
+				_attacksCount = value;
+				InvalidateCreaturesOfThisClass();
+			}
+		}
+
+
+		public AttackType AttackType
+		{
+			get => _attackType;
+
+			set
+			{
+				if (value == _attackType)
+				{
+					return;
+				}
+
+				_attackType = value;
+				InvalidateCreaturesOfThisClass();
+			}
+		}
+
+		public int Penetration
+		{
+			get => _penetration;
+
+			set
+			{
+				if (value == _penetration)
+				{
+					return;
+				}
+
+				_penetration = value;
+				InvalidateCreaturesOfThisClass();
+			}
+		}
+
+		public ValueRange DamageRange
+		{
+			get => _damageRange;
+
+			set
+			{
+				if (value == _damageRange)
+				{
+					return;
+				}
+
+				_damageRange = value;
+				InvalidateCreaturesOfThisClass();
+			}
+		}
+
+		public Dictionary<string, MobileLoot> Loot { get; set; } = new Dictionary<string, MobileLoot>();
 
 		[Browsable(false)]
 		public PlayerClass Guildmaster { get; set; }
 
 		[Browsable(false)]
 		public HashSet<MobileFlags> Flags { get; set; } = new HashSet<MobileFlags>();
-		
+
 		[Browsable(false)]
 		public List<MobileSpecialAttack> SpecialAttacks { get; set; } = new List<MobileSpecialAttack>();
 
@@ -170,6 +322,105 @@ namespace AbarimMUD.Data
 		public bool MatchesKeyword(string keyword) => Keywords.StartsWithPattern(keyword);
 
 		public override string ToString() => $"{ShortDescription} (#{Id})";
+
+		public CreatureStats CreateStats()
+		{
+			var stats = new CreatureStats
+			{
+				Armor = Armor
+			};
+
+			// Calculate attacks' values
+			for (var i = 0; i < AttacksCount; ++i)
+			{
+				var attack = new Attack(AttackType, Penetration, DamageRange);
+				stats.Attacks.Add(attack);
+			}
+
+			long xpAward = Math.Max(1, stats.MaxHitpoints);
+			xpAward *= Math.Max(1, stats.Armor);
+
+			long attackXpFactor = 0;
+			foreach (var attack in stats.Attacks)
+			{
+				long t = Math.Max(1, attack.Penetration);
+
+				t *= Math.Max(1, attack.AverageDamage);
+
+				attackXpFactor += t;
+			}
+
+			attackXpFactor = Math.Max(1, attackXpFactor / 1000);
+			xpAward *= attackXpFactor;
+
+			stats.XpAward = xpAward;
+
+			return stats;
+		}
+
+		public Mobile Clone()
+		{
+			var clone = new Mobile
+			{
+				Id = Id,
+				Area = Area,
+				ShortDescription = ShortDescription,
+				LongDescription = LongDescription,
+				Description = Description,
+				Level = Level,
+				Sex = Sex,
+				HitpointsRange = HitpointsRange,
+				ManaRange = ManaRange,
+				MovesRange = MovesRange,
+				Armor = Armor,
+				AttacksCount = AttacksCount,
+				AttackType = AttackType,
+				Penetration = Penetration,
+				DamageRange = DamageRange,
+				Guildmaster = Guildmaster,
+				Shop = Shop,
+				Gold = Gold,
+			};
+
+			foreach (var word in Keywords)
+			{
+				clone.Keywords.Add(word);
+			}
+
+			foreach (var pair in Loot)
+			{
+				clone.Loot[pair.Key] = pair.Value.Clone();
+			}
+
+			foreach (var flag in Flags)
+			{
+				clone.Flags.Add(flag);
+			}
+
+			foreach (var atk in SpecialAttacks)
+			{
+				clone.SpecialAttacks.Add(atk.Clone());
+			}
+
+			return clone;
+		}
+
+		private void InvalidateCreaturesOfThisClass()
+		{
+			foreach (var creature in Creature.ActiveCreatures)
+			{
+				var asMobile = creature as MobileInstance;
+				if (asMobile == null)
+				{
+					continue;
+				}
+
+				if (asMobile.Info.Id == Id)
+				{
+					creature.InvalidateStats();
+				}
+			}
+		}
 
 		public static Mobile GetMobileById(int id) => Area.Storage.GetMobileById(id);
 		public static Mobile EnsureMobileById(int id) => Area.Storage.EnsureMobileById(id);

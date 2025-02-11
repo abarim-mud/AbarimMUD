@@ -92,6 +92,7 @@ namespace AbarimMUD.Data
 				_stockItemsDirty = true;
 			}
 		}
+		public int? StockItemsCount { get; set; }
 
 		private static void AddItem(Dictionary<StockItemType, List<Item>> dict, StockItemType type, Item item)
 		{

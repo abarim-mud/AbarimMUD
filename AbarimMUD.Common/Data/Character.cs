@@ -66,7 +66,7 @@ namespace AbarimMUD.Data
 			}
 		}
 
-		public override string ClassName => Class.Name;
+		public string ClassName => Class.Name;
 
 		[OLCAlias("level")]
 		public int PlayerLevel

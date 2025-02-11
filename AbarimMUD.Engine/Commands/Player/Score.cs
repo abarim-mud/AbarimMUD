@@ -7,10 +7,11 @@ namespace AbarimMUD.Commands.Player
 	{
 		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
-			context.Send($"You are {context.ShortDescription}, {context.Creature.ClassName} of level {context.Creature.Level}.");
 			var asCharacter = context.Creature as Character;
 			if (asCharacter != null)
 			{
+				context.Send($"You are {context.ShortDescription}, {asCharacter.ClassName} of level {context.Creature.Level}.");
+
 				if (asCharacter.Level < Configuration.MaximumLevel)
 				{
 					var nextLevelInfo = LevelInfo.GetLevelInfo(asCharacter.Level + 1);

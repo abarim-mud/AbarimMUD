@@ -38,5 +38,6 @@
       }
     ]
   },
-  "StartingGold": 2000
+  "StartingGold": 2000,
+  "StartingSkillPoints": 1
 }

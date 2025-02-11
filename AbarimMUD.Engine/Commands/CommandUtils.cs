@@ -142,7 +142,7 @@ namespace AbarimMUD.Commands
 
 		public static string BuildEnumString<T>() where T : struct, Enum => typeof(T).BuildEnumString();
 
-		private static T EnsureById<T>(this ExecutionContext context, string id, Func<string, T> getter)
+		private static T EnsureById<T, TKey>(this ExecutionContext context, TKey id, Func<TKey, T> getter)
 		{
 			var item = getter(id);
 			if (item == null)
@@ -155,7 +155,7 @@ namespace AbarimMUD.Commands
 
 		}
 
-		public static MobileClass EnsureMobileClassById(this ExecutionContext context, string id) => EnsureById(context, id, MobileClass.GetClassById);
+		public static Mobile EnsureMobileById(this ExecutionContext context, int id) => EnsureById(context, id, Mobile.GetMobileById);
 		public static Character EnsureCharacterByName(this ExecutionContext context, string name) => EnsureById(context, name, Character.GetCharacterByName);
 
 		public static Item EnsureItemType(this ExecutionContext context, string id, ItemType itemType)

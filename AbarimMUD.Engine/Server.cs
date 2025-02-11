@@ -65,9 +65,9 @@ namespace AbarimMUD
 			DataContext.Load(dataFolder);
 
 			// Area.Storage.SaveAll();
-			// PlayerClass.Storage.SaveAll();
+			PlayerClass.Storage.SaveAll();
 			// MobileClass.Storage.SaveAll();
-			Skill.Storage.SaveAll();
+			// Skill.Storage.SaveAll();
 			// Configuration.Save();
 			// Ability.Storage.SaveAll();
 			// SkillCostInfo.Storage.SaveAll();

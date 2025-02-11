@@ -100,7 +100,7 @@ namespace AbarimMUD.Storage
 			}
 		}
 
-		private class RoomExitConverter : JsonConverter<RoomExit>
+		private class RoomExitConverterType : JsonConverter<RoomExit>
 		{
 			public override RoomExit Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 			{
@@ -123,6 +123,29 @@ namespace AbarimMUD.Storage
 				}
 			}
 		}
+
+		private class MobileLootConverterType : JsonConverter<MobileLoot>
+		{
+			public override MobileLoot Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+			{
+				// Item id is the key of the dict
+				// So read only the probability
+				var prob = reader.GetInt32();
+
+				return new MobileLoot
+				{
+					ProbabilityPercentage = prob
+				};
+			}
+
+			public override void Write(Utf8JsonWriter writer, MobileLoot value, JsonSerializerOptions options)
+			{
+				writer.WriteNumberValue(value.ProbabilityPercentage);
+			}
+		}
+
+		private static readonly RoomExitConverterType RoomExitConverter = new RoomExitConverterType();
+		private static readonly MobileLootConverterType MobileLootConverter = new MobileLootConverterType();
 
 		internal const string SubfolderName = "areas";
 
@@ -211,15 +234,14 @@ namespace AbarimMUD.Storage
 					}
 				}
 
-				for(var i = 0; i < area.Mobiles.Count; ++i)
+				for (var i = 0; i < area.Mobiles.Count; ++i)
 				{
 					var mobile = area.Mobiles[i];
-					if (mobile.Class == null)
-					{
-						throw new Exception($"Mobile {mobile.Id} does not have Class set.");
-					}
 
-					mobile.Class = MobileClass.EnsureClassById(mobile.Class.Id);
+					foreach (var pair in mobile.Loot)
+					{
+						pair.Value.Item = Item.EnsureItemById(pair.Key);
+					}
 
 					if (mobile.Guildmaster != null)
 					{
@@ -232,8 +254,8 @@ namespace AbarimMUD.Storage
 		protected override JsonSerializerOptions CreateJsonOptions()
 		{
 			var result = base.CreateJsonOptions();
-			result.Converters.Add(new RoomExitConverter());
-			result.Converters.Add(Common.MobileClassConverter);
+			result.Converters.Add(RoomExitConverter);
+			result.Converters.Add(MobileLootConverter);
 			result.Converters.Add(Common.PlayerClassConverter);
 
 			return result;

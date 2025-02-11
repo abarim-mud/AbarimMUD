@@ -15,7 +15,6 @@ namespace AbarimMUD.Storage
 			DataContext.Register(Item.Storage);
 			DataContext.Register(Ability.Storage);
 			DataContext.Register(Skill.Storage);
-			DataContext.Register(MobileClass.Storage);
 			DataContext.Register(PlayerClass.Storage);
 			DataContext.Register(Area.Storage);
 			DataContext.Register(Account.Storage);

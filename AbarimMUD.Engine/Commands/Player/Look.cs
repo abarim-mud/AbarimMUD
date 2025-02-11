@@ -147,7 +147,6 @@ namespace AbarimMUD.Commands.Player
 					sb.AppendLine("Mobile Id: " + mobile.Info.Id);
 				}
 
-				sb.AppendLine("Class: " + creature.ClassName);
 				sb.AppendLine("Level: " + creature.Level);
 
 				sb.AppendLine();
