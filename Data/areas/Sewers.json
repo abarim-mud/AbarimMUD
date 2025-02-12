@@ -2195,7 +2195,9 @@
       "Penetration": 60,
       "DamageRange": "13-13",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "AssistId"
+      ],
       "SpecialAttacks": [],
       "Id": 7000
     },
@@ -2219,7 +2221,10 @@
       "Penetration": 5,
       "DamageRange": "4-4",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Aggressive",
+        "AssistRace"
+      ],
       "SpecialAttacks": [],
       "Id": 7001
     },
@@ -2243,7 +2248,10 @@
       "Penetration": 25,
       "DamageRange": "7-7",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Aggressive",
+        "AssistId"
+      ],
       "SpecialAttacks": [],
       "Id": 7002
     },
@@ -2267,7 +2275,10 @@
       "Penetration": 5,
       "DamageRange": "4-4",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Aggressive",
+        "AssistId"
+      ],
       "SpecialAttacks": [],
       "Id": 7003
     },
@@ -2291,7 +2302,9 @@
       "Penetration": 40,
       "DamageRange": "9-9",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "AssistId"
+      ],
       "SpecialAttacks": [],
       "Id": 7004
     },
@@ -2315,7 +2328,9 @@
       "Penetration": 15,
       "DamageRange": "6-6",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "AssistId"
+      ],
       "SpecialAttacks": [],
       "Id": 7005
     },
@@ -2339,7 +2354,10 @@
       "Penetration": 20,
       "DamageRange": "6-6",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Aggressive",
+        "AssistRace"
+      ],
       "SpecialAttacks": [],
       "Id": 7006
     },
@@ -2363,7 +2381,11 @@
       "Penetration": 50,
       "DamageRange": "6-10",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Scavenger",
+        "Wimpy",
+        "AssistId"
+      ],
       "SpecialAttacks": [],
       "Id": 7007
     },
@@ -2388,7 +2410,9 @@
       "Penetration": 55,
       "DamageRange": "12-12",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "AssistId"
+      ],
       "SpecialAttacks": [],
       "Id": 7008
     },
@@ -2412,7 +2436,11 @@
       "Penetration": 60,
       "DamageRange": "13-13",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Scavenger",
+        "Wimpy",
+        "AssistId"
+      ],
       "SpecialAttacks": [],
       "Id": 7010
     },
@@ -2436,7 +2464,11 @@
       "Penetration": 50,
       "DamageRange": "6-10",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Aggressive",
+        "Wimpy",
+        "AssistId"
+      ],
       "SpecialAttacks": [],
       "Id": 7011
     },
@@ -2462,7 +2494,10 @@
       "Penetration": 60,
       "DamageRange": "13-13",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Aggressive",
+        "AssistId"
+      ],
       "SpecialAttacks": [],
       "Id": 7013
     },
@@ -2486,7 +2521,11 @@
       "Penetration": 160,
       "DamageRange": "13-33",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Sentinel",
+        "Aggressive",
+        "AssistId"
+      ],
       "SpecialAttacks": [],
       "Id": 7040
     },
@@ -2511,7 +2550,10 @@
       "Penetration": 70,
       "DamageRange": "15-15",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Aggressive",
+        "AssistId"
+      ],
       "SpecialAttacks": [],
       "Id": 7041
     },
@@ -2536,7 +2578,10 @@
       "Penetration": 60,
       "DamageRange": "7-11",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Sentinel",
+        "AssistId"
+      ],
       "SpecialAttacks": [],
       "Id": 7042
     },
@@ -2560,7 +2605,11 @@
       "Penetration": 65,
       "DamageRange": "8-13",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Scavenger",
+        "Aggressive",
+        "AssistId"
+      ],
       "SpecialAttacks": [],
       "Id": 7043
     },
@@ -2585,7 +2634,10 @@
       "Penetration": 25,
       "DamageRange": "7-7",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Aggressive",
+        "AssistId"
+      ],
       "SpecialAttacks": [],
       "Id": 7044
     },
@@ -2611,7 +2663,11 @@
       "Penetration": 50,
       "DamageRange": "6-10",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Scavenger",
+        "Aggressive",
+        "AssistId"
+      ],
       "SpecialAttacks": [],
       "Id": 7045
     },
@@ -2638,7 +2694,10 @@
       "Penetration": 30,
       "DamageRange": "8-8",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Scavenger",
+        "AssistId"
+      ],
       "SpecialAttacks": [],
       "Id": 7046
     },
@@ -2664,7 +2723,11 @@
       "Penetration": 70,
       "DamageRange": "12-12",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Scavenger",
+        "Aggressive",
+        "AssistId"
+      ],
       "SpecialAttacks": [],
       "Id": 7200
     },
@@ -2690,7 +2753,11 @@
       "Penetration": 40,
       "DamageRange": "7-7",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Scavenger",
+        "Aggressive",
+        "AssistId"
+      ],
       "SpecialAttacks": [],
       "Id": 7201
     },
@@ -2716,7 +2783,11 @@
       "Penetration": 30,
       "DamageRange": "6-6",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Scavenger",
+        "Aggressive",
+        "AssistId"
+      ],
       "SpecialAttacks": [],
       "Id": 7202
     },
@@ -2742,7 +2813,11 @@
       "Penetration": 30,
       "DamageRange": "8-8",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Scavenger",
+        "Aggressive",
+        "AssistId"
+      ],
       "SpecialAttacks": [],
       "Id": 7203
     },
@@ -2767,7 +2842,11 @@
       "Penetration": 60,
       "DamageRange": "13-13",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Sentinel",
+        "Aggressive",
+        "AssistId"
+      ],
       "SpecialAttacks": [],
       "Id": 7204
     }

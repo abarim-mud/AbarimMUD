@@ -38,6 +38,7 @@ namespace AbarimMUD.Data
 			public int RecallManaCost { get; set; } = 35;
 			public int BaseBuyPricePercentage { get; set; } = 150;
 			public int BaseSellPricePercentage { get; set; } = 25;
+			public int XpMultiply { get; set; } = 5;
 		}
 
 		public static BaseStorage Storage => InternalStorage;
@@ -70,6 +71,7 @@ namespace AbarimMUD.Data
 		public static int RecallManaCost => Instance.RecallManaCost;
 		public static int BaseBuyPricePercentage => Instance.BaseBuyPricePercentage;
 		public static int BaseSellPricePercentage => Instance.BaseSellPricePercentage;
+		public static int XpMultiply => Instance.XpMultiply;
 
 		public static void Save() => InternalStorage.Save();
 	}

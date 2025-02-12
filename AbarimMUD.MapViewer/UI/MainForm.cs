@@ -215,6 +215,15 @@ namespace AbarimMUD.MapViewer.UI
 			Grid.SetRow(label, row);
 			_gridMobiles.Widgets.Add(label);
 
+			label = new Label
+			{
+				Text = "Flags",
+			};
+
+			Grid.SetColumn(label, 11);
+			Grid.SetRow(label, row);
+			_gridMobiles.Widgets.Add(label);
+
 			++row;
 
 			// Separator
@@ -223,7 +232,7 @@ namespace AbarimMUD.MapViewer.UI
 				Text = "-------------------------------------------------------------------------------------------------------------------------------",
 			};
 
-			Grid.SetColumnSpan(label, 11);
+			Grid.SetColumnSpan(label, 12);
 			Grid.SetRow(label, row);
 			_gridMobiles.Widgets.Add(label);
 			++row;
@@ -384,6 +393,16 @@ namespace AbarimMUD.MapViewer.UI
 				};
 
 				Grid.SetColumn(label, 10);
+				Grid.SetRow(label, row);
+				_gridMobiles.Widgets.Add(label);
+
+				// Flags
+				label = new Label
+				{
+					Text = string.Join(", ", mobile.Flags)
+				};
+
+				Grid.SetColumn(label, 11);
 				Grid.SetRow(label, row);
 				_gridMobiles.Widgets.Add(label);
 				++row;

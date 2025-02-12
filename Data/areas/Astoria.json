@@ -1382,7 +1382,9 @@
       "Penetration": 500,
       "DamageRange": "20-110",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Sentinel"
+      ],
       "SpecialAttacks": [],
       "Id": 19000
     },
@@ -1406,7 +1408,10 @@
       "Penetration": 35,
       "DamageRange": "2-2",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Banker",
+        "Sentinel"
+      ],
       "SpecialAttacks": [],
       "Id": 19001
     },
@@ -1430,7 +1435,10 @@
       "Penetration": 350,
       "DamageRange": "28-28",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Sentinel",
+        "NoPurge"
+      ],
       "SpecialAttacks": [],
       "Id": 19002
     },
@@ -1454,7 +1462,10 @@
       "Penetration": 350,
       "DamageRange": "28-28",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Sentinel",
+        "NoPurge"
+      ],
       "SpecialAttacks": [],
       "Id": 19003
     },
@@ -1479,7 +1490,10 @@
       "Penetration": 750,
       "DamageRange": "28-28",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Sentinel",
+        "NoPurge"
+      ],
       "SpecialAttacks": [],
       "Id": 19004
     },
@@ -1504,7 +1518,10 @@
       "Penetration": 500,
       "DamageRange": "28-28",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Sentinel",
+        "NoPurge"
+      ],
       "SpecialAttacks": [],
       "Id": 19005
     },
@@ -1528,7 +1545,10 @@
       "Penetration": 500,
       "DamageRange": "28-28",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Sentinel",
+        "NoPurge"
+      ],
       "SpecialAttacks": [],
       "Id": 19006
     },
@@ -1552,7 +1572,10 @@
       "Penetration": 500,
       "DamageRange": "28-28",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Sentinel",
+        "NoPurge"
+      ],
       "SpecialAttacks": [],
       "Id": 19007
     },
@@ -1577,7 +1600,9 @@
       "Penetration": 1250,
       "DamageRange": "21-46",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Sentinel"
+      ],
       "SpecialAttacks": [],
       "Id": 19008
     },
@@ -1601,7 +1626,10 @@
       "Penetration": 750,
       "DamageRange": "21-46",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Sentinel",
+        "AssistId"
+      ],
       "SpecialAttacks": [],
       "Id": 19009
     },
@@ -1626,7 +1654,9 @@
       "Penetration": 1250,
       "DamageRange": "21-46",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Sentinel"
+      ],
       "SpecialAttacks": [],
       "Id": 19010
     },
@@ -1650,7 +1680,10 @@
       "Penetration": 750,
       "DamageRange": "21-46",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Sentinel",
+        "AssistId"
+      ],
       "SpecialAttacks": [],
       "Id": 19011
     },
@@ -1675,7 +1708,9 @@
       "Penetration": 1250,
       "DamageRange": "21-46",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Sentinel"
+      ],
       "SpecialAttacks": [],
       "Id": 19012
     },
@@ -1699,7 +1734,10 @@
       "Penetration": 650,
       "DamageRange": "21-46",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Sentinel",
+        "AssistId"
+      ],
       "SpecialAttacks": [],
       "Id": 19013
     },
@@ -1724,7 +1762,9 @@
       "Penetration": 750,
       "DamageRange": "21-46",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Sentinel"
+      ],
       "SpecialAttacks": [],
       "Id": 19014
     },
@@ -1748,7 +1788,10 @@
       "Penetration": 750,
       "DamageRange": "21-46",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Sentinel",
+        "AssistId"
+      ],
       "SpecialAttacks": [],
       "Id": 19015
     },
@@ -1773,7 +1816,9 @@
       "Penetration": 1250,
       "DamageRange": "21-46",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Sentinel"
+      ],
       "SpecialAttacks": [],
       "Id": 19016
     },
@@ -1797,7 +1842,10 @@
       "Penetration": 750,
       "DamageRange": "21-46",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Sentinel",
+        "AssistId"
+      ],
       "SpecialAttacks": [],
       "Id": 19017
     },
@@ -1820,7 +1868,11 @@
       "Penetration": 1275,
       "DamageRange": "24-64",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Sentinel",
+        "NoPurge",
+        "Healer"
+      ],
       "SpecialAttacks": [],
       "Id": 19018
     },
@@ -1844,7 +1896,11 @@
       "Penetration": 225,
       "DamageRange": "8-12",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Sentinel",
+        "Scavenger",
+        "AssistId"
+      ],
       "SpecialAttacks": [],
       "Id": 19019
     },
@@ -1868,7 +1924,10 @@
       "Penetration": 750,
       "DamageRange": "28-28",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Sentinel",
+        "NoPurge"
+      ],
       "SpecialAttacks": [],
       "Id": 19020
     },
@@ -1891,7 +1950,10 @@
       "Penetration": 615,
       "DamageRange": "30-50",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Sentinel",
+        "NoPurge"
+      ],
       "SpecialAttacks": [],
       "Id": 19021
     },
@@ -1916,7 +1978,10 @@
       "Penetration": 25,
       "DamageRange": "4-4",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Sentinel",
+        "NoAlign"
+      ],
       "SpecialAttacks": [],
       "Id": 19022
     },
@@ -1941,7 +2006,10 @@
       "Penetration": 35,
       "DamageRange": "6-6",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Sentinel",
+        "NoAlign"
+      ],
       "SpecialAttacks": [],
       "Id": 19023
     },
@@ -1966,7 +2034,10 @@
       "Penetration": 55,
       "DamageRange": "6-6",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Sentinel",
+        "NoAlign"
+      ],
       "SpecialAttacks": [],
       "Id": 19024
     },
@@ -1991,7 +2062,10 @@
       "Penetration": 65,
       "DamageRange": "5-9",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Sentinel",
+        "NoAlign"
+      ],
       "SpecialAttacks": [],
       "Id": 19025
     },
@@ -2015,7 +2089,10 @@
       "Penetration": 75,
       "DamageRange": "6-11",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Sentinel",
+        "NoAlign"
+      ],
       "SpecialAttacks": [],
       "Id": 19026
     },
@@ -2040,7 +2117,11 @@
       "Penetration": 90,
       "DamageRange": "8-13",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Sentinel",
+        "Pet",
+        "NoAlign"
+      ],
       "SpecialAttacks": [],
       "Id": 19027
     },
@@ -2064,7 +2145,11 @@
       "Penetration": 225,
       "DamageRange": "18-26",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Sentinel",
+        "Pet",
+        "NoAlign"
+      ],
       "SpecialAttacks": [],
       "Id": 19028
     },
@@ -2088,7 +2173,11 @@
       "Penetration": 300,
       "DamageRange": "18-34",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Sentinel",
+        "Pet",
+        "NoAlign"
+      ],
       "SpecialAttacks": [],
       "Id": 19029
     },
@@ -2112,7 +2201,10 @@
       "Penetration": 750,
       "DamageRange": "21-46",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Sentinel",
+        "AssistPlayers"
+      ],
       "SpecialAttacks": [],
       "Id": 19030
     },
@@ -2136,7 +2228,9 @@
       "Penetration": 1200,
       "DamageRange": "22-52",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Sentinel"
+      ],
       "SpecialAttacks": [],
       "Id": 19031
     },
@@ -2161,7 +2255,9 @@
       "Penetration": 1250,
       "DamageRange": "21-46",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Sentinel"
+      ],
       "SpecialAttacks": [],
       "Id": 19032
     },
@@ -2185,7 +2281,10 @@
       "Penetration": 750,
       "DamageRange": "21-46",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Sentinel",
+        "AssistId"
+      ],
       "SpecialAttacks": [],
       "Id": 19033
     },
@@ -2209,7 +2308,10 @@
       "Penetration": 600,
       "DamageRange": "28-52",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Sentinel",
+        "NoPurge"
+      ],
       "SpecialAttacks": [],
       "Id": 19034
     },
@@ -2233,7 +2335,10 @@
       "Penetration": 750,
       "DamageRange": "21-46",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Sentinel",
+        "AssistId"
+      ],
       "SpecialAttacks": [],
       "Id": 19035
     },
@@ -2258,7 +2363,9 @@
       "Penetration": 750,
       "DamageRange": "21-46",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Sentinel"
+      ],
       "SpecialAttacks": [],
       "Id": 19036
     },
@@ -2282,7 +2389,9 @@
       "Penetration": 195,
       "DamageRange": "28-40",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "AssistPlayers"
+      ],
       "SpecialAttacks": [],
       "Id": 19037
     },
@@ -2305,7 +2414,9 @@
       "Penetration": 15,
       "DamageRange": "2-2",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "NoWander"
+      ],
       "SpecialAttacks": [],
       "Id": 19038
     },
@@ -2328,7 +2439,9 @@
       "Penetration": 15,
       "DamageRange": "2-2",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "NoWander"
+      ],
       "SpecialAttacks": [],
       "Id": 19039
     },
@@ -2351,7 +2464,9 @@
       "Penetration": 15,
       "DamageRange": "2-2",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "NoWander"
+      ],
       "SpecialAttacks": [],
       "Id": 19040
     },
@@ -2374,7 +2489,9 @@
       "Penetration": 15,
       "DamageRange": "2-2",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "NoWander"
+      ],
       "SpecialAttacks": [],
       "Id": 19041
     },
@@ -2399,7 +2516,9 @@
       "Penetration": 1250,
       "DamageRange": "21-46",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Sentinel"
+      ],
       "SpecialAttacks": [],
       "Id": 19042
     },
@@ -2423,7 +2542,10 @@
       "Penetration": 750,
       "DamageRange": "21-46",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Sentinel",
+        "AssistId"
+      ],
       "SpecialAttacks": [],
       "Id": 19043
     },
@@ -2447,7 +2569,9 @@
       "Penetration": 1075,
       "DamageRange": "22-85",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "AssistAlign"
+      ],
       "SpecialAttacks": [],
       "Id": 19044
     },
@@ -2471,7 +2595,9 @@
       "Penetration": 1075,
       "DamageRange": "22-85",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "AssistAlign"
+      ],
       "SpecialAttacks": [],
       "Id": 19045
     }

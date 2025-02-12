@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -85,17 +84,27 @@ namespace AbarimMUD.Data
 			return originalPrice * perc / 100;
 		}
 
+		private static float CalculateArmorPenK(int value)
+		{
+			return Math.Max(1, Math.Min(value, 300) / 100.0f);
+		}
+
+
 		public long CalculateXpAward()
 		{
-			long xpAward = Math.Max(1, MaxHitpoints);
-			xpAward *= Math.Max(1, Math.Min(Armor, 400) / 50);
+			long xpAward = Configuration.XpMultiply;
+			
+			xpAward *= Math.Max(1, MaxHitpoints);
+
+			var k = CalculateArmorPenK(Armor);
+			xpAward = (int)(xpAward * k);
 
 			long attackXpFactor = 0;
 			foreach (var attack in Attacks)
 			{
-				long t = 1 + Math.Max(1, Math.Min(attack.Penetration, 400) / 50);
+				k = CalculateArmorPenK(attack.Penetration);
 
-				t *= Math.Max(1, attack.AverageDamage);
+				var t = (long)(Math.Max(1, attack.AverageDamage) * k);
 
 				attackXpFactor += t;
 			}

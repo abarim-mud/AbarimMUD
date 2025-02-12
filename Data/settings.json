@@ -26,5 +26,8 @@
     30,
     40
   ],
-  "RecallManaCost": 35
+  "RecallManaCost": 35,
+  "BaseBuyPricePercentage": 150,
+  "BaseSellPricePercentage": 25,
+  "XpMultiply": 5
 }

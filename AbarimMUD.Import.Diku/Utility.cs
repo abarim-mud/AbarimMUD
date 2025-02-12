@@ -76,6 +76,15 @@ namespace AbarimMUD.Import.Diku
 				DamageRange = mobile.DamageDice.ToValueRange(),
 			};
 
+			foreach(var dikuFlag in mobile.Flags)
+			{
+				MobileFlags flag;
+				if (Enum.TryParse(dikuFlag.ToString(), true, out flag))
+				{
+					result.Flags.Add(flag);
+				}
+			}
+
 			return result;
 		}
 

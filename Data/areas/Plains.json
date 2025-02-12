@@ -736,7 +736,10 @@
       "Penetration": 65,
       "DamageRange": "8-13",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Wimpy",
+        "AssistId"
+      ],
       "SpecialAttacks": [],
       "Id": 300
     },
@@ -761,7 +764,10 @@
       "Penetration": 20,
       "DamageRange": "6-6",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Sentinel",
+        "AssistId"
+      ],
       "SpecialAttacks": [],
       "Id": 301
     },
@@ -785,7 +791,10 @@
       "Penetration": 30,
       "DamageRange": "8-8",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Scavenger",
+        "AssistId"
+      ],
       "SpecialAttacks": [],
       "Id": 303
     },
@@ -809,7 +818,10 @@
       "Penetration": 25,
       "DamageRange": "7-7",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Scavenger",
+        "AssistId"
+      ],
       "SpecialAttacks": [],
       "Id": 304
     },
@@ -834,7 +846,11 @@
       "Penetration": 120,
       "DamageRange": "16-26",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Sentinel",
+        "Aggressive",
+        "AssistId"
+      ],
       "SpecialAttacks": [],
       "Id": 305
     },
@@ -859,7 +875,11 @@
       "Penetration": 115,
       "DamageRange": "12-24",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Sentinel",
+        "Scavenger",
+        "AssistId"
+      ],
       "SpecialAttacks": [],
       "Id": 306
     },
@@ -884,7 +904,10 @@
       "Penetration": 115,
       "DamageRange": "12-24",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Sentinel",
+        "AssistId"
+      ],
       "SpecialAttacks": [],
       "Id": 308
     },
@@ -908,7 +931,9 @@
       "Penetration": 5,
       "DamageRange": "4-4",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "AssistRace"
+      ],
       "SpecialAttacks": [],
       "Id": 309
     },
@@ -932,7 +957,11 @@
       "Penetration": 50,
       "DamageRange": "9-9",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Sentinel",
+        "Wimpy",
+        "AssistRace"
+      ],
       "SpecialAttacks": [],
       "Id": 350
     }

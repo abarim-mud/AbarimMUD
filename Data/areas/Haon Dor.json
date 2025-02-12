@@ -1672,13 +1672,13 @@
       "Level": 1,
       "Gold": 100,
       "Sex": "None",
-      "Hitpoints": 25,
+      "Hitpoints": 30,
       "Mana": 0,
       "Moves": 1000,
       "Armor": 0,
       "AttacksCount": 1,
       "AttackType": "Hit",
-      "Penetration": 0,
+      "Penetration": 5,
       "DamageRange": "2-2",
       "Loot": {},
       "Flags": [],
@@ -1707,7 +1707,9 @@
       "Penetration": 1255,
       "DamageRange": "19-55",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Sentinel"
+      ],
       "SpecialAttacks": [],
       "Id": 51518
     },
@@ -1732,7 +1734,9 @@
       "Penetration": 400,
       "DamageRange": "15-35",
       "Loot": {},
-      "Flags": [],
+      "Flags": [
+        "Sentinel"
+      ],
       "SpecialAttacks": [],
       "Id": 51519
     }
