@@ -140,7 +140,15 @@ namespace AbarimMUD.ExportAreasToMMB
 				Log($"Saving {fileName}...");
 
 				// Copy build options
-				var project = new MMBProject(area, new BuildOptions());
+				var options = new BuildOptions();
+
+				if (area.Name == "Astoria")
+				{
+					options.RemoveSolitaryRooms = true;
+					options.RemoveRoomsWithSingleOutsideExit = true;
+				}
+
+				var project = new MMBProject(area, options);
 				var data = project.ToJson();
 				File.WriteAllText(Path.Combine(outputFolder, fileName), data);
 			}

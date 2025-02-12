@@ -23,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbarimMUD.Engine", "AbarimM
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbarimMUD.Launcher", "AbarimMUD.Launcher\AbarimMUD.Launcher.csproj", "{5432C3D2-07E6-408D-A729-52F795656F9F}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DikuLoad.Import.CSL", "..\DikuLoad\DikuLoad.Import.CSL\DikuLoad.Import.CSL.csproj", "{6922FF5A-56D4-4649-A847-08FB35459A43}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{5432C3D2-07E6-408D-A729-52F795656F9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5432C3D2-07E6-408D-A729-52F795656F9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5432C3D2-07E6-408D-A729-52F795656F9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6922FF5A-56D4-4649-A847-08FB35459A43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6922FF5A-56D4-4649-A847-08FB35459A43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6922FF5A-56D4-4649-A847-08FB35459A43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6922FF5A-56D4-4649-A847-08FB35459A43}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

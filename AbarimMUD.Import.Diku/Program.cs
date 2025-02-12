@@ -1,7 +1,10 @@
 ﻿using AbarimMUD.Data;
 using AbarimMUD.Storage;
+using DikuLoad.Import;
 using DikuLoad.Import.Ascii;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace AbarimMUD.Import.Diku
 {
@@ -9,19 +12,74 @@ namespace AbarimMUD.Import.Diku
 	{
 		private static void Log(string message) => Console.WriteLine(message);
 
-		static void Process(SourceType sourceType, string[] areasNames, string inputFolder, string outputFolder)
+		static void MergeAreas(List<DikuLoad.Data.Area> areas, DikuLoad.Data.Area main, DikuLoad.Data.Area merged)
+		{
+			int minLevel, maxLevel;
+			if (int.TryParse(main.MinimumLevel, out minLevel) && int.TryParse(merged.MinimumLevel, out maxLevel))
+			{
+				main.MinimumLevel = Math.Min(minLevel, maxLevel).ToString();
+			}
+
+			if (int.TryParse(main.MaximumLevel, out minLevel) && int.TryParse(merged.MaximumLevel, out maxLevel))
+			{
+				main.MaximumLevel = Math.Max(minLevel, maxLevel).ToString();
+			}
+
+			var builders = new List<string>();
+			if (!string.IsNullOrEmpty(main.Builders))
+			{
+				builders.Add(main.Builders);
+			}
+
+			if (!string.IsNullOrEmpty (merged.Builders))
+			{
+				builders.Add(merged.Builders);
+			}
+
+			if (builders.Count > 0)
+			{
+				main.Builders = string.Join(", ", builders);
+			}
+
+			// Merge content
+			main.Rooms.AddRange(merged.Rooms);
+			main.Mobiles.AddRange(merged.Mobiles);
+
+			// Remove merged area from the list
+			areas.Remove(merged);
+		}
+
+		static void Process(SourceType? sourceType, string[] areasNames, string inputFolder, string outputFolder)
 		{
 			StorageUtility.InitializeStorage(Log);
 			DataContext.Load(outputFolder);
 
-			var settings = new ImporterSettings(inputFolder, sourceType, SubSourceType.Default)
-			{
-				AreasNames = areasNames,
-			};
+			BaseImporter importer;
 
-			var importer = new Importer(settings);
+			if (sourceType != null)
+			{
+				var settings = new ImporterSettings(inputFolder, sourceType.Value, SubSourceType.Default)
+				{
+					AreasNames = areasNames,
+				};
+
+				importer = new Importer(settings);
+			}
+			else
+			{
+				var settings = new DikuLoad.Import.CSL.ImporterSettings(inputFolder)
+				{
+					AreasNames = areasNames,
+				};
+
+				importer = new DikuLoad.Import.CSL.Importer(settings);
+			}
 
 			importer.Process();
+
+			var astoria = (from a in importer.Areas where a.Name == "Astoria" select a).First();
+			var outskirts = (from a in importer.Areas where a.Name == "Outskirts of Astoria" select a).First();
+			MergeAreas(importer.Areas, astoria, outskirts);
 
 			// Convert DikuLoad areas to AM Areas
 			var outputAreasCount = 0;
@@ -76,9 +134,9 @@ namespace AbarimMUD.Import.Diku
 		{
 			try
 			{
-				Process(SourceType.Circle,
-					new[] { "Northern Midgaard", "Newbie Zone" },
-					@"D:\Projects\chaos\tbamud\lib\world",
+				Process(null,
+					new[] { "Astoria", "Outskirts of Astoria", "Sewers", "Haon Dor", "Arachnos" },
+					@"D:\Projects\CrimsonStainedLands\master\CrimsonStainedLands\data\areas",
 					@"D:\Projects\AbarimMUD\Data");
 			}
 			catch (Exception ex)

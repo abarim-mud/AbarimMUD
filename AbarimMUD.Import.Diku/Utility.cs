@@ -1,4 +1,5 @@
 ﻿using AbarimMUD.Data;
+using AbarimMUD.Utils;
 using System;
 using System.Linq;
 
@@ -6,7 +7,9 @@ namespace AbarimMUD.Import.Diku
 {
 	internal static class Utility
 	{
-		public static Direction ToAMDirection(this DikuLoad.Data.Direction dir) => (Data.Direction)dir;
+		public static ValueRange ToValueRange(this DikuLoad.Data.Dice dice) => new ValueRange(dice.Minimum, dice.Maximum);
+
+		public static Direction ToAMDirection(this DikuLoad.Data.Direction dir) => (Direction)dir;
 
 		public static Room ToAmRoom(this DikuLoad.Data.Room room)
 		{
@@ -38,13 +41,20 @@ namespace AbarimMUD.Import.Diku
 
 		public static Mobile ToAmMobile(this DikuLoad.Data.Mobile mobile)
 		{
-			var classId = "default";
-
 			var level = mobile.Level;
 			if (level < 1)
 			{
 				level = 1;
 			}
+
+			if (mobile.ArmorClassBash != mobile.ArmorClassPierce ||
+				mobile.ArmorClassBash != mobile.ArmorClassSlash)
+			{
+				var k = 5;
+			}
+
+			AttackType at = AttackType.Hit;
+			Enum.TryParse<AttackType>(mobile.AttackType, out at);
 
 			var result = new Mobile
 			{
@@ -53,10 +63,16 @@ namespace AbarimMUD.Import.Diku
 				ShortDescription = mobile.ShortDescription,
 				LongDescription = mobile.LongDescription,
 				Description = mobile.Description,
-				Class = MobileClass.EnsureClassById(classId),
 				Level = level,
 				Sex = Enum.Parse<Sex>(mobile.Sex, true),
 				Gold = mobile.Wealth,
+				HitpointsRange = mobile.HitDice.ToValueRange(),
+				ManaRange = mobile.ManaDice.ToValueRange(),
+				Armor = 100 - (mobile.ArmorClassBash + mobile.ArmorClassPierce + mobile.ArmorClassSlash) / 3,
+				AttacksCount = 1 +  level / 8,
+				AttackType = at,
+				Penetration = level * 5 + mobile.HitRoll * 10,
+				DamageRange = mobile.DamageDice.ToValueRange(),
 			};
 
 			return result;
