@@ -47,14 +47,15 @@ namespace AbarimMUD.Import.Diku
 				level = 1;
 			}
 
-			if (mobile.ArmorClassBash != mobile.ArmorClassPierce ||
-				mobile.ArmorClassBash != mobile.ArmorClassSlash)
-			{
-				var k = 5;
-			}
+			var at = AttackType.Hit;
+			Enum.TryParse(mobile.AttackType, out at);
 
-			AttackType at = AttackType.Hit;
-			Enum.TryParse<AttackType>(mobile.AttackType, out at);
+			var maximumArmor = Math.Max(mobile.ArmorClassBash, Math.Max(mobile.ArmorClassPierce, Math.Max(mobile.ArmorClassSlash, mobile.ArmorClassExotic)));
+			var gold = mobile.Wealth;
+			if (gold == 0)
+			{
+				gold = mobile.Level * 100;
+			}
 
 			var result = new Mobile
 			{
@@ -65,11 +66,11 @@ namespace AbarimMUD.Import.Diku
 				Description = mobile.Description,
 				Level = level,
 				Sex = Enum.Parse<Sex>(mobile.Sex, true),
-				Gold = mobile.Wealth,
-				HitpointsRange = mobile.HitDice.ToValueRange(),
-				ManaRange = mobile.ManaDice.ToValueRange(),
-				Armor = 100 - (mobile.ArmorClassBash + mobile.ArmorClassPierce + mobile.ArmorClassSlash) / 3,
-				AttacksCount = 1 +  level / 8,
+				Gold = gold,
+				Hitpoints = mobile.HitDice.Average,
+				Mana = mobile.ManaDice.Average,
+				Armor = 100 - maximumArmor,
+				AttacksCount = 1 + level / 8,
 				AttackType = at,
 				Penetration = level * 5 + mobile.HitRoll * 10,
 				DamageRange = mobile.DamageDice.ToValueRange(),

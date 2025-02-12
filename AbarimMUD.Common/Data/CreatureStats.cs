@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace AbarimMUD.Data
@@ -17,7 +19,6 @@ namespace AbarimMUD.Data
 		public int BackstabCount { get; internal set; }
 		public int BackstabMultiplier { get; internal set; }
 		public int Armor { get; internal set; }
-		public long XpAward { get; internal set; }
 		public List<Ability> Abilities { get; } = new List<Ability>();
 		public int BuyPriceRebatePercentage { get; internal set; }
 		public int SellPriceBonusPercentage { get; internal set; }
@@ -82,6 +83,31 @@ namespace AbarimMUD.Data
 			perc += SellPriceBonusPercentage;
 
 			return originalPrice * perc / 100;
+		}
+
+		public long CalculateXpAward()
+		{
+			long xpAward = Math.Max(1, MaxHitpoints);
+			xpAward *= Math.Max(1, Math.Min(Armor, 400) / 50);
+
+			long attackXpFactor = 0;
+			foreach (var attack in Attacks)
+			{
+				long t = 1 + Math.Max(1, Math.Min(attack.Penetration, 400) / 50);
+
+				t *= Math.Max(1, attack.AverageDamage);
+
+				attackXpFactor += t;
+			}
+
+			xpAward *= attackXpFactor;
+
+			if (xpAward < 1)
+			{
+				xpAward = 1;
+			}
+
+			return xpAward;
 		}
 
 		public void Apply(ModifierType type, int val)

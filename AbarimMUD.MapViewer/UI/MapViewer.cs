@@ -53,7 +53,7 @@ namespace AbarimMUD.MapViewer.UI
 				return;
 			}
 
-			_imageResult = area.BuildPng(options, colorizeConnectionIssues);
+			_imageResult = area.BuildPng(colorizeConnectionIssues: colorizeConnectionIssues);
 			Texture2D texture;
 			using (var ms = new MemoryStream(_imageResult.PngData))
 			{

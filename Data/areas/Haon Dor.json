@@ -1,0 +1,1954 @@
+{
+  "Name": "Haon Dor",
+  "Credits": "Diku",
+  "Version": 0,
+  "MinimumLevel": "5",
+  "MaximumLevel": "10",
+  "Rooms": [
+    {
+      "Name": "A Light Forest Trailhead",
+      "Description": "You stand at the trailhead of the vast forest, the clearing a bustling hub of activity. The ground is firm beneath your feet, packed hard from the countless footsteps of travelers who have passed this way. A wooden signpost rises from the earth, pointing the way ahead and marking the fork in the trail that splits off to the east towards the majestic city of Astoria. The towering walls and palisades of Astoria are visible on the horizon, their imposing height and the glint of steel from the West Gate lending an air of power and security to the city.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51565,
+        "West": 51401,
+        "East": 19014
+      },
+      "Id": 51400
+    },
+    {
+      "Name": "A Trail Through the Light Forest ",
+      "Description": "You are traversing a winding path through the dense forest, with the trees towering overhead, filtering dappled light onto the forest floor. To your east, the trees begin to thin and you can see glimpses of the lush grasslands beyond, while to the west, the trail continues its winding journey deeper into the heart of the forest.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51572,
+        "East": 51400,
+        "West": 51402
+      },
+      "Id": 51401
+    },
+    {
+      "Name": "A Trail Through the Light Forest ",
+      "Description": "You are traversing a winding path through the dense forest, with the trees towering overhead, filtering dappled light onto the forest floor. To your east, the trees begin to thin and you can see glimpses of the lush grasslands beyond, while to the west, the trail continues its winding journey deeper into the heart of the forest.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51573,
+        "East": 51401,
+        "South": 51411,
+        "West": 51403
+      },
+      "Id": 51402
+    },
+    {
+      "Name": "A Trail Through the Light Forest ",
+      "Description": "You are traversing a winding path through the dense forest, with the trees towering overhead, filtering dappled light onto the forest floor. To your east, the trees begin to thin and you can see glimpses of the lush grasslands beyond, while to the west, the trail continues its winding journey deeper into the heart of the forest.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51580,
+        "East": 51402,
+        "West": 51404
+      },
+      "Id": 51403
+    },
+    {
+      "Name": "A Junction in the Forest Trail",
+      "Description": "You are traversing a winding path through the dense forest, with the trees towering overhead, filtering dappled light onto the forest floor. To your east, the trees begin to thin and you can see glimpses of the lush grasslands beyond, while to the west, the trail continues its winding journey deeper into the heart of the forest.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51556,
+        "East": 51403,
+        "South": 51405,
+        "West": 51500
+      },
+      "Id": 51404
+    },
+    {
+      "Name": "A small path in the dense forest",
+      "Description": "You are on a small path leading through the dense forest.  The crowns of the\nold trees leave the forest in an unreal twilight illumination.  The path\ncontinues north and south.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51404,
+        "South": 51406
+      },
+      "Id": 51405
+    },
+    {
+      "Name": "A small path in the dense forest",
+      "Description": "You are on a small path leading through the dense forest.  The crowns of the\nold trees leave the forest in an unreal twilight illumination.  The path\ncontinues north and east.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51405,
+        "East": 51407
+      },
+      "Id": 51406
+    },
+    {
+      "Name": "An intersection in the dense forest",
+      "Description": "You are on a small path leading through the dense forest.  The crowns of the\nold trees leave the forest in an unreal twilight illumination.  The forest\ngradually lightens to the east.  Paths lead east, west and south.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 51408,
+        "South": 51412,
+        "West": 51406
+      },
+      "Id": 51407
+    },
+    {
+      "Name": "The forest clearing",
+      "Description": "You are in a clearing in the forest.  Lots of fresh stumps of varying sizes\nprotrude from the ground and heavy logs are stacked neatly in a big pile\nsupported by stakes set into the ground.  Paths lead north, east and west.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51411,
+        "East": 51409,
+        "West": 51407
+      },
+      "Id": 51408
+    },
+    {
+      "Name": "Outside a small cabin in the forest",
+      "Description": "You are outside a small cabin built entirely from heavy logs.  There is a\nwooden door to the north and small paths lead west and south through the trees.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51410,
+        "South": 51414,
+        "West": 51408
+      },
+      "Id": 51409
+    },
+    {
+      "Name": "Inside the cabin",
+      "Description": "You are inside a small one-room cabin made entirely from heavy logs.  It is\nvery sparsely furnished, containing only most basic housekeeping equipment,\nsuch as a bed, a chair and a table.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "South": 51409
+      },
+      "Id": 51410
+    },
+    {
+      "Name": "A small path through the light forest",
+      "Description": "You are on a small path leading through the forest.  The trees are tall and\nslender.  Paths lead north and south.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51402,
+        "South": 51408
+      },
+      "Id": 51411
+    },
+    {
+      "Name": "An intersection in the dense forest",
+      "Description": "You are on a small path leading through the dense forest.  The crowns of the\nold trees leave the forest floor in an unreal twilight illumination.  Paths\nlead north, east and south.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51407,
+        "East": 51413,
+        "South": 51421
+      },
+      "Id": 51412
+    },
+    {
+      "Name": "A small path in the dense forest",
+      "Description": "You are on a small path leading through the dense forest.  The crowns of the\nold trees leave the forest in an unreal twilight illumination.  The path\ncontinues east and west.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 51414,
+        "West": 51412
+      },
+      "Id": 51413
+    },
+    {
+      "Name": "An intersection in the dense forest",
+      "Description": "You are on a small path leading through the dense forest.  The forest gradually\nlightens to the north.  Paths lead north, east and west.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51409,
+        "East": 51415,
+        "West": 51413
+      },
+      "Id": 51414
+    },
+    {
+      "Name": "A small path in the dense forest",
+      "Description": "You are on a small path leading through the dense forest.  The crowns of the\nold trees leave the forest in an unreal twilight illumination.  The path\ncontinues south and west.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "South": 51416,
+        "West": 51414
+      },
+      "Id": 51415
+    },
+    {
+      "Name": "A small path in the dense forest",
+      "Description": "You are on a small path leading through the dense forest.  The crowns of the\nold trees leave the forest in an unreal twilight illumination.  The path\ncontinues north and south.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51415,
+        "South": 51417
+      },
+      "Id": 51416
+    },
+    {
+      "Name": "A small path in the dense forest",
+      "Description": "You are on a small path leading through the dense forest.  The forest seems to\nbecome lighter to the west.  The path continues north and west.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51416,
+        "West": 51418
+      },
+      "Id": 51417
+    },
+    {
+      "Name": "An intersection in the light forest",
+      "Description": "You are on a small path leading through the forest.  A path leads north to a\nsmall field and other paths lead east and west into the dense forest.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51423,
+        "East": 51417,
+        "West": 51419
+      },
+      "Id": 51418
+    },
+    {
+      "Name": "A small path in the dense forest",
+      "Description": "You are on a small path leading through the dense forest.  The forest seems to\nbecome lighter to the east.  The path continues north and east.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51420,
+        "East": 51418
+      },
+      "Id": 51419
+    },
+    {
+      "Name": "A small path in the dense forest",
+      "Description": "You are on a small path leading through the dense forest.  The crowns of the\nold trees leave the forest in an unreal twilight illumination.  The path\ncontinues south and west.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "South": 51419,
+        "West": 51421
+      },
+      "Id": 51420
+    },
+    {
+      "Name": "A small path in the dense forest",
+      "Description": "You are on a small path leading through the dense forest.  To the west there is\na cave entrance.  The path continues north and east.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51412,
+        "East": 51420,
+        "West": 51422
+      },
+      "Id": 51421
+    },
+    {
+      "Name": "Inside the cave",
+      "Description": "You are in a natural cave.  Various sorts of debris cover the stone floor,\nemitting a rather unpleasant smell that makes the air thick and hard to\nbreathe.  The only obvious exit is east.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 51421
+      },
+      "Id": 51422
+    },
+    {
+      "Name": "On a small, grassy field",
+      "Description": "You are in a small, grassy field somewhere in the forest.  The tall grass\nnearly reaches your waist, and the surrounding oaks and beeches form an almost\nwall-like thicket on all sides of the field.  A small path leads south through\nthe trees.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "South": 51418
+      },
+      "Id": 51423
+    },
+    {
+      "Name": "A narrow trail through the deep, dark forest",
+      "Description": "You are on a narrow trail winding its way between the enormous, grey trunks.\nThe crowns of the trees must be very dense, as they leave the forest floor in\nutter darkness.  The trail leads east and west.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 51404,
+        "West": 51501
+      },
+      "Id": 51500
+    },
+    {
+      "Name": "A narrow trail through the deep, dark forest",
+      "Description": "You are on a dusty trail winding its way east-west between huge, ancient trees\nwhose grey trunks remind you of ancient pillars in a enormous, deserted hall.\nTo the south, a frail path leads away from the trail.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 51500,
+        "South": 51504,
+        "West": 51502
+      },
+      "Id": 51501
+    },
+    {
+      "Name": "A narrow trail through the deep, dark forest",
+      "Description": "You are on a dusty trail winding its way east-west between huge, ancient trees\nthat stand close on all sides.  Not a sound is to be heard - everything is\nominously quiet.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 51501,
+        "West": 51503
+      },
+      "Id": 51502
+    },
+    {
+      "Name": "A narrow trail through the deep, dark forest",
+      "Description": "You are where the dusty trail bends, as to avoid conflict with a colossal\ntrunk to the west.  Not a sound is to be heard - everything is ominously quiet.\nThe trail leads east and south.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51550,
+        "East": 51502,
+        "South": 51508
+      },
+      "Id": 51503
+    },
+    {
+      "Name": "A small path in the deep, dark forest",
+      "Description": "You are on a narrow path leading through the deep, dark forest.  You feel as if\nthe ancient trees observe you in watchful silence.  The path continues north\nand south.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51501,
+        "South": 51505
+      },
+      "Id": 51504
+    },
+    {
+      "Name": "A small path in the deep, dark forest",
+      "Description": "You are on a narrow path leading through the deep, dark forest.  Ancient grey\ntrees loom all around you.  The path continues north and west.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51504,
+        "West": 51506
+      },
+      "Id": 51505
+    },
+    {
+      "Name": "A junction in the deep, dark forest",
+      "Description": "You are by a junction where three paths meet.  Ancient grey trees tower above\nyou on all sides.  Paths lead east, south and west.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 51505,
+        "South": 51517,
+        "West": 51507
+      },
+      "Id": 51506
+    },
+    {
+      "Name": "A small path in the deep, dark forest",
+      "Description": "You are on a narrow path leading through the deep, dark forest.  Ancient grey\ntrees loom all around you.  The path continues north and east.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51508,
+        "East": 51506
+      },
+      "Id": 51507
+    },
+    {
+      "Name": "A narrow trail through the deep, dark forest",
+      "Description": "You are on a dusty trail winding its way between huge, ancient trees\nstanding close on all sides.  The trail leads north and west and to the south,\na frail path leads away from the trail.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51503,
+        "South": 51507,
+        "West": 51509
+      },
+      "Id": 51508
+    },
+    {
+      "Name": "A narrow trail through the deep, dark forest",
+      "Description": "You are on a dusty trail winding its way east-west between huge, ancient trees\nthat stand close on all sides.  Not a sound is to be heard - everything is\nominously quiet.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 51508,
+        "West": 51510
+      },
+      "Id": 51509
+    },
+    {
+      "Name": "A narrow trail through the deep, dark forest",
+      "Description": "You are on a dusty trail winding its way between huge, ancient trees that stand\nclose on all sides.  The trail leads east and south.  To the north, a narrow\npath leads away from the trail.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51544,
+        "East": 51509,
+        "South": 51511
+      },
+      "Id": 51510
+    },
+    {
+      "Name": "A narrow trail through the deep, dark forest",
+      "Description": "You are on a dusty trail winding its way north-south between huge, ancient\ntrees that loom ominously above you.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51510,
+        "South": 51512
+      },
+      "Id": 51511
+    },
+    {
+      "Name": "A narrow trail through the deep, dark forest",
+      "Description": "You are on a dusty trail winding its way between huge, ancient trees\nstanding close on all sides.  The trail leads north and west and to the east,\na frail path leads away from the trail.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51511,
+        "East": 51513,
+        "West": 51527
+      },
+      "Id": 51512
+    },
+    {
+      "Name": "A small path in the deep, dark forest",
+      "Description": "You are on a narrow path leading through the deep, dark forest.  Ancient grey\ntrees loom in all directions.  The path continues south and west.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "South": 51514,
+        "West": 51512
+      },
+      "Id": 51513
+    },
+    {
+      "Name": "A junction in the deep, dark forest",
+      "Description": "You are by a junction where three paths meet.  Ancient grey trees tower above\nyou on all sides.  Paths lead north, east and west.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51513,
+        "East": 51515,
+        "West": 51522
+      },
+      "Id": 51514
+    },
+    {
+      "Name": "A small path in the deep, dark forest",
+      "Description": "You are on a narrow path leading through the deep, dark forest.  You feel as\nif the ancient trees observe you in watchful silence.  The path continues north\nand west.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51516,
+        "West": 51514
+      },
+      "Id": 51515
+    },
+    {
+      "Name": "A small path in the deep, dark forest",
+      "Description": "You are on a narrow path leading through the deep, dark forest.  Giant, grey\ntrees loom ominously on all sides.  The path continues east and south.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 51517,
+        "South": 51515
+      },
+      "Id": 51516
+    },
+    {
+      "Name": "A junction in the deep, dark forest",
+      "Description": "You are by a junction where three paths meet.  Ancient, grey trees seem to\nobserve you silently you from all sides.  Paths lead north, east and west.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51506,
+        "East": 51518,
+        "West": 51516
+      },
+      "Id": 51517
+    },
+    {
+      "Name": "A small path in the deep, dark forest",
+      "Description": "You are on a narrow path leading through the deep, dark forest.  Ancient,\ngrey trees loom everywhere.  The path continues south and west.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "South": 51519,
+        "West": 51517
+      },
+      "Id": 51518
+    },
+    {
+      "Name": "A small path in the deep, dark forest",
+      "Description": "You are on a narrow path leading through the deep, dark forest.  Huge, ancient\ntrees are on all sides.  The path continues north and south.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51518,
+        "South": 51520
+      },
+      "Id": 51519
+    },
+    {
+      "Name": "On the river bank in the deep, dark forest",
+      "Description": "You are on a narrow path leading through the deep, dark forest.  To the south a\nfast river is flowing westwards through the forest.  Ancient grey trees loom on\nboth banks.  The path continues north and west.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51519,
+        "South": 51591,
+        "West": 51521
+      },
+      "Id": 51520
+    },
+    {
+      "Name": "Beginning of a bridge across the dark river",
+      "Description": "The path widens and becomes a trail or maybe even a road with as\npacked as it is. It seems well maintained and like it may receive heavy use.\nTrees still line the banks and block travel north and west. The river is not very fast here, and a lot of\nlogs under the bridge seem to be slowing the flow even more.\nThe river banks are covered with medium rocks, and the bed of the river looks like\nsmall pebbles worn smooth from the river through the passage of time.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 51520
+      },
+      "Id": 51521
+    },
+    {
+      "Name": "A small path in the deep, dark forest",
+      "Description": "You are on a narrow path leading through the deep, dark forest.  Giant, grey\ntrees loom ominously all around.  The path continues east and south.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 51514,
+        "South": 51523
+      },
+      "Id": 51522
+    },
+    {
+      "Name": "A junction on the river bank in the deep, dark forest",
+      "Description": "You are by a junction where three paths meet.  Ancient, grey trees seem to\nobserve you silently you from all around.  To the south a dark river flows from\neast to west through the forest.  Paths lead north, east and west.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51522,
+        "East": 51524,
+        "West": 51525
+      },
+      "Id": 51523
+    },
+    {
+      "Name": "A dead end path in the deep, dark forest",
+      "Description": "You are on a narrow path leading through the deep, dark forest.  The ancient\ntrees stand so close that the path disappears between the dusty roots.  To the\nsouth a dark river flows from east to west.  The only exit appears to be west.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "West": 51523
+      },
+      "Id": 51524
+    },
+    {
+      "Name": "A small path on the river bank in the deep, dark forest",
+      "Description": "You are on a narrow path leading through the deep, dark forest.  Ancient grey\ntrees loom everywhere.  To the south you smell marsh gas.  The path continues\nnorth and east.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51526,
+        "East": 51523
+      },
+      "Id": 51525
+    },
+    {
+      "Name": "A narrow trail through the deep, dark forest",
+      "Description": "You are on a dusty trail winding its way between huge, ancient trees standing\nclose on all sides.  The trail leads north and west, and to the south a frail\npath leads away from the trail.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51527,
+        "South": 51525,
+        "West": 51528
+      },
+      "Id": 51526
+    },
+    {
+      "Name": "A narrow trail through the deep, dark forest",
+      "Description": "You are on a dusty trail winding its way between huge, ancient trees\nstanding close on all sides.  The trail leads east and south.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 51512,
+        "South": 51526
+      },
+      "Id": 51527
+    },
+    {
+      "Name": "A narrow trail through the deep, dark forest",
+      "Description": "You are on a dusty trail winding its way east-west between huge, ancient trees\nthat stand close on all sides.  Not a sound is to be heard - everything is\nominously quiet.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 51526,
+        "West": 51529
+      },
+      "Id": 51528
+    },
+    {
+      "Name": "A narrow trail through the deep, dark forest",
+      "Description": "You are on a dusty trail winding its way east-west between huge, ancient trees\nthat stand close on all sides.  Not a sound is to be heard - everything is\nominously quiet.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 51528,
+        "West": 51535
+      },
+      "Id": 51529
+    },
+    {
+      "Name": "A narrow trail through the deep, dark forest",
+      "Description": "You are on a dusty trail winding its way westwards just below huge sticky\nwires suspended like ropes between the trees.  To the west the path seems to\nbe completely covered in a giant web made from huge threads covered with glue.\nThis place gives you the creeps.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 51544,
+        "Up": 51532
+      },
+      "Id": 51530
+    },
+    {
+      "Name": "The spider web",
+      "Description": "You are walking along the narrow path, ducking under the sticky ropes as you\nadvance...\n\u003E\nA huge, poisonous spider drops from above!\nA huge, poisonous spider drops from above!\nA huge, poisonous spider drops from above!\n\u003E\nThe huge, poisonous spider stings you!  You resist the poison!\nThe huge, poisonous spider stings you!  You are poisoned!\nThe huge, poisonous spider stings you!  You are poisoned!\n\u003E\nYou\u0027ve fallen, and you can\u0027t get up!!!!!",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {},
+      "Id": 51531
+    },
+    {
+      "Name": "Up in the tree",
+      "Description": "You are hanging on the outside of a huge tree trunk covered in a sticky\nsubstance.  Directly to the west is an immense spider web suspended between\nnumerous of the giant trees including the one you are hanging on.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "West": 51533,
+        "Down": 51530
+      },
+      "Id": 51532
+    },
+    {
+      "Name": "On the spider web",
+      "Description": "You are balancing carefully on the giant sticky threads that holds the giant\nweb in place.  To the east is a giant tree trunk and to the west is an entrance\nto a cave-like structure made from many layers of spider web.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 6200,
+        "East": 51532,
+        "West": 51534
+      },
+      "Id": 51533
+    },
+    {
+      "Name": "The Den of the Queen Spider",
+      "Description": "You are inside a cave-like structure that seems to be made entirely from\ncountless layers of spider web.  Temperature and humidity is very high making\nit hard to breathe the foul air that lingers here.  The walls are covered with\nopen cocoons.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 51533
+      },
+      "Id": 51534
+    },
+    {
+      "Name": "A dusty trail in the deep, dark forest",
+      "Description": "You are on a dusty trail leading through the deep, dark forest.  Ancient grey\ntrees loom all around you.  The trail continues north and east.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51536,
+        "East": 51529
+      },
+      "Id": 51535
+    },
+    {
+      "Name": "A dusty trail in the deep, dark forest",
+      "Description": "You are on a dusty trail leading through the deep, dark forest.  Ancient,\ngrey trees loom everywhere.  The trail continues south and west.  A broad\nirregular path leads eastwards away from the trail.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 51542,
+        "South": 51535,
+        "West": 51537
+      },
+      "Id": 51536
+    },
+    {
+      "Name": "At the end of the trail through the deep, dark forest",
+      "Description": "You are on a dusty trail leading through the deep, dark forest.  Ancient grey\ntrees loom all around you.  You see a dark grove north of you.\nThe only other exit is east.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 51536
+      },
+      "Id": 51537
+    },
+    {
+      "Name": "Outside a cave in the deep, dark forest",
+      "Description": "You are at the end of a broad, irregular path.  To the north is a very large\nominous-looking cave opening.  The trees here have many marks as if something\nwith huge claws has been tearing at them in rage.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51543,
+        "West": 51536
+      },
+      "Id": 51542
+    },
+    {
+      "Name": "The cave of the Green Dragon",
+      "Description": "You are in a big natural cave.  The floor is littered with bones of all sorts\nand the stench is so massive that you could cut it with a knife.  The only exit\nis to the south.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "South": 51542
+      },
+      "Id": 51543
+    },
+    {
+      "Name": "A small path in the deep, dark forest",
+      "Description": "You are on a narrow path leading through the deep, dark forest.  Ancient,\ngrey trees loom everywhere.  The tree trunks here seem to be covered in some\nsticky substance.  The path continues south and west.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "South": 51510,
+        "West": 51530
+      },
+      "Id": 51544
+    },
+    {
+      "Name": "The narrow trail.",
+      "Description": "This trail looks much spookier than any other thats you have seen.  The usual\nanimal claw marks and bites on the trees are getting far and few between. The\ntrail continues north.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51551,
+        "South": 51503
+      },
+      "Id": 51550
+    },
+    {
+      "Name": "The narrow trail.",
+      "Description": "This area of the trail is also very peculiar.  You can see no signs of animal\nlife what so ever.  The structure of the surrounding trees forces the path to\nmake a sharp turn to the east.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 51552,
+        "South": 51550
+      },
+      "Id": 51551
+    },
+    {
+      "Name": "The circle of trees.",
+      "Description": "The trees here seem to form a circle around a HUGE tree that is in the center\nof them.  You notice a wooden door carved into the huge tree to the east.  The\ntrail that you followed to get here seems to end at the base of the tree.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 51553,
+        "West": 51551
+      },
+      "Id": 51552
+    },
+    {
+      "Name": "Inside the great tree.",
+      "Description": "You have stepped inside of this hollowed tree.  From here steps lead down into\ndarkness or you can exit the tree by going west.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "West": 51552,
+        "Down": 51554
+      },
+      "Id": 51553
+    },
+    {
+      "Name": "The underground hallway.",
+      "Description": "This hallway is apparently one of the roots of the tree hollowed out.  The hall\nleads south to a room where you hear strange noises or you can go up the steps.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "South": 51555,
+        "Up": 51553
+      },
+      "Id": 51554
+    },
+    {
+      "Name": "The cultist temple.",
+      "Description": "This temple is built to some god that you don\u0027t worship.  It is a nice place\nto visit but you feel very uncomfortable about spending much time here.\nThe wooden altar seems almost to glow as you enter the room.  The only exit is\nthe way you came in.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51554
+      },
+      "Id": 51555
+    },
+    {
+      "Name": "A trail through the dense forest",
+      "Description": "You find yourself on a narrow path, its twists and turns leading you deeper into the heart of the dense forest. The ancient trees tower high above you, their verdant crowns interlocking to form a natural cathedral of green. Their thick branches cast a dappled light upon the forest floor, bathing the area in an ethereal and otherworldly glow. The path winds its way through the trees, the sound of crunching leaves and twigs beneath your feet the only sign of your progress. To either side, the forest presses in close, its underbrush and brambles lending a sense of mystery and danger to your journey. Ahead of you, the path stretches on, its course marked by the twists and turns of gnarled roots that burst through the earth. It continues east and west, a ribbon of light in an otherwise dark and enchanting world.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51557,
+        "East": 51580,
+        "South": 51404
+      },
+      "Id": 51556
+    },
+    {
+      "Name": "A trail through the dense forest",
+      "Description": "You find yourself on a narrow path, its twists and turns leading you deeper into the heart of the dense forest. The ancient trees tower high above you, their verdant crowns interlocking to form a natural cathedral of green. Their thick branches cast a dappled light upon the forest floor, bathing the area in an ethereal and otherworldly glow. The path winds its way through the trees, the sound of crunching leaves and twigs beneath your feet the only sign of your progress. To either side, the forest presses in close, its underbrush and brambles lending a sense of mystery and danger to your journey. Ahead of you, the path stretches on, its course marked by the twists and turns of gnarled roots that burst through the earth. It continues east and west, a ribbon of light in an otherwise dark and enchanting world.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51558,
+        "East": 51579,
+        "South": 51556
+      },
+      "Id": 51557
+    },
+    {
+      "Name": "A trail through the dense forest",
+      "Description": "You find yourself on a narrow path, its twists and turns leading you deeper into the heart of the dense forest. The ancient trees tower high above you, their verdant crowns interlocking to form a natural cathedral of green. Their thick branches cast a dappled light upon the forest floor, bathing the area in an ethereal and otherworldly glow. The path winds its way through the trees, the sound of crunching leaves and twigs beneath your feet the only sign of your progress. To either side, the forest presses in close, its underbrush and brambles lending a sense of mystery and danger to your journey. Ahead of you, the path stretches on, its course marked by the twists and turns of gnarled roots that burst through the earth. It continues east and west, a ribbon of light in an otherwise dark and enchanting world.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51559,
+        "East": 51578,
+        "South": 51557,
+        "West": 51593
+      },
+      "Id": 51558
+    },
+    {
+      "Name": "A trail through the dense forest",
+      "Description": "You find yourself on a narrow path, its twists and turns leading you deeper into the heart of the dense forest. The ancient trees tower high above you, their verdant crowns interlocking to form a natural cathedral of green. Their thick branches cast a dappled light upon the forest floor, bathing the area in an ethereal and otherworldly glow. The path winds its way through the trees, the sound of crunching leaves and twigs beneath your feet the only sign of your progress. To either side, the forest presses in close, its underbrush and brambles lending a sense of mystery and danger to your journey. Ahead of you, the path stretches on, its course marked by the twists and turns of gnarled roots that burst through the earth. It continues north and south, a ribbon of light in an otherwise dark and enchanting world.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51560,
+        "East": 51577,
+        "South": 51558
+      },
+      "Id": 51559
+    },
+    {
+      "Name": "A trail through the dense forest",
+      "Description": "You are on a small path leading through the dense forest. The crowns of the old\ntrees leave the forest in an unreal twilight illumination. The path continues\neast and south. There seems to be a cave to the north of here.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 51561,
+        "South": 51559
+      },
+      "Id": 51560
+    },
+    {
+      "Name": "A trail through the dense forest",
+      "Description": "You find yourself on a narrow path, its twists and turns leading you deeper into the heart of the dense forest. The ancient trees tower high above you, their verdant crowns interlocking to form a natural cathedral of green. Their thick branches cast a dappled light upon the forest floor, bathing the area in an ethereal and otherworldly glow. The path winds its way through the trees, the sound of crunching leaves and twigs beneath your feet the only sign of your progress. To either side, the forest presses in close, its underbrush and brambles lending a sense of mystery and danger to your journey. Ahead of you, the path stretches on, its course marked by the twists and turns of gnarled roots that burst through the earth. It continues east and west, a ribbon of light in an otherwise dark and enchanting world.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 51562,
+        "South": 51577,
+        "West": 51560
+      },
+      "Id": 51561
+    },
+    {
+      "Name": "A trail through the dense forest",
+      "Description": "You find yourself on a narrow path, its twists and turns leading you deeper into the heart of the dense forest. The ancient trees tower high above you, their verdant crowns interlocking to form a natural cathedral of green. Their thick branches cast a dappled light upon the forest floor, bathing the area in an ethereal and otherworldly glow. The path winds its way through the trees, the sound of crunching leaves and twigs beneath your feet the only sign of your progress. To either side, the forest presses in close, its underbrush and brambles lending a sense of mystery and danger to your journey. Ahead of you, the path stretches on, its course marked by the twists and turns of gnarled roots that burst through the earth. It continues east and west, a ribbon of light in an otherwise dark and enchanting world.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 51563,
+        "South": 51576,
+        "West": 51561
+      },
+      "Id": 51562
+    },
+    {
+      "Name": "A trail through the dense forest",
+      "Description": "You find yourself on a narrow path, its twists and turns leading you deeper into the heart of the dense forest. The ancient trees tower high above you, their verdant crowns interlocking to form a natural cathedral of green. Their thick branches cast a dappled light upon the forest floor, bathing the area in an ethereal and otherworldly glow. The path winds its way through the trees, the sound of crunching leaves and twigs beneath your feet the only sign of your progress. To either side, the forest presses in close, its underbrush and brambles lending a sense of mystery and danger to your journey. Ahead of you, the path stretches on, its course marked by the twists and turns of gnarled roots that burst through the earth. It continues east and west, a ribbon of light in an otherwise dark and enchanting world.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 51564,
+        "South": 51569,
+        "West": 51562
+      },
+      "Id": 51563
+    },
+    {
+      "Name": "A trail through the dense forest",
+      "Description": "You are on a small path leading through the dense forest. The crowns of the old\ntrees leave the forest in an unreal twilight illumination. The path continues\neast and west.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "South": 51568,
+        "West": 51563
+      },
+      "Id": 51564
+    },
+    {
+      "Name": "Edge of a Dense Forest",
+      "Description": "The dense forest surrounds you with towering trees that reach for the sky, their branches intermingling overhead to form a thick canopy that blocks out much of the sunlight and casts deep shadows below. The ground beneath your feet is soft and spongy, covered in a carpet of fallen leaves and pine needles. Ferns and other undergrowth flourish in abundance, dotted with wildflowers that add pops of color to the lush green landscape. The air is thick with the fragrant scent of pine and damp earth, and the rustling of leaves and the chirping of insects fills the air with a tranquil hum.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51566,
+        "South": 51400,
+        "West": 51572
+      },
+      "Id": 51565
+    },
+    {
+      "Name": "Edge of a Dense Forest",
+      "Description": "The dense forest surrounds you with towering trees that reach for the sky, their branches intermingling overhead to form a thick canopy that blocks out much of the sunlight and casts deep shadows below. The ground beneath your feet is soft and spongy, covered in a carpet of fallen leaves and pine needles. Ferns and other undergrowth flourish in abundance, dotted with wildflowers that add pops of color to the lush green landscape. The air is thick with the fragrant scent of pine and damp earth, and the rustling of leaves and the chirping of insects fills the air with a tranquil hum.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51567,
+        "South": 51565,
+        "West": 51571
+      },
+      "Id": 51566
+    },
+    {
+      "Name": "Within a Dense Forest",
+      "Description": "The dense forest surrounds you with towering trees that reach for the sky, their branches intermingling overhead to form a thick canopy that blocks out much of the sunlight and casts deep shadows below. The ground beneath your feet is soft and spongy, covered in a carpet of fallen leaves and pine needles. Ferns and other undergrowth flourish in abundance, dotted with wildflowers that add pops of color to the lush green landscape. The air is thick with the fragrant scent of pine and damp earth, and the rustling of leaves and the chirping of insects fills the air with a tranquil hum.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51563,
+        "East": 51568,
+        "South": 51570,
+        "West": 51576
+      },
+      "Id": 51569
+    },
+    {
+      "Name": "Within a Dense Forest",
+      "Description": "The dense forest surrounds you with towering trees that reach for the sky, their branches intermingling overhead to form a thick canopy that blocks out much of the sunlight and casts deep shadows below. The ground beneath your feet is soft and spongy, covered in a carpet of fallen leaves and pine needles. Ferns and other undergrowth flourish in abundance, dotted with wildflowers that add pops of color to the lush green landscape. The air is thick with the fragrant scent of pine and damp earth, and the rustling of leaves and the chirping of insects fills the air with a tranquil hum.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51570,
+        "East": 51566,
+        "South": 51572,
+        "West": 51574
+      },
+      "Id": 51571
+    },
+    {
+      "Name": "Within a Dense Forest",
+      "Description": "The dense forest surrounds you with towering trees that reach for the sky, their branches intermingling overhead to form a thick canopy that blocks out much of the sunlight and casts deep shadows below. The ground beneath your feet is soft and spongy, covered in a carpet of fallen leaves and pine needles. Ferns and other undergrowth flourish in abundance, dotted with wildflowers that add pops of color to the lush green landscape. The air is thick with the fragrant scent of pine and damp earth, and the rustling of leaves and the chirping of insects fills the air with a tranquil hum.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51571,
+        "East": 51565,
+        "South": 51401,
+        "West": 51573
+      },
+      "Id": 51572
+    },
+    {
+      "Name": "Within a Dense Forest ",
+      "Description": "The dense forest surrounds you with towering trees that reach for the sky, their branches intermingling overhead to form a thick canopy that blocks out much of the sunlight and casts deep shadows below. The ground beneath your feet is soft and spongy, covered in a carpet of fallen leaves and pine needles. Ferns and other undergrowth flourish in abundance, dotted with wildflowers that add pops of color to the lush green landscape. The air is thick with the fragrant scent of pine and damp earth, and the rustling of leaves and the chirping of insects fills the air with a tranquil hum.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51574,
+        "East": 51572,
+        "South": 51402,
+        "West": 51580
+      },
+      "Id": 51573
+    },
+    {
+      "Name": "Within a Dense Forest ",
+      "Description": "The dense forest surrounds you with towering trees that reach for the sky, their branches intermingling overhead to form a thick canopy that blocks out much of the sunlight and casts deep shadows below. The ground beneath your feet is soft and spongy, covered in a carpet of fallen leaves and pine needles. Ferns and other undergrowth flourish in abundance, dotted with wildflowers that add pops of color to the lush green landscape. The air is thick with the fragrant scent of pine and damp earth, and the rustling of leaves and the chirping of insects fills the air with a tranquil hum.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51575,
+        "East": 51571,
+        "South": 51573,
+        "West": 51579
+      },
+      "Id": 51574
+    },
+    {
+      "Name": "Within a Dense Forest ",
+      "Description": "The dense forest surrounds you with towering trees that reach for the sky, their branches intermingling overhead to form a thick canopy that blocks out much of the sunlight and casts deep shadows below. The ground beneath your feet is soft and spongy, covered in a carpet of fallen leaves and pine needles. Ferns and other undergrowth flourish in abundance, dotted with wildflowers that add pops of color to the lush green landscape. The air is thick with the fragrant scent of pine and damp earth, and the rustling of leaves and the chirping of insects fills the air with a tranquil hum.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51576,
+        "East": 51570,
+        "South": 51574,
+        "West": 51578
+      },
+      "Id": 51575
+    },
+    {
+      "Name": "Within a Dense Forest ",
+      "Description": "The dense forest surrounds you with towering trees that reach for the sky, their branches intermingling overhead to form a thick canopy that blocks out much of the sunlight and casts deep shadows below. The ground beneath your feet is soft and spongy, covered in a carpet of fallen leaves and pine needles. Ferns and other undergrowth flourish in abundance, dotted with wildflowers that add pops of color to the lush green landscape. The air is thick with the fragrant scent of pine and damp earth, and the rustling of leaves and the chirping of insects fills the air with a tranquil hum.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51562,
+        "East": 51569,
+        "South": 51575,
+        "West": 51577
+      },
+      "Id": 51576
+    },
+    {
+      "Name": "Within a Dense Forest ",
+      "Description": "The dense forest surrounds you with towering trees that reach for the sky, their branches intermingling overhead to form a thick canopy that blocks out much of the sunlight and casts deep shadows below. The ground beneath your feet is soft and spongy, covered in a carpet of fallen leaves and pine needles. Ferns and other undergrowth flourish in abundance, dotted with wildflowers that add pops of color to the lush green landscape. The air is thick with the fragrant scent of pine and damp earth, and the rustling of leaves and the chirping of insects fills the air with a tranquil hum.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51561,
+        "East": 51576,
+        "South": 51578,
+        "West": 51559
+      },
+      "Id": 51577
+    },
+    {
+      "Name": "Within a Dense Forest ",
+      "Description": "The dense forest surrounds you with towering trees that reach for the sky, their branches intermingling overhead to form a thick canopy that blocks out much of the sunlight and casts deep shadows below. The ground beneath your feet is soft and spongy, covered in a carpet of fallen leaves and pine needles. Ferns and other undergrowth flourish in abundance, dotted with wildflowers that add pops of color to the lush green landscape. The air is thick with the fragrant scent of pine and damp earth, and the rustling of leaves and the chirping of insects fills the air with a tranquil hum.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51577,
+        "East": 51575,
+        "South": 51579,
+        "West": 51558
+      },
+      "Id": 51578
+    },
+    {
+      "Name": "Within a Dense Forest ",
+      "Description": "The dense forest surrounds you with towering trees that reach for the sky, their branches intermingling overhead to form a thick canopy that blocks out much of the sunlight and casts deep shadows below. The ground beneath your feet is soft and spongy, covered in a carpet of fallen leaves and pine needles. Ferns and other undergrowth flourish in abundance, dotted with wildflowers that add pops of color to the lush green landscape. The air is thick with the fragrant scent of pine and damp earth, and the rustling of leaves and the chirping of insects fills the air with a tranquil hum.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51578,
+        "East": 51574,
+        "South": 51580,
+        "West": 51557
+      },
+      "Id": 51579
+    },
+    {
+      "Name": "Within a Dense Forest ",
+      "Description": "The dense forest surrounds you with towering trees that reach for the sky, their branches intermingling overhead to form a thick canopy that blocks out much of the sunlight and casts deep shadows below. The ground beneath your feet is soft and spongy, covered in a carpet of fallen leaves and pine needles. Ferns and other undergrowth flourish in abundance, dotted with wildflowers that add pops of color to the lush green landscape. The air is thick with the fragrant scent of pine and damp earth, and the rustling of leaves and the chirping of insects fills the air with a tranquil hum.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51579,
+        "East": 51573,
+        "South": 51403,
+        "West": 51556
+      },
+      "Id": 51580
+    },
+    {
+      "Name": "Tigris River",
+      "Description": "Still wide enough for boats to pass, yet the banks of the river are covered\nin tall grass and ferns, blocking your view beyond. Various trees and shrubs\ncan also be seen, providing shade and food for a multitude of animals.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 19121,
+        "West": 51582
+      },
+      "Id": 51581
+    },
+    {
+      "Name": "Tigris River",
+      "Description": "Still wide enough for boats to pass, yet the banks of the river are covered\nin tall grass and ferns, blocking your view beyond. Various trees and shrubs\ncan also be seen, providing shade and food for a multitude of animals.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 51581,
+        "West": 51583
+      },
+      "Id": 51582
+    },
+    {
+      "Name": "River Bend",
+      "Description": "Still wide enough for boats to pass, yet the banks of the river are covered\nin tall grass and ferns, blocking your view beyond. Various trees and shrubs\ncan also be seen, providing shade and food for a multitude of animals.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51584,
+        "East": 51582
+      },
+      "Id": 51583
+    },
+    {
+      "Name": "River Bend",
+      "Description": "Still wide enough for boats to pass, yet the banks of the river are covered\nin tall grass and ferns, blocking your view beyond. Various trees and shrubs\ncan also be seen, providing shade and food for a multitude of animals.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "South": 51583,
+        "West": 51585
+      },
+      "Id": 51584
+    },
+    {
+      "Name": "Tigris River",
+      "Description": "Still wide enough for boats to pass, yet the banks of the river are covered\nin tall grass and ferns, blocking your view beyond. Various trees and shrubs\ncan also be seen, providing shade and food for a multitude of animals.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 51584,
+        "West": 51586
+      },
+      "Id": 51585
+    },
+    {
+      "Name": "Tigris River",
+      "Description": "Still wide enough for boats to pass, yet the banks of the river are covered\nin tall grass and ferns, blocking your view beyond. Various trees and shrubs\ncan also be seen, providing shade and food for a multitude of animals.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 51585,
+        "West": 51587
+      },
+      "Id": 51586
+    },
+    {
+      "Name": "River Bend",
+      "Description": "Still wide enough for boats to pass, yet the banks of the river are covered\nin tall grass and ferns, blocking your view beyond. Various trees and shrubs\ncan also be seen, providing shade and food for a multitude of animals.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51588,
+        "East": 51586
+      },
+      "Id": 51587
+    },
+    {
+      "Name": "Tigris River",
+      "Description": "Still wide enough for boats to pass, yet the banks of the river are covered\nin tall grass and ferns, blocking your view beyond. Various trees and shrubs\ncan also be seen, providing shade and food for a multitude of animals.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51589,
+        "South": 51587
+      },
+      "Id": 51588
+    },
+    {
+      "Name": "River Bend",
+      "Description": "Still wide enough for boats to pass, yet the banks of the river are covered\nin tall grass and ferns, blocking your view beyond. Various trees and shrubs\ncan also be seen, providing shade and food for a multitude of animals.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "South": 51588,
+        "West": 51590
+      },
+      "Id": 51589
+    },
+    {
+      "Name": "Tigris River",
+      "Description": "Still wide enough for boats to pass, yet the banks of the river are covered\nin tall grass and ferns, blocking your view beyond. Various trees and shrubs\ncan also be seen, providing shade and food for a multitude of animals.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 51589,
+        "West": 51591
+      },
+      "Id": 51590
+    },
+    {
+      "Name": "Tigris River",
+      "Description": "Still wide enough for boats to pass, yet the banks of the river are covered\nin tall grass and ferns, blocking your view beyond. Various trees and shrubs\ncan also be seen, providing shade and food for a multitude of animals.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51520,
+        "East": 51590,
+        "West": 51592
+      },
+      "Id": 51591
+    },
+    {
+      "Name": "Tigris River",
+      "Description": "Still wide enough for boats to pass, yet the banks of the river are covered\nin tall grass and ferns, blocking your view beyond. Various trees and shrubs\ncan also be seen, providing shade and food for a multitude of animals.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 51591
+      },
+      "Id": 51592
+    },
+    {
+      "Name": "Edge of a Dense Forest",
+      "Description": "The dense forest surrounds you with towering trees that reach for the sky, their branches intermingling overhead to form a thick canopy that blocks out much of the sunlight and casts deep shadows below. The ground beneath your feet is soft and spongy, covered in a carpet of fallen leaves and pine needles. Ferns and other undergrowth flourish in abundance, dotted with wildflowers that add pops of color to the lush green landscape. The air is thick with the fragrant scent of pine and damp earth, and the rustling of leaves and the chirping of insects fills the air with a tranquil hum.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51568,
+        "South": 51566,
+        "West": 51570
+      },
+      "Id": 51567
+    },
+    {
+      "Name": "Edge of a Dense Forest",
+      "Description": "The dense forest surrounds you with towering trees that reach for the sky, their branches intermingling overhead to form a thick canopy that blocks out much of the sunlight and casts deep shadows below. The ground beneath your feet is soft and spongy, covered in a carpet of fallen leaves and pine needles. Ferns and other undergrowth flourish in abundance, dotted with wildflowers that add pops of color to the lush green landscape. The air is thick with the fragrant scent of pine and damp earth, and the rustling of leaves and the chirping of insects fills the air with a tranquil hum.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51564,
+        "South": 51567,
+        "West": 51569
+      },
+      "Id": 51568
+    },
+    {
+      "Name": "Within a Dense Forest",
+      "Description": "The dense forest surrounds you with towering trees that reach for the sky, their branches intermingling overhead to form a thick canopy that blocks out much of the sunlight and casts deep shadows below. The ground beneath your feet is soft and spongy, covered in a carpet of fallen leaves and pine needles. Ferns and other undergrowth flourish in abundance, dotted with wildflowers that add pops of color to the lush green landscape. The air is thick with the fragrant scent of pine and damp earth, and the rustling of leaves and the chirping of insects fills the air with a tranquil hum.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51569,
+        "East": 51567,
+        "South": 51571,
+        "West": 51575
+      },
+      "Id": 51570
+    },
+    {
+      "Name": "Inside A Massive Living Tree",
+      "Description": "You are in a legendary guild of rangers and woodsmen inside this massive\nliving tree. The tree is said to be centuries old, with roots that spread\nfar and wide, and a trunk so thick that it would take several people\nholding hands to encircle it. Within its walls, the guild members live and\ntrain, honing their skills in tracking, and survival. The interior of the\ntree is lit by glowing mushrooms and torches, and the air is filled with\nthe scent of wood and earth.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 51594,
+        "East": 51558
+      },
+      "Id": 51593
+    },
+    {
+      "Name": "Deep Within the Massive Living Tree",
+      "Description": "Deep within the heart of the giant living tree, there is a small, cozy room\nwhere the guildmaster awaits his students. The room is adorned with\nintricate wooden carvings and tapestries depicting woodland scenes, and the\nwalls are lined with shelves holding various weapons, scrolls, and books. A\nlarge wooden desk sits in the center of the room, and behind it sits the\nguildmaster\u0027s chair, carved from a single piece of oak. The room is lit by\nflickering candles, giving it a warm and inviting glow. This is where the\nguildmaster interviews and advances his students, imparting his knowledge\nand wisdom upon them as they progress through the ranks of the guild. The\nair in the room is heavy with the scent of parchment and ink, and the sound\nof rustling leaves can be heard faintly in the background, reminding all\nwho enter of the forest\u0027s presence.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "South": 51593
+      },
+      "Id": 51594
+    }
+  ],
+  "Mobiles": [
+    {
+      "Keywords": [
+        "john",
+        "lumberjack"
+      ],
+      "ShortDescription": "John the Lumberjack",
+      "LongDescription": "John the Lumberjack is here, looking for some trees to chop down.",
+      "Description": "He is six feet tall and looks quite strong, muscles bulging under his heavy,\nchequered shirt.  His features are worn with hard work and his expression is\none of a peaceful man leading a simple life.",
+      "Level": 6,
+      "Gold": 20,
+      "Sex": "Male",
+      "Hitpoints": 81,
+      "Mana": 118,
+      "Moves": 1000,
+      "Armor": 10,
+      "AttacksCount": 1,
+      "AttackType": "Hit",
+      "Penetration": 30,
+      "DamageRange": "8-8",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 51400
+    },
+    {
+      "Keywords": [
+        "bear"
+      ],
+      "ShortDescription": "the brown bear",
+      "LongDescription": "A big, brown, angry-looking bear is here.",
+      "Description": "The bear is a big, brown, furry animal with very large claws and very sharp\nteeth.  It doesn\u0027t resemble those cute little thingies from toy shops at all.",
+      "Level": 8,
+      "Gold": 800,
+      "Sex": "Female",
+      "Hitpoints": 106,
+      "Mana": 122,
+      "Moves": 1000,
+      "Armor": 10,
+      "AttacksCount": 2,
+      "AttackType": "Hit",
+      "Penetration": 40,
+      "DamageRange": "9-9",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 51402
+    },
+    {
+      "Keywords": [
+        "rabbit"
+      ],
+      "ShortDescription": "the ferocious rabbit",
+      "LongDescription": "A ferocious rabbit is here, glaring hungrily at you.",
+      "Description": "This small, furry creature with long ears and big feet has been attacked by\nthe dreaded rabbit rabies, a horrible disease that turns helpless and innocent\nrabbits into ferocious and bloodthirsty monsters.",
+      "Level": 3,
+      "Gold": 300,
+      "Sex": "Female",
+      "Hitpoints": 44,
+      "Mana": 109,
+      "Moves": 1000,
+      "Armor": 0,
+      "AttacksCount": 1,
+      "AttackType": "Hit",
+      "Penetration": 15,
+      "DamageRange": "6-6",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 51403
+    },
+    {
+      "Keywords": [
+        "deer"
+      ],
+      "ShortDescription": "the fallow deer",
+      "LongDescription": "A fallow deer is grazing peacefully here.",
+      "Description": "She is a graceful creature on long, slender legs, and with large, brown eyes\nlooking back at you with an air of watchful interest.",
+      "Level": 2,
+      "Gold": 200,
+      "Sex": "Female",
+      "Hitpoints": 31,
+      "Mana": 109,
+      "Moves": 1000,
+      "Armor": 0,
+      "AttacksCount": 1,
+      "AttackType": "Hit",
+      "Penetration": 10,
+      "DamageRange": "5-5",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 51404
+    },
+    {
+      "Keywords": [
+        "fox"
+      ],
+      "ShortDescription": "the brown fox",
+      "LongDescription": "A brown fox is here, looking for some rabbits to chew up.",
+      "Description": "It is a large fox with beautiful, red-brown fur and a long, thick brush.",
+      "Level": 2,
+      "Gold": 200,
+      "Sex": "Female",
+      "Hitpoints": 31,
+      "Mana": 109,
+      "Moves": 1000,
+      "Armor": 0,
+      "AttacksCount": 1,
+      "AttackType": "Hit",
+      "Penetration": 10,
+      "DamageRange": "5-5",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 51405
+    },
+    {
+      "Keywords": [
+        "warg",
+        "vicious"
+      ],
+      "ShortDescription": "the vicious warg",
+      "LongDescription": "A vicious warg is here, snarling angrily at you.",
+      "Description": "It is an exceptionally large wolf with thick, black fur.  Saliva is dripping\nquickly from its long, white fangs.  It looks quite dangerous and very angry.",
+      "Level": 5,
+      "Gold": 500,
+      "Sex": "Female",
+      "Hitpoints": 69,
+      "Mana": 113,
+      "Moves": 1000,
+      "Armor": 10,
+      "AttacksCount": 1,
+      "AttackType": "Hit",
+      "Penetration": 25,
+      "DamageRange": "7-7",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 51500
+    },
+    {
+      "Keywords": [
+        "warg",
+        "ferocious"
+      ],
+      "ShortDescription": "the ferocious warg",
+      "LongDescription": "A ferocious warg is here, snarling angrily at you.",
+      "Description": "It is an exceptionally large wolf with thick, black fur.  Saliva is dripping\nquickly from its long, white fangs.  It looks quite dangerous and very angry.",
+      "Level": 5,
+      "Gold": 500,
+      "Sex": "Female",
+      "Hitpoints": 69,
+      "Mana": 113,
+      "Moves": 1000,
+      "Armor": 10,
+      "AttacksCount": 1,
+      "AttackType": "Hit",
+      "Penetration": 25,
+      "DamageRange": "7-7",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 51501
+    },
+    {
+      "Keywords": [
+        "wolf",
+        "grey"
+      ],
+      "ShortDescription": "the large, grey wolf",
+      "LongDescription": "A large, grey wolf is here, glaring hungrily at you.",
+      "Description": "The large, grey wolf eyes you with interest while licking its lips.",
+      "Level": 3,
+      "Gold": 300,
+      "Sex": "Female",
+      "Hitpoints": 44,
+      "Mana": 109,
+      "Moves": 1000,
+      "Armor": 0,
+      "AttacksCount": 1,
+      "AttackType": "Hit",
+      "Penetration": 15,
+      "DamageRange": "6-6",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 51502
+    },
+    {
+      "Keywords": [
+        "wolf",
+        "black"
+      ],
+      "ShortDescription": "the large, black wolf",
+      "LongDescription": "A large, black wolf is here, glaring hungrily at you.",
+      "Description": "The large, black wolf eyes you with interest while licking its lips.",
+      "Level": 3,
+      "Gold": 300,
+      "Sex": "Female",
+      "Hitpoints": 44,
+      "Mana": 109,
+      "Moves": 1000,
+      "Armor": 0,
+      "AttacksCount": 1,
+      "AttackType": "Hit",
+      "Penetration": 15,
+      "DamageRange": "6-6",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 51503
+    },
+    {
+      "Keywords": [
+        "dragon",
+        "green"
+      ],
+      "ShortDescription": "the huge, green dragon",
+      "LongDescription": "A huge green dragon is here, its narrow yellow eyes glowing with rage.",
+      "Description": "This enormous winged serpent has dark green scales covering most of its\ncolossal body.  Numerous holes in its heavy wings tell of many fights as does\nthe nicks in the horns on its head.  It smells as disgusting as only dragons\ndo.",
+      "Level": 25,
+      "Gold": 25000,
+      "Sex": "Female",
+      "Hitpoints": 580,
+      "Mana": 158,
+      "Moves": 1000,
+      "Armor": 40,
+      "AttacksCount": 4,
+      "AttackType": "Hit",
+      "Penetration": 125,
+      "DamageRange": "17-27",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 51512
+    },
+    {
+      "Keywords": [
+        "shargugh",
+        "brownie"
+      ],
+      "ShortDescription": "Shargugh",
+      "LongDescription": "Shargugh the Forest Brownie is here, grinning broadly at you.",
+      "Description": "This little fellow is only three foot tall with wild matted brown hair and long\ntangled brown beard.  He wears ragged brown and green clothing and looks as if\nhe is having great fun.",
+      "Level": 10,
+      "Gold": 500,
+      "Sex": "Male",
+      "Hitpoints": 131,
+      "Mana": 127,
+      "Moves": 1000,
+      "Armor": 20,
+      "AttacksCount": 2,
+      "AttackType": "Hit",
+      "Penetration": 50,
+      "DamageRange": "6-10",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 51515
+    },
+    {
+      "Keywords": [
+        "elder",
+        "druid"
+      ],
+      "ShortDescription": "the elder druid",
+      "LongDescription": "The elder druid is here ... he looks very upset at your presence in his home.",
+      "Description": "The druid looks quite old.  You would think him venerable, but you know\nhe would be a tough foe.",
+      "Level": 17,
+      "Gold": 2500,
+      "Sex": "Male",
+      "Hitpoints": 276,
+      "Mana": 181,
+      "Moves": 1000,
+      "Armor": 40,
+      "AttacksCount": 3,
+      "AttackType": "Hit",
+      "Penetration": 85,
+      "DamageRange": "10-16",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 51516
+    },
+    {
+      "Keywords": [
+        "bunny",
+        "rabbit"
+      ],
+      "ShortDescription": "a bunny",
+      "LongDescription": "A bunny rabbit hops around playfully.",
+      "Description": "This rabbit is a small, furry animal with long hind legs and short front legs.\nIt has a round, compact body and a short, fluffy tail. It has large, round ears\nthat can move independently, and its eyes are situated on the sides of its head,\ngiving it a wide field of vision. Its fur is soft and gray. It has large, strong\nhind legs that it uses for jumping and running, and sharp claws that it uses for\ndigging burrows. It has large, flat teeth designed for chewing tough vegetation.\nOverall, this rabbit have a distinctive and recognizable appearance, with its\nsoft, round body and long hind legs making it look both cute and nimble.",
+      "Level": 1,
+      "Gold": 100,
+      "Sex": "None",
+      "Hitpoints": 25,
+      "Mana": 0,
+      "Moves": 1000,
+      "Armor": 0,
+      "AttacksCount": 1,
+      "AttackType": "Hit",
+      "Penetration": 0,
+      "DamageRange": "2-2",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 51517
+    },
+    {
+      "Keywords": [
+        "Thalionorin",
+        "Leafwhisperer",
+        "ranger",
+        "guildmaster"
+      ],
+      "ShortDescription": "the ranger guildmaster",
+      "LongDescription": "Thalionorin Leafwhisperer, master of the rangers guild rests here waiting for the next student.",
+      "Description": "A tall, lean, and muscular figure with piercing green eyes, long curly brown\nhair, and dons a suit of green and brown leather armor. Thalionorin is a skilled\nmaster ranger, holding a staff made from the wood of this massive. He is wise\nand compassionate, with a deep love for nature and its balance. As guildmaster,\nThalionorin trains and mentors new rangers while overseeing guild operations\nwith a fair but firm leadership style, earning the respect and reverence of all\nwho know him.",
+      "Level": 51,
+      "Gold": 5100,
+      "Sex": "Male",
+      "Hitpoints": 6050,
+      "Mana": 1015,
+      "Moves": 1000,
+      "Armor": 100,
+      "AttacksCount": 7,
+      "AttackType": "Hit",
+      "Penetration": 1255,
+      "DamageRange": "19-55",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 51518
+    },
+    {
+      "Keywords": [
+        "ranger",
+        "guildguard",
+        "guard"
+      ],
+      "ShortDescription": "the ranger guild guard",
+      "LongDescription": "The ranger guild guard is alert here, scanning the shadows and bushes for\nsomeone trying to sneak into the guild.",
+      "Description": "Dressed in green and brown leather armor adorned with nature-inspired designs,\nthis ranger guard blends in seamlessly with the surrounding forest. The ranger\nis peaceful sort, preferring to use non-lethal means to subdue intruders\nwhenever possible, using deadly force only as a last resort to protect the\nliving tree and its guild members.",
+      "Level": 40,
+      "Gold": 4000,
+      "Sex": "Male",
+      "Hitpoints": 3100,
+      "Mana": 815,
+      "Moves": 1000,
+      "Armor": 100,
+      "AttacksCount": 6,
+      "AttackType": "Hit",
+      "Penetration": 400,
+      "DamageRange": "15-35",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 51519
+    }
+  ],
+  "MobileResets": [
+    {
+      "MobileId": 51516,
+      "RoomId": 51555
+    },
+    {
+      "MobileId": 51400,
+      "RoomId": 51409
+    },
+    {
+      "MobileId": 309,
+      "RoomId": 51412
+    },
+    {
+      "MobileId": 51405,
+      "RoomId": 51414
+    },
+    {
+      "MobileId": 309,
+      "RoomId": 51415
+    },
+    {
+      "MobileId": 309,
+      "RoomId": 51417
+    },
+    {
+      "MobileId": 309,
+      "RoomId": 51419
+    },
+    {
+      "MobileId": 51402,
+      "RoomId": 51422
+    },
+    {
+      "MobileId": 51404,
+      "RoomId": 51423
+    },
+    {
+      "MobileId": 51515,
+      "RoomId": 51500
+    },
+    {
+      "MobileId": 51502,
+      "RoomId": 51504
+    },
+    {
+      "MobileId": 51502,
+      "RoomId": 51504
+    },
+    {
+      "MobileId": 51502,
+      "RoomId": 51508
+    },
+    {
+      "MobileId": 51502,
+      "RoomId": 51508
+    },
+    {
+      "MobileId": 51503,
+      "RoomId": 51512
+    },
+    {
+      "MobileId": 51503,
+      "RoomId": 51512
+    },
+    {
+      "MobileId": 51500,
+      "RoomId": 51516
+    },
+    {
+      "MobileId": 51500,
+      "RoomId": 51516
+    },
+    {
+      "MobileId": 51503,
+      "RoomId": 51518
+    },
+    {
+      "MobileId": 51503,
+      "RoomId": 51518
+    },
+    {
+      "MobileId": 51501,
+      "RoomId": 51527
+    },
+    {
+      "MobileId": 51501,
+      "RoomId": 51527
+    },
+    {
+      "MobileId": 6319,
+      "RoomId": 51534
+    },
+    {
+      "MobileId": 6318,
+      "RoomId": 51534
+    },
+    {
+      "MobileId": 6318,
+      "RoomId": 51534
+    },
+    {
+      "MobileId": 6318,
+      "RoomId": 51534
+    },
+    {
+      "MobileId": 51512,
+      "RoomId": 51543
+    },
+    {
+      "MobileId": 51502,
+      "RoomId": 51572
+    },
+    {
+      "MobileId": 51502,
+      "RoomId": 51574
+    },
+    {
+      "MobileId": 51502,
+      "RoomId": 51574
+    },
+    {
+      "MobileId": 51502,
+      "RoomId": 51574
+    },
+    {
+      "MobileId": 51502,
+      "RoomId": 51579
+    },
+    {
+      "MobileId": 51502,
+      "RoomId": 51576
+    },
+    {
+      "MobileId": 51502,
+      "RoomId": 51576
+    },
+    {
+      "MobileId": 51502,
+      "RoomId": 51562
+    },
+    {
+      "MobileId": 51502,
+      "RoomId": 51559
+    },
+    {
+      "MobileId": 51502,
+      "RoomId": 51406
+    },
+    {
+      "MobileId": 51502,
+      "RoomId": 51411
+    },
+    {
+      "MobileId": 51502,
+      "RoomId": 51411
+    },
+    {
+      "MobileId": 51502,
+      "RoomId": 51557
+    },
+    {
+      "MobileId": 51502,
+      "RoomId": 51559
+    },
+    {
+      "MobileId": 51501,
+      "RoomId": 51559
+    },
+    {
+      "MobileId": 51501,
+      "RoomId": 51551
+    },
+    {
+      "MobileId": 51501,
+      "RoomId": 51580
+    },
+    {
+      "MobileId": 51501,
+      "RoomId": 51574
+    },
+    {
+      "MobileId": 51501,
+      "RoomId": 51575
+    },
+    {
+      "MobileId": 51501,
+      "RoomId": 51577
+    },
+    {
+      "MobileId": 51501,
+      "RoomId": 51406
+    },
+    {
+      "MobileId": 51517,
+      "RoomId": 51563
+    },
+    {
+      "MobileId": 51517,
+      "RoomId": 51568
+    },
+    {
+      "MobileId": 51517,
+      "RoomId": 51404
+    },
+    {
+      "MobileId": 51518,
+      "RoomId": 51594
+    },
+    {
+      "MobileId": 51519,
+      "RoomId": 51558
+    }
+  ]
+}

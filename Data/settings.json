@@ -2,7 +2,7 @@
   "MaximumLevel": 40,
   "ServerPort": 6101,
   "WebServiceUrl": "http://localhost:8080/AbarimMUD/",
-  "StartRoomId": 3001,
+  "StartRoomId": 19087,
   "DefaultCharacter": "Yang",
   "DefaultClass": "warrior",
   "HitpointsRegenPercentagePerMinute": 20,

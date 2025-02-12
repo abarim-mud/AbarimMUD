@@ -123,20 +123,20 @@ namespace AbarimMUD.Data
 		public const int DefaultPenetration = 0;
 		public const int DefaultArmor = 0;
 		public const int DefaultGold = 100;
+		public const int DefaultHitpoints = 100;
+		public const int DefaultMana = 100;
+		public const int DefaultMoves = 1000;
 		public static readonly ValueRange DefaultDamageRange = new ValueRange(1, 4);
-		public static readonly ValueRange DefaultHitpointsRange = new ValueRange(1, 100);
-		public static readonly ValueRange DefaultManaRange = new ValueRange(100, 200);
-		public static readonly ValueRange DefaultMovesRange = new ValueRange(100, 200);
 
 
-		private ValueRange _hitpointsRange = DefaultHitpointsRange, _manaRange = DefaultManaRange, _movesRange = DefaultMovesRange;
+		private int _hitpoints = DefaultHitpoints, _mana = DefaultMana, _moves = DefaultMoves;
 		private int _armor = DefaultArmor;
 		private int _attacksCount = 1;
 		private AttackType _attackType = AttackType.Hit;
 		private int _penetration = DefaultPenetration;
 		private ValueRange _damageRange = DefaultDamageRange;
-		private int _gold = DefaultGold;
 		private int _level;
+		private int _gold = DefaultGold;
 
 		[Browsable(false)]
 		public HashSet<string> Keywords { get; set; } = new HashSet<string>();
@@ -165,55 +165,69 @@ namespace AbarimMUD.Data
 			}
 		}
 
+		public int Gold
+		{
+			get => _gold;
+
+			set
+			{
+				if (value == _gold)
+				{
+					return;
+				}
+
+				_gold = value;
+				InvalidateCreaturesOfThisClass();
+			}
+		}
+
+
 		public Sex Sex { get; set; }
 
-		[OLCAlias("hprange")]
-		public ValueRange HitpointsRange
+		public int Hitpoints
 		{
-			get => _hitpointsRange;
+			get => _hitpoints;
 
 			set
 			{
-				if (value == _hitpointsRange)
+				if (value == _hitpoints)
 				{
 					return;
 				}
 
-				_hitpointsRange = value;
+				_hitpoints = value;
 				InvalidateCreaturesOfThisClass();
 			}
 		}
 
-		[OLCAlias("manarange")]
-		public ValueRange ManaRange
+		public int Mana
 		{
-			get => _manaRange;
+			get => _mana;
 
 			set
 			{
-				if (value == _manaRange)
+				if (value == _mana)
 				{
 					return;
 				}
 
-				_manaRange = value;
+				_mana = value;
 				InvalidateCreaturesOfThisClass();
 			}
 		}
 
-		[OLCAlias("mvrange")]
-		public ValueRange MovesRange
+		public int Moves
 		{
-			get => _movesRange;
+			get => _moves;
 
 			set
 			{
-				if (value == _movesRange)
+				if (value == _moves)
 				{
 					return;
 				}
 
-				_movesRange = value;
+				_moves = value;
 				InvalidateCreaturesOfThisClass();
 			}
 		}
@@ -317,7 +331,6 @@ namespace AbarimMUD.Data
 
 		public StockItemType? Shop { get; set; }
 
-		public int Gold { get; set; }
 
 		public bool MatchesKeyword(string keyword) => Keywords.StartsWithPattern(keyword);
 
@@ -327,6 +340,9 @@ namespace AbarimMUD.Data
 		{
 			var stats = new CreatureStats
 			{
+				MaxHitpoints = Hitpoints,
+				MaxMana = Mana,
+				MaxMoves = Moves,
 				Armor = Armor
 			};
 
@@ -336,24 +352,6 @@ namespace AbarimMUD.Data
 				var attack = new Attack(AttackType, Penetration, DamageRange);
 				stats.Attacks.Add(attack);
 			}
-
-			long xpAward = Math.Max(1, stats.MaxHitpoints);
-			xpAward *= Math.Max(1, stats.Armor);
-
-			long attackXpFactor = 0;
-			foreach (var attack in stats.Attacks)
-			{
-				long t = Math.Max(1, attack.Penetration);
-
-				t *= Math.Max(1, attack.AverageDamage);
-
-				attackXpFactor += t;
-			}
-
-			attackXpFactor = Math.Max(1, attackXpFactor / 1000);
-			xpAward *= attackXpFactor;
-
-			stats.XpAward = xpAward;
 
 			return stats;
 		}
@@ -369,9 +367,9 @@ namespace AbarimMUD.Data
 				Description = Description,
 				Level = Level,
 				Sex = Sex,
-				HitpointsRange = HitpointsRange,
-				ManaRange = ManaRange,
-				MovesRange = MovesRange,
+				Hitpoints = Hitpoints,
+				Mana = Mana,
+				Moves = Moves,
 				Armor = Armor,
 				AttacksCount = AttacksCount,
 				AttackType = AttackType,

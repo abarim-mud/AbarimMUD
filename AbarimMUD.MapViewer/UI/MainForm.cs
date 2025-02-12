@@ -1,11 +1,11 @@
 using AbarimMUD.Data;
 using AbarimMUD.Storage;
 using MUDMapBuilder;
-using Myra;
 using Myra.Graphics2D.UI;
 using Myra.Graphics2D.UI.File;
 using Myra.Graphics2D.UI.Styles;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -136,7 +136,7 @@ namespace AbarimMUD.MapViewer.UI
 
 			label = new Label
 			{
-				Text = "Class",
+				Text = "Id",
 			};
 
 			Grid.SetColumn(label, 2);
@@ -163,7 +163,7 @@ namespace AbarimMUD.MapViewer.UI
 
 			label = new Label
 			{
-				Text = "Attacks",
+				Text = "Mana",
 			};
 
 			Grid.SetColumn(label, 5);
@@ -172,7 +172,7 @@ namespace AbarimMUD.MapViewer.UI
 
 			label = new Label
 			{
-				Text = "Experience",
+				Text = "Moves",
 			};
 
 			Grid.SetColumn(label, 6);
@@ -181,10 +181,37 @@ namespace AbarimMUD.MapViewer.UI
 
 			label = new Label
 			{
-				Text = "Gold",
+				Text = "Armor",
 			};
 
 			Grid.SetColumn(label, 7);
+			Grid.SetRow(label, row);
+			_gridMobiles.Widgets.Add(label);
+
+			label = new Label
+			{
+				Text = "Attacks",
+			};
+
+			Grid.SetColumn(label, 8);
+			Grid.SetRow(label, row);
+			_gridMobiles.Widgets.Add(label);
+
+			label = new Label
+			{
+				Text = "Experience",
+			};
+
+			Grid.SetColumn(label, 9);
+			Grid.SetRow(label, row);
+			_gridMobiles.Widgets.Add(label);
+
+			label = new Label
+			{
+				Text = "Gold",
+			};
+
+			Grid.SetColumn(label, 10);
 			Grid.SetRow(label, row);
 			_gridMobiles.Widgets.Add(label);
 
@@ -196,12 +223,13 @@ namespace AbarimMUD.MapViewer.UI
 				Text = "-------------------------------------------------------------------------------------------------------------------------------",
 			};
 
-			Grid.SetColumnSpan(label, 7);
+			Grid.SetColumnSpan(label, 11);
 			Grid.SetRow(label, row);
 			_gridMobiles.Widgets.Add(label);
 			++row;
 
-			foreach (var mobile in sourceArea.Mobiles)
+			var orderedMobiles = (from m in sourceArea.Mobiles orderby m.Level select m).ToList();
+			foreach (var mobile in orderedMobiles)
 			{
 				// Id
 				label = new Label
@@ -228,7 +256,7 @@ namespace AbarimMUD.MapViewer.UI
 				// Class
 				label = new Label
 				{
-					Text = mobile.Class.Name
+					Text = mobile.Id.ToString()
 				};
 
 				Grid.SetColumn(label, 2);
@@ -245,7 +273,7 @@ namespace AbarimMUD.MapViewer.UI
 				Grid.SetRow(label, row);
 				_gridMobiles.Widgets.Add(label);
 
-				var stats = mobile.Class.CreateStats(mobile.Level);
+				var stats = mobile.CreateStats();
 
 				// HP
 				label = new Label
@@ -254,6 +282,36 @@ namespace AbarimMUD.MapViewer.UI
 				};
 
 				Grid.SetColumn(label, 4);
+				Grid.SetRow(label, row);
+				_gridMobiles.Widgets.Add(label);
+
+				// Mana
+				label = new Label
+				{
+					Text = stats.MaxMana.ToString()
+				};
+
+				Grid.SetColumn(label, 5);
+				Grid.SetRow(label, row);
+				_gridMobiles.Widgets.Add(label);
+
+				// Moves
+				label = new Label
+				{
+					Text = stats.MaxMoves.ToString()
+				};
+
+				Grid.SetColumn(label, 6);
+				Grid.SetRow(label, row);
+				_gridMobiles.Widgets.Add(label);
+
+				// Armor
+				label = new Label
+				{
+					Text = stats.Armor.ToString()
+				};
+
+				Grid.SetColumn(label, 7);
 				Grid.SetRow(label, row);
 				_gridMobiles.Widgets.Add(label);
 
@@ -269,12 +327,14 @@ namespace AbarimMUD.MapViewer.UI
 					if (lastAttack == null)
 					{
 						lastAttack = new Tuple<int, Attack>(1, atk);
-					} else if (lastAttack.Item2.Penetration == atk.Penetration &&
+					}
+					else if (lastAttack.Item2.Penetration == atk.Penetration &&
 						lastAttack.Item2.MinimumDamage == atk.MinimumDamage &&
 						lastAttack.Item2.MaximumDamage == atk.MaximumDamage)
 					{
 						lastAttack = new Tuple<int, Attack>(lastAttack.Item1 + 1, atk);
-					} else
+					}
+					else
 					{
 						mergedAttacks.Add(lastAttack);
 						lastAttack = new Tuple<int, Attack>(1, atk);
@@ -287,7 +347,7 @@ namespace AbarimMUD.MapViewer.UI
 				}
 
 				var sb = new StringBuilder();
-				for(var i = 0; i < mergedAttacks.Count; ++i)
+				for (var i = 0; i < mergedAttacks.Count; ++i)
 				{
 					var atk = mergedAttacks[i].Item2;
 					sb.Append($"{mergedAttacks[i].Item1}x({atk.Penetration}:{atk.MinimumDamage}-{atk.MaximumDamage})");
@@ -303,27 +363,27 @@ namespace AbarimMUD.MapViewer.UI
 					Text = sb.ToString()
 				};
 
-				Grid.SetColumn(label, 5);
+				Grid.SetColumn(label, 8);
 				Grid.SetRow(label, row);
 				_gridMobiles.Widgets.Add(label);
 
 				// Experience
 				label = new Label
 				{
-					Text = stats.XpAward.FormatBigNumber()
+					Text = stats.CalculateXpAward().FormatBigNumber()
 				};
 
-				Grid.SetColumn(label, 6);
+				Grid.SetColumn(label, 9);
 				Grid.SetRow(label, row);
 				_gridMobiles.Widgets.Add(label);
 
 				// Gold
 				label = new Label
 				{
-					Text = mobile.Wealth.FormatBigNumber()
+					Text = mobile.Gold.FormatBigNumber()
 				};
 
-				Grid.SetColumn(label, 7);
+				Grid.SetColumn(label, 10);
 				Grid.SetRow(label, row);
 				_gridMobiles.Widgets.Add(label);
 				++row;

@@ -77,9 +77,9 @@ namespace AbarimMUD.Import.Diku
 
 			importer.Process();
 
-			var astoria = (from a in importer.Areas where a.Name == "Astoria" select a).First();
+/*			var astoria = (from a in importer.Areas where a.Name == "Astoria" select a).First();
 			var outskirts = (from a in importer.Areas where a.Name == "Outskirts of Astoria" select a).First();
-			MergeAreas(importer.Areas, astoria, outskirts);
+			MergeAreas(importer.Areas, astoria, outskirts);*/
 
 			// Convert DikuLoad areas to AM Areas
 			var outputAreasCount = 0;
@@ -135,7 +135,7 @@ namespace AbarimMUD.Import.Diku
 			try
 			{
 				Process(null,
-					new[] { "Astoria", "Outskirts of Astoria", "Sewers", "Haon Dor", "Arachnos" },
+					new[] { "Astoria", "Sewers", "Haon Dor", "Arachnos", "Plains" },
 					@"D:\Projects\CrimsonStainedLands\master\CrimsonStainedLands\data\areas",
 					@"D:\Projects\AbarimMUD\Data");
 			}

@@ -44,7 +44,7 @@ namespace AbarimMUD.Data
 		Nowhere,
 	}
 
-	public class Room: AreaEntity
+	public class Room : AreaEntity
 	{
 		public string Name { get; set; }
 		public string Description { get; set; }
@@ -59,7 +59,7 @@ namespace AbarimMUD.Data
 		public string Owner { get; set; }
 
 		[Browsable(false)]
-		public Dictionary<Direction, RoomExit> Exits { get; set; }
+		public Dictionary<Direction, RoomExit> Exits { get; set; } = new Dictionary<Direction, RoomExit>();
 
 		[Browsable(false)]
 		[JsonIgnore]
@@ -68,11 +68,6 @@ namespace AbarimMUD.Data
 		[Browsable(false)]
 		[JsonIgnore]
 		public List<Character> Characters { get; } = new List<Character>();
-
-		public Room()
-		{
-			Exits = new Dictionary<Direction, RoomExit>();
-		}
 
 		public void AddCharacter(Character character)
 		{
@@ -145,6 +140,44 @@ namespace AbarimMUD.Data
 			{
 				targetRoom.Area.Save();
 			}
+		}
+
+		public void Delete()
+		{
+			// Firstly delete all connections to this room
+			foreach (var area in Area.Storage)
+			{
+				foreach (var room in area.Rooms)
+				{
+					if (room.Id == Id)
+					{
+						continue;
+					}
+
+					var toDelete = new List<Direction>();
+					foreach (var pair in room.Exits)
+					{
+						if (pair.Value.TargetRoom != null && pair.Value.TargetRoom.Id == Id)
+						{
+							toDelete.Add(pair.Key);
+						}
+					}
+
+					foreach (var td in toDelete)
+					{
+						room.Exits.Remove(td);
+					}
+				}
+			}
+
+			// Now remove room from the area
+			if (Area != null)
+			{
+				Area.Rooms.Remove(this);
+			}
+
+			// Finally save the area
+			Area.Save();
 		}
 
 		public static Room GetRoomById(int id) => Area.Storage.GetRoomById(id);

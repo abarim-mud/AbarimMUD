@@ -164,7 +164,7 @@ namespace AbarimMUD.Commands.Player
 
 				if (mobile != null)
 				{
-					sb.AppendLine("Xp Award: " + stats.XpAward.FormatBigNumber());
+					sb.AppendLine("Xp Award: " + stats.CalculateXpAward().FormatBigNumber());
 				}
 
 				sb.Append("[reset]");

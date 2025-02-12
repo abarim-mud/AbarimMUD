@@ -21,7 +21,7 @@ namespace AbarimMUD.Combat
 			var targetMobile = target.Creature as MobileInstance;
 			if (character != null && targetMobile != null)
 			{
-				var xpAward = targetMobile.Stats.XpAward;
+				var xpAward = targetMobile.Stats.CalculateXpAward();
 				attacker.Send($"Total exp for kill is {xpAward.FormatBigNumber()}.");
 
 				var gold = targetMobile.Gold;

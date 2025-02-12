@@ -1,0 +1,1236 @@
+{
+  "Name": "Arachnos",
+  "Credits": "Mahatma",
+  "Version": 0,
+  "MinimumLevel": "5",
+  "MaximumLevel": "20",
+  "Rooms": [
+    {
+      "Name": "On the spider web",
+      "Description": "You are balancing carefully on the giant sticky threads that holds the giant\nweb in place.  To the south leads a strand to a cave-like structure made from\nmany layers of a spider web.  Another silky strand continues to the north.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 6203,
+        "South": 51533
+      },
+      "Id": 6200
+    },
+    {
+      "Name": "On the spider web",
+      "Description": "You are balancing carefully on the giant sticky threads that holds the giant\nweb in place.  To the north leads a strand to a cave-like structure made from\nmany layers of a spider web.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {},
+      "Id": 6201
+    },
+    {
+      "Name": "On the spider web",
+      "Description": "You are balancing carefully on the giant sticky threads that holds the giant\nweb in place.  To the east leads a strand to a cave-like structure made from\nmany layers of a spider web.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {},
+      "Id": 6202
+    },
+    {
+      "Name": "On the spider web",
+      "Description": "You are balancing carefully on the giant sticky threads that holds the giant\nweb in place. A single silky strand lead to the south, while another leads\noff into the northern direction.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 6301,
+        "South": 6200
+      },
+      "Id": 6203
+    },
+    {
+      "Name": "Webbed Entrance",
+      "Description": "Sticky, sticky, sticky!  The ground is cluttered with leaves, decayed\nremains of webbed crickets, beetle, rats, dogs (?), and even humans.\nYou begin to wonder about what lies ahead.  The air is damp here,\nand even the little light that shines through the canopy seems\nabsorbed into the webbing.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 6302,
+        "South": 6203
+      },
+      "Id": 6301
+    },
+    {
+      "Name": "Webby Passage",
+      "Description": "You find that footing here is very good, almost too good.  The\nlimbs are coated with cobwebs and seem unusually strong for tree\nbranches.  Paths lead in four directions.  The eastward path goes\ndown a bit.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 6304,
+        "East": 6305,
+        "South": 6301,
+        "West": 6303
+      },
+      "Id": 6302
+    },
+    {
+      "Name": "Wasp Hive",
+      "Description": "Drones scuttle about in this room.  The cells on the walls\nare honeycomb in shape and many of the maggots and wasps you see\nhave fang-marks on there bodies.  You sense some order in their markings.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 6302
+      },
+      "Id": 6303
+    },
+    {
+      "Name": "Webby Passage",
+      "Description": "Another webby passage, all sticky and wet.  Tiny ballooning\nspiders fill the air.  It seems that these young ones are newborns.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "South": 6302
+      },
+      "Id": 6304
+    },
+    {
+      "Name": "Beneath the Busy Path",
+      "Description": "You hear the sounds of crawling arachnids above.  The rhythms of\nthe footsteps suggest a primitive order in their movement.  The light\nseems brighter upwards.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "West": 6302,
+        "Up": 6306
+      },
+      "Id": 6305
+    },
+    {
+      "Name": "On the Busy Path",
+      "Description": "Spiders, spiders, everywhere!  It is almost ant-like in efficiency\nwith one big difference.  The spiders here are carrying ant-corpses,\nas well as rats, wolves, and humans.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "South": 6307,
+        "Down": 6305
+      },
+      "Id": 6306
+    },
+    {
+      "Name": "On the Busy Path",
+      "Description": "Spiders, spiders, everywhere!  It is almost ant-like in efficiency\nwith one big difference.  The spiders here are carrying ant-corpses,\nas well as cats, wolves, and humans.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 6306,
+        "East": 6308
+      },
+      "Id": 6307
+    },
+    {
+      "Name": "On the Busy Path",
+      "Description": "Spiders, spiders, everywhere!  It is almost ant-like in efficiency\nwith one big difference.  The spiders here are carrying ant-corpses,\nas well as cats, dogs, and humans.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 6309,
+        "West": 6307
+      },
+      "Id": 6308
+    },
+    {
+      "Name": "A Split in the Path",
+      "Description": "As always, there is a split in the road.  One road is strewn\nwith cricket feelers.  The other is well-kept and suitable for smooth\ntravelling.  The webbing that was prevalent in earlier rooms is almost\nnon-existent now.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 6310,
+        "South": 6320,
+        "West": 6308
+      },
+      "Id": 6309
+    },
+    {
+      "Name": "Fuzzy Tree Limb",
+      "Description": "You are on a \u0022fuzzy\u0022 tree limb.  Interesting, since the branches\nseem to have \u0022hairs\u0022 sprouting from its bark.  As you look\ncloser you see millions of aphids covering each limb.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "South": 6309,
+        "West": 6311
+      },
+      "Id": 6310
+    },
+    {
+      "Name": "Tree Trunk",
+      "Description": "You feel that you can rest here safely.  There is evidence of\nwebbing here, but it is of a finer quality.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 6310,
+        "South": 6312
+      },
+      "Id": 6311
+    },
+    {
+      "Name": "Tree Lair Entrance",
+      "Description": "It seems the inhabitant of this place does not web her\nvictims, as evidenced by the remains before you.  The area\nis cluttered with desiccated corpses, apparently bitten\nbut unwebbed, and drained of their life juices.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 6311,
+        "West": 6313
+      },
+      "Id": 6312
+    },
+    {
+      "Name": "Wolf Spider Lair",
+      "Description": "Very dark, as all lairs of spiders are.  Not much of furnishings\nsave an exit.  The wolf spider keeps no corpses here, but rather\nthrows them out at her leisure.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 6312
+      },
+      "Id": 6313
+    },
+    {
+      "Name": "The Webless Path",
+      "Description": "Strange.  No webbing here.  In fact, no sounds whatsoever.\nThe path continues northward, where you find that you may have to\ntightrope your way across a ravine.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 6309,
+        "West": 6321
+      },
+      "Id": 6320
+    },
+    {
+      "Name": "Above the Ravine",
+      "Description": "Stranger still.  Your feet get a real firm grip on the spiderline.\nYou are above a deep ravine.  This line connects you between two trees.\nBelow you can see a prismatic web with lots of animal bones caught in it:\nsome bear and small deer bones in fact.  No human skeletons are visible\n(yet).",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 6320,
+        "South": 6323,
+        "Down": 6322
+      },
+      "Id": 6321
+    },
+    {
+      "Name": "The Rainbow Web",
+      "Description": "This is the rainbow web--each strand, each link, a hue of violently\nsharp colors and contrasts.  The resident here seems to have a command\nof light as well.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "Up": 6321
+      },
+      "Id": 6322
+    },
+    {
+      "Name": "The Web Forest",
+      "Description": "The trees here take on a different appearance--they are not trees\nanymore, but disjointed make-shift silken made shafts, sticky to the touch,\nand webby in texture.  This is another world it would appear.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 6321,
+        "Down": 6324
+      },
+      "Id": 6323
+    },
+    {
+      "Name": "The Slave Pit",
+      "Description": "You have entered the slave pit.  A voice blares in the distance,\n\u0022Get back to work, maggots!\u0022  Rails upon rails of mined gold and silver\nclutter the trail beneath you.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 6325,
+        "Up": 6323
+      },
+      "Id": 6324
+    },
+    {
+      "Name": "The Tether Path",
+      "Description": "Another tether path just like the rest of them.  Surprisingly well\n-lit by the golden orbs that hang from the sides, you can see the paths\nbecome finer and finer in quality.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 6326,
+        "West": 6324
+      },
+      "Id": 6325
+    },
+    {
+      "Name": "A Road Crossing",
+      "Description": "Another shifty little strand of webs, almost ethereal in nature.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "West": 6325,
+        "Up": 6327
+      },
+      "Id": 6326
+    },
+    {
+      "Name": "A Leader Strand",
+      "Description": "This strand is weightier, more sturdy.  It shimmers as you step on\nit.  You are definitely not in the Midgaardian realms anymore.  Just\nwhere you are you can\u0027t tell.  It feels like you\u0027re moving through\nether.  You can still get back down to more surer lands.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 6328,
+        "Down": 6326
+      },
+      "Id": 6327
+    },
+    {
+      "Name": "The Entrance of the Ethereal Web",
+      "Description": "You are at the entrance to ethereal web.  Flickering in and out,\nin and out, each strand reveals a different hue from black to green\nto blue.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "South": 6327,
+        "Down": 6331
+      },
+      "Id": 6328
+    },
+    {
+      "Name": "A Narrow Series of Caves",
+      "Description": "Here is a filthy section of narrow and stinking caves.\nMaggots of wasps and other baby vermin lie scattered about.\nThe walls are coated with a layer of larvae husks and other scum.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "South": 6331
+      },
+      "Id": 6330
+    },
+    {
+      "Name": "The Base of the Web",
+      "Description": "Large strands connect at this point.  The node shimmers and\nflickers within the ether.  You see many flying creatures--\ninsects, pegasi, and dragon wormkins--navigate the dangerous\npassages of the web.  Exits go in many directions.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 6330,
+        "East": 6332,
+        "South": 6333
+      },
+      "Id": 6331
+    },
+    {
+      "Name": "Through the Trees",
+      "Description": "This part of the web intersects through the branches of some\ntrees.  Various leaves and other debris that the many drones\nhave not picked up yet lie here.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "West": 6331
+      },
+      "Id": 6332
+    },
+    {
+      "Name": "Above the Clouds",
+      "Description": "You can see all of Midgaard in this ethereal web.  Many\nof the larger dragons that do wish to fly seem to fly\naway from the sticky strands of the web.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 6331,
+        "South": 6334,
+        "West": 6335
+      },
+      "Id": 6333
+    },
+    {
+      "Name": "On A Cloud",
+      "Description": "Rather thick in consistency.  You realize this is not\na typical cloud, but it might be the nest of an aerial creature.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 6333
+      },
+      "Id": 6334
+    },
+    {
+      "Name": "A Link in the Ethereal Web",
+      "Description": "This is another link in the ethereal web.  Various creatures\nseem to get caught (or hypnotized) by its sticky strands.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 6333,
+        "West": 6336
+      },
+      "Id": 6335
+    },
+    {
+      "Name": "The Tenuous Strand",
+      "Description": "Very windy here since it goes up into the sky somewhat.\nStill, it\u0027s safe enough to move around.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 6335,
+        "South": 6340,
+        "West": 6341
+      },
+      "Id": 6336
+    },
+    {
+      "Name": "The Elder Wormkin\u0027s Room",
+      "Description": "A more mature wormkin it seems resides here.  Various tomes of\narcane lore clutter the area, along with shards of armor and weaponry.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 6336
+      },
+      "Id": 6340
+    },
+    {
+      "Name": "Another Tree Limb",
+      "Description": "Once again the web crosses another tree limb.  To the side you\nsee the possible entrance to another creatures lair.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 6336,
+        "South": 6342,
+        "West": 6345
+      },
+      "Id": 6341
+    },
+    {
+      "Name": "The Bird Spider\u0027s Lair",
+      "Description": "This is a big game hunter among most spiders.  Crush jewels\nand other weapons suggest the inhabitant must have powerful jaws.\nBeware!",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 6341
+      },
+      "Id": 6342
+    },
+    {
+      "Name": "A Link in the Ethereal Web",
+      "Description": "This is another link in the ethereal web.  Various creatures\nseem to get caught (or hypnotized) by its sticky strands.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 6341,
+        "South": 6350,
+        "West": 6346
+      },
+      "Id": 6345
+    },
+    {
+      "Name": "The Quiet Tree Top",
+      "Description": "Here is a quiet tree top.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 6345,
+        "West": 6347
+      },
+      "Id": 6346
+    },
+    {
+      "Name": "On The Web",
+      "Description": "RRRRRRRRRRROOOOOOOOOOOOOAAAAAAAAAAAAAARR!  You hear the roar\nof a powerful beast.  Dragon, you think.  You shiver in your boots\nas you tiptoe on this section of the web.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 6346,
+        "South": 6355
+      },
+      "Id": 6347
+    },
+    {
+      "Name": "The Ki-Rin Chamber",
+      "Description": "A wise ki-rin was entrapped here many years ago.  It is from her\nthat the ruler of this realm steals his magical strength.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 6345
+      },
+      "Id": 6350
+    },
+    {
+      "Name": "A Link in the Ethereal Web",
+      "Description": "This is another link in the ethereal web.  Various creatures\nseem to get caught (or hypnotized) by its sticky strands.  To\nthe north you sense the heavy breathing of a fiery animal.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 6347,
+        "West": 6360,
+        "Up": 6365
+      },
+      "Id": 6355
+    },
+    {
+      "Name": "Yevaud\u0027s Lair",
+      "Description": "Yevaud, the Usurper of Midgaard, resides here.  A voice cries\nout, \u0022BEWARE, the Usurper of Midgaard lives here!  FLEE while you can!\u0022\nBut even Yevaud has his master...or so you deduce.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 6355
+      },
+      "Id": 6360
+    },
+    {
+      "Name": "A Link in the Ethereal Web",
+      "Description": "This is another link in the ethereal web.  Various creatures\nseem to get caught (or hypnotized) by its sticky strands.  A single\nspider line lies to the north, while ghastly seemings are due\nsouthward.  The grim entrance of Arachnos\u0027 Lair is downward.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 6371,
+        "South": 6366,
+        "Up": 6390,
+        "Down": 6355
+      },
+      "Id": 6365
+    },
+    {
+      "Name": "Entrance to the Donjonkeep",
+      "Description": "A dark path at the end of the web strand, you see ahead\na torch lit chamber where the souls of unavenged adventurers\ncome and gnash their teeth.  The howls and screams of many echo\nthrough the hall ways.  You see one definite path ahead.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 6367
+      },
+      "Id": 6366
+    },
+    {
+      "Name": "The Guardian\u0027s Room",
+      "Description": "A chair sits here for a tireless guardian who ensures that no\nsoul escapes.  The room is undecorated.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 6368,
+        "West": 6366
+      },
+      "Id": 6367
+    },
+    {
+      "Name": "Realm of the Hopeless",
+      "Description": "Here you see many misguided souls who think they still live.\nThey search for those who killed them without warrant, and seek the\nfree souls of living beings to inhabit and perhaps adventure once\nmore.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 6369,
+        "West": 6367
+      },
+      "Id": 6368
+    },
+    {
+      "Name": "Realm of the Hopeless",
+      "Description": "Here you see many misguided souls who think they still live.\nThey search for those who killed them without warrant, and seek the\nfree souls of living beings to inhabit and perhaps adventure once\nmore.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 6370,
+        "West": 6368
+      },
+      "Id": 6369
+    },
+    {
+      "Name": "The Donjonkeep",
+      "Description": "No souls have ever lived in this place.  The wails of slaves\nand the howls of wolves are the only way you can describe the sounds\nyou hear.  The walls are thin and wispy.  The only light you receive\nis the shimmering from the strand of the ethereal web you used to get\nhere.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 6371,
+        "West": 6369
+      },
+      "Id": 6370
+    },
+    {
+      "Name": "The Single Spider Line",
+      "Description": "A single spider line supports you once more.  As you look\nacross the ether you seen a single shack up ahead with a light in\nthe window.  You sense a great evil coming from the east and feel\ninclined to go back on the ethereal web and take your chances there.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 6372,
+        "West": 6370
+      },
+      "Id": 6371
+    },
+    {
+      "Name": "The Single Spider Line",
+      "Description": "A single spider line supports you once more.  The shack comes\ncloser into view and you are even more inclined to go back now.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 6373,
+        "West": 6371
+      },
+      "Id": 6372
+    },
+    {
+      "Name": "The Hermit\u0027s Corner",
+      "Description": "Here you see evidence of a vagrant\u0027s abode.  The shack is to the\neast, if you dare enter it.  You get the sneaking feeling you should\ngo back now.  The skies above you darken and roar with the laughter\nof thunder.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 6380,
+        "West": 6372
+      },
+      "Id": 6373
+    },
+    {
+      "Name": "Mahatma\u0027s Inescapable Trap",
+      "Description": "Mahatma, that silly thief, is here, and he steals everything you\nhave.  He says, \u0027Here, have a quick trip to the Temple of Midgaard.\u0027\nHe plunges a black dagger into your back ...",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {},
+      "Id": 6380
+    },
+    {
+      "Name": "The Entrance to the Arachnos\u0027 Lair",
+      "Description": "All strands inevitably lead here, the center of the web, the\nentrance to Arachnos\u0027 Lair.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 6391,
+        "Down": 6365
+      },
+      "Id": 6390
+    },
+    {
+      "Name": "The Sticky Chamber",
+      "Description": "You can still bail out since your knees are shaking from the\nanticipation (or is it fear?).  The sky is clear on this strand of\nweb, surprisingly unsticky.  The strand does not vibrate like the\nothers.  A few ballooning spiders pass by, cackling \u0022You\u0027re gonna\ndie, you\u0027re gonna fry.  Good bye!\u0022",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 6392,
+        "South": 6390
+      },
+      "Id": 6391
+    },
+    {
+      "Name": "The Great Door",
+      "Description": "Before you you see a large, web-like door.  Various designs\nof ancient runes and names of Midgaard heroes are etched into\nthe webwork.  Perhaps lists of victims?  You can\u0027t tell.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 6399,
+        "South": 6391
+      },
+      "Id": 6392
+    },
+    {
+      "Name": "The Lair of Arachnos",
+      "Description": "This is the lair of the Empress Spider, Arachnos.  A lavishly\nadorned rainbow web, her lair allows her to move to any universe\nshe wishes by using her magical strands to the Prime Material Plane.\nCoffers upon coffers of gold, magical jewels and gems await.  Unfor-\ntunately Arachnos is a baggy spider too, and webs all her treasures\nto her beautiful silken body.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "South": 6392
+      },
+      "Id": 6399
+    }
+  ],
+  "Mobiles": [
+    {
+      "Keywords": [
+        "spider",
+        "young"
+      ],
+      "ShortDescription": "the young spider",
+      "LongDescription": "The young spider is ballooning by you.",
+      "Description": "He looks freshly hatched and sprightly.  His young fangs are just\ngrowing in as of late.",
+      "Level": 5,
+      "Gold": 50,
+      "Sex": "Female",
+      "Hitpoints": 69,
+      "Mana": 113,
+      "Moves": 1000,
+      "Armor": 10,
+      "AttacksCount": 1,
+      "AttackType": "Hit",
+      "Penetration": 25,
+      "DamageRange": "7-7",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 6301
+    },
+    {
+      "Keywords": [
+        "dragon",
+        "Yevaud"
+      ],
+      "ShortDescription": "Yevaud",
+      "LongDescription": "Yevaud the Usurper of Midgaard is here, grinning evilly at you.",
+      "Description": "Old, scaly, but still with a lot of bite in him left.",
+      "Level": 24,
+      "Gold": 5000,
+      "Sex": "Male",
+      "Hitpoints": 530,
+      "Mana": 158,
+      "Moves": 1000,
+      "Armor": 40,
+      "AttacksCount": 4,
+      "AttackType": "Hit",
+      "Penetration": 120,
+      "DamageRange": "16-26",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 6302
+    },
+    {
+      "Keywords": [
+        "spider",
+        "wolf"
+      ],
+      "ShortDescription": "the Wolf Spider",
+      "LongDescription": "The Wolf Spider is here, licking its bloody fangs.",
+      "Description": "The Wolf Spider is hairy, very hairy.",
+      "Level": 6,
+      "Gold": 620,
+      "Sex": "Female",
+      "Hitpoints": 81,
+      "Mana": 118,
+      "Moves": 1000,
+      "Armor": 10,
+      "AttacksCount": 1,
+      "AttackType": "Hit",
+      "Penetration": 30,
+      "DamageRange": "8-8",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 6303
+    },
+    {
+      "Keywords": [
+        "orc"
+      ],
+      "ShortDescription": "the orc",
+      "LongDescription": "The orc is stuck in the web and he can\u0027t get out.",
+      "Description": "You notice an evil look in his eyes.",
+      "Level": 5,
+      "Gold": 50,
+      "Sex": "Male",
+      "Hitpoints": 69,
+      "Mana": 113,
+      "Moves": 1000,
+      "Armor": 10,
+      "AttacksCount": 1,
+      "AttackType": "Hit",
+      "Penetration": 25,
+      "DamageRange": "7-7",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 6304
+    },
+    {
+      "Keywords": [
+        "wasp",
+        "queen"
+      ],
+      "ShortDescription": "the Queen Wasp",
+      "LongDescription": "The Queen Wasp is here, thinking that you would make a tasty offering\n to her master.",
+      "Description": "You notice a glazed look in her eyes.",
+      "Level": 12,
+      "Gold": 750,
+      "Sex": "Female",
+      "Hitpoints": 165,
+      "Mana": 131,
+      "Moves": 1000,
+      "Armor": 20,
+      "AttacksCount": 2,
+      "AttackType": "Hit",
+      "Penetration": 60,
+      "DamageRange": "13-13",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 6305
+    },
+    {
+      "Keywords": [
+        "spider",
+        "drone"
+      ],
+      "ShortDescription": "the drone spider",
+      "LongDescription": "The drone spider walks around doing her master\u0027s bidding.",
+      "Description": "An ordinary drone spider.",
+      "Level": 6,
+      "Gold": 100,
+      "Sex": "Male",
+      "Hitpoints": 81,
+      "Mana": 118,
+      "Moves": 1000,
+      "Armor": 10,
+      "AttacksCount": 1,
+      "AttackType": "Hit",
+      "Penetration": 30,
+      "DamageRange": "8-8",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 6306
+    },
+    {
+      "Keywords": [
+        "spider",
+        "ethereal"
+      ],
+      "ShortDescription": "the ethereal spider",
+      "LongDescription": "The ethereal spider strides here, traveling to different worlds.",
+      "Description": "She winks in and out.",
+      "Level": 10,
+      "Gold": 620,
+      "Sex": "Female",
+      "Hitpoints": 131,
+      "Mana": 127,
+      "Moves": 1000,
+      "Armor": 20,
+      "AttacksCount": 2,
+      "AttackType": "Hit",
+      "Penetration": 50,
+      "DamageRange": "6-10",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 6307
+    },
+    {
+      "Keywords": [
+        "slave",
+        "human"
+      ],
+      "ShortDescription": "the slave of Arachnos",
+      "LongDescription": "The slave works here relentlessly.",
+      "Description": "The slave does not mind you, but will fight like a warrior if attacked.",
+      "Level": 8,
+      "Gold": 250,
+      "Sex": "Male",
+      "Hitpoints": 106,
+      "Mana": 122,
+      "Moves": 1000,
+      "Armor": 10,
+      "AttacksCount": 2,
+      "AttackType": "Hit",
+      "Penetration": 40,
+      "DamageRange": "9-9",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 6308
+    },
+    {
+      "Keywords": [
+        "quasit"
+      ],
+      "ShortDescription": "the quasit",
+      "LongDescription": "The quasit blinks in and out, grinning at you.",
+      "Description": "Demoniac in nature, but more mischievous.  He twiddles his thumbs\nand creates a magical treasure!",
+      "Level": 10,
+      "Gold": 500,
+      "Sex": "Male",
+      "Hitpoints": 131,
+      "Mana": 127,
+      "Moves": 1000,
+      "Armor": 20,
+      "AttacksCount": 2,
+      "AttackType": "Hit",
+      "Penetration": 50,
+      "DamageRange": "6-10",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 6309
+    },
+    {
+      "Keywords": [
+        "spider",
+        "bird"
+      ],
+      "ShortDescription": "the Bird Spider",
+      "LongDescription": "The Bird Spider snaps its powerful jaws.",
+      "Description": "The Bird Spider has very powerful jaws.",
+      "Level": 14,
+      "Gold": 870,
+      "Sex": "Female",
+      "Hitpoints": 205,
+      "Mana": 136,
+      "Moves": 1000,
+      "Armor": 20,
+      "AttacksCount": 2,
+      "AttackType": "Hit",
+      "Penetration": 70,
+      "DamageRange": "15-15",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 6310
+    },
+    {
+      "Keywords": [
+        "hermit"
+      ],
+      "ShortDescription": "the Hermit",
+      "LongDescription": "The Hermit sits here and warns, \u0022Go back before it\u0027s too late!\u0022",
+      "Description": "A dishevelled veteran warrior in disguise is what he is, but he\nmeans well.",
+      "Level": 7,
+      "Gold": 370,
+      "Sex": "Male",
+      "Hitpoints": 94,
+      "Mana": 118,
+      "Moves": 1000,
+      "Armor": 10,
+      "AttacksCount": 1,
+      "AttackType": "Hit",
+      "Penetration": 35,
+      "DamageRange": "9-9",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 6311
+    },
+    {
+      "Keywords": [
+        "donjonkeeper"
+      ],
+      "ShortDescription": "the Donjonkeeper",
+      "LongDescription": "The Donjonkeeper eyes you and wonders how pure your soul is.",
+      "Description": "He delves deeper into you as you stare at him.",
+      "Level": 25,
+      "Gold": 3000,
+      "Sex": "Male",
+      "Hitpoints": 580,
+      "Mana": 158,
+      "Moves": 1000,
+      "Armor": 40,
+      "AttacksCount": 4,
+      "AttackType": "Hit",
+      "Penetration": 125,
+      "DamageRange": "17-27",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 6312
+    },
+    {
+      "Keywords": [
+        "guardian"
+      ],
+      "ShortDescription": "The guardian",
+      "LongDescription": "The guardian is obviously not doing his job.",
+      "Description": "He looks like a lazy bum who sleeps half the time.",
+      "Level": 17,
+      "Gold": 800,
+      "Sex": "Male",
+      "Hitpoints": 276,
+      "Mana": 140,
+      "Moves": 1000,
+      "Armor": 30,
+      "AttacksCount": 3,
+      "AttackType": "Hit",
+      "Penetration": 85,
+      "DamageRange": "8-16",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 6313
+    },
+    {
+      "Keywords": [
+        "spider",
+        "empress",
+        "arachnos"
+      ],
+      "ShortDescription": "Arachnos",
+      "LongDescription": "Arachnos the Empress of Spiders welcomes you with an evil smile.",
+      "Description": "She is a very attractive spider with an ornate gown.  She tempts you\ninto being one of her many slaves.  She does not possess the venomous\nfangs of normal spiders, but then, as you realize, she does not need\nthem.",
+      "Level": 26,
+      "Gold": 5000,
+      "Sex": "Female",
+      "Hitpoints": 630,
+      "Mana": 163,
+      "Moves": 1000,
+      "Armor": 40,
+      "AttacksCount": 4,
+      "AttackType": "Hit",
+      "Penetration": 130,
+      "DamageRange": "14-28",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 6314
+    },
+    {
+      "Keywords": [
+        "ki-rin"
+      ],
+      "ShortDescription": "the Ki-Rin",
+      "LongDescription": "The Ki-Rin smiles good-naturedly to you.",
+      "Description": "She is the last bastion of good in this realm.  Her mission is to\nsomeday free the slaves of the Empress.",
+      "Level": 26,
+      "Gold": 7500,
+      "Sex": "Female",
+      "Hitpoints": 630,
+      "Mana": 163,
+      "Moves": 1000,
+      "Armor": 40,
+      "AttacksCount": 4,
+      "AttackType": "Hit",
+      "Penetration": 130,
+      "DamageRange": "14-28",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 6315
+    },
+    {
+      "Keywords": [
+        "dragon",
+        "wormkin",
+        "young"
+      ],
+      "ShortDescription": "the young dragon wormkin",
+      "LongDescription": "A wormkin with no teeth plays here.",
+      "Description": "Rather small, you almost feel sad in killing it.",
+      "Level": 10,
+      "Gold": 500,
+      "Sex": "Male",
+      "Hitpoints": 131,
+      "Mana": 127,
+      "Moves": 1000,
+      "Armor": 20,
+      "AttacksCount": 2,
+      "AttackType": "Hit",
+      "Penetration": 50,
+      "DamageRange": "6-10",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 6316
+    },
+    {
+      "Keywords": [
+        "dragon",
+        "wormkin",
+        "medium"
+      ],
+      "ShortDescription": "the medium dragon wormkin",
+      "LongDescription": "A wormkin that has grown a bit stares at you inquisitively.",
+      "Description": "A medium-sized dragon--seems it hasn\u0027t killed anything yet by itself.",
+      "Level": 13,
+      "Gold": 2500,
+      "Sex": "Male",
+      "Hitpoints": 185,
+      "Mana": 131,
+      "Moves": 1000,
+      "Armor": 20,
+      "AttacksCount": 2,
+      "AttackType": "Hit",
+      "Penetration": 65,
+      "DamageRange": "8-13",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 6317
+    },
+    {
+      "Keywords": [
+        "spider",
+        "poisonous"
+      ],
+      "ShortDescription": "the huge, poisonous spider",
+      "LongDescription": "A huge, poisonous spider is here.",
+      "Description": "This disgusting creature is at the size of a human crawling on all four.  It\nhas eight hairy legs that gives it a tremendous speed on almost any surface and\nsharp poisonous fangs to paralyze or kill its prey.",
+      "Level": 8,
+      "Gold": 800,
+      "Sex": "Female",
+      "Hitpoints": 106,
+      "Mana": 122,
+      "Moves": 1000,
+      "Armor": 10,
+      "AttacksCount": 2,
+      "AttackType": "Hit",
+      "Penetration": 40,
+      "DamageRange": "9-9",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 6318
+    },
+    {
+      "Keywords": [
+        "queen",
+        "spider"
+      ],
+      "ShortDescription": "the Queen Spider",
+      "LongDescription": "The huge, bulky Queen Spider is here.",
+      "Description": "This disgusting creature is at the size of a small elephant.  It has eight\nhuge, hairy legs that would give it a tremendous speed on almost any surface\nif it wasn\u0027t so immensely fat.  Its large, bulbous eyes stare back at you.",
+      "Level": 15,
+      "Gold": 1500,
+      "Sex": "Female",
+      "Hitpoints": 226,
+      "Mana": 136,
+      "Moves": 1000,
+      "Armor": 30,
+      "AttacksCount": 2,
+      "AttackType": "Hit",
+      "Penetration": 75,
+      "DamageRange": "9-15",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 6319
+    }
+  ],
+  "MobileResets": [
+    {
+      "MobileId": 6301,
+      "RoomId": 6301
+    },
+    {
+      "MobileId": 6305,
+      "RoomId": 6303
+    },
+    {
+      "MobileId": 6301,
+      "RoomId": 6304
+    },
+    {
+      "MobileId": 6301,
+      "RoomId": 6306
+    },
+    {
+      "MobileId": 6301,
+      "RoomId": 6306
+    },
+    {
+      "MobileId": 6308,
+      "RoomId": 6308
+    },
+    {
+      "MobileId": 6308,
+      "RoomId": 6308
+    },
+    {
+      "MobileId": 6308,
+      "RoomId": 6308
+    },
+    {
+      "MobileId": 6308,
+      "RoomId": 6308
+    },
+    {
+      "MobileId": 6308,
+      "RoomId": 6308
+    },
+    {
+      "MobileId": 6303,
+      "RoomId": 6313
+    },
+    {
+      "MobileId": 6306,
+      "RoomId": 6321
+    },
+    {
+      "MobileId": 6309,
+      "RoomId": 6327
+    },
+    {
+      "MobileId": 6306,
+      "RoomId": 6330
+    },
+    {
+      "MobileId": 6316,
+      "RoomId": 6330
+    },
+    {
+      "MobileId": 6306,
+      "RoomId": 6331
+    },
+    {
+      "MobileId": 6304,
+      "RoomId": 6332
+    },
+    {
+      "MobileId": 6307,
+      "RoomId": 6333
+    },
+    {
+      "MobileId": 6307,
+      "RoomId": 6335
+    },
+    {
+      "MobileId": 6317,
+      "RoomId": 6340
+    },
+    {
+      "MobileId": 6310,
+      "RoomId": 6342
+    },
+    {
+      "MobileId": 6315,
+      "RoomId": 6350
+    },
+    {
+      "MobileId": 6302,
+      "RoomId": 6360
+    },
+    {
+      "MobileId": 6313,
+      "RoomId": 6367
+    },
+    {
+      "MobileId": 6312,
+      "RoomId": 6370
+    },
+    {
+      "MobileId": 6311,
+      "RoomId": 6373
+    },
+    {
+      "MobileId": 6314,
+      "RoomId": 6399
+    }
+  ]
+}

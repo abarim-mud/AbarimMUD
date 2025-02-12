@@ -17,13 +17,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DikuLoad.Import.Ascii", "..
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbarimMUD.Import.Diku", "AbarimMUD.Import.Diku\AbarimMUD.Import.Diku.csproj", "{E838FD3C-5AC3-4F63-AB8C-07F9819A024D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbarimMUD.MapViewer", "AbarimMUD.MapViewer\AbarimMUD.MapViewer.csproj", "{9AABF1B0-63E1-458B-A2FD-CEC3E8FCFFB7}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbarimMUD.Engine", "AbarimMUD.Engine\AbarimMUD.Engine.csproj", "{0336CC60-BAFC-4A98-A882-E5ABABD08CB2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbarimMUD.Launcher", "AbarimMUD.Launcher\AbarimMUD.Launcher.csproj", "{5432C3D2-07E6-408D-A729-52F795656F9F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DikuLoad.Import.CSL", "..\DikuLoad\DikuLoad.Import.CSL\DikuLoad.Import.CSL.csproj", "{6922FF5A-56D4-4649-A847-08FB35459A43}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbarimMUD.MapViewer", "AbarimMUD.MapViewer\AbarimMUD.MapViewer.csproj", "{9C57BA5C-D5A4-48DE-9189-A2594ABDF74F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,10 +59,6 @@ Global
 		{E838FD3C-5AC3-4F63-AB8C-07F9819A024D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E838FD3C-5AC3-4F63-AB8C-07F9819A024D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E838FD3C-5AC3-4F63-AB8C-07F9819A024D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9AABF1B0-63E1-458B-A2FD-CEC3E8FCFFB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9AABF1B0-63E1-458B-A2FD-CEC3E8FCFFB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9AABF1B0-63E1-458B-A2FD-CEC3E8FCFFB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9AABF1B0-63E1-458B-A2FD-CEC3E8FCFFB7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0336CC60-BAFC-4A98-A882-E5ABABD08CB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0336CC60-BAFC-4A98-A882-E5ABABD08CB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0336CC60-BAFC-4A98-A882-E5ABABD08CB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -75,6 +71,10 @@ Global
 		{6922FF5A-56D4-4649-A847-08FB35459A43}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6922FF5A-56D4-4649-A847-08FB35459A43}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6922FF5A-56D4-4649-A847-08FB35459A43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C57BA5C-D5A4-48DE-9189-A2594ABDF74F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C57BA5C-D5A4-48DE-9189-A2594ABDF74F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C57BA5C-D5A4-48DE-9189-A2594ABDF74F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C57BA5C-D5A4-48DE-9189-A2594ABDF74F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

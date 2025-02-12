@@ -1,0 +1,2621 @@
+{
+  "Name": "Astoria",
+  "Credits": "Astoria",
+  "Version": 0,
+  "MinimumLevel": "ALL",
+  "MaximumLevel": "ALL",
+  "Rooms": [
+    {
+      "Name": "Outside The East Gate",
+      "Description": "A grand and imposing city entrance, with large black marble pillars on either\nside of the gate, which has a small golden emblem embedded within it. The use\nof black and gold in the description suggests a sense of opulence and\ngrandeur.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "West": 19001
+      },
+      "Id": 19000
+    },
+    {
+      "Name": "The East Gate of Astoria",
+      "Description": "A grand and imposing city entrance, with large black marble pillars on either\nside of the gate, which has a small golden emblem embedded within it. The use\nof black and gold in the description suggests a sense of opulence and\ngrandeur.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 19000,
+        "West": 19002
+      },
+      "Id": 19001
+    },
+    {
+      "Name": "Eastern Street of Astoria",
+      "Description": "Ancient cobblestones line the street which creates an odd tempo of clacks\nand thumps as horse-drawn wagons pass by, bringing merchandise and wares to\nvarious merchants and vendors within the city. The road continues east and west.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 19001,
+        "West": 19003
+      },
+      "Id": 19002
+    },
+    {
+      "Name": "Eastern Street of Astoria",
+      "Description": "Ancient cobblestones line the street which creates an odd tempo of clacks\nand thumps as horse-drawn wagons pass by, bringing merchandise and wares to\nvarious merchants and vendors within the city. The road continues east and west.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 19002,
+        "West": 19004
+      },
+      "Id": 19003
+    },
+    {
+      "Name": "Eastern Street of Astoria",
+      "Description": "Ancient cobblestones line this four way street which creates an odd tempo of clacks\nand thumps as horse-drawn wagons pass by, bringing merchandise and wares to\nvarious merchants and vendors within the city.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19015,
+        "East": 19003,
+        "South": 19034,
+        "West": 19005
+      },
+      "Id": 19004
+    },
+    {
+      "Name": "Eastern Street of Astoria",
+      "Description": "Ancient cobblestones line the street which creates an odd tempo of clacks\nand thumps as horse-drawn wagons pass by, bringing merchandise and wares to\nvarious merchants and vendors within the city. The road continues east and west.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 19004,
+        "West": 19006
+      },
+      "Id": 19005
+    },
+    {
+      "Name": "Eastern Street of Astoria",
+      "Description": "Ancient cobblestones line the street which creates an odd tempo of clacks\nand thumps as horse-drawn wagons pass by, bringing merchandise and wares to\nvarious merchants and vendors within the city. The road continues east and west.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 19005,
+        "West": 19007
+      },
+      "Id": 19006
+    },
+    {
+      "Name": "The Gazebo",
+      "Description": "Ancient cobblestones line the street of this giant gazebo, supported by massive\ncolumns in each of the four corners. One of the busiest intersections of town,\nthe lound sound of clacks and thumps as horse-drawn wagons pass by, bringing\nmerchandise and wares to various merchants, vendors and temples within the\ncity.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19087,
+        "East": 19006,
+        "South": 19093,
+        "West": 19008
+      },
+      "Id": 19007
+    },
+    {
+      "Name": "Western Street of Astoria",
+      "Description": "Ancient cobblestones line the street which creates an odd tempo of clacks\nand thumps as horse-drawn wagons pass by, bringing merchandise and wares to\nvarious merchants and vendors within the city. The road continues east and west.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 19007,
+        "West": 19009
+      },
+      "Id": 19008
+    },
+    {
+      "Name": "Western Street of Astoria",
+      "Description": "Ancient cobblestones line the street which creates an odd tempo of clacks\nand thumps as horse-drawn wagons pass by, bringing merchandise and wares to\nvarious merchants and vendors within the city. The road continues east and west.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 19008,
+        "West": 19010
+      },
+      "Id": 19009
+    },
+    {
+      "Name": "Western Street of Astoria",
+      "Description": "Ancient cobblestones line this four way street which creates an odd tempo of clacks\nand thumps as horse-drawn wagons pass by, bringing merchandise and wares to\nvarious merchants and vendors within the city.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19071,
+        "East": 19009,
+        "South": 19055,
+        "West": 19011
+      },
+      "Id": 19010
+    },
+    {
+      "Name": "Western Street of Astoria",
+      "Description": "Ancient cobblestones line the street which creates an odd tempo of clacks\nand thumps as horse-drawn wagons pass by, bringing merchandise and wares to\nvarious merchants and vendors within the city. The road continues east and west.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 19010,
+        "West": 19012
+      },
+      "Id": 19011
+    },
+    {
+      "Name": "Western Street of Astoria",
+      "Description": "Ancient cobblestones line the street which creates an odd tempo of clacks\nand thumps as horse-drawn wagons pass by, bringing merchandise and wares to\nvarious merchants and vendors within the city. The road continues east and west.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 19011,
+        "West": 19013
+      },
+      "Id": 19012
+    },
+    {
+      "Name": "Western Gate",
+      "Description": "A grand and imposing city entrance, with large black marble pillars on either\nside of the gate, which has a small golden emblem embedded within it. The use\nof black and gold in the description suggests a sense of opulence and\ngrandeur.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 19012,
+        "West": 19014
+      },
+      "Id": 19013
+    },
+    {
+      "Name": "Outside the Western Gate",
+      "Description": "A grand and imposing city entrance, with large black marble pillars on either\nside of the gate, which has a small golden emblem embedded within it. The use\nof black and gold in the description suggests a sense of opulence and\ngrandeur.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 19013,
+        "West": 51400
+      },
+      "Id": 19014
+    },
+    {
+      "Name": "Communer Lane",
+      "Description": "Magical spheres of light replace street lamps here, illuminating the pathway\nalmost as well as the high-noon sun. Some strange etchings appear on various \nwalls and windowsills, like some secret language revealing a higher knowledge\nof things beyond understanding. The lane continues to the north.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19016,
+        "South": 19004
+      },
+      "Id": 19015
+    },
+    {
+      "Name": "Communer Lane",
+      "Description": "Magical spheres of light replace street lamps here, illuminating the pathway\nalmost as well as the high-noon sun. Some strange etchings appear on various \nwalls and windowsills, like some secret language revealing a higher knowledge\nof things beyond understanding. The lane continues to the north and south.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19017,
+        "South": 19015
+      },
+      "Id": 19016
+    },
+    {
+      "Name": "Communer Lane",
+      "Description": "Magical spheres of light replace street lamps here, illuminating the pathway\nalmost as well as the high-noon sun. Some strange etchings appear on various \nwalls and windowsills, like some secret language revealing a higher knowledge\nof things beyond understanding. The lane continues north and south, the priest\nto the east.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19018,
+        "East": 19025,
+        "South": 19016
+      },
+      "Id": 19017
+    },
+    {
+      "Name": "Communer Lane",
+      "Description": "Magical spheres of light replace street lamps here, illuminating the pathway\nalmost as well as the high-noon sun. Some strange etchings appear on various \nwalls and windowsills, like some secret language revealing a higher knowledge\nof things beyond understanding. The lane continues north and south.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19019,
+        "South": 19017
+      },
+      "Id": 19018
+    },
+    {
+      "Name": "Communer Lane",
+      "Description": "Magical spheres of light replace street lamps here, illuminating the pathway\nalmost as well as the high-noon sun. Some strange etchings appear on various \nwalls and windowsills, like some secret language revealing a higher knowledge\nof things beyond understanding. The lane continues north and south.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19020,
+        "South": 19018
+      },
+      "Id": 19019
+    },
+    {
+      "Name": "Communer Lane",
+      "Description": "Magical spheres of light replace street lamps here, illuminating the pathway\nalmost as well as the high-noon sun. Some strange etchings appear on various \nwalls and windowsills, like some secret language revealing a higher knowledge\nof things beyond understanding. The lane continues north and south, the\npaladin\u0027s guild lies to the east.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19021,
+        "East": 19026,
+        "South": 19019
+      },
+      "Id": 19020
+    },
+    {
+      "Name": "Communer Lane",
+      "Description": "Magical spheres of light replace street lamps here, illuminating the pathway\nalmost as well as the high-noon sun. Some strange etchings appear on various \nwalls and windowsills, like some secret language revealing a higher knowledge\nof things beyond understanding. The lane continues north and south.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19022,
+        "South": 19020
+      },
+      "Id": 19021
+    },
+    {
+      "Name": "Communer Lane",
+      "Description": "Magical spheres of light replace street lamps here, illuminating the pathway\nalmost as well as the high-noon sun. Some strange etchings appear on various \nwalls and windowsills, like some secret language revealing a higher knowledge\nof things beyond understanding. The lane continues north and south.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19023,
+        "South": 19021,
+        "West": 19108
+      },
+      "Id": 19022
+    },
+    {
+      "Name": "Communer Lane",
+      "Description": "Magical spheres of light replace street lamps here, illuminating the pathway\nalmost as well as the high-noon sun. Some strange etchings appear on various \nwalls and windowsills, like some secret language revealing a higher knowledge\nof things beyond understanding. The lane continues north and south, the healers\nguild lies to the east.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19024,
+        "East": 19027,
+        "South": 19022
+      },
+      "Id": 19023
+    },
+    {
+      "Name": "Wendy\u0027s Shop of Magic",
+      "Description": "Bells ring as you enter the shop, signaling the owner a patron has entered.\nA long smooth counter lines one wall of the room, clear of all clutter except\nfor a large crystal ball. Strange devices hang from hooks in the ceiling along\none wall, while the other side is lined with shelves containing various plants\nand shrubs.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "South": 19023
+      },
+      "Id": 19024
+    },
+    {
+      "Name": "The Shamans Guild",
+      "Description": "Walking into this extravegant looking guild, the first thing that you notice is\na small shrine in the middle of the room. Its the Shrine of the Great Shamans\nGuild. The floor is made of solid wood and is coverd in a huge blue rug thathas\npictures of chalices and crosses on it. In the middle of the where the shrine\nsits is a medium whie cloth with a shield and two swords crossing the shield,\nsitting underneath the shine.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19028,
+        "West": 19017
+      },
+      "Id": 19025
+    },
+    {
+      "Name": "The Paladins Guild",
+      "Description": "Walking into this dreary looking guild, the first thing that you notice is a\nsmall modest shrine in the middle of the room, representing all paladins who\nhave trained and died fighting in the defense of others. Beneath the shrine is\na purple cloth embeded with a sword and shield, the symbol of traditional\ndefense of the innocent. The floor is made of solid wood and is worn smooth\nwith various notches from all the sword practice.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19030,
+        "West": 19020
+      },
+      "Id": 19026
+    },
+    {
+      "Name": "The Healers Sanctuary",
+      "Description": "Walking into this guild, the first thing that you notice is the smell of\ndisinfectant and incense. A small modest shrine in the middle of the room,\nwhere various scented candles burn, creating a relaxing atmosphere for healing.\nThe floor is made of solid wood and is waxed and buffed to a mirror-like shine.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19032,
+        "West": 19023
+      },
+      "Id": 19027
+    },
+    {
+      "Name": "The Priests Guidance",
+      "Description": "The extravagance of this room is intense to say the least. Gaudy chandeliers\nof gold and silver hang from the vaulted ceiling all lit with fragrant candles\nmade with gold flecks within the wax. An elder is here dressed in all white,\nwith a blue emblem upon her chest depicting a chalice and cross. No expense was\nspared to display an arrogance of superiority and position of the elder here.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "South": 19025,
+        "Down": 7068
+      },
+      "Id": 19028
+    },
+    {
+      "Name": "The Paladins Guidance",
+      "Description": "You see one single elder here sitting on a cold stone chair, completely lacking\nany cushion for comfort. While still gripping his ancient sword and shield, you\ncan\u0027t help but notice the scars across both his face and forearms. Symbols of\ncampaigns to rescue the innocent fill the single mural on the wall.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "South": 19026,
+        "Down": 7065
+      },
+      "Id": 19030
+    },
+    {
+      "Name": "The Healers Guidance",
+      "Description": "You see a multitude of elders perched on comfortable cushioned chairs,\nsurrounding the outside walls of the room. Symbols of snakes and other\nwildlife fill the murals on the walls above the elders, all depicting\nvarious stages of healing or death. The elders invite you to aks your questions\nwithout delay, so they may get back to their contemplations.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "South": 19027,
+        "Down": 7062
+      },
+      "Id": 19032
+    },
+    {
+      "Name": "Adventurers Lane",
+      "Description": "This clean cobblestone street shows little wear. Less used by wagons or\nmerchants, due to the lack of shops along the lane. The lane continues south.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19004,
+        "East": 19106,
+        "South": 19035
+      },
+      "Id": 19034
+    },
+    {
+      "Name": "Adventurers Lane",
+      "Description": "This clean cobblestone street shows little wear. Less used by wagons or\nmerchants, due to the lack of shops along the lane. The lane continues\nnorth and south.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19034,
+        "South": 19036
+      },
+      "Id": 19035
+    },
+    {
+      "Name": "Adventurers Lane",
+      "Description": "This clean cobblestone street shows little wear. Less used by wagons or\nmerchants, due to the lack of shops along the lane. The lane continues\nnorth and south. To the east you see a guild.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19035,
+        "East": 19045,
+        "South": 19037
+      },
+      "Id": 19036
+    },
+    {
+      "Name": "Adventurers Lane",
+      "Description": "This clean cobblestone street shows little wear. Less used by wagons or\nmerchants, due to the lack of shops along the lane. The lane continues\nnorth and south.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19036,
+        "South": 19038
+      },
+      "Id": 19037
+    },
+    {
+      "Name": "Adventurers Lane",
+      "Description": "This clean cobblestone street shows little wear. Less used by wagons or\nmerchants, due to the lack of shops along the lane. The lane continues\nnorth and south.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19037,
+        "South": 19039
+      },
+      "Id": 19038
+    },
+    {
+      "Name": "Adventurers Lane",
+      "Description": "This clean cobblestone street shows little wear. Less used by wagons or\nmerchants, due to the lack of shops along the lane. The lane continues\nnorth and south. To the east you see a guild.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19038,
+        "East": 19046,
+        "South": 19040
+      },
+      "Id": 19039
+    },
+    {
+      "Name": "Adventurers Lane",
+      "Description": "This clean cobblestone street shows little wear. Less used by wagons or\nmerchants, due to the lack of shops along the lane. The lane continues\nnorth and south.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19039,
+        "South": 19041
+      },
+      "Id": 19040
+    },
+    {
+      "Name": "Adventurers Lane",
+      "Description": "This clean cobblestone street shows little wear. Less used by wagons or\nmerchants, due to the lack of shops along the lane. The lane continues\nnorth and south.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19040,
+        "East": 19122,
+        "South": 19042
+      },
+      "Id": 19041
+    },
+    {
+      "Name": "Adventurers Lane",
+      "Description": "This clean cobblestone street shows little wear. Less used by wagons or\nmerchants, due to the lack of shops along the lane. The lane continues\nnorth and south. To the east you see a guild.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19041,
+        "East": 19047,
+        "South": 19043
+      },
+      "Id": 19042
+    },
+    {
+      "Name": "Adventurers Lane",
+      "Description": "This clean cobblestone street shows little wear. Less used by wagons or\nmerchants, due to the lack of shops along the lane. The lane continues\nnorth, but evidence shows work being done to continue the lane further.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19042
+      },
+      "Id": 19043
+    },
+    {
+      "Name": "Warriors Guild",
+      "Description": "All the walls here are lined with padding, each corner featuring a weapon rack\nfull of implements of various specialties. The floor looks to be swept and\nmopped often, yet old sweat and blood stains have set in from the years of\nhard work and practice.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19048,
+        "West": 19036
+      },
+      "Id": 19045
+    },
+    {
+      "Name": "Thiefs Guild",
+      "Description": "Entry into this room is by invitation only. A large sign at the entrance lists\n10 rules you can never break, the first of which states \u0022Death to any who break\n3 or more of the following rules!\u0022 Full sized statues wearing various types of\nclothing are arranged throughout the room, many a thief practicing their pick\npocket skills.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19050,
+        "West": 19039
+      },
+      "Id": 19046
+    },
+    {
+      "Name": "Guard Station",
+      "Description": "A small, fortified structure is used to schedule guard rotation. The shack\nis located out of the way so as to not intrude on the citizens of Astoria.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19052,
+        "West": 19042
+      },
+      "Id": 19047
+    },
+    {
+      "Name": "Warriors Training",
+      "Description": "In a small room with few decorations an old yet hard muscled man sits, waiting\nto approve or disaprove advancement within the guild. A podium stands beside\nthe trainer, with the book open to your name, along side an ink pot and pen.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "South": 19045,
+        "Down": 7432
+      },
+      "Id": 19048
+    },
+    {
+      "Name": "Thiefs Guidance",
+      "Description": "A luxuriously furished room is filled with well dressed men and women, enjoying\ndrinks and snacks, much like what you would expect at a party. An old wrinkled\nman hides in the shadows of a corner, waiting for students to complete their\ntest to prove they are worthy to advance.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "South": 19046,
+        "Down": 7403
+      },
+      "Id": 19050
+    },
+    {
+      "Name": "Guard Shack",
+      "Description": "A small, fortified structure is used to schedule guard rotation. The shack\nis located out of the way so as to not intrude on the citizens of Astoria.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "South": 19047,
+        "Down": 7409
+      },
+      "Id": 19052
+    },
+    {
+      "Name": "Ryhmers Path",
+      "Description": "The road is surrounded by trees and brush with a variety of wildlife adding to\nthe symphony of sounds in the air. The scent of blooming flowers and freshly cut\ngrass mixes with the natural scents of the forest. The rustling of leaves,\nchirping of birds, and occasional calls of animals create a harmonious rhythm in\nthe surroundings. The beauty of nature can be seen and heard with every step,\nmaking the journey all the more worthwhile.\nThe road continues north and south.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19010,
+        "South": 19056
+      },
+      "Id": 19055
+    },
+    {
+      "Name": "Rhymers Path",
+      "Description": "The road is surrounded by trees and brush with a variety of wildlife adding to\nthe symphony of sounds in the air. The scent of blooming flowers and freshly cut\ngrass mixes with the natural scents of the forest. The rustling of leaves,\nchirping of birds, and occasional calls of animals create a harmonious rhythm in\nthe surroundings. The beauty of nature can be seen and heard with every step,\nmaking the journey all the more worthwhile.\nThe road continues north and south.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19055,
+        "South": 19057
+      },
+      "Id": 19056
+    },
+    {
+      "Name": "Rhymers Path",
+      "Description": "The road is surrounded by trees and brush with a variety of wildlife adding to\nthe symphony of sounds in the air. The scent of blooming flowers and freshly cut\ngrass mixes with the natural scents of the forest. The rustling of leaves,\nchirping of birds, and occasional calls of animals create a harmonious rhythm in\nthe surroundings. The beauty of nature can be seen and heard with every step,\nmaking the journey all the more worthwhile.\nThe road continues north and south,\nand a guild lies to the west.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19056,
+        "South": 19058,
+        "West": 19065
+      },
+      "Id": 19057
+    },
+    {
+      "Name": "Rhymers Path",
+      "Description": "The road is surrounded by trees and brush with a variety of wildlife adding to\nthe symphony of sounds in the air. The scent of blooming flowers and freshly cut\ngrass mixes with the natural scents of the forest. The rustling of leaves,\nchirping of birds, and occasional calls of animals create a harmonious rhythm in\nthe surroundings. The beauty of nature can be seen and heard with every step,\nmaking the journey all the more worthwhile.\nThe road continues north and south.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19057,
+        "South": 19059
+      },
+      "Id": 19058
+    },
+    {
+      "Name": "Rhymers Path",
+      "Description": "The road is surrounded by trees and brush with a variety of wildlife adding to\nthe symphony of sounds in the air. The scent of blooming flowers and freshly cut\ngrass mixes with the natural scents of the forest. The rustling of leaves,\nchirping of birds, and occasional calls of animals create a harmonious rhythm in\nthe surroundings. The beauty of nature can be seen and heard with every step,\nmaking the journey all the more worthwhile.\nThe road continues north and south.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19058,
+        "South": 19060
+      },
+      "Id": 19059
+    },
+    {
+      "Name": "Rhymers Path",
+      "Description": "The road is surrounded by trees and brush with a variety of wildlife adding to\nthe symphony of sounds in the air. The scent of blooming flowers and freshly cut\ngrass mixes with the natural scents of the forest. The rustling of leaves,\nchirping of birds, and occasional calls of animals create a harmonious rhythm in\nthe surroundings. The beauty of nature can be seen and heard with every step,\nmaking the journey all the more worthwhile.\nThe road continues north and south,\nand a guild lies to the west.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19059,
+        "South": 19061,
+        "West": 19068
+      },
+      "Id": 19060
+    },
+    {
+      "Name": "Rhymers Path",
+      "Description": "The road is surrounded by trees and brush with a variety of wildlife adding to\nthe symphony of sounds in the air. The scent of blooming flowers and freshly cut\ngrass mixes with the natural scents of the forest. The rustling of leaves,\nchirping of birds, and occasional calls of animals create a harmonious rhythm in\nthe surroundings. The beauty of nature can be seen and heard with every step,\nmaking the journey all the more worthwhile.\nThe road continues north and south.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19060,
+        "South": 19062
+      },
+      "Id": 19061
+    },
+    {
+      "Name": "Rhymers Path",
+      "Description": "The road is surrounded by trees and brush with a variety of wildlife adding to\nthe symphony of sounds in the air. The scent of blooming flowers and freshly cut\ngrass mixes with the natural scents of the forest. The rustling of leaves,\nchirping of birds, and occasional calls of animals create a harmonious rhythm in\nthe surroundings. The beauty of nature can be seen and heard with every step,\nmaking the journey all the more worthwhile.\nThe road continues north and south,\nor you could jump down into a river.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19061,
+        "South": 19063,
+        "Down": 19116
+      },
+      "Id": 19062
+    },
+    {
+      "Name": "Inside the South Gate",
+      "Description": "A grand and imposing city entrance, with large black marble pillars on either\nside of the gate, which has a small golden emblem embedded within it. The use\nof black and gold in the description suggests a sense of opulence and\ngrandeur.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19062,
+        "South": 19064
+      },
+      "Id": 19063
+    },
+    {
+      "Name": "Outside the South Gate",
+      "Description": "A grand and imposing city entrance, with large black marble pillars on either\nside of the gate, which has a small golden emblem embedded within it. The use\nof black and gold in the description suggests a sense of opulence and\ngrandeur.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19063
+      },
+      "Id": 19064
+    },
+    {
+      "Name": "Bards Guild",
+      "Description": "A giant peg board lines three of the four walls of this room, multiple hooks\nholding every kind of musical instrument you can imagine. To either side of\nthe north door, wooden racks stand from floor to ceiling hold the larger\ncontraptions that are too heavy to carry.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19066,
+        "East": 19057
+      },
+      "Id": 19065
+    },
+    {
+      "Name": "Bards Guidance",
+      "Description": "The walls of this room are lined with heavy wool strips pleated and sewn\ntogether, with a thick coating of tree sap and bees wax. Upon entering, you\nrealize that the acoustics here are superb. An ancient man is here, waiting\non you to begin your audition.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "South": 19065,
+        "Down": 7010
+      },
+      "Id": 19066
+    },
+    {
+      "Name": "hollow tree",
+      "Description": "You have stepped into a huge, hollow tree. Despite the large area hollowed out,\nthe living tree seems health and strong. The inner cavity is covered in thick\nbark, protecting itself from it\u0027s intruders. Thick grass mixed with moss line\nthe ground, making it a comfortable place to take a rest.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19069,
+        "East": 19060
+      },
+      "Id": 19068
+    },
+    {
+      "Name": "hollow tree",
+      "Description": "You have stepped further into the hollow tree. The inner cavity here is also\ncovered in thick bark, protecting itself from intruders. Thick grass mixed\nwith moss line the ground, making it a comfortable place to take a rest.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "South": 19068,
+        "Down": 7441
+      },
+      "Id": 19069
+    },
+    {
+      "Name": "Soothsayer Lane",
+      "Description": "The road here is paved with an assortment of crystals and gems of all shapes\nsizes, gaps between each filled with a fine powder, and a final overlay of\nclear shellac. Much less traveled than others in the city, the atmosphere of\nthis lane vibrates with a strange occult sensation. The lane continues north.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19072,
+        "South": 19010
+      },
+      "Id": 19071
+    },
+    {
+      "Name": "Soothsayer Lane",
+      "Description": "The road here is paved with an assortment of crystals and gems of all shapes\nsizes, gaps between each filled with a fine powder, and a final overlay of\nclear shellac. Much less traveled than others in the city, the atmosphere of\nthis lane vibrates with a strange occult sensation. The lane continues north\nand south.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19073,
+        "South": 19071
+      },
+      "Id": 19072
+    },
+    {
+      "Name": "Soothsayer Lane",
+      "Description": "The road here is paved with an assortment of crystals and gems of all shapes\nsizes, gaps between each filled with a fine powder, and a final overlay of\nclear shellac. Much less traveled than others in the city, the atmosphere of\nthis lane vibrates with a strange occult sensation. The lane continues north\nand south, a guild lies to the west.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19074,
+        "South": 19072,
+        "West": 19081
+      },
+      "Id": 19073
+    },
+    {
+      "Name": "Soothsayer Lane",
+      "Description": "The road here is paved with an assortment of crystals and gems of all shapes\nsizes, gaps between each filled with a fine powder, and a final overlay of\nclear shellac. Much less traveled than others in the city, the atmosphere of\nthis lane vibrates with a strange occult sensation. The lane continues north\nand south.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19075,
+        "South": 19073
+      },
+      "Id": 19074
+    },
+    {
+      "Name": "Soothsayer Lane",
+      "Description": "The road here is paved with an assortment of crystals and gems of all shapes\nsizes, gaps between each filled with a fine powder, and a final overlay of\nclear shellac. Much less traveled than others in the city, the atmosphere of\nthis lane vibrates with a strange occult sensation. The lane continues north\nand south.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19076,
+        "South": 19074
+      },
+      "Id": 19075
+    },
+    {
+      "Name": "Soothsayer Lane",
+      "Description": "The road here is paved with an assortment of crystals and gems of all shapes\nsizes, gaps between each filled with a fine powder, and a final overlay of\nclear shellac. Much less traveled than others in the city, the atmosphere of\nthis lane vibrates with a strange occult sensation. The lane continues north\nand south, a guild lies to the west.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19077,
+        "South": 19075,
+        "West": 19084
+      },
+      "Id": 19076
+    },
+    {
+      "Name": "Soothsayer Lane",
+      "Description": "The road here is paved with an assortment of crystals and gems of all shapes\nsizes, gaps between each filled with a fine powder, and a final overlay of\nclear shellac. Much less traveled than others in the city, the atmosphere of\nthis lane vibrates with a strange occult sensation. The lane continues north\nand south.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19078,
+        "South": 19076
+      },
+      "Id": 19077
+    },
+    {
+      "Name": "Soothsayer Lane",
+      "Description": "The road here is paved with an assortment of crystals and gems of all shapes\nsizes, gaps between each filled with a fine powder, and a final overlay of\nclear shellac. Much less traveled than others in the city, the atmosphere of\nthis lane vibrates with a strange occult sensation. The lane continues north\nand south.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19079,
+        "East": 19113,
+        "South": 19077
+      },
+      "Id": 19078
+    },
+    {
+      "Name": "Soothsayer Lane",
+      "Description": "The road here is paved with an assortment of crystals and gems of all shapes\nsizes, gaps between each filled with a fine powder, and a final overlay of\nclear shellac. Much less traveled than others in the city, the atmosphere of\nthis lane vibrates with a strange occult sensation. The lane continues north\nand south.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19080,
+        "South": 19078
+      },
+      "Id": 19079
+    },
+    {
+      "Name": "Dead End",
+      "Description": "The road here is paved with an assortment of crystals and gems of all shapes\nsizes, gaps between each filled with a fine powder, and a final overlay of\nclear shellac. The lane ends here, a dead end but with further construction\nevident. The lane continues to the south.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "South": 19079
+      },
+      "Id": 19080
+    },
+    {
+      "Name": "Shapeshifters Guild",
+      "Description": "The entrance to the shapeshifters guild is an imposing stone archway, carved\nwith intricate patterns and symbols that represent the shapeshifters\u0027 connection\nto nature and their ability to transform into various creatures. At the\nentrance, a high-level shapeshifter stands guard, their animal form radiating a\nsense of power and strength. The shapeshifter observes anyone who approaches,\ngauging their intentions and testing their respect for nature before allowing\nthem entry.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19082,
+        "East": 19073
+      },
+      "Id": 19081
+    },
+    {
+      "Name": "Shapeshifter Guidance",
+      "Description": "As you enter the shapeshifters guild, you are greeted by air that is thick with\nthe smell of wood burning in the fireplace, and the walls are lined with shelves\nfilled with books on anatomy, biology, and animal behavior. The students can be\nseen in various forms, practicing their transformations in designated areas or\nstudying in groups. There is a sense of harmony and tranquility within the\nguild, and the sounds of birds and other woodland creatures can be heard in the\nbackground.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "South": 19081,
+        "Down": 7110
+      },
+      "Id": 19082
+    },
+    {
+      "Name": "Mages Guild",
+      "Description": "The walls of the mages guild are full of mystical symbols, none of which can\nbe understood by the common mind. Several robed figures mill around discussing\nincomprehensible things with unintelligible words and hand motions.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19085,
+        "East": 19076
+      },
+      "Id": 19084
+    },
+    {
+      "Name": "Mages Guidance",
+      "Description": "As you enter this dark and silent room you hear a voice in your head asking you\nif you are worthy to learn new spells yet. Obviously, without the power to\ndetect the invisible, it would feel as if the bodyless voice was from a spirit.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "South": 19084,
+        "Down": 7001
+      },
+      "Id": 19085
+    },
+    {
+      "Name": "Temple Altar",
+      "Description": "A giant altar stands tall and gaudy in the middle of this room. There are\nvarious depictions of scenery etched into the altar, from the bloom of new\nlife to the death of a star. No one god is represented here, but all gods of \nall faiths are welcome. The room is simple of fashion, all decorations designed\nto display the altar front and center.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19088,
+        "East": 19089,
+        "South": 19007,
+        "West": 19090
+      },
+      "Id": 19087
+    },
+    {
+      "Name": "Temple Bath",
+      "Description": "Smooth marble stones along the bath floor present a very real slip hazzard to\nworshipers who partake in the ceremonial bath celebrations.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19091,
+        "South": 19087
+      },
+      "Id": 19088
+    },
+    {
+      "Name": "Temple of the Sun",
+      "Description": "Brightly lit chandeliers hang from the vaulted ceiling, revealing all,\nforever vanquishing all shadows. Various cushioned benches line the\nwalls for worshipers to kneel or pray as needed.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "West": 19087
+      },
+      "Id": 19089
+    },
+    {
+      "Name": "Temple of The Shadow",
+      "Description": "Dimly lit chandeliers hang from the vaulted ceiling, revealing very little,\nmultiple shadows provide many hiding placesa. Various cushioned benches line\nthe walls for worshipers to kneel or pray as needed.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 19087
+      },
+      "Id": 19090
+    },
+    {
+      "Name": "Temple of The Moon",
+      "Description": "This temple room features a large dome window in the ceiling above. Without \nartificial lighting, the room is bathed completely in natural light from \neither the sun or the moon. Multiple mirrors are placed strategically in the \nupper corners to reflect the lesser moonlight at night, yet can be turned up \nand away during the daytime.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "South": 19088
+      },
+      "Id": 19091
+    },
+    {
+      "Name": "Merchants Lane",
+      "Description": "The road is made with solid rock fit tightly together. Wide enough for four\nwagons abreast, this is one lively street, merchants and hawkers line both\nsides of the street. The center of the street is humped, allowing rain to\nflow to the sides and into the gutters. The lane continues north and south.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19007,
+        "South": 19094
+      },
+      "Id": 19093
+    },
+    {
+      "Name": "Merchants Lane",
+      "Description": "The road is made with solid rock fit tightly together. Wide enough for four\nwagons abreast, this is one lively street, merchants and hawkers line both\nsides of the street. The center of the street is humped, allowing rain to\nflow to the sides and into the gutters. The lane continues north and south,\nmerchant shops lie to the east and the west.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19093,
+        "East": 19100,
+        "South": 19095,
+        "West": 19101
+      },
+      "Id": 19094
+    },
+    {
+      "Name": "Merchants Lane",
+      "Description": "The road is made with solid rock fit tightly together. Wide enough for four\nwagons abreast, this is one lively street, merchants and hawkers line both\nsides of the street. The center of the street is humped, allowing rain to\nflow to the sides and into the gutters. The lane continues north and south.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19094,
+        "East": 19107,
+        "South": 19096
+      },
+      "Id": 19095
+    },
+    {
+      "Name": "Merchants Lane",
+      "Description": "The road is made with solid rock fit tightly together. Wide enough for four\nwagons abreast, this is one lively street, merchants and hawkers line both\nsides of the street. The center of the street is humped, allowing rain to\nflow to the sides and into the gutters. The lane continues north and south.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19095,
+        "South": 19097,
+        "Down": 7030
+      },
+      "Id": 19096
+    },
+    {
+      "Name": "Merchants Lane",
+      "Description": "The road is made with solid rock fit tightly together. Wide enough for four\nwagons abreast, this is one lively street, merchants and hawkers line both\nsides of the street. The center of the street is humped, allowing rain to\nflow to the sides and into the gutters. The lane continues north and south,\nmerchant shops lie to the east and the west.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19096,
+        "East": 19102,
+        "South": 19098,
+        "West": 19103
+      },
+      "Id": 19097
+    },
+    {
+      "Name": "Merchants Lane",
+      "Description": "The road is made with solid rock fit tightly together. Wide enough for four\nwagons abreast, this is one lively street, merchants and hawkers line both\nsides of the street. The center of the street is humped, allowing rain to\nflow to the sides and into the gutters. The lane continues north and south.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19097,
+        "South": 19099
+      },
+      "Id": 19098
+    },
+    {
+      "Name": "Merchants Lane",
+      "Description": "The road is made with solid rock fit tightly together. Wide enough for four\nwagons abreast, this is one lively street, merchants and hawkers line both\nsides of the street. The center of the street is humped, allowing rain to\nflow to the sides and into the gutters. The lane continues north, merchant\nshops lie to the east and the west.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19098,
+        "East": 19104,
+        "West": 19105
+      },
+      "Id": 19099
+    },
+    {
+      "Name": "General Store",
+      "Description": "Clean and organized, this shop seems to have all the neccessary conveniences\none may want as they travel and explore. From small kayaks, various sized sacks\nand canteens, You can be sure to find what you need.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "West": 19094
+      },
+      "Id": 19100
+    },
+    {
+      "Name": "Armory",
+      "Description": "The armory shop has tall, short, skinny and fat dummies for the display of\nchainmail and platemail armor. No matter your size or race, if you prefer your\narmor to be stiff and strong, this is the shop for you.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 19094
+      },
+      "Id": 19101
+    },
+    {
+      "Name": "Tanners Shop",
+      "Description": "A sweet smell of cured leathers and skins fill the air here. Tables line the\nwalls, displaying all the leathers in an organized manner. Brown, green, or\neven camouflage, all guarenteed to be water and sun resistant, perfect for\nall your outdoor travel needs.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "West": 19097
+      },
+      "Id": 19102
+    },
+    {
+      "Name": "Weavers and Woolens",
+      "Description": "This shop features many knitted garment samples on display, from the finest\nwooven silk to the bulky heavyweight winter garments needed for warmth.\nA sign on the wall states \u0022All the items seen here are completely hand-\nstitched or hand-made. Our shop is expressly created to provide all your\ncrocheted woolen needs.\u0022",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 19097
+      },
+      "Id": 19103
+    },
+    {
+      "Name": "Axe and Dagger",
+      "Description": "As you enter you notice a huge sign on the wall which states \u0022We will not be\nheld responsible for accidents or bloodshed within the establishment.\u0022 Row\nupon row of smaller daggers and swords are displayed on open tables, weapon\nstands along the walls contain taller weapons such as staffs and polearms. All\nappear freshly sharpened and ready for immediate use.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "West": 19099
+      },
+      "Id": 19104
+    },
+    {
+      "Name": "Krolicks BBQ",
+      "Description": "As you walk in you hear lots of yelling from behind the counter. You see cooks\nand trainees working hard preparing all the custom orders received. Although\nmany items on the menu include chicken or pork, all seem to be doused with the\nsame, hot spicy bbq sauce that Krolicks is famous for.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 19099
+      },
+      "Id": 19105
+    },
+    {
+      "Name": "The Trainer",
+      "Description": "You are in the room with the trainer. He has learned many valuable lessons to\nbe shared with the endeavoring adventurer.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "West": 19034
+      },
+      "Id": 19106
+    },
+    {
+      "Name": "The Bank",
+      "Description": "Vaults line the eastern wall. Your belongings could be in\nany of them. A banker stands here to take your gold.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "West": 19095
+      },
+      "Id": 19107
+    },
+    {
+      "Name": "Park Avenue",
+      "Description": "This avenue is so pristine you could eat off the ground. Mansions line the road\nwhere the city leaders and the rich live. Multiple signs can be seen on both\nsides of the avenue, all stating rules about what can and can\u0027t be done, such\nas \u0022Keep of the grass\u0022 or \u0022Stay to the right.\u0022",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 19022,
+        "West": 19109
+      },
+      "Id": 19108
+    },
+    {
+      "Name": "Park Avenue",
+      "Description": "This avenue is so pristine you could eat off the ground. Mansions line the road \nwhere the city leaders and the rich live. Multiple signs can be seen on both\nsides of the avenue, all stating rules about what can and can\u0027t be done, such\nas \u0022Keep of the grass\u0022 or \u0022Stay to the right.\u0022",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 19108,
+        "West": 19110
+      },
+      "Id": 19109
+    },
+    {
+      "Name": "Park Avenue Intersection",
+      "Description": "This avenue is so pristine you could eat off the ground. Multiple signs can be seen on both\nsides of the avenue, all stating rules about what can and can\u0027t be done, such\nas \u0022Keep of the grass\u0022 or \u0022Stay to the right.\u0022 Pearl Avenue lies to the north.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19111,
+        "East": 19109,
+        "West": 19112
+      },
+      "Id": 19110
+    },
+    {
+      "Name": "Pearl Avenue",
+      "Description": "This avenue is so pristine you could eat off the ground. Mansions line the road \nwhere the city leaders and the rich live. Multiple signs can be seen on both\nsides of the avenue, all stating rules about what can and can\u0027t be done, such\nas \u0022Keep of the grass\u0022 or \u0022Stay to the right.\u0022",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19114,
+        "South": 19110
+      },
+      "Id": 19111
+    },
+    {
+      "Name": "Park Avenue",
+      "Description": "This avenue is so pristine you could eat off the ground. Mansions line the road \nwhere the city leaders and the rich live. Multiple signs can be seen on both\nsides of the avenue, all stating rules about what can and can\u0027t be done, such\nas \u0022Keep of the grass\u0022 or \u0022Stay to the right.\u0022",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 19110,
+        "West": 19113
+      },
+      "Id": 19112
+    },
+    {
+      "Name": "Park Avenue",
+      "Description": "This avenue is so pristine you could eat off the ground. Mansions line the road \nwhere the city leaders and the rich live. Multiple signs can be seen on both\nsides of the avenue, all stating rules about what can and can\u0027t be done, such\nas \u0022Keep of the grass\u0022 or \u0022Stay to the right.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 19112,
+        "West": 19078
+      },
+      "Id": 19113
+    },
+    {
+      "Name": "Inside the North Gate",
+      "Description": "A grand and imposing city entrance, with large black marble pillars on either\nside of the gate, which has a small golden emblem embedded within it. The use\nof black and gold in the description suggests a sense of opulence and\ngrandeur.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19115,
+        "South": 19111
+      },
+      "Id": 19114
+    },
+    {
+      "Name": "Outside the North Gate",
+      "Description": "A grand and imposing city entrance, with large black marble pillars on either\nside of the gate, which has a small golden emblem embedded within it. The use\nof black and gold in the description suggests a sense of opulence and\ngrandeur.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "South": 19114
+      },
+      "Id": 19115
+    },
+    {
+      "Name": "Tigris River",
+      "Description": "The river narrows here, as it winds its way out of the city proper.\nA pleasent musty smell rises from the river water, no doubt from whatever\nchemical is used to clean and sanitize it this close to the city.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "West": 19117
+      },
+      "Id": 19116
+    },
+    {
+      "Name": "Tigris River",
+      "Description": "The river narrows here, as it winds its way out of the city proper.\nA pleasent musty smell rises from the river water, no doubt from whatever\nchemical is used to clean and sanitize it this close to the city.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 19116,
+        "West": 19118
+      },
+      "Id": 19117
+    },
+    {
+      "Name": "Tigris River",
+      "Description": "The river narrows here, as it winds its way out of the city proper.\nA pleasent musty smell rises from the river water, no doubt from whatever\nchemical is used to clean and sanitize it this close to the city.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 19117,
+        "West": 19119
+      },
+      "Id": 19118
+    },
+    {
+      "Name": "Tigris River",
+      "Description": "The river narrows here, as it winds its way out of the city proper.\nA pleasent musty smell rises from the river water, no doubt from whatever\nchemical is used to clean and sanitize it this close to the city.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 19118,
+        "West": 19120
+      },
+      "Id": 19119
+    },
+    {
+      "Name": "Tigris River",
+      "Description": "The river narrows here, as it winds its way out of the city proper.\nA pleasent musty smell rises from the river water, no doubt from whatever\nchemical is used to clean and sanitize it this close to the city.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 19119,
+        "West": 19121
+      },
+      "Id": 19120
+    },
+    {
+      "Name": "Tigris River",
+      "Description": "The river narrows here, as it winds its way out of the city proper.\nA pleasent musty smell rises from the river water, no doubt from whatever\nchemical is used to clean and sanitize it this close to the city.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 19120,
+        "West": 51581
+      },
+      "Id": 19121
+    },
+    {
+      "Name": "Assassins Guild",
+      "Description": "You see a dimly lit space with thick stone walls, narrow passageways, and\nalcoves for concealment. The atmosphere is hushed, and the only sounds are\nthe occasional murmur of whispered conversations and the soft shuffling of\nfootsteps. Adorned with dark tapestries and flickering candles,and filled\nwith weapons, such as daggers, crossbows, and poisons. A library of arcane\nknowledge, including forbidden texts on the art of assassination and dark\nmagic, is hidden away in a secret chamber accessible only to the most\ntrusted members of the guild.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 19123,
+        "East": 19124,
+        "West": 19041
+      },
+      "Id": 19122
+    },
+    {
+      "Name": "Assassins Guidance",
+      "Description": "You have entered an austere, sparsely furnished space. The walls are made\nof rough-hewn stone, and the only light comes from a few flickering candles\nset in sconces. In the center of the room is a low table, surrounded by\ncushions, where the guildmaster sits cross-legged, ready to presiding over\nmeetings and promotions. The table is strewn with scrolls, inkwells, and\nquills, as well as a selection of lethal weapons, such as daggers and\npoisons. The guildmasters throne is a simple wooden chair, unadorned except\nfor a few engraved runes and symbols of ancient power. The atmosphere in\nthe room is tense, as aspiring assassins waitubg anxiously for their turn\nto be evaluated by the guildmaster and potentially promoted to the next\nrank.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "South": 19122
+      },
+      "Id": 19123
+    },
+    {
+      "Name": "Secret Alcove",
+      "Description": "You see a dimly lit space with thick stone walls, an alcove hidden away for\nconcealment. Adorned with dark tapestries and flickering candles, and\nfilled with a library of arcane knowledge, including forbidden texts on the\nart of assassination and dark magic. This hidden secret chamber is\naccessible only to the most trusted members of the guild.",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "West": 19122
+      },
+      "Id": 19124
+    }
+  ],
+  "Mobiles": [
+    {
+      "Keywords": [
+        "trainer"
+      ],
+      "ShortDescription": "the trainer",
+      "LongDescription": "The trainer stands here, ready to teach you his ways.",
+      "Description": "",
+      "Level": 50,
+      "Gold": 5000,
+      "Sex": "Male",
+      "Hitpoints": 805,
+      "Mana": 805,
+      "Moves": 1000,
+      "Armor": 0,
+      "AttacksCount": 7,
+      "AttackType": "Hit",
+      "Penetration": 500,
+      "DamageRange": "20-110",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 19000
+    },
+    {
+      "Keywords": [
+        "banker",
+        "teller"
+      ],
+      "ShortDescription": "a banker",
+      "LongDescription": "A bank teller stands here, ready to take your gold.",
+      "Description": "The bank teller is a prim and proper figure. She has a demure smile, a small\nnose, and soft blue eyes that reflect her impeccable attention to detail. Her\nhair is styled in a fashionable updo, adorned with a delicate hat that adds to\nher sophisticated appearance. Her skin is a warm, creamy complexion, and she\ncarries herself with grace and poise. She radiates an aura of efficiency and\nprofessionalism, her meticulous nature inspiring trust in her customers. Despite\nher quiet demeanor, she is well-versed in the intricacies of finance, and her\nexpertise in managing money is second to none.",
+      "Level": 1,
+      "Gold": 100,
+      "Sex": "Female",
+      "Hitpoints": 0,
+      "Mana": 0,
+      "Moves": 1000,
+      "Armor": 100,
+      "AttacksCount": 1,
+      "AttackType": "Hit",
+      "Penetration": 35,
+      "DamageRange": "2-2",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 19001
+    },
+    {
+      "Keywords": [
+        "cook",
+        "Krolick"
+      ],
+      "ShortDescription": "the cook",
+      "LongDescription": "Krolick stands at the counter, his bare arms completely covered in BBQ sauce.",
+      "Description": "A big bearded, bare-armed man is covered in BBQ sauce up to his elbows.",
+      "Level": 50,
+      "Gold": 13000,
+      "Sex": "Male",
+      "Hitpoints": 1000,
+      "Mana": 100,
+      "Moves": 1000,
+      "Armor": 250,
+      "AttacksCount": 7,
+      "AttackType": "Hit",
+      "Penetration": 350,
+      "DamageRange": "28-28",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 19002
+    },
+    {
+      "Keywords": [
+        "Weapon",
+        "Master"
+      ],
+      "ShortDescription": "the weapon master",
+      "LongDescription": "A weapon master is here.",
+      "Description": "A big barrel-chested man is behind the counter ready to sell you something sharp.",
+      "Level": 50,
+      "Gold": 13000,
+      "Sex": "Male",
+      "Hitpoints": 1000,
+      "Mana": 100,
+      "Moves": 1000,
+      "Armor": 250,
+      "AttacksCount": 7,
+      "AttackType": "Hit",
+      "Penetration": 350,
+      "DamageRange": "28-28",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 19003
+    },
+    {
+      "Keywords": [
+        "Clay",
+        "the",
+        "Tanner"
+      ],
+      "ShortDescription": "Clay the tanner",
+      "LongDescription": "A tanner is here.",
+      "Description": "A short man is behind the counter ready to sell you some gear.",
+      "Level": 50,
+      "Gold": 13000,
+      "Sex": "Male",
+      "Hitpoints": 1000,
+      "Mana": 100,
+      "Moves": 1000,
+      "Armor": 250,
+      "AttacksCount": 7,
+      "AttackType": "Hit",
+      "Penetration": 750,
+      "DamageRange": "28-28",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 19004
+    },
+    {
+      "Keywords": [
+        "Beatrice",
+        "the",
+        "Weaver"
+      ],
+      "ShortDescription": "Beatrice the weaver",
+      "LongDescription": "A weaver is here.",
+      "Description": "An exotic looking woman is beckoning you over.",
+      "Level": 50,
+      "Gold": 13000,
+      "Sex": "Female",
+      "Hitpoints": 1000,
+      "Mana": 100,
+      "Moves": 1000,
+      "Armor": 250,
+      "AttacksCount": 7,
+      "AttackType": "Hit",
+      "Penetration": 500,
+      "DamageRange": "28-28",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 19005
+    },
+    {
+      "Keywords": [
+        "Mack",
+        "shopkeep"
+      ],
+      "ShortDescription": "Mack the shopkeeper",
+      "LongDescription": "A shopkeeper is here.",
+      "Description": "A Grumpy old man beckons you over.",
+      "Level": 50,
+      "Gold": 13000,
+      "Sex": "Male",
+      "Hitpoints": 1000,
+      "Mana": 100,
+      "Moves": 1000,
+      "Armor": 250,
+      "AttacksCount": 7,
+      "AttackType": "Hit",
+      "Penetration": 500,
+      "DamageRange": "28-28",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 19006
+    },
+    {
+      "Keywords": [
+        "Wendy",
+        "shopkeep"
+      ],
+      "ShortDescription": "Wendy the shopkeeper",
+      "LongDescription": "Wendy the shopkeeper is here.",
+      "Description": "A lovely lady beckons you over.",
+      "Level": 50,
+      "Gold": 13000,
+      "Sex": "Female",
+      "Hitpoints": 1000,
+      "Mana": 100,
+      "Moves": 1000,
+      "Armor": 250,
+      "AttacksCount": 7,
+      "AttackType": "Hit",
+      "Penetration": 500,
+      "DamageRange": "28-28",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 19007
+    },
+    {
+      "Keywords": [
+        "trainer",
+        "warrior",
+        "guildmaster"
+      ],
+      "ShortDescription": "the warrior guildmaster",
+      "LongDescription": "The warrior guildmaster stands here, ready to teach you his ways.",
+      "Description": "The warrior guildmaster is a formidable figure with a tall and athletic build.\nShe has a sharp jawline, a straight nose, and intense brown eyes that seem to\nsee right through you. Her hair is a deep auburn, styled in a practical braid\nthat keeps it out of her face during combat. Her skin is weathered from years\nof training and battles, bearing the scars of her experiences as badges of\nhonor. She exudes a confident and fearless energy, her presence commanding\nrespect and inspiring courage in those around her. She stands tall and proud,\nready to face any challenge that comes her way.",
+      "Level": 50,
+      "Gold": 5000,
+      "Sex": "Male",
+      "Hitpoints": 6050,
+      "Mana": 605,
+      "Moves": 1000,
+      "Armor": 0,
+      "AttacksCount": 7,
+      "AttackType": "Hit",
+      "Penetration": 1250,
+      "DamageRange": "21-46",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 19008
+    },
+    {
+      "Keywords": [
+        "warrior",
+        "guard"
+      ],
+      "ShortDescription": "the guild guard",
+      "LongDescription": "A guard is here, protecting the warrior guild from intruders.",
+      "Description": "A big, strong guild guard.",
+      "Level": 50,
+      "Gold": 1500,
+      "Sex": "None",
+      "Hitpoints": 3100,
+      "Mana": 150,
+      "Moves": 1000,
+      "Armor": 20,
+      "AttacksCount": 7,
+      "AttackType": "Hit",
+      "Penetration": 750,
+      "DamageRange": "21-46",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 19009
+    },
+    {
+      "Keywords": [
+        "trainer",
+        "paladin",
+        "guildmaster"
+      ],
+      "ShortDescription": "the paladin guildmaster",
+      "LongDescription": "The paladin guildmaster stands here, ready to teach you his ways.",
+      "Description": "The paladin guildmaster is a tall and muscular figure with a chiseled jawline,\na straight nose, and piercing green eyes. He has bright golden blonde hair\nstyled in a regal manner. His presence commands respect and his bearing exudes\na sense of justice and righteousness. His unwavering spirit and powerful aura\ninspire those around him to be brave and to fight for what is right.",
+      "Level": 50,
+      "Gold": 5000,
+      "Sex": "Male",
+      "Hitpoints": 6050,
+      "Mana": 5150,
+      "Moves": 1000,
+      "Armor": 0,
+      "AttacksCount": 7,
+      "AttackType": "Hit",
+      "Penetration": 1250,
+      "DamageRange": "21-46",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 19010
+    },
+    {
+      "Keywords": [
+        "paladin",
+        "guard"
+      ],
+      "ShortDescription": "the guild guard",
+      "LongDescription": "A guard is here, protecting the paladin guild from intruders.",
+      "Description": "A big, strong guild guard.",
+      "Level": 50,
+      "Gold": 1500,
+      "Sex": "None",
+      "Hitpoints": 3100,
+      "Mana": 150,
+      "Moves": 1000,
+      "Armor": 20,
+      "AttacksCount": 7,
+      "AttackType": "Hit",
+      "Penetration": 750,
+      "DamageRange": "21-46",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 19011
+    },
+    {
+      "Keywords": [
+        "trainer",
+        "healer",
+        "guildmaster"
+      ],
+      "ShortDescription": "the healer guildmaster",
+      "LongDescription": "The healer guildmaster stands here, ready to teach you his ways.",
+      "Description": "The healer guildmaster is a gentle and nurturing figure with a warm and kind\ndemeanor. She has a round face, a small nose, and soft brown eyes that exude a\nsense of compassion. Her hair is a light brown, styled in a simple and elegant\nmanner that allows her to move freely and attend to her patients. Her skin is a\nwarm, creamy complexion, and she carries herself with grace and poise. She\nradiates an aura of calm and serenity, her gentle presence inspiring trust and\ncomfort in those around her. Despite her petite stature, her mastery of the\nhealing arts is undeniable, and she is revered by her fellow healers.",
+      "Level": 50,
+      "Gold": 5000,
+      "Sex": "Female",
+      "Hitpoints": 15050,
+      "Mana": 10505,
+      "Moves": 1000,
+      "Armor": 0,
+      "AttacksCount": 7,
+      "AttackType": "Hit",
+      "Penetration": 1250,
+      "DamageRange": "21-46",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 19012
+    },
+    {
+      "Keywords": [
+        "healer",
+        "guard"
+      ],
+      "ShortDescription": "the guild guard",
+      "LongDescription": "A guard is here, protecting the healer guild from intruders.",
+      "Description": "A short, skinny guild guard.",
+      "Level": 50,
+      "Gold": 1500,
+      "Sex": "Female",
+      "Hitpoints": 2760,
+      "Mana": 2760,
+      "Moves": 1000,
+      "Armor": 20,
+      "AttacksCount": 7,
+      "AttackType": "Hit",
+      "Penetration": 650,
+      "DamageRange": "21-46",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 19013
+    },
+    {
+      "Keywords": [
+        "trainer",
+        "thief",
+        "guildmaster"
+      ],
+      "ShortDescription": "the thief guildmaster",
+      "LongDescription": "The thief guildmaster stands here, ready to teach you his ways.",
+      "Description": "The thief guildmaster is a slender and nimble figure with a quick wit and a\ncharming smile. He has a sharp jawline, a crooked nose, and sparkling brown eyes\nthat seem to always be on the lookout for his next big score. His hair is a\nshaggy mop of black, styled in a manner that adds to his roguish charm. He moves\nwith a feline grace, his confidence and cunning evident in every step. Despite\nhis sometimes questionable methods, he has a charismatic personality and a\nsilver tongue that makes him well-liked by his fellow thieves.",
+      "Level": 50,
+      "Gold": 5000,
+      "Sex": "Male",
+      "Hitpoints": 15050,
+      "Mana": 10505,
+      "Moves": 1000,
+      "Armor": 0,
+      "AttacksCount": 7,
+      "AttackType": "Hit",
+      "Penetration": 750,
+      "DamageRange": "21-46",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 19014
+    },
+    {
+      "Keywords": [
+        "thief",
+        "guard"
+      ],
+      "ShortDescription": "the guild guard",
+      "LongDescription": "A guard is here, protecting the thief guild from intruders.",
+      "Description": "A short, stocky guild guard.",
+      "Level": 50,
+      "Gold": 1500,
+      "Sex": "Male",
+      "Hitpoints": 2760,
+      "Mana": 2760,
+      "Moves": 1000,
+      "Armor": 20,
+      "AttacksCount": 7,
+      "AttackType": "Hit",
+      "Penetration": 750,
+      "DamageRange": "21-46",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 19015
+    },
+    {
+      "Keywords": [
+        "trainer",
+        "mage",
+        "guildmaster"
+      ],
+      "ShortDescription": "the mage guildmaster",
+      "LongDescription": "The mage guildmaster stands here, ready to teach you her ways.",
+      "Description": "The mage guildmaster is a serene and regal figure with an ethereal beauty. She\nhas a delicate jawline, a straight nose, and piercing blue eyes that seem to\nshimmer with an inner light. Her hair is a shining silver, styled in an\nelaborate up-do that adds to her stately appearance. Her skin is a warm,\ncreamy complexion, and she carries herself with grace and poise. She radiates\nan aura of calm and confidence, her gentle presence inspiring a sense of peace\nand security in those around her. Despite her quiet demeanor, her vast\nknowledge and mastery of magic is undeniable.",
+      "Level": 50,
+      "Gold": 5000,
+      "Sex": "Female",
+      "Hitpoints": 15050,
+      "Mana": 10505,
+      "Moves": 1000,
+      "Armor": 0,
+      "AttacksCount": 7,
+      "AttackType": "Hit",
+      "Penetration": 1250,
+      "DamageRange": "21-46",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 19016
+    },
+    {
+      "Keywords": [
+        "mage",
+        "guard"
+      ],
+      "ShortDescription": "the guild guard",
+      "LongDescription": "A guard is here, protecting the mage guild from intruders.",
+      "Description": "A short, skinny guild guard.",
+      "Level": 50,
+      "Gold": 1500,
+      "Sex": "Female",
+      "Hitpoints": 3600,
+      "Mana": 3600,
+      "Moves": 1000,
+      "Armor": 0,
+      "AttacksCount": 7,
+      "AttackType": "Hit",
+      "Penetration": 750,
+      "DamageRange": "21-46",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 19017
+    },
+    {
+      "Keywords": [
+        "healer"
+      ],
+      "ShortDescription": "the healer",
+      "LongDescription": "A healer is here, selling spells.",
+      "Description": "Although retired from adventuring, the healer still lends a hand. Type \u0027heal\u0027 to see a listing of spells.",
+      "Level": 55,
+      "Gold": 50000,
+      "Sex": "Male",
+      "Hitpoints": 10000,
+      "Mana": 10000,
+      "Moves": 1000,
+      "Armor": 250,
+      "AttacksCount": 7,
+      "AttackType": "Hit",
+      "Penetration": 1275,
+      "DamageRange": "24-64",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 19018
+    },
+    {
+      "Keywords": [
+        "cityguard",
+        "guard"
+      ],
+      "ShortDescription": "the cityguard",
+      "LongDescription": "A cityguard is here, guarding the gate alertly.",
+      "Description": "The city guard stands tall and imposing on the streets, their broad shoulders\nand sturdy frame making them a reassuring presence for the citizens. They have a\nstrong jawline, a straight nose, and piercing green eyes that reflect their\nvigilance and attention to detail. Their hair is a short crop, styled in a\npractical manner that doesn\u0027t distract from their duties. Their skin is rough\nand tanned from the sun, bearing the marks of a life spent outdoors. They carry\nthemselves with confidence and authority, their posture straight and their gait\nsteady. Despite their intimidating appearance, they are known to have a stern\nbut fair demeanor, earning the respect of the people they serve and protect.",
+      "Level": 15,
+      "Gold": 1500,
+      "Sex": "None",
+      "Hitpoints": 420,
+      "Mana": 150,
+      "Moves": 1000,
+      "Armor": 20,
+      "AttacksCount": 2,
+      "AttackType": "Hit",
+      "Penetration": 225,
+      "DamageRange": "8-12",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 19019
+    },
+    {
+      "Keywords": [
+        "merchant",
+        "Sid"
+      ],
+      "ShortDescription": "the merchant",
+      "LongDescription": "Sid stands at the counter, waiting for your order.",
+      "Description": "A big bearded man is beckons you over to look at his wares.",
+      "Level": 50,
+      "Gold": 13000,
+      "Sex": "Male",
+      "Hitpoints": 3000,
+      "Mana": 100,
+      "Moves": 1000,
+      "Armor": 250,
+      "AttacksCount": 7,
+      "AttackType": "Hit",
+      "Penetration": 750,
+      "DamageRange": "28-28",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 19020
+    },
+    {
+      "Keywords": [
+        "boy"
+      ],
+      "ShortDescription": "the pet shop boy",
+      "LongDescription": "A pet shop boy is here, humming gently.",
+      "Description": "He is young and close-cropped and looks quite happy.",
+      "Level": 23,
+      "Gold": 10000,
+      "Sex": "Male",
+      "Hitpoints": 10000,
+      "Mana": 100,
+      "Moves": 1000,
+      "Armor": 250,
+      "AttacksCount": 3,
+      "AttackType": "Hit",
+      "Penetration": 615,
+      "DamageRange": "30-50",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 19021
+    },
+    {
+      "Keywords": [
+        "kitten",
+        "cat",
+        "pet"
+      ],
+      "ShortDescription": "the kitten",
+      "LongDescription": "A small loyal kitten is here.",
+      "Description": "The kitten looks like a cute, little, fierce fighter.",
+      "Level": 1,
+      "Gold": 100,
+      "Sex": "None",
+      "Hitpoints": 20,
+      "Mana": 100,
+      "Moves": 1000,
+      "Armor": 20,
+      "AttacksCount": 1,
+      "AttackType": "Hit",
+      "Penetration": 25,
+      "DamageRange": "4-4",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 19022
+    },
+    {
+      "Keywords": [
+        "puppy",
+        "dog",
+        "pet"
+      ],
+      "ShortDescription": "the puppy",
+      "LongDescription": "A small loyal puppy is here.",
+      "Description": "The puppy looks like a cute, little, fierce fighter.",
+      "Level": 3,
+      "Gold": 300,
+      "Sex": "None",
+      "Hitpoints": 40,
+      "Mana": 100,
+      "Moves": 1000,
+      "Armor": 30,
+      "AttacksCount": 1,
+      "AttackType": "Hit",
+      "Penetration": 35,
+      "DamageRange": "6-6",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 19023
+    },
+    {
+      "Keywords": [
+        "beagle",
+        "dog",
+        "pet"
+      ],
+      "ShortDescription": "the beagle",
+      "LongDescription": "A small, quick, loyal beagle is here.",
+      "Description": "The beagle looks like a fierce fighter.",
+      "Level": 5,
+      "Gold": 500,
+      "Sex": "None",
+      "Hitpoints": 74,
+      "Mana": 100,
+      "Moves": 1000,
+      "Armor": 50,
+      "AttacksCount": 1,
+      "AttackType": "Hit",
+      "Penetration": 55,
+      "DamageRange": "6-6",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 19024
+    },
+    {
+      "Keywords": [
+        "rottweiler",
+        "dog",
+        "pet"
+      ],
+      "ShortDescription": "the rottweiler",
+      "LongDescription": "A large, loyal rottweiler is here.",
+      "Description": "The rottweiler looks like a strong, fierce fighter.",
+      "Level": 7,
+      "Gold": 700,
+      "Sex": "None",
+      "Hitpoints": 95,
+      "Mana": 150,
+      "Moves": 1000,
+      "Armor": 60,
+      "AttacksCount": 1,
+      "AttackType": "Hit",
+      "Penetration": 65,
+      "DamageRange": "5-9",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 19025
+    },
+    {
+      "Keywords": [
+        "wolf",
+        "pet"
+      ],
+      "ShortDescription": "the wolf",
+      "LongDescription": "A large, trained wolf is here.",
+      "Description": "The wolf looks like a strong, fearless fighter.",
+      "Level": 9,
+      "Gold": 900,
+      "Sex": "None",
+      "Hitpoints": 115,
+      "Mana": 100,
+      "Moves": 1000,
+      "Armor": 60,
+      "AttacksCount": 2,
+      "AttackType": "Hit",
+      "Penetration": 75,
+      "DamageRange": "6-11",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 19026
+    },
+    {
+      "Keywords": [
+        "eagle",
+        "bird",
+        "pet"
+      ],
+      "ShortDescription": "the eagle",
+      "LongDescription": "A loyal eagle circles overhead.",
+      "Description": "The eagle looks like a strong fierce fighter.",
+      "Level": 12,
+      "Gold": 1200,
+      "Sex": "None",
+      "Hitpoints": 165,
+      "Mana": 100,
+      "Moves": 1000,
+      "Armor": 100,
+      "AttacksCount": 2,
+      "AttackType": "Hit",
+      "Penetration": 90,
+      "DamageRange": "8-13",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 19027
+    },
+    {
+      "Keywords": [
+        "lion",
+        "pet"
+      ],
+      "ShortDescription": "the lion",
+      "LongDescription": "A large, faithful lion is here.",
+      "Description": "The great lion looks very fierce.",
+      "Level": 15,
+      "Gold": 1500,
+      "Sex": "None",
+      "Hitpoints": 227,
+      "Mana": 100,
+      "Moves": 1000,
+      "Armor": 120,
+      "AttacksCount": 2,
+      "AttackType": "Hit",
+      "Penetration": 225,
+      "DamageRange": "18-26",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 19028
+    },
+    {
+      "Keywords": [
+        "tiger",
+        "pet"
+      ],
+      "ShortDescription": "the tiger",
+      "LongDescription": "A great, loyal tiger is here.",
+      "Description": "The large, striped tiger looks like a savage fighter.",
+      "Level": 20,
+      "Gold": 2000,
+      "Sex": "None",
+      "Hitpoints": 347,
+      "Mana": 100,
+      "Moves": 1000,
+      "Armor": 140,
+      "AttacksCount": 3,
+      "AttackType": "Hit",
+      "Penetration": 300,
+      "DamageRange": "18-34",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 19029
+    },
+    {
+      "Keywords": [
+        "captain",
+        "guard"
+      ],
+      "ShortDescription": "the guard captain",
+      "LongDescription": "The captain is here, scheduling the guard rotation for the day.",
+      "Description": "A big, strong guard captain.",
+      "Level": 50,
+      "Gold": 1500,
+      "Sex": "Male",
+      "Hitpoints": 4400,
+      "Mana": 150,
+      "Moves": 1000,
+      "Armor": 20,
+      "AttacksCount": 7,
+      "AttackType": "Hit",
+      "Penetration": 750,
+      "DamageRange": "21-46",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 19030
+    },
+    {
+      "Keywords": [
+        "lieutenant",
+        "guard"
+      ],
+      "ShortDescription": "the guard captain",
+      "LongDescription": "An angry looking guard lieutenant glares at you.",
+      "Description": "An angry guard captain.",
+      "Level": 40,
+      "Gold": 1500,
+      "Sex": "Male",
+      "Hitpoints": 8600,
+      "Mana": 150,
+      "Moves": 1000,
+      "Armor": 200,
+      "AttacksCount": 6,
+      "AttackType": "Hit",
+      "Penetration": 1200,
+      "DamageRange": "22-52",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 19031
+    },
+    {
+      "Keywords": [
+        "trainer",
+        "bard",
+        "guildmaster"
+      ],
+      "ShortDescription": "the bard guildmaster",
+      "LongDescription": "The bard guildmaster stands here, ready to teach you his ways.",
+      "Description": "The guildmaster is a tall and regal looking figure, with long flowing silver\nhair and piercing green eyes. He wears a garb of rich purple and gold,\nadorned with intricate musical symbols embroidered along the hem and sleeves.\nA lute is hung from a strap across his back, and a small harp is clasped in\nhis hand. A charming smile graces his lips, and his voice is like honey,\nsoothing the soul and captivating all who hear it. He exuded a sense of wisdom\nand leadership, and his mere presence commands respect from all those around.",
+      "Level": 50,
+      "Gold": 5000,
+      "Sex": "Male",
+      "Hitpoints": 6050,
+      "Mana": 5150,
+      "Moves": 1000,
+      "Armor": 0,
+      "AttacksCount": 7,
+      "AttackType": "Hit",
+      "Penetration": 1250,
+      "DamageRange": "21-46",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 19032
+    },
+    {
+      "Keywords": [
+        "bard",
+        "guard"
+      ],
+      "ShortDescription": "the guild guard",
+      "LongDescription": "A guard is here, protecting the bards guild from intruders.",
+      "Description": "The guard is a formidable figure, standing tall and proud at the entrance to\nthe bard\u0027s guild. She is dressed in gleaming silver armor, adorned with musical\nnotes etched in gold. Her long cape, made of the finest velvet, flows in the\nbreeze, while her helmet is shaped like a lyre, symbolizing the music she\nprotects. In one hand, she holds a wooden dagger, the blade made of a magical\nwood that never breaks and the point shining like a star. In the other hand,\nshe carrys a lute, ready to strum a tune if needed.",
+      "Level": 50,
+      "Gold": 1500,
+      "Sex": "Female",
+      "Hitpoints": 3600,
+      "Mana": 3600,
+      "Moves": 1000,
+      "Armor": 0,
+      "AttacksCount": 7,
+      "AttackType": "Hit",
+      "Penetration": 750,
+      "DamageRange": "21-46",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 19033
+    },
+    {
+      "Keywords": [
+        "merchant",
+        "bard"
+      ],
+      "ShortDescription": "the traveling bard",
+      "LongDescription": "A traveling bard sits here, displaying his wares.",
+      "Description": "Dressed in ornate robes of emerald green and golden yellow, with a lute hanging\nfrom a strap across their back, this traveling bard exudes an air of confidence\nand pride. His long, curly hair is tied back in a messy bun, revealing a face\nfull of character and charisma. He is surrounded by a collection of instruments\nof all shapes and sizes.",
+      "Level": 40,
+      "Gold": 13000,
+      "Sex": "Male",
+      "Hitpoints": 2000,
+      "Mana": 100,
+      "Moves": 1000,
+      "Armor": 250,
+      "AttacksCount": 6,
+      "AttackType": "Hit",
+      "Penetration": 600,
+      "DamageRange": "28-52",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 19034
+    },
+    {
+      "Keywords": [
+        "assassin",
+        "guard"
+      ],
+      "ShortDescription": "the guild guard",
+      "LongDescription": "A guard is here, protecting the assassin guild from intruders.",
+      "Description": "A tall, agile guild guard.",
+      "Level": 50,
+      "Gold": 1500,
+      "Sex": "Male",
+      "Hitpoints": 2760,
+      "Mana": 2760,
+      "Moves": 1000,
+      "Armor": 20,
+      "AttacksCount": 7,
+      "AttackType": "Hit",
+      "Penetration": 750,
+      "DamageRange": "21-46",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 19035
+    },
+    {
+      "Keywords": [
+        "trainer",
+        "assassin",
+        "guildmaster"
+      ],
+      "ShortDescription": "the assassin guildmaster",
+      "LongDescription": "The assassin guildmaster stands here, ready to teach you his ways.",
+      "Description": "The guildmaster is dressed in a simple yet elegant black robe, unadorned except\nfor a few gold threads woven into the hem and cuffs. The robe is made of a soft,\nsupple material that allows the guildmaster to move quickly and silently when\nnecessary. His face is partially obscured by a black hood, which casts his\nfeatures into shadow and conceals his identity from prying eyes. His eyes are\npiercing and intense, able to see through lies and deception with ease. His\nmovements are fluid and graceful, yet also deadly and precise, reflecting the\ndeadly art of assassination that he hasmastered. The guildmaster is a figure of\nfear and respect, inspiring both loyalty and terror among his followers, and\ncommanding a dark and powerful presence that few could match.",
+      "Level": 50,
+      "Gold": 5000,
+      "Sex": "Male",
+      "Hitpoints": 15050,
+      "Mana": 10505,
+      "Moves": 1000,
+      "Armor": 0,
+      "AttacksCount": 7,
+      "AttackType": "Hit",
+      "Penetration": 750,
+      "DamageRange": "21-46",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 19036
+    },
+    {
+      "Keywords": [
+        "lizard",
+        "tail"
+      ],
+      "ShortDescription": "the squirming tail",
+      "LongDescription": "The squirming tail is here, recently detached from a lizard.",
+      "Description": "The detached lizard tail is squirming and contorting as if it still has a life of its own.",
+      "Level": 15,
+      "Gold": 1500,
+      "Sex": "None",
+      "Hitpoints": 485,
+      "Mana": 510,
+      "Moves": 1000,
+      "Armor": 20,
+      "AttacksCount": 2,
+      "AttackType": "Hit",
+      "Penetration": 195,
+      "DamageRange": "28-40",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 19037
+    },
+    {
+      "Keywords": [
+        "wolf"
+      ],
+      "ShortDescription": "a vicious wolf",
+      "LongDescription": "A vicious wolf is here, serving its master.",
+      "Description": "A large, muscular wolf with pointed ears, sharp teeth and claws and piercing\neyes is here. Its fur a shade of gray with brown sprinkled in, with a\nstreamlined body built for speed and agility.",
+      "Level": 1,
+      "Gold": 100,
+      "Sex": "None",
+      "Hitpoints": 0,
+      "Mana": 0,
+      "Moves": 1000,
+      "Armor": 300,
+      "AttacksCount": 1,
+      "AttackType": "Hit",
+      "Penetration": 15,
+      "DamageRange": "2-2",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 19038
+    },
+    {
+      "Keywords": [
+        "serpent"
+      ],
+      "ShortDescription": "a vicious serpent",
+      "LongDescription": "A vicious serpent is here, serving its master.",
+      "Description": "A long, sinuous serpent with smooth scales and a flickering tongue is here. Its\nbody is lithe and flexible, able to move swiftly and gracefully through the\nunderbrush. Its scales are a shade of green with black spots, and it has a\ntriangular head with sharp fangs. The serpent\u0027s eyes appear to be be keen and\nwatchful, and it moves with a fluid, serpentine grace.",
+      "Level": 1,
+      "Gold": 100,
+      "Sex": "None",
+      "Hitpoints": 0,
+      "Mana": 0,
+      "Moves": 1000,
+      "Armor": 500,
+      "AttacksCount": 1,
+      "AttackType": "Hit",
+      "Penetration": 15,
+      "DamageRange": "2-2",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 19039
+    },
+    {
+      "Keywords": [
+        "bear"
+      ],
+      "ShortDescription": "a viscious bear",
+      "LongDescription": "A viscious bear is here, serving its master.",
+      "Description": "A massive, hulking bear with shaggy fur, sharp claws, and a powerful build is\nhere. Its fur is a shade of brown, and it has a broad, rounded head with small\nears and snout. Its eyes would are deep-set and watchful, and it moves with a\nlumbering, yet surprisingly quick gait. Despite its size and strength, the bear\nseems to possess a certain grace and fluidity of movement, as well as a primal,\nuntamed energy.",
+      "Level": 1,
+      "Gold": 100,
+      "Sex": "None",
+      "Hitpoints": 0,
+      "Mana": 0,
+      "Moves": 1000,
+      "Armor": 1100,
+      "AttacksCount": 1,
+      "AttackType": "Hit",
+      "Penetration": 15,
+      "DamageRange": "2-2",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 19040
+    },
+    {
+      "Keywords": [
+        "owl"
+      ],
+      "ShortDescription": "a vicious owl",
+      "LongDescription": "A vicious owl is here, serving its master.",
+      "Description": "A vicious owl with sharp talons and beak are prominently displayed, ready to\nstrike at any moment. Its eyes are intense and focused, scanning the\nsurroundings for potential prey. Its feathers are dark and sleek, allowing it to\nmove swiftly and silently through the air. Overall, the vicious owl exudes a\nsense of power and danger, both feared and respected by those who encountered\nit.",
+      "Level": 1,
+      "Gold": 100,
+      "Sex": "None",
+      "Hitpoints": 0,
+      "Mana": 0,
+      "Moves": 1000,
+      "Armor": 500,
+      "AttacksCount": 1,
+      "AttackType": "Hit",
+      "Penetration": 15,
+      "DamageRange": "2-2",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 19041
+    },
+    {
+      "Keywords": [
+        "trainer",
+        "shapeshifter",
+        "guildmaster"
+      ],
+      "ShortDescription": "the shapeshifter guildmaster",
+      "LongDescription": "The shapeshifter guildmaster stands here, ready to teach you its ways.",
+      "Description": "The guildmaster of the shapeshifters guild is a wise and mysterious figure,\nknown simply as the Elder. Whether male or female, their appearance is that of a\nperson who has lived many lives, with eyes that seem to hold the knowledge of\nthe ages. The Elder is revered by all who enter the guild, their words carrying\nthe weight of centuries of shapeshifting lore and wisdom. They have dedicated\ntheir life to the art of shapeshifting and are a master of all animal forms,\nable to shift effortlessly from one creature to another. The Elder is patient\nand compassionate, yet fierce in their determination to protect the balance\nbetween humans and nature. Their guidance is sought by all shapeshifters who\nseek to deepen their understanding of the natural world and hone their\nshapeshifting skills.",
+      "Level": 50,
+      "Gold": 5000,
+      "Sex": "None",
+      "Hitpoints": 15050,
+      "Mana": 10505,
+      "Moves": 1000,
+      "Armor": 0,
+      "AttacksCount": 7,
+      "AttackType": "Hit",
+      "Penetration": 1250,
+      "DamageRange": "21-46",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 19042
+    },
+    {
+      "Keywords": [
+        "shapeshifter",
+        "guard"
+      ],
+      "ShortDescription": "the guild guard",
+      "LongDescription": "A guard is here, protecting the shapeshifter guild from intruders.",
+      "Description": "A short, skinny guild guard.",
+      "Level": 50,
+      "Gold": 1500,
+      "Sex": "Female",
+      "Hitpoints": 3600,
+      "Mana": 3600,
+      "Moves": 1000,
+      "Armor": 0,
+      "AttacksCount": 7,
+      "AttackType": "Hit",
+      "Penetration": 750,
+      "DamageRange": "21-46",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 19043
+    },
+    {
+      "Keywords": [
+        "Seraphel",
+        "Guardian"
+      ],
+      "ShortDescription": "Seraphel, Guardian of Light",
+      "LongDescription": "Seraphel, Guardian of Light, is here, seeking out Ravenshadow.",
+      "Description": "Radiant, with golden locks that shimmer like sunlight. Her eyes are a\nserene shade of azure, reflecting her calm and steadfast nature. Clad in\ngleaming silver armor, she carries a sword that emanates a soft, ethereal\nglow, signifying her divine allegiance.",
+      "Level": 55,
+      "Gold": 5500,
+      "Sex": "Female",
+      "Hitpoints": 4210,
+      "Mana": 4210,
+      "Moves": 1000,
+      "Armor": 100,
+      "AttacksCount": 7,
+      "AttackType": "Hit",
+      "Penetration": 1075,
+      "DamageRange": "22-85",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 19044
+    },
+    {
+      "Keywords": [
+        "Ravenshadow",
+        "Chaosbringer"
+      ],
+      "ShortDescription": "Ravenshadow, The Chaosbringer",
+      "LongDescription": "Ravenshadow, The Chaosbringer is here, causing havoc.",
+      "Description": "Tall, wiry, with jet-black hair that cascades over a pale, gaunt face. Eyes\nare a deep shade of crimson, almost resembling pools of blood. Wears dark,\ntattered robes that flutter as if caught in a ceaseless, stormy wind. His\npresence is accompanied by the eerie cawing of unseen ravens.",
+      "Level": 55,
+      "Gold": 5500,
+      "Sex": "Male",
+      "Hitpoints": 4210,
+      "Mana": 4210,
+      "Moves": 1000,
+      "Armor": 100,
+      "AttacksCount": 7,
+      "AttackType": "Hit",
+      "Penetration": 1075,
+      "DamageRange": "22-85",
+      "Loot": {},
+      "Flags": [],
+      "SpecialAttacks": [],
+      "Id": 19045
+    }
+  ],
+  "MobileResets": [
+    {
+      "MobileId": 19002,
+      "RoomId": 19105
+    },
+    {
+      "MobileId": 19003,
+      "RoomId": 19104
+    },
+    {
+      "MobileId": 19004,
+      "RoomId": 19102
+    },
+    {
+      "MobileId": 19005,
+      "RoomId": 19103
+    },
+    {
+      "MobileId": 19006,
+      "RoomId": 19100
+    },
+    {
+      "MobileId": 19007,
+      "RoomId": 19024
+    },
+    {
+      "MobileId": 19008,
+      "RoomId": 19048
+    },
+    {
+      "MobileId": 19009,
+      "RoomId": 19036
+    },
+    {
+      "MobileId": 19010,
+      "RoomId": 19030
+    },
+    {
+      "MobileId": 19011,
+      "RoomId": 19020
+    },
+    {
+      "MobileId": 19012,
+      "RoomId": 19032
+    },
+    {
+      "MobileId": 19013,
+      "RoomId": 19023
+    },
+    {
+      "MobileId": 19014,
+      "RoomId": 19050
+    },
+    {
+      "MobileId": 19015,
+      "RoomId": 19039
+    },
+    {
+      "MobileId": 19016,
+      "RoomId": 19085
+    },
+    {
+      "MobileId": 19017,
+      "RoomId": 19076
+    },
+    {
+      "MobileId": 19018,
+      "RoomId": 19087
+    },
+    {
+      "MobileId": 19019,
+      "RoomId": 19001
+    },
+    {
+      "MobileId": 19019,
+      "RoomId": 19013
+    },
+    {
+      "MobileId": 19019,
+      "RoomId": 19114
+    },
+    {
+      "MobileId": 19019,
+      "RoomId": 19063
+    },
+    {
+      "MobileId": 19020,
+      "RoomId": 19101
+    },
+    {
+      "MobileId": 19021,
+      "RoomId": 19068
+    },
+    {
+      "MobileId": 19030,
+      "RoomId": 19047
+    },
+    {
+      "MobileId": 19031,
+      "RoomId": 19052
+    },
+    {
+      "MobileId": 19001,
+      "RoomId": 19107
+    },
+    {
+      "MobileId": 19032,
+      "RoomId": 19066
+    },
+    {
+      "MobileId": 19033,
+      "RoomId": 19057
+    },
+    {
+      "MobileId": 19034,
+      "RoomId": 19065
+    },
+    {
+      "MobileId": 19035,
+      "RoomId": 19041
+    },
+    {
+      "MobileId": 19036,
+      "RoomId": 19123
+    },
+    {
+      "MobileId": 19042,
+      "RoomId": 19082
+    },
+    {
+      "MobileId": 19043,
+      "RoomId": 19073
+    },
+    {
+      "MobileId": 19044,
+      "RoomId": 0
+    },
+    {
+      "MobileId": 19045,
+      "RoomId": 0
+    }
+  ]
+}
