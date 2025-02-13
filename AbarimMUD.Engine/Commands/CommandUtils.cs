@@ -152,11 +152,12 @@ namespace AbarimMUD.Commands
 			}
 
 			return item;
-
 		}
 
 		public static Mobile EnsureMobileById(this ExecutionContext context, int id) => EnsureById(context, id, Mobile.GetMobileById);
 		public static Character EnsureCharacterByName(this ExecutionContext context, string name) => EnsureById(context, name, Character.GetCharacterByName);
+		public static PlayerClass EnsurePlayerClassById(this ExecutionContext context, string id) => EnsureById(context, id, PlayerClass.GetClassById);
+		public static Shop EnsureShopById(this ExecutionContext context, string id) => EnsureById(context, id, Shop.GetShopById);
 
 		public static Item EnsureItemType(this ExecutionContext context, string id, ItemType itemType)
 		{

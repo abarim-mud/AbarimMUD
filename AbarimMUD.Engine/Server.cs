@@ -64,14 +64,15 @@ namespace AbarimMUD
 
 			DataContext.Load(dataFolder);
 
-			// Area.Storage.SaveAll();
-			PlayerClass.Storage.SaveAll();
+			Area.Storage.SaveAll();
+			// PlayerClass.Storage.SaveAll();
 			// Skill.Storage.SaveAll();
 			// Configuration.Save();
 			// Ability.Storage.SaveAll();
 			// SkillCostInfo.Storage.SaveAll();
-			// Item.Storage.SaveAll();
+			Item.Storage.SaveAll();
 			GenericLoot.Save();
+			Shop.Storage.SaveAll();
 		}
 
 		private bool ProcessRegen(ref int currentValue, int maxValue, ref float fractionalValue, int regenValue, float secondsPassed)

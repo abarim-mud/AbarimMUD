@@ -98,21 +98,23 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 
 				SetValue(item, v);
 			}
-			else if (Type == typeof(HashSet<string>) || 
-				Type == typeof(List<string>) || 
+			else if (Type == typeof(HashSet<string>) ||
+				Type == typeof(List<string>) ||
 				Type == typeof(string[]))
 			{
 				object val;
-				if(Type == typeof(HashSet<string>))
+				if (Type == typeof(HashSet<string>))
 				{
 					val = new HashSet<string>(values);
-				} else if(Type == typeof(List<string>))
+				}
+				else if (Type == typeof(List<string>))
 				{
 					val = new List<string>(values);
-				} else
+				}
+				else
 				{
 					var arr = new string[values.Count];
-					for(var i = 0; i < arr.Length; ++i)
+					for (var i = 0; i < arr.Length; ++i)
 					{
 						arr[i] = values[i];
 					}
@@ -155,6 +157,26 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 				if (ReferenceEquals(cls, item))
 				{
 					context.Send("Object can't reference itself.");
+					return false;
+				}
+
+				SetValue(item, cls);
+			}
+			else if (Type == typeof(PlayerClass))
+			{
+				var cls = context.EnsurePlayerClassById(s);
+				if (cls == null)
+				{
+					return false;
+				}
+
+				SetValue(item, cls);
+			}
+			else if (Type == typeof(Shop))
+			{
+				var cls = context.EnsureShopById(s);
+				if (cls == null)
+				{
 					return false;
 				}
 

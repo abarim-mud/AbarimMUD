@@ -8,7 +8,7 @@
   "ShortDescription": "a novice potion of healing",
   "Description": "Unset",
   "ItemType": "Potion",
-  "Price": 100,
+  "Price": 200,
   "Affects": {
     "HpRegen": {
       "Value": 60,
@@ -16,6 +16,5 @@
       "AffectSlotName": "potionOfHealing"
     }
   },
-  "Flags": [],
-  "IsStockItem": true
+  "Flags": []
 }

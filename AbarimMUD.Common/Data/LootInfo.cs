@@ -28,16 +28,16 @@ namespace AbarimMUD.Data
 	public class GenericLootRecord
 	{
 		public int ProbabilityPercentage { get; set; }
-		public LootRecord[] Records { get; set; }
+		public LootRecord[] Choice { get; set; }
 	}
 
 	public class GenericLoot
 	{
 		internal static readonly CustomStorage<GenericLoot> Storage = new GenericLoots();
 
-		public SortedDictionary<int, GenericLootRecord> Data { get; set; } = new SortedDictionary<int, GenericLootRecord>();
+		public SortedDictionary<int, GenericLootRecord[]> Data { get; set; } = new SortedDictionary<int, GenericLootRecord[]>();
 
-		public static IReadOnlyDictionary<int, GenericLootRecord> Items => Storage.Item.Data;
+		public static IReadOnlyDictionary<int, GenericLootRecord[]> Items => Storage.Item.Data;
 
 		public static void Save() => Storage.Save();
 	}

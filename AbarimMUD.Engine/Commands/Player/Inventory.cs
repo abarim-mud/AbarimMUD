@@ -25,7 +25,7 @@ namespace AbarimMUD.Commands.Player
 				sb.AppendLine();
 			}
 
-			if (context.Creature.Inventory.Items.Length == 0)
+			if (context.Creature.Inventory.Items.Count == 0)
 			{
 				sb.AppendLine("You aren't carrying any items.");
 			}

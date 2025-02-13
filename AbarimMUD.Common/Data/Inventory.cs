@@ -50,34 +50,7 @@ namespace AbarimMUD.Data
 
 	public class Inventory
 	{
-		private readonly List<InventoryRecord> _items = new List<InventoryRecord>();
-		private InventoryRecord[] _itemsArray = null;
-
-		public InventoryRecord[] Items
-		{
-			get
-			{
-				if (_itemsArray == null)
-				{
-					_itemsArray = _items.ToArray();
-				}
-
-				return _itemsArray;
-			}
-
-			set
-			{
-				if (value == null)
-				{
-					throw new ArgumentNullException(nameof(value));
-				}
-
-				_itemsArray = value;
-
-				_items.Clear();
-				_items.AddRange(value);
-			}
-		}
+		public List<InventoryRecord> Items { get; set; } = new List<InventoryRecord>();
 
 		public void AddItem(ItemInstance item, int quantity)
 		{
@@ -86,13 +59,13 @@ namespace AbarimMUD.Data
 				return;
 			}
 
-			var existingItem = (from i in _items where ItemInstance.AreEqual(i.Item, item) select i).FirstOrDefault();
+			var existingItem = (from i in Items where ItemInstance.AreEqual(i.Item, item) select i).FirstOrDefault();
 			if (existingItem != null)
 			{
 				existingItem.Quantity += quantity;
 				if (existingItem.Quantity == 0)
 				{
-					_items.Remove(existingItem);
+					Items.Remove(existingItem);
 				}
 			}
 			else
@@ -103,23 +76,26 @@ namespace AbarimMUD.Data
 				}
 
 				var rec = new InventoryRecord(item, quantity);
-				_items.Add(rec);
+				Items.Add(rec);
 			}
-
-			InvalidateArray();
 		}
 
 		public void AddItem(InventoryRecord rec) => AddItem(rec.Item, rec.Quantity);
 
-		private void InvalidateArray()
+		public void AddInventory(Inventory other)
 		{
-			_itemsArray = null;
+			foreach(var rec in other.Items)
+			{
+				AddItem(rec);
+			}
 		}
 
 		public InventoryRecord FindItem(string keyword)
 		{
 			return (from i in Items where i.Item.MatchesKeyword(keyword) select i).FirstOrDefault();
 		}
+
+		public void Clear() => Items.Clear();
 
 		public Inventory Clone()
 		{

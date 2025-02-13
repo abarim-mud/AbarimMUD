@@ -23,12 +23,12 @@ namespace AbarimMUD.Commands.Player
 			var invItem = context.Creature.Inventory.FindItem(data);
 			if (invItem == null)
 			{
-				context.Send("You don't seem to have '{data'");
+				context.Send($"You don't seem to have '{data}'");
 				return false;
 			}
 
 			var item = invItem.Item;
-			if (shopKeeper.Info.Shop != item.ItemType.GetStockItemType())
+			if (!shopKeeper.Info.Shop.ItemTypes.Contains(item.ItemType))
 			{
 				Tell.Execute(shopKeeper.GetContext(), $"{context.Creature.ShortDescription} I don't deal in those.");
 
@@ -40,15 +40,7 @@ namespace AbarimMUD.Commands.Player
 			context.Creature.Gold += price;
 			context.Creature.Inventory.AddItem(item, -1);
 
-			var stockItems = Item.GetStockItems(shopKeeper.Info.Shop.Value);
-			var stockItem = (from i in stockItems where i.Id == item.Id select i).FirstOrDefault();
-
-			if (stockItem == null)
-			{
-				// Not a stock item
-				// Hence adding to the shopkeeper inventory
-				shopKeeper.Inventory.AddItem(item, 1);
-			}
+			shopKeeper.Inventory.AddItem(item, 1);
 
 			var character = context.Creature as Character;
 			character?.Save();

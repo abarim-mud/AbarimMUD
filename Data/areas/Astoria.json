@@ -1550,6 +1550,7 @@
         "NoPurge"
       ],
       "SpecialAttacks": [],
+      "Shop": "alchemist",
       "Id": 19006
     },
     {
@@ -1929,6 +1930,7 @@
         "NoPurge"
       ],
       "SpecialAttacks": [],
+      "Shop": "smithy",
       "Id": 19020
     },
     {

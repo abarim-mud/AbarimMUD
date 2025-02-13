@@ -1,0 +1,13 @@
+{
+  "Id": "chunkOfLeather",
+  "Keywords": [
+    "leather",
+    "chunk"
+  ],
+  "ShortDescription": "a chunk of leather",
+  "Description": "Unset",
+  "ItemType": "Material",
+  "Price": 100,
+  "Affects": {},
+  "Flags": []
+}

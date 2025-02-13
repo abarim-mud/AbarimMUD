@@ -1,0 +1,22 @@
+{
+  "Id": "alchemist",
+  "Inventory": {
+    "Items": [
+      {
+        "Item": "novicePotionOfHealing",
+        "Quantity": 10
+      },
+      {
+        "Item": "novicePotionOfMana",
+        "Quantity": 10
+      },
+      {
+        "Item": "novicePotionOfMoves",
+        "Quantity": 10
+      }
+    ]
+  },
+  "ItemTypes": [
+    "Potion"
+  ]
+}

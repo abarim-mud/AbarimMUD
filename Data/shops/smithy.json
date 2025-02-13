@@ -1,0 +1,63 @@
+{
+  "Id": "smithy",
+  "Inventory": {
+    "Items": [
+      {
+        "Item": "ironArmor",
+        "Quantity": 10
+      },
+      {
+        "Item": "ironBoots",
+        "Quantity": 10
+      },
+      {
+        "Item": "ironDagger",
+        "Quantity": 10
+      },
+      {
+        "Item": "ironGloves",
+        "Quantity": 10
+      },
+      {
+        "Item": "ironGreaves",
+        "Quantity": 10
+      },
+      {
+        "Item": "ironHelmet",
+        "Quantity": 10
+      },
+      {
+        "Item": "leatherArmor",
+        "Quantity": 10
+      },
+      {
+        "Item": "leatherBoots",
+        "Quantity": 10
+      },
+      {
+        "Item": "leatherGloves",
+        "Quantity": 10
+      },
+      {
+        "Item": "leatherPants",
+        "Quantity": 10
+      },
+      {
+        "Item": "leatherHelmet",
+        "Quantity": 10
+      }
+    ]
+  },
+  "ItemTypes": [
+    "Ring",
+    "Amulet",
+    "Helmet",
+    "Armor",
+    "Bracelet",
+    "Gloves",
+    "Leggings",
+    "Boots",
+    "Weapon",
+    "Material"
+  ]
+}

@@ -43,7 +43,7 @@ namespace AbarimMUD.Storage
 
 				if (cls.StartingInventory != null)
 				{
-					for (var i = 0; i < cls.StartingInventory.Items.Length; ++i)
+					for (var i = 0; i < cls.StartingInventory.Items.Count; ++i)
 					{
 						cls.StartingInventory.Items[i].Info = Item.EnsureItemById(cls.StartingInventory.Items[i].Id);
 					}

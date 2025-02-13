@@ -1,42 +1,71 @@
 {
   "Data": {
-    "10": {
-      "ProbabilityPercentage": 25,
-      "Records": [
-        {
-          "Items": {
-            "Items": [
-              {
-                "Item": "novicePotionOfHealing",
-                "Quantity": 1
-              }
-            ]
+    "10": [
+      {
+        "ProbabilityPercentage": 25,
+        "Choice": [
+          {
+            "Items": {
+              "Items": [
+                {
+                  "Item": "novicePotionOfHealing",
+                  "Quantity": 1
+                }
+              ]
+            },
+            "ProbabilityPercentage": 50
           },
-          "ProbabilityPercentage": 50
-        },
-        {
-          "Items": {
-            "Items": [
-              {
-                "Item": "novicePotionOfMana",
-                "Quantity": 1
-              }
-            ]
+          {
+            "Items": {
+              "Items": [
+                {
+                  "Item": "novicePotionOfMana",
+                  "Quantity": 1
+                }
+              ]
+            },
+            "ProbabilityPercentage": 25
           },
-          "ProbabilityPercentage": 25
-        },
-        {
-          "Items": {
-            "Items": [
-              {
-                "Item": "novicePotionOfMoves",
-                "Quantity": 1
-              }
-            ]
+          {
+            "Items": {
+              "Items": [
+                {
+                  "Item": "novicePotionOfMoves",
+                  "Quantity": 1
+                }
+              ]
+            },
+            "ProbabilityPercentage": 25
+          }
+        ]
+      },
+      {
+        "ProbabilityPercentage": 10,
+        "Choice": [
+          {
+            "Items": {
+              "Items": [
+                {
+                  "Item": "chunkOfLeather",
+                  "Quantity": 1
+                }
+              ]
+            },
+            "ProbabilityPercentage": 50
           },
-          "ProbabilityPercentage": 25
-        }
-      ]
-    }
+          {
+            "Items": {
+              "Items": [
+                {
+                  "Item": "ironOre",
+                  "Quantity": 1
+                }
+              ]
+            },
+            "ProbabilityPercentage": 50
+          }
+        ]
+      }
+    ]
   }
 }

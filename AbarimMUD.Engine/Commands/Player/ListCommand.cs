@@ -16,26 +16,13 @@ namespace AbarimMUD.Commands.Player
 				return false;
 			}
 
-			var items = Item.GetStockItems(shopKeeper.Info.Shop.Value);
-
 			var grid = new AsciiGrid();
 			grid.SetHeader(0, "Item");
 			grid.SetHeader(1, "Price");
 			grid.SetHeader(2, "Quantity");
 
 			var y = 0;
-			for (var i = 0; i < items.Length; ++i)
-			{
-				var price = context.Creature.Stats.GetBuyPrice(items[i].Price);
-
-				grid.SetValue(0, y, items[i].ShortDescription);
-				grid.SetValue(1, y, price.ToString());
-				grid.SetValue(2, y, "infinite");
-
-				++y;
-			}
-
-			for(var i = 0; i < shopKeeper.Inventory.Items.Length; ++i)
+			for(var i = 0; i < shopKeeper.Inventory.Items.Count; ++i)
 			{
 				var item = shopKeeper.Inventory.Items[i].Item;
 				var price = context.Creature.Stats.GetBuyPrice(item.Price);

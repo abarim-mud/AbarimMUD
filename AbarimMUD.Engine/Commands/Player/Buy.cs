@@ -20,22 +20,16 @@ namespace AbarimMUD.Commands.Player
 				return false;
 			}
 
-			var items = Item.GetStockItems(shopKeeper.Info.Shop.Value);
-			var item = (from i in items where i.MatchesKeyword(data) select i).FirstOrDefault();
-			ItemInstance inventoryItem = null;
-			if (item == null)
+			var invItem = shopKeeper.Inventory.FindItem(data);
+
+			if (invItem == null)
 			{
-				var invItem = shopKeeper.Inventory.FindItem(data);
-
-				if (invItem == null)
-				{
-					Tell.Execute(shopKeeper.GetContext(), $"{context.Creature.ShortDescription} I don't have '{data}'.");
-					return false;
-				}
-
-				inventoryItem = invItem.Item;
-				item = inventoryItem.Info;
+				Tell.Execute(shopKeeper.GetContext(), $"{context.Creature.ShortDescription} I don't have '{data}'.");
+				return false;
 			}
+
+			var inventoryItem = invItem.Item;
+			var item = inventoryItem.Info;
 
 			var price = context.Creature.Stats.GetBuyPrice(item.Price);
 			if (context.Creature.Gold < price)

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 
 namespace AbarimMUD.Data
 {
@@ -48,42 +47,7 @@ namespace AbarimMUD.Data
 			Gold = Info.Gold;
 
 			Restore();
-
-			// Put generic loot in the inv
-			foreach(var pair in GenericLoot.Items)
-			{
-				if (Level <= pair.Key)
-				{
-					// Level match
-					var genericLootRecord = pair.Value;
-
-					// Roll loot prob
-					if (!Utility.RollPercentage(genericLootRecord.ProbabilityPercentage))
-					{
-						break;
-					}
-
-					// Another roll to determine which item to loot
-					var prob = Utility.Random1to100();
-					var total = 0;
-					foreach(var rec in genericLootRecord.Records)
-					{
-						total += rec.ProbabilityPercentage;
-
-						if (prob <= total)
-						{
-							foreach(var invRec in rec.Items.Items)
-							{
-								Inventory.AddItem(invRec);
-							}
-
-							goto end;
-						}
-					}
-				}
-			}
-
-		end:;
+			RebuildInventory();
 
 			ActiveCreatures.Add(this);
 		}
@@ -99,6 +63,55 @@ namespace AbarimMUD.Data
 
 		// Mobiles ignore attacksCount, since their attacks are set explicitly
 		protected override CreatureStats CreateBaseStats(int attacksCount) => Info.CreateStats();
+
+		internal void RebuildInventory()
+		{
+			Inventory.Items.Clear();
+
+			// Generic loot
+			if (Info.Shop == null && Info.Guildmaster == null)
+			{
+				foreach (var pair in GenericLoot.Items)
+				{
+					if (Level <= pair.Key)
+					{
+						// Level match
+						foreach (var genericLootRecord in pair.Value)
+						{
+							// Roll loot prob
+							if (!Utility.RollPercentage(genericLootRecord.ProbabilityPercentage))
+							{
+								break;
+							}
+
+							// Another roll to determine which item to loot
+							var prob = Utility.Random1to100();
+							var total = 0;
+							foreach (var rec in genericLootRecord.Choice)
+							{
+								total += rec.ProbabilityPercentage;
+
+								if (prob <= total)
+								{
+									foreach (var invRec in rec.Items.Items)
+									{
+										Inventory.AddItem(invRec);
+									}
+
+									break;
+								}
+							}
+						}
+					}
+				}
+			}
+
+			if (Info.Shop != null)
+			{
+				// Shop
+				Inventory.AddInventory(Info.Shop.Inventory);
+			}
+		}
 
 		public override string ToString() => Info.ToString();
 	}

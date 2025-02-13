@@ -9,8 +9,8 @@
   "ItemType": "Leggings",
   "Price": 800,
   "Affects": {
-    "Armor": 4
+    "Armor": 4,
+    "WeaponPenetration": 5
   },
-  "Flags": [],
-  "IsStockItem": true
+  "Flags": []
 }

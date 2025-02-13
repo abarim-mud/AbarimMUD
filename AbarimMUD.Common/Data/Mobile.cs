@@ -110,6 +110,7 @@ namespace AbarimMUD.Data
 		private ValueRange _damageRange = DefaultDamageRange;
 		private int _level;
 		private int _gold = DefaultGold;
+		private Shop _shop;
 
 		[Browsable(false)]
 		public HashSet<string> Keywords { get; set; } = new HashSet<string>();
@@ -302,7 +303,35 @@ namespace AbarimMUD.Data
 		[Browsable(false)]
 		public List<MobileSpecialAttack> SpecialAttacks { get; set; } = new List<MobileSpecialAttack>();
 
-		public StockItemType? Shop { get; set; }
+		public Shop Shop
+		{
+			get => _shop;
+
+			set
+			{
+				if (value == _shop)
+				{
+					return;
+				}
+
+				_shop = value;
+
+				// Rebuild inventories
+				foreach (var creature in Creature.ActiveCreatures)
+				{
+					var asMobile = creature as MobileInstance;
+					if (asMobile == null)
+					{
+						continue;
+					}
+
+					if (asMobile.Info.Id == Id)
+					{
+						asMobile.RebuildInventory();
+					}
+				}
+			}
+		}
 
 
 		public bool MatchesKeyword(string keyword) => Keywords.StartsWithPattern(keyword);

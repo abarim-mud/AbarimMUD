@@ -225,6 +225,11 @@ namespace AbarimMUD.Storage
 						}
 					}
 
+					if (mobile.Shop != null)
+					{
+						mobile.Shop = Shop.EnsureShopById(mobile.Shop.Id);
+					}
+
 					if (mobile.Guildmaster != null)
 					{
 						mobile.Guildmaster = PlayerClass.EnsureClassById(mobile.Guildmaster.Id);
@@ -239,6 +244,7 @@ namespace AbarimMUD.Storage
 			result.Converters.Add(RoomExitConverter);
 			result.Converters.Add(Common.ItemInstanceConverter);
 			result.Converters.Add(Common.PlayerClassConverter);
+			result.Converters.Add(Common.ShopConverter);
 
 			return result;
 		}

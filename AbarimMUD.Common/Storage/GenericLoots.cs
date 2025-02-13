@@ -25,20 +25,23 @@ namespace AbarimMUD.Storage
 
 			foreach (var pair in Item.Data)
 			{
-				var totalProb = 0;
-				foreach (var lootRecord in pair.Value.Records)
+				foreach (var genericLootRecord in pair.Value)
 				{
-					foreach (var invItem in lootRecord.Items.Items)
+					var totalProb = 0;
+					foreach (var lootRecord in genericLootRecord.Choice)
 					{
-						invItem.Item.Info = Data.Item.EnsureItemById(invItem.Item.Info.Id);
+						foreach (var invItem in lootRecord.Items.Items)
+						{
+							invItem.Item.Info = Data.Item.EnsureItemById(invItem.Item.Info.Id);
+						}
+
+						totalProb += lootRecord.ProbabilityPercentage;
 					}
 
-					totalProb += lootRecord.ProbabilityPercentage;
-				}
-
-				if (totalProb > 100)
-				{
-					throw new Exception($"Total probability {totalProb} exceeds 100%");
+					if (totalProb > 100)
+					{
+						throw new Exception($"Total probability {totalProb} exceeds 100%");
+					}
 				}
 			}
 		}
