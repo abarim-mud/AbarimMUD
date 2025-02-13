@@ -1,0 +1,42 @@
+{
+  "Data": {
+    "10": {
+      "ProbabilityPercentage": 25,
+      "Records": [
+        {
+          "Items": {
+            "Items": [
+              {
+                "Item": "novicePotionOfHealing",
+                "Quantity": 1
+              }
+            ]
+          },
+          "ProbabilityPercentage": 50
+        },
+        {
+          "Items": {
+            "Items": [
+              {
+                "Item": "novicePotionOfMana",
+                "Quantity": 1
+              }
+            ]
+          },
+          "ProbabilityPercentage": 25
+        },
+        {
+          "Items": {
+            "Items": [
+              {
+                "Item": "novicePotionOfMoves",
+                "Quantity": 1
+              }
+            ]
+          },
+          "ProbabilityPercentage": 25
+        }
+      ]
+    }
+  }
+}

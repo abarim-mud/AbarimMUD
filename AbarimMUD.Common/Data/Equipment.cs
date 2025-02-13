@@ -40,6 +40,8 @@ namespace AbarimMUD.Data
 			Slot = slot;
 			Item = item ?? throw new ArgumentNullException(nameof(item));
 		}
+
+		public WearItem Clone() => new WearItem(Slot, Item.Clone());
 	}
 
 	public class Equipment

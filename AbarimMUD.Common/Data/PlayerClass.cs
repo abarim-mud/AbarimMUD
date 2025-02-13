@@ -2,10 +2,11 @@
 using AbarimMUD.Storage;
 using AbarimMUD.Utils;
 using System;
+using System.Collections.Generic;
 
 namespace AbarimMUD.Data
 {
-	public class PlayerClass : IStoredInFile, ICloneable
+	public class PlayerClass : IStoredInFile
 	{
 		public static readonly MultipleFilesStorage<PlayerClass> Storage = new PlayerClasses();
 
@@ -68,8 +69,8 @@ namespace AbarimMUD.Data
 			}
 		}
 
-		public Item[] StartingEquipment { get; set; }
-		public Skill[] StartingSkills { get; set; }
+		public List<ItemInstance> StartingEquipment { get; set; } = new List<ItemInstance>();
+		public List<Skill> StartingSkills { get; set; } = new List<Skill>();
 		public Inventory StartingInventory { get; set; }
 		public int StartingGold { get; set; }
 		public int StartingSkillPoints { get; set; }
@@ -106,23 +107,6 @@ namespace AbarimMUD.Data
 				}
 			}
 		}
-
-		public PlayerClass CloneClass()
-		{
-			var clone = new PlayerClass
-			{
-				Id = Id,
-				Name = Name,
-				Description = Description,
-				_hitpointsRange = _hitpointsRange,
-				_manaRange = _manaRange,
-				_movesRange = _movesRange,
-			};
-
-			return clone;
-		}
-
-		public object Clone() => CloneClass();
 
 		public override string ToString() => Name;
 

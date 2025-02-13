@@ -124,28 +124,7 @@ namespace AbarimMUD.Storage
 			}
 		}
 
-		private class MobileLootConverterType : JsonConverter<MobileLoot>
-		{
-			public override MobileLoot Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-			{
-				// Item id is the key of the dict
-				// So read only the probability
-				var prob = reader.GetInt32();
-
-				return new MobileLoot
-				{
-					ProbabilityPercentage = prob
-				};
-			}
-
-			public override void Write(Utf8JsonWriter writer, MobileLoot value, JsonSerializerOptions options)
-			{
-				writer.WriteNumberValue(value.ProbabilityPercentage);
-			}
-		}
-
 		private static readonly RoomExitConverterType RoomExitConverter = new RoomExitConverterType();
-		private static readonly MobileLootConverterType MobileLootConverter = new MobileLootConverterType();
 
 		internal const string SubfolderName = "areas";
 
@@ -238,9 +217,12 @@ namespace AbarimMUD.Storage
 				{
 					var mobile = area.Mobiles[i];
 
-					foreach (var pair in mobile.Loot)
+					foreach (var loot in mobile.Loot)
 					{
-						pair.Value.Item = Item.EnsureItemById(pair.Key);
+						foreach (var invItem in loot.Items.Items)
+						{
+							invItem.Item.Info = Item.EnsureItemById(invItem.Item.Info.Id);
+						}
 					}
 
 					if (mobile.Guildmaster != null)
@@ -255,7 +237,7 @@ namespace AbarimMUD.Storage
 		{
 			var result = base.CreateJsonOptions();
 			result.Converters.Add(RoomExitConverter);
-			result.Converters.Add(MobileLootConverter);
+			result.Converters.Add(Common.ItemInstanceConverter);
 			result.Converters.Add(Common.PlayerClassConverter);
 
 			return result;

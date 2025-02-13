@@ -1396,7 +1396,7 @@
       "AttackType": "Hit",
       "Penetration": 30,
       "DamageRange": "8-8",
-      "Loot": {},
+      "Loot": [],
       "Flags": [],
       "SpecialAttacks": [],
       "Id": 51400
@@ -1419,7 +1419,7 @@
       "AttackType": "Hit",
       "Penetration": 40,
       "DamageRange": "9-9",
-      "Loot": {},
+      "Loot": [],
       "Flags": [],
       "SpecialAttacks": [],
       "Id": 51402
@@ -1442,7 +1442,7 @@
       "AttackType": "Hit",
       "Penetration": 15,
       "DamageRange": "6-6",
-      "Loot": {},
+      "Loot": [],
       "Flags": [],
       "SpecialAttacks": [],
       "Id": 51403
@@ -1465,7 +1465,7 @@
       "AttackType": "Hit",
       "Penetration": 10,
       "DamageRange": "5-5",
-      "Loot": {},
+      "Loot": [],
       "Flags": [],
       "SpecialAttacks": [],
       "Id": 51404
@@ -1488,7 +1488,7 @@
       "AttackType": "Hit",
       "Penetration": 10,
       "DamageRange": "5-5",
-      "Loot": {},
+      "Loot": [],
       "Flags": [],
       "SpecialAttacks": [],
       "Id": 51405
@@ -1512,7 +1512,7 @@
       "AttackType": "Hit",
       "Penetration": 25,
       "DamageRange": "7-7",
-      "Loot": {},
+      "Loot": [],
       "Flags": [],
       "SpecialAttacks": [],
       "Id": 51500
@@ -1536,7 +1536,7 @@
       "AttackType": "Hit",
       "Penetration": 25,
       "DamageRange": "7-7",
-      "Loot": {},
+      "Loot": [],
       "Flags": [],
       "SpecialAttacks": [],
       "Id": 51501
@@ -1560,7 +1560,7 @@
       "AttackType": "Hit",
       "Penetration": 15,
       "DamageRange": "6-6",
-      "Loot": {},
+      "Loot": [],
       "Flags": [],
       "SpecialAttacks": [],
       "Id": 51502
@@ -1584,7 +1584,7 @@
       "AttackType": "Hit",
       "Penetration": 15,
       "DamageRange": "6-6",
-      "Loot": {},
+      "Loot": [],
       "Flags": [],
       "SpecialAttacks": [],
       "Id": 51503
@@ -1608,7 +1608,7 @@
       "AttackType": "Hit",
       "Penetration": 125,
       "DamageRange": "17-27",
-      "Loot": {},
+      "Loot": [],
       "Flags": [],
       "SpecialAttacks": [],
       "Id": 51512
@@ -1632,7 +1632,7 @@
       "AttackType": "Hit",
       "Penetration": 50,
       "DamageRange": "6-10",
-      "Loot": {},
+      "Loot": [],
       "Flags": [],
       "SpecialAttacks": [],
       "Id": 51515
@@ -1656,7 +1656,7 @@
       "AttackType": "Hit",
       "Penetration": 85,
       "DamageRange": "10-16",
-      "Loot": {},
+      "Loot": [],
       "Flags": [],
       "SpecialAttacks": [],
       "Id": 51516
@@ -1680,7 +1680,7 @@
       "AttackType": "Hit",
       "Penetration": 5,
       "DamageRange": "2-2",
-      "Loot": {},
+      "Loot": [],
       "Flags": [],
       "SpecialAttacks": [],
       "Id": 51517
@@ -1706,7 +1706,7 @@
       "AttackType": "Hit",
       "Penetration": 1255,
       "DamageRange": "19-55",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Sentinel"
       ],
@@ -1733,7 +1733,7 @@
       "AttackType": "Hit",
       "Penetration": 400,
       "DamageRange": "15-35",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Sentinel"
       ],

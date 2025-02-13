@@ -52,6 +52,8 @@ namespace AbarimMUD
 			return Random.Next(min, max + 1);
 		}
 
+		public static int Random1to100() => RandomRange(1, 100);
+
 		public static JsonSerializerOptions CreateDefaultOptions()
 		{
 			var result = new JsonSerializerOptions

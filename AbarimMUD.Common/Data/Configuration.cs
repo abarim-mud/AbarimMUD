@@ -1,9 +1,5 @@
 ﻿using AbarimMUD.Storage;
 using AbarimMUD.Utils;
-using System;
-using System.Linq;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
 {
@@ -19,7 +15,6 @@ namespace AbarimMUD.Data
 			public string SplashFile { get; set; }
 			public int StartRoomId { get; set; }
 			public string DefaultCharacter { get; set; }
-			public string DefaultClass { get; set; }
 
 			public int HitpointsRegenPercentagePerMinute { get; set; } = 20;
 			public int ManaRegenPercentagePerMinute { get; set; } = 20;
@@ -38,7 +33,7 @@ namespace AbarimMUD.Data
 			public int RecallManaCost { get; set; } = 35;
 			public int BaseBuyPricePercentage { get; set; } = 150;
 			public int BaseSellPricePercentage { get; set; } = 25;
-			public int XpMultiply { get; set; } = 5;
+			public int XpMultiply { get; set; } = 2;
 		}
 
 		public static BaseStorage Storage => InternalStorage;
@@ -51,7 +46,6 @@ namespace AbarimMUD.Data
 		public static string SplashFile => Instance.SplashFile;
 		public static int StartRoomId => Instance.StartRoomId;
 		public static string DefaultCharacter => Instance.DefaultCharacter;
-		public static string DefaultClass => Instance.DefaultClass;
 		public static int PauseBetweenFightRoundsInMs => Instance.PauseBetweenFightRoundsInMs;
 		public static int HitpointsRegenPercentagePerMinute => Instance.HitpointsRegenPercentagePerMinute;
 		public static int ManaRegenPercentagePerMinute => Instance.ManaRegenPercentagePerMinute;

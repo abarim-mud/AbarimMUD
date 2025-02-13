@@ -19,21 +19,15 @@
   "StartingInventory": {
     "Items": [
       {
-        "Item": {
-          "Info": "novicePotionOfHealing"
-        },
+        "Item": "novicePotionOfHealing",
         "Quantity": 5
       },
       {
-        "Item": {
-          "Info": "novicePotionOfMana"
-        },
+        "Item": "novicePotionOfMana",
         "Quantity": 5
       },
       {
-        "Item": {
-          "Info": "novicePotionOfMoves"
-        },
+        "Item": "novicePotionOfMoves",
         "Quantity": 5
       }
     ]

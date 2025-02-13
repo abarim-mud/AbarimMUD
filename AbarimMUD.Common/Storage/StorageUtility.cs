@@ -20,6 +20,7 @@ namespace AbarimMUD.Storage
 			DataContext.Register(Account.Storage);
 			DataContext.Register(Character.Storage);
 			DataContext.Register(Social.Storage);
+			DataContext.Register(GenericLoot.Storage);
 		}
 	}
 }

@@ -32,6 +32,20 @@ namespace AbarimMUD.Data
 			Item = item ?? throw new ArgumentNullException(nameof(item));
 			Quantity = quantity;
 		}
+
+		public InventoryRecord Clone() => new InventoryRecord(Item.Clone(), Quantity);
+
+		public override string ToString()
+		{
+			var result = Item.ToString();
+
+			if (Quantity > 1)
+			{
+				result += $" ({Quantity})";
+			}
+
+			return result;
+		}
 	}
 
 	public class Inventory
@@ -95,6 +109,8 @@ namespace AbarimMUD.Data
 			InvalidateArray();
 		}
 
+		public void AddItem(InventoryRecord rec) => AddItem(rec.Item, rec.Quantity);
+
 		private void InvalidateArray()
 		{
 			_itemsArray = null;
@@ -103,6 +119,18 @@ namespace AbarimMUD.Data
 		public InventoryRecord FindItem(string keyword)
 		{
 			return (from i in Items where i.Item.MatchesKeyword(keyword) select i).FirstOrDefault();
+		}
+
+		public Inventory Clone()
+		{
+			var result = new Inventory();
+
+			foreach (var rec in Items)
+			{
+				result.AddItem(rec.Item, rec.Quantity);
+			}
+
+			return result;
 		}
 	}
 }

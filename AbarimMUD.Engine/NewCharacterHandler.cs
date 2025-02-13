@@ -166,7 +166,7 @@ namespace AbarimMUD
 				{
 					foreach (var item in cls.StartingEquipment)
 					{
-						var newItem = new ItemInstance(item);
+						var newItem = item.Clone();
 						if (_character.Wear(newItem) != true)
 						{
 							// If an item can't be worn, put it to the inventory
@@ -175,7 +175,7 @@ namespace AbarimMUD
 					}
 				}
 
-				if (cls.StartingSkills != null && cls.StartingSkills.Length > 0)
+				if (cls.StartingSkills != null)
 				{
 					foreach (var skill in cls.StartingSkills)
 					{

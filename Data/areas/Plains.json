@@ -735,7 +735,7 @@
       "AttackType": "Hit",
       "Penetration": 65,
       "DamageRange": "8-13",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Wimpy",
         "AssistId"
@@ -763,7 +763,7 @@
       "AttackType": "Hit",
       "Penetration": 20,
       "DamageRange": "6-6",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Sentinel",
         "AssistId"
@@ -790,7 +790,7 @@
       "AttackType": "Hit",
       "Penetration": 30,
       "DamageRange": "8-8",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Scavenger",
         "AssistId"
@@ -817,7 +817,7 @@
       "AttackType": "Hit",
       "Penetration": 25,
       "DamageRange": "7-7",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Scavenger",
         "AssistId"
@@ -845,7 +845,7 @@
       "AttackType": "Hit",
       "Penetration": 120,
       "DamageRange": "16-26",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Sentinel",
         "Aggressive",
@@ -874,7 +874,7 @@
       "AttackType": "Hit",
       "Penetration": 115,
       "DamageRange": "12-24",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Sentinel",
         "Scavenger",
@@ -903,7 +903,7 @@
       "AttackType": "Hit",
       "Penetration": 115,
       "DamageRange": "12-24",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Sentinel",
         "AssistId"
@@ -930,7 +930,7 @@
       "AttackType": "Hit",
       "Penetration": 5,
       "DamageRange": "4-4",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "AssistRace"
       ],
@@ -956,7 +956,7 @@
       "AttackType": "Hit",
       "Penetration": 50,
       "DamageRange": "9-9",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Sentinel",
         "Wimpy",

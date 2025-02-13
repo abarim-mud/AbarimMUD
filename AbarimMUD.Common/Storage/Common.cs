@@ -125,9 +125,54 @@ namespace AbarimMUD.Storage
 			}
 		}
 
+		public class ItemInstanceConverterType : JsonConverter<ItemInstance>
+		{
+			private static JsonSerializerOptions _defaultOptions;
+
+			public static JsonSerializerOptions DefaultOptions
+			{
+				get
+				{
+					if (_defaultOptions == null)
+					{
+						_defaultOptions = JsonUtils.CreateOptions();
+						_defaultOptions.Converters.Add(ItemConverter);
+					}
+
+					return _defaultOptions;
+				}
+			}
+
+
+			public override ItemInstance Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+			{
+				if (reader.TokenType == JsonTokenType.String)
+				{
+					// Just an id
+					var itemId = reader.GetString();
+
+					return new ItemInstance
+					{
+						Info = new Item { Id = itemId }
+					};
+				}
+
+				// Standard parse
+				var doc = JsonDocument.ParseValue(ref reader);
+				return JsonSerializer.Deserialize<ItemInstance>(doc, DefaultOptions);
+			}
+
+			public override void Write(Utf8JsonWriter writer, ItemInstance value, JsonSerializerOptions options)
+			{
+				// Write just an id
+				writer.WriteStringValue(value.Id);
+			}
+		}
+
 		public static readonly EntityConverter<PlayerClass> PlayerClassConverter = new EntityConverter<PlayerClass>(s => s.Id);
 		public static readonly EntityConverter<Skill> SkillConverter = new EntityConverter<Skill>(s => s.Id);
 		public static readonly EntityConverter<Item> ItemConverter = new EntityConverter<Item>(i => i.Id);
+		public static readonly ItemInstanceConverterType ItemInstanceConverter = new ItemInstanceConverterType();
 		public static readonly EntityConverter<Ability> AbilityConverter = new EntityConverter<Ability>(s => s.Id);
 		public static readonly SkillValueConverterType SkillValueConverter = new SkillValueConverterType();
 		public static readonly AffectsConverterType AffectsConverter = new AffectsConverterType();

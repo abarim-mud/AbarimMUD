@@ -24,13 +24,22 @@ namespace AbarimMUD.Combat
 				var xpAward = targetMobile.Stats.CalculateXpAward();
 				attacker.Send($"Total exp for kill is {xpAward.FormatBigNumber()}.");
 
-				var gold = targetMobile.Gold;
-				character.Gold += gold;
-
 				// Awarding Xp will do the save
 				attacker.AwardXp(xpAward);
 
-				attacker.Send($"You get {gold.FormatBigNumber()} gold coins from the corpse of {targetMobile.ShortDescription}.");
+				var gold = targetMobile.Gold;
+				if (gold > 0)
+				{
+					character.Gold += gold;
+					attacker.Send($"You get {gold.FormatBigNumber()} gold coins from the corpse of {targetMobile.ShortDescription}.");
+				}
+
+				foreach(var item in targetMobile.Inventory.Items)
+				{
+					attacker.Creature.Inventory.AddItem(item);
+					attacker.Send($"You get {item} from the corpse of {targetMobile.ShortDescription}.");
+				}
+
 				attacker.Send($"You bury the corpse of {targetMobile.ShortDescription}.");
 
 				var roomMessage = $"{attacker.ShortDescription} gets gold coins from the corpse of {targetMobile.ShortDescription}.\n" +

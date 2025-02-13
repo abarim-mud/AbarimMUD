@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
 {
@@ -33,5 +32,10 @@ namespace AbarimMUD.Data
 		public override string ToString() => Info.ToString();
 
 		public static bool AreEqual(ItemInstance a, ItemInstance b) => a.Id == b.Id;
+
+		public ItemInstance Clone() => new ItemInstance
+		{
+			Info = Info
+		};
 	}
 }

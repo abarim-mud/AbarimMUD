@@ -33,7 +33,7 @@ namespace AbarimMUD.Storage
 		{
 			var result = base.CreateJsonOptions();
 			result.Converters.Add(Common.PlayerClassConverter);
-			result.Converters.Add(Common.ItemConverter);
+			result.Converters.Add(Common.ItemInstanceConverter);
 			result.Converters.Add(Common.SkillConverter);
 			result.Converters.Add(Common.SkillValueConverter);
 

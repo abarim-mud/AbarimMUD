@@ -89,18 +89,6 @@ namespace AbarimMUD.Data
 		Shock
 	}
 
-	public class MobileLoot
-	{
-		public Item Item { get; set; }
-		public int ProbabilityPercentage { get; set; }
-
-		public MobileLoot Clone() => new MobileLoot
-		{
-			Item = Item,
-			ProbabilityPercentage = ProbabilityPercentage
-		};
-	}
-
 	public class Mobile : AreaEntity
 	{
 		public const AttackType DefaultAttackType = AttackType.Hit;
@@ -303,7 +291,7 @@ namespace AbarimMUD.Data
 			}
 		}
 
-		public Dictionary<string, MobileLoot> Loot { get; set; } = new Dictionary<string, MobileLoot>();
+		public List<LootRecord> Loot { get; set; } = new List<LootRecord>();
 
 		[Browsable(false)]
 		public PlayerClass Guildmaster { get; set; }
@@ -370,9 +358,9 @@ namespace AbarimMUD.Data
 				clone.Keywords.Add(word);
 			}
 
-			foreach (var pair in Loot)
+			foreach(var lootRec in Loot)
 			{
-				clone.Loot[pair.Key] = pair.Value.Clone();
+				clone.Loot.Add(lootRec.Clone());
 			}
 
 			foreach (var flag in Flags)

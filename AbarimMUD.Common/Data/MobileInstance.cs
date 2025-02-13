@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace AbarimMUD.Data
 {
@@ -47,6 +48,42 @@ namespace AbarimMUD.Data
 			Gold = Info.Gold;
 
 			Restore();
+
+			// Put generic loot in the inv
+			foreach(var pair in GenericLoot.Items)
+			{
+				if (Level <= pair.Key)
+				{
+					// Level match
+					var genericLootRecord = pair.Value;
+
+					// Roll loot prob
+					if (!Utility.RollPercentage(genericLootRecord.ProbabilityPercentage))
+					{
+						break;
+					}
+
+					// Another roll to determine which item to loot
+					var prob = Utility.Random1to100();
+					var total = 0;
+					foreach(var rec in genericLootRecord.Records)
+					{
+						total += rec.ProbabilityPercentage;
+
+						if (prob <= total)
+						{
+							foreach(var invRec in rec.Items.Items)
+							{
+								Inventory.AddItem(invRec);
+							}
+
+							goto end;
+						}
+					}
+				}
+			}
+
+		end:;
 
 			ActiveCreatures.Add(this);
 		}

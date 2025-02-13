@@ -1381,7 +1381,7 @@
       "AttackType": "Hit",
       "Penetration": 500,
       "DamageRange": "20-110",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Sentinel"
       ],
@@ -1407,7 +1407,7 @@
       "AttackType": "Hit",
       "Penetration": 35,
       "DamageRange": "2-2",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Banker",
         "Sentinel"
@@ -1434,7 +1434,7 @@
       "AttackType": "Hit",
       "Penetration": 350,
       "DamageRange": "28-28",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Sentinel",
         "NoPurge"
@@ -1461,7 +1461,7 @@
       "AttackType": "Hit",
       "Penetration": 350,
       "DamageRange": "28-28",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Sentinel",
         "NoPurge"
@@ -1489,7 +1489,7 @@
       "AttackType": "Hit",
       "Penetration": 750,
       "DamageRange": "28-28",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Sentinel",
         "NoPurge"
@@ -1517,7 +1517,7 @@
       "AttackType": "Hit",
       "Penetration": 500,
       "DamageRange": "28-28",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Sentinel",
         "NoPurge"
@@ -1544,7 +1544,7 @@
       "AttackType": "Hit",
       "Penetration": 500,
       "DamageRange": "28-28",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Sentinel",
         "NoPurge"
@@ -1571,7 +1571,7 @@
       "AttackType": "Hit",
       "Penetration": 500,
       "DamageRange": "28-28",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Sentinel",
         "NoPurge"
@@ -1599,7 +1599,7 @@
       "AttackType": "Hit",
       "Penetration": 1250,
       "DamageRange": "21-46",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Sentinel"
       ],
@@ -1625,7 +1625,7 @@
       "AttackType": "Hit",
       "Penetration": 750,
       "DamageRange": "21-46",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Sentinel",
         "AssistId"
@@ -1653,7 +1653,7 @@
       "AttackType": "Hit",
       "Penetration": 1250,
       "DamageRange": "21-46",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Sentinel"
       ],
@@ -1679,7 +1679,7 @@
       "AttackType": "Hit",
       "Penetration": 750,
       "DamageRange": "21-46",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Sentinel",
         "AssistId"
@@ -1707,7 +1707,7 @@
       "AttackType": "Hit",
       "Penetration": 1250,
       "DamageRange": "21-46",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Sentinel"
       ],
@@ -1733,7 +1733,7 @@
       "AttackType": "Hit",
       "Penetration": 650,
       "DamageRange": "21-46",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Sentinel",
         "AssistId"
@@ -1761,7 +1761,7 @@
       "AttackType": "Hit",
       "Penetration": 750,
       "DamageRange": "21-46",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Sentinel"
       ],
@@ -1787,7 +1787,7 @@
       "AttackType": "Hit",
       "Penetration": 750,
       "DamageRange": "21-46",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Sentinel",
         "AssistId"
@@ -1815,7 +1815,7 @@
       "AttackType": "Hit",
       "Penetration": 1250,
       "DamageRange": "21-46",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Sentinel"
       ],
@@ -1841,7 +1841,7 @@
       "AttackType": "Hit",
       "Penetration": 750,
       "DamageRange": "21-46",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Sentinel",
         "AssistId"
@@ -1867,7 +1867,7 @@
       "AttackType": "Hit",
       "Penetration": 1275,
       "DamageRange": "24-64",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Sentinel",
         "NoPurge",
@@ -1895,7 +1895,7 @@
       "AttackType": "Hit",
       "Penetration": 225,
       "DamageRange": "8-12",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Sentinel",
         "Scavenger",
@@ -1923,7 +1923,7 @@
       "AttackType": "Hit",
       "Penetration": 750,
       "DamageRange": "28-28",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Sentinel",
         "NoPurge"
@@ -1949,7 +1949,7 @@
       "AttackType": "Hit",
       "Penetration": 615,
       "DamageRange": "30-50",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Sentinel",
         "NoPurge"
@@ -1977,7 +1977,7 @@
       "AttackType": "Hit",
       "Penetration": 25,
       "DamageRange": "4-4",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Sentinel",
         "NoAlign"
@@ -2005,7 +2005,7 @@
       "AttackType": "Hit",
       "Penetration": 35,
       "DamageRange": "6-6",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Sentinel",
         "NoAlign"
@@ -2033,7 +2033,7 @@
       "AttackType": "Hit",
       "Penetration": 55,
       "DamageRange": "6-6",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Sentinel",
         "NoAlign"
@@ -2061,7 +2061,7 @@
       "AttackType": "Hit",
       "Penetration": 65,
       "DamageRange": "5-9",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Sentinel",
         "NoAlign"
@@ -2088,7 +2088,7 @@
       "AttackType": "Hit",
       "Penetration": 75,
       "DamageRange": "6-11",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Sentinel",
         "NoAlign"
@@ -2116,7 +2116,7 @@
       "AttackType": "Hit",
       "Penetration": 90,
       "DamageRange": "8-13",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Sentinel",
         "Pet",
@@ -2144,7 +2144,7 @@
       "AttackType": "Hit",
       "Penetration": 225,
       "DamageRange": "18-26",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Sentinel",
         "Pet",
@@ -2172,7 +2172,7 @@
       "AttackType": "Hit",
       "Penetration": 300,
       "DamageRange": "18-34",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Sentinel",
         "Pet",
@@ -2200,7 +2200,7 @@
       "AttackType": "Hit",
       "Penetration": 750,
       "DamageRange": "21-46",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Sentinel",
         "AssistPlayers"
@@ -2227,7 +2227,7 @@
       "AttackType": "Hit",
       "Penetration": 1200,
       "DamageRange": "22-52",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Sentinel"
       ],
@@ -2254,7 +2254,7 @@
       "AttackType": "Hit",
       "Penetration": 1250,
       "DamageRange": "21-46",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Sentinel"
       ],
@@ -2280,7 +2280,7 @@
       "AttackType": "Hit",
       "Penetration": 750,
       "DamageRange": "21-46",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Sentinel",
         "AssistId"
@@ -2307,7 +2307,7 @@
       "AttackType": "Hit",
       "Penetration": 600,
       "DamageRange": "28-52",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Sentinel",
         "NoPurge"
@@ -2334,7 +2334,7 @@
       "AttackType": "Hit",
       "Penetration": 750,
       "DamageRange": "21-46",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Sentinel",
         "AssistId"
@@ -2362,7 +2362,7 @@
       "AttackType": "Hit",
       "Penetration": 750,
       "DamageRange": "21-46",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Sentinel"
       ],
@@ -2388,7 +2388,7 @@
       "AttackType": "Hit",
       "Penetration": 195,
       "DamageRange": "28-40",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "AssistPlayers"
       ],
@@ -2413,7 +2413,7 @@
       "AttackType": "Hit",
       "Penetration": 15,
       "DamageRange": "2-2",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "NoWander"
       ],
@@ -2438,7 +2438,7 @@
       "AttackType": "Hit",
       "Penetration": 15,
       "DamageRange": "2-2",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "NoWander"
       ],
@@ -2463,7 +2463,7 @@
       "AttackType": "Hit",
       "Penetration": 15,
       "DamageRange": "2-2",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "NoWander"
       ],
@@ -2488,7 +2488,7 @@
       "AttackType": "Hit",
       "Penetration": 15,
       "DamageRange": "2-2",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "NoWander"
       ],
@@ -2515,7 +2515,7 @@
       "AttackType": "Hit",
       "Penetration": 1250,
       "DamageRange": "21-46",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Sentinel"
       ],
@@ -2541,7 +2541,7 @@
       "AttackType": "Hit",
       "Penetration": 750,
       "DamageRange": "21-46",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "Sentinel",
         "AssistId"
@@ -2568,7 +2568,7 @@
       "AttackType": "Hit",
       "Penetration": 1075,
       "DamageRange": "22-85",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "AssistAlign"
       ],
@@ -2594,7 +2594,7 @@
       "AttackType": "Hit",
       "Penetration": 1075,
       "DamageRange": "22-85",
-      "Loot": {},
+      "Loot": [],
       "Flags": [
         "AssistAlign"
       ],
