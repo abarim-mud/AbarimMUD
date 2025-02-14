@@ -172,7 +172,7 @@ namespace AbarimMUD.Combat
 					attacker.SendBattleMessage($"You place {weapon.ShortDescription} in the back of {target.ShortDescription}, resulting in some strange noises and some blood ({damage})!");
 
 					var roomMessage = $"{attacker.ShortDescription} places {weapon.ShortDescription} in the back of {target.ShortDescription}, resulting in some strange noises and some blood ({damage})!";
-					attacker.SendInfoMessage(roomMessage);
+					attacker.SendRoomExceptMe(roomMessage);
 				}
 			}
 		}

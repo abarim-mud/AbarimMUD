@@ -4,6 +4,8 @@ namespace AbarimMUD.Utils
 {
 	public struct ValueRange
 	{
+		private const float LogInterpolationBase = 7;
+
 		public int Minimum;
 		public int Maximum;
 
@@ -31,8 +33,8 @@ namespace AbarimMUD.Utils
 				throw new ArgumentOutOfRangeException(nameof(level));
 			}
 
-			// Simple linear interpolation
-			var k = (level - 1) / 99.0f;
+			// Log interpolation
+			var k = (float)Math.Log(1 + (LogInterpolationBase - 1) * (level - 1) / 99.0f, LogInterpolationBase);
 			var value = Minimum + k * (Maximum - Minimum);
 
 			return (int)value;
