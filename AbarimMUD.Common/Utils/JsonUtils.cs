@@ -2,11 +2,10 @@
 using System.Text.Json;
 using System;
 using System.IO;
-using System.Collections.Generic;
 
 namespace AbarimMUD.Utils
 {
-	public static class JsonUtils
+	internal static class JsonUtils
 	{
 		private class LongConverterType : JsonConverter<long>
 		{

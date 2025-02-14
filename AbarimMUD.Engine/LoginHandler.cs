@@ -31,7 +31,7 @@ namespace AbarimMUD
 
 		public override void OnSet()
 		{
-			var splash = "Welcome to AbarimMUD v0.1\n\r";
+			var splash = "Welcome to AbarimMUD v%version%\n\r";
 			if (string.IsNullOrEmpty(Configuration.SplashFile))
 			{
 				Logger.Warn("{0}SplashFile option is not set. Sending default splath");
@@ -56,6 +56,8 @@ namespace AbarimMUD
 					}
 				}
 			}
+
+			splash = splash.Replace("%version%", Common.Version);
 
 			Send(splash);
 			SwitchToAccount();

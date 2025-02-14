@@ -229,7 +229,6 @@ namespace AbarimMUD
 			sb.Append(seconds.ToString("00"));
 
 			return sb.ToString();
-
 		}
 	}
 }
