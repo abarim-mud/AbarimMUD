@@ -64,7 +64,7 @@ namespace AbarimMUD.Storage
 			}
 		}
 
-		public class AffectsConverterType: JsonConverter<Dictionary<ModifierType, Affect>>
+		public class AffectsConverterType : JsonConverter<Dictionary<ModifierType, Affect>>
 		{
 			private static JsonSerializerOptions _defaultOptions;
 
@@ -86,7 +86,7 @@ namespace AbarimMUD.Storage
 				var result = new Dictionary<ModifierType, Affect>();
 				var doc = JsonDocument.ParseValue(ref reader);
 
-				foreach(var pair in doc.RootElement.EnumerateObject())
+				foreach (var pair in doc.RootElement.EnumerateObject())
 				{
 					var modifier = Enum.Parse<ModifierType>(pair.Name);
 
@@ -94,7 +94,8 @@ namespace AbarimMUD.Storage
 					{
 						// No duration
 						result[modifier] = new Affect(modifier, pair.Value.GetInt32());
-					} else
+					}
+					else
 					{
 						// Duration
 						result[modifier] = JsonSerializer.Deserialize<Affect>(pair.Value, DefaultOptions);
@@ -108,14 +109,15 @@ namespace AbarimMUD.Storage
 			public override void Write(Utf8JsonWriter writer, Dictionary<ModifierType, Affect> value, JsonSerializerOptions options)
 			{
 				var newDict = new Dictionary<ModifierType, object>();
-				
-				foreach(var pair in value)
+
+				foreach (var pair in value)
 				{
 					// If there's no duration, then write just value
 					if (pair.Value.DurationInSeconds == null)
 					{
 						newDict[pair.Key] = pair.Value.Value;
-					}  else
+					}
+					else
 					{
 						newDict[pair.Key] = pair.Value;
 					}
@@ -169,6 +171,42 @@ namespace AbarimMUD.Storage
 			}
 		}
 
+		public class InventoryConverterType : JsonConverter<Inventory>
+		{
+			private static JsonSerializerOptions _defaultOptions;
+
+			public static JsonSerializerOptions DefaultOptions
+			{
+				get
+				{
+					if (_defaultOptions == null)
+					{
+						_defaultOptions = JsonUtils.CreateOptions();
+						_defaultOptions.Converters.Add(ItemInstanceConverter);
+					}
+
+					return _defaultOptions;
+				}
+			}
+
+
+			public override Inventory Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+			{
+				var doc = JsonDocument.ParseValue(ref reader);
+
+				return new Inventory
+				{
+					Items = JsonSerializer.Deserialize<List<InventoryRecord>>(doc, DefaultOptions)
+				};
+			}
+
+			public override void Write(Utf8JsonWriter writer, Inventory value, JsonSerializerOptions options)
+			{
+				// Write just an id
+				JsonSerializer.Serialize(writer, value.Items, DefaultOptions);
+			}
+		}
+
 		public static readonly EntityConverter<PlayerClass> PlayerClassConverter = new EntityConverter<PlayerClass>(s => s.Id);
 		public static readonly EntityConverter<Skill> SkillConverter = new EntityConverter<Skill>(s => s.Id);
 		public static readonly EntityConverter<Item> ItemConverter = new EntityConverter<Item>(i => i.Id);
@@ -177,5 +215,8 @@ namespace AbarimMUD.Storage
 		public static readonly SkillValueConverterType SkillValueConverter = new SkillValueConverterType();
 		public static readonly AffectsConverterType AffectsConverter = new AffectsConverterType();
 		public static readonly EntityConverter<Shop> ShopConverter = new EntityConverter<Shop>(s => s.Id);
+		public static readonly InventoryConverterType InventoryConverter = new InventoryConverterType();
+		public static readonly EntityConverter<Forge> ForgeConverter = new EntityConverter<Forge>(f => f.Id);
+		public static readonly EntityConverter<ForgeShop> ForgeShopConverter = new EntityConverter<ForgeShop>(f => f.Id);
 	}
 }

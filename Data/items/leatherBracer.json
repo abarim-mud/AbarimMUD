@@ -1,0 +1,15 @@
+{
+  "Id": "leatherBracer",
+  "Keywords": [
+    "leather",
+    "bracer"
+  ],
+  "ShortDescription": "a leather bracer",
+  "Description": "Unset",
+  "ItemType": "Bracelet",
+  "Price": 200,
+  "Affects": {
+    "WeaponPenetration": 5
+  },
+  "Flags": []
+}

@@ -35,5 +35,10 @@ namespace AbarimMUD.Data
 			Value = value;
 			DurationInSeconds = durationInSeconds;
 		}
+
+		public Affect Clone() => new Affect(Type, Value, DurationInSeconds)
+		{
+			AffectSlotName = AffectSlotName
+		};
 	}
 }

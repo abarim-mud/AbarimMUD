@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Serialization;
@@ -48,9 +49,15 @@ namespace AbarimMUD.Data
 		}
 	}
 
-	public class Inventory
+	public class Inventory: IEnumerable<InventoryRecord>
 	{
 		public List<InventoryRecord> Items { get; set; } = new List<InventoryRecord>();
+
+		[JsonIgnore]
+		public int Count => Items.Count;
+
+		[JsonIgnore]
+		public InventoryRecord this[int index] => Items[index];
 
 		public void AddItem(ItemInstance item, int quantity)
 		{
@@ -108,5 +115,9 @@ namespace AbarimMUD.Data
 
 			return result;
 		}
+
+		public IEnumerator<InventoryRecord> GetEnumerator() => Items.GetEnumerator();
+
+		IEnumerator IEnumerable.GetEnumerator() => Items.GetEnumerator();
 	}
 }

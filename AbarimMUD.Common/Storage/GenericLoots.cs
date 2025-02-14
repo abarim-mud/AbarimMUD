@@ -15,6 +15,7 @@ namespace AbarimMUD.Storage
 			var result = base.CreateJsonOptions();
 
 			result.Converters.Add(Common.ItemInstanceConverter);
+			result.Converters.Add(Common.InventoryConverter);
 
 			return result;
 		}

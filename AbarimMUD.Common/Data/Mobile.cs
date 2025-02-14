@@ -333,6 +333,8 @@ namespace AbarimMUD.Data
 			}
 		}
 
+		public ForgeShop ForgeShop { get; set; }
+
 
 		public bool MatchesKeyword(string keyword) => Keywords.StartsWithPattern(keyword);
 
@@ -379,6 +381,7 @@ namespace AbarimMUD.Data
 				DamageRange = DamageRange,
 				Guildmaster = Guildmaster,
 				Shop = Shop,
+				ForgeShop = ForgeShop,
 				Gold = Gold,
 			};
 

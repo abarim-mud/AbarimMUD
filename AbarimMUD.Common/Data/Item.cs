@@ -78,9 +78,13 @@ namespace AbarimMUD.Data
 				Description = Description,
 				AttackType = AttackType,
 				ItemType = ItemType,
-				Affects = Affects,
 				DamageRange = DamageRange
 			};
+
+			foreach(var pair in Affects)
+			{
+				result.Affects[pair.Key] = pair.Value.Clone();
+			}
 
 			foreach (var flag in Flags)
 			{

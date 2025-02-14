@@ -182,6 +182,16 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 
 				SetValue(item, cls);
 			}
+			else if (Type == typeof(ForgeShop))
+			{
+				var cls = context.EnsureForgeShopById(s);
+				if (cls == null)
+				{
+					return false;
+				}
+
+				SetValue(item, cls);
+			}
 			else
 			{
 				context.Send($"Setting propertes of type '{TypeName}' isn't implemented.");

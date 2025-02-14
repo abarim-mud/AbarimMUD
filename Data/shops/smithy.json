@@ -1,53 +1,51 @@
 {
   "Id": "smithy",
-  "Inventory": {
-    "Items": [
-      {
-        "Item": "ironArmor",
-        "Quantity": 10
-      },
-      {
-        "Item": "ironBoots",
-        "Quantity": 10
-      },
-      {
-        "Item": "ironDagger",
-        "Quantity": 10
-      },
-      {
-        "Item": "ironGloves",
-        "Quantity": 10
-      },
-      {
-        "Item": "ironGreaves",
-        "Quantity": 10
-      },
-      {
-        "Item": "ironHelmet",
-        "Quantity": 10
-      },
-      {
-        "Item": "leatherArmor",
-        "Quantity": 10
-      },
-      {
-        "Item": "leatherBoots",
-        "Quantity": 10
-      },
-      {
-        "Item": "leatherGloves",
-        "Quantity": 10
-      },
-      {
-        "Item": "leatherPants",
-        "Quantity": 10
-      },
-      {
-        "Item": "leatherHelmet",
-        "Quantity": 10
-      }
-    ]
-  },
+  "Inventory": [
+    {
+      "Item": "ironArmor",
+      "Quantity": 5
+    },
+    {
+      "Item": "ironBoots",
+      "Quantity": 5
+    },
+    {
+      "Item": "ironDagger",
+      "Quantity": 5
+    },
+    {
+      "Item": "ironGloves",
+      "Quantity": 5
+    },
+    {
+      "Item": "ironGreaves",
+      "Quantity": 5
+    },
+    {
+      "Item": "ironHelmet",
+      "Quantity": 5
+    },
+    {
+      "Item": "leatherArmor",
+      "Quantity": 5
+    },
+    {
+      "Item": "leatherBoots",
+      "Quantity": 5
+    },
+    {
+      "Item": "leatherGloves",
+      "Quantity": 5
+    },
+    {
+      "Item": "leatherPants",
+      "Quantity": 5
+    },
+    {
+      "Item": "leatherHelmet",
+      "Quantity": 5
+    }
+  ],
   "ItemTypes": [
     "Ring",
     "Amulet",

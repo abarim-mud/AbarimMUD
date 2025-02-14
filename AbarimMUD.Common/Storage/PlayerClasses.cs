@@ -15,6 +15,7 @@ namespace AbarimMUD.Storage
 
 			result.Converters.Add(Common.ItemInstanceConverter);
 			result.Converters.Add(Common.SkillConverter);
+			result.Converters.Add(Common.InventoryConverter);
 
 			return result;
 		}

@@ -31,7 +31,6 @@ namespace AbarimMUD.Commands.Player
 			if (!shopKeeper.Info.Shop.ItemTypes.Contains(item.ItemType))
 			{
 				Tell.Execute(shopKeeper.GetContext(), $"{context.Creature.ShortDescription} I don't deal in those.");
-
 				return false;
 			}
 

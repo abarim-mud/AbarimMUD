@@ -3,8 +3,8 @@
   "Name": "Rogue",
   "Description": "Master of dagger and shadows.",
   "HitpointsRange": "30-1200",
-  "ManaRange": "100-200",
-  "MovesRange": "100-200",
+  "ManaRange": "100-400",
+  "MovesRange": "100-500",
   "StartingEquipment": [
     "ironDagger",
     "leatherHelmet",
@@ -17,26 +17,24 @@
     "backstab",
     "melee"
   ],
-  "StartingInventory": {
-    "Items": [
-      {
-        "Item": "ironSword",
-        "Quantity": 1
-      },
-      {
-        "Item": "novicePotionOfHealing",
-        "Quantity": 5
-      },
-      {
-        "Item": "novicePotionOfMana",
-        "Quantity": 5
-      },
-      {
-        "Item": "novicePotionOfMoves",
-        "Quantity": 5
-      }
-    ]
-  },
+  "StartingInventory": [
+    {
+      "Item": "ironSword",
+      "Quantity": 1
+    },
+    {
+      "Item": "novicePotionOfHealing",
+      "Quantity": 5
+    },
+    {
+      "Item": "novicePotionOfMana",
+      "Quantity": 5
+    },
+    {
+      "Item": "novicePotionOfMoves",
+      "Quantity": 5
+    }
+  ],
   "StartingGold": 2000,
   "StartingSkillPoints": 1
 }

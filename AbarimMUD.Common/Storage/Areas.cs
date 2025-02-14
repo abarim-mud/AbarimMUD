@@ -230,6 +230,11 @@ namespace AbarimMUD.Storage
 						mobile.Shop = Shop.EnsureShopById(mobile.Shop.Id);
 					}
 
+					if (mobile.ForgeShop != null)
+					{
+						mobile.ForgeShop = ForgeShop.EnsureForgeShopById(mobile.ForgeShop.Id);
+					}
+
 					if (mobile.Guildmaster != null)
 					{
 						mobile.Guildmaster = PlayerClass.EnsureClassById(mobile.Guildmaster.Id);
@@ -243,8 +248,10 @@ namespace AbarimMUD.Storage
 			var result = base.CreateJsonOptions();
 			result.Converters.Add(RoomExitConverter);
 			result.Converters.Add(Common.ItemInstanceConverter);
+			result.Converters.Add(Common.InventoryConverter);
 			result.Converters.Add(Common.PlayerClassConverter);
 			result.Converters.Add(Common.ShopConverter);
+			result.Converters.Add(Common.ForgeShopConverter);
 
 			return result;
 		}

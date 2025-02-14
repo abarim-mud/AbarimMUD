@@ -158,6 +158,7 @@ namespace AbarimMUD.Commands
 		public static Character EnsureCharacterByName(this ExecutionContext context, string name) => EnsureById(context, name, Character.GetCharacterByName);
 		public static PlayerClass EnsurePlayerClassById(this ExecutionContext context, string id) => EnsureById(context, id, PlayerClass.GetClassById);
 		public static Shop EnsureShopById(this ExecutionContext context, string id) => EnsureById(context, id, Shop.GetShopById);
+		public static ForgeShop EnsureForgeShopById(this ExecutionContext context, string id) => EnsureById(context, id, ForgeShop.GetForgeShopById);
 
 		public static Item EnsureItemType(this ExecutionContext context, string id, ItemType itemType)
 		{

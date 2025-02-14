@@ -3,8 +3,8 @@
   "Name": "Warrior",
   "Description": "Master of armor and sword.",
   "HitpointsRange": "40-1500",
-  "ManaRange": "100-200",
-  "MovesRange": "100-200",
+  "ManaRange": "100-500",
+  "MovesRange": "100-400",
   "StartingEquipment": [
     "ironSword",
     "ironHelmet",
@@ -16,22 +16,20 @@
   "StartingSkills": [
     "melee"
   ],
-  "StartingInventory": {
-    "Items": [
-      {
-        "Item": "novicePotionOfHealing",
-        "Quantity": 5
-      },
-      {
-        "Item": "novicePotionOfMana",
-        "Quantity": 5
-      },
-      {
-        "Item": "novicePotionOfMoves",
-        "Quantity": 5
-      }
-    ]
-  },
+  "StartingInventory": [
+    {
+      "Item": "novicePotionOfHealing",
+      "Quantity": 5
+    },
+    {
+      "Item": "novicePotionOfMana",
+      "Quantity": 5
+    },
+    {
+      "Item": "novicePotionOfMoves",
+      "Quantity": 5
+    }
+  ],
   "StartingGold": 2000,
   "StartingSkillPoints": 1
 }

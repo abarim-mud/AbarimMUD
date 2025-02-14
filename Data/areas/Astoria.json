@@ -1931,6 +1931,7 @@
       ],
       "SpecialAttacks": [],
       "Shop": "smithy",
+      "ForgeShop": "smithy",
       "Id": 19020
     },
     {

@@ -1,0 +1,11 @@
+{
+  "Id": "leatherBracer",
+  "Components": [
+    {
+      "Item": "chunkOfLeather",
+      "Quantity": 2
+    }
+  ],
+  "Price": 100,
+  "Result": "leatherBracer"
+}

@@ -3,9 +3,9 @@ using System.Text.Json;
 
 namespace AbarimMUD.Storage
 {
-	public class Shops : MultipleFilesStorage<Shop>
+	internal class Forges : MultipleFilesStorage<Forge>
 	{
-		public Shops() : base(s => s.Id, "shops")
+		public Forges() : base(m => m.Id, "forges")
 		{
 		}
 
@@ -13,6 +13,7 @@ namespace AbarimMUD.Storage
 		{
 			var result = base.CreateJsonOptions();
 
+			result.Converters.Add(Common.ItemConverter);
 			result.Converters.Add(Common.ItemInstanceConverter);
 			result.Converters.Add(Common.InventoryConverter);
 
@@ -23,12 +24,14 @@ namespace AbarimMUD.Storage
 		{
 			base.SetReferences();
 
-			foreach (var shop in this)
+			foreach (var forge in this)
 			{
-				foreach (var invItem in shop.Inventory.Items)
+				foreach (var invItem in forge.Components)
 				{
 					invItem.Item.Info = Item.EnsureItemById(invItem.Item.Info.Id);
 				}
+
+				forge.Result = Item.EnsureItemById(forge.Result.Id);
 			}
 		}
 	}
