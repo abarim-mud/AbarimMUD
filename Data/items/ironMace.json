@@ -1,0 +1,17 @@
+{
+  "Id": "ironMace",
+  "Keywords": [
+    "iron",
+    "mace"
+  ],
+  "ShortDescription": "an iron mace",
+  "Description": "Unset",
+  "ItemType": "Weapon",
+  "Price": 800,
+  "AttackType": "Pound",
+  "Affects": {
+    "WeaponPenetration": 20
+  },
+  "Flags": [],
+  "DamageRange": "4-10"
+}

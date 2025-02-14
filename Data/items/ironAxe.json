@@ -1,0 +1,15 @@
+{
+  "Id": "ironAxe",
+  "Keywords": [
+    "iron",
+    "axe"
+  ],
+  "ShortDescription": "an iron axe",
+  "Description": "Unset",
+  "ItemType": "Weapon",
+  "Price": 800,
+  "AttackType": "Hack",
+  "Affects": {},
+  "Flags": [],
+  "DamageRange": "6-12"
+}

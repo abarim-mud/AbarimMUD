@@ -37,31 +37,31 @@
 			{
 				context.Send("Easy.");
 			}
-			else if (diff <= 0.8)
+			else if (diff <= 0.75)
 			{
 				context.Send("Fairly easy.");
 			}
-			else if (diff <= 1.5)
+			else if (diff <= 1.0)
 			{
 				context.Send("The perfect match!");
 			}
-			else if (diff <= 2.0)
+			else if (diff <= 1.5)
 			{
 				context.Send("You would need some luck!");
 			}
-			else if (diff <= 4.0)
+			else if (diff <= 3.0)
 			{
 				context.Send("You would need a lot of luck!");
 			}
-			else if (diff <= 8.0)
+			else if (diff <= 6.0)
 			{
 				context.Send("You would need a lot of luck and great equipment!");
 			}
-			else if (diff <= 16.0)
+			else if (diff <= 12.0)
 			{
 				context.Send("Do you feel lucky, punk?");
 			}
-			else if (diff <= 32.0)
+			else if (diff <= 24.0)
 			{
 				context.Send("Are you mad!?");
 			}
