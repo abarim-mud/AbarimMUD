@@ -7,6 +7,15 @@ namespace AbarimMUD.Combat
 {
 	public static class CombatUtils
 	{
+		private struct DamageResult
+		{
+			public float AttackRoll;
+			public int Damage;
+
+			public override string ToString() => $"{AttackRoll:0.##}, {Damage}";
+		}
+
+
 		public static void Slain(this ExecutionContext attacker, ExecutionContext target)
 		{
 			var ripMessage = $"{target.Creature.ShortDescription} is dead! R.I.P.";
@@ -50,10 +59,15 @@ namespace AbarimMUD.Combat
 			var stats = attacker.Creature.Stats;
 			var attacks = stats.Attacks;
 
-			var targetStats = target.Stats;
-
 			var attack = attacks[attackIndex];
-			var damage = CombatCalc.CalculateDamage(attack, targetStats.Armor);
+
+			var damage = new DamageResult();
+
+			var targetStats = target.Stats;
+			if (attack.HitOrMiss(targetStats.Armor, out damage.AttackRoll))
+			{
+				damage.Damage = attack.CalculateDamage();
+			}
 
 			target.Creature.State.Hitpoints -= damage.Damage;
 			var room = attacker.Room;
@@ -62,27 +76,16 @@ namespace AbarimMUD.Combat
 				string message;
 				if (damage.Damage <= 0)
 				{
-					string attackName;
 					if (attacker.Creature != character)
 					{
-						attackName = $"Your {attack.AttackType.GetAttackNoun()}";
+						message = $"{attacker.ShortDescription} misses {target.Creature.ShortDescription} with its {attack.AttackType.GetAttackNoun()}";
 					}
 					else
 					{
-						attackName = $"{attacker.ShortDescription}'s {attack.AttackType.GetAttackNoun()}";
+						message = $"You miss {target.Creature.ShortDescription} with your {attack.AttackType.GetAttackNoun()}";
 					}
 
-					string targetName;
-					if (target.Creature != character)
-					{
-						targetName = $"armor of {target.Creature.ShortDescription}";
-					}
-					else
-					{
-						targetName = "your armor";
-					}
-
-					message = $"{attackName} couldn't pierce through {targetName}.";
+					message += $" ({damage}).";
 				}
 				else
 				{
@@ -141,11 +144,11 @@ namespace AbarimMUD.Combat
 
 				var damage = new DamageResult();
 				var attack = attacker.Stats.Attacks[0];
+
+				var singleAttackDamage = attack.CalculateDamage();
 				for (var j = 0; j < attacker.Stats.BackstabMultiplier; ++j)
 				{
-					var damage2 = CombatCalc.CalculateDamage(attack, target.Stats.Armor);
-
-					damage += damage2;
+					damage.Damage += singleAttackDamage;
 				}
 
 				target.Creature.State.Hitpoints -= damage.Damage;
@@ -199,11 +202,10 @@ namespace AbarimMUD.Combat
 
 			var circleMultiplier = attacker.Stats.BackstabMultiplier / 3;
 			var attack = attacker.Stats.Attacks[0];
+			var singleAttackDamage = attack.CalculateDamage();
 			for (var j = 0; j < circleMultiplier; ++j)
 			{
-				var damage2 = CombatCalc.CalculateDamage(attack, target.Stats.Armor);
-
-				damage += damage2;
+				damage.Damage += singleAttackDamage;
 			}
 
 			target.Creature.State.Hitpoints -= damage.Damage;
@@ -254,7 +256,11 @@ namespace AbarimMUD.Combat
 			var kickDamage = Math.Max(1, Math.Min(attacker.Level, 40) / 2);
 
 			var attack = attacker.Stats.Attacks[0];
-			var damage = CombatCalc.CalculateDamage(attack.Penetration, new ValueRange(kickDamage, kickDamage + 4), target.Stats.Armor);
+
+			var damage = new DamageResult
+			{
+				Damage = new ValueRange(kickDamage, kickDamage + 4).Random()
+			};
 
 			target.Creature.State.Hitpoints -= damage.Damage;
 			if (target.Creature.State.Hitpoints < 0)

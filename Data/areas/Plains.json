@@ -733,7 +733,7 @@
       "Armor": 20,
       "AttacksCount": 2,
       "AttackType": "Hit",
-      "Penetration": 65,
+      "Hit": 65,
       "DamageRange": "8-13",
       "Loot": [],
       "Flags": [
@@ -761,7 +761,7 @@
       "Armor": 10,
       "AttacksCount": 1,
       "AttackType": "Hit",
-      "Penetration": 20,
+      "Hit": 20,
       "DamageRange": "6-6",
       "Loot": [],
       "Flags": [
@@ -788,7 +788,7 @@
       "Armor": 10,
       "AttacksCount": 1,
       "AttackType": "Hit",
-      "Penetration": 30,
+      "Hit": 30,
       "DamageRange": "8-8",
       "Loot": [],
       "Flags": [
@@ -815,7 +815,7 @@
       "Armor": 10,
       "AttacksCount": 1,
       "AttackType": "Hit",
-      "Penetration": 25,
+      "Hit": 25,
       "DamageRange": "7-7",
       "Loot": [],
       "Flags": [
@@ -843,7 +843,7 @@
       "Armor": 40,
       "AttacksCount": 4,
       "AttackType": "Hit",
-      "Penetration": 120,
+      "Hit": 120,
       "DamageRange": "16-26",
       "Loot": [],
       "Flags": [
@@ -872,7 +872,7 @@
       "Armor": 40,
       "AttacksCount": 3,
       "AttackType": "Hit",
-      "Penetration": 115,
+      "Hit": 115,
       "DamageRange": "12-24",
       "Loot": [],
       "Flags": [
@@ -901,7 +901,7 @@
       "Armor": 40,
       "AttacksCount": 3,
       "AttackType": "Hit",
-      "Penetration": 115,
+      "Hit": 115,
       "DamageRange": "12-24",
       "Loot": [],
       "Flags": [
@@ -928,7 +928,7 @@
       "Armor": 0,
       "AttacksCount": 1,
       "AttackType": "Hit",
-      "Penetration": 5,
+      "Hit": 5,
       "DamageRange": "4-4",
       "Loot": [],
       "Flags": [
@@ -954,7 +954,7 @@
       "Armor": 40,
       "AttacksCount": 2,
       "AttackType": "Hit",
-      "Penetration": 50,
+      "Hit": 50,
       "DamageRange": "9-9",
       "Loot": [],
       "Flags": [

@@ -10,7 +10,7 @@
   "Price": 800,
   "AttackType": "Slash",
   "Affects": {
-    "WeaponPenetration": 10
+    "WeaponHit": 10
   },
   "Flags": [],
   "DamageRange": "5-11"

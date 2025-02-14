@@ -72,7 +72,7 @@ namespace AbarimMUD.Import.Diku
 				Armor = 100 - maximumArmor,
 				AttacksCount = 1 + level / 8,
 				AttackType = at,
-				Penetration = level * 5 + mobile.HitRoll * 10,
+				Hit = level * 5 + mobile.HitRoll * 10,
 				DamageRange = mobile.DamageDice.ToValueRange(),
 			};
 

@@ -171,8 +171,11 @@ namespace AbarimMUD.Data
 
 			// Apply weapon to attacks
 			var weapon = Equipment[SlotType.Wield];
+
+			var usesWeapon = false;
 			if (weapon != null && weapon.Info.DamageRange != null)
 			{
+				usesWeapon = true;
 				foreach (var attack in _stats.Attacks)
 				{
 					if (weapon.Info.AttackType != null)
@@ -198,7 +201,7 @@ namespace AbarimMUD.Data
 			// Apply modifiers
 			foreach (var pair in modifiers.Modifiers)
 			{
-				_stats.Apply(pair.Key, pair.Value);
+				_stats.Apply(pair.Key, pair.Value, usesWeapon);
 			}
 
 			// Add abilities

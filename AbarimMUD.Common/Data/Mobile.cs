@@ -106,7 +106,7 @@ namespace AbarimMUD.Data
 		private int _armor = DefaultArmor;
 		private int _attacksCount = 1;
 		private AttackType _attackType = AttackType.Hit;
-		private int _penetration = DefaultPenetration;
+		private int _hit = DefaultPenetration;
 		private ValueRange _damageRange = DefaultDamageRange;
 		private int _level;
 		private int _gold = DefaultGold;
@@ -260,18 +260,18 @@ namespace AbarimMUD.Data
 			}
 		}
 
-		public int Penetration
+		public int Hit
 		{
-			get => _penetration;
+			get => _hit;
 
 			set
 			{
-				if (value == _penetration)
+				if (value == _hit)
 				{
 					return;
 				}
 
-				_penetration = value;
+				_hit = value;
 				InvalidateCreaturesOfThisClass();
 			}
 		}
@@ -353,7 +353,7 @@ namespace AbarimMUD.Data
 			// Calculate attacks' values
 			for (var i = 0; i < AttacksCount; ++i)
 			{
-				var attack = new Attack(AttackType, Penetration, DamageRange);
+				var attack = new Attack(AttackType, Hit, DamageRange);
 				stats.Attacks.Add(attack);
 			}
 
@@ -377,7 +377,7 @@ namespace AbarimMUD.Data
 				Armor = Armor,
 				AttacksCount = AttacksCount,
 				AttackType = AttackType,
-				Penetration = Penetration,
+				Hit = Hit,
 				DamageRange = DamageRange,
 				Guildmaster = Guildmaster,
 				Shop = Shop,

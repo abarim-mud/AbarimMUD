@@ -10,7 +10,7 @@
   "Price": 1000000,
   "AttackType": "Pierce",
   "Affects": {
-    "WeaponPenetration": 30
+    "WeaponHit": 30
   },
   "Flags": [
     "Stab"
