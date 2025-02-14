@@ -1,4 +1,5 @@
-﻿using AbarimMUD.Utils;
+﻿using AbarimMUD.Data;
+using AbarimMUD.Utils;
 using System.Linq;
 using System.Text;
 
@@ -16,50 +17,114 @@ namespace AbarimMUD.Commands.Player
 				return false;
 			}
 
-			var grid = new AsciiGrid();
-			grid.SetHeader(0, "Item");
-			grid.SetHeader(1, "Components");
-
-			var y = 0;
-			foreach(var forge in shopKeeper.Info.ForgeShop.Forges)
+			var forges = shopKeeper.Info.ForgeShop.Forges;
+			if (string.IsNullOrEmpty(data))
 			{
-				grid.SetValue(0, y, forge.Result.ShortDescription);
+				var grid = new AsciiGrid();
+				grid.SetHeader(0, "Item");
+				grid.SetHeader(1, "Components");
 
-				var sb = new StringBuilder();
-
-				for(var i = 0; i < forge.Components.Count; i++)
+				var y = 0;
+				foreach (var f in forges)
 				{
-					var cp = forge.Components[i];
-					sb.Append(cp.ShortDescription);
+					grid.SetValue(0, y, f.Result.ShortDescription);
 
-					if (cp.Quantity > 1)
+					var sb = new StringBuilder();
+
+					for (var i = 0; i < f.Components.Count; i++)
 					{
-						sb.Append($" ({cp.Quantity})");
+						var cp = f.Components[i];
+						sb.Append(cp.ShortDescription);
+
+						if (cp.Quantity > 1)
+						{
+							sb.Append($" ({cp.Quantity})");
+						}
+
+						if (i < f.Components.Count - 1)
+						{
+							sb.Append(", ");
+						}
 					}
 
-					if (i < forge.Components.Count - 1)
+					if (f.Price > 0)
 					{
-						sb.Append(", ");
+						if (f.Components.Count > 0)
+						{
+							sb.Append(", ");
+						}
+
+						sb.Append($"{f.Price} gold coins");
 					}
+
+					grid.SetValue(1, y, sb.ToString());
+
+					++y;
 				}
 
-				if (forge.Price > 0)
-				{
-					if (forge.Components.Count > 0)
-					{
-						sb.Append(", ");
-					}
+				context.Send("You can forge following items:");
+				context.Send(grid.ToString());
 
-					sb.Append($"{forge.Price} gold coins");
-				}
-
-				grid.SetValue(1, y, sb.ToString());
-
-				++y;
+				return true;
 			}
 
-			context.Send("You can forge following items:");
-			context.Send(grid.ToString());
+			// Find forge
+			var creature = context.Creature;
+			var inv = creature.Inventory;
+			var forge = (from f in forges where f.Result.MatchesKeyword(data) select f).FirstOrDefault();
+			if (forge == null)
+			{
+				Tell.Execute(shopKeeper.GetContext(), $"{creature.ShortDescription} I don't know how to forge '{data}'.");
+				return false;
+			}
+
+			// Check cps
+			foreach (var cp in forge.Components)
+			{
+				var invItem = (from i in inv where ItemInstance.AreEqual(i.Item, cp.Item) select i).FirstOrDefault();
+
+				if (invItem == null)
+				{
+					Tell.Execute(shopKeeper.GetContext(), $"{creature.ShortDescription} You don't have any {cp.Item.ShortDescription}.");
+					return false;
+				}
+
+				if (invItem.Quantity < cp.Quantity)
+				{
+					Tell.Execute(shopKeeper.GetContext(), $"{creature.ShortDescription} You don't have enough amount of {cp.Item.ShortDescription}.");
+					return false;
+				}
+			}
+
+			// Check gold
+			if (creature.Gold < forge.Price)
+			{
+				Tell.Execute(shopKeeper.GetContext(), $"{creature.ShortDescription} You don't have enough gold.");
+				return false;
+			}
+
+			// Create item
+			var item = new ItemInstance(forge.Result);
+			inv.AddItem(item, 1);
+
+			foreach (var cp in forge.Components)
+			{
+				inv.AddItem(cp.Item, -cp.Quantity);
+			}
+			creature.Gold -= forge.Price;
+
+			if (forge.Components.Count > 0)
+			{
+				context.Send($"You give {shopKeeper.ShortDescription} some items.");
+			}
+
+			if (forge.Price > 0)
+			{
+				context.Send($"You give {shopKeeper.ShortDescription} some coins.");
+			}
+
+			context.Send($"{shopKeeper} forges {forge.Result.ShortDescription} and gives it to you.");
+			Tell.Execute(shopKeeper.GetContext(), $"{creature.ShortDescription} There you go, {creature.ShortDescription}.");
 
 			return true;
 		}
