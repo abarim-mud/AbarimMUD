@@ -31,23 +31,16 @@ namespace AbarimMUD.Commands.Player
 
 			// Notify inhabits of the source room about the leave
 			var dirName = _dir.GetName();
-			foreach (var t in context.AllExceptMeInRoom())
-			{
-				t.Send(string.Format("{0} leaves {1}.", context.ShortDescription, dirName));
-			}
+			context.SendRoomExceptMe(string.Format("{0} leaves {1}.", context.ShortDescription, dirName));
 
 			// Perform the movement
 			context.Room = exit.TargetRoom;
 			--context.State.Moves;
-			
+
 			// Notify inhabits of the destination room about the arrival
 			dirName = _dir.GetOppositeDirection().GetName();
 
-			var allExceptMeInRoom = context.AllExceptMeInRoom();
-			foreach (var t in allExceptMeInRoom)
-			{
-				t.Send(string.Format("{0} arrives from {1}.", context.ShortDescription, dirName));
-			}
+			context.SendRoomExceptMe(string.Format("{0} arrives from {1}.", context.ShortDescription, dirName));
 
 			Look.Execute(context);
 

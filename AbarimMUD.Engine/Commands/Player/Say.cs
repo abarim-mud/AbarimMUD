@@ -19,10 +19,7 @@ namespace AbarimMUD.Commands.Player
 			sb.AppendLine(string.Format("{0} says '{1}'", context.ShortDescription, data));
 			sb.Append("[reset]");
 
-			foreach (var s in context.AllExceptMeInRoom())
-			{
-				s.Send(sb.ToString());
-			}
+			context.SendRoomExceptMe(sb.ToString());
 
 			return true;
 		}

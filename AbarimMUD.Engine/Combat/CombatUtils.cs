@@ -11,11 +11,7 @@ namespace AbarimMUD.Combat
 		{
 			var ripMessage = $"{target.Creature.ShortDescription} is dead! R.I.P.";
 			attacker.SendBattleMessage(ripMessage);
-
-			foreach (var roomContext in attacker.AllExceptMeInRoom())
-			{
-				roomContext.SendBattleMessage(ripMessage);
-			}
+			attacker.SendRoomExceptMe(ripMessage);
 
 			var character = attacker.Creature as Character;
 			var targetMobile = target.Creature as MobileInstance;
@@ -34,7 +30,7 @@ namespace AbarimMUD.Combat
 					attacker.Send($"You get {gold.FormatBigNumber()} gold coins from the corpse of {targetMobile.ShortDescription}.");
 				}
 
-				foreach(var item in targetMobile.Inventory.Items)
+				foreach (var item in targetMobile.Inventory.Items)
 				{
 					attacker.Creature.Inventory.AddItem(item);
 					attacker.Send($"You get {item} from the corpse of {targetMobile.ShortDescription}.");
@@ -44,10 +40,7 @@ namespace AbarimMUD.Combat
 
 				var roomMessage = $"{attacker.ShortDescription} gets gold coins from the corpse of {targetMobile.ShortDescription}.\n" +
 					$"{attacker.ShortDescription} buries the corpse of {targetMobile.ShortDescription}.";
-				foreach (var roomContext in attacker.AllExceptMeInRoom())
-				{
-					roomContext.Send(roomMessage);
-				}
+				attacker.SendRoomExceptMe(roomMessage);
 			}
 		}
 
@@ -141,10 +134,7 @@ namespace AbarimMUD.Combat
 					attacker.SendBattleMessage($"{target.ShortDescription} quickly avoids your backstab and you nearly cut your own finger!");
 
 					var roomMessage = $"{target.ShortDescription} quickly avoids {attacker.ShortDescription}'s backstab and {attacker.ShortDescription} nearly cuts their own finger!";
-					foreach(var ch in attacker.AllExceptMeInRoom())
-					{
-						ch.SendBattleMessage(roomMessage);
-					}
+					attacker.SendRoomExceptMe(roomMessage);
 
 					return;
 				}
@@ -164,10 +154,7 @@ namespace AbarimMUD.Combat
 					attacker.SendBattleMessage($"{target.ShortDescription} makes a strange sound but is suddenly very silent as you place {weapon.Info.ShortDescription} in its back ({damage}).");
 
 					var roomMessage = $"{target.ShortDescription} makes a strange sound but is suddenly very silent as {attacker.ShortDescription} places {weapon.Info.ShortDescription} in its back ({damage}).";
-					foreach(var ch in  attacker.AllExceptMeInRoom())
-					{
-						ch.SendBattleMessage(roomMessage);
-					}
+					attacker.SendRoomExceptMe(roomMessage);
 
 					attacker.Slain(target);
 					return;
@@ -178,19 +165,14 @@ namespace AbarimMUD.Combat
 					attacker.SendBattleMessage($"Your blade scratches the armor of {target.ShortDescription} with the grinding sound!");
 
 					var roomMessage = $"{attacker.ShortDescription}'s blade scratches the armor of {target.ShortDescription} with the grinding sound!";
-					foreach (var ch in attacker.AllExceptMeInRoom())
-					{
-						ch.SendBattleMessage(roomMessage);
-					}
-				} else
+					attacker.SendRoomExceptMe(roomMessage);
+				}
+				else
 				{
 					attacker.SendBattleMessage($"You place {weapon.ShortDescription} in the back of {target.ShortDescription}, resulting in some strange noises and some blood ({damage})!");
 
 					var roomMessage = $"{attacker.ShortDescription} places {weapon.ShortDescription} in the back of {target.ShortDescription}, resulting in some strange noises and some blood ({damage})!";
-					foreach (var ch in attacker.AllExceptMeInRoom())
-					{
-						ch.Send(roomMessage);
-					}
+					attacker.SendInfoMessage(roomMessage);
 				}
 			}
 		}
@@ -208,10 +190,7 @@ namespace AbarimMUD.Combat
 				attacker.SendBattleMessage($"{target.ShortDescription} quickly avoids your circlestab and you nearly cut your own finger!");
 
 				var roomMessage = $"{target.ShortDescription} quickly avoids {attacker.ShortDescription}'s circlestab and {attacker.ShortDescription} nearly cuts their own finger!";
-				foreach (var ch in attacker.AllExceptMeInRoom())
-				{
-					ch.SendBattleMessage(roomMessage);
-				}
+				attacker.SendRoomExceptMe(roomMessage);
 
 				return;
 			}
@@ -233,10 +212,7 @@ namespace AbarimMUD.Combat
 				attacker.SendBattleMessage($"You struck {target.ShortDescription} right in the heart!");
 
 				var roomMessage = $"{attacker.ShortDescription} strucks {target.ShortDescription} right in the heart!";
-				foreach (var ch in attacker.AllExceptMeInRoom())
-				{
-					ch.SendBattleMessage(roomMessage);
-				}
+				attacker.SendRoomExceptMe(roomMessage);
 
 				attacker.Slain(target);
 				return;
@@ -247,20 +223,14 @@ namespace AbarimMUD.Combat
 				attacker.SendBattleMessage($"Your blade scratches the armor of {target.ShortDescription} with the grinding sound!");
 
 				var roomMessage = $"{attacker.ShortDescription}'s blade scratches the armor of {target.ShortDescription} with the grinding sound!";
-				foreach (var ch in attacker.AllExceptMeInRoom())
-				{
-					ch.SendBattleMessage(roomMessage);
-				}
+				attacker.SendRoomExceptMe(roomMessage);
 			}
 			else
 			{
 				attacker.SendBattleMessage($"You quickly move from {target.ShortDescription}'s eyesight and stab it with {weapon.ShortDescription} ({damage})!");
 
 				var roomMessage = $"{attacker.ShortDescription} quickly moves from {target.ShortDescription}'s eyesight and stabs it with {weapon.ShortDescription} ({damage})!";
-				foreach (var ch in attacker.AllExceptMeInRoom())
-				{
-					ch.Send(roomMessage);
-				}
+				attacker.SendRoomExceptMe(roomMessage);
 			}
 		}
 
@@ -275,10 +245,7 @@ namespace AbarimMUD.Combat
 				attacker.SendBattleMessage($"You miss {target.ShortDescription} with your kick!");
 
 				var roomMessage = $"{attacker.ShortDescription} misses {target.ShortDescription} with your kick!";
-				foreach (var ch in attacker.AllExceptMeInRoom())
-				{
-					ch.SendBattleMessage(roomMessage);
-				}
+				attacker.SendRoomExceptMe(roomMessage);
 
 				return;
 			}
@@ -295,10 +262,7 @@ namespace AbarimMUD.Combat
 				attacker.SendBattleMessage($"Your masterful kick put the end of the life of {target.ShortDescription}!");
 
 				var roomMessage = $"{attacker.ShortDescription}'s masterful kick puts the end of the life of {target.ShortDescription}!";
-				foreach (var ch in attacker.AllExceptMeInRoom())
-				{
-					ch.SendBattleMessage(roomMessage);
-				}
+				attacker.SendRoomExceptMe(roomMessage);
 
 				attacker.Slain(target);
 				return;
@@ -309,20 +273,14 @@ namespace AbarimMUD.Combat
 				attacker.SendBattleMessage($"Your kick can't break through the armor of {target.ShortDescription}!");
 
 				var roomMessage = $"{attacker.ShortDescription}'s kick can't break through the armor of {target.ShortDescription}!";
-				foreach (var ch in attacker.AllExceptMeInRoom())
-				{
-					ch.SendBattleMessage(roomMessage);
-				}
+				attacker.SendRoomExceptMe(roomMessage);
 			}
 			else
 			{
 				attacker.SendBattleMessage($"You kick {target.ShortDescription} ({damage})!");
 
 				var roomMessage = $"{attacker.ShortDescription} kicks {target.ShortDescription} ({damage})!";
-				foreach (var ch in attacker.AllExceptMeInRoom())
-				{
-					ch.Send(roomMessage);
-				}
+				attacker.SendRoomExceptMe(roomMessage);
 			}
 		}
 

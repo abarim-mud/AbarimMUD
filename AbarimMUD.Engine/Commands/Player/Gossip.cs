@@ -6,24 +6,21 @@ namespace AbarimMUD.Commands.Player
 	{
 		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
-			var sd = new StringBuilder();
+			var sb = new StringBuilder();
 
-			sd.Append("[magenta]");
-			sd.AppendLine(string.Format("You gossip-- '{0}'", data));
-			sd.Append("[reset]");
-			context.Send(sd.ToString());
+			sb.Append("[magenta]");
+			sb.AppendLine(string.Format("You gossip-- '{0}'", data));
+			sb.Append("[reset]");
+			context.Send(sb.ToString());
 
 			// Show it to others
-			sd.Clear();
-			sd.AppendLine();
-			sd.Append("[magenta]");
-			sd.AppendLine(string.Format("{0} gossips-- '{1}'", context.ShortDescription, data));
-			sd.Append("[reset]");
+			sb.Clear();
+			sb.AppendLine();
+			sb.Append("[magenta]");
+			sb.AppendLine(string.Format("{0} gossips-- '{1}'", context.ShortDescription, data));
+			sb.Append("[reset]");
 
-			foreach (var s in context.AllExceptMe())
-			{
-				s.Send(sd.ToString());
-			}
+			context.SendAllExceptMe(sb.ToString());
 
 			return true;
 		}

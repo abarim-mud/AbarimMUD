@@ -23,10 +23,7 @@ namespace AbarimMUD.Commands.Builder
 			}
 
 			context.Send(playerMessage.ToString());
-			foreach (var ctx in context.AllExceptMeInRoom())
-			{
-				ctx.Send(roomMessage.ToString());
-			}
+			context.SendRoomExceptMe(roomMessage.ToString());
 
 			return true;
 		}

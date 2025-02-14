@@ -23,6 +23,7 @@ namespace AbarimMUD.Commands.Player
 				var grid = new AsciiGrid();
 				grid.SetHeader(0, "Item");
 				grid.SetHeader(1, "Components");
+				grid.SetHeader(2, "Price");
 
 				var y = 0;
 				foreach (var f in forges)
@@ -47,17 +48,8 @@ namespace AbarimMUD.Commands.Player
 						}
 					}
 
-					if (f.Price > 0)
-					{
-						if (f.Components.Count > 0)
-						{
-							sb.Append(", ");
-						}
-
-						sb.Append($"{f.Price} gold coins");
-					}
-
 					grid.SetValue(1, y, sb.ToString());
+					grid.SetValue(2, y, f.Price.ToString());
 
 					++y;
 				}
