@@ -218,5 +218,6 @@ namespace AbarimMUD.Storage
 		public static readonly InventoryConverterType InventoryConverter = new InventoryConverterType();
 		public static readonly EntityConverter<Forge> ForgeConverter = new EntityConverter<Forge>(f => f.Id);
 		public static readonly EntityConverter<ForgeShop> ForgeShopConverter = new EntityConverter<ForgeShop>(f => f.Id);
+		public static readonly EntityConverter<ExchangeShop> ExchangeShopConverter = new EntityConverter<ExchangeShop>(f => f.Id);
 	}
 }

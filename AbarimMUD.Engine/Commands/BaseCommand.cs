@@ -35,6 +35,7 @@ namespace AbarimMUD.Commands
 		public static readonly Buy Buy = new Buy();
 		public static readonly Sell Sell = new Sell();
 		public static readonly ForgeCommand Forge = new ForgeCommand();
+		public static readonly ExchangeCommand Exchange = new ExchangeCommand();
 
 		public static readonly Player.Inventory Inventory = new Player.Inventory();
 		public static readonly Wear Wear = new Wear();

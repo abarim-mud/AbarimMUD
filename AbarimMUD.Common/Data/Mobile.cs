@@ -334,6 +334,7 @@ namespace AbarimMUD.Data
 		}
 
 		public ForgeShop ForgeShop { get; set; }
+		public ExchangeShop ExchangeShop { get; set; }
 
 
 		public bool MatchesKeyword(string keyword) => Keywords.StartsWithPattern(keyword);

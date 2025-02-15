@@ -1,0 +1,23 @@
+{
+  "Id": "smithy",
+  "Exchanges": [
+    {
+      "Item": "ironOre",
+      "Price": [
+        {
+          "Item": "chunkOfLeather",
+          "Quantity": 2
+        }
+      ]
+    },
+    {
+      "Item": "chunkOfLeather",
+      "Price": [
+        {
+          "Item": "ironOre",
+          "Quantity": 2
+        }
+      ]
+    }
+  ]
+}

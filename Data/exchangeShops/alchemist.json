@@ -1,0 +1,59 @@
+{
+  "Id": "alchemist",
+  "Exchanges": [
+    {
+      "Item": "novicePotionOfHealing",
+      "Price": [
+        {
+          "Item": "novicePotionOfMana",
+          "Quantity": 1
+        }
+      ]
+    },
+    {
+      "Item": "novicePotionOfHealing",
+      "Price": [
+        {
+          "Item": "novicePotionOfMoves",
+          "Quantity": 2
+        }
+      ]
+    },
+    {
+      "Item": "novicePotionOfMana",
+      "Price": [
+        {
+          "Item": "novicePotionOfHealing",
+          "Quantity": 2
+        }
+      ]
+    },
+    {
+      "Item": "novicePotionOfMana",
+      "Price": [
+        {
+          "Item": "novicePotionOfMoves",
+          "Quantity": 2
+        }
+      ]
+    },
+    {
+      "Item": "novicePotionOfMoves",
+      "Price": [
+        {
+          "Item": "novicePotionOfHealing",
+          "Quantity": 2
+        }
+      ]
+    },
+    {
+      "Item": "novicePotionOfMoves",
+      "Price": [
+        {
+          "Item": "novicePotionOfMana",
+          "Quantity": 1
+        }
+      ]
+    }
+  ]
+}
