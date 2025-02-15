@@ -180,7 +180,7 @@ namespace AbarimMUD.Data
 				{
 					if (weapon.Info.AttackType != null)
 					{
-						attack.AttackType = weapon.Info.AttackType.Value;
+						attack.Type = weapon.Info.AttackType.Value;
 					}
 
 					if (this is Character)

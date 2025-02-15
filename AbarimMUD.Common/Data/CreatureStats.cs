@@ -102,7 +102,7 @@ namespace AbarimMUD.Data
 			long attackXpFactor = 0;
 			foreach (var attack in Attacks)
 			{
-				k = CalculateArmorPenK(attack.Hit);
+				k = CalculateArmorPenK(attack.Bonus);
 
 				var t = (long)(Math.Max(1, attack.AverageDamage) * k);
 
@@ -123,18 +123,18 @@ namespace AbarimMUD.Data
 		{
 			switch (type)
 			{
-				case ModifierType.Hit:
+				case ModifierType.AttackBonus:
 					foreach (var atk in Attacks)
 					{
-						atk.Hit += val;
+						atk.Bonus += val;
 					}
 					break;
-				case ModifierType.WeaponHit:
+				case ModifierType.WeaponAttackBonus:
 					foreach (var atk in Attacks)
 					{
 						if (usesWeapon)
 						{
-							atk.Hit += val;
+							atk.Bonus += val;
 						}
 					}
 					break;

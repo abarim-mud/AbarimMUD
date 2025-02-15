@@ -2,11 +2,33 @@
 
 namespace AbarimMUD.Data
 {
+	public struct AttackRollResult
+	{
+		public bool Hit;
+		public int AttackDice;
+		public int AttackRoll;
+
+		public override string ToString()
+		{
+			if (AttackDice <= 10)
+			{
+				return "miss";
+			}
+
+			if (AttackDice >= 190)
+			{
+				return "hit";
+			}
+
+			return $"{AttackRoll}";
+		}
+	}
+
 	public class Attack
 	{
-		public AttackType AttackType { get; set; }
+		public AttackType Type { get; set; }
 
-		public int Hit { get; set; }
+		public int Bonus { get; set; }
 
 		public ValueRange DamageRange;
 
@@ -26,10 +48,10 @@ namespace AbarimMUD.Data
 
 		public int AverageDamage => MinimumDamage + (MaximumDamage - MinimumDamage) / 2;
 
-		public Attack(AttackType attackType, int penetration, ValueRange damageRange)
+		public Attack(AttackType type, int rating, ValueRange damageRange)
 		{
-			AttackType = attackType;
-			Hit = penetration;
+			Type = type;
+			Bonus = rating;
 			DamageRange = damageRange;
 		}
 
@@ -37,23 +59,32 @@ namespace AbarimMUD.Data
 		{
 		}
 
-		public Attack Clone() => new Attack(AttackType, Hit, DamageRange);
+		public Attack Clone() => new Attack(Type, Bonus, DamageRange);
 
-		public bool HitOrMiss(int armorClass, out float attackRoll)
+		public AttackRollResult DoAttackRoll(int armorClass)
 		{
-			var roll = Utility.RandomRange(1, 20);
-			attackRoll = roll + (float)Hit / 10.0f;
-			if (roll == 1)
+			var result = new AttackRollResult
 			{
-				return false;
+				AttackDice = Utility.RandomRange(1, 200)
+			};
+
+			if (result.AttackDice <= 10)
+			{
+				// Always miss
+			}
+			else if (result.AttackDice >= 190)
+			{
+				// Always hit
+				result.Hit = true;
+			}
+			else
+			{
+				//
+				result.AttackRoll = result.AttackDice + Bonus - 100;
+				result.Hit = result.AttackRoll >= armorClass;
 			}
 
-			if (roll == 20)
-			{
-				return true;
-			}
-
-			return attackRoll - 10 >= armorClass / 10.0f;
+			return result;
 		}
 
 		public int CalculateDamage(int damageReduction = 0)
@@ -74,7 +105,7 @@ namespace AbarimMUD.Data
 
 		public override string ToString()
 		{
-			return $"{AttackType}, {Hit}, {DamageRange}";
+			return $"{Type}, {Bonus}, {DamageRange}";
 		}
 	}
 }

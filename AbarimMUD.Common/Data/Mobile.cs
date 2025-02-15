@@ -93,7 +93,7 @@ namespace AbarimMUD.Data
 	{
 		public const AttackType DefaultAttackType = AttackType.Hit;
 
-		public const int DefaultPenetration = 0;
+		public const int DefaultAttackRating = 0;
 		public const int DefaultArmor = 0;
 		public const int DefaultGold = 100;
 		public const int DefaultHitpoints = 100;
@@ -106,7 +106,7 @@ namespace AbarimMUD.Data
 		private int _armor = DefaultArmor;
 		private int _attacksCount = 1;
 		private AttackType _attackType = AttackType.Hit;
-		private int _hit = DefaultPenetration;
+		private int _hit = DefaultAttackRating;
 		private ValueRange _damageRange = DefaultDamageRange;
 		private int _level;
 		private int _gold = DefaultGold;

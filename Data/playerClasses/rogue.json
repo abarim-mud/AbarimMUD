@@ -2,7 +2,7 @@
   "Id": "rogue",
   "Name": "Rogue",
   "Description": "Master of dagger and shadows.",
-  "HitpointsRange": "30-1200",
+  "HitpointsRange": "30-1100",
   "ManaRange": "100-400",
   "MovesRange": "100-500",
   "StartingEquipment": [
@@ -14,7 +14,7 @@
     "leatherBoots"
   ],
   "StartingSkills": [
-    "backstab",
+    "sneaking",
     "melee"
   ],
   "StartingInventory": [

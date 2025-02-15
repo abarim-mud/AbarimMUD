@@ -9,7 +9,7 @@
   "ItemType": "Bracelet",
   "Price": 200,
   "Affects": {
-    "Hit": 5
+    "AttackBonus": 5
   },
   "Flags": []
 }

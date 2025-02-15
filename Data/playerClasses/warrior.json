@@ -2,8 +2,8 @@
   "Id": "warrior",
   "Name": "Warrior",
   "Description": "Master of armor and sword.",
-  "HitpointsRange": "40-1500",
-  "ManaRange": "100-500",
+  "HitpointsRange": "40-1200",
+  "ManaRange": "100-400",
   "MovesRange": "100-400",
   "StartingEquipment": [
     "ironSword",

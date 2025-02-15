@@ -1930,6 +1930,7 @@
         "NoPurge"
       ],
       "SpecialAttacks": [],
+      "Shop": "smithy",
       "ForgeShop": "smithy",
       "ExchangeShop": "smithy",
       "Id": 19020

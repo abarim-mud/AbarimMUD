@@ -52,9 +52,12 @@ namespace AbarimMUD.Combat
 			var attack = attacks[attackIndex];
 
 			var targetStats = target.Stats;
-			float attackRoll;
+
 			var damage = 0;
-			if (attack.HitOrMiss(targetStats.Armor, out attackRoll))
+
+			var attackRoll = attack.DoAttackRoll(targetStats.Armor);
+
+			if (attackRoll.Hit)
 			{
 				damage = attack.CalculateDamage();
 			}
@@ -68,14 +71,14 @@ namespace AbarimMUD.Combat
 				{
 					if (attacker.Creature != character)
 					{
-						message = $"{attacker.ShortDescription} misses {target.Creature.ShortDescription} with its {attack.AttackType.GetAttackNoun()}";
+						message = $"{attacker.ShortDescription} misses {target.Creature.ShortDescription} with its {attack.Type.GetAttackNoun()}";
 					}
 					else
 					{
-						message = $"You miss {target.Creature.ShortDescription} with your {attack.AttackType.GetAttackNoun()}";
+						message = $"You miss {target.Creature.ShortDescription} with your {attack.Type.GetAttackNoun()}";
 					}
 
-					message += $" ({attackRoll:0.##}).";
+					message += $" ({attackRoll}).";
 				}
 				else
 				{
@@ -99,7 +102,7 @@ namespace AbarimMUD.Combat
 						targetName = "you";
 					}
 
-					message = GetAttackMessage(attackRoll, damage, attackerName, targetName, attack.AttackType);
+					message = GetAttackMessage(attackRoll, damage, attackerName, targetName, attack.Type);
 				}
 
 				var context = (ExecutionContext)character.Tag;
@@ -121,13 +124,13 @@ namespace AbarimMUD.Combat
 			if (success)
 			{
 				// Then hit change
-				float attackRoll;
-				if (!attack.HitOrMiss(target.Stats.Armor, out attackRoll))
+				var attackRoll = attack.DoAttackRoll(target.Stats.Armor);
+				if (!attackRoll.Hit)
 				{
 					success = false;
 				}
 
-				attacker.SendInfoMessage($"Attack Roll: {attackRoll:0.##}");
+				attacker.SendInfoMessage($"Attack Roll: {attackRoll}");
 			}
 
 			return success;
@@ -286,7 +289,7 @@ namespace AbarimMUD.Combat
 			}
 		}
 
-		private static string GetAttackMessage(float attackRoll, int damage, string attackerName, string targetName, AttackType attackType)
+		private static string GetAttackMessage(AttackRollResult attackRoll, int damage, string attackerName, string targetName, AttackType attackType)
 		{
 			string result;
 			string attackVerb, massacre, massacre2;
@@ -337,7 +340,7 @@ namespace AbarimMUD.Combat
 				result = $"{attackerName} viciously {massacre} {targetName} to small fragments with {massacre2}";
 			}
 
-			result += $" ({attackRoll:0.##}, {damage}).";
+			result += $" ({attackRoll}, {damage}).";
 
 			return result;
 		}

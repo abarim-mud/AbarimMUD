@@ -1,13 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
 {
 	public enum ModifierType
 	{
 		AttacksCount,
-		Hit,
-		WeaponHit,
+		AttackBonus,
+		WeaponAttackBonus,
 		Damage,
 		WeaponDamage,
 		BackstabCount,

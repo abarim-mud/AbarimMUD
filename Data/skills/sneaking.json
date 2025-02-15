@@ -1,6 +1,6 @@
 {
-  "Id": "backstab",
-  "Name": "Backstab",
+  "Id": "sneaking",
+  "Name": "Sneaking",
   "Class": "rogue",
   "Levels": [
     {

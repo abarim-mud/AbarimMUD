@@ -10,7 +10,7 @@
   "Price": 800,
   "AttackType": "Pound",
   "Affects": {
-    "WeaponHit": 20
+    "WeaponAttackBonus": 20
   },
   "Flags": [],
   "DamageRange": "1-8"
