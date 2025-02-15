@@ -237,7 +237,7 @@ namespace AbarimMUD.Storage
 
 					if (mobile.ExchangeShop != null)
 					{
-						mobile.ExchangeShop = ExchangeShop.EnsureExchangeShopById(mobile.ForgeShop.Id);
+						mobile.ExchangeShop = ExchangeShop.EnsureExchangeShopById(mobile.ExchangeShop.Id);
 					}
 
 					if (mobile.Guildmaster != null)

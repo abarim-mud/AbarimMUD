@@ -45,6 +45,16 @@ namespace AbarimMUD.Utils
 			return new ValueRange(r1.Minimum + r2.Minimum, r1.Maximum + r2.Maximum);
 		}
 
+		public static ValueRange operator +(ValueRange r1, int r2)
+		{
+			return new ValueRange(r1.Minimum + r2, r1.Maximum + r2);
+		}
+
+		public static ValueRange operator -(ValueRange r1, int r2)
+		{
+			return new ValueRange(r1.Minimum - r2, r1.Maximum - r2);
+		}
+
 		public static bool AreEqual(ValueRange r1, ValueRange r2)
 		{
 			return r1.Minimum == r2.Minimum && r1.Maximum == r2.Maximum;

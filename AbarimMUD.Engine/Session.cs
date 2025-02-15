@@ -81,7 +81,13 @@ namespace AbarimMUD
 				{
 					Logger.Info($"Logging {Configuration.DefaultCharacter} since it is first session and default character is set.");
 					Account = character.Account;
+					Account.LastLogin = DateTime.UtcNow;
+					Account.Save();
+					
 					Character = character;
+					Character.LastLogin = DateTime.UtcNow;
+					Character.Save();
+					
 					CurrentHandler = new GameHandler(this);
 				}
 			}

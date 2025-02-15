@@ -138,6 +138,21 @@ namespace AbarimMUD.Data
 						}
 					}
 					break;
+				case ModifierType.Damage:
+					foreach (var atk in Attacks)
+					{
+						atk.DamageRange += val;
+					}
+					break;
+				case ModifierType.WeaponDamage:
+					foreach (var atk in Attacks)
+					{
+						if (usesWeapon)
+						{
+							atk.DamageRange += val;
+						}
+					}
+					break;
 				case ModifierType.BackstabCount:
 					BackstabCount += val;
 					break;

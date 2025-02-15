@@ -92,6 +92,9 @@ namespace AbarimMUD
 		{
 			SendLine(string.Format("Welcome, {0}!", _account.Name));
 
+			_account.LastLogin = DateTime.UtcNow;
+			_account.Save();
+
 			Session.Account = _account;
 
 			// Check if there are already sessions with that account
@@ -271,7 +274,8 @@ namespace AbarimMUD
 			_account = new Account
 			{
 				Name = _newName,
-				PasswordHash = HashUtils.CalculateMD5Hash(_newPassword)
+				PasswordHash = HashUtils.CalculateMD5Hash(_newPassword),
+				LastLogin = DateTime.UtcNow
 			};
 
 			_account.Save();

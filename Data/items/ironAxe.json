@@ -9,7 +9,9 @@
   "ItemType": "Weapon",
   "Price": 800,
   "AttackType": "Hack",
-  "Affects": {},
+  "Affects": {
+    "WeaponDamage": 2
+  },
   "Flags": [],
-  "DamageRange": "6-12"
+  "DamageRange": "1-8"
 }

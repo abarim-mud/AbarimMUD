@@ -31,6 +31,9 @@ namespace AbarimMUD.Data
 		[JsonIgnore]
 		public Account Account { get; set; }
 
+		[OLCIgnore]
+		public DateTime LastLogin { get; set; }
+
 		public Role Role { get; set; }
 
 		[JsonIgnore]

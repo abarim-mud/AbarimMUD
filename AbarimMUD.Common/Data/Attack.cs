@@ -53,7 +53,7 @@ namespace AbarimMUD.Data
 				return true;
 			}
 
-			return attackRoll >= armorClass / 10.0f;
+			return attackRoll - 10 >= armorClass / 10.0f;
 		}
 
 		public int CalculateDamage(int damageReduction = 0)

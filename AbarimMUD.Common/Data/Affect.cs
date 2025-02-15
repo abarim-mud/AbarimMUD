@@ -6,8 +6,10 @@ namespace AbarimMUD.Data
 	public enum ModifierType
 	{
 		AttacksCount,
-		WeaponHit,
 		Hit,
+		WeaponHit,
+		Damage,
+		WeaponDamage,
 		BackstabCount,
 		BackstabMultiplier,
 		Armor,
