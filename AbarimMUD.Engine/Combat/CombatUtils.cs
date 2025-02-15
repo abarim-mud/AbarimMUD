@@ -1,5 +1,6 @@
 ﻿using AbarimMUD.Commands;
 using AbarimMUD.Data;
+using AbarimMUD.Utils;
 using System;
 
 namespace AbarimMUD.Combat
@@ -260,7 +261,10 @@ namespace AbarimMUD.Combat
 				return;
 			}
 
-			var damage = Math.Max(1, Math.Min(attacker.Level, 40) / 2);
+			var baseDamage = Math.Min(attacker.Level, 20);
+			var damageRange = new ValueRange(baseDamage, baseDamage + 4);
+
+			var damage = damageRange.Random();
 			target.Creature.State.Hitpoints -= damage;
 			if (target.Creature.State.Hitpoints < 0)
 			{

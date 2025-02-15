@@ -81,7 +81,7 @@ namespace AbarimMUD.Data
 							// Roll loot prob
 							if (!Utility.RollPercentage(genericLootRecord.ProbabilityPercentage))
 							{
-								break;
+								continue;
 							}
 
 							// Another roll to determine which item to loot
