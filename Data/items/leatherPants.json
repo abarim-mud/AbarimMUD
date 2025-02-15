@@ -10,7 +10,7 @@
   "Price": 800,
   "Affects": {
     "Armor": 4,
-    "Hit": 10
+    "Hit": 5
   },
   "Flags": []
 }

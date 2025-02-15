@@ -1,21 +1,11 @@
 ﻿using AbarimMUD.Commands;
 using AbarimMUD.Data;
-using AbarimMUD.Utils;
 using System;
 
 namespace AbarimMUD.Combat
 {
 	public static class CombatUtils
 	{
-		private struct DamageResult
-		{
-			public float AttackRoll;
-			public int Damage;
-
-			public override string ToString() => $"{AttackRoll:0.##}, {Damage}";
-		}
-
-
 		public static void Slain(this ExecutionContext attacker, ExecutionContext target)
 		{
 			var ripMessage = $"{target.Creature.ShortDescription} is dead! R.I.P.";
@@ -61,20 +51,20 @@ namespace AbarimMUD.Combat
 
 			var attack = attacks[attackIndex];
 
-			var damage = new DamageResult();
-
 			var targetStats = target.Stats;
-			if (attack.HitOrMiss(targetStats.Armor, out damage.AttackRoll))
+			float attackRoll;
+			var damage = 0;
+			if (attack.HitOrMiss(targetStats.Armor, out attackRoll))
 			{
-				damage.Damage = attack.CalculateDamage();
+				damage = attack.CalculateDamage();
 			}
 
-			target.Creature.State.Hitpoints -= damage.Damage;
+			target.Creature.State.Hitpoints -= damage;
 			var room = attacker.Room;
 			foreach (var character in room.Characters)
 			{
 				string message;
-				if (damage.Damage <= 0)
+				if (damage <= 0)
 				{
 					if (attacker.Creature != character)
 					{
@@ -85,7 +75,7 @@ namespace AbarimMUD.Combat
 						message = $"You miss {target.Creature.ShortDescription} with your {attack.AttackType.GetAttackNoun()}";
 					}
 
-					message += $" ({damage}).";
+					message += $" ({attackRoll:0.##}).";
 				}
 				else
 				{
@@ -109,7 +99,7 @@ namespace AbarimMUD.Combat
 						targetName = "you";
 					}
 
-					message = GetAttackMessage(damage, attackerName, targetName, attack.AttackType);
+					message = GetAttackMessage(attackRoll, damage, attackerName, targetName, attack.AttackType);
 				}
 
 				var context = (ExecutionContext)character.Tag;
@@ -122,6 +112,28 @@ namespace AbarimMUD.Combat
 			}
 		}
 
+		private static bool RollSpecialAttack(this ExecutionContext attacker, ExecutionContext target, string attackName, int successChancePercentage)
+		{
+			var attack = attacker.Stats.Attacks[0];
+
+			attacker.SendInfoMessage($"{attackName} success chance: {successChancePercentage}%");
+			var success = Utility.RollPercentage(successChancePercentage);
+			if (success)
+			{
+				// Then hit change
+				float attackRoll;
+				if (!attack.HitOrMiss(target.Stats.Armor, out attackRoll))
+				{
+					success = false;
+				}
+
+				attacker.SendInfoMessage($"Attack Roll: {attackRoll:0.##}");
+			}
+
+			return success;
+		}
+
+
 		public static void Backstab(this ExecutionContext attacker, Ability ability, ItemInstance weapon, ExecutionContext target)
 		{
 			attacker.State.Moves -= ability.MovesCost;
@@ -129,9 +141,9 @@ namespace AbarimMUD.Combat
 			// Success chance 95 - (i * 20)
 			for (var i = 0; i < attacker.Stats.BackstabCount; ++i)
 			{
+				// Firstly roll overall success chance
 				var successChancePercentage = 95 - (i * 20);
-				attacker.SendInfoMessage($"Backstab success chance: {successChancePercentage}%");
-				var success = Utility.RollPercentage(successChancePercentage);
+				var success = RollSpecialAttack(attacker, target, "Backstab", successChancePercentage);
 				if (!success)
 				{
 					attacker.SendBattleMessage($"{target.ShortDescription} quickly avoids your backstab and you nearly cut your own finger!");
@@ -142,16 +154,15 @@ namespace AbarimMUD.Combat
 					return;
 				}
 
-				var damage = new DamageResult();
+				// Now roll the damage
+				var damage = 0;
 				var attack = attacker.Stats.Attacks[0];
-
-				var singleAttackDamage = attack.CalculateDamage();
 				for (var j = 0; j < attacker.Stats.BackstabMultiplier; ++j)
 				{
-					damage.Damage += singleAttackDamage;
+					damage += attack.CalculateDamage();
 				}
 
-				target.Creature.State.Hitpoints -= damage.Damage;
+				target.Creature.State.Hitpoints -= damage;
 				if (target.Creature.State.Hitpoints < 0)
 				{
 					attacker.SendBattleMessage($"{target.ShortDescription} makes a strange sound but is suddenly very silent as you place {weapon.Info.ShortDescription} in its back ({damage}).");
@@ -163,7 +174,7 @@ namespace AbarimMUD.Combat
 					return;
 				}
 
-				if (damage.Damage <= 0)
+				if (damage <= 0)
 				{
 					attacker.SendBattleMessage($"Your blade scratches the armor of {target.ShortDescription} with the grinding sound!");
 
@@ -185,9 +196,7 @@ namespace AbarimMUD.Combat
 			attacker.State.Moves -= circlestab.MovesCost;
 
 			// Success chance is 95%
-			var successChancePercentage = 95;
-			attacker.SendInfoMessage($"Circlestab success chance: {successChancePercentage}%");
-			var success = Utility.RollPercentage(successChancePercentage);
+			var success = RollSpecialAttack(attacker, target, "Circlestab", 95);
 			if (!success)
 			{
 				attacker.SendBattleMessage($"{target.ShortDescription} quickly avoids your circlestab and you nearly cut your own finger!");
@@ -198,17 +207,15 @@ namespace AbarimMUD.Combat
 				return;
 			}
 
-			var damage = new DamageResult();
-
+			var damage = 0;
 			var circleMultiplier = attacker.Stats.BackstabMultiplier / 3;
 			var attack = attacker.Stats.Attacks[0];
-			var singleAttackDamage = attack.CalculateDamage();
 			for (var j = 0; j < circleMultiplier; ++j)
 			{
-				damage.Damage += singleAttackDamage;
+				damage += attack.CalculateDamage();
 			}
 
-			target.Creature.State.Hitpoints -= damage.Damage;
+			target.Creature.State.Hitpoints -= damage;
 			if (target.Creature.State.Hitpoints < 0)
 			{
 				attacker.SendBattleMessage($"You struck {target.ShortDescription} right in the heart!");
@@ -220,7 +227,7 @@ namespace AbarimMUD.Combat
 				return;
 			}
 
-			if (damage.Damage <= 0)
+			if (damage <= 0)
 			{
 				attacker.SendBattleMessage($"Your blade scratches the armor of {target.ShortDescription} with the grinding sound!");
 
@@ -239,9 +246,7 @@ namespace AbarimMUD.Combat
 		public static void Kick(this ExecutionContext attacker, ExecutionContext target)
 		{
 			// Success chance is 95%
-			var successChancePercentage = 95;
-			attacker.SendInfoMessage($"Kick success chance: {successChancePercentage}%");
-			var success = Utility.RollPercentage(successChancePercentage);
+			var success = RollSpecialAttack(attacker, target, "Kick", 95);
 			if (!success)
 			{
 				attacker.SendBattleMessage($"You miss {target.ShortDescription} with your kick!");
@@ -252,17 +257,8 @@ namespace AbarimMUD.Combat
 				return;
 			}
 
-
-			var kickDamage = Math.Max(1, Math.Min(attacker.Level, 40) / 2);
-
-			var attack = attacker.Stats.Attacks[0];
-
-			var damage = new DamageResult
-			{
-				Damage = new ValueRange(kickDamage, kickDamage + 4).Random()
-			};
-
-			target.Creature.State.Hitpoints -= damage.Damage;
+			var damage = Math.Max(1, Math.Min(attacker.Level, 40) / 2);
+			target.Creature.State.Hitpoints -= damage;
 			if (target.Creature.State.Hitpoints < 0)
 			{
 				attacker.SendBattleMessage($"Your masterful kick put the end of the life of {target.ShortDescription}!");
@@ -274,7 +270,7 @@ namespace AbarimMUD.Combat
 				return;
 			}
 
-			if (damage.Damage <= 0)
+			if (damage <= 0)
 			{
 				attacker.SendBattleMessage($"Your kick can't break through the armor of {target.ShortDescription}!");
 
@@ -290,7 +286,7 @@ namespace AbarimMUD.Combat
 			}
 		}
 
-		private static string GetAttackMessage(DamageResult damageResult, string attackerName, string targetName, AttackType attackType)
+		private static string GetAttackMessage(float attackRoll, int damage, string attackerName, string targetName, AttackType attackType)
 		{
 			string result;
 			string attackVerb, massacre, massacre2;
@@ -308,39 +304,40 @@ namespace AbarimMUD.Combat
 				massacre2 = $"its {attackType.GetAttackNoun()}";
 			}
 
-			var damage = damageResult.Damage;
 			if (damage < 5)
 			{
-				result = $"{attackerName} barely {attackVerb} {targetName} ({damageResult}).";
+				result = $"{attackerName} barely {attackVerb} {targetName}";
 			}
 			else if (damage < 10)
 			{
-				result = $"{attackerName} {attackVerb} {targetName} ({damageResult}).";
+				result = $"{attackerName} {attackVerb} {targetName}";
 			}
 			else if (damage < 15)
 			{
-				result = $"{attackerName} {attackVerb} {targetName} hard ({damageResult}).";
+				result = $"{attackerName} {attackVerb} {targetName} hard";
 			}
 			else if (damage < 20)
 			{
-				result = $"{attackerName} {attackVerb} {targetName} very hard ({damageResult}).";
+				result = $"{attackerName} {attackVerb} {targetName} very hard";
 			}
 			else if (damage < 25)
 			{
-				result = $"{attackerName} {attackVerb} {targetName} extremelly hard ({damageResult}).";
+				result = $"{attackerName} {attackVerb} {targetName} extremelly hard";
 			}
 			else if (damage < 30)
 			{
-				result = $"{attackerName} {massacre} {targetName} to small fragments with {massacre2} ({damageResult}).";
+				result = $"{attackerName} {massacre} {targetName} to small fragments with {massacre2}";
 			}
 			else if (damage < 50)
 			{
-				result = $"{attackerName} brutally {massacre} {targetName} to small fragments with {massacre2} ({damageResult}).";
+				result = $"{attackerName} brutally {massacre} {targetName} to small fragments with {massacre2}";
 			}
 			else
 			{
-				result = $"{attackerName} viciously {massacre} {targetName} to small fragments with {massacre2} ({damageResult}).";
+				result = $"{attackerName} viciously {massacre} {targetName} to small fragments with {massacre2}";
 			}
+
+			result += $" ({attackRoll:0.##}, {damage}).";
 
 			return result;
 		}
