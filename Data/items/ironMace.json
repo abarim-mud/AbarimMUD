@@ -5,7 +5,7 @@
     "mace"
   ],
   "ShortDescription": "an iron mace",
-  "Description": "Unset",
+  "Description": "an iron mace",
   "ItemType": "Weapon",
   "Price": 800,
   "AttackType": "Pound",

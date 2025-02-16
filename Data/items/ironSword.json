@@ -5,7 +5,7 @@
     "sword"
   ],
   "ShortDescription": "an iron sword",
-  "Description": "Unset",
+  "Description": "an iron sword",
   "ItemType": "Weapon",
   "Price": 800,
   "AttackType": "Slash",

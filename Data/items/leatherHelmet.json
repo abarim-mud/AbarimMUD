@@ -5,7 +5,7 @@
     "helmet"
   ],
   "ShortDescription": "a leather helmet",
-  "Description": "Unset",
+  "Description": "a leather helmet",
   "ItemType": "Helmet",
   "Price": 400,
   "Affects": {

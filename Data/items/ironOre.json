@@ -5,7 +5,7 @@
     "ore"
   ],
   "ShortDescription": "an iron ore",
-  "Description": "Unset",
+  "Description": "an iron ore",
   "ItemType": "Material",
   "Price": 100,
   "Affects": {},

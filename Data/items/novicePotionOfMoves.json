@@ -6,7 +6,7 @@
     "moves"
   ],
   "ShortDescription": "a novice potion of moves",
-  "Description": "Unset",
+  "Description": "a novice potion of moves",
   "ItemType": "Potion",
   "Price": 200,
   "Affects": {

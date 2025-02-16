@@ -5,7 +5,7 @@
     "dagger"
   ],
   "ShortDescription": "an iron dagger",
-  "Description": "Unset",
+  "Description": "an iron dagger",
   "ItemType": "Weapon",
   "Price": 500,
   "AttackType": "Pierce",

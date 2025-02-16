@@ -55,6 +55,20 @@
             "ProbabilityPercentage": 50
           }
         ]
+      },
+      {
+        "ProbabilityPercentage": 10,
+        "Choice": [
+          {
+            "Items": [
+              {
+                "Item": "tinyEnchantementStone",
+                "Quantity": 1
+              }
+            ],
+            "ProbabilityPercentage": 100
+          }
+        ]
       }
     ]
   }

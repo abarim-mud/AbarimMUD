@@ -6,7 +6,7 @@
     "healing"
   ],
   "ShortDescription": "a novice potion of healing",
-  "Description": "Unset",
+  "Description": "a novice potion of healing",
   "ItemType": "Potion",
   "Price": 200,
   "Affects": {

@@ -5,7 +5,7 @@
     "pants"
   ],
   "ShortDescription": "a leather pants",
-  "Description": "Unset",
+  "Description": "a leather pants",
   "ItemType": "Leggings",
   "Price": 800,
   "Affects": {

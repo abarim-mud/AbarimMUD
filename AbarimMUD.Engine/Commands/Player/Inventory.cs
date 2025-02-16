@@ -8,6 +8,14 @@ namespace AbarimMUD.Commands.Player
 		{
 			var sb = new StringBuilder();
 
+			if (context.Creature.Inventory.Count > 0)
+			{
+				sb.AppendLine("You are carrying following items:");
+			} else
+			{
+				sb.AppendLine("You aren't carrying any items.");
+			}
+
 			foreach (var item in context.Creature.Inventory.Items)
 			{
 				sb.Append(item.Info.ShortDescription);
@@ -23,11 +31,6 @@ namespace AbarimMUD.Commands.Player
 				}
 
 				sb.AppendLine();
-			}
-
-			if (context.Creature.Inventory.Items.Count == 0)
-			{
-				sb.AppendLine("You aren't carrying any items.");
 			}
 
 			sb.AppendLine();

@@ -19,7 +19,12 @@ namespace AbarimMUD.Data
 		Weapon,
 		Potion,
 		Scroll,
-		Material
+		Material,
+		Enchant1,
+		Enchant2,
+		Enchant3,
+		Enchant4,
+		Enchant5,
 	}
 
 	public enum ItemFlags

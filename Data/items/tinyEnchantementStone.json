@@ -1,0 +1,14 @@
+{
+  "Id": "tinyEnchantementStone",
+  "Keywords": [
+    "tiny",
+    "enchantement",
+    "stone"
+  ],
+  "ShortDescription": "a tiny enchantement stone",
+  "Description": "a tiny enchantement stone",
+  "ItemType": "Enchant1",
+  "Price": 100,
+  "Affects": {},
+  "Flags": []
+}

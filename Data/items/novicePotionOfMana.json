@@ -6,7 +6,7 @@
     "mana"
   ],
   "ShortDescription": "a novice potion of mana",
-  "Description": "Unset",
+  "Description": "a novice potion of mana",
   "ItemType": "Potion",
   "Price": 400,
   "Affects": {
