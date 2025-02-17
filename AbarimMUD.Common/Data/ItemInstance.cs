@@ -13,6 +13,8 @@ namespace AbarimMUD.Data
 		[JsonIgnore]
 		public int Price => Info.Price;
 
+		public string JustName => Info.ShortDescription;
+
 		[JsonIgnore]
 		public string Name
 		{
@@ -20,10 +22,10 @@ namespace AbarimMUD.Data
 			{
 				if (Enchantement == null)
 				{
-					return Info.ShortDescription;
+					return JustName;
 				}
 
-				return $"{Info.ShortDescription} of {Enchantement.Name}";
+				return $"{JustName} of {Enchantement.Name}";
 			}
 		}
 

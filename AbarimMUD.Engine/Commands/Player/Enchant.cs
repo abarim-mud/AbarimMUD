@@ -88,7 +88,7 @@ namespace AbarimMUD.Commands.Player
 			if (invStones == null || invStones.Quantity < enchantement.EnchantementStones)
 			{
 				var q = invStones != null ? invStones.Quantity : 0;
-				Tell.Execute(enchanter.GetContext(), $"{creature.ShortDescription} You don't have enough enchantement stones.\nYou need {enchantement.EnchantementStones} of {stoneInfo.ShortDescription}.\nAnd you have only {q}.");
+				Tell.Execute(enchanter.GetContext(), $"{creature.ShortDescription} You don't have enough enchantement stones. You have {q} of {enchantement.EnchantementStones} '{stoneInfo.ShortDescription}'");
 				return false;
 			}
 
@@ -115,7 +115,7 @@ namespace AbarimMUD.Commands.Player
 				context.Send($"You give {enchanter.ShortDescription} some coins.");
 			}
 
-			context.Send($"{enchanter} takes {invItem.Info.ShortDescription}, makes some gestures over it.\nThe item grows brightly.\nThe enchantement stones crumble to dust.\n{enchanter.ShortDescription} gives you {invItem.Item.Name}.");
+			context.Send($"{enchanter} takes {invItem.JustName}, makes some gestures over it.\nThe item grows brightly.\nThe enchantement stones crumble to dust.\n{enchanter.ShortDescription} gives you {invItem.Name}.");
 			Tell.Execute(enchanter.GetContext(), $"{creature.ShortDescription} There you go, {creature.ShortDescription}.");
 
 			var character = creature as Character;

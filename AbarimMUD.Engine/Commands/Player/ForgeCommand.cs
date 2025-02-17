@@ -115,7 +115,7 @@ namespace AbarimMUD.Commands.Player
 				context.Send($"You give {shopKeeper.ShortDescription} some coins.");
 			}
 
-			context.Send($"{shopKeeper} forges {forge.Result.ShortDescription} and gives it to you.");
+			context.Send($"{shopKeeper} forges {item.Name} and gives it to you.");
 			Tell.Execute(shopKeeper.GetContext(), $"{creature.ShortDescription} There you go, {creature.ShortDescription}.");
 
 			var character = creature as Character;

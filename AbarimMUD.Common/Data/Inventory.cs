@@ -15,6 +15,9 @@ namespace AbarimMUD.Data
 		public string Id => Info.Id;
 
 		[JsonIgnore]
+		public string JustName => Item.JustName;
+
+		[JsonIgnore]
 		public string Name => Item.Name;
 
 		[JsonIgnore]

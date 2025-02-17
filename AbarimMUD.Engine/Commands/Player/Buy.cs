@@ -29,17 +29,15 @@ namespace AbarimMUD.Commands.Player
 			}
 
 			var inventoryItem = invItem.Item;
-			var item = inventoryItem.Info;
-
-			var price = context.Creature.Stats.GetBuyPrice(item.Price);
+			var price = context.Creature.Stats.GetBuyPrice(inventoryItem.Info.Price);
 			if (context.Creature.Gold < price)
 			{
-				Tell.Execute(shopKeeper.GetContext(), $"{context.Creature.ShortDescription} You can't afford {item.ShortDescription}.");
+				Tell.Execute(shopKeeper.GetContext(), $"{context.Creature.ShortDescription} You can't afford {inventoryItem.Name}.");
 				return false;
 			}
 
 			context.Creature.Gold -= price;
-			context.Creature.Inventory.AddItem(new ItemInstance(item), 1);
+			context.Creature.Inventory.AddItem(inventoryItem, 1);
 
 			if (inventoryItem != null)
 			{
@@ -50,7 +48,7 @@ namespace AbarimMUD.Commands.Player
 			character?.Save();
 
 			Tell.Execute(shopKeeper.GetContext(), $"{context.Creature.ShortDescription} That'll be {price}, please.");
-			context.Send($"You now have {item.ShortDescription}.");
+			context.Send($"You now have {inventoryItem.Name}.");
 
 			return true;
 		}

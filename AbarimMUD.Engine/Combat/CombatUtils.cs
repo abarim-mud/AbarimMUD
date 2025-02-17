@@ -169,9 +169,9 @@ namespace AbarimMUD.Combat
 				target.Creature.State.Hitpoints -= damage;
 				if (target.Creature.State.Hitpoints < 0)
 				{
-					attacker.SendBattleMessage($"{target.ShortDescription} makes a strange sound but is suddenly very silent as you place {weapon.Info.ShortDescription} in its back ({damage}).");
+					attacker.SendBattleMessage($"{target.ShortDescription} makes a strange sound but is suddenly very silent as you place {weapon.Name} in its back ({damage}).");
 
-					var roomMessage = $"{target.ShortDescription} makes a strange sound but is suddenly very silent as {attacker.ShortDescription} places {weapon.Info.ShortDescription} in its back ({damage}).";
+					var roomMessage = $"{target.ShortDescription} makes a strange sound but is suddenly very silent as {attacker.ShortDescription} places {weapon.Name} in its back ({damage}).";
 					attacker.SendRoomExceptMe(roomMessage);
 
 					attacker.Slain(target);
