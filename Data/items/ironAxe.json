@@ -13,5 +13,6 @@
     "WeaponDamage": 2
   },
   "Flags": [],
-  "DamageRange": "1-8"
+  "DamageRange": "1-8",
+  "EnchantementTier": 1
 }

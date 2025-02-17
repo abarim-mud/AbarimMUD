@@ -38,6 +38,7 @@ namespace AbarimMUD.Data
 		public static readonly MultipleFilesStorage<Item> Storage = new Items();
 
 		private ItemType _itemType;
+		private int? _enchantementTier = null;
 
 		public string Id { get; set; }
 		public HashSet<string> Keywords { get; set; } = new HashSet<string>();
@@ -70,6 +71,22 @@ namespace AbarimMUD.Data
 
 		public HashSet<ItemFlags> Flags { get; set; } = new HashSet<ItemFlags>();
 		public ValueRange? DamageRange { get; set; }
+		public int? EnchantementTier
+		{
+			get => _enchantementTier;
+
+			set
+			{
+				if (value.HasValue &&
+					(value.Value < 1 || value.Value > 5))
+				{
+					throw new ArgumentOutOfRangeException(nameof(value));
+				}
+
+				_enchantementTier = value.Value;
+			}
+		}
+
 
 		public bool MatchesKeyword(string keyword) => Keywords.StartsWithPattern(keyword);
 

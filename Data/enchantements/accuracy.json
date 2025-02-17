@@ -1,0 +1,12 @@
+{
+  "Id": "accuracy",
+  "Name": "accuracy",
+  "Keywords": [
+    "accuracy"
+  ],
+  "EnchantementStones": 5,
+  "Price": 1000,
+  "Affects": {
+    "AttackBonus": 10
+  }
+}

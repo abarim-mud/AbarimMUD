@@ -12,5 +12,6 @@
     "Armor": 4,
     "AttackBonus": 5
   },
-  "Flags": []
+  "Flags": [],
+  "EnchantementTier": 1
 }

@@ -25,6 +25,7 @@ namespace AbarimMUD.Storage
 			DataContext.Register(Forge.Storage);
 			DataContext.Register(ForgeShop.Storage);
 			DataContext.Register(ExchangeShop.Storage);
+			DataContext.Register(Enchantement.Storage);
 		}
 	}
 }

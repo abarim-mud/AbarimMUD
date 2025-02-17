@@ -139,6 +139,7 @@ namespace AbarimMUD.Storage
 					{
 						_defaultOptions = JsonUtils.CreateOptions();
 						_defaultOptions.Converters.Add(ItemConverter);
+						_defaultOptions.Converters.Add(EnchantementConverter);
 					}
 
 					return _defaultOptions;
@@ -167,7 +168,14 @@ namespace AbarimMUD.Storage
 			public override void Write(Utf8JsonWriter writer, ItemInstance value, JsonSerializerOptions options)
 			{
 				// Write just an id
-				writer.WriteStringValue(value.Id);
+				if (value.Enchantement == null)
+				{
+					writer.WriteStringValue(value.Id);
+					return;
+				}
+
+				// Full serialization
+				JsonSerializer.Serialize(writer, value, DefaultOptions);
 			}
 		}
 
@@ -219,5 +227,6 @@ namespace AbarimMUD.Storage
 		public static readonly EntityConverter<Forge> ForgeConverter = new EntityConverter<Forge>(f => f.Id);
 		public static readonly EntityConverter<ForgeShop> ForgeShopConverter = new EntityConverter<ForgeShop>(f => f.Id);
 		public static readonly EntityConverter<ExchangeShop> ExchangeShopConverter = new EntityConverter<ExchangeShop>(f => f.Id);
+		public static readonly EntityConverter<Enchantement> EnchantementConverter = new EntityConverter<Enchantement>(s => s.Id);
 	}
 }

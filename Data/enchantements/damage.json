@@ -1,0 +1,12 @@
+{
+  "Id": "damage",
+  "Name": "damage",
+  "Keywords": [
+    "damage"
+  ],
+  "EnchantementStones": 5,
+  "Price": 1000,
+  "Affects": {
+    "Damage": 1
+  }
+}

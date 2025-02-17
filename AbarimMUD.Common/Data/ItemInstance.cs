@@ -5,9 +5,12 @@ namespace AbarimMUD.Data
 	public class ItemInstance
 	{
 		public Item Info { get; set; }
+		public Enchantement Enchantement { get; set; }
 
+		[JsonIgnore]
 		public string Id => Info.Id;
 
+		[JsonIgnore]
 		public int Price => Info.Price;
 
 		[JsonIgnore]

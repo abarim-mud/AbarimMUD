@@ -50,6 +50,7 @@ namespace AbarimMUD.Data
 		AssistAll,
 		AssistGuard,
 		AssistId,
+		Enchanter,
 
 		AssistPlayers = AssistPlayer,
 		IsHealer = Healer,

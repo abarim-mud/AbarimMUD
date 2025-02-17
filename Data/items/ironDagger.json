@@ -15,5 +15,6 @@
   "Flags": [
     "Stab"
   ],
-  "DamageRange": "1-6"
+  "DamageRange": "1-6",
+  "EnchantementTier": 1
 }

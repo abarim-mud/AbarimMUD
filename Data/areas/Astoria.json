@@ -1575,7 +1575,8 @@
       "Loot": [],
       "Flags": [
         "Sentinel",
-        "NoPurge"
+        "NoPurge",
+        "Enchanter"
       ],
       "SpecialAttacks": [],
       "Id": 19007
