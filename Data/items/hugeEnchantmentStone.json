@@ -1,0 +1,14 @@
+{
+  "Id": "hugeEnchantmentStone",
+  "Keywords": [
+    "huge",
+    "enchantment",
+    "stone"
+  ],
+  "ShortDescription": "a huge enchantment stone",
+  "Description": "a huge enchantment stone",
+  "ItemType": "Enchant5",
+  "Price": 100000,
+  "Affects": {},
+  "Flags": []
+}

@@ -76,7 +76,7 @@ namespace AbarimMUD
 			// Forge.Storage.SaveAll();
 			// ForgeShop.Storage.SaveAll();
 			// ExchangeShop.Storage.SaveAll();
-			Enchantement.Storage.SaveAll();
+			Enchantment.Storage.SaveAll();
 		}
 
 		private bool ProcessRegen(ref int currentValue, int maxValue, ref float fractionalValue, int regenValue, float secondsPassed)

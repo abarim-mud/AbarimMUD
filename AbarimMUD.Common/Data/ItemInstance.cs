@@ -5,7 +5,7 @@ namespace AbarimMUD.Data
 	public class ItemInstance
 	{
 		public Item Info { get; set; }
-		public Enchantement Enchantement { get; set; }
+		public Enchantment Enchantment { get; set; }
 
 		[JsonIgnore]
 		public string Id => Info.Id;
@@ -20,12 +20,12 @@ namespace AbarimMUD.Data
 		{
 			get
 			{
-				if (Enchantement == null)
+				if (Enchantment == null)
 				{
 					return JustName;
 				}
 
-				return $"{JustName} of {Enchantement.Name}";
+				return $"{JustName} of {Enchantment.Name}";
 			}
 		}
 
@@ -54,17 +54,17 @@ namespace AbarimMUD.Data
 				return false;
 			}
 
-			if (a.Enchantement == null && b.Enchantement != null)
+			if (a.Enchantment == null && b.Enchantment != null)
 			{
 				return false;
 			}
 
-			if (a.Enchantement != null && b.Enchantement == null)
+			if (a.Enchantment != null && b.Enchantment == null)
 			{
 				return false;
 			}
 
-			return a.Enchantement.Id == b.Enchantement.Id;
+			return a.Enchantment.Id == b.Enchantment.Id;
 		}
 
 		public ItemInstance Clone() => new ItemInstance

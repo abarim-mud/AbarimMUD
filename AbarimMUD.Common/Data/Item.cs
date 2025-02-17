@@ -38,7 +38,7 @@ namespace AbarimMUD.Data
 		public static readonly MultipleFilesStorage<Item> Storage = new Items();
 
 		private ItemType _itemType;
-		private int? _enchantementTier = null;
+		private int? _enchantmentTier = null;
 
 		public string Id { get; set; }
 		public HashSet<string> Keywords { get; set; } = new HashSet<string>();
@@ -71,9 +71,9 @@ namespace AbarimMUD.Data
 
 		public HashSet<ItemFlags> Flags { get; set; } = new HashSet<ItemFlags>();
 		public ValueRange? DamageRange { get; set; }
-		public int? EnchantementTier
+		public int? EnchantmentTier
 		{
-			get => _enchantementTier;
+			get => _enchantmentTier;
 
 			set
 			{
@@ -83,7 +83,7 @@ namespace AbarimMUD.Data
 					throw new ArgumentOutOfRangeException(nameof(value));
 				}
 
-				_enchantementTier = value.Value;
+				_enchantmentTier = value.Value;
 			}
 		}
 
@@ -169,9 +169,9 @@ namespace AbarimMUD.Data
 
 		public static bool IsArmor(this ItemType type) => _armorTypes[(int)type];
 
-		public static ItemType ToEnchantementItemType(this int enchantementTier)
+		public static ItemType ToEnchantmentItemType(this int enchantmentTier)
 		{
-			switch(enchantementTier)
+			switch(enchantmentTier)
 			{
 				case 1:
 					return ItemType.Enchant1;
@@ -185,7 +185,7 @@ namespace AbarimMUD.Data
 					return ItemType.Enchant5;
 			}
 
-			throw new Exception($"Wrong enchantement tier {enchantementTier}");
+			throw new Exception($"Wrong enchantment tier {enchantmentTier}");
 		}
 	}
 }

@@ -1,0 +1,14 @@
+{
+  "Id": "averageEnchantmentStone",
+  "Keywords": [
+    "average",
+    "enchantment",
+    "stone"
+  ],
+  "ShortDescription": "an average enchantment stone",
+  "Description": "an average enchantment stone",
+  "ItemType": "Enchant3",
+  "Price": 10000,
+  "Affects": {},
+  "Flags": []
+}

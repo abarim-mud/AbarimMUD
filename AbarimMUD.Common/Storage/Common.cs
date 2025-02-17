@@ -139,7 +139,7 @@ namespace AbarimMUD.Storage
 					{
 						_defaultOptions = JsonUtils.CreateOptions();
 						_defaultOptions.Converters.Add(ItemConverter);
-						_defaultOptions.Converters.Add(EnchantementConverter);
+						_defaultOptions.Converters.Add(EnchantmentConverter);
 					}
 
 					return _defaultOptions;
@@ -168,7 +168,7 @@ namespace AbarimMUD.Storage
 			public override void Write(Utf8JsonWriter writer, ItemInstance value, JsonSerializerOptions options)
 			{
 				// Write just an id
-				if (value.Enchantement == null)
+				if (value.Enchantment == null)
 				{
 					writer.WriteStringValue(value.Id);
 					return;
@@ -227,15 +227,15 @@ namespace AbarimMUD.Storage
 		public static readonly EntityConverter<Forge> ForgeConverter = new EntityConverter<Forge>(f => f.Id);
 		public static readonly EntityConverter<ForgeShop> ForgeShopConverter = new EntityConverter<ForgeShop>(f => f.Id);
 		public static readonly EntityConverter<ExchangeShop> ExchangeShopConverter = new EntityConverter<ExchangeShop>(f => f.Id);
-		public static readonly EntityConverter<Enchantement> EnchantementConverter = new EntityConverter<Enchantement>(s => s.Id);
+		public static readonly EntityConverter<Enchantment> EnchantmentConverter = new EntityConverter<Enchantment>(s => s.Id);
 
 		public static void SetReferences(this ItemInstance item)
 		{
 			item.Info = Item.EnsureItemById(item.Info.Id);
 
-			if (item.Enchantement != null)
+			if (item.Enchantment != null)
 			{
-				item.Enchantement = Enchantement.GetEnchantementById(item.Enchantement.Id);
+				item.Enchantment = Enchantment.GetEnchantmentById(item.Enchantment.Id);
 			}
 		}
 

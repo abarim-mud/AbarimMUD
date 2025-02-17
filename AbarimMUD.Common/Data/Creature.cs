@@ -136,9 +136,9 @@ namespace AbarimMUD.Data
 					}
 				}
 
-				if (item.Item.Enchantement != null)
+				if (item.Item.Enchantment != null)
 				{
-					foreach(var pair in item.Item.Enchantement.Affects)
+					foreach(var pair in item.Item.Enchantment.Affects)
 					{
 						result.Add(pair.Key, pair.Value);
 					}
