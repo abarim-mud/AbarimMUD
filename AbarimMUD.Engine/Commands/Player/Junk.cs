@@ -21,7 +21,7 @@ namespace AbarimMUD.Commands.Player
 
 			// Remove from inv
 			context.Creature.Inventory.AddItem(item.Item, -1);
-			context.Send($"You junk {item.ShortDescription}.");
+			context.Send($"You junk {item.Name}.");
 
 			var asCharacter = context.Creature as Character;
 			asCharacter?.Save();

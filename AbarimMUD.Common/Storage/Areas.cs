@@ -219,10 +219,7 @@ namespace AbarimMUD.Storage
 
 					foreach (var loot in mobile.Loot)
 					{
-						foreach (var invItem in loot.Items.Items)
-						{
-							invItem.Item.Info = Item.EnsureItemById(invItem.Item.Info.Id);
-						}
+						loot.Items.SetReferences();
 					}
 
 					if (mobile.Shop != null)

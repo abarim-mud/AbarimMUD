@@ -25,10 +25,7 @@ namespace AbarimMUD.Storage
 
 			foreach (var shop in this)
 			{
-				foreach (var invItem in shop.Inventory.Items)
-				{
-					invItem.Item.Info = Item.EnsureItemById(invItem.Item.Info.Id);
-				}
+				shop.Inventory.SetReferences();
 			}
 		}
 	}

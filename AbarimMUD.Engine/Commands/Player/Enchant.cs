@@ -1,7 +1,6 @@
 ﻿using AbarimMUD.Data;
 using AbarimMUD.Utils;
 using System.Linq;
-using System.Text;
 
 namespace AbarimMUD.Commands.Player
 {
@@ -44,66 +43,83 @@ namespace AbarimMUD.Commands.Player
 				return true;
 			}
 
-			// Find forge
-/*			var creature = context.Creature;
-			var inv = creature.Inventory;
-			var forge = (from f in forges where f.Result.MatchesKeyword(data) select f).FirstOrDefault();
-			if (forge == null)
+			var args = data.SplitByWhitespace();
+			if (args.Length < 2)
 			{
-				Tell.Execute(enchanter.GetContext(), $"{creature.ShortDescription} I don't know how to forge '{data}'.");
+				context.Send("Usage: enchant <item_name> <enchantement_name>");
+				return true;
+			}
+
+			// Find item
+			var creature = context.Creature;
+			var inv = creature.Inventory;
+			var invItem = inv.FindItem(args[0]);
+			if (invItem == null)
+			{
+				context.Send($"You don't seem to have '{args[0]}'");
 				return false;
 			}
 
-			// Check cps
-			foreach (var cp in forge.Components)
+			if (invItem.Item.Enchantement != null)
 			{
-				var invItem = (from i in inv where ItemInstance.AreEqual(i.Item, cp.Item) select i).FirstOrDefault();
+				Tell.Execute(enchanter.GetContext(), $"{creature.ShortDescription} {invItem.Name} holds an enchantement already.");
+				return false;
+			}
 
-				if (invItem == null)
-				{
-					Tell.Execute(enchanter.GetContext(), $"{creature.ShortDescription} You don't have any {cp.Item.ShortDescription}.");
-					return false;
-				}
+			if (invItem.Info.EnchantementTier == null)
+			{
+				Tell.Execute(enchanter.GetContext(), $"{creature.ShortDescription} {invItem.Name} can't be enchanted.");
+				return false;
+			}
 
-				if (invItem.Quantity < cp.Quantity)
-				{
-					Tell.Execute(enchanter.GetContext(), $"{creature.ShortDescription} You don't have enough amount of {cp.Item.ShortDescription}.");
-					return false;
-				}
+			// Find enchantement
+			var enchantement = (from f in Enchantement.Storage where f.MatchesKeyword(args[1]) select f).FirstOrDefault();
+			if (enchantement == null)
+			{
+				Tell.Execute(enchanter.GetContext(), $"{creature.ShortDescription} I don't know enchantement '{args[1]}'.");
+				return false;
+			}
+
+			var enchantementType = invItem.Info.EnchantementTier.Value.ToEnchantementItemType();
+
+			// Check stones
+			var invStones = (from i in inv where i.Info.ItemType == enchantementType select i).FirstOrDefault();
+			var stoneInfo = (from i in Item.Storage where i.ItemType == enchantementType select i).First();
+			if (invStones == null || invStones.Quantity < enchantement.EnchantementStones)
+			{
+				var q = invStones != null ? invStones.Quantity : 0;
+				Tell.Execute(enchanter.GetContext(), $"{creature.ShortDescription} You don't have enough enchantement stones.\nYou need {enchantement.EnchantementStones} of {stoneInfo.ShortDescription}.\nAnd you have only {q}.");
+				return false;
 			}
 
 			// Check gold
-			if (creature.Gold < forge.Price)
+			if (creature.Gold < enchantement.Price)
 			{
 				Tell.Execute(enchanter.GetContext(), $"{creature.ShortDescription} You don't have enough gold.");
 				return false;
 			}
 
-			// Create item
-			var item = new ItemInstance(forge.Result);
-			inv.AddItem(item, 1);
+			// Do the enchantement
+			invItem.Item.Enchantement = enchantement;
 
-			foreach (var cp in forge.Components)
-			{
-				inv.AddItem(cp.Item, -cp.Quantity);
-			}
-			creature.Gold -= forge.Price;
+			// Deduct the stones
+			inv.AddItem(new ItemInstance(stoneInfo), -enchantement.EnchantementStones);
 
-			if (forge.Components.Count > 0)
-			{
-				context.Send($"You give {enchanter.ShortDescription} some items.");
-			}
+			// Deduct the coins
+			creature.Gold -= enchantement.Price;
 
-			if (forge.Price > 0)
+			context.Send($"You give {enchanter.ShortDescription} some enchantement stones.");
+
+			if (enchantement.Price > 0)
 			{
 				context.Send($"You give {enchanter.ShortDescription} some coins.");
 			}
 
-			context.Send($"{enchanter} forges {forge.Result.ShortDescription} and gives it to you.");
+			context.Send($"{enchanter} takes {invItem.Info.ShortDescription}, makes some gestures over it.\nThe item grows brightly.\nThe enchantement stones crumble to dust.\n{enchanter.ShortDescription} gives you {invItem.Item.Name}.");
 			Tell.Execute(enchanter.GetContext(), $"{creature.ShortDescription} There you go, {creature.ShortDescription}.");
 
 			var character = creature as Character;
-			character?.Save();*/
+			character?.Save();
 
 			return true;
 		}

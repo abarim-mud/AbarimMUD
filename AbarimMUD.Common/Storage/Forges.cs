@@ -26,11 +26,7 @@ namespace AbarimMUD.Storage
 
 			foreach (var forge in this)
 			{
-				foreach (var invItem in forge.Components)
-				{
-					invItem.Item.Info = Item.EnsureItemById(invItem.Item.Info.Id);
-				}
-
+				forge.Components.SetReferences();
 				forge.Result = Item.EnsureItemById(forge.Result.Id);
 			}
 		}

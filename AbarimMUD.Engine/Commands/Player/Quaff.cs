@@ -30,11 +30,11 @@ namespace AbarimMUD.Commands.Player
 			foreach(var pair in item.Info.Affects)
 			{
 				var affect = pair.Value;
-				context.Creature.AddTemporaryAffect(affect.AffectSlotName, item.ShortDescription, affect);
+				context.Creature.AddTemporaryAffect(affect.AffectSlotName, item.Name, affect);
 			}
 
-			context.Send($"You quaff '{item.ShortDescription}'.");
-			context.SendRoomExceptMe($"{context.Creature.ShortDescription} quaffed {item.ShortDescription}.");
+			context.Send($"You quaff '{item.Name}'.");
+			context.SendRoomExceptMe($"{context.Creature.ShortDescription} quaffed {item.Name}.");
 
 			var asCharacter = context.Creature as Character;
 			asCharacter?.Save();

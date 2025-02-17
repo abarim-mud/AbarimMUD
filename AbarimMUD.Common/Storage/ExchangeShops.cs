@@ -25,15 +25,10 @@ namespace AbarimMUD.Storage
 
 			foreach (var exchangeShop in this)
 			{
-				foreach(var exchange in exchangeShop.Exchanges)
+				foreach (var exchange in exchangeShop.Exchanges)
 				{
-					exchange.Item.Info = Item.EnsureItemById(exchange.Item.Id);
-
-					foreach(var invItem in exchange.Price)
-					{
-						invItem.Info = Item.EnsureItemById(invItem.Id);
-					}
-
+					exchange.Item.SetReferences();
+					exchange.Price.SetReferences();
 				}
 			}
 		}

@@ -232,7 +232,7 @@ namespace AbarimMUD.Commands.Player
 				var item = context.Creature.Inventory.FindItem(data);
 				if (item != null)
 				{
-					sb.AppendLine($"You look at {item.ShortDescription}.");
+					sb.AppendLine($"You look at {item.Name}.");
 					sb.AppendLine();
 					sb.AppendLine(BuildItemDescription(context, item.Item));
 					break;

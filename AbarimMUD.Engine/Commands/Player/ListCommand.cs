@@ -27,7 +27,7 @@ namespace AbarimMUD.Commands.Player
 				var item = shopKeeper.Inventory.Items[i].Item;
 				var price = context.Creature.Stats.GetBuyPrice(item.Price);
 
-				grid.SetValue(0, y, item.ShortDescription);
+				grid.SetValue(0, y, item.Name);
 				grid.SetValue(1, y, price.ToString());
 				grid.SetValue(2, y, shopKeeper.Inventory.Items[i].Quantity.ToString());
 

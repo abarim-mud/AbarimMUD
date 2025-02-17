@@ -49,7 +49,7 @@ namespace AbarimMUD.Commands.Player
 			character.StabWeapon = data;
 			character.Save();
 
-			var message = $"Stabweapon was set to '{data}'. It corresponds to an item '{weapon.ShortDescription}'";
+			var message = $"Stabweapon was set to '{data}'. It corresponds to an item '{weapon.Name}'";
 			if (isWielded)
 			{
 				message += " (wielded)";

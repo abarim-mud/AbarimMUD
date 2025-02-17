@@ -18,6 +18,8 @@ namespace AbarimMUD.Data
 
 		public Dictionary<ModifierType, int> Affects { get; set; } = new Dictionary<ModifierType, int>();
 
+		public bool MatchesKeyword(string keyword) => Keywords.StartsWithPattern(keyword);
+
 		public Enchantement CloneItem()
 		{
 			var result = new Enchantement

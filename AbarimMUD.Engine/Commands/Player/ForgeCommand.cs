@@ -35,7 +35,7 @@ namespace AbarimMUD.Commands.Player
 					for (var i = 0; i < f.Components.Count; i++)
 					{
 						var cp = f.Components[i];
-						sb.Append(cp.ShortDescription);
+						sb.Append(cp.Name);
 
 						if (cp.Quantity > 1)
 						{
@@ -77,13 +77,13 @@ namespace AbarimMUD.Commands.Player
 
 				if (invItem == null)
 				{
-					Tell.Execute(shopKeeper.GetContext(), $"{creature.ShortDescription} You don't have any {cp.Item.ShortDescription}.");
+					Tell.Execute(shopKeeper.GetContext(), $"{creature.ShortDescription} You don't have any {cp.Item.Name}.");
 					return false;
 				}
 
 				if (invItem.Quantity < cp.Quantity)
 				{
-					Tell.Execute(shopKeeper.GetContext(), $"{creature.ShortDescription} You don't have enough amount of {cp.Item.ShortDescription}.");
+					Tell.Execute(shopKeeper.GetContext(), $"{creature.ShortDescription} You don't have enough amount of {cp.Item.Name}.");
 					return false;
 				}
 			}

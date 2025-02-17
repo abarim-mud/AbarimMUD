@@ -168,5 +168,24 @@ namespace AbarimMUD.Data
 		}
 
 		public static bool IsArmor(this ItemType type) => _armorTypes[(int)type];
+
+		public static ItemType ToEnchantementItemType(this int enchantementTier)
+		{
+			switch(enchantementTier)
+			{
+				case 1:
+					return ItemType.Enchant1;
+				case 2:
+					return ItemType.Enchant2;
+				case 3:
+					return ItemType.Enchant3;
+				case 4:
+					return ItemType.Enchant4;
+				case 5:
+					return ItemType.Enchant5;
+			}
+
+			throw new Exception($"Wrong enchantement tier {enchantementTier}");
+		}
 	}
 }

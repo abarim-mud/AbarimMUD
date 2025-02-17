@@ -31,11 +31,7 @@ namespace AbarimMUD.Storage
 					var totalProb = 0;
 					foreach (var lootRecord in genericLootRecord.Choice)
 					{
-						foreach (var invItem in lootRecord.Items.Items)
-						{
-							invItem.Item.Info = Data.Item.EnsureItemById(invItem.Item.Info.Id);
-						}
-
+						lootRecord.Items.SetReferences();
 						totalProb += lootRecord.ProbabilityPercentage;
 					}
 

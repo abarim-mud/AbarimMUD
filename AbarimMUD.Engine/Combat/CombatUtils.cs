@@ -187,9 +187,9 @@ namespace AbarimMUD.Combat
 				}
 				else
 				{
-					attacker.SendBattleMessage($"You place {weapon.ShortDescription} in the back of {target.ShortDescription}, resulting in some strange noises and some blood ({damage})!");
+					attacker.SendBattleMessage($"You place {weapon.Name} in the back of {target.ShortDescription}, resulting in some strange noises and some blood ({damage})!");
 
-					var roomMessage = $"{attacker.ShortDescription} places {weapon.ShortDescription} in the back of {target.ShortDescription}, resulting in some strange noises and some blood ({damage})!";
+					var roomMessage = $"{attacker.ShortDescription} places {weapon.Name} in the back of {target.ShortDescription}, resulting in some strange noises and some blood ({damage})!";
 					attacker.SendRoomExceptMe(roomMessage);
 				}
 			}
@@ -240,9 +240,9 @@ namespace AbarimMUD.Combat
 			}
 			else
 			{
-				attacker.SendBattleMessage($"You quickly move from {target.ShortDescription}'s eyesight and stab it with {weapon.ShortDescription} ({damage})!");
+				attacker.SendBattleMessage($"You quickly move from {target.ShortDescription}'s eyesight and stab it with {weapon.Name} ({damage})!");
 
-				var roomMessage = $"{attacker.ShortDescription} quickly moves from {target.ShortDescription}'s eyesight and stabs it with {weapon.ShortDescription} ({damage})!";
+				var roomMessage = $"{attacker.ShortDescription} quickly moves from {target.ShortDescription}'s eyesight and stabs it with {weapon.Name} ({damage})!";
 				attacker.SendRoomExceptMe(roomMessage);
 			}
 		}

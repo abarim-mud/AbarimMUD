@@ -18,7 +18,7 @@ namespace AbarimMUD.Commands.Player
 
 			foreach (var item in context.Creature.Inventory.Items)
 			{
-				sb.Append(item.Info.ShortDescription);
+				sb.Append(item.Name);
 
 				if (item.Quantity != 1)
 				{

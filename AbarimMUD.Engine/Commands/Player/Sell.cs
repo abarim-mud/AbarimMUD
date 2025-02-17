@@ -45,7 +45,7 @@ namespace AbarimMUD.Commands.Player
 			character?.Save();
 
 			Tell.Execute(shopKeeper.GetContext(), $"{context.Creature.ShortDescription} You'll get {price} coins for it!");
-			context.Send($"{shopKeeper.ShortDescription} now has {invItem.ShortDescription}.");
+			context.Send($"{shopKeeper.ShortDescription} now has {invItem.Name}.");
 
 			return true;
 		}

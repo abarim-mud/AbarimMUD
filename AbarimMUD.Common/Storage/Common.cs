@@ -228,5 +228,49 @@ namespace AbarimMUD.Storage
 		public static readonly EntityConverter<ForgeShop> ForgeShopConverter = new EntityConverter<ForgeShop>(f => f.Id);
 		public static readonly EntityConverter<ExchangeShop> ExchangeShopConverter = new EntityConverter<ExchangeShop>(f => f.Id);
 		public static readonly EntityConverter<Enchantement> EnchantementConverter = new EntityConverter<Enchantement>(s => s.Id);
+
+		public static void SetReferences(this ItemInstance item)
+		{
+			item.Info = Item.EnsureItemById(item.Info.Id);
+
+			if (item.Enchantement != null)
+			{
+				item.Enchantement = Enchantement.GetEnchantementById(item.Enchantement.Id);
+			}
+		}
+
+		public static void SetReferences(this InventoryRecord rec)
+		{
+			rec.Item.SetReferences();
+		}
+
+		public static void SetReferences(this WearItem item)
+		{
+			item.Item.SetReferences();
+		}
+
+		public static void SetReferences(this IEnumerable<ItemInstance> inv)
+		{
+			foreach (var rec in inv)
+			{
+				rec.SetReferences();
+			}
+		}
+
+		public static void SetReferences(this IEnumerable<InventoryRecord> inv)
+		{
+			foreach (var rec in inv)
+			{
+				rec.SetReferences();
+			}
+		}
+
+		public static void SetReferences(this Equipment eq)
+		{
+			foreach (var item in eq.Items)
+			{
+				item.SetReferences();
+			}
+		}
 	}
 }

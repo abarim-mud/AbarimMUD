@@ -14,7 +14,18 @@ namespace AbarimMUD.Data
 		public int Price => Info.Price;
 
 		[JsonIgnore]
-		public string ShortDescription => Info.ShortDescription;
+		public string Name
+		{
+			get
+			{
+				if (Enchantement == null)
+				{
+					return Info.ShortDescription;
+				}
+
+				return $"{Info.ShortDescription} of {Enchantement.Name}";
+			}
+		}
 
 		[JsonIgnore]
 		public ItemType ItemType => Info.ItemType;
@@ -34,7 +45,25 @@ namespace AbarimMUD.Data
 
 		public override string ToString() => Info.ToString();
 
-		public static bool AreEqual(ItemInstance a, ItemInstance b) => a.Id == b.Id;
+		public static bool AreEqual(ItemInstance a, ItemInstance b)
+		{
+			if (a.Id != b.Id)
+			{
+				return false;
+			}
+
+			if (a.Enchantement == null && b.Enchantement != null)
+			{
+				return false;
+			}
+
+			if (a.Enchantement != null && b.Enchantement == null)
+			{
+				return false;
+			}
+
+			return a.Enchantement.Id == b.Enchantement.Id;
+		}
 
 		public ItemInstance Clone() => new ItemInstance
 		{

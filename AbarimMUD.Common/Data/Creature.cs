@@ -135,6 +135,14 @@ namespace AbarimMUD.Data
 						result.Add(affect.Type, affect.Value);
 					}
 				}
+
+				if (item.Item.Enchantement != null)
+				{
+					foreach(var pair in item.Item.Enchantement.Affects)
+					{
+						result.Add(pair.Key, pair.Value);
+					}
+				}
 			}
 
 			// Temporary affects

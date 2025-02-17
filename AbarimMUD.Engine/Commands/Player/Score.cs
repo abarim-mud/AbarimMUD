@@ -44,7 +44,7 @@ namespace AbarimMUD.Commands.Player
 						message += "It doesn't correspond to any item.";
 					} else
 					{
-						message += $"It corresponds to an item '{weapon.ShortDescription}'";
+						message += $"It corresponds to an item '{weapon.Name}'";
 
 						if (isWielded)
 						{

@@ -196,7 +196,7 @@ namespace AbarimMUD.Commands
 				}
 
 				grid.SetValue(0, y, $"<worn on {eq.Slot.ToString().ToLower()}>");
-				grid.SetValue(1, y, eq.Item.ShortDescription);
+				grid.SetValue(1, y, eq.Item.Name);
 
 				++y;
 			}
@@ -293,18 +293,18 @@ namespace AbarimMUD.Commands
 			{
 				// Remove from inv
 				context.Creature.Inventory.AddItem(item, -1);
-				context.Send($"You {term1} {item.ShortDescription}.");
-				context.SendRoomExceptMe($"{context.Creature.ShortDescription} {term3} {item.ShortDescription}.");
+				context.Send($"You {term1} {item.Name}.");
+				context.SendRoomExceptMe($"{context.Creature.ShortDescription} {term3} {item.Name}.");
 
 				return true;
 			}
 			else if (result == false)
 			{
-				context.Send($"You can't {term1} {item.ShortDescription}, since that slot is occupied.");
+				context.Send($"You can't {term1} {item.Name}, since that slot is occupied.");
 				return false;
 			}
 
-			context.Send($"{item.ShortDescription} can't be {term2}.");
+			context.Send($"{item.Name} can't be {term2}.");
 			return false;
 		}
 
@@ -317,9 +317,9 @@ namespace AbarimMUD.Commands
 				context.Creature.Inventory.AddItem(removedItem, 1);
 
 				var term = slot == SlotType.Wield ? "wielding" : "wearing";
-				context.Send($"You stop {term} {removedItem.ShortDescription}.");
+				context.Send($"You stop {term} {removedItem.Name}.");
 
-				context.SendRoomExceptMe($"{context.Creature.ShortDescription} stops {term} {removedItem.ShortDescription}.");
+				context.SendRoomExceptMe($"{context.Creature.ShortDescription} stops {term} {removedItem.Name}.");
 
 				return true;
 			}

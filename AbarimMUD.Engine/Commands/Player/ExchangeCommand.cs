@@ -29,14 +29,14 @@ namespace AbarimMUD.Commands.Player
 				foreach (var f in exchanges)
 				{
 					grid.SetValue(0, y, (y + 1).ToString());
-					grid.SetValue(1, y, f.Item.ShortDescription);
+					grid.SetValue(1, y, f.Item.Name);
 
 					var sb = new StringBuilder();
 
 					for (var i = 0; i < f.Price.Count; i++)
 					{
 						var cp = f.Price[i];
-						sb.Append(cp.ShortDescription);
+						sb.Append(cp.Name);
 
 						if (cp.Quantity > 1)
 						{
@@ -83,13 +83,13 @@ namespace AbarimMUD.Commands.Player
 				var invItem = (from i in inv where ItemInstance.AreEqual(i.Item, cp.Item) select i).FirstOrDefault();
 				if (invItem == null)
 				{
-					Tell.Execute(shopKeeper.GetContext(), $"{creature.ShortDescription} You don't have any {cp.Item.ShortDescription}.");
+					Tell.Execute(shopKeeper.GetContext(), $"{creature.ShortDescription} You don't have any {cp.Item.Name}.");
 					return false;
 				}
 
 				if (invItem.Quantity < cp.Quantity)
 				{
-					Tell.Execute(shopKeeper.GetContext(), $"{creature.ShortDescription} You don't have enough amount of {cp.Item.ShortDescription}.");
+					Tell.Execute(shopKeeper.GetContext(), $"{creature.ShortDescription} You don't have enough amount of {cp.Item.Name}.");
 					return false;
 				}
 			}
@@ -103,7 +103,7 @@ namespace AbarimMUD.Commands.Player
 				inv.AddItem(cp.Item, -cp.Quantity);
 			}
 
-			context.Send($"{shopKeeper} gives you {exchange.Item.ShortDescription} in exchange for some items.");
+			context.Send($"{shopKeeper} gives you {exchange.Item.Name} in exchange for some items.");
 			Tell.Execute(shopKeeper.GetContext(), $"{creature.ShortDescription} There you go, {creature.ShortDescription}.");
 
 			var character = creature as Character;

@@ -26,13 +26,7 @@ namespace AbarimMUD.Storage
 
 			foreach (var cls in this)
 			{
-				if (cls.StartingEquipment != null)
-				{
-					for (var i = 0; i < cls.StartingEquipment.Count; ++i)
-					{
-						cls.StartingEquipment[i].Info = Item.EnsureItemById(cls.StartingEquipment[i].Id);
-					}
-				}
+				cls.StartingEquipment?.SetReferences();
 
 				if (cls.StartingSkills != null)
 				{
@@ -42,13 +36,7 @@ namespace AbarimMUD.Storage
 					}
 				}
 
-				if (cls.StartingInventory != null)
-				{
-					for (var i = 0; i < cls.StartingInventory.Items.Count; ++i)
-					{
-						cls.StartingInventory.Items[i].Info = Item.EnsureItemById(cls.StartingInventory.Items[i].Id);
-					}
-				}
+				cls.StartingInventory?.SetReferences();
 			}
 		}
 	}

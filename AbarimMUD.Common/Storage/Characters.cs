@@ -104,15 +104,8 @@ namespace AbarimMUD.Storage
 			{
 				ch.Class = PlayerClass.EnsureClassById(ch.Class.Id);
 
-				foreach(var wearItem in ch.Equipment.Items)
-				{
-					wearItem.Item.Info = Item.EnsureItemById(wearItem.Item.Info.Id);
-				}
-
-				foreach(var invItem in ch.Inventory.Items)
-				{
-					invItem.Item.Info = Item.EnsureItemById(invItem.Item.Info.Id);
-				}
+				ch.Equipment.SetReferences();
+				ch.Inventory.SetReferences();
 
 				if (ch.Skills != null)
 				{
