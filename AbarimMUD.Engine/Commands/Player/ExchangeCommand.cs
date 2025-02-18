@@ -7,8 +7,16 @@ namespace AbarimMUD.Commands.Player
 {
 	public class ExchangeCommand : PlayerCommand
 	{
+		public override string HelpText => "Usage:\n'exchange list' shows list of available exchanges.\n'exhange _exchangeId_' does the actual exchange.";
+
 		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
+			if (string.IsNullOrEmpty(data))
+			{
+				ShowHelp(context);
+				return true;
+			}
+
 			// Find shopkeeper
 			var shopKeeper = (from cr in context.Room.Mobiles where cr.Info.ExchangeShop != null select cr).FirstOrDefault();
 			if (shopKeeper == null)
@@ -18,7 +26,7 @@ namespace AbarimMUD.Commands.Player
 			}
 
 			var exchanges = shopKeeper.Info.ExchangeShop.Exchanges;
-			if (string.IsNullOrEmpty(data))
+			if (data.EqualsToIgnoreCase("list"))
 			{
 				var grid = new AsciiGrid();
 				grid.SetHeader(0, "#");

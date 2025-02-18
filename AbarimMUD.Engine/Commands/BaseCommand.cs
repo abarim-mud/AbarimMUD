@@ -87,6 +87,7 @@ namespace AbarimMUD.Commands
 		public abstract Role RequiredType { get; }
 		public virtual bool CanFightskill => false;
 		public string Name { get; private set; }
+		public virtual string HelpText => string.Empty;
 
 		public static int ExecutionDepth { get; set; }
 
@@ -125,6 +126,11 @@ namespace AbarimMUD.Commands
 
 			// Not found
 			return null;
+		}
+
+		public void ShowHelp(ExecutionContext context)
+		{
+			context.Send(HelpText);
 		}
 
 		public virtual int CalculateLagInMs(ExecutionContext context, string data = "")

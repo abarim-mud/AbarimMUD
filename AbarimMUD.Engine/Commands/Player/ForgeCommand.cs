@@ -7,8 +7,17 @@ namespace AbarimMUD.Commands.Player
 {
 	public class ForgeCommand : PlayerCommand
 	{
+		public override string HelpText => "Usage:\n'forge list' shows list of available forge.\n'forge _forgeName_' does the actual forge.";
+
+
 		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
+			if (string.IsNullOrEmpty(data))
+			{
+				ShowHelp(context);
+				return true;
+			}
+
 			// Find shopkeeper
 			var shopKeeper = (from cr in context.Room.Mobiles where cr.Info.ForgeShop != null select cr).FirstOrDefault();
 			if (shopKeeper == null)
@@ -18,7 +27,7 @@ namespace AbarimMUD.Commands.Player
 			}
 
 			var forges = shopKeeper.Info.ForgeShop.Forges;
-			if (string.IsNullOrEmpty(data))
+			if (data.EqualsToIgnoreCase("list"))
 			{
 				var grid = new AsciiGrid();
 				grid.SetHeader(0, "Item");

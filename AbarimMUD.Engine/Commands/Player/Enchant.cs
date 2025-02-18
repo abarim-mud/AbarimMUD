@@ -6,6 +6,8 @@ namespace AbarimMUD.Commands.Player
 {
 	public class Enchant : PlayerCommand
 	{
+		public override string HelpText => "Usage:\n'enchant list' shows list of available enchantments.\n'enchant _itemName_ _enchantmentName_' purchases the enchantment.";
+
 		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
 			// Find shopkeeper
@@ -16,7 +18,7 @@ namespace AbarimMUD.Commands.Player
 				return false;
 			}
 
-			if (string.IsNullOrEmpty(data))
+			if (data.EqualsToIgnoreCase("list"))
 			{
 				var grid = new AsciiGrid();
 				grid.SetHeader(0, "Name");
@@ -46,7 +48,7 @@ namespace AbarimMUD.Commands.Player
 			var args = data.SplitByWhitespace();
 			if (args.Length < 2)
 			{
-				context.Send("Usage: enchant <item_name> <enchantment_name>");
+				ShowHelp(context);
 				return true;
 			}
 
