@@ -13,8 +13,10 @@ namespace AbarimMUD.Commands.Player
 			var name = room.Name;
 			if (context.IsStaff)
 			{
-				name += string.Format(" (#{0})", room.Id);
+				name += string.Format(" #{0}", room.Id);
 			}
+
+			name += $" ({room.SectorType})";
 
 			sb.AppendLine(name);
 			sb.Append("[reset]");

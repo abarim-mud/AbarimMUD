@@ -54,6 +54,11 @@ namespace AbarimMUD.Data
 				return false;
 			}
 
+			if (a.Enchantment == null && b.Enchantment == null)
+			{
+				return true;
+			}
+
 			if (a.Enchantment == null && b.Enchantment != null)
 			{
 				return false;

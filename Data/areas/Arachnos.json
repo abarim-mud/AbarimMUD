@@ -8,7 +8,7 @@
     {
       "Name": "On the spider web",
       "Description": "You are balancing carefully on the giant sticky threads that holds the giant\nweb in place.  To the south leads a strand to a cave-like structure made from\nmany layers of a spider web.  Another silky strand continues to the north.",
-      "SectorType": "Inside",
+      "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -38,7 +38,7 @@
     {
       "Name": "On the spider web",
       "Description": "You are balancing carefully on the giant sticky threads that holds the giant\nweb in place. A single silky strand lead to the south, while another leads\noff into the northern direction.",
-      "SectorType": "Inside",
+      "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -50,7 +50,7 @@
     {
       "Name": "Webbed Entrance",
       "Description": "Sticky, sticky, sticky!  The ground is cluttered with leaves, decayed\nremains of webbed crickets, beetle, rats, dogs (?), and even humans.\nYou begin to wonder about what lies ahead.  The air is damp here,\nand even the little light that shines through the canopy seems\nabsorbed into the webbing.",
-      "SectorType": "Inside",
+      "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -62,7 +62,7 @@
     {
       "Name": "Webby Passage",
       "Description": "You find that footing here is very good, almost too good.  The\nlimbs are coated with cobwebs and seem unusually strong for tree\nbranches.  Paths lead in four directions.  The eastward path goes\ndown a bit.",
-      "SectorType": "Inside",
+      "SectorType": "Cave",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -87,7 +87,7 @@
     {
       "Name": "Webby Passage",
       "Description": "Another webby passage, all sticky and wet.  Tiny ballooning\nspiders fill the air.  It seems that these young ones are newborns.",
-      "SectorType": "Inside",
+      "SectorType": "Cave",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -98,7 +98,7 @@
     {
       "Name": "Beneath the Busy Path",
       "Description": "You hear the sounds of crawling arachnids above.  The rhythms of\nthe footsteps suggest a primitive order in their movement.  The light\nseems brighter upwards.",
-      "SectorType": "Inside",
+      "SectorType": "Cave",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -110,7 +110,7 @@
     {
       "Name": "On the Busy Path",
       "Description": "Spiders, spiders, everywhere!  It is almost ant-like in efficiency\nwith one big difference.  The spiders here are carrying ant-corpses,\nas well as rats, wolves, and humans.",
-      "SectorType": "Inside",
+      "SectorType": "Cave",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -122,7 +122,7 @@
     {
       "Name": "On the Busy Path",
       "Description": "Spiders, spiders, everywhere!  It is almost ant-like in efficiency\nwith one big difference.  The spiders here are carrying ant-corpses,\nas well as cats, wolves, and humans.",
-      "SectorType": "Inside",
+      "SectorType": "Cave",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -134,7 +134,7 @@
     {
       "Name": "On the Busy Path",
       "Description": "Spiders, spiders, everywhere!  It is almost ant-like in efficiency\nwith one big difference.  The spiders here are carrying ant-corpses,\nas well as cats, dogs, and humans.",
-      "SectorType": "Inside",
+      "SectorType": "Cave",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -146,7 +146,7 @@
     {
       "Name": "A Split in the Path",
       "Description": "As always, there is a split in the road.  One road is strewn\nwith cricket feelers.  The other is well-kept and suitable for smooth\ntravelling.  The webbing that was prevalent in earlier rooms is almost\nnon-existent now.",
-      "SectorType": "Inside",
+      "SectorType": "Cave",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -159,7 +159,7 @@
     {
       "Name": "Fuzzy Tree Limb",
       "Description": "You are on a \u0022fuzzy\u0022 tree limb.  Interesting, since the branches\nseem to have \u0022hairs\u0022 sprouting from its bark.  As you look\ncloser you see millions of aphids covering each limb.",
-      "SectorType": "Inside",
+      "SectorType": "Cave",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -171,7 +171,7 @@
     {
       "Name": "Tree Trunk",
       "Description": "You feel that you can rest here safely.  There is evidence of\nwebbing here, but it is of a finer quality.",
-      "SectorType": "Inside",
+      "SectorType": "Cave",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -183,7 +183,7 @@
     {
       "Name": "Tree Lair Entrance",
       "Description": "It seems the inhabitant of this place does not web her\nvictims, as evidenced by the remains before you.  The area\nis cluttered with desiccated corpses, apparently bitten\nbut unwebbed, and drained of their life juices.",
-      "SectorType": "Inside",
+      "SectorType": "Cave",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -195,7 +195,7 @@
     {
       "Name": "Wolf Spider Lair",
       "Description": "Very dark, as all lairs of spiders are.  Not much of furnishings\nsave an exit.  The wolf spider keeps no corpses here, but rather\nthrows them out at her leisure.",
-      "SectorType": "Inside",
+      "SectorType": "Cave",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -206,7 +206,7 @@
     {
       "Name": "The Webless Path",
       "Description": "Strange.  No webbing here.  In fact, no sounds whatsoever.\nThe path continues northward, where you find that you may have to\ntightrope your way across a ravine.",
-      "SectorType": "Inside",
+      "SectorType": "Cave",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -218,7 +218,7 @@
     {
       "Name": "Above the Ravine",
       "Description": "Stranger still.  Your feet get a real firm grip on the spiderline.\nYou are above a deep ravine.  This line connects you between two trees.\nBelow you can see a prismatic web with lots of animal bones caught in it:\nsome bear and small deer bones in fact.  No human skeletons are visible\n(yet).",
-      "SectorType": "Inside",
+      "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -242,7 +242,7 @@
     {
       "Name": "The Web Forest",
       "Description": "The trees here take on a different appearance--they are not trees\nanymore, but disjointed make-shift silken made shafts, sticky to the touch,\nand webby in texture.  This is another world it would appear.",
-      "SectorType": "Inside",
+      "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -254,7 +254,7 @@
     {
       "Name": "The Slave Pit",
       "Description": "You have entered the slave pit.  A voice blares in the distance,\n\u0022Get back to work, maggots!\u0022  Rails upon rails of mined gold and silver\nclutter the trail beneath you.",
-      "SectorType": "Inside",
+      "SectorType": "Cave",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {

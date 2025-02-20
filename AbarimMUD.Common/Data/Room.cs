@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
 
@@ -13,7 +14,6 @@ namespace AbarimMUD.Data
 		Hills,
 		Mountain,
 		WaterNoSwim,
-		Unused,
 		Air,
 		Desert,
 		River,
@@ -182,5 +182,60 @@ namespace AbarimMUD.Data
 
 		public static Room GetRoomById(int id) => Area.Storage.GetRoomById(id);
 		public static Room EnsureRoomById(int id) => Area.Storage.EnsureRoomById(id);
+	}
+
+	public static class RoomUtils
+	{
+		private struct SectorData
+		{
+			public int MovementCost;
+			public int MovementWait;
+
+			public SectorData(int movementCost, int movementWait)
+			{
+				MovementCost = movementCost;
+				MovementWait = movementWait;
+			}
+		}
+
+		private static readonly Dictionary<SectorType, SectorData> _sectorData = new Dictionary<SectorType, SectorData>();
+
+		static RoomUtils()
+		{
+			_sectorData[SectorType.Inside] = new SectorData(1, 1);
+			_sectorData[SectorType.City] = new SectorData(1, 1);
+			_sectorData[SectorType.Field] = new SectorData(2, 1);
+			_sectorData[SectorType.Forest] = new SectorData(5, 2);
+			_sectorData[SectorType.Hills] = new SectorData(3, 4);
+			_sectorData[SectorType.Mountain] = new SectorData(6, 3);
+			_sectorData[SectorType.WaterNoSwim] = new SectorData(6, 3);
+			_sectorData[SectorType.Air] = new SectorData(10, 1);
+			_sectorData[SectorType.Desert] = new SectorData(2, 2);
+			_sectorData[SectorType.River] = new SectorData(6, 2);
+			_sectorData[SectorType.Cave] = new SectorData(3, 3);
+			_sectorData[SectorType.Swim] = new SectorData(6, 2);
+			_sectorData[SectorType.Swamp] = new SectorData(3, 3);
+			_sectorData[SectorType.Underground] = new SectorData(2, 2);
+			_sectorData[SectorType.Trail] = new SectorData(2, 1);
+			_sectorData[SectorType.Road] = new SectorData(1, 1);
+			_sectorData[SectorType.Ocean] = new SectorData(10, 3);
+		}
+
+		private static SectorData EnsureSectorData(this SectorType sectorType)
+		{
+			SectorData sd;
+			if (!_sectorData.TryGetValue(sectorType, out sd))
+			{
+				throw new Exception($"Unknown sector type {sectorType}");
+			}
+
+			return sd;
+		}
+
+		public static int GetMovementCost(this SectorType sectorType) => sectorType.EnsureSectorData().MovementCost;
+		public static int GetMovementCost(this Room room) => room.SectorType.GetMovementCost();
+
+		public static int GetMovementWait(this SectorType sectorType) => sectorType.EnsureSectorData().MovementWait;
+		public static int GetMovementWait(this Room room) => room.SectorType.GetMovementWait();
 	}
 }

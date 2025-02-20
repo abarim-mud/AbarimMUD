@@ -17,7 +17,8 @@ namespace AbarimMUD.Import.Diku
 			{
 				Id = room.VNum,
 				Name = room.Name,
-				Description = room.Description
+				Description = room.Description,
+				SectorType = Enum.Parse<SectorType>(room.SectorType.ToString(), true),
 			};
 
 			foreach (var exit in room.Exits)
@@ -76,7 +77,7 @@ namespace AbarimMUD.Import.Diku
 				DamageRange = mobile.DamageDice.ToValueRange(),
 			};
 
-			foreach(var dikuFlag in mobile.Flags)
+			foreach (var dikuFlag in mobile.Flags)
 			{
 				MobileFlags flag;
 				if (Enum.TryParse(dikuFlag.ToString(), true, out flag))

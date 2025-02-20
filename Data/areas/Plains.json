@@ -8,7 +8,7 @@
     {
       "Name": "Path in the plains",
       "Description": "You are walking on a path situated in the rough plains. You feel the\nstrong winds blow through your hair as you study the beautiful landscaping\nhere. The path continues east, north and west leads to plains and you see\nthe path towards the north gate of midgaard to the south.",
-      "SectorType": "Inside",
+      "SectorType": "Field",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -21,7 +21,7 @@
     {
       "Name": "Path in the plains",
       "Description": "You are walking on a path situated in the rough plains. You feel the\nstrong winds blow through your hair as you study the beautiful landscaping\nhere. The path continues east and west.",
-      "SectorType": "Inside",
+      "SectorType": "Field",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -33,7 +33,7 @@
     {
       "Name": "Path in the plains",
       "Description": "You are walking on a path situated in the rough plains. You feel the\nstrong winds blow through your hair as you study the beautiful landscaping\nhere. The path continues north and west.",
-      "SectorType": "Inside",
+      "SectorType": "Field",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -46,7 +46,7 @@
     {
       "Name": "Path in the plains",
       "Description": "You are walking on a path situated in the rough plains. You feel the\nstrong winds blow through your hair as you study the beautiful landscaping\nhere. The path leads north and south. To the east and the west you have the\ngrassy plains.",
-      "SectorType": "Inside",
+      "SectorType": "Field",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -60,7 +60,7 @@
     {
       "Name": "Path in the plains",
       "Description": "You are walking on a path situated in the rough plains. You feel the\nstrong winds blow through your hair as you study the beautiful landscaping\nhere. The Path leads north and south.",
-      "SectorType": "Inside",
+      "SectorType": "Field",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -72,7 +72,7 @@
     {
       "Name": "Path in the plains",
       "Description": "You are walking on a path situated in the rough plains. You feel the\nstrong winds blow through your hair as you watch the beautiful landscaping\nhere. To the east and west you see the grassy plains. The path extends into\nsmall foothills to the north and also continues south.",
-      "SectorType": "Inside",
+      "SectorType": "Field",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -86,7 +86,7 @@
     {
       "Name": "Path in the foothills",
       "Description": "You are on the path leading through the small foothills. The wind blow\nthrough your hair as you study the beautiful landscaping here. From the\nnorth you sense a certain freshness. The path continues east and south. You\nsmell freshness from north.",
-      "SectorType": "Inside",
+      "SectorType": "Field",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -99,7 +99,7 @@
     {
       "Name": "Path in the foothills",
       "Description": "You are walking on a path situated in the small foothills. The winds are\nmore than average here but it feels nice. You can follow the path east or\nwest.",
-      "SectorType": "Inside",
+      "SectorType": "Field",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -112,7 +112,7 @@
     {
       "Name": "Path in the foothills",
       "Description": "You are walking on a narrow path in the foothills. You feel the strong\nwinds blow through your hair as you study the beautiful landscaping here.\nThe path goes north and west.",
-      "SectorType": "Inside",
+      "SectorType": "Field",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -125,7 +125,7 @@
     {
       "Name": "Path in the foothills",
       "Description": "You are walking on a path situated in foothills. To the west you sense a\ncertain freshness and the path continues south and east.",
-      "SectorType": "Inside",
+      "SectorType": "Field",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -138,7 +138,7 @@
     {
       "Name": "Path in the foothills",
       "Description": "You are walking on a long path in the east-west direction. The\nsurroundings are green, vegetated foothills. You are able to force your way\nthrough some dense plants to the north.",
-      "SectorType": "Inside",
+      "SectorType": "Field",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -151,7 +151,7 @@
     {
       "Name": "Path in the foothills",
       "Description": "You are walking on the long, narrow path through the foothills. To your\neast you see a T-intersection and to the west the path continues far.",
-      "SectorType": "Inside",
+      "SectorType": "Field",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -163,7 +163,7 @@
     {
       "Name": "The path intersection",
       "Description": "You are standing on an intersection between 3 paths. To the west you can\nfollow a long, narrow path through the foothills. To the north a wide path\nleads to the Village of Ofcol and an ancient path leads towards the south.",
-      "SectorType": "Inside",
+      "SectorType": "Field",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -176,7 +176,7 @@
     {
       "Name": "Road to Ofcol",
       "Description": "You are walking on a wide road with trail marks on it. To the north you\nsee the village of Ofcol and to the south there is the T intersection. You\ncan enter the foothills west. The foothills to your east are too steep to\nclimb.",
-      "SectorType": "Inside",
+      "SectorType": "Field",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -189,7 +189,7 @@
     {
       "Name": "Outside Ofcol",
       "Description": "You are standing outside the village of Ofcol. The village looks very\nsmall, but still a nice and safe place to stay. You may enter the city to\nthe north or journey towards the T-intersection in the southern direction.",
-      "SectorType": "Inside",
+      "SectorType": "Field",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -200,7 +200,7 @@
     {
       "Name": "Gallow hill",
       "Description": "You walk in the grassy plains. On this little hill you can see two\ngallows, with rotting human tissue hanging from the ropes. There is a sign\nhere.",
-      "SectorType": "Inside",
+      "SectorType": "Hills",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -214,7 +214,7 @@
     {
       "Name": "Grassy plains",
       "Description": "You walk in the grassy plains among the herbs which grow here. The wind\nis strong and rough. Far to the north you can see the foothills and further\non mountain peaks are visible.",
-      "SectorType": "Inside",
+      "SectorType": "Hills",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -226,7 +226,7 @@
     {
       "Name": "Grassy plains",
       "Description": "You walk in the grassy plains among the herbs which grow here. The wind\nis strong and rough. Far to the north you can see the foothills and further\non mountain peaks are visible. City of Midgaard is to the south but so are\nsome VERY steep slopes.",
-      "SectorType": "Inside",
+      "SectorType": "Hills",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -239,7 +239,7 @@
     {
       "Name": "Grassy plains",
       "Description": "You walk in the beautiful grassy plains. The wind is strong and rough.\nFar to the north you can see the foothills and further on mountain peaks are\nvisible.",
-      "SectorType": "Inside",
+      "SectorType": "Hills",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -252,7 +252,7 @@
     {
       "Name": "Grassy plains",
       "Description": "You walk in the grassy plains among the herbs which grow here. The wind\nis strong and rough. To the north you can see the foothills and just behind\nmountain peaks are visible.",
-      "SectorType": "Inside",
+      "SectorType": "Hills",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -265,7 +265,7 @@
     {
       "Name": "Grassy plains",
       "Description": "You walk in some grassy plains. The wind is strong and rough. To the\nnorth you can see the foothills and further on mountain peaks are visible.",
-      "SectorType": "Inside",
+      "SectorType": "Hills",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -279,7 +279,7 @@
     {
       "Name": "Grassy plains",
       "Description": "You walk in the grassy plains. The wind is fairly strong.",
-      "SectorType": "Inside",
+      "SectorType": "Hills",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -293,7 +293,7 @@
     {
       "Name": "Grassy foothills",
       "Description": "You walk in the grassy foothills north of the plains. The wind is rough.\nTo the north you can see foothills and just behind them mountain peaks are\nvisible.",
-      "SectorType": "Inside",
+      "SectorType": "Hills",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -306,7 +306,7 @@
     {
       "Name": "The steep foothills",
       "Description": "You walk in the steep foothills. It is rather hard to move here. To the\nnorth you can see a grassy valley with wildflowers.",
-      "SectorType": "Inside",
+      "SectorType": "Hills",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -318,7 +318,7 @@
     {
       "Name": "The steep foothills",
       "Description": "You are walking in the steep foothills. It is rather hard to move here.\nTo the north you can see the mountains towering over you. Pine trees grow\nhere.",
-      "SectorType": "Inside",
+      "SectorType": "Hills",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -331,7 +331,7 @@
     {
       "Name": "The steep foothills",
       "Description": "You are walking in the steep foothills. It is rather hard to move here.\nFurther to the north you can see the mountains towering over you. Several\npinetrees grow here.",
-      "SectorType": "Inside",
+      "SectorType": "Hills",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -343,7 +343,7 @@
     {
       "Name": "The pool in the foothills",
       "Description": "You are standing by a pool in the small foothills. It is clear and cold.\nA steep slope rises up into the foothills to the north. Behind them ... The\nmountains.",
-      "SectorType": "Inside",
+      "SectorType": "Hills",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -356,7 +356,7 @@
     {
       "Name": "The foothills",
       "Description": "You are walking in some foothills. It is rather hard to move here.\nFurther to the north you can see the mountains towering over you. Several\npinetrees grow here.",
-      "SectorType": "Inside",
+      "SectorType": "Hills",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -367,7 +367,7 @@
     {
       "Name": "In front of hut in foothills",
       "Description": "You are standing in the foothills. To the west, well hidden among the\nsmall foothills and pines, you see a small hut. To the north you can see the\nfoothills, and some pineforrest. Further on mountain peaks are visible.",
-      "SectorType": "Inside",
+      "SectorType": "Hills",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -392,7 +392,7 @@
     {
       "Name": "The ancient path",
       "Description": "You are moving on an ancient path. The path is slightly covered with\nleaves and twitches. To the north you can see the T-crossing and the path\ncontinues south.",
-      "SectorType": "Inside",
+      "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -405,7 +405,7 @@
     {
       "Name": "The ancient path",
       "Description": "You are standing on the ancient path which runs north and south. The path\nis hardly visible here.",
-      "SectorType": "Inside",
+      "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -417,7 +417,7 @@
     {
       "Name": "The ancient path",
       "Description": "You are standing on the ancient path which runs north and south. The path\nis hardly visible here.",
-      "SectorType": "Inside",
+      "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -429,7 +429,7 @@
     {
       "Name": "The ancient path",
       "Description": "The path runs north and east from here. You notice some markers placed\nalong the side of the path.",
-      "SectorType": "Inside",
+      "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -441,7 +441,7 @@
     {
       "Name": "The wooden bridge",
       "Description": "You have stepped upon a wooden bridge. It looks old but safe to cross. It\nis made of a wood you haven\u0027t seen before.",
-      "SectorType": "Inside",
+      "SectorType": "Field",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -453,7 +453,7 @@
     {
       "Name": "The ancient path",
       "Description": "You find yourself located between the bridge and the rock formations. As\nyou approach the formations you begin to realize the true size of them,\nabout 15 feet tall and almost perfect rectangular shape. You feel impressed\nwith the awesome sight.",
-      "SectorType": "Inside",
+      "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -465,7 +465,7 @@
     {
       "Name": "Grassy plains",
       "Description": "You walk in the grassy plains among the herbs which grow here. The wind\nis strong and rough. Far to the north you can see the foothills and further\non mountain peaks are visible.",
-      "SectorType": "Inside",
+      "SectorType": "Hills",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -479,7 +479,7 @@
     {
       "Name": "The Stones of G\u0027harne",
       "Description": "You are in the center of 7, 15 ft tall monolith like black stones. In the\ncenter of the ring formed by the monolith you can\u0027t help noticing a big\nsacrifice altar. The ground is covered with dirt, but the altar shows no\nsign of such. West of here is the ancient path.",
-      "SectorType": "Inside",
+      "SectorType": "Field",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -551,7 +551,7 @@
     {
       "Name": "Steep slope",
       "Description": "You try to climb down the slope. \u003E You slip! You fall and tumble. You hit\nyour head HARD. You die. You\u0027ve fallen, and you can\u0027t get up!",
-      "SectorType": "Inside",
+      "SectorType": "Field",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {},

@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using AbarimMUD.Data;
+﻿using AbarimMUD.Data;
 
 namespace AbarimMUD.Commands.Player
 {
@@ -23,7 +22,8 @@ namespace AbarimMUD.Commands.Player
 				return false;
 			}
 
-			if (context.State.Moves <= 0)
+			var cost = sourceRoom.GetMovementCost();
+			if (context.State.Moves < cost)
 			{
 				context.Send("You're too tired to move.");
 				return false;
@@ -35,7 +35,7 @@ namespace AbarimMUD.Commands.Player
 
 			// Perform the movement
 			context.Room = exit.TargetRoom;
-			--context.State.Moves;
+			context.State.Moves -= cost;
 
 			// Notify inhabits of the destination room about the arrival
 			dirName = _dir.GetOppositeDirection().GetName();

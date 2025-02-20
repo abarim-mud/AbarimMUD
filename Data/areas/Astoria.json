@@ -8,7 +8,7 @@
     {
       "Name": "Outside The East Gate",
       "Description": "A grand and imposing city entrance, with large black marble pillars on either\nside of the gate, which has a small golden emblem embedded within it. The use\nof black and gold in the description suggests a sense of opulence and\ngrandeur.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -19,7 +19,7 @@
     {
       "Name": "The East Gate of Astoria",
       "Description": "A grand and imposing city entrance, with large black marble pillars on either\nside of the gate, which has a small golden emblem embedded within it. The use\nof black and gold in the description suggests a sense of opulence and\ngrandeur.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -31,7 +31,7 @@
     {
       "Name": "Eastern Street of Astoria",
       "Description": "Ancient cobblestones line the street which creates an odd tempo of clacks\nand thumps as horse-drawn wagons pass by, bringing merchandise and wares to\nvarious merchants and vendors within the city. The road continues east and west.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -43,7 +43,7 @@
     {
       "Name": "Eastern Street of Astoria",
       "Description": "Ancient cobblestones line the street which creates an odd tempo of clacks\nand thumps as horse-drawn wagons pass by, bringing merchandise and wares to\nvarious merchants and vendors within the city. The road continues east and west.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -55,7 +55,7 @@
     {
       "Name": "Eastern Street of Astoria",
       "Description": "Ancient cobblestones line this four way street which creates an odd tempo of clacks\nand thumps as horse-drawn wagons pass by, bringing merchandise and wares to\nvarious merchants and vendors within the city.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -69,7 +69,7 @@
     {
       "Name": "Eastern Street of Astoria",
       "Description": "Ancient cobblestones line the street which creates an odd tempo of clacks\nand thumps as horse-drawn wagons pass by, bringing merchandise and wares to\nvarious merchants and vendors within the city. The road continues east and west.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -81,7 +81,7 @@
     {
       "Name": "Eastern Street of Astoria",
       "Description": "Ancient cobblestones line the street which creates an odd tempo of clacks\nand thumps as horse-drawn wagons pass by, bringing merchandise and wares to\nvarious merchants and vendors within the city. The road continues east and west.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -93,7 +93,7 @@
     {
       "Name": "The Gazebo",
       "Description": "Ancient cobblestones line the street of this giant gazebo, supported by massive\ncolumns in each of the four corners. One of the busiest intersections of town,\nthe lound sound of clacks and thumps as horse-drawn wagons pass by, bringing\nmerchandise and wares to various merchants, vendors and temples within the\ncity.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -107,7 +107,7 @@
     {
       "Name": "Western Street of Astoria",
       "Description": "Ancient cobblestones line the street which creates an odd tempo of clacks\nand thumps as horse-drawn wagons pass by, bringing merchandise and wares to\nvarious merchants and vendors within the city. The road continues east and west.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -119,7 +119,7 @@
     {
       "Name": "Western Street of Astoria",
       "Description": "Ancient cobblestones line the street which creates an odd tempo of clacks\nand thumps as horse-drawn wagons pass by, bringing merchandise and wares to\nvarious merchants and vendors within the city. The road continues east and west.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -131,7 +131,7 @@
     {
       "Name": "Western Street of Astoria",
       "Description": "Ancient cobblestones line this four way street which creates an odd tempo of clacks\nand thumps as horse-drawn wagons pass by, bringing merchandise and wares to\nvarious merchants and vendors within the city.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -145,7 +145,7 @@
     {
       "Name": "Western Street of Astoria",
       "Description": "Ancient cobblestones line the street which creates an odd tempo of clacks\nand thumps as horse-drawn wagons pass by, bringing merchandise and wares to\nvarious merchants and vendors within the city. The road continues east and west.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -157,7 +157,7 @@
     {
       "Name": "Western Street of Astoria",
       "Description": "Ancient cobblestones line the street which creates an odd tempo of clacks\nand thumps as horse-drawn wagons pass by, bringing merchandise and wares to\nvarious merchants and vendors within the city. The road continues east and west.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -169,7 +169,7 @@
     {
       "Name": "Western Gate",
       "Description": "A grand and imposing city entrance, with large black marble pillars on either\nside of the gate, which has a small golden emblem embedded within it. The use\nof black and gold in the description suggests a sense of opulence and\ngrandeur.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -181,7 +181,7 @@
     {
       "Name": "Outside the Western Gate",
       "Description": "A grand and imposing city entrance, with large black marble pillars on either\nside of the gate, which has a small golden emblem embedded within it. The use\nof black and gold in the description suggests a sense of opulence and\ngrandeur.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -193,7 +193,7 @@
     {
       "Name": "Communer Lane",
       "Description": "Magical spheres of light replace street lamps here, illuminating the pathway\nalmost as well as the high-noon sun. Some strange etchings appear on various \nwalls and windowsills, like some secret language revealing a higher knowledge\nof things beyond understanding. The lane continues to the north.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -205,7 +205,7 @@
     {
       "Name": "Communer Lane",
       "Description": "Magical spheres of light replace street lamps here, illuminating the pathway\nalmost as well as the high-noon sun. Some strange etchings appear on various \nwalls and windowsills, like some secret language revealing a higher knowledge\nof things beyond understanding. The lane continues to the north and south.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -217,7 +217,7 @@
     {
       "Name": "Communer Lane",
       "Description": "Magical spheres of light replace street lamps here, illuminating the pathway\nalmost as well as the high-noon sun. Some strange etchings appear on various \nwalls and windowsills, like some secret language revealing a higher knowledge\nof things beyond understanding. The lane continues north and south, the priest\nto the east.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -230,7 +230,7 @@
     {
       "Name": "Communer Lane",
       "Description": "Magical spheres of light replace street lamps here, illuminating the pathway\nalmost as well as the high-noon sun. Some strange etchings appear on various \nwalls and windowsills, like some secret language revealing a higher knowledge\nof things beyond understanding. The lane continues north and south.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -242,7 +242,7 @@
     {
       "Name": "Communer Lane",
       "Description": "Magical spheres of light replace street lamps here, illuminating the pathway\nalmost as well as the high-noon sun. Some strange etchings appear on various \nwalls and windowsills, like some secret language revealing a higher knowledge\nof things beyond understanding. The lane continues north and south.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -254,7 +254,7 @@
     {
       "Name": "Communer Lane",
       "Description": "Magical spheres of light replace street lamps here, illuminating the pathway\nalmost as well as the high-noon sun. Some strange etchings appear on various \nwalls and windowsills, like some secret language revealing a higher knowledge\nof things beyond understanding. The lane continues north and south, the\npaladin\u0027s guild lies to the east.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -267,7 +267,7 @@
     {
       "Name": "Communer Lane",
       "Description": "Magical spheres of light replace street lamps here, illuminating the pathway\nalmost as well as the high-noon sun. Some strange etchings appear on various \nwalls and windowsills, like some secret language revealing a higher knowledge\nof things beyond understanding. The lane continues north and south.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -279,7 +279,7 @@
     {
       "Name": "Communer Lane",
       "Description": "Magical spheres of light replace street lamps here, illuminating the pathway\nalmost as well as the high-noon sun. Some strange etchings appear on various \nwalls and windowsills, like some secret language revealing a higher knowledge\nof things beyond understanding. The lane continues north and south.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -292,7 +292,7 @@
     {
       "Name": "Communer Lane",
       "Description": "Magical spheres of light replace street lamps here, illuminating the pathway\nalmost as well as the high-noon sun. Some strange etchings appear on various \nwalls and windowsills, like some secret language revealing a higher knowledge\nof things beyond understanding. The lane continues north and south, the healers\nguild lies to the east.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -388,7 +388,7 @@
     {
       "Name": "Adventurers Lane",
       "Description": "This clean cobblestone street shows little wear. Less used by wagons or\nmerchants, due to the lack of shops along the lane. The lane continues south.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -401,7 +401,7 @@
     {
       "Name": "Adventurers Lane",
       "Description": "This clean cobblestone street shows little wear. Less used by wagons or\nmerchants, due to the lack of shops along the lane. The lane continues\nnorth and south.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -413,7 +413,7 @@
     {
       "Name": "Adventurers Lane",
       "Description": "This clean cobblestone street shows little wear. Less used by wagons or\nmerchants, due to the lack of shops along the lane. The lane continues\nnorth and south. To the east you see a guild.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -426,7 +426,7 @@
     {
       "Name": "Adventurers Lane",
       "Description": "This clean cobblestone street shows little wear. Less used by wagons or\nmerchants, due to the lack of shops along the lane. The lane continues\nnorth and south.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -438,7 +438,7 @@
     {
       "Name": "Adventurers Lane",
       "Description": "This clean cobblestone street shows little wear. Less used by wagons or\nmerchants, due to the lack of shops along the lane. The lane continues\nnorth and south.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -450,7 +450,7 @@
     {
       "Name": "Adventurers Lane",
       "Description": "This clean cobblestone street shows little wear. Less used by wagons or\nmerchants, due to the lack of shops along the lane. The lane continues\nnorth and south. To the east you see a guild.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -463,7 +463,7 @@
     {
       "Name": "Adventurers Lane",
       "Description": "This clean cobblestone street shows little wear. Less used by wagons or\nmerchants, due to the lack of shops along the lane. The lane continues\nnorth and south.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -475,7 +475,7 @@
     {
       "Name": "Adventurers Lane",
       "Description": "This clean cobblestone street shows little wear. Less used by wagons or\nmerchants, due to the lack of shops along the lane. The lane continues\nnorth and south.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -488,7 +488,7 @@
     {
       "Name": "Adventurers Lane",
       "Description": "This clean cobblestone street shows little wear. Less used by wagons or\nmerchants, due to the lack of shops along the lane. The lane continues\nnorth and south. To the east you see a guild.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -501,7 +501,7 @@
     {
       "Name": "Adventurers Lane",
       "Description": "This clean cobblestone street shows little wear. Less used by wagons or\nmerchants, due to the lack of shops along the lane. The lane continues\nnorth, but evidence shows work being done to continue the lane further.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -584,7 +584,7 @@
     {
       "Name": "Ryhmers Path",
       "Description": "The road is surrounded by trees and brush with a variety of wildlife adding to\nthe symphony of sounds in the air. The scent of blooming flowers and freshly cut\ngrass mixes with the natural scents of the forest. The rustling of leaves,\nchirping of birds, and occasional calls of animals create a harmonious rhythm in\nthe surroundings. The beauty of nature can be seen and heard with every step,\nmaking the journey all the more worthwhile.\nThe road continues north and south.",
-      "SectorType": "Inside",
+      "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -596,7 +596,7 @@
     {
       "Name": "Rhymers Path",
       "Description": "The road is surrounded by trees and brush with a variety of wildlife adding to\nthe symphony of sounds in the air. The scent of blooming flowers and freshly cut\ngrass mixes with the natural scents of the forest. The rustling of leaves,\nchirping of birds, and occasional calls of animals create a harmonious rhythm in\nthe surroundings. The beauty of nature can be seen and heard with every step,\nmaking the journey all the more worthwhile.\nThe road continues north and south.",
-      "SectorType": "Inside",
+      "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -608,7 +608,7 @@
     {
       "Name": "Rhymers Path",
       "Description": "The road is surrounded by trees and brush with a variety of wildlife adding to\nthe symphony of sounds in the air. The scent of blooming flowers and freshly cut\ngrass mixes with the natural scents of the forest. The rustling of leaves,\nchirping of birds, and occasional calls of animals create a harmonious rhythm in\nthe surroundings. The beauty of nature can be seen and heard with every step,\nmaking the journey all the more worthwhile.\nThe road continues north and south,\nand a guild lies to the west.",
-      "SectorType": "Inside",
+      "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -621,7 +621,7 @@
     {
       "Name": "Rhymers Path",
       "Description": "The road is surrounded by trees and brush with a variety of wildlife adding to\nthe symphony of sounds in the air. The scent of blooming flowers and freshly cut\ngrass mixes with the natural scents of the forest. The rustling of leaves,\nchirping of birds, and occasional calls of animals create a harmonious rhythm in\nthe surroundings. The beauty of nature can be seen and heard with every step,\nmaking the journey all the more worthwhile.\nThe road continues north and south.",
-      "SectorType": "Inside",
+      "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -633,7 +633,7 @@
     {
       "Name": "Rhymers Path",
       "Description": "The road is surrounded by trees and brush with a variety of wildlife adding to\nthe symphony of sounds in the air. The scent of blooming flowers and freshly cut\ngrass mixes with the natural scents of the forest. The rustling of leaves,\nchirping of birds, and occasional calls of animals create a harmonious rhythm in\nthe surroundings. The beauty of nature can be seen and heard with every step,\nmaking the journey all the more worthwhile.\nThe road continues north and south.",
-      "SectorType": "Inside",
+      "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -645,7 +645,7 @@
     {
       "Name": "Rhymers Path",
       "Description": "The road is surrounded by trees and brush with a variety of wildlife adding to\nthe symphony of sounds in the air. The scent of blooming flowers and freshly cut\ngrass mixes with the natural scents of the forest. The rustling of leaves,\nchirping of birds, and occasional calls of animals create a harmonious rhythm in\nthe surroundings. The beauty of nature can be seen and heard with every step,\nmaking the journey all the more worthwhile.\nThe road continues north and south,\nand a guild lies to the west.",
-      "SectorType": "Inside",
+      "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -658,7 +658,7 @@
     {
       "Name": "Rhymers Path",
       "Description": "The road is surrounded by trees and brush with a variety of wildlife adding to\nthe symphony of sounds in the air. The scent of blooming flowers and freshly cut\ngrass mixes with the natural scents of the forest. The rustling of leaves,\nchirping of birds, and occasional calls of animals create a harmonious rhythm in\nthe surroundings. The beauty of nature can be seen and heard with every step,\nmaking the journey all the more worthwhile.\nThe road continues north and south.",
-      "SectorType": "Inside",
+      "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -670,7 +670,7 @@
     {
       "Name": "Rhymers Path",
       "Description": "The road is surrounded by trees and brush with a variety of wildlife adding to\nthe symphony of sounds in the air. The scent of blooming flowers and freshly cut\ngrass mixes with the natural scents of the forest. The rustling of leaves,\nchirping of birds, and occasional calls of animals create a harmonious rhythm in\nthe surroundings. The beauty of nature can be seen and heard with every step,\nmaking the journey all the more worthwhile.\nThe road continues north and south,\nor you could jump down into a river.",
-      "SectorType": "Inside",
+      "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -683,7 +683,7 @@
     {
       "Name": "Inside the South Gate",
       "Description": "A grand and imposing city entrance, with large black marble pillars on either\nside of the gate, which has a small golden emblem embedded within it. The use\nof black and gold in the description suggests a sense of opulence and\ngrandeur.",
-      "SectorType": "Inside",
+      "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -695,7 +695,7 @@
     {
       "Name": "Outside the South Gate",
       "Description": "A grand and imposing city entrance, with large black marble pillars on either\nside of the gate, which has a small golden emblem embedded within it. The use\nof black and gold in the description suggests a sense of opulence and\ngrandeur.",
-      "SectorType": "Inside",
+      "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -730,7 +730,7 @@
     {
       "Name": "hollow tree",
       "Description": "You have stepped into a huge, hollow tree. Despite the large area hollowed out,\nthe living tree seems health and strong. The inner cavity is covered in thick\nbark, protecting itself from it\u0027s intruders. Thick grass mixed with moss line\nthe ground, making it a comfortable place to take a rest.",
-      "SectorType": "Inside",
+      "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -742,7 +742,7 @@
     {
       "Name": "hollow tree",
       "Description": "You have stepped further into the hollow tree. The inner cavity here is also\ncovered in thick bark, protecting itself from intruders. Thick grass mixed\nwith moss line the ground, making it a comfortable place to take a rest.",
-      "SectorType": "Inside",
+      "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -754,7 +754,7 @@
     {
       "Name": "Soothsayer Lane",
       "Description": "The road here is paved with an assortment of crystals and gems of all shapes\nsizes, gaps between each filled with a fine powder, and a final overlay of\nclear shellac. Much less traveled than others in the city, the atmosphere of\nthis lane vibrates with a strange occult sensation. The lane continues north.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -766,7 +766,7 @@
     {
       "Name": "Soothsayer Lane",
       "Description": "The road here is paved with an assortment of crystals and gems of all shapes\nsizes, gaps between each filled with a fine powder, and a final overlay of\nclear shellac. Much less traveled than others in the city, the atmosphere of\nthis lane vibrates with a strange occult sensation. The lane continues north\nand south.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -778,7 +778,7 @@
     {
       "Name": "Soothsayer Lane",
       "Description": "The road here is paved with an assortment of crystals and gems of all shapes\nsizes, gaps between each filled with a fine powder, and a final overlay of\nclear shellac. Much less traveled than others in the city, the atmosphere of\nthis lane vibrates with a strange occult sensation. The lane continues north\nand south, a guild lies to the west.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -791,7 +791,7 @@
     {
       "Name": "Soothsayer Lane",
       "Description": "The road here is paved with an assortment of crystals and gems of all shapes\nsizes, gaps between each filled with a fine powder, and a final overlay of\nclear shellac. Much less traveled than others in the city, the atmosphere of\nthis lane vibrates with a strange occult sensation. The lane continues north\nand south.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -803,7 +803,7 @@
     {
       "Name": "Soothsayer Lane",
       "Description": "The road here is paved with an assortment of crystals and gems of all shapes\nsizes, gaps between each filled with a fine powder, and a final overlay of\nclear shellac. Much less traveled than others in the city, the atmosphere of\nthis lane vibrates with a strange occult sensation. The lane continues north\nand south.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -815,7 +815,7 @@
     {
       "Name": "Soothsayer Lane",
       "Description": "The road here is paved with an assortment of crystals and gems of all shapes\nsizes, gaps between each filled with a fine powder, and a final overlay of\nclear shellac. Much less traveled than others in the city, the atmosphere of\nthis lane vibrates with a strange occult sensation. The lane continues north\nand south, a guild lies to the west.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -828,7 +828,7 @@
     {
       "Name": "Soothsayer Lane",
       "Description": "The road here is paved with an assortment of crystals and gems of all shapes\nsizes, gaps between each filled with a fine powder, and a final overlay of\nclear shellac. Much less traveled than others in the city, the atmosphere of\nthis lane vibrates with a strange occult sensation. The lane continues north\nand south.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -840,7 +840,7 @@
     {
       "Name": "Soothsayer Lane",
       "Description": "The road here is paved with an assortment of crystals and gems of all shapes\nsizes, gaps between each filled with a fine powder, and a final overlay of\nclear shellac. Much less traveled than others in the city, the atmosphere of\nthis lane vibrates with a strange occult sensation. The lane continues north\nand south.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -853,7 +853,7 @@
     {
       "Name": "Soothsayer Lane",
       "Description": "The road here is paved with an assortment of crystals and gems of all shapes\nsizes, gaps between each filled with a fine powder, and a final overlay of\nclear shellac. Much less traveled than others in the city, the atmosphere of\nthis lane vibrates with a strange occult sensation. The lane continues north\nand south.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -865,7 +865,7 @@
     {
       "Name": "Dead End",
       "Description": "The road here is paved with an assortment of crystals and gems of all shapes\nsizes, gaps between each filled with a fine powder, and a final overlay of\nclear shellac. The lane ends here, a dead end but with further construction\nevident. The lane continues to the south.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -983,7 +983,7 @@
     {
       "Name": "Merchants Lane",
       "Description": "The road is made with solid rock fit tightly together. Wide enough for four\nwagons abreast, this is one lively street, merchants and hawkers line both\nsides of the street. The center of the street is humped, allowing rain to\nflow to the sides and into the gutters. The lane continues north and south.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -995,7 +995,7 @@
     {
       "Name": "Merchants Lane",
       "Description": "The road is made with solid rock fit tightly together. Wide enough for four\nwagons abreast, this is one lively street, merchants and hawkers line both\nsides of the street. The center of the street is humped, allowing rain to\nflow to the sides and into the gutters. The lane continues north and south,\nmerchant shops lie to the east and the west.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1009,7 +1009,7 @@
     {
       "Name": "Merchants Lane",
       "Description": "The road is made with solid rock fit tightly together. Wide enough for four\nwagons abreast, this is one lively street, merchants and hawkers line both\nsides of the street. The center of the street is humped, allowing rain to\nflow to the sides and into the gutters. The lane continues north and south.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1022,7 +1022,7 @@
     {
       "Name": "Merchants Lane",
       "Description": "The road is made with solid rock fit tightly together. Wide enough for four\nwagons abreast, this is one lively street, merchants and hawkers line both\nsides of the street. The center of the street is humped, allowing rain to\nflow to the sides and into the gutters. The lane continues north and south.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1035,7 +1035,7 @@
     {
       "Name": "Merchants Lane",
       "Description": "The road is made with solid rock fit tightly together. Wide enough for four\nwagons abreast, this is one lively street, merchants and hawkers line both\nsides of the street. The center of the street is humped, allowing rain to\nflow to the sides and into the gutters. The lane continues north and south,\nmerchant shops lie to the east and the west.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1049,7 +1049,7 @@
     {
       "Name": "Merchants Lane",
       "Description": "The road is made with solid rock fit tightly together. Wide enough for four\nwagons abreast, this is one lively street, merchants and hawkers line both\nsides of the street. The center of the street is humped, allowing rain to\nflow to the sides and into the gutters. The lane continues north and south.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1061,7 +1061,7 @@
     {
       "Name": "Merchants Lane",
       "Description": "The road is made with solid rock fit tightly together. Wide enough for four\nwagons abreast, this is one lively street, merchants and hawkers line both\nsides of the street. The center of the street is humped, allowing rain to\nflow to the sides and into the gutters. The lane continues north, merchant\nshops lie to the east and the west.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1258,7 +1258,7 @@
     {
       "Name": "Tigris River",
       "Description": "The river narrows here, as it winds its way out of the city proper.\nA pleasent musty smell rises from the river water, no doubt from whatever\nchemical is used to clean and sanitize it this close to the city.",
-      "SectorType": "Inside",
+      "SectorType": "River",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1269,7 +1269,7 @@
     {
       "Name": "Tigris River",
       "Description": "The river narrows here, as it winds its way out of the city proper.\nA pleasent musty smell rises from the river water, no doubt from whatever\nchemical is used to clean and sanitize it this close to the city.",
-      "SectorType": "Inside",
+      "SectorType": "River",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1281,7 +1281,7 @@
     {
       "Name": "Tigris River",
       "Description": "The river narrows here, as it winds its way out of the city proper.\nA pleasent musty smell rises from the river water, no doubt from whatever\nchemical is used to clean and sanitize it this close to the city.",
-      "SectorType": "Inside",
+      "SectorType": "River",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1293,7 +1293,7 @@
     {
       "Name": "Tigris River",
       "Description": "The river narrows here, as it winds its way out of the city proper.\nA pleasent musty smell rises from the river water, no doubt from whatever\nchemical is used to clean and sanitize it this close to the city.",
-      "SectorType": "Inside",
+      "SectorType": "River",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1305,7 +1305,7 @@
     {
       "Name": "Tigris River",
       "Description": "The river narrows here, as it winds its way out of the city proper.\nA pleasent musty smell rises from the river water, no doubt from whatever\nchemical is used to clean and sanitize it this close to the city.",
-      "SectorType": "Inside",
+      "SectorType": "River",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1317,7 +1317,7 @@
     {
       "Name": "Tigris River",
       "Description": "The river narrows here, as it winds its way out of the city proper.\nA pleasent musty smell rises from the river water, no doubt from whatever\nchemical is used to clean and sanitize it this close to the city.",
-      "SectorType": "Inside",
+      "SectorType": "River",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1550,7 +1550,6 @@
         "NoPurge"
       ],
       "SpecialAttacks": [],
-      "ExchangeShop": "alchemist",
       "Id": 19006
     },
     {
@@ -1575,8 +1574,7 @@
       "Loot": [],
       "Flags": [
         "Sentinel",
-        "NoPurge",
-        "Enchanter"
+        "NoPurge"
       ],
       "SpecialAttacks": [],
       "Id": 19007
@@ -1931,9 +1929,6 @@
         "NoPurge"
       ],
       "SpecialAttacks": [],
-      "Shop": "smithy",
-      "ForgeShop": "smithy",
-      "ExchangeShop": "smithy",
       "Id": 19020
     },
     {

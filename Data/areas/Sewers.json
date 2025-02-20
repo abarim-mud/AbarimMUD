@@ -8,7 +8,7 @@
     {
       "Name": "The muddy sewer",
       "Description": "You are standing in mud to your knees. This is not the kind of place\nfor a picnic. The muddy sewer stretches further into the south.",
-      "SectorType": "Inside",
+      "SectorType": "Mountain",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -20,7 +20,7 @@
     {
       "Name": "The muddy sewer junction",
       "Description": "The muddy sewer stretches into the dark to the south. It looks as if \nno person has ever sat his foot here before. It\u0027s too muddy for that\nanyway. The sewer leads north, south and east from here.",
-      "SectorType": "Inside",
+      "SectorType": "Mountain",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -33,7 +33,7 @@
     {
       "Name": "The mudhole",
       "Description": "You stand in mud all the way up to your thighs and it\u0027s not too \ncomfortable since you are used to a somewhat different environment.\nThe sewer leads to the north of here. In the middle you can just make\nout an enormous drainpipe leading down.",
-      "SectorType": "Inside",
+      "SectorType": "Mountain",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -57,7 +57,7 @@
     {
       "Name": "The muddy sewer",
       "Description": "You are standing in the middle of a bend of the sewer pipe. It is very\ndark around here and the mud is sticking to your legs, not very pleasant.\nThe pipe leads east and south from here.",
-      "SectorType": "Inside",
+      "SectorType": "Hills",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -69,7 +69,7 @@
     {
       "Name": "The muddy sewer",
       "Description": "You are standing in something that reminds you very much of porridge, this\nhas the advantage that it\u0027s not hot, it\u0027s rather cold actually. The pipe \nbends to the north and east.",
-      "SectorType": "Inside",
+      "SectorType": "Mountain",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -81,7 +81,7 @@
     {
       "Name": "The muddy sewer bend",
       "Description": "This isn\u0027t your idea of a place to stay too long. You\u0027re in up to your\nknees in something that resembles mud, but you\u0027re not quite sure. The\nbend in which you stand leads west and south.",
-      "SectorType": "Inside",
+      "SectorType": "Mountain",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -93,7 +93,7 @@
     {
       "Name": "A muddy intersection",
       "Description": "You have both your feet safely stuck in mud. It isn\u0027t the mud that\u0027s wrong\nit\u0027s the smell, the sounds, the total darkness that surrounds you. Everything\nhere is so depressing. The pipe leads on with a trail of thick mud to the\nnorth, east and south.",
-      "SectorType": "Inside",
+      "SectorType": "Hills",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -106,7 +106,7 @@
     {
       "Name": "The Sewer Junction",
       "Description": "You stand in the middle of a huge junction of sewer pipes right under\nwhat you\u0027d think was an air shaft. The sewer pipes lead to the north,\nsouth, east and west. It look quite impossible to force your way up.",
-      "SectorType": "Inside",
+      "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -120,7 +120,7 @@
     {
       "Name": "A bend in sewer pipe",
       "Description": "You are in a bend in the sewer pipe. A strong smell seeps in from the north.\nThe sewer goes north and east.",
-      "SectorType": "Inside",
+      "SectorType": "Field",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -133,7 +133,7 @@
     {
       "Name": "The muddy sewer pipe",
       "Description": "You have entered a kind of tube intersection that leads south, west and east.\nYour legs are covered in mud up to the knees. REAL yucky!",
-      "SectorType": "Inside",
+      "SectorType": "Mountain",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -146,7 +146,7 @@
     {
       "Name": "The bend in the Muddy sewer",
       "Description": "This is not your idea of a holiday. You stand in mud up to your knees.\nIt\u0027s absolutely inconceivable how all this mud could have been placed\nhere. The pipe leads to the west and south.",
-      "SectorType": "Inside",
+      "SectorType": "Mountain",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -158,7 +158,7 @@
     {
       "Name": "A MUDDY intersection",
       "Description": "You wouldn\u0027t want to know the true feeling of standing in this mud up to \nyour hips. \u003EBWAADR\u003C. All that fills your mind right now is the dream of \na hot bath. This is NOT very clean mud you know, remember you\u0027re in the\nsewer! The pipes leads north, south and east.",
-      "SectorType": "Inside",
+      "SectorType": "Mountain",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -171,7 +171,7 @@
     {
       "Name": "Muddy sewer",
       "Description": "You stand in a bend of the pipe system of the sewer with mud up to your\nthighs. Contemplating a higher level of existence here would be utterly\ninappropriate, as the smell would keep any intelligent creature from even\nthinking of anything but getting away from this foul end of the WORLD.\nThe bend goes from north to west.",
-      "SectorType": "Inside",
+      "SectorType": "Mountain",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -183,7 +183,7 @@
     {
       "Name": "The old well",
       "Description": "You are standing by an old and worn well from before this century. The sewer\nleads to the east from here and the well leads down into darkness. Metal\nbars implanted in the side of the well lead down as a ladder.",
-      "SectorType": "Inside",
+      "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -195,7 +195,7 @@
     {
       "Name": "The ordinary bend",
       "Description": "You are in the middle of a bend in the pipe system of the sewer system, \nWHAT a place!!! The pipe leads to the south and the east.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -207,7 +207,7 @@
     {
       "Name": "The sewer junction",
       "Description": "You are in a junction that leads north, west and south.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -220,7 +220,7 @@
     {
       "Name": "The ordinary junction",
       "Description": "This looks like an ordinary junction, actually it seems very quiet\nhere. The pipelines lead west, east and north.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -233,7 +233,7 @@
     {
       "Name": "A quiet pipe junction",
       "Description": "This is the kind of place to rest, though the smell could be a LOT better\nthan this. The sewer goes east, north and west from here.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -246,7 +246,7 @@
     {
       "Name": "The odd room with smooth walls",
       "Description": "As you enter you hear a loud click from one of the walls ... and you fall\nand fall and fall ...  .  .  .  .\n... And come to an abrupt end. THIS is strange indeed. There\u0027s an arched\nentryway leading down.",
-      "SectorType": "Inside",
+      "SectorType": "Mountain",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -257,7 +257,7 @@
     {
       "Name": "The sewer",
       "Description": "You are standing in mud up to your ankles. This is an intersection with \nsewer pipes leading east, south and west.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -270,7 +270,7 @@
     {
       "Name": "Another intersection",
       "Description": "You have never seen anything so BORING...This is an intersection with pipes\nleading north, south and east.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -296,7 +296,7 @@
     {
       "Name": "The sewer junction",
       "Description": "You stand in a junction of sewer pipes leading north, east and west.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -309,7 +309,7 @@
     {
       "Name": "The Triple Junction",
       "Description": "You stand in the middle of a huge junction of concrete sewer pipes. The \npipes lead into three different directions : east, south and west.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -322,7 +322,7 @@
     {
       "Name": "The Quadruple Junction Under the Dump",
       "Description": "You are standing in something that reminds you of an entry to an ant hive.\nThere are enormous concrete pipes leading north, south, east and west. \nThere\u0027s also a metal ladder built into the concrete wall leading up through\na layer of garbage.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -337,7 +337,7 @@
     {
       "Name": "A triple junction",
       "Description": "You stand in a junction with pipes leading west, north and east.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -350,7 +350,7 @@
     {
       "Name": "A bend in the sewer pipe",
       "Description": "You can look in two directions where the pipe leads : south and west.",
-      "SectorType": "Inside",
+      "SectorType": "Field",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -362,7 +362,7 @@
     {
       "Name": "The sewer pipe bend",
       "Description": "You can look in two different directions where the pipe goes : west and \nnorth.",
-      "SectorType": "Inside",
+      "SectorType": "Field",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -374,7 +374,7 @@
     {
       "Name": "The pit",
       "Description": "You stand in a section of a pipe that leads to a dead end. In the floor\nthere\u0027s a pit leading down. There are bars set in the side of the pit wall\nfunctioning as a ladder.",
-      "SectorType": "Inside",
+      "SectorType": "Mountain",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -386,7 +386,7 @@
     {
       "Name": "The round room",
       "Description": "As you enter the room it starts rotating - at first slowly, later faster\nand faster - You get totally confused as to where up and down are, but you are\ncertain that the doorway is in the opposite direction of what it was when\nyou entered. It now leads east. There was only this one exit.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -397,7 +397,7 @@
     {
       "Name": "The three way junction",
       "Description": "You are standing in a junction of pipes that lead west, east and south.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -410,7 +410,7 @@
     {
       "Name": "The Sewer Store Room",
       "Description": "You stand in a small room lit by a single torch set in the wall. The only \nway out of here is to the north.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -421,7 +421,7 @@
     {
       "Name": "The Shaft",
       "Description": "You are standing by the edge of a deep, dark shaft leading down. A single\nladder is your tool to work your way down if you so wish. The sewer pipe\nleads south from here.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -433,7 +433,7 @@
     {
       "Name": "The Sewer Entrance",
       "Description": "You stand in the middle of a pipe that leads from north to south. Above you\nan air shaft leads up into sunlight. It seems totally impossible to go up\nthat way.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -445,7 +445,7 @@
     {
       "Name": "The junction going three ways",
       "Description": "You are in a passageway in the pipes of the sewer system leading north, east\nand west.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -458,7 +458,7 @@
     {
       "Name": "The Sewer Room",
       "Description": "You are standing in a large room with chairs set in the walls. You have the\nfeeling of being watched. To the south there\u0027s an entry to a larger room.\nThe room is lit by five torches, also set in the walls. To the west there\nis a doorway leading out to the sewers.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -470,7 +470,7 @@
     {
       "Name": "The Sewer room",
       "Description": "This is a Room with walls that glitters like gold though not quite like it.\nThis is strange as it looks as if the glitter lights the whole room. It\nlooks very bright. To the south the floor is covered with yucky water. The\nNorth leads to sort of a Guard Room.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -482,7 +482,7 @@
     {
       "Name": "The Pool in the Sewer",
       "Description": "You stand in water to your waist.  To the north is the entrance to this room.\nA single door leads east.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -494,7 +494,7 @@
     {
       "Name": "The Sewers",
       "Description": "You stand in a dead end of the sewer. The only way out is south.\nYou can see a shaft leading up but it looks too difficult to go up\nthat way.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -505,7 +505,7 @@
     {
       "Name": "The junction",
       "Description": "You stand in a junction leading north, west and east.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -518,7 +518,7 @@
     {
       "Name": "The small room",
       "Description": "The only thing in this room of interest is a chair, and that\u0027s tight to the \nrock floor. A doorway leads south and another leads east into darkness.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -530,7 +530,7 @@
     {
       "Name": "The Sewer pipe",
       "Description": "You are in what reminds you of a foul sewer, as if you liked being here! \nYou can see two exits leading either north or south.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -542,7 +542,7 @@
     {
       "Name": "The Grand Sewer",
       "Description": "You are in a Grand Sewer Pipe. This stretches toward the south. It\u0027s large \nindeed! A doorway leads to the east from here.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -555,7 +555,7 @@
     {
       "Name": "The South end of the Grand Pipe",
       "Description": "You stand in water to your knees. A doorway leads west from here. The Pipe\nstretches north.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -567,7 +567,7 @@
     {
       "Name": "The Edge of The Water Sewer",
       "Description": "You stand in a room where half of the floor is covered in water. The water\nleads east and a doorway leads west.",
-      "SectorType": "Inside",
+      "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -579,7 +579,7 @@
     {
       "Name": "The Dark hallway",
       "Description": "You can\u0027t see much of this, even with a light. The hallway goes into a\npassageway to the south. A doorway leads west.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -591,7 +591,7 @@
     {
       "Name": "The dark passageway",
       "Description": "You can\u0027t see anything but the ground where you put your feet. The \npassageway seems to continue south and north.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -603,7 +603,7 @@
     {
       "Name": "The dark passageway",
       "Description": "You can\u0027t see anything but the ground where you put your feet. The\npassageway seems to continue south and north.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -615,7 +615,7 @@
     {
       "Name": "The dark passageway",
       "Description": "You can\u0027t see anything but the ground where you put your feet. The\npassageway seems to continue south and north.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -627,7 +627,7 @@
     {
       "Name": "The dark passageway",
       "Description": "You can\u0027t see anything but the ground where you put your feet. The\npassageway seems to continue west and north. To the east there\u0027s water\ncovering the floor and that leads through an arched entry to a watery\nsewer.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -640,7 +640,7 @@
     {
       "Name": "The Watery Sewer Bend",
       "Description": "You can\u0027t see anything but the water you\u0027re in up to your hips. The sewer\nseems to bend and lead south and west.",
-      "SectorType": "Inside",
+      "SectorType": "Mountain",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -652,7 +652,7 @@
     {
       "Name": "The Watery sewer",
       "Description": "You can\u0027t see anything but the water you\u0027re in up to your hips. The sewer\nseems to lead south and north.",
-      "SectorType": "Inside",
+      "SectorType": "Mountain",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -665,7 +665,7 @@
     {
       "Name": "The Watery sewer",
       "Description": "You can\u0027t see anything but the water you\u0027re in up to your hips. The sewer\nseems to lead south and north.",
-      "SectorType": "Inside",
+      "SectorType": "Mountain",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -677,7 +677,7 @@
     {
       "Name": "The Watery Sewer Junction",
       "Description": "You can\u0027t see anything but the water you\u0027re in up to your hips. The sewer\nseems to lead into a junction going south, north and east.",
-      "SectorType": "Inside",
+      "SectorType": "Mountain",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -690,7 +690,7 @@
     {
       "Name": "The Watery sewer",
       "Description": "You can\u0027t see anything but the water you\u0027re in up to your hips. The sewer\nseems to lead south and north.",
-      "SectorType": "Inside",
+      "SectorType": "Mountain",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -703,7 +703,7 @@
     {
       "Name": "The Watery sewer junction",
       "Description": "You can\u0027t see anything but the water you\u0027re in up to your hips. The sewer\nseems to lead into a junction that goes north, south and east.",
-      "SectorType": "Inside",
+      "SectorType": "Mountain",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -716,7 +716,7 @@
     {
       "Name": "The Watery sewer",
       "Description": "You can\u0027t see anything but the water you\u0027re in up to your hips. The sewer\nseems to lead south and north.",
-      "SectorType": "Inside",
+      "SectorType": "Mountain",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -728,7 +728,7 @@
     {
       "Name": "The Watery sewer bend",
       "Description": "You can\u0027t see anything but the water you\u0027re in up to your hips. The sewer\nseems to bend and lead west and north.",
-      "SectorType": "Inside",
+      "SectorType": "Mountain",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -741,7 +741,7 @@
     {
       "Name": "A ledge by the dark pool",
       "Description": "You can\u0027t see much here but the echo tells you that there\u0027s quite a drop\ndown. You can just make out a huge dark pool out there in the darkness, \nmostly because of the trickling of water. The water from the sewer actually\nwashes over this ledge and makes it quite slippery. From here it drops, \nlike a waterfall, into the pool far down.",
-      "SectorType": "Inside",
+      "SectorType": "Mountain",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -753,7 +753,7 @@
     {
       "Name": "A ledge by the dark pool",
       "Description": "You can\u0027t see much here but the echo tells you that there\u0027s quite a drop\ndown. You can just make out a huge dark pool out there in the darkness,\nmostly because of the trickling of water. The water from the sewer actually\nwashes over this ledge and makes it quite slippery. From here it drops,\nlike a waterfall, into the pool far down. Under you there is a small fissure\nin the rock. It seems big enough to contain a few people.",
-      "SectorType": "Inside",
+      "SectorType": "Mountain",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -766,7 +766,7 @@
     {
       "Name": "The fissure under the ledge",
       "Description": "This is a small fissure in the solid rock. Under you lies the deep dark pool.\nThe water trickles quietly down from the ledge above you. The water smells \nlike the water in a sewer.",
-      "SectorType": "Inside",
+      "SectorType": "Mountain",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -778,7 +778,7 @@
     {
       "Name": "Under the mudhole",
       "Description": "You stand in a small room with a great big opening in the ceiling. From this\nopening there\u0027s mud dripping down in large lumps. \u003EYUCK\u003C. You can smell the \nfoul stench of the slimy sediment as you try not to get covered by the \nfalling sludge. To the east there is an entryway leading out from here and \nit seems absolutely impossible to force the muddy descent.",
-      "SectorType": "Inside",
+      "SectorType": "Mountain",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -789,7 +789,7 @@
     {
       "Name": "Under the Dark Pit",
       "Description": "Nice place you found yourself. You stand in the middle of a room with only\ntwo exits, Up and East. A tall ladder is left here so that you can climb\nup through the Pit without the use of a rope.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -802,7 +802,7 @@
     {
       "Name": "A muddy bend in the sewer system",
       "Description": "You are standing in what looks like a bend in the pipe system of the\nsewer. The \u0027floor\u0027 is covered completely by mud! This includes covering\nyour legs up to your knees as well. The pipe leads west and south.",
-      "SectorType": "Inside",
+      "SectorType": "Hills",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -814,7 +814,7 @@
     {
       "Name": "A junction in the sewer pipes",
       "Description": "You stand in the middle of what looks like a triple junction of pipes\ngoing east, west and north.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -827,7 +827,7 @@
     {
       "Name": "Down the old well",
       "Description": "You are dangling on the slippery sides of the old well leading down and up.\nThe only secure point here is the metal bars that are cemented into the \nsides, the ones that you cling frantically to so that you don\u0027t fall. Who\nknows how deep this well is?",
-      "SectorType": "Inside",
+      "SectorType": "Mountain",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -838,7 +838,7 @@
     {
       "Name": "The northwestern corner of the ledge",
       "Description": "You stand, swaying out from the ledge, with only a couple of inches of safe, \nsolid ledge under your feet. The ledge continues to the east but not back\nsouth. It seems that the ledge is too narrow to turn on so you\u0027ll have to\ncontinue forward.",
-      "SectorType": "Inside",
+      "SectorType": "Mountain",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -850,7 +850,7 @@
     {
       "Name": "The narrow ledge",
       "Description": "You are in the progress of walking all the way around the ledge since there\u0027s\nno way of turning around on this all too narrow path. There IS another exit\nfrom here but that leads right into mid-air and with high probability of a\nfree fall session afterwards.",
-      "SectorType": "Inside",
+      "SectorType": "Mountain",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -863,7 +863,7 @@
     {
       "Name": "The narrow ledge",
       "Description": "You are in the progress of walking all the way around the ledge since there\u0027s\nno way of turning around on this all too narrow path. There IS another exit\nfrom here but that leads right into mid-air and with high probability of a\nfree fall session afterwards.",
-      "SectorType": "Inside",
+      "SectorType": "Mountain",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -876,7 +876,7 @@
     {
       "Name": "The narrow ledge",
       "Description": "You are in the progress of walking all the way around the ledge since there\u0027s\nno way of turning around on this all too narrow path. There IS another exit\nfrom here but that leads right into mid-air and with high probability of a\nfree fall session afterwards.",
-      "SectorType": "Inside",
+      "SectorType": "Mountain",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -889,7 +889,7 @@
     {
       "Name": "The narrow ledge",
       "Description": "You are in the progress of walking all the way around the ledge since there\u0027s\nno way of turning around on this all too narrow path. There IS another exit\nfrom here but that leads right into mid-air and with high probability of a\nfree fall session afterwards.",
-      "SectorType": "Inside",
+      "SectorType": "Mountain",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -903,7 +903,7 @@
     {
       "Name": "The southwestern corner of the ledge",
       "Description": "This seems like a ledge that is a little broader than the one just to the \nnorth of here. The ledge seems to lead around some sort of Abyss of total \ndarkness. The ledge seems to have an odd-looking edge here.",
-      "SectorType": "Inside",
+      "SectorType": "Mountain",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -917,7 +917,7 @@
     {
       "Name": "An odd intersection",
       "Description": "You stand in a rather odd intersection of pipes. The pipes actually don\u0027t\nresemble pipes anymore. They look more like a real stone tunnel, or a\npassageway hewn directly into the rock. The ways from here lead north, east\nand west.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -930,7 +930,7 @@
     {
       "Name": "The narrow ledge going east to west",
       "Description": "You are in the process of walking all the way around the ledge since there\u0027s\nno way of turning around on this all too narrow path. There IS another exit\nfrom here but that leads right into mid-air and with high probability of a\nfree fall session afterwards.",
-      "SectorType": "Inside",
+      "SectorType": "Mountain",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -952,7 +952,7 @@
     {
       "Name": "The Broad ledge",
       "Description": "You are standing on a ledge that seems quite a lot larger than the rest \nof the ledges. This one leads to the west and the east, plus it has an exit\ngoing to the south. Though you could jump into mid-air, but it probably \nwouldn\u0027t be such a good idea. The way south is in utter darkness.",
-      "SectorType": "Inside",
+      "SectorType": "Hills",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -966,7 +966,7 @@
     {
       "Name": "The northeastern corner of the ledge",
       "Description": "You stand, swaying out from the ledge, with only a couple of inches of safe,\nsolid ledge under your feet. The ledge continues to the west and leads south\nfrom here into darkness.",
-      "SectorType": "Inside",
+      "SectorType": "Mountain",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -979,7 +979,7 @@
     {
       "Name": "The narrow eastern ledge",
       "Description": "You are in the progress of walking all the way around the ledge since there\u0027s\nno way of turning around on this all too narrow path. There IS another exit\nfrom here but that leads right into mid-air and with high probability of a\nfree fall session afterwards. And THAT is west of here so watch your step.",
-      "SectorType": "Inside",
+      "SectorType": "Mountain",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -991,7 +991,7 @@
     {
       "Name": "The narrow eastern ledge",
       "Description": "You are in the progress of walking all the way around the ledge since there\u0027s\nno way of turning around on this all too narrow path. There IS another exit\nfrom here but that leads right into mid-air and with high probability of a\nfree fall session afterwards. And THAT is west of here so watch your step.",
-      "SectorType": "Inside",
+      "SectorType": "Mountain",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1003,7 +1003,7 @@
     {
       "Name": "The narrow eastern ledge",
       "Description": "You are in the progress of walking all the way around the ledge since there\u0027s\nno way of turning around on this all too narrow path. There IS another exit\nfrom here but that leads right into mid-air and with high probability of a\nfree fall session afterwards. And THAT is west of here so watch your step.",
-      "SectorType": "Inside",
+      "SectorType": "Mountain",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1015,7 +1015,7 @@
     {
       "Name": "The narrow eastern ledge",
       "Description": "You are in the progress of walking all the way around the ledge since there\u0027s\nno way of turning around on this all too narrow path. There IS another exit\nfrom here but that leads right into mid-air and with high probability of a\nfree fall session afterwards. And THAT is west of here so watch your step.\nYou also see a small opening to the east.",
-      "SectorType": "Inside",
+      "SectorType": "Mountain",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1028,7 +1028,7 @@
     {
       "Name": "The southeastern corner of the ledge",
       "Description": "This seems like a ledge that is a little broader than the one just to the\nnorth of here. The ledge seems to lead around some sort of abyss of total\ndarkness.",
-      "SectorType": "Inside",
+      "SectorType": "Mountain",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1051,7 +1051,7 @@
     {
       "Name": "Under The Shaft",
       "Description": "A ladder leads up from here to the Shaft.  A small opening leads west from here.",
-      "SectorType": "Inside",
+      "SectorType": "Mountain",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1063,7 +1063,7 @@
     {
       "Name": "The sewer line.",
       "Description": "You are in a narrow part of the sewer. Down the sewer continues and to the\nnorth is the ledge.",
-      "SectorType": "Inside",
+      "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1075,7 +1075,7 @@
     {
       "Name": "The sewer pipe.",
       "Description": "You are in an odd sewer pipe You see some odd scratches on the pipe wall, as\nfrom a gigantic rat. You can see some slimy water gently running down into\na sewer drain, and north the drain continues.",
-      "SectorType": "Inside",
+      "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {},
@@ -1093,7 +1093,7 @@
     {
       "Name": "The Edge of the Water",
       "Description": "The pool side is dimly lit up by your light. You can see absolutely nothing\nelse nearby. The darkness here seems enormously oppressive. The air is\ndamp and the rock on which you stand is slippery. The pool seems too dark \nto make anything clear. The rock can be climbed upwards from here.",
-      "SectorType": "Inside",
+      "SectorType": "Mountain",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1127,7 +1127,7 @@
     {
       "Name": "The Lair",
       "Description": "On the floor you see a lot of human decay, like bones and skulls. You also\nsee a lot of slime. On the wall is a torch sitting in its sconce. To the north\nare a wooden door.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1140,7 +1140,7 @@
     {
       "Name": "The Lair",
       "Description": "On the floor you see a lot of human decay, like bones and skulls. You also\nsee a lot of slime. On the wall is a torch sitting in its sconce.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1153,7 +1153,7 @@
     {
       "Name": "The Lair",
       "Description": "On the floor you see a lot of human decay, like bones and skulls. You also\nsee a lot of slime. On the wall is a torch sitting in its sconce.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1166,7 +1166,7 @@
     {
       "Name": "The Lair",
       "Description": "On the floor you see a lot of human decay, like bones and skulls. You also\nsee a lot of slime. On the wall is a torch sitting in its sconce.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1178,7 +1178,7 @@
     {
       "Name": "The lair.",
       "Description": "On the floor you see a lot of human decay, like bones and skulls. You also\nsee a lot of slime. On the wall is a torch sitting in its sconce.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1191,7 +1191,7 @@
     {
       "Name": "The lair.",
       "Description": "On the floor you see a lot of human decay, like bones and skulls. You also\nsee a lot of slime. On the wall is a torch sitting in its sconce.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1203,7 +1203,7 @@
     {
       "Name": "The lair entrance.",
       "Description": "You are in a dry part of the sewer. To the north is a wooden door, you \ncan see some slime at the lower part of the door. You also see some skulls\nand some broken bones.",
-      "SectorType": "Inside",
+      "SectorType": "Field",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1215,7 +1215,7 @@
     {
       "Name": "The crawlway.",
       "Description": "You are in a narrow crawlway.  You don\u0027t notice anything interesting here.",
-      "SectorType": "Inside",
+      "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1227,7 +1227,7 @@
     {
       "Name": "The four-way junction.",
       "Description": "You are in a sewer junction. To the north is a small hole, to the west is a\nnarrow crawlway and to the east and south the sewer continues.",
-      "SectorType": "Inside",
+      "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1241,7 +1241,7 @@
     {
       "Name": "The small cave.",
       "Description": "You are in a collapsed sewer drain, which now is more like a small cave.",
-      "SectorType": "Inside",
+      "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1252,7 +1252,7 @@
     {
       "Name": "The sewer drain.",
       "Description": "You are in a dry sewer drain which bends to the north.",
-      "SectorType": "Inside",
+      "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1264,7 +1264,7 @@
     {
       "Name": "The sewer drain.",
       "Description": "You are in a dry sewer drain which bends to the east.",
-      "SectorType": "Inside",
+      "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1276,7 +1276,7 @@
     {
       "Name": "The drain end.",
       "Description": "You are at the end of the drain around you the sewer has collapsed, the only\nexit is west.",
-      "SectorType": "Inside",
+      "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1287,7 +1287,7 @@
     {
       "Name": "The half-wet drain.",
       "Description": "You are in a sewer drain where the floor is covered with water. To the north\nit looks more dry, south however the drain runs down into some water.",
-      "SectorType": "Inside",
+      "SectorType": "Hills",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1299,7 +1299,7 @@
     {
       "Name": "Under water in the sewer.",
       "Description": "You swim in some dirty water and is holding you breath. You\u0027ll better \ncontinue before you drown. It is a good thing that you can hold your light\nabove water-level.",
-      "SectorType": "Inside",
+      "SectorType": "Swim",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1311,7 +1311,7 @@
     {
       "Name": "The half-dry drain.",
       "Description": "You are in a half-dry sewer drain. To the north the drain runs a little bit\ndownwards into some water to the east you can see a small hole. To the west\nyou see another drain.",
-      "SectorType": "Inside",
+      "SectorType": "Hills",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1324,7 +1324,7 @@
     {
       "Name": "The very small room.",
       "Description": "You are in a very small room, it is pretty uninteresting.",
-      "SectorType": "Inside",
+      "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1335,7 +1335,7 @@
     {
       "Name": "A dry sewer drain.",
       "Description": "You are in a dry but dirty sewer drain. The drain continues east and south.",
-      "SectorType": "Inside",
+      "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1347,7 +1347,7 @@
     {
       "Name": "A boring drain.",
       "Description": "You are in yet another sewer drain.",
-      "SectorType": "Inside",
+      "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1359,7 +1359,7 @@
     {
       "Name": "The sewer drain.",
       "Description": "You are in a sewer drain, there is nothing special in here, except for a \nloud echo.",
-      "SectorType": "Inside",
+      "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1372,7 +1372,7 @@
     {
       "Name": "The sewer drain.",
       "Description": "You are in a drain, with some slimy water on the floor.",
-      "SectorType": "Inside",
+      "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1384,7 +1384,7 @@
     {
       "Name": "The sewer bend.",
       "Description": "You find yourself in an ordinary sewer bend, which bend from west to north.",
-      "SectorType": "Inside",
+      "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1396,7 +1396,7 @@
     {
       "Name": "The sewer junction",
       "Description": "You stand in a junction of three sewer drains. You see some odd scratches on\nthe pipe wall, as from a gigantic rat.North and south the sewer continues \nas usual, but west it looks a little strange.",
-      "SectorType": "Inside",
+      "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1409,7 +1409,7 @@
     {
       "Name": "The sewer",
       "Description": "You are in a sewer, where the slimy water runs down through a tiny hole.\nYou see some odd scratches on the pipe wall, as from a gigantic rat. There \nis a sewer drain south.",
-      "SectorType": "Inside",
+      "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1420,7 +1420,7 @@
     {
       "Name": "The strange sewer",
       "Description": "You are in a very strange sewer indeed, there are some odd scratches on the\npipe wall, as from a gigantic rat. And you can see a lot of organic decay\nlike bones from animals AND humans. West the drain runs slightly upwards.",
-      "SectorType": "Inside",
+      "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1432,7 +1432,7 @@
     {
       "Name": "The damp sewer",
       "Description": "You are in a sewer drain with a funny damp substance on the floor, in the \nsubstance you see a lot of decay. You see some odd scratches on the wall, as\nfrom a gigantic rat. Both to the east and west the pipe seems to run down.",
-      "SectorType": "Inside",
+      "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1444,7 +1444,7 @@
     {
       "Name": "The strange sewer",
       "Description": "You are in an ordinary sewer except for a lot of scratches on the sewer wall,\nad a lot of debris on the floor.",
-      "SectorType": "Inside",
+      "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1456,7 +1456,7 @@
     {
       "Name": "The sewer",
       "Description": "You are in a sewer with more scratches on the walls. And of course a whole lot\nof decay. The drain runs east and north.",
-      "SectorType": "Inside",
+      "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1468,7 +1468,7 @@
     {
       "Name": "The sewer drain",
       "Description": "You stand in in a sewer drain, you are able to see some kind of cave-like\nroom. You see some odd scratches on the drain wall, as from a gigantic rat. \nThe sewer leads south.",
-      "SectorType": "Inside",
+      "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1480,7 +1480,7 @@
     {
       "Name": "The rat\u0027s lair",
       "Description": "You are in a little cave. You are able to see quite a lot of debris on the \nfloor. There is a sewer drain west of here.",
-      "SectorType": "Inside",
+      "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1491,7 +1491,7 @@
     {
       "Name": "The Wall of the Abyss",
       "Description": "You hang onto some steps leading down into utter darkness. There\u0027s an exit \nleading up as well, though you\u0027ll have to open the tiny rock again to do so.",
-      "SectorType": "Inside",
+      "SectorType": "Mountain",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1503,7 +1503,7 @@
     {
       "Name": "The entrance.",
       "Description": "You are in a very dark room. You notice that some faces are  staring at you from\ninside the walls. In the middle of the room  there is a small altar. To the\nnorth there is a small round  door.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1515,7 +1515,7 @@
     {
       "Name": "The corridor.",
       "Description": "The corridor is glowing oppressively in a red hue. You can hear wailing\nthrough an open black hole to the east. To the south there is a round door.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1539,7 +1539,7 @@
     {
       "Name": "The T-crossing",
       "Description": "You are in a small hallway. There are doors to the east and to\nthe west. To the south there are a black hole. There is writing\nin the wall. Wails can be heard from the south.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1552,7 +1552,7 @@
     {
       "Name": "The firedeath",
       "Description": "This room is very hot. There are flames surrounding you.  You can\nsee no exits at all!  Skeletons are lying all over the floor.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {},
@@ -1561,7 +1561,7 @@
     {
       "Name": "The tortureroom.",
       "Description": "You are standing in a middle of a square room. Along the walls skeletons \nare hanging in rusty chains. In the middle of the room there is a big metal \nbox, covered with dust. To the south you can just make out a small exit.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1572,7 +1572,7 @@
     {
       "Name": "The hells yard",
       "Description": "You are standing in a lot of mud. A disgusting smell surrounds\nthe place, and makes you feel sick. Small flames sometimes shoot\nup from the hot mud. To the west there is a small door. To the \nnorth you can see an iron door.",
-      "SectorType": "Inside",
+      "SectorType": "Mountain",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1584,7 +1584,7 @@
     {
       "Name": "The Entrance to the Realm of silence",
       "Description": "This is an utterly silent place. As you look around you see that there\nhasn\u0027t been a living thing in a long time. The dust lies here in a thick\nlayer on the floor and on the furniture. On the wall hangs a bleak and \nworn tapestry. A winding stone staircase leads up into darkness. On the \nwall to the west you can see a huge torch stuck into the solid rock.\nA large portcullis blocks your way to the north.",
-      "SectorType": "Inside",
+      "SectorType": "Field",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {},
@@ -1593,7 +1593,7 @@
     {
       "Name": "On the walls of the Abyss",
       "Description": "You are clutching the steps on the wall so that you don\u0027t fall to the ground\ndown below.  A large sign says : I haven\u0027t gotten any further ... Yet. But \nI\u0027m pushing\nto get finished with this sewer. \nGreetings and Good Health :)\nRedferne The Gentle\nThis stops your journey down, the only exit is up.",
-      "SectorType": "Inside",
+      "SectorType": "Mountain",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1604,7 +1604,7 @@
     {
       "Name": "Cave entrance",
       "Description": "You are standing in the cave entrance. It is very dark  down here. There is\nwriting at the wall. There is an exit  to the north. A stairway leads up.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1616,7 +1616,7 @@
     {
       "Name": "Cave tunnel",
       "Description": "You are walking in a tunnel. It is very cold. You  can feel the presence of a\nliving thing ... SOMEWHERE.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1628,7 +1628,7 @@
     {
       "Name": "Cave room",
       "Description": "You are standing in a room. It\u0027s much cooler now.\nThe walls are glowing.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1641,7 +1641,7 @@
     {
       "Name": "Cave T-cross",
       "Description": "You are standing in a mud-like substance. The smell here is  awful, it is\nrotten. To the west you can see some light.",
-      "SectorType": "Inside",
+      "SectorType": "Field",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1655,7 +1655,7 @@
     {
       "Name": "Cave turning-point",
       "Description": "The mud are getting deeper. You are wondering, \u0027Would  it be an idea to leave,\nbefore I disappear?\u0027. To the  south you notice a flat round stone are blocking\nthe  way. To the west you can see mud.",
-      "SectorType": "Inside",
+      "SectorType": "Field",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1667,7 +1667,7 @@
     {
       "Name": "The secret room",
       "Description": "There is dust all over the place. It looks like nobody  has been here for ages.\nIn the middle of the room you see  a socket with a crystal globe. The globe\nglows with a  pulsing light. To the north you see a stone door. To the\nsouth you see a grey block.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1679,7 +1679,7 @@
     {
       "Name": "The mudhole",
       "Description": "You are standing in a lot of mud. The mud goes to your  chest. You feel the\npresence of something IN the mud.  The only obvious exit is to the west.",
-      "SectorType": "Inside",
+      "SectorType": "Swim",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1691,7 +1691,7 @@
     {
       "Name": "Tunnel",
       "Description": "The mud goes to your knees. Otherwise the tunnel looks\nvery normal.",
-      "SectorType": "Inside",
+      "SectorType": "Mountain",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1704,7 +1704,7 @@
     {
       "Name": "The long tunnel",
       "Description": "Here There is almost no mud, as you stand at the top  of a small rock. Just\nbeside you there are a sign which  says \u0027WARNING! The worms are dangerous!\u0027.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1716,7 +1716,7 @@
     {
       "Name": "The hot room",
       "Description": "You are very surprised, as this room for a change are  hot instead of cold. To\nthe north it goes downwards into  some mud. There are also an exit to the west.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1729,7 +1729,7 @@
     {
       "Name": "The small room",
       "Description": "As you look around you notice a small statue. There are  exits to the west and\nto the east.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1741,7 +1741,7 @@
     {
       "Name": "The stalagmite cave",
       "Description": "You are standing in a stalagmite cave. Water is dripping  from the walls. It is\nvery cold in here.",
-      "SectorType": "Inside",
+      "SectorType": "Field",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1754,7 +1754,7 @@
     {
       "Name": "The stalagmite tunnel",
       "Description": "You have entered a small tunnel. Here it is quite dry.  Maybe it would be an\nidea to rest here.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1766,7 +1766,7 @@
     {
       "Name": "The spongy room",
       "Description": "You definitely NOT like this area. It is very dank, and most\nof the places it is wet.",
-      "SectorType": "Inside",
+      "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1778,7 +1778,7 @@
     {
       "Name": "The stalagmite T-cross",
       "Description": "You are standing in a cross. To the north you can see  some light. Otherwise it\nis dark.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1791,7 +1791,7 @@
     {
       "Name": "The blind end room",
       "Description": "This room is obviously a blind end. To the north you see  a primitive picture.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1803,7 +1803,7 @@
     {
       "Name": "The treasure room",
       "Description": "This room is rich ornamented. The walls has carves showing  persons dancing\naround a sun which is drawn at the floor. It  looks very old, and it is very\ndusty. To the south you see a  secret door.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1814,7 +1814,7 @@
     {
       "Name": "The square lair",
       "Description": "You are standing in the south-east part of the lair. You can\nsee a skeleton lying at the wall.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1827,7 +1827,7 @@
     {
       "Name": "The square lair",
       "Description": "You are standing in the north-east part of the lair. You see\na sign at the wall",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1840,7 +1840,7 @@
     {
       "Name": "The square lair",
       "Description": "You are standing in the north-west part of the lair. Here\u0027s  another sign. There\nare a exit from the lair to the north.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1853,7 +1853,7 @@
     {
       "Name": "The lair end",
       "Description": "You can see a table in front of you. It\u0027s very dusty.  Around the table five\nskeletons are siting. Exits are  north and east.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1865,7 +1865,7 @@
     {
       "Name": "East tunnel",
       "Description": "You are standing in dark tunnel, the exits are east  and west. To the west you\nsee a wooden door.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1877,7 +1877,7 @@
     {
       "Name": "North tunnel",
       "Description": "You are standing in a dark tunnel, it leads upwards.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1890,7 +1890,7 @@
     {
       "Name": "The L-shaped room.",
       "Description": "You are standing in deep darkness. To the south there is a small exit.\nTo the east you can see a gaping hole.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1902,7 +1902,7 @@
     {
       "Name": "The Circular hall.",
       "Description": "You are standing in round hall. To the north, east and south you\ncan see a stone head hanging on the walls.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1914,7 +1914,7 @@
     {
       "Name": "Dusty tunnel",
       "Description": "You are standing in dust. This place has not been  touched for a long time.\nOtherwise it is quite boring  here, looks like a place to rest! To the west you\nsee  the outline of a door. A tunnel leads to the east.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1940,7 +1940,7 @@
     {
       "Name": "The L-shaped room",
       "Description": "You are standing in a L-shaped room. You can hear noises from the long\ntunnel to the east. You can feel fear! A sign is hanging on the wall.",
-      "SectorType": "Inside",
+      "SectorType": "Field",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1952,7 +1952,7 @@
     {
       "Name": "Dragons lair",
       "Description": "You can see burned walls, the floorstones are fiery red.  All kinds of bones\nare scattered all over the floor.  On the walls you can see some burned\nshapes.  You smell burned flesh.  Two creatures are melted into the floor.\nYou\u0027re next.",
-      "SectorType": "Inside",
+      "SectorType": "Field",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1964,7 +1964,7 @@
     {
       "Name": "The burned room",
       "Description": "You are in a room, which once had been quite burned.  There is writing on the\nwall.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1976,7 +1976,7 @@
     {
       "Name": "The wind tunnel",
       "Description": "You are standing in a tunnel. Above you, you can feel\na breeze.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -1988,7 +1988,7 @@
     {
       "Name": "The glittering room",
       "Description": "This room are all bright. In the walls you can see some  silver. Exits are:\nWest, east and south.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -2001,7 +2001,7 @@
     {
       "Name": "The secret passageroom",
       "Description": "You have entered a tiny room. There WAS an exit down, and an\nexit to the west.",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -2013,7 +2013,7 @@
     {
       "Name": "End of long tunnel",
       "Description": "You are at a end of a long tunnel. Right in front of you,  you can see a grey\nmass. To the east you can see a tremendous  long tunnel, but you know that, you\nhas just been there.",
-      "SectorType": "Inside",
+      "SectorType": "Mountain",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -2025,7 +2025,7 @@
     {
       "Name": "Stair-room",
       "Description": "You are standing in a small room. Drawings of faces in pain  are on the walls.\nYou can feel that darkness is ruling this place.  there are two exits: south and\ndown. You have a feeling the downward exit  isn\u0027t finished yet...",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -2036,7 +2036,7 @@
     {
       "Name": "Dark tunnel",
       "Description": "You are standing in a dark tunnel. It continues to the north\nand to the south. Bones are spread on the floor",
-      "SectorType": "Inside",
+      "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -2048,7 +2048,7 @@
     {
       "Name": "Entrance to lair",
       "Description": "The smell here is awful.  To the south you can see some smoke.\nA tunnel leads north, and east.",
-      "SectorType": "Inside",
+      "SectorType": "Field",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -2061,7 +2061,7 @@
     {
       "Name": "North-eastern part of Basilisks cave",
       "Description": "It is hard to see here because of the smoke. To the north you\ncan see barely see a small tunnel. Other exits are to the south\nand to the west.",
-      "SectorType": "Inside",
+      "SectorType": "Field",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -2074,7 +2074,7 @@
     {
       "Name": "South-eastern part of basilisks cave",
       "Description": "There are a very small hole in wall, from where the smoke  are coming from.\nOtherwise it is pitch dark. Exits are north  and west.",
-      "SectorType": "Inside",
+      "SectorType": "Field",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -2086,7 +2086,7 @@
     {
       "Name": "North-western part of basilisks cave",
       "Description": "You can see some hay spread on the floor. The smell is awful here,\nand it makes you feel sick.  The basilisk sleeps here.  Watch out ... Maybe it\nis not far away.",
-      "SectorType": "Inside",
+      "SectorType": "Field",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -2098,7 +2098,7 @@
     {
       "Name": "South-western part of basilisks cave",
       "Description": "You can see nothing but smoke.",
-      "SectorType": "Inside",
+      "SectorType": "Mountain",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -2111,7 +2111,7 @@
     {
       "Name": "The small cave",
       "Description": "You are standing in small cave. You can see  some light in the end. Exits are\nnorth and south.",
-      "SectorType": "Inside",
+      "SectorType": "Field",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -2124,7 +2124,7 @@
     {
       "Name": "The northern end of the pool",
       "Description": "You have wet feet, you are standing in water. The water looks calm. You can\nsee that it\u0027s a big lake. Light seeps from the water.",
-      "SectorType": "Inside",
+      "SectorType": "Hills",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -2137,7 +2137,7 @@
     {
       "Name": "The pool",
       "Description": "You are swimming in water. It is getting deep here. It is dark in this end.",
-      "SectorType": "Inside",
+      "SectorType": "Swim",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -2149,7 +2149,7 @@
     {
       "Name": "The south end of the pool",
       "Description": "You standing in water up to you neck. You can only see water.",
-      "SectorType": "Inside",
+      "SectorType": "Mountain",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
@@ -2161,7 +2161,7 @@
     {
       "Name": "The pool",
       "Description": "You are swimming in DARKNESS. You feel something\ntouching your right leg.",
-      "SectorType": "Inside",
+      "SectorType": "Swim",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
