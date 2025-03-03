@@ -127,6 +127,11 @@ namespace AbarimMUD.Data
 			// Apply equipment
 			foreach (var item in Equipment.Items)
 			{
+				if (item.Item == null)
+				{
+					continue;
+				}
+
 				if (item.Item.Info.Affects != null)
 				{
 					foreach (var pair in item.Item.Info.Affects)

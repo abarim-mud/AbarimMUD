@@ -8,15 +8,19 @@ namespace AbarimMUD.Data
 {
 	public enum ItemType
 	{
+		Light,
 		Ring,
 		Amulet,
 		Helmet,
+		Cloak,
 		Armor,
 		Bracelet,
 		Gloves,
+		Belt,
 		Leggings,
 		Boots,
 		Weapon,
+		Shield,
 		Potion,
 		Scroll,
 		Material,
@@ -134,6 +138,11 @@ namespace AbarimMUD.Data
 			{
 				foreach (var item in creature.Equipment.Items)
 				{
+					if (item.Item == null)
+					{
+						continue;
+					}
+
 					if (item.Item.Info.Id == Id)
 					{
 						creature.InvalidateStats();

@@ -249,7 +249,6 @@ namespace AbarimMUD.Storage
 		{
 			var result = base.CreateJsonOptions();
 			result.Converters.Add(RoomExitConverter);
-			result.Converters.Add(Common.ItemInstanceConverter);
 			result.Converters.Add(Common.InventoryConverter);
 			result.Converters.Add(Common.PlayerClassConverter);
 			result.Converters.Add(Common.ShopConverter);

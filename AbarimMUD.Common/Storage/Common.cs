@@ -215,6 +215,59 @@ namespace AbarimMUD.Storage
 			}
 		}
 
+		public class EquipmentConverterType : JsonConverter<Equipment>
+		{
+			private static JsonSerializerOptions _defaultOptions;
+
+			public static JsonSerializerOptions DefaultOptions
+			{
+				get
+				{
+					if (_defaultOptions == null)
+					{
+						_defaultOptions = JsonUtils.CreateOptions();
+						_defaultOptions.Converters.Add(ItemInstanceConverter);
+					}
+
+					return _defaultOptions;
+				}
+			}
+
+
+			public override Equipment Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+			{
+				var doc = JsonDocument.ParseValue(ref reader);
+
+				var dict = JsonSerializer.Deserialize<Dictionary<SlotType, ItemInstance>>(doc, DefaultOptions);
+
+				var result = new Equipment();
+				foreach (var pair in dict)
+				{
+					result[pair.Key] = pair.Value;
+				}
+
+				return result;
+			}
+
+			public override void Write(Utf8JsonWriter writer, Equipment value, JsonSerializerOptions options)
+			{
+				// Write just an id
+				var dict = new Dictionary<SlotType, ItemInstance>();
+				foreach(var wearItem in value.Items)
+				{
+					if (wearItem.Item == null)
+					{
+						continue;
+					}
+
+					dict[wearItem.Slot] = wearItem.Item;
+				}
+
+
+				JsonSerializer.Serialize(writer, dict, DefaultOptions);
+			}
+		}
+
 		public static readonly EntityConverter<PlayerClass> PlayerClassConverter = new EntityConverter<PlayerClass>(s => s.Id);
 		public static readonly EntityConverter<Skill> SkillConverter = new EntityConverter<Skill>(s => s.Id);
 		public static readonly EntityConverter<Item> ItemConverter = new EntityConverter<Item>(i => i.Id);
@@ -224,6 +277,7 @@ namespace AbarimMUD.Storage
 		public static readonly AffectsConverterType AffectsConverter = new AffectsConverterType();
 		public static readonly EntityConverter<Shop> ShopConverter = new EntityConverter<Shop>(s => s.Id);
 		public static readonly InventoryConverterType InventoryConverter = new InventoryConverterType();
+		public static readonly EquipmentConverterType EquipmentConverter = new EquipmentConverterType();
 		public static readonly EntityConverter<Forge> ForgeConverter = new EntityConverter<Forge>(f => f.Id);
 		public static readonly EntityConverter<ForgeShop> ForgeShopConverter = new EntityConverter<ForgeShop>(f => f.Id);
 		public static readonly EntityConverter<ExchangeShop> ExchangeShopConverter = new EntityConverter<ExchangeShop>(f => f.Id);
@@ -246,6 +300,11 @@ namespace AbarimMUD.Storage
 
 		public static void SetReferences(this WearItem item)
 		{
+			if (item.Item == null)
+			{
+				return;
+			}
+
 			item.Item.SetReferences();
 		}
 
