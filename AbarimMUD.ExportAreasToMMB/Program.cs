@@ -19,6 +19,34 @@ namespace AbarimMUD.ExportAreasToMMB
 
 			DataContext.Load(inputFolder);
 
+			// Spawn mobiles to properly color corresponding rooms
+
+			foreach (var area in Area.Storage)
+			{
+				foreach (var mobileReset in area.MobileResets)
+				{
+					var mobile = Mobile.GetMobileById(mobileReset.MobileId);
+					if (mobile == null)
+					{
+						Log($"{area.Name}: Couldn't find mobile with id {mobileReset.MobileId}");
+						continue;
+					}
+
+					var room = Room.GetRoomById(mobileReset.RoomId);
+					if (room == null)
+					{
+						Log($"{area.Name}: Couldn't find room with id {mobileReset.RoomId}");
+						continue;
+					}
+
+					// Spawn
+					var newMobile = new MobileInstance(mobile)
+					{
+						Room = room
+					};
+				}
+			}
+
 			// Convert DikuLoad areas to MMB Areas
 			// And build dict of all mobiles
 			var areas = new List<MMBArea>();

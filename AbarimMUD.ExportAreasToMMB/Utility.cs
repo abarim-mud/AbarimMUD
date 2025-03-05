@@ -1,4 +1,6 @@
-﻿using AbarimMUD.Data;
+﻿using System.Drawing;
+using System.Linq;
+using AbarimMUD.Data;
 using MUDMapBuilder;
 
 namespace AbarimMUD
@@ -10,6 +12,17 @@ namespace AbarimMUD
 		public static MMBRoom ToMMBRoom(this Room room, Area area)
 		{
 			var result = new MMBRoom(room.Id, $"{room.Name} #{room.Id}");
+
+			// Check if the room is special
+			var isSpecial = Configuration.StartRoomId == room.Id ||
+				(room.Mobiles != null && (from m in room.Mobiles where 
+				 m.Info.Guildmaster != null || m.Info.Shop != null || 
+				 m.Info.ExchangeShop != null || m.Info.Flags.Contains(MobileFlags.Enchanter) select m).FirstOrDefault() != null);
+
+			if (isSpecial)
+			{
+				result.Color = result.FrameColor = Color.Brown;
+			}
 
 			foreach (var pair in room.Exits)
 			{

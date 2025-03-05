@@ -356,8 +356,7 @@
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
-        "South": 19025,
-        "Down": 7068
+        "South": 19025
       },
       "Id": 19028
     },
@@ -368,8 +367,7 @@
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
-        "South": 19026,
-        "Down": 7065
+        "South": 19026
       },
       "Id": 19030
     },
@@ -380,8 +378,7 @@
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
-        "South": 19027,
-        "Down": 7062
+        "South": 19027
       },
       "Id": 19032
     },
@@ -522,8 +519,8 @@
       "Id": 19045
     },
     {
-      "Name": "Thiefs Guild",
-      "Description": "Entry into this room is by invitation only. A large sign at the entrance lists\n10 rules you can never break, the first of which states \u0022Death to any who break\n3 or more of the following rules!\u0022 Full sized statues wearing various types of\nclothing are arranged throughout the room, many a thief practicing their pick\npocket skills.",
+      "Name": "Rogue Guild",
+      "Description": "Entry into this room is by invitation only. A large sign at the entrance lists\n10 rules you can never break, the first of which states \u0022Death to any who break\n3 or more of the following rules!\u0022 Full sized statues wearing various types of\nclothing are arranged throughout the room, many a rige practicing their pick\npocket skills.",
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
@@ -552,20 +549,18 @@
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
-        "South": 19045,
-        "Down": 7432
+        "South": 19045
       },
       "Id": 19048
     },
     {
-      "Name": "Thiefs Guidance",
+      "Name": "Rogue Guildance",
       "Description": "A luxuriously furished room is filled with well dressed men and women, enjoying\ndrinks and snacks, much like what you would expect at a party. An old wrinkled\nman hides in the shadows of a corner, waiting for students to complete their\ntest to prove they are worthy to advance.",
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
-        "South": 19046,
-        "Down": 7403
+        "South": 19046
       },
       "Id": 19050
     },
@@ -576,8 +571,7 @@
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
-        "South": 19047,
-        "Down": 7409
+        "South": 19047
       },
       "Id": 19052
     },
@@ -722,8 +716,7 @@
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
-        "South": 19065,
-        "Down": 7010
+        "South": 19065
       },
       "Id": 19066
     },
@@ -892,8 +885,7 @@
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
-        "South": 19081,
-        "Down": 7110
+        "South": 19081
       },
       "Id": 19082
     },
@@ -916,8 +908,7 @@
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
-        "South": 19084,
-        "Down": 7001
+        "South": 19084
       },
       "Id": 19085
     },
@@ -1550,6 +1541,8 @@
         "NoPurge"
       ],
       "SpecialAttacks": [],
+      "Shop": "alchemist",
+      "ExchangeShop": "alchemist",
       "Id": 19006
     },
     {
@@ -1574,7 +1567,8 @@
       "Loot": [],
       "Flags": [
         "Sentinel",
-        "NoPurge"
+        "NoPurge",
+        "Enchanter"
       ],
       "SpecialAttacks": [],
       "Id": 19007
@@ -1600,6 +1594,7 @@
       "Hit": 1250,
       "DamageRange": "21-46",
       "Loot": [],
+      "Guildmaster": "warrior",
       "Flags": [
         "Sentinel"
       ],
@@ -1744,12 +1739,12 @@
     {
       "Keywords": [
         "trainer",
-        "thief",
+        "rogue",
         "guildmaster"
       ],
-      "ShortDescription": "the thief guildmaster",
-      "LongDescription": "The thief guildmaster stands here, ready to teach you his ways.",
-      "Description": "The thief guildmaster is a slender and nimble figure with a quick wit and a\ncharming smile. He has a sharp jawline, a crooked nose, and sparkling brown eyes\nthat seem to always be on the lookout for his next big score. His hair is a\nshaggy mop of black, styled in a manner that adds to his roguish charm. He moves\nwith a feline grace, his confidence and cunning evident in every step. Despite\nhis sometimes questionable methods, he has a charismatic personality and a\nsilver tongue that makes him well-liked by his fellow thieves.",
+      "ShortDescription": "the rogue guildmaster",
+      "LongDescription": "The rogue guildmaster stands here, ready to teach you his ways.",
+      "Description": "The rogue guildmaster is a slender and nimble figure with a quick wit and a\ncharming smile. He has a sharp jawline, a crooked nose, and sparkling brown eyes\nthat seem to always be on the lookout for his next big score. His hair is a\nshaggy mop of black, styled in a manner that adds to his roguish charm. He moves\nwith a feline grace, his confidence and cunning evident in every step. Despite\nhis sometimes questionable methods, he has a charismatic personality and a\nsilver tongue that makes him well-liked by his fellow thieves.",
       "Level": 50,
       "Gold": 5000,
       "Sex": "Male",
@@ -1762,6 +1757,7 @@
       "Hit": 750,
       "DamageRange": "21-46",
       "Loot": [],
+      "Guildmaster": "rogue",
       "Flags": [
         "Sentinel"
       ],
@@ -1770,11 +1766,11 @@
     },
     {
       "Keywords": [
-        "thief",
+        "rogue",
         "guard"
       ],
       "ShortDescription": "the guild guard",
-      "LongDescription": "A guard is here, protecting the thief guild from intruders.",
+      "LongDescription": "A guard is here, protecting the rogue guild from intruders.",
       "Description": "A short, stocky guild guard.",
       "Level": 50,
       "Gold": 1500,
@@ -1929,6 +1925,9 @@
         "NoPurge"
       ],
       "SpecialAttacks": [],
+      "Shop": "smithy",
+      "ForgeShop": "smithy",
+      "ExchangeShop": "smithy",
       "Id": 19020
     },
     {

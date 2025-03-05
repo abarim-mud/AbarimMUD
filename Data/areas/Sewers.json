@@ -12,8 +12,7 @@
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
-        "South": 7002,
-        "Up": 19085
+        "South": 7002
       },
       "Id": 7001
     },
@@ -125,8 +124,7 @@
       "ManaRate": 0,
       "Exits": {
         "North": 7009,
-        "East": 7018,
-        "Up": 19066
+        "East": 7018
       },
       "Id": 7010
     },
@@ -657,8 +655,7 @@
       "ManaRate": 0,
       "Exits": {
         "North": 7061,
-        "South": 7063,
-        "Up": 19032
+        "South": 7063
       },
       "Id": 7062
     },
@@ -695,8 +692,7 @@
       "ManaRate": 0,
       "Exits": {
         "North": 7064,
-        "South": 7066,
-        "Up": 19030
+        "South": 7066
       },
       "Id": 7065
     },
@@ -733,8 +729,7 @@
       "ManaRate": 0,
       "Exits": {
         "North": 7067,
-        "West": 7060,
-        "Up": 19028
+        "West": 7060
       },
       "Id": 7068
     },
@@ -895,8 +890,7 @@
       "Exits": {
         "North": 7109,
         "East": 7190,
-        "South": 7111,
-        "Up": 19082
+        "South": 7111
       },
       "Id": 7110
     },
@@ -1647,8 +1641,7 @@
       "Exits": {
         "East": 7404,
         "South": 7408,
-        "West": 7402,
-        "Up": 19050
+        "West": 7402
       },
       "Id": 7403
     },
@@ -1721,8 +1714,7 @@
       "ManaRate": 0,
       "Exits": {
         "North": 7407,
-        "West": 7410,
-        "Up": 19052
+        "West": 7410
       },
       "Id": 7409
     },
@@ -2005,8 +1997,7 @@
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
-        "West": 7431,
-        "Up": 19048
+        "West": 7431
       },
       "Id": 7432
     },
