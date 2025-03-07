@@ -1,6 +1,7 @@
 ﻿using AbarimMUD.Data;
 using AbarimMUD.Utils;
 using System.Linq;
+using System.Text;
 
 namespace AbarimMUD.Commands.Player
 {
@@ -23,18 +24,41 @@ namespace AbarimMUD.Commands.Player
 				var grid = new AsciiGrid();
 				grid.SetHeader(0, "Name");
 				grid.SetHeader(1, "Stones");
-				grid.SetHeader(2, "Price");
-				grid.SetHeader(3, "Affects");
+				grid.SetHeader(2, "Items");
+				grid.SetHeader(3, "Materials");
+				grid.SetHeader(4, "Price");
+				grid.SetHeader(5, "Affects");
 
 				var y = 0;
 				foreach (var f in Enchantment.Storage)
 				{
 					grid.SetValue(0, y, f.Name);
 					grid.SetValue(1, y, f.EnchantmentStones.ToString());
-					grid.SetValue(2, y, f.Price.ToString());
+
+					if (!f.HasItemTypesFilters)
+					{
+						grid.SetValue(2, y, "Any");
+					}
+					else
+					{
+						grid.SetValue(2, y, f.ItemTypes.JoinByComma());
+					}
+
+
+					if (!f.HasMaterialsFilters)
+					{
+						grid.SetValue(3, y, "Any");
+					}
+					else
+					{
+						grid.SetValue(3, y, f.Materials.JoinByComma());
+					}
+
+
+					grid.SetValue(4, y, f.Price.ToString());
 
 					var affects = string.Join(", ", (from pair in f.Affects select $"+{pair.Value} {pair.Key}"));
-					grid.SetValue(3, y, affects);
+					grid.SetValue(5, y, affects);
 
 					++y;
 				}
@@ -79,6 +103,36 @@ namespace AbarimMUD.Commands.Player
 			if (enchantment == null)
 			{
 				Tell.Execute(enchanter.GetContext(), $"{creature.ShortDescription} I don't know the enchantment '{args[1]}'.");
+				return false;
+			}
+
+			// Check item type
+			if (enchantment.HasItemTypesFilters && !enchantment.ItemTypes.Contains(invItem.Info.ItemType))
+			{
+				Tell.Execute(enchanter.GetContext(), $"{creature.ShortDescription} The enchantment '{enchantment.Name}' can't be applied to {invItem.Name} of type {invItem.Info.ItemType}. It could be applied only to following item types: {enchantment.ItemTypes.JoinByComma()}");
+				return false;
+			}
+
+			if (enchantment.HasMaterialsFilters &&
+				(invItem.Info.Material == null || !enchantment.Materials.Contains(invItem.Info.Material.Value)))
+			{
+				var sb = new StringBuilder();
+
+				sb.Append($"{creature.ShortDescription} The enchantment '{enchantment.Name}' can't be applied to {invItem.Name} ");
+
+				if (invItem.Info.Material == null)
+				{
+					sb.Append($"without the material.");
+				}
+				else
+				{
+					sb.Append($"made from {invItem.Info.Material.Value}.");
+				}
+
+				sb.Append($"It could be applied only to following materials: {enchantment.Materials.JoinByComma()}.");
+
+				Tell.Execute(enchanter.GetContext(), sb.ToString());
+
 				return false;
 			}
 

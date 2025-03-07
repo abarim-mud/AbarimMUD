@@ -4,9 +4,13 @@
   "Keywords": [
     "accuracy"
   ],
-  "EnchantmentStones": 5,
+  "EnchantmentStones": 2,
   "Price": 1000,
   "Affects": {
-    "AttackBonus": 10
-  }
+    "AttackBonus": 5
+  },
+  "ItemTypes": [],
+  "Materials": [
+    "Leather"
+  ]
 }

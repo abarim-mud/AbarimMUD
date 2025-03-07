@@ -4,9 +4,17 @@
   "Keywords": [
     "damage"
   ],
-  "EnchantmentStones": 5,
-  "Price": 1000,
+  "EnchantmentStones": 8,
+  "Price": 4000,
   "Affects": {
     "Damage": 1
-  }
+  },
+  "ItemTypes": [
+    "Armor",
+    "Bracelet",
+    "Gloves"
+  ],
+  "Materials": [
+    "Leather"
+  ]
 }

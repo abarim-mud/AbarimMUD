@@ -358,5 +358,7 @@ namespace AbarimMUD.Commands
 		}
 
 		public static ExecutionContext GetContext(this Creature creature) => (ExecutionContext)creature.Tag;
+
+		public static string JoinByComma<T>(this HashSet<T> values) => string.Join(", ", values);
 	}
 }

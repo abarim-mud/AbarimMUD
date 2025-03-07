@@ -1,6 +1,7 @@
 ﻿using AbarimMUD.Storage;
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
 {
@@ -17,6 +18,15 @@ namespace AbarimMUD.Data
 		public int Price { get; set; } = 1000;
 
 		public Dictionary<ModifierType, int> Affects { get; set; } = new Dictionary<ModifierType, int>();
+		public HashSet<ItemType> ItemTypes { get; set; } = new HashSet<ItemType>();
+		public HashSet<ItemMaterial> Materials { get; set; } = new HashSet<ItemMaterial>();
+
+
+		[JsonIgnore]
+		public bool HasItemTypesFilters => ItemTypes.Count > 0;
+
+		[JsonIgnore]
+		public bool HasMaterialsFilters => Materials.Count > 0;
 
 		public bool MatchesKeyword(string keyword) => Keywords.StartsWithPattern(keyword);
 
