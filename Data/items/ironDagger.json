@@ -9,12 +9,13 @@
   "ItemType": "Weapon",
   "Price": 500,
   "AttackType": "Pierce",
+  "EnchantmentTier": 1,
+  "Material": "Iron",
   "Affects": {
     "WeaponAttackBonus": 10
   },
   "Flags": [
     "Stab"
   ],
-  "DamageRange": "1-6",
-  "EnchantmentTier": 1
+  "DamageRange": "1-6"
 }

@@ -8,10 +8,10 @@
   "Description": "a leather armor",
   "ItemType": "Armor",
   "Price": 1000,
+  "EnchantmentTier": 1,
+  "Material": "Leather",
   "Affects": {
-    "Armor": 4,
-    "AttackBonus": 5
+    "Armor": 9
   },
-  "Flags": [],
-  "EnchantmentTier": 1
+  "Flags": []
 }

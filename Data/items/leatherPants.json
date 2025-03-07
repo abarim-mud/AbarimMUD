@@ -8,10 +8,10 @@
   "Description": "a leather pants",
   "ItemType": "Leggings",
   "Price": 800,
+  "EnchantmentTier": 1,
+  "Material": "Leather",
   "Affects": {
-    "Armor": 4,
-    "AttackBonus": 5
+    "Armor": 4
   },
-  "Flags": [],
-  "EnchantmentTier": 1
+  "Flags": []
 }

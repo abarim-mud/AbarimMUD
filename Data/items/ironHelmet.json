@@ -8,9 +8,10 @@
   "Description": "an iron helmet",
   "ItemType": "Helmet",
   "Price": 400,
+  "EnchantmentTier": 1,
+  "Material": "Iron",
   "Affects": {
-    "Armor": 4
+    "Armor": 6
   },
-  "Flags": [],
-  "EnchantmentTier": 1
+  "Flags": []
 }

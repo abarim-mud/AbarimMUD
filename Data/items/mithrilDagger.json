@@ -9,12 +9,13 @@
   "ItemType": "Weapon",
   "Price": 1000000,
   "AttackType": "Pierce",
+  "EnchantmentTier": 5,
+  "Material": "Mithril",
   "Affects": {
     "WeaponAttackBonus": 30
   },
   "Flags": [
     "Stab"
   ],
-  "DamageRange": "3-18",
-  "EnchantmentTier": 5
+  "DamageRange": "3-18"
 }

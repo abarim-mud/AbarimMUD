@@ -8,9 +8,10 @@
   "Description": "an iron boots",
   "ItemType": "Boots",
   "Price": 400,
+  "EnchantmentTier": 1,
+  "Material": "Iron",
   "Affects": {
-    "Armor": 4
+    "Armor": 2
   },
-  "Flags": [],
-  "EnchantmentTier": 1
+  "Flags": []
 }

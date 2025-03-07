@@ -8,9 +8,10 @@
   "Description": "an iron greaves",
   "ItemType": "Leggings",
   "Price": 800,
+  "EnchantmentTier": 1,
+  "Material": "Iron",
   "Affects": {
     "Armor": 8
   },
-  "Flags": [],
-  "EnchantmentTier": 1
+  "Flags": []
 }

@@ -9,11 +9,12 @@
   "ItemType": "Weapon",
   "Price": 800,
   "AttackType": "Slash",
+  "EnchantmentTier": 1,
+  "Material": "Iron",
   "Affects": {
     "WeaponAttackBonus": 10,
     "WeaponDamage": 1
   },
   "Flags": [],
-  "DamageRange": "1-8",
-  "EnchantmentTier": 1
+  "DamageRange": "1-8"
 }

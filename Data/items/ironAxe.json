@@ -9,10 +9,11 @@
   "ItemType": "Weapon",
   "Price": 800,
   "AttackType": "Hack",
+  "EnchantmentTier": 1,
+  "Material": "Iron",
   "Affects": {
     "WeaponDamage": 2
   },
   "Flags": [],
-  "DamageRange": "1-8",
-  "EnchantmentTier": 1
+  "DamageRange": "1-8"
 }

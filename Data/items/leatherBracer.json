@@ -8,9 +8,8 @@
   "Description": "a leather bracer",
   "ItemType": "Bracelet",
   "Price": 200,
-  "Affects": {
-    "AttackBonus": 5
-  },
-  "Flags": [],
-  "EnchantmentTier": 1
+  "EnchantmentTier": 1,
+  "Material": "Leather",
+  "Affects": {},
+  "Flags": []
 }

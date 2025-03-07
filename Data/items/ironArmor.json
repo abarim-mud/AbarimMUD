@@ -8,9 +8,10 @@
   "Description": "an iron armor",
   "ItemType": "Armor",
   "Price": 1000,
+  "EnchantmentTier": 1,
+  "Material": "Iron",
   "Affects": {
-    "Armor": 8
+    "Armor": 16
   },
-  "Flags": [],
-  "EnchantmentTier": 1
+  "Flags": []
 }

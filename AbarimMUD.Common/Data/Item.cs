@@ -37,6 +37,13 @@ namespace AbarimMUD.Data
 		Artefact
 	}
 
+	public enum ItemMaterial
+	{
+		Leather,
+		Iron,
+		Mithril
+	}
+
 	public class Item : IStoredInFile, ICloneable
 	{
 		public static readonly MultipleFilesStorage<Item> Storage = new Items();
@@ -70,11 +77,7 @@ namespace AbarimMUD.Data
 
 		public int Price { get; set; } = 100;
 		public AttackType? AttackType { get; set; }
-		public Dictionary<ModifierType, Affect> Affects { get; set; } = new Dictionary<ModifierType, Affect>();
 
-
-		public HashSet<ItemFlags> Flags { get; set; } = new HashSet<ItemFlags>();
-		public ValueRange? DamageRange { get; set; }
 		public int? EnchantmentTier
 		{
 			get => _enchantmentTier;
@@ -91,6 +94,13 @@ namespace AbarimMUD.Data
 			}
 		}
 
+		public ItemMaterial? Material { get; set; }
+
+		public Dictionary<ModifierType, Affect> Affects { get; set; } = new Dictionary<ModifierType, Affect>();
+
+
+		public HashSet<ItemFlags> Flags { get; set; } = new HashSet<ItemFlags>();
+		public ValueRange? DamageRange { get; set; }
 
 		public bool MatchesKeyword(string keyword) => Keywords.StartsWithPattern(keyword);
 
@@ -104,7 +114,9 @@ namespace AbarimMUD.Data
 				Description = Description,
 				AttackType = AttackType,
 				ItemType = ItemType,
-				DamageRange = DamageRange
+				DamageRange = DamageRange,
+				EnchantmentTier = EnchantmentTier,
+				Material = Material,
 			};
 
 			foreach(var pair in Affects)
