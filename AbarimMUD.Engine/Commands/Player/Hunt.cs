@@ -1,5 +1,6 @@
 ﻿using AbarimMUD.Data;
 using AbarimMUD.Utils;
+using System;
 using System.Text;
 
 namespace AbarimMUD.Commands.Player
@@ -62,7 +63,9 @@ namespace AbarimMUD.Commands.Player
 				return false;
 			}
 
-			context.Send(dir.Value.ToString());
+			context.Send($"Started to hunt {target.ShortDescription}");
+			context.HuntTarget = target.Creature;
+			context.LastHunt = DateTime.Now;
 
 			return true;
 		}

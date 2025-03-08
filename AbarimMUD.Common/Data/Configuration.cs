@@ -34,6 +34,7 @@ namespace AbarimMUD.Data
 			public int BaseBuyPricePercentage { get; set; } = 150;
 			public int BaseSellPricePercentage { get; set; } = 25;
 			public int XpMultiply { get; set; } = 2;
+			public int HuntPauseInMs { get; set; } = 6000;
 		}
 
 		public static BaseStorage Storage => InternalStorage;
@@ -66,6 +67,7 @@ namespace AbarimMUD.Data
 		public static int BaseBuyPricePercentage => Instance.BaseBuyPricePercentage;
 		public static int BaseSellPricePercentage => Instance.BaseSellPricePercentage;
 		public static int XpMultiply => Instance.XpMultiply;
+		public static int HuntPauseInMs => Instance.HuntPauseInMs;
 
 		public static void Save() => InternalStorage.Save();
 	}

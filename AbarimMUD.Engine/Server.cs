@@ -12,6 +12,8 @@ using System.Collections.Generic;
 using AbarimMUD.Combat;
 using System.Threading;
 using AbarimMUD.Commands;
+using NLog.Targets;
+using AbarimMUD.Commands.Player;
 
 namespace AbarimMUD
 {
@@ -67,8 +69,8 @@ namespace AbarimMUD
 			// Area.Storage.SaveAll();
 			// PlayerClass.Storage.SaveAll();
 			// Skill.Storage.SaveAll();
-			// Configuration.Save();
 			// Ability.Storage.SaveAll();
+			Configuration.Save();
 			// SkillCostInfo.Storage.SaveAll();
 			// Item.Storage.SaveAll();
 			// GenericLoot.Save();
@@ -76,7 +78,7 @@ namespace AbarimMUD
 			// Forge.Storage.SaveAll();
 			// ForgeShop.Storage.SaveAll();
 			// ExchangeShop.Storage.SaveAll();
-			Enchantment.Storage.SaveAll();
+			// Enchantment.Storage.SaveAll();
 		}
 
 		private bool ProcessRegen(ref int currentValue, int maxValue, ref float fractionalValue, int regenValue, float secondsPassed)
@@ -131,7 +133,7 @@ namespace AbarimMUD
 				// Process creature
 				foreach (var creature in Creature.ActiveCreatures)
 				{
-					var ctx = (Commands.ExecutionContext)creature.Tag;
+					var ctx = creature.GetContext();
 
 					// Hitpoints regen
 					var currentValue = creature.State.Hitpoints;
@@ -165,7 +167,7 @@ namespace AbarimMUD
 
 					// Remove expired effects
 					_toDelete.Clear();
-					foreach(var pair in creature.TemporaryAffects)
+					foreach (var pair in creature.TemporaryAffects)
 					{
 						var ta = pair.Value;
 						var passed = now - ta.Started;
@@ -177,9 +179,56 @@ namespace AbarimMUD
 						}
 					}
 
-					foreach(var key in _toDelete)
+					foreach (var key in _toDelete)
 					{
 						creature.RemoveTemporaryAffect(key);
+					}
+
+					// Hunting
+					if (ctx.HuntTarget != null && (now - ctx.LastHunt).TotalMilliseconds >= Configuration.HuntPauseInMs)
+					{
+						if (ctx.HuntTarget.Room.Id == ctx.Room.Id)
+						{
+							// Found
+							ctx.Send($"The hunting is over.");
+							ctx.HuntTarget = null;
+						}
+						else
+						{
+							var dir = Room.FindFirstStep(ctx.Room, ctx.HuntTarget.Room);
+							if (dir == null)
+							{
+								ctx.Send($"{ctx.HuntTarget.ShortDescription} can't be reached.");
+								ctx.HuntTarget = null;
+							}
+							else
+							{
+								ctx.Send($"You continue to hunt {ctx.HuntTarget.ShortDescription}.");
+								switch (dir.Value)
+								{
+									case Direction.North:
+										BaseCommand.North.Execute(ctx);
+										break;
+									case Direction.East:
+										BaseCommand.East.Execute(ctx);
+										break;
+									case Direction.South:
+										BaseCommand.South.Execute(ctx);
+										break;
+									case Direction.West:
+										BaseCommand.West.Execute(ctx);
+										break;
+									case Direction.Up:
+										BaseCommand.Up.Execute(ctx);
+										break;
+									case Direction.Down:
+										BaseCommand.Down.Execute(ctx);
+										break;
+								}
+
+								ctx.LastHunt = now;
+							}
+						}
 					}
 
 					// Command queue
@@ -187,7 +236,7 @@ namespace AbarimMUD
 				}
 
 				// Process characters
-				foreach(var character in Character.ActiveCharacters)
+				foreach (var character in Character.ActiveCharacters)
 				{
 					// Autoskill
 					var ctx = (Commands.ExecutionContext)character.Tag;
