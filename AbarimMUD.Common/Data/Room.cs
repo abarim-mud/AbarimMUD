@@ -199,33 +199,52 @@ namespace AbarimMUD.Data
 				return null;
 			}
 
-			// We go from target to source
-			// So the last step would return the desired direction
-			var data = new SortedDictionary<int, Queue<Room>>
+			var visited = new HashSet<int>
 			{
-				[0] = new Queue<Room>()
+				source.Id
 			};
 
-			data[0].Enqueue(target);
-
-			var visited = new HashSet<int>();
+			var data = new PriorityQueue<Tuple<Direction, Room>, int>();
 
 			var step = 0;
+
+			// Enqueue first rooms and dirs
+			foreach (var pair in source.Exits)
+			{
+				if (pair.Value == null || pair.Value.TargetRoom == null || visited.Contains(pair.Value.TargetRoom.Id))
+				{
+					continue;
+				}
+
+				var targetRoom = pair.Value.TargetRoom;
+				visited.Add(targetRoom.Id);
+				data.Enqueue(new Tuple<Direction, Room>(pair.Key, targetRoom), 1);
+			}
+
 			while (data.Count > 0)
 			{
-				var top = data.First();
-
-				var room = top.Value.Dequeue();
-				if (top.Value.Count == 0)
+				Tuple<Direction, Room> roomData;
+				int dist;
+				if (!data.TryDequeue(out roomData, out dist))
 				{
-					// Remove empty list
-					data.Remove(top.Key);
+					break;
+				}
+
+				var dir = roomData.Item1;
+				var room = roomData.Item2;
+
+				if (room.Id == target.Id)
+				{
+					// Reached
+					Debug.WriteLine($"FindFirstStep: Found required room at {step} step.");
+
+					// This should store direction from the source room
+					return dir;
 				}
 
 				++step;
 
-				var newDist = top.Key + 1;
-
+				var newDist = dist + 1;
 				foreach (var pair in room.Exits)
 				{
 					if (pair.Value == null || pair.Value.TargetRoom == null || visited.Contains(pair.Value.TargetRoom.Id))
@@ -234,25 +253,8 @@ namespace AbarimMUD.Data
 					}
 
 					var targetRoom = pair.Value.TargetRoom;
-					if (targetRoom.Id == source.Id)
-					{
-						// Reached
-						Debug.WriteLine($"FindFirstStep: Found required room at {step} step.");
-
-						// Return opposite direction
-						return pair.Key.GetOppositeDirection();
-					}
-
 					visited.Add(targetRoom.Id);
-
-					Queue<Room> rooms;
-					if (!data.TryGetValue(newDist, out rooms))
-					{
-						rooms = new Queue<Room>();
-						data[newDist] = rooms;
-					}
-
-					rooms.Enqueue(targetRoom);
+					data.Enqueue(new Tuple<Direction, Room>(dir, targetRoom), newDist);
 				}
 			}
 
