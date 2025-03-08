@@ -101,6 +101,9 @@ namespace AbarimMUD.Data
 		[JsonIgnore]
 		public object Tag { get; set; }
 
+		[JsonIgnore]
+		public abstract HashSet<string> Keywords { get; }
+
 		public event EventHandler Dead;
 		public abstract event EventHandler RoomChanged;
 

@@ -26,5 +26,19 @@ namespace AbarimMUD.Commands
 
 			return null;
 		}
+
+		public static ExecutionContext Find(this Area area, string keyword)
+		{
+			foreach(var room in area.Rooms)
+			{
+				var result = room.Find(keyword);
+				if (result != null)
+				{
+					return result;
+				}
+			}
+
+			return null;
+		}
 	}
 }

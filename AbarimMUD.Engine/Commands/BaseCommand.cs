@@ -26,6 +26,7 @@ namespace AbarimMUD.Commands
 		public static readonly Tell Tell = new Tell();
 		public static readonly Look Look = new Look();
 		public static readonly Where Where = new Where();
+		public static readonly Name NameCommand = new Name();
 
 		public static readonly Score Score = new Score();
 
@@ -107,7 +108,13 @@ namespace AbarimMUD.Commands
 
 				var name = field.Name.ToLower();
 
+				if (name == "namecommand")
+				{
+					name = "name";
+				}
+
 				var cmd = (BaseCommand)field.GetValue(null);
+
 				cmd.Name = name;
 				_allCommands[name] = cmd;
 			}

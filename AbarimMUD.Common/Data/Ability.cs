@@ -7,7 +7,8 @@ namespace AbarimMUD.Data
 	public enum AbilityType
 	{
 		Passive,
-		Physical
+		Physical,
+		Custom
 	}
 
 	public class Ability: IStoredInFile

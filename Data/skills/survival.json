@@ -1,0 +1,26 @@
+{
+  "Id": "survival",
+  "Name": "Survival",
+  "Class": "warrior",
+  "Levels": [
+    {
+      "Modifiers": {},
+      "Abilities": [
+        "hunt"
+      ]
+    },
+    {
+      "Modifiers": {}
+    },
+    {
+      "Modifiers": {}
+    },
+    {
+      "Modifiers": {}
+    },
+    {
+      "Modifiers": {}
+    }
+  ],
+  "Cost": 1
+}

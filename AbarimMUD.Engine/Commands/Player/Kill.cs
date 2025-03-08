@@ -20,10 +20,9 @@ namespace AbarimMUD.Commands.Player
 				return false;
 			}
 
-			var target = context.Room.Find(data);
+			var target = context.EnsureCreatureInRoom(data);
 			if (target == null)
 			{
-				context.Send($"There isnt '{data}' in this room");
 				return false;
 			}
 

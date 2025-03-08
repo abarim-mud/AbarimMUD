@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using AbarimMUD.Utils;
+using System.Text;
 
 namespace AbarimMUD.Commands.Player
 {
@@ -9,16 +10,50 @@ namespace AbarimMUD.Commands.Player
 			var area = context.Room.Area;
 
 			var sb = new StringBuilder();
-			sb.Append("[cyan]");
+			sb.AppendLine($"You are in {area.Name}. Also in this area area:");
 
-			var name = area.Name;
-			if (context.IsStaff)
+			var grid = new AsciiGrid();
+			grid.SetHeader(0, "Name");
+			grid.SetHeader(1, "Location");
+
+			data = data.Trim();
+			if (string.IsNullOrEmpty(data))
 			{
-				name += string.Format(" (#{0})", area.Name);
-			}
+				var y = 0;
+				foreach (var room in area.Rooms)
+				{
+					foreach (var ch in room.Characters)
+					{
+						grid.SetValue(0, y, ch.Name);
+						grid.SetValue(1, y, room.ToString());
+						++y;
+					}
+				}
 
-			sb.AppendLine(name);
-			sb.Append("[reset]");
+				sb.Append(grid.ToString());
+			}
+			else
+			{
+				// Search in the room
+				var target = context.Room.Find(data);
+
+				if (target == null)
+				{
+					// Search in the area
+					target = area.Find(data);
+				}
+
+				if (target == null)
+				{
+					sb.Append(grid.ToString());
+					sb.Append($"Couldn't find anything name '{data}'.");
+				} else
+				{
+					grid.SetValue(0, 0, target.ShortDescription);
+					grid.SetValue(1, 0, target.Room.ToString());
+					sb.Append(grid.ToString());
+				}
+			}
 
 			context.Send(sb.ToString());
 

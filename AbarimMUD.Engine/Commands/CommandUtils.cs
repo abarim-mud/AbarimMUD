@@ -1,6 +1,7 @@
 ﻿using AbarimMUD.Commands.Builder.OLCUtils;
 using AbarimMUD.Data;
 using AbarimMUD.Utils;
+using NLog.Targets;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -360,5 +361,17 @@ namespace AbarimMUD.Commands
 		public static ExecutionContext GetContext(this Creature creature) => (ExecutionContext)creature.Tag;
 
 		public static string JoinByComma<T>(this HashSet<T> values) => string.Join(", ", values);
+
+		public static ExecutionContext EnsureCreatureInRoom(this ExecutionContext context, string keyword)
+		{
+			var result = context.Room.Find(keyword);
+			if (result == null)
+			{
+				context.Send($"There isnt '{keyword}' in this room");
+				return null;
+			}
+
+			return result;
+		}
 	}
 }

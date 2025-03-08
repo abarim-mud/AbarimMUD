@@ -43,7 +43,7 @@ namespace AbarimMUD.Utils
 			// Determine max x and y
 			var max = new Point(0, 0);
 
-			foreach(var pair in _headers)
+			foreach (var pair in _headers)
 			{
 				if (pair.Key > max.X)
 				{
@@ -67,7 +67,7 @@ namespace AbarimMUD.Utils
 
 			// Determine column widths
 			var colWidths = new int[max.X + 1];
-			foreach(var pair in _headers)
+			foreach (var pair in _headers)
 			{
 				var size = pair.Value != null ? pair.Value.Length : 0;
 
@@ -88,7 +88,7 @@ namespace AbarimMUD.Utils
 			}
 
 			var totalWidth = 0;
-			for(var i = 0; i < colWidths.Length; ++i)
+			for (var i = 0; i < colWidths.Length; ++i)
 			{
 				totalWidth += colWidths[i];
 
@@ -130,7 +130,6 @@ namespace AbarimMUD.Utils
 			// Data
 			for (var y = 0; y <= max.Y; ++y)
 			{
-			
 				for (var x = 0; x <= max.X; ++x)
 				{
 					var value = GetValue(x, y);

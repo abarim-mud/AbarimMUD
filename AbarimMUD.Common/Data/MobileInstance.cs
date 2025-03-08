@@ -9,7 +9,6 @@ namespace AbarimMUD.Data
 
 		public Mobile Info { get; }
 
-		public HashSet<string> Keywords => Info.Keywords;
 		public override string ShortDescription => Info.ShortDescription;
 		public override string Description => Info.Description;
 
@@ -38,6 +37,8 @@ namespace AbarimMUD.Data
 				RoomChanged?.Invoke(this, EventArgs.Empty);
 			}
 		}
+
+		public override HashSet<string> Keywords => Info.Keywords;
 
 		public override event EventHandler RoomChanged;
 

@@ -1,7 +1,6 @@
 ﻿using AbarimMUD.Attributes;
 using AbarimMUD.Storage;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -154,6 +153,8 @@ namespace AbarimMUD.Data
 				RoomChanged?.Invoke(this, EventArgs.Empty);
 			}
 		}
+
+		public override HashSet<string> Keywords => new HashSet<string> { Name };
 
 		public override event EventHandler RoomChanged;
 
