@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.Linq;
 using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
@@ -182,6 +185,81 @@ namespace AbarimMUD.Data
 
 		public static Room GetRoomById(int id) => Area.Storage.GetRoomById(id);
 		public static Room EnsureRoomById(int id) => Area.Storage.EnsureRoomById(id);
+
+		/// <summary>
+		/// Find first direction to shortest path between two rooms using Dijkstra algorithm
+		/// </summary>
+		/// <param name="source"></param>
+		/// <param name="target"></param>
+		/// <returns></returns>
+		public static Direction? FindFirstStep(Room source, Room target)
+		{
+			if (source.Id == target.Id)
+			{
+				return null;
+			}
+
+			// We go from target to source
+			// So the last step would return the desired direction
+			var data = new SortedDictionary<int, Queue<Room>>
+			{
+				[0] = new Queue<Room>()
+			};
+
+			data[0].Enqueue(target);
+
+			var visited = new HashSet<int>();
+
+			var step = 0;
+			while (data.Count > 0)
+			{
+				var top = data.First();
+
+				var room = top.Value.Dequeue();
+				if (top.Value.Count == 0)
+				{
+					// Remove empty list
+					data.Remove(top.Key);
+				}
+
+				++step;
+
+				var newDist = top.Key + 1;
+
+				foreach (var pair in room.Exits)
+				{
+					if (pair.Value == null || pair.Value.TargetRoom == null || visited.Contains(pair.Value.TargetRoom.Id))
+					{
+						continue;
+					}
+
+					var targetRoom = pair.Value.TargetRoom;
+					if (targetRoom.Id == source.Id)
+					{
+						// Reached
+						Debug.WriteLine($"FindFirstStep: Found required room at {step} step.");
+
+						// Return opposite direction
+						return pair.Key.GetOppositeDirection();
+					}
+
+					visited.Add(targetRoom.Id);
+
+					Queue<Room> rooms;
+					if (!data.TryGetValue(newDist, out rooms))
+					{
+						rooms = new Queue<Room>();
+						data[newDist] = rooms;
+					}
+
+					rooms.Enqueue(targetRoom);
+				}
+			}
+
+			Debug.WriteLine($"FindFirstStep: Target room isn't reachable. Spent {step} steps.");
+
+			return null;
+		}
 	}
 
 	public static class RoomUtils

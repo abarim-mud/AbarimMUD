@@ -46,7 +46,7 @@ namespace AbarimMUD.Commands.Player
 				if (target == null)
 				{
 					sb.Append(grid.ToString());
-					sb.Append($"Couldn't find anything name '{data}'.");
+					sb.Append($"Couldn't find anything named '{data}'.");
 				} else
 				{
 					grid.SetValue(0, 0, target.ShortDescription);

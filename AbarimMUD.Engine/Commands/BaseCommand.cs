@@ -20,6 +20,7 @@ namespace AbarimMUD.Commands
 		public static readonly Move South = new Move(Direction.South);
 		public static readonly Move Up = new Move(Direction.Up);
 		public static readonly Move Down = new Move(Direction.Down);
+		public static readonly Hunt Hunt = new Hunt();
 
 		public static readonly Say Say = new Say();
 		public static readonly Gossip Gossip = new Gossip();
