@@ -195,7 +195,7 @@ namespace AbarimMUD
 						}
 						else
 						{
-							var dir = Room.FindFirstStep(ctx.Room, ctx.HuntTarget.Room);
+							var dir = PathFinding.FindFirstStep(ctx.Room, ctx.HuntTarget.Room);
 							if (dir == null)
 							{
 								ctx.Send($"{ctx.HuntTarget.ShortDescription} can't be reached.");

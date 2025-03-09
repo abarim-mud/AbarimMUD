@@ -56,7 +56,7 @@ namespace AbarimMUD.Commands.Player
 				return false;
 			}
 
-			var dir = Room.FindFirstStep(context.Room, target.Room);
+			var dir = PathFinding.FindFirstStep(context.Room, target.Room);
 			if (dir == null)
 			{
 				context.Send($"{target.ShortDescription} can't be reached.");
