@@ -10,10 +10,9 @@ namespace AbarimMUD.Commands.Player
 		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
 			// Check the player has the skill
-			var ab = context.Creature.Stats.GetAbility("circlestab");
+			var ab = context.EnsureAbility("circlestab");
 			if (ab == null)
 			{
-				context.Send($"You don't know how to circlestab.");
 				return false;
 			}
 
