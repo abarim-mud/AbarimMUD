@@ -30,7 +30,7 @@ namespace AbarimMUD.Commands.Player
 			}
 
 			var command = FindCommand(data);
-			if (command == null || command.RequiredType > context.Role)
+			if (command == null || command.RequiredRole > context.Role)
 			{
 				context.Send($"Unknown ability '{data}'.");
 				return false;

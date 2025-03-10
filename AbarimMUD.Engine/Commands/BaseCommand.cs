@@ -87,7 +87,7 @@ namespace AbarimMUD.Commands
 		// Owner
 		public static readonly SetType SetType = new SetType();
 
-		public abstract Role RequiredType { get; }
+		public abstract Role RequiredRole { get; }
 		public virtual bool CanFightskill => false;
 		public string Name { get; private set; }
 		public virtual string HelpText => string.Empty;

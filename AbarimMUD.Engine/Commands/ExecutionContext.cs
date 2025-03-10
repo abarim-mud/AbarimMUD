@@ -305,7 +305,7 @@ namespace AbarimMUD.Commands
 					continue;
 				}
 
-				if (command.RequiredType > Role)
+				if (command.RequiredRole > Role)
 				{
 					Send("Arglebargle, glop-glyf!?!");
 					continue;

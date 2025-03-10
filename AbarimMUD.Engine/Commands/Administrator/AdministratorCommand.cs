@@ -4,6 +4,6 @@ namespace AbarimMUD.Commands.Administrator
 {
 	public abstract class AdministratorCommand : BaseCommand
 	{
-		public override Role RequiredType => Role.Owner;
+		public override Role RequiredRole => Role.Administrator;
 	}
 }

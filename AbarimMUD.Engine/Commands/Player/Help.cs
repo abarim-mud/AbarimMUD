@@ -1,20 +1,52 @@
-﻿namespace AbarimMUD.Commands.Player
+﻿using AbarimMUD.Data;
+using System.Text;
+using System.Linq;
+using AbarimMUD.Utils;
+
+namespace AbarimMUD.Commands.Player
 {
 	public sealed class Help : PlayerCommand
 	{
-		protected override bool InternalExecute(ExecutionContext context, string data)
+		private const int CommandsPerRow = 4;
+
+		private static void AppendCommands(StringBuilder sb, Role role, ref int count)
 		{
-			var count = 0;
-			foreach (var ac in AllCommands)
+			sb.AppendLine($"[green]{role} commands:[reset]");
+
+			var commands = (from cmd in AllCommands where cmd.Value.RequiredRole == role select cmd.Value).ToArray();
+
+			var grid = new AsciiGrid();
+
+			for(var i = 0; i < commands.Length; ++i)
 			{
-				if (ac.Value.RequiredType <= context.Role)
-				{
-					context.Send(ac.Key);
-					++count;
-				}
+				var cmd = commands[i];
+
+				grid.SetValue(i % CommandsPerRow, i / CommandsPerRow, cmd.Name.ToLower());
 			}
 
-			context.Send($"Total commands: {count}");
+			sb.AppendLine(grid.ToString());
+
+			count += commands.Length;
+		}
+
+		protected override bool InternalExecute(ExecutionContext context, string data)
+		{
+			var sb = new StringBuilder();
+			var count = 0;
+
+			for(var i = (int)Role.Owner; i >= (int)Role.Player; --i)
+			{
+				if ((int)context.Role < i)
+				{
+					continue;
+				}
+
+				AppendCommands(sb, (Role)i, ref count);
+			}
+
+			sb.AppendLine($"Total commands: {count}");
+
+			context.Send(sb.ToString());
 
 			return true;
 		}
