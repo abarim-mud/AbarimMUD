@@ -12,6 +12,8 @@ namespace AbarimMUD.Commands.Player
 				return false;
 			}
 
+			context.BreakHunt();
+
 			context.Room = Room.EnsureRoomById(Configuration.StartRoomId);
 			context.Send("You recalled.");
 

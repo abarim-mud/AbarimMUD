@@ -116,6 +116,91 @@ namespace AbarimMUD
 			return true;
 		}
 
+		private void ProcessHunt(Commands.ExecutionContext ctx)
+		{
+			var now = DateTime.Now;
+			if (ctx.HuntTarget == null || (now - ctx.LastHunt).TotalMilliseconds < Configuration.HuntPauseInMs)
+			{
+				return;
+			}
+
+			if (ctx.HuntTarget.Room.Id == ctx.Room.Id)
+			{
+				// Found
+				ctx.Send($"The hunt is over. You found {ctx.HuntTarget.ShortDescription}.");
+				ctx.HuntTarget = null;
+			}
+			else
+			{
+				int moveSteps;
+				var dir = PathFinding.FindFirstStep(ctx.Room, ctx.HuntTarget.Room, out moveSteps);
+				if (dir == null)
+				{
+					ctx.Send($"{ctx.HuntTarget.ShortDescription} can't be reached.");
+					ctx.HuntTarget = null;
+				}
+				else
+				{
+					string farAway;
+					if (moveSteps > 20)
+					{
+						farAway = "very far away";
+					}
+					else if (moveSteps > 10)
+					{
+						farAway = "far away";
+					}
+					else if (moveSteps > 5)
+					{
+						farAway = "not so far away";
+					}
+					else if (moveSteps > 2)
+					{
+						farAway = "close";
+					}
+					else
+					{
+						farAway = "very close";
+					}
+
+					ctx.Send($"You continue to hunt {ctx.HuntTarget.ShortDescription}. The target is {farAway}.");
+
+					try
+					{
+						ctx.SuppressStopHuntOnMovement = true;
+
+						switch (dir.Value)
+						{
+							case Direction.North:
+								BaseCommand.North.Execute(ctx);
+								break;
+							case Direction.East:
+								BaseCommand.East.Execute(ctx);
+								break;
+							case Direction.South:
+								BaseCommand.South.Execute(ctx);
+								break;
+							case Direction.West:
+								BaseCommand.West.Execute(ctx);
+								break;
+							case Direction.Up:
+								BaseCommand.Up.Execute(ctx);
+								break;
+							case Direction.Down:
+								BaseCommand.Down.Execute(ctx);
+								break;
+						}
+					}
+					finally
+					{
+						ctx.SuppressStopHuntOnMovement = false;
+					}
+
+					ctx.LastHunt = now;
+				}
+			}
+		}
+
 		private void WorldTick()
 		{
 			Fight.Process();
@@ -185,51 +270,7 @@ namespace AbarimMUD
 					}
 
 					// Hunting
-					if (ctx.HuntTarget != null && (now - ctx.LastHunt).TotalMilliseconds >= Configuration.HuntPauseInMs)
-					{
-						if (ctx.HuntTarget.Room.Id == ctx.Room.Id)
-						{
-							// Found
-							ctx.Send($"The hunting is over.");
-							ctx.HuntTarget = null;
-						}
-						else
-						{
-							var dir = PathFinding.FindFirstStep(ctx.Room, ctx.HuntTarget.Room);
-							if (dir == null)
-							{
-								ctx.Send($"{ctx.HuntTarget.ShortDescription} can't be reached.");
-								ctx.HuntTarget = null;
-							}
-							else
-							{
-								ctx.Send($"You continue to hunt {ctx.HuntTarget.ShortDescription}.");
-								switch (dir.Value)
-								{
-									case Direction.North:
-										BaseCommand.North.Execute(ctx);
-										break;
-									case Direction.East:
-										BaseCommand.East.Execute(ctx);
-										break;
-									case Direction.South:
-										BaseCommand.South.Execute(ctx);
-										break;
-									case Direction.West:
-										BaseCommand.West.Execute(ctx);
-										break;
-									case Direction.Up:
-										BaseCommand.Up.Execute(ctx);
-										break;
-									case Direction.Down:
-										BaseCommand.Down.Execute(ctx);
-										break;
-								}
-
-								ctx.LastHunt = now;
-							}
-						}
-					}
+					ProcessHunt(ctx);
 
 					// Command queue
 					ctx.ProcessCommandQueue();

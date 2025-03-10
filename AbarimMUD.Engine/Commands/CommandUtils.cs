@@ -373,5 +373,28 @@ namespace AbarimMUD.Commands
 
 			return result;
 		}
+
+		public static void BreakHunt(this ExecutionContext context)
+		{
+			if (context.HuntTarget == null)
+			{
+				return;
+			}
+
+			context.Send("You stop the hunt.");
+			context.HuntTarget = null;
+		}
+
+		public static Ability EnsureAbility(this ExecutionContext context, string name)
+		{
+			// Check the player has the skill
+			var result = context.Creature.Stats.GetAbility(name);
+			if (result == null)
+			{
+				context.Send($"You don't know how to {name}.");
+			}
+
+			return result;
+		}
 	}
 }

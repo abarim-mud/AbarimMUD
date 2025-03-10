@@ -67,6 +67,7 @@ namespace AbarimMUD.Commands
 		public bool HasCommands => _commandQueue.Count > 0;
 		public Creature HuntTarget { get; set; }
 		public DateTime LastHunt { get; set; }
+		public bool SuppressStopHuntOnMovement { get; set; }
 
 		public ExecutionContext(Session session)
 		{

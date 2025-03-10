@@ -1,19 +1,22 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace AbarimMUD.Data
 {
 	public static class PathFinding
 	{
-		private struct RoomDir
+		private class Node
 		{
-			public Direction InitialDirection;
-			public Room Room;
+			public Room Room { get; }
+			public Direction SourceDirection { get; }
+			public Node Source { get; }
 
-			public RoomDir(Direction initialDirection, Room room)
+			public Node(Room room, Direction sourceDirection, Node source)
 			{
-				InitialDirection = initialDirection;
-				Room = room;
+				Room = room ?? throw new ArgumentNullException(nameof(room));
+				SourceDirection = sourceDirection;
+				Source = source;
 			}
 		}
 
@@ -111,8 +114,9 @@ namespace AbarimMUD.Data
 		/// <param name="source"></param>
 		/// <param name="target"></param>
 		/// <returns></returns>
-		public static Direction? FindFirstStep(Room source, Room target)
+		public static Direction? FindFirstStep(Room source, Room target, out int moveSteps)
 		{
+			moveSteps = 0;
 			if (source.Id == target.Id)
 			{
 				return null;
@@ -120,16 +124,13 @@ namespace AbarimMUD.Data
 
 			UpdateCoords();
 
+			// Enqueue first movements
 			var visited = new HashSet<int>
 			{
 				source.Id
 			};
 
-			var data = new PriorityQueue<RoomDir, int>();
-
-			var step = 0;
-
-			// Enqueue first rooms and dirs
+			var data = new PriorityQueue<Node, int>();
 			foreach (var pair in source.Exits)
 			{
 				if (pair.Value == null || pair.Value.TargetRoom == null || visited.Contains(pair.Value.TargetRoom.Id))
@@ -141,22 +142,34 @@ namespace AbarimMUD.Data
 				visited.Add(targetRoom.Id);
 
 				var dist = Distance(targetRoom, target);
-				data.Enqueue(new RoomDir(pair.Key, targetRoom), dist);
+				data.Enqueue(new Node(targetRoom, pair.Key, null), dist);
 			}
 
+
+			data.Enqueue(new Node(source, Direction.North, null), Distance(source, target));
+
+			var step = 0;
 			while (data.Count > 0)
 			{
-				var roomData = data.Dequeue();
-				var dir = roomData.InitialDirection;
-				var room = roomData.Room;
+				var node = data.Dequeue();
+				var room = node.Room;
 
 				if (room.Id == target.Id)
 				{
 					// Reached
 					Debug.WriteLine($"FindFirstStep: Found required room at {step} step.");
 
+					// Go back to the start, counting steps
+					moveSteps = 1;
+					var n = node;
+					while (n.Source != null)
+					{
+						++moveSteps;
+						n = n.Source;
+					}
+
 					// This  should store direction from the source room
-					return dir;
+					return n.SourceDirection;
 				}
 
 				++step;
@@ -172,7 +185,7 @@ namespace AbarimMUD.Data
 					visited.Add(targetRoom.Id);
 
 					var dist = Distance(targetRoom, target);
-					data.Enqueue(new RoomDir(dir, targetRoom), dist);
+					data.Enqueue(new Node(targetRoom, pair.Key, node), dist);
 				}
 			}
 

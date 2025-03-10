@@ -9,6 +9,13 @@ namespace AbarimMUD.Commands.Player
 	{
 		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
+			// Check the player has the skill
+			var ability = context.EnsureAbility("hunt");
+			if (ability == null)
+			{
+				return false;
+			}
+
 			data = data.Trim();
 			if (string.IsNullOrEmpty(data))
 			{
@@ -56,7 +63,8 @@ namespace AbarimMUD.Commands.Player
 				return false;
 			}
 
-			var dir = PathFinding.FindFirstStep(context.Room, target.Room);
+			int moveSteps;
+			var dir = PathFinding.FindFirstStep(context.Room, target.Room, out moveSteps);
 			if (dir == null)
 			{
 				context.Send($"{target.ShortDescription} can't be reached.");

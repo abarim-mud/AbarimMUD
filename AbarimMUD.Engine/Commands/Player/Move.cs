@@ -26,11 +26,18 @@ namespace AbarimMUD.Commands.Player
 			if (context.State.Moves < cost)
 			{
 				context.Send("You're too tired to move.");
+				context.BreakHunt();
 				return false;
+			}
+
+			if (!context.SuppressStopHuntOnMovement)
+			{
+				context.BreakHunt();
 			}
 
 			// Notify inhabits of the source room about the leave
 			var dirName = _dir.GetName();
+			context.Send($"You go {dirName}.");
 			context.SendRoomExceptMe(string.Format("{0} leaves {1}.", context.ShortDescription, dirName));
 
 			// Perform the movement
