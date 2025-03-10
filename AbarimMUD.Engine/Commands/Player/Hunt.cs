@@ -71,7 +71,7 @@ namespace AbarimMUD.Commands.Player
 				return false;
 			}
 
-			context.Send($"Started to hunt {target.ShortDescription}");
+			context.Send($"You start to hunt {target.ShortDescription}");
 			context.HuntTarget = target.Creature;
 			context.LastHunt = DateTime.Now;
 

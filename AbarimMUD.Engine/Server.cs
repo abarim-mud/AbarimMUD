@@ -190,6 +190,13 @@ namespace AbarimMUD
 								BaseCommand.Down.Execute(ctx);
 								break;
 						}
+
+						if (ctx.HuntTarget.Room.Id == ctx.Room.Id)
+						{
+							// Found
+							ctx.Send($"The hunt is over. You found {ctx.HuntTarget.ShortDescription}.");
+							ctx.HuntTarget = null;
+						}
 					}
 					finally
 					{
