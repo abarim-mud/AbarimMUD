@@ -11,7 +11,7 @@ namespace AbarimMUD.Commands.Player
 
 		private static void AppendCommands(StringBuilder sb, Role role, ref int count)
 		{
-			sb.AppendLine($"[green]{role} commands:[reset]");
+			sb.AppendLine($"[white]{role} commands:[reset]");
 
 			var commands = (from cmd in AllCommands where cmd.Value.RequiredRole == role select cmd.Value).ToArray();
 

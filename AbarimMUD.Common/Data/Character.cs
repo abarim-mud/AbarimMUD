@@ -124,6 +124,7 @@ namespace AbarimMUD.Data
 
 		public string FightSkill { get; set; }
 		public string StabWeapon { get; set; }
+		public string Title { get; set; }
 
 		public override string ShortDescription => Name;
 		public override string Description => PlayerDescription;

@@ -396,5 +396,15 @@ namespace AbarimMUD.Commands
 
 			return result;
 		}
+
+		public static string BuildTitle(this Character character)
+		{
+			return string.IsNullOrEmpty(character.Title) ? "The Untitled" : character.Title;
+		}
+
+		public static string NameAndTitle(this Character character)
+		{
+			return $"{character.Name} {character.BuildTitle()}";
+		}
 	}
 }

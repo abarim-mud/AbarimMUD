@@ -61,7 +61,7 @@ namespace AbarimMUD.Commands.Player
 					continue;
 				}
 
-				sb.AppendLine(string.Format("{0} is standing here.", character.Name));
+				sb.AppendLine($"{character.NameAndTitle()} is standing here.");
 			}
 
 			// Mobiles
@@ -97,19 +97,24 @@ namespace AbarimMUD.Commands.Player
 			if (hpPercentage >= 100)
 			{
 				return "is in excellent condition.";
-			} else if (hpPercentage >= 90)
+			}
+			else if (hpPercentage >= 90)
 			{
 				return "has a few scratches.";
-			} else if (hpPercentage >= 75)
+			}
+			else if (hpPercentage >= 75)
 			{
 				return "has some small wounds and bruises.";
-			} else if (hpPercentage >= 50)
+			}
+			else if (hpPercentage >= 50)
 			{
 				return "has quite a few wounds.";
-			} else if (hpPercentage >= 30)
+			}
+			else if (hpPercentage >= 30)
 			{
 				return "has some big nasty wounds and scratches.";
-			} else if (hpPercentage >= 15)
+			}
+			else if (hpPercentage >= 15)
 			{
 				return "looks pretty hurt.";
 			}

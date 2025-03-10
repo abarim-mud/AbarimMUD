@@ -14,6 +14,9 @@ namespace AbarimMUD.Commands
 
 		// Players
 		public static readonly Help Help = new Help();
+		public static readonly Who Who = new Who();
+		public static readonly Title Title = new Title();
+
 		public static readonly Move East = new Move(Direction.East);
 		public static readonly Move West = new Move(Direction.West);
 		public static readonly Move North = new Move(Direction.North);
