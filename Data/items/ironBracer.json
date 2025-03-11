@@ -1,0 +1,17 @@
+{
+  "Id": "ironBracer",
+  "Keywords": [
+    "iron",
+    "bracer"
+  ],
+  "ShortDescription": "an iron bracer",
+  "Description": "an iron bracer",
+  "ItemType": "Bracer",
+  "Price": 400,
+  "EnchantmentTier": 1,
+  "Material": "Iron",
+  "Affects": {
+    "Armor": 1
+  },
+  "Flags": []
+}

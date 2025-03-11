@@ -2,7 +2,7 @@
   "Id": "smithy",
   "Exchanges": [
     {
-      "Item": "ironOre",
+      "Item": "ironNugget",
       "Price": [
         {
           "Item": "chunkOfLeather",
@@ -14,7 +14,7 @@
       "Item": "chunkOfLeather",
       "Price": [
         {
-          "Item": "ironOre",
+          "Item": "ironNugget",
           "Quantity": 2
         }
       ]

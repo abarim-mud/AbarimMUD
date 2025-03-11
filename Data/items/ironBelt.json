@@ -1,0 +1,17 @@
+{
+  "Id": "ironBelt",
+  "Keywords": [
+    "iron",
+    "belt"
+  ],
+  "ShortDescription": "an iron belt",
+  "Description": "an iron belt",
+  "ItemType": "Belt",
+  "Price": 400,
+  "EnchantmentTier": 1,
+  "Material": "Iron",
+  "Affects": {
+    "Armor": 1
+  },
+  "Flags": []
+}

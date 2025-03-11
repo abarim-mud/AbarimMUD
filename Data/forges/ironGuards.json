@@ -1,0 +1,11 @@
+{
+  "Id": "ironGuards",
+  "Components": [
+    {
+      "Item": "ironNugget",
+      "Quantity": 3
+    }
+  ],
+  "Price": 100,
+  "Result": "ironGuards"
+}

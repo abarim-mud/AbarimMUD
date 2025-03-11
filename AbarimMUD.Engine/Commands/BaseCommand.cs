@@ -14,8 +14,6 @@ namespace AbarimMUD.Commands
 
 		// Players
 		public static readonly Help Help = new Help();
-		public static readonly Who Who = new Who();
-		public static readonly Title Title = new Title();
 
 		public static readonly Move East = new Move(Direction.East);
 		public static readonly Move West = new Move(Direction.West);
@@ -25,6 +23,9 @@ namespace AbarimMUD.Commands
 		public static readonly Move Down = new Move(Direction.Down);
 		public static readonly Hunt Hunt = new Hunt();
 		public static readonly Nohunt Nohunt = new Nohunt();
+
+		public static readonly Who Who = new Who();
+		public static readonly Title Title = new Title();
 
 		public static readonly Say Say = new Say();
 		public static readonly Gossip Gossip = new Gossip();

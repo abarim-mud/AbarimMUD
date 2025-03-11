@@ -59,15 +59,18 @@
     }
   ],
   "ItemTypes": [
+    "Light",
     "Ring",
-    "Amulet",
+    "ShoulderGuards",
+    "Neck",
     "Helmet",
     "Armor",
-    "Bracelet",
+    "Bracer",
     "Gloves",
     "Leggings",
     "Boots",
     "Weapon",
+    "Shield",
     "Material"
   ]
 }

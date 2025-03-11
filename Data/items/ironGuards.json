@@ -1,0 +1,18 @@
+{
+  "Id": "ironGuards",
+  "Keywords": [
+    "iron",
+    "shoulder",
+    "guards"
+  ],
+  "ShortDescription": "an iron shoulder guards",
+  "Description": "an iron shoulder guards",
+  "ItemType": "ShoulderGuards",
+  "Price": 400,
+  "EnchantmentTier": 1,
+  "Material": "Iron",
+  "Affects": {
+    "Armor": 5
+  },
+  "Flags": []
+}

@@ -10,11 +10,12 @@ namespace AbarimMUD.Data
 	{
 		Light,
 		Ring,
-		Amulet,
+		ShoulderGuards,
+		Neck,
 		Helmet,
 		Cloak,
 		Armor,
-		Bracelet,
+		Bracer,
 		Gloves,
 		Belt,
 		Leggings,
@@ -179,10 +180,10 @@ namespace AbarimMUD.Data
 			Array.Fill(_armorTypes, false);
 
 			_armorTypes[(int)ItemType.Ring] = true;
-			_armorTypes[(int)ItemType.Amulet] = true;
+			_armorTypes[(int)ItemType.Neck] = true;
 			_armorTypes[(int)ItemType.Helmet] = true;
 			_armorTypes[(int)ItemType.Armor] = true;
-			_armorTypes[(int)ItemType.Bracelet] = true;
+			_armorTypes[(int)ItemType.Bracer] = true;
 			_armorTypes[(int)ItemType.Gloves] = true;
 			_armorTypes[(int)ItemType.Leggings] = true;
 			_armorTypes[(int)ItemType.Boots] = true;

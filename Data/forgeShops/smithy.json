@@ -1,6 +1,11 @@
 {
   "Id": "smithy",
   "Forges": [
-    "leatherBracer"
+    "leatherBracer",
+    "ironRing",
+    "ironGuards",
+    "ironGorget",
+    "ironBelt",
+    "ironBracer"
   ]
 }
