@@ -11,11 +11,12 @@
     "ironArmor",
     "ironGloves",
     "ironGreaves",
-    "ironBoots"
+    "ironBoots",
+    "ironShield"
   ],
   "StartingSkills": [
     "melee",
-	"survival"
+    "survival"
   ],
   "StartingInventory": [
     {

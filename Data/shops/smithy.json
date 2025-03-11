@@ -38,6 +38,10 @@
       "Quantity": 5
     },
     {
+      "Item": "ironShield",
+      "Quantity": 5
+    },
+    {
       "Item": "leatherArmor",
       "Quantity": 5
     },
@@ -55,6 +59,10 @@
     },
     {
       "Item": "leatherHelmet",
+      "Quantity": 5
+    },
+    {
+      "Item": "leatherShield",
       "Quantity": 5
     }
   ],

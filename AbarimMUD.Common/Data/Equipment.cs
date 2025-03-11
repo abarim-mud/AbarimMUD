@@ -9,8 +9,8 @@ namespace AbarimMUD.Data
 		Light,
 		RingLeft,
 		RingRight,
-		Amulet1,
-		Amulet2,
+		Neck1,
+		Neck2,
 		Head,
 		Cloak,
 		Body,
@@ -61,8 +61,8 @@ namespace AbarimMUD.Data
 			_slotsArmorsMap[SlotType.Light] = ItemType.Light;
 			_slotsArmorsMap[SlotType.RingLeft] = ItemType.Ring;
 			_slotsArmorsMap[SlotType.RingRight] = ItemType.Ring;
-			_slotsArmorsMap[SlotType.Amulet1] = ItemType.Neck;
-			_slotsArmorsMap[SlotType.Amulet2] = ItemType.Neck;
+			_slotsArmorsMap[SlotType.Neck1] = ItemType.Neck;
+			_slotsArmorsMap[SlotType.Neck2] = ItemType.Neck;
 			_slotsArmorsMap[SlotType.Head] = ItemType.Helmet;
 			_slotsArmorsMap[SlotType.Cloak] = ItemType.Cloak;
 			_slotsArmorsMap[SlotType.Body] = ItemType.Armor;

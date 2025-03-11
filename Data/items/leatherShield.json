@@ -1,0 +1,17 @@
+{
+  "Id": "leatherShield",
+  "Keywords": [
+    "leather",
+    "shield"
+  ],
+  "ShortDescription": "an leather shield",
+  "Description": "an leather shield",
+  "ItemType": "Shield",
+  "Price": 400,
+  "EnchantmentTier": 1,
+  "Material": "Leather",
+  "Affects": {
+    "Armor": 4
+  },
+  "Flags": []
+}

@@ -11,7 +11,8 @@
     "leatherArmor",
     "leatherGloves",
     "leatherPants",
-    "leatherBoots"
+    "leatherBoots",
+    "leatherShield"
   ],
   "StartingSkills": [
     "sneaking",
