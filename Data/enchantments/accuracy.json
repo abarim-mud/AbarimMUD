@@ -4,10 +4,10 @@
   "Keywords": [
     "accuracy"
   ],
-  "EnchantmentStones": 2,
+  "EnchantmentStones": 4,
   "Price": 1000,
   "Affects": {
-    "AttackBonus": 5
+    "AttackBonus": 10
   },
   "ItemTypes": [],
   "Materials": [

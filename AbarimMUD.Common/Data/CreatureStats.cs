@@ -123,6 +123,15 @@ namespace AbarimMUD.Data
 		{
 			switch (type)
 			{
+				case ModifierType.Hitpoints:
+					MaxHitpoints += val;
+					break;
+				case ModifierType.Mana:
+					MaxMana += val;
+					break;
+				case ModifierType.Moves:
+					MaxMoves += val;
+					break;
 				case ModifierType.AttackBonus:
 					foreach (var atk in Attacks)
 					{

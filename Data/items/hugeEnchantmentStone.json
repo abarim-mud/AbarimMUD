@@ -7,7 +7,7 @@
   ],
   "ShortDescription": "a huge enchantment stone",
   "Description": "a huge enchantment stone",
-  "ItemType": "Enchant5",
+  "ItemType": "Enchant4",
   "Price": 100000,
   "Affects": {},
   "Flags": []

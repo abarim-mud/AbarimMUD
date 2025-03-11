@@ -1,0 +1,18 @@
+{
+  "Id": "leatherGuards",
+  "Keywords": [
+    "leather",
+    "shoulder",
+    "guards"
+  ],
+  "ShortDescription": "a leather shoulder guards",
+  "Description": "a leather shoulder guards",
+  "ItemType": "ShoulderGuards",
+  "Price": 300,
+  "EnchantmentTier": 1,
+  "Material": "Leather",
+  "Affects": {
+    "Armor": 3
+  },
+  "Flags": []
+}

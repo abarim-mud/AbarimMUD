@@ -1,11 +1,104 @@
 {
   "Id": "smithy",
   "Forges": [
-    "leatherBracer",
-    "ironRing",
-    "ironGuards",
-    "ironGorget",
-    "ironBelt",
-    "ironBracer"
+    {
+      "Id": "leatherGuards",
+      "Components": [
+        {
+          "Item": "chunkOfLeather",
+          "Quantity": 3
+        }
+      ],
+      "Price": 100,
+      "Result": "leatherGuards"
+    },
+    {
+      "Id": "leatherGorget",
+      "Components": [
+        {
+          "Item": "chunkOfLeather",
+          "Quantity": 2
+        }
+      ],
+      "Price": 100,
+      "Result": "leatherGorget"
+    },
+    {
+      "Id": "leatherBelt",
+      "Components": [
+        {
+          "Item": "chunkOfLeather",
+          "Quantity": 2
+        }
+      ],
+      "Price": 100,
+      "Result": "leatherBelt"
+    },
+    {
+      "Id": "leatherBracer",
+      "Components": [
+        {
+          "Item": "chunkOfLeather",
+          "Quantity": 2
+        }
+      ],
+      "Price": 100,
+      "Result": "leatherBracer"
+    },
+    {
+      "Id": "ironRing",
+      "Components": [
+        {
+          "Item": "ironIngot",
+          "Quantity": 2
+        }
+      ],
+      "Price": 100,
+      "Result": "ironRing"
+    },
+    {
+      "Id": "ironGuards",
+      "Components": [
+        {
+          "Item": "ironIngot",
+          "Quantity": 3
+        }
+      ],
+      "Price": 100,
+      "Result": "ironGuards"
+    },
+    {
+      "Id": "ironGorget",
+      "Components": [
+        {
+          "Item": "ironIngot",
+          "Quantity": 2
+        }
+      ],
+      "Price": 100,
+      "Result": "ironGorget"
+    },
+    {
+      "Id": "ironBelt",
+      "Components": [
+        {
+          "Item": "ironIngot",
+          "Quantity": 2
+        }
+      ],
+      "Price": 100,
+      "Result": "ironBelt"
+    },
+    {
+      "Id": "ironBracer",
+      "Components": [
+        {
+          "Item": "ironIngot",
+          "Quantity": 2
+        }
+      ],
+      "Price": 100,
+      "Result": "ironBracer"
+    }
   ]
 }

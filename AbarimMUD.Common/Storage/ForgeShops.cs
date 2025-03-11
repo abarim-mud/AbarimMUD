@@ -13,7 +13,8 @@ namespace AbarimMUD.Storage
 		{
 			var result = base.CreateJsonOptions();
 
-			result.Converters.Add(Common.ForgeConverter);
+			result.Converters.Add(Common.ItemConverter);
+			result.Converters.Add(Common.InventoryConverter);
 
 			return result;
 		}
@@ -26,7 +27,9 @@ namespace AbarimMUD.Storage
 			{
 				for(var i = 0; i < forgeShop.Forges.Count; ++i)
 				{
-					forgeShop.Forges[i] = Forge.EnsureForgeById(forgeShop.Forges[i].Id);
+					var forge = forgeShop.Forges[i];
+					forge.Components.SetReferences();
+					forge.Result = Item.EnsureItemById(forge.Result.Id);
 				}
 			}
 		}

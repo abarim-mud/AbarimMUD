@@ -278,7 +278,6 @@ namespace AbarimMUD.Storage
 		public static readonly EntityConverter<Shop> ShopConverter = new EntityConverter<Shop>(s => s.Id);
 		public static readonly InventoryConverterType InventoryConverter = new InventoryConverterType();
 		public static readonly EquipmentConverterType EquipmentConverter = new EquipmentConverterType();
-		public static readonly EntityConverter<Forge> ForgeConverter = new EntityConverter<Forge>(f => f.Id);
 		public static readonly EntityConverter<ForgeShop> ForgeShopConverter = new EntityConverter<ForgeShop>(f => f.Id);
 		public static readonly EntityConverter<ExchangeShop> ExchangeShopConverter = new EntityConverter<ExchangeShop>(f => f.Id);
 		public static readonly EntityConverter<Enchantment> EnchantmentConverter = new EntityConverter<Enchantment>(s => s.Id);

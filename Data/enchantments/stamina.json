@@ -1,0 +1,14 @@
+{
+  "Id": "stamina",
+  "Name": "stamina",
+  "Keywords": [
+    "stamina"
+  ],
+  "EnchantmentStones": 2,
+  "Price": 1000,
+  "Affects": {
+    "Moves": 5
+  },
+  "ItemTypes": [],
+  "Materials": []
+}

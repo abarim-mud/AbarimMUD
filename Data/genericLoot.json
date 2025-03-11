@@ -48,7 +48,7 @@
           {
             "Items": [
               {
-                "Item": "ironNugget",
+                "Item": "ironIngot",
                 "Quantity": 1
               }
             ],
@@ -62,7 +62,7 @@
           {
             "Items": [
               {
-                "Item": "tinyEnchantmentStone",
+                "Item": "smallEnchantmentStone",
                 "Quantity": 1
               }
             ],

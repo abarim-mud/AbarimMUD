@@ -1,0 +1,17 @@
+{
+  "Id": "leatherGorget",
+  "Keywords": [
+    "leather",
+    "gorget"
+  ],
+  "ShortDescription": "a leather gorget",
+  "Description": "a leather gorget",
+  "ItemType": "Neck",
+  "Price": 200,
+  "EnchantmentTier": 1,
+  "Material": "Leather",
+  "Affects": {
+    "Armor": 2
+  },
+  "Flags": []
+}

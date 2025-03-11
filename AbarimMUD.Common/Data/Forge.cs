@@ -1,12 +1,9 @@
-﻿using AbarimMUD.Storage;
-using System;
+﻿using System;
 
 namespace AbarimMUD.Data
 {
-	public class Forge : IStoredInFile, ICloneable
+	public class Forge : ICloneable
 	{
-		public static readonly MultipleFilesStorage<Forge> Storage = new Forges();
-
 		public string Id { get; set; }
 
 		public Inventory Components { get; set; } = new Inventory();
@@ -27,11 +24,5 @@ namespace AbarimMUD.Data
 		}
 
 		public object Clone() => CloneItem();
-
-		public void Create() => Storage.Create(this);
-		public void Save() => Storage.Save(this);
-
-		public static Forge GetForgeById(string id) => Storage.GetByKey(id);
-		public static Forge EnsureForgeById(string id) => Storage.EnsureByKey(id);
 	}
 }

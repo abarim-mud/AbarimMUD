@@ -1,0 +1,13 @@
+{
+  "Id": "ironIngot",
+  "Keywords": [
+    "iron",
+    "ingot"
+  ],
+  "ShortDescription": "an iron ingot",
+  "Description": "an iron ingot",
+  "ItemType": "Material",
+  "Price": 100,
+  "Affects": {},
+  "Flags": []
+}

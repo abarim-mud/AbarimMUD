@@ -4,6 +4,9 @@ namespace AbarimMUD.Data
 {
 	public enum ModifierType
 	{
+		Hitpoints,
+		Mana,
+		Moves,
 		AttacksCount,
 		AttackBonus,
 		WeaponAttackBonus,

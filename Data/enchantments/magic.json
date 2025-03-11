@@ -1,0 +1,14 @@
+{
+  "Id": "magic",
+  "Name": "magic",
+  "Keywords": [
+    "magic"
+  ],
+  "EnchantmentStones": 2,
+  "Price": 1000,
+  "Affects": {
+    "Mana": 5
+  },
+  "ItemTypes": [],
+  "Materials": []
+}

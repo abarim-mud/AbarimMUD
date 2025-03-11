@@ -1,0 +1,14 @@
+{
+  "Id": "health",
+  "Name": "health",
+  "Keywords": [
+    "health"
+  ],
+  "EnchantmentStones": 2,
+  "Price": 1000,
+  "Affects": {
+    "Hitpoints": 5
+  },
+  "ItemTypes": [],
+  "Materials": []
+}

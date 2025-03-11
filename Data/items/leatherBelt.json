@@ -1,0 +1,15 @@
+{
+  "Id": "leatherBelt",
+  "Keywords": [
+    "leather",
+    "belt"
+  ],
+  "ShortDescription": "a leather belt",
+  "Description": "a leather belt",
+  "ItemType": "Belt",
+  "Price": 200,
+  "EnchantmentTier": 1,
+  "Material": "Leather",
+  "Affects": {},
+  "Flags": []
+}
