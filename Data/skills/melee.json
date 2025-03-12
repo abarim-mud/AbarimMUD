@@ -10,7 +10,8 @@
         "WeaponAttackBonus": 10
       },
       "Abilities": [
-        "kick"
+        "kick",
+        "meleeMastery"
       ]
     },
     {

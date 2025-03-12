@@ -1,0 +1,15 @@
+{
+  "Id": "greenLantern",
+  "Keywords": [
+    "green",
+    "lantern"
+  ],
+  "ShortDescription": "a green lantern",
+  "Description": "a green lantern",
+  "ItemType": "Light",
+  "Price": 1000,
+  "Affects": {
+    "AttackBonus": 10
+  },
+  "Flags": []
+}

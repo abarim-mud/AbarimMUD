@@ -1,0 +1,10 @@
+{
+  "Id": "meleeMastery",
+  "Name": "Melee Mastery",
+  "Type": "Passive",
+  "Modifiers": {
+    "AttackBonus": 20
+  },
+  "PrimeClass": "warrior",
+  "MovesCost": 0
+}

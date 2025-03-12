@@ -6,6 +6,8 @@
   "ManaRange": "100-400",
   "MovesRange": "100-400",
   "StartingEquipment": [
+    "greenLantern",
+    "cloakOfNoviceWarrior",
     "ironSword",
     "ironHelmet",
     "ironArmor",

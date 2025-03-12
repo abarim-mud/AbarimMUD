@@ -6,6 +6,8 @@
   "ManaRange": "100-400",
   "MovesRange": "100-500",
   "StartingEquipment": [
+    "greenLantern",
+    "cloakOfNoviceRogue",
     "ironDagger",
     "leatherHelmet",
     "leatherArmor",

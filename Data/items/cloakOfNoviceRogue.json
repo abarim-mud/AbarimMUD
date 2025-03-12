@@ -1,0 +1,16 @@
+{
+  "Id": "cloakOfNoviceRogue",
+  "Keywords": [
+    "novice",
+    "cloak",
+    "rogue"
+  ],
+  "ShortDescription": "a cloak of the novice rogue",
+  "Description": "a cloak of the novice rogue",
+  "ItemType": "Cloak",
+  "Price": 1000,
+  "Affects": {
+    "AttackBonus": 10
+  },
+  "Flags": []
+}
