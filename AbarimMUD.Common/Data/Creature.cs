@@ -186,7 +186,7 @@ namespace AbarimMUD.Data
 			_stats = CreateBaseStats(attacksCount);
 
 			// Apply weapon to attacks
-			var weapon = Equipment[SlotType.Wield];
+			var weapon = Equipment.GetSlot(SlotType.Wield).Item;
 
 			var usesWeapon = false;
 			if (weapon != null && weapon.Info.DamageRange != null)

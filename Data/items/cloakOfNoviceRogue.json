@@ -7,7 +7,8 @@
   ],
   "ShortDescription": "a cloak of the novice rogue",
   "Description": "a cloak of the novice rogue",
-  "ItemType": "Cloak",
+  "ItemType": "Equipment",
+  "EquipmentSlot": "Cloak",
   "Price": 1000,
   "Affects": {
     "AttackBonus": 10

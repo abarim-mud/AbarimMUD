@@ -6,7 +6,8 @@
   ],
   "ShortDescription": "a green lantern",
   "Description": "a green lantern",
-  "ItemType": "Light",
+  "ItemType": "Equipment",
+  "EquipmentSlot": "Light",
   "Price": 1000,
   "Affects": {
     "AttackBonus": 10

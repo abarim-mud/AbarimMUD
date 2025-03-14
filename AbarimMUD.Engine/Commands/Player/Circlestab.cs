@@ -17,7 +17,7 @@ namespace AbarimMUD.Commands.Player
 			}
 
 			// Check the player weapon can stab
-			var weapon = context.Creature.Equipment[SlotType.Wield];
+			var weapon = context.Creature.Equipment.GetSlot(SlotType.Wield).Item;
 			if (weapon == null)
 			{
 				context.Send($"You can't circlestab with the bare hands.");

@@ -6,7 +6,8 @@
   ],
   "ShortDescription": "a death dagger",
   "Description": "a death dagger",
-  "ItemType": "Weapon",
+  "ItemType": "Equipment",
+  "EquipmentSlot": "Wield",
   "Price": 100,
   "AttackType": "Pierce",
   "Affects": {

@@ -23,7 +23,7 @@ namespace AbarimMUD.Commands.Player
 
 			// Check the player weapon can stab
 			var character = context.Creature as Character;
-			var weapon = context.Creature.Equipment[SlotType.Wield];
+			var weapon = context.Creature.Equipment.GetSlot(SlotType.Wield).Item;
 			ItemInstance stabWeapon = null;
 			if (weapon == null || !weapon.Info.Flags.Contains(ItemFlags.Stab))
 			{

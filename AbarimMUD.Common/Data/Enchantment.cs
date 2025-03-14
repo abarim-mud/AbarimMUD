@@ -18,7 +18,7 @@ namespace AbarimMUD.Data
 		public int Price { get; set; } = 1000;
 
 		public Dictionary<ModifierType, int> Affects { get; set; } = new Dictionary<ModifierType, int>();
-		public HashSet<ItemType> ItemTypes { get; set; } = new HashSet<ItemType>();
+		public HashSet<SlotType> ItemTypes { get; set; } = new HashSet<SlotType>();
 		public HashSet<ItemMaterial> Materials { get; set; } = new HashSet<ItemMaterial>();
 
 

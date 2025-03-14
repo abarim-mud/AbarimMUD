@@ -238,12 +238,29 @@ namespace AbarimMUD.Storage
 			{
 				var doc = JsonDocument.ParseValue(ref reader);
 
-				var dict = JsonSerializer.Deserialize<Dictionary<SlotType, ItemInstance>>(doc, DefaultOptions);
+				var dict = JsonSerializer.Deserialize<Dictionary<string, ItemInstance>>(doc, DefaultOptions);
 
 				var result = new Equipment();
 				foreach (var pair in dict)
 				{
-					result[pair.Key] = pair.Value;
+					var parts = pair.Key.Split(':', StringSplitOptions.TrimEntries);
+					var slotType = Enum.Parse<SlotType>(parts[0]);
+					var index = 0;
+
+					if (parts.Length > 1)
+					{
+						index = int.Parse(parts[1]);
+					}
+
+					var slot = result.GetSlot(slotType, index);
+					if (slot == null)
+					{
+						// TODO: Log warning of non-existance slot
+					}
+					else
+					{
+						slot.Item = pair.Value;
+					}
 				}
 
 				return result;
@@ -252,15 +269,22 @@ namespace AbarimMUD.Storage
 			public override void Write(Utf8JsonWriter writer, Equipment value, JsonSerializerOptions options)
 			{
 				// Write just an id
-				var dict = new Dictionary<SlotType, ItemInstance>();
-				foreach(var wearItem in value.Items)
+				var dict = new Dictionary<string, ItemInstance>();
+				foreach (var wearItem in value.Items)
 				{
 					if (wearItem.Item == null)
 					{
 						continue;
 					}
 
-					dict[wearItem.Slot] = wearItem.Item;
+					var key = wearItem.Slot.ToString();
+
+					if (wearItem.Index > 0)
+					{
+						key += $":{wearItem.Index}";
+					}
+
+					dict[key] = wearItem.Item;
 				}
 
 

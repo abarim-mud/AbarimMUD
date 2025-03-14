@@ -268,9 +268,9 @@ namespace AbarimMUD.Commands
 			while (false);
 		}
 
-		public static void GetItemWearTerms(this ItemType itemType, out string term1, out string term2, out string term3)
+		public static void GetItemWearTerms(this SlotType? itemType, out string term1, out string term2, out string term3)
 		{
-			if (itemType == ItemType.Weapon)
+			if (itemType == SlotType.Wield)
 			{
 				term1 = "wield";
 				term2 = "wielded";
@@ -289,7 +289,7 @@ namespace AbarimMUD.Commands
 			var result = context.Creature.Wear(item);
 
 			string term1, term2, term3;
-			item.ItemType.GetItemWearTerms(out term1, out term2, out term3);
+			item.Info.EquipmentSlot.GetItemWearTerms(out term1, out term2, out term3);
 			if (result == true)
 			{
 				// Remove from inv
@@ -336,12 +336,12 @@ namespace AbarimMUD.Commands
 				return null;
 			}
 
-			var weapon = creature.Equipment[SlotType.Wield];
+			var weapon = creature.Equipment.GetSlot(SlotType.Wield).Item;
 			if (weapon == null || !weapon.MatchesKeyword(data) || !weapon.Info.Flags.Contains(ItemFlags.Stab))
 			{
 				// Check if there's such item in the inventory
 				var inv = (from i in creature.Inventory.Items
-						   where i.Item.MatchesKeyword(data) && i.Item.ItemType == ItemType.Weapon && i.Item.Info.Flags.Contains(ItemFlags.Stab)
+						   where i.Item.MatchesKeyword(data) && i.Item.EquipmentSlot == SlotType.Wield && i.Item.Info.Flags.Contains(ItemFlags.Stab)
 						   select i).FirstOrDefault();
 				if (inv == null)
 				{

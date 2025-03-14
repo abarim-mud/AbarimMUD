@@ -8,20 +8,7 @@ namespace AbarimMUD.Data
 {
 	public enum ItemType
 	{
-		Light,
-		Ring,
-		ShoulderGuards,
-		Neck,
-		Helmet,
-		Cloak,
-		Armor,
-		Bracer,
-		Gloves,
-		Belt,
-		Leggings,
-		Boots,
-		Weapon,
-		Shield,
+		Equipment,
 		Potion,
 		Scroll,
 		Material,
@@ -75,6 +62,8 @@ namespace AbarimMUD.Data
 				_itemType = value;
 			}
 		}
+
+		public SlotType? EquipmentSlot { get; set; }
 
 		public int Price { get; set; } = 100;
 		public AttackType? AttackType { get; set; }
@@ -171,26 +160,6 @@ namespace AbarimMUD.Data
 
 	public static class ItemExtensions
 	{
-		private static readonly bool[] _armorTypes;
-
-		static ItemExtensions()
-		{
-			_armorTypes = new bool[Enum.GetValues(typeof(ItemType)).Length];
-
-			Array.Fill(_armorTypes, false);
-
-			_armorTypes[(int)ItemType.Ring] = true;
-			_armorTypes[(int)ItemType.Neck] = true;
-			_armorTypes[(int)ItemType.Helmet] = true;
-			_armorTypes[(int)ItemType.Armor] = true;
-			_armorTypes[(int)ItemType.Bracer] = true;
-			_armorTypes[(int)ItemType.Gloves] = true;
-			_armorTypes[(int)ItemType.Leggings] = true;
-			_armorTypes[(int)ItemType.Boots] = true;
-		}
-
-		public static bool IsArmor(this ItemType type) => _armorTypes[(int)type];
-
 		public static ItemType ToEnchantmentItemType(this int enchantmentTier)
 		{
 			switch(enchantmentTier)

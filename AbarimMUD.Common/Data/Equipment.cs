@@ -1,16 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
 {
 	public enum SlotType
 	{
 		Light,
-		RingLeft,
-		RingRight,
-		Neck1,
-		Neck2,
+		Finger,
+		Neck,
 		Head,
 		Cloak,
 		Body,
@@ -18,89 +16,75 @@ namespace AbarimMUD.Data
 		Feet,
 		Hands,
 		Waist,
-		WristLeft,
-		WristRight,
+		Wrist,
 		Wield,
-		Shield,
-		Total
+		Shield
 	}
 
 	public class WearItem
 	{
-		public SlotType Slot { get; set; }
+		public SlotType Slot { get; private set; }
+		public int Index { get; private set; }
 		public ItemInstance Item { get; set; }
 
-		public WearItem()
-		{
-		}
-
-		public WearItem(SlotType slot, ItemInstance item)
+		public WearItem(SlotType slot, int index = 0)
 		{
 			Slot = slot;
-			Item = item;
+			Index = index;
 		}
-
-		public WearItem Clone() => new WearItem(Slot, Item.Clone());
 	}
 
 	public class Equipment
 	{
-		private static readonly Dictionary<SlotType, ItemType> _slotsArmorsMap = new Dictionary<SlotType, ItemType>();
-
-		public WearItem[] Items { get; set; }
-
-		[JsonIgnore]
-		public ItemInstance this[SlotType slot]
-		{
-			get => Items[(int)slot].Item;
-			set => Items[(int)slot].Item = value;
-		}
-
-		static Equipment()
-		{
-			_slotsArmorsMap[SlotType.Light] = ItemType.Light;
-			_slotsArmorsMap[SlotType.RingLeft] = ItemType.Ring;
-			_slotsArmorsMap[SlotType.RingRight] = ItemType.Ring;
-			_slotsArmorsMap[SlotType.Neck1] = ItemType.Neck;
-			_slotsArmorsMap[SlotType.Neck2] = ItemType.Neck;
-			_slotsArmorsMap[SlotType.Head] = ItemType.Helmet;
-			_slotsArmorsMap[SlotType.Cloak] = ItemType.Cloak;
-			_slotsArmorsMap[SlotType.Body] = ItemType.Armor;
-			_slotsArmorsMap[SlotType.Legs] = ItemType.Leggings;
-			_slotsArmorsMap[SlotType.Feet] = ItemType.Boots;
-			_slotsArmorsMap[SlotType.Hands] = ItemType.Gloves;
-			_slotsArmorsMap[SlotType.Waist] = ItemType.Belt;
-			_slotsArmorsMap[SlotType.WristLeft] = ItemType.Bracer;
-			_slotsArmorsMap[SlotType.WristRight] = ItemType.Bracer;
-			_slotsArmorsMap[SlotType.Wield] = ItemType.Weapon;
-			_slotsArmorsMap[SlotType.Shield] = ItemType.Shield;
-		}
+		public WearItem[] Items { get; private set; }
 
 		public Equipment()
 		{
-			Items = new WearItem[(int)SlotType.Total];
-			for (var i = 0; i < Items.Length; ++i)
+			var items = new List<WearItem>
 			{
-				Items[i] = new WearItem((SlotType)i, null);
-			}
+				new WearItem(SlotType.Light),
+				new WearItem(SlotType.Finger),
+				new WearItem(SlotType.Finger, 1),
+				new WearItem(SlotType.Neck),
+				new WearItem(SlotType.Neck, 1),
+				new WearItem(SlotType.Head),
+				new WearItem(SlotType.Cloak),
+				new WearItem(SlotType.Body),
+				new WearItem(SlotType.Legs),
+				new WearItem(SlotType.Feet),
+				new WearItem(SlotType.Hands),
+				new WearItem(SlotType.Waist),
+				new WearItem(SlotType.Wrist),
+				new WearItem(SlotType.Wrist, 1),
+				new WearItem(SlotType.Wield),
+				new WearItem(SlotType.Shield)
+			};
+
+			Items = items.ToArray();
+		}
+
+		public WearItem GetSlot(SlotType slot, int index = 0)
+		{
+			return (from s in Items where s.Slot == slot && s.Index == index select s).FirstOrDefault();
 		}
 
 		internal bool? Wear(ItemInstance item)
 		{
-			// Get all possible free slots
-			var possibleSlots = (from s in _slotsArmorsMap where s.Value == item.ItemType select s.Key).ToArray();
-			if (possibleSlots.Length == 0)
+			if (item.Info.EquipmentSlot == null)
 			{
 				// Item can't be worn at all
 				return null;
 			}
 
-			SlotType? freeSlot = null;
-			foreach (var slot in possibleSlots)
+			var slot = item.Info.EquipmentSlot.Value;
+
+			WearItem freeSlot = null;
+			for (var i = 0; i < Items.Length; ++i)
 			{
-				if (this[slot] == null)
+				var s = Items[i];
+				if (s.Slot == slot && s.Item == null)
 				{
-					freeSlot = slot;
+					freeSlot = s;
 					break;
 				}
 			}
@@ -112,22 +96,33 @@ namespace AbarimMUD.Data
 			}
 
 			// Wear the item
-			this[freeSlot.Value] = item;
+			freeSlot.Item = item;
 
 			return true;
 		}
 
-		internal ItemInstance Remove(SlotType type)
+		internal ItemInstance Remove(SlotType slot)
 		{
-			var item = this[type];
-			if (item == null)
+			WearItem occupiedSlot = null;
+			for (var i = 0; i < Items.Length; ++i)
+			{
+				var s = Items[i];
+				if (s.Slot == slot && s.Item != null)
+				{
+					occupiedSlot = s;
+					break;
+				}
+			}
+
+			if (occupiedSlot == null)
 			{
 				return null;
 			}
 
-			this[type] = null;
+			var result = occupiedSlot.Item;
+			occupiedSlot.Item = null;
 
-			return item;
+			return result;
 		}
 
 		public WearItem FindItem(string pat)

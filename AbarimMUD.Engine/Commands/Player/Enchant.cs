@@ -92,7 +92,7 @@ namespace AbarimMUD.Commands.Player
 				return false;
 			}
 
-			if (invItem.Info.EnchantmentTier == null)
+			if (invItem.Info.EnchantmentTier == null || invItem.Info.EquipmentSlot == null)
 			{
 				Tell.Execute(enchanter.GetContext(), $"{creature.ShortDescription} {invItem.Name} can't be enchanted.");
 				return false;
@@ -107,7 +107,7 @@ namespace AbarimMUD.Commands.Player
 			}
 
 			// Check item type
-			if (enchantment.HasItemTypesFilters && !enchantment.ItemTypes.Contains(invItem.Info.ItemType))
+			if (enchantment.HasItemTypesFilters && !enchantment.ItemTypes.Contains(invItem.Info.EquipmentSlot.Value))
 			{
 				Tell.Execute(enchanter.GetContext(), $"{creature.ShortDescription} The enchantment '{enchantment.Name}' can't be applied to {invItem.Name} of type {invItem.Info.ItemType}. It could be applied only to following item types: {enchantment.ItemTypes.JoinByComma()}");
 				return false;

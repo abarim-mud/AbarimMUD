@@ -10,9 +10,9 @@
     "Damage": 1
   },
   "ItemTypes": [
-    "Armor",
-    "Bracer",
-    "Gloves"
+    "Body",
+    "Wrist",
+    "Hands"
   ],
   "Materials": [
     "Leather"

@@ -7,7 +7,8 @@
   ],
   "ShortDescription": "a cloak of the novice warrior",
   "Description": "a cloak of the novice warrior",
-  "ItemType": "Cloak",
+  "ItemType": "Equipment",
+  "EquipmentSlot": "Cloak",
   "Price": 1000,
   "Affects": {
     "Armor": 1
