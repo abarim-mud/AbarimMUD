@@ -1,71 +1,53 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace AbarimMUD.Data
 {
-	public enum SlotType
+	public class EquipmentSlot
 	{
-		Light,
-		Finger,
-		Neck,
-		Head,
-		Cloak,
-		Body,
-		Legs,
-		Feet,
-		Hands,
-		Waist,
-		Wrist,
-		Wield,
-		Shield
-	}
-
-	public class WearItem
-	{
-		public SlotType Slot { get; private set; }
+		public EquipmentSlotType SlotType { get; private set; }
 		public int Index { get; private set; }
 		public ItemInstance Item { get; set; }
 
-		public WearItem(SlotType slot, int index = 0)
+		public EquipmentSlot(EquipmentSlotType slotType, int index = 0)
 		{
-			Slot = slot;
+			SlotType = slotType;
 			Index = index;
 		}
 	}
 
 	public class Equipment
 	{
-		public WearItem[] Items { get; private set; }
+		public EquipmentSlot[] Slots { get; private set; }
 
 		public Equipment()
 		{
-			var items = new List<WearItem>
+			var slots = new List<EquipmentSlot>
 			{
-				new WearItem(SlotType.Light),
-				new WearItem(SlotType.Finger),
-				new WearItem(SlotType.Finger, 1),
-				new WearItem(SlotType.Neck),
-				new WearItem(SlotType.Neck, 1),
-				new WearItem(SlotType.Head),
-				new WearItem(SlotType.Cloak),
-				new WearItem(SlotType.Body),
-				new WearItem(SlotType.Legs),
-				new WearItem(SlotType.Feet),
-				new WearItem(SlotType.Hands),
-				new WearItem(SlotType.Waist),
-				new WearItem(SlotType.Wrist),
-				new WearItem(SlotType.Wrist, 1),
-				new WearItem(SlotType.Wield),
-				new WearItem(SlotType.Shield)
+				new EquipmentSlot(EquipmentSlotType.Light),
+				new EquipmentSlot(EquipmentSlotType.Finger),
+				new EquipmentSlot(EquipmentSlotType.Finger, 1),
+				new EquipmentSlot(EquipmentSlotType.Neck),
+				new EquipmentSlot(EquipmentSlotType.Neck, 1),
+				new EquipmentSlot(EquipmentSlotType.Head),
+				new EquipmentSlot(EquipmentSlotType.Cloak),
+				new EquipmentSlot(EquipmentSlotType.Body),
+				new EquipmentSlot(EquipmentSlotType.Legs),
+				new EquipmentSlot(EquipmentSlotType.Feet),
+				new EquipmentSlot(EquipmentSlotType.Hands),
+				new EquipmentSlot(EquipmentSlotType.Waist),
+				new EquipmentSlot(EquipmentSlotType.Wrist),
+				new EquipmentSlot(EquipmentSlotType.Wrist, 1),
+				new EquipmentSlot(EquipmentSlotType.Wield),
+				new EquipmentSlot(EquipmentSlotType.Shield)
 			};
 
-			Items = items.ToArray();
+			Slots = slots.ToArray();
 		}
 
-		public WearItem GetSlot(SlotType slot, int index = 0)
+		public EquipmentSlot GetSlot(EquipmentSlotType slot, int index = 0)
 		{
-			return (from s in Items where s.Slot == slot && s.Index == index select s).FirstOrDefault();
+			return (from s in Slots where s.SlotType == slot && s.Index == index select s).FirstOrDefault();
 		}
 
 		internal bool? Wear(ItemInstance item)
@@ -78,11 +60,11 @@ namespace AbarimMUD.Data
 
 			var slot = item.Info.EquipmentSlot.Value;
 
-			WearItem freeSlot = null;
-			for (var i = 0; i < Items.Length; ++i)
+			EquipmentSlot freeSlot = null;
+			for (var i = 0; i < Slots.Length; ++i)
 			{
-				var s = Items[i];
-				if (s.Slot == slot && s.Item == null)
+				var s = Slots[i];
+				if (s.SlotType == slot && s.Item == null)
 				{
 					freeSlot = s;
 					break;
@@ -101,13 +83,13 @@ namespace AbarimMUD.Data
 			return true;
 		}
 
-		internal ItemInstance Remove(SlotType slot)
+		internal ItemInstance Remove(EquipmentSlotType slot)
 		{
-			WearItem occupiedSlot = null;
-			for (var i = 0; i < Items.Length; ++i)
+			EquipmentSlot occupiedSlot = null;
+			for (var i = 0; i < Slots.Length; ++i)
 			{
-				var s = Items[i];
-				if (s.Slot == slot && s.Item != null)
+				var s = Slots[i];
+				if (s.SlotType == slot && s.Item != null)
 				{
 					occupiedSlot = s;
 					break;
@@ -125,9 +107,9 @@ namespace AbarimMUD.Data
 			return result;
 		}
 
-		public WearItem FindItem(string pat)
+		public EquipmentSlot Find(string pat)
 		{
-			foreach (var wearItem in Items)
+			foreach (var wearItem in Slots)
 			{
 				if (wearItem.Item != null && wearItem.Item.MatchesKeyword(pat))
 				{

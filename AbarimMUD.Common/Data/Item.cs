@@ -19,6 +19,23 @@ namespace AbarimMUD.Data
 		Enchant5,
 	}
 
+	public enum EquipmentSlotType
+	{
+		Light,
+		Finger,
+		Neck,
+		Head,
+		Cloak,
+		Body,
+		Legs,
+		Feet,
+		Hands,
+		Waist,
+		Wrist,
+		Wield,
+		Shield
+	}
+
 	public enum ItemFlags
 	{
 		Stab,
@@ -63,7 +80,7 @@ namespace AbarimMUD.Data
 			}
 		}
 
-		public SlotType? EquipmentSlot { get; set; }
+		public EquipmentSlotType? EquipmentSlot { get; set; }
 
 		public int Price { get; set; } = 100;
 		public AttackType? AttackType { get; set; }
@@ -138,14 +155,14 @@ namespace AbarimMUD.Data
 		{
 			foreach (var creature in Creature.ActiveCreatures)
 			{
-				foreach (var item in creature.Equipment.Items)
+				foreach (var slot in creature.Equipment.Slots)
 				{
-					if (item.Item == null)
+					if (slot.Item == null)
 					{
 						continue;
 					}
 
-					if (item.Item.Info.Id == Id)
+					if (slot.Item.Info.Id == Id)
 					{
 						creature.InvalidateStats();
 						break;

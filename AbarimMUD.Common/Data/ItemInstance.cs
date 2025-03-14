@@ -33,7 +33,7 @@ namespace AbarimMUD.Data
 		public ItemType ItemType => Info.ItemType;
 
 		[JsonIgnore]
-		public SlotType? EquipmentSlot => Info.EquipmentSlot;
+		public EquipmentSlotType? EquipmentSlot => Info.EquipmentSlot;
 
 		public ItemInstance()
 		{

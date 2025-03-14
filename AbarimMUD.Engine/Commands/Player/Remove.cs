@@ -19,7 +19,7 @@ namespace AbarimMUD.Commands.Player
 				return false;
 			}
 
-			if (!context.RemoveItem(item.Slot))
+			if (!context.RemoveItem(item.SlotType))
 			{
 				return false;
 			}

@@ -100,9 +100,9 @@ namespace AbarimMUD.Commands
 			return item;
 		}
 
-		public static WearItem EnsureItemWorn(this ExecutionContext context, string name)
+		public static EquipmentSlot EnsureItemWorn(this ExecutionContext context, string name)
 		{
-			var item = context.Creature.Equipment.FindItem(name);
+			var item = context.Creature.Equipment.Find(name);
 			if (item == null)
 			{
 				context.Send($"You arent wearing an item '{name}'");
@@ -184,9 +184,9 @@ namespace AbarimMUD.Commands
 			AsciiGrid grid = null;
 
 			var y = 0;
-			foreach (var eq in creature.Equipment.Items)
+			foreach (var slot in creature.Equipment.Slots)
 			{
-				if (eq.Item == null)
+				if (slot.Item == null)
 				{
 					continue;
 				}
@@ -196,8 +196,8 @@ namespace AbarimMUD.Commands
 					grid = new AsciiGrid();
 				}
 
-				grid.SetValue(0, y, $"<worn on {eq.Slot.ToString().ToLower()}>");
-				grid.SetValue(1, y, eq.Item.Name);
+				grid.SetValue(0, y, $"<worn on {slot.SlotType.ToString().ToLower()}>");
+				grid.SetValue(1, y, slot.Item.Name);
 
 				++y;
 			}
@@ -268,9 +268,9 @@ namespace AbarimMUD.Commands
 			while (false);
 		}
 
-		public static void GetItemWearTerms(this SlotType? itemType, out string term1, out string term2, out string term3)
+		public static void GetItemWearTerms(this EquipmentSlotType? itemType, out string term1, out string term2, out string term3)
 		{
-			if (itemType == SlotType.Wield)
+			if (itemType == EquipmentSlotType.Wield)
 			{
 				term1 = "wield";
 				term2 = "wielded";
@@ -309,7 +309,7 @@ namespace AbarimMUD.Commands
 			return false;
 		}
 
-		public static bool RemoveItem(this ExecutionContext context, SlotType slot)
+		public static bool RemoveItem(this ExecutionContext context, EquipmentSlotType slot)
 		{
 			var removedItem = context.Creature.Remove(slot);
 			if (removedItem != null)
@@ -317,7 +317,7 @@ namespace AbarimMUD.Commands
 				// Add to inv
 				context.Creature.Inventory.AddItem(removedItem, 1);
 
-				var term = slot == SlotType.Wield ? "wielding" : "wearing";
+				var term = slot == EquipmentSlotType.Wield ? "wielding" : "wearing";
 				context.Send($"You stop {term} {removedItem.Name}.");
 
 				context.SendRoomExceptMe($"{context.Creature.ShortDescription} stops {term} {removedItem.Name}.");
@@ -336,12 +336,12 @@ namespace AbarimMUD.Commands
 				return null;
 			}
 
-			var weapon = creature.Equipment.GetSlot(SlotType.Wield).Item;
+			var weapon = creature.Equipment.GetSlot(EquipmentSlotType.Wield).Item;
 			if (weapon == null || !weapon.MatchesKeyword(data) || !weapon.Info.Flags.Contains(ItemFlags.Stab))
 			{
 				// Check if there's such item in the inventory
 				var inv = (from i in creature.Inventory.Items
-						   where i.Item.MatchesKeyword(data) && i.Item.EquipmentSlot == SlotType.Wield && i.Item.Info.Flags.Contains(ItemFlags.Stab)
+						   where i.Item.MatchesKeyword(data) && i.Item.EquipmentSlot == EquipmentSlotType.Wield && i.Item.Info.Flags.Contains(ItemFlags.Stab)
 						   select i).FirstOrDefault();
 				if (inv == null)
 				{

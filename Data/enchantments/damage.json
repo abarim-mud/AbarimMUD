@@ -9,7 +9,7 @@
   "Affects": {
     "Damage": 1
   },
-  "ItemTypes": [
+  "SlotTypes": [
     "Body",
     "Wrist",
     "Hands"

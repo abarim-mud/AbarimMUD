@@ -128,25 +128,26 @@ namespace AbarimMUD.Data
 		{
 			// Eq modifiers
 			// Apply equipment
-			foreach (var item in Equipment.Items)
+			foreach (var slot in Equipment.Slots)
 			{
-				if (item.Item == null)
+				var item = slot.Item;
+				if (item == null)
 				{
 					continue;
 				}
 
-				if (item.Item.Info.Affects != null)
+				if (item.Info.Affects != null)
 				{
-					foreach (var pair in item.Item.Info.Affects)
+					foreach (var pair in item.Info.Affects)
 					{
 						var affect = pair.Value;
 						result.Add(affect.Type, affect.Value);
 					}
 				}
 
-				if (item.Item.Enchantment != null)
+				if (item.Enchantment != null)
 				{
-					foreach(var pair in item.Item.Enchantment.Affects)
+					foreach(var pair in item.Enchantment.Affects)
 					{
 						result.Add(pair.Key, pair.Value);
 					}
@@ -186,7 +187,7 @@ namespace AbarimMUD.Data
 			_stats = CreateBaseStats(attacksCount);
 
 			// Apply weapon to attacks
-			var weapon = Equipment.GetSlot(SlotType.Wield).Item;
+			var weapon = Equipment.GetSlot(EquipmentSlotType.Wield).Item;
 
 			var usesWeapon = false;
 			if (weapon != null && weapon.Info.DamageRange != null)
@@ -242,7 +243,7 @@ namespace AbarimMUD.Data
 			return result;
 		}
 
-		public ItemInstance Remove(SlotType slot)
+		public ItemInstance Remove(EquipmentSlotType slot)
 		{
 			var result = Equipment.Remove(slot);
 

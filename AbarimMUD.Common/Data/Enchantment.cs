@@ -18,12 +18,12 @@ namespace AbarimMUD.Data
 		public int Price { get; set; } = 1000;
 
 		public Dictionary<ModifierType, int> Affects { get; set; } = new Dictionary<ModifierType, int>();
-		public HashSet<SlotType> ItemTypes { get; set; } = new HashSet<SlotType>();
+		public HashSet<EquipmentSlotType> SlotTypes { get; set; } = new HashSet<EquipmentSlotType>();
 		public HashSet<ItemMaterial> Materials { get; set; } = new HashSet<ItemMaterial>();
 
 
 		[JsonIgnore]
-		public bool HasItemTypesFilters => ItemTypes.Count > 0;
+		public bool HasSlotTypesFilters => SlotTypes.Count > 0;
 
 		[JsonIgnore]
 		public bool HasMaterialsFilters => Materials.Count > 0;

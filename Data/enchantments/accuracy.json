@@ -9,7 +9,7 @@
   "Affects": {
     "AttackBonus": 10
   },
-  "ItemTypes": [],
+  "SlotTypes": [],
   "Materials": [
     "Leather"
   ]

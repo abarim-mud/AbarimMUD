@@ -35,13 +35,13 @@ namespace AbarimMUD.Commands.Player
 					grid.SetValue(0, y, f.Name);
 					grid.SetValue(1, y, f.EnchantmentStones.ToString());
 
-					if (!f.HasItemTypesFilters)
+					if (!f.HasSlotTypesFilters)
 					{
 						grid.SetValue(2, y, "Any");
 					}
 					else
 					{
-						grid.SetValue(2, y, f.ItemTypes.JoinByComma());
+						grid.SetValue(2, y, f.SlotTypes.JoinByComma());
 					}
 
 
@@ -107,9 +107,9 @@ namespace AbarimMUD.Commands.Player
 			}
 
 			// Check item type
-			if (enchantment.HasItemTypesFilters && !enchantment.ItemTypes.Contains(invItem.Info.EquipmentSlot.Value))
+			if (enchantment.HasSlotTypesFilters && !enchantment.SlotTypes.Contains(invItem.Info.EquipmentSlot.Value))
 			{
-				Tell.Execute(enchanter.GetContext(), $"{creature.ShortDescription} The enchantment '{enchantment.Name}' can't be applied to {invItem.Name} of type {invItem.Info.ItemType}. It could be applied only to following item types: {enchantment.ItemTypes.JoinByComma()}");
+				Tell.Execute(enchanter.GetContext(), $"{creature.ShortDescription} The enchantment '{enchantment.Name}' can't be applied to {invItem.Name} of type {invItem.Info.ItemType}. It could be applied only to following item types: {enchantment.SlotTypes.JoinByComma()}");
 				return false;
 			}
 

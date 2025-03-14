@@ -23,7 +23,7 @@ namespace AbarimMUD.Commands.Player
 
 			// Check the player weapon can stab
 			var character = context.Creature as Character;
-			var weapon = context.Creature.Equipment.GetSlot(SlotType.Wield).Item;
+			var weapon = context.Creature.Equipment.GetSlot(EquipmentSlotType.Wield).Item;
 			ItemInstance stabWeapon = null;
 			if (weapon == null || !weapon.Info.Flags.Contains(ItemFlags.Stab))
 			{
@@ -99,11 +99,11 @@ namespace AbarimMUD.Commands.Player
 				
 				context.Backstab(ab, stabWeapon, target);
 				
-				context.RemoveItem(SlotType.Wield);
+				context.RemoveItem(EquipmentSlotType.Wield);
 			} else
 			{
 				// Remove non-stab weapon, wield stab, stab, remove stab, wield non-stab
-				if (!context.RemoveItem(SlotType.Wield))
+				if (!context.RemoveItem(EquipmentSlotType.Wield))
 				{
 					return false;
 				}
@@ -116,7 +116,7 @@ namespace AbarimMUD.Commands.Player
 				}
 
 				context.Backstab(ab, stabWeapon, target);
-				if (context.RemoveItem(SlotType.Wield))
+				if (context.RemoveItem(EquipmentSlotType.Wield))
 				{
 					context.WearItem(weapon);
 				}

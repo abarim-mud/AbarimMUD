@@ -244,7 +244,7 @@ namespace AbarimMUD.Storage
 				foreach (var pair in dict)
 				{
 					var parts = pair.Key.Split(':', StringSplitOptions.TrimEntries);
-					var slotType = Enum.Parse<SlotType>(parts[0]);
+					var slotType = Enum.Parse<EquipmentSlotType>(parts[0]);
 					var index = 0;
 
 					if (parts.Length > 1)
@@ -270,21 +270,21 @@ namespace AbarimMUD.Storage
 			{
 				// Write just an id
 				var dict = new Dictionary<string, ItemInstance>();
-				foreach (var wearItem in value.Items)
+				foreach (var slot in value.Slots)
 				{
-					if (wearItem.Item == null)
+					if (slot.Item == null)
 					{
 						continue;
 					}
 
-					var key = wearItem.Slot.ToString();
+					var key = slot.SlotType.ToString();
 
-					if (wearItem.Index > 0)
+					if (slot.Index > 0)
 					{
-						key += $":{wearItem.Index}";
+						key += $":{slot.Index}";
 					}
 
-					dict[key] = wearItem.Item;
+					dict[key] = slot.Item;
 				}
 
 
@@ -321,14 +321,14 @@ namespace AbarimMUD.Storage
 			rec.Item.SetReferences();
 		}
 
-		public static void SetReferences(this WearItem item)
+		public static void SetReferences(this EquipmentSlot slot)
 		{
-			if (item.Item == null)
+			if (slot.Item == null)
 			{
 				return;
 			}
 
-			item.Item.SetReferences();
+			slot.Item.SetReferences();
 		}
 
 		public static void SetReferences(this IEnumerable<ItemInstance> inv)
@@ -349,9 +349,9 @@ namespace AbarimMUD.Storage
 
 		public static void SetReferences(this Equipment eq)
 		{
-			foreach (var item in eq.Items)
+			foreach (var slot in eq.Slots)
 			{
-				item.SetReferences();
+				slot.SetReferences();
 			}
 		}
 	}

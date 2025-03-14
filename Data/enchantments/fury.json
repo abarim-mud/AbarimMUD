@@ -10,7 +10,7 @@
     "AttackBonus": 20,
     "Damage": 2
   },
-  "ItemTypes": [
+  "SlotTypes": [
     "Wield"
   ],
   "Materials": []
