@@ -2362,6 +2362,7 @@
       "Hit": 750,
       "DamageRange": "21-46",
       "Loot": [],
+      "Guildmaster": "monk",
       "Flags": [
         "Sentinel"
       ],

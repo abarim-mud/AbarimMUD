@@ -24,7 +24,7 @@
     {
       "Modifiers": {
         "DamageReduction": 1,
-        "AttacksCount": 1,
+        "MartialArtsAttacksCount": 1,
         "MartialArtsAttackBonus": 10
       }
     },
