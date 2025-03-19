@@ -9,8 +9,9 @@ namespace AbarimMUD.Data
 		Moves,
 		AttacksCount,
 		AttackBonus,
-		WeaponAttackBonus,
 		Damage,
+		WeaponAttacksCount,
+		WeaponAttackBonus,
 		WeaponDamage,
 		BackstabCount,
 		BackstabMultiplier,
@@ -19,7 +20,13 @@ namespace AbarimMUD.Data
 		ManaRegen,
 		MovesRegen,
 		BuyPriceRebatePercentage,
-		SellPriceBonusPercentage
+		SellPriceBonusPercentage,
+		MartialArtsMinimumDamage,
+		MartialArtsMaximumDamage,
+		MartialArtsAttacksCount,
+		MartialArtsAttackBonus,
+		MartialArtsDamage,
+		DamageReduction
 	}
 
 	public class Affect

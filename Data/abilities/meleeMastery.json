@@ -3,7 +3,7 @@
   "Name": "Melee Mastery",
   "Type": "Passive",
   "Modifiers": {
-    "AttackBonus": 20
+    "WeaponAttackBonus": 20
   },
   "PrimeClass": "warrior",
   "MovesCost": 0

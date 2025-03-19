@@ -6,7 +6,7 @@
     {
       "Modifiers": {
         "Armor": 2,
-        "AttacksCount": 1,
+        "WeaponAttacksCount": 1,
         "WeaponAttackBonus": 10
       },
       "Abilities": [

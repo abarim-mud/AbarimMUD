@@ -1,0 +1,21 @@
+{
+  "Id": "martialArts",
+  "Name": "martial arts",
+  "Keywords": [
+    "martial",
+    "arts"
+  ],
+  "EnchantmentStones": 8,
+  "Price": 4000,
+  "Affects": {
+    "MartialArtsDamage": 2
+  },
+  "SlotTypes": [
+    "Body",
+    "Waist",
+    "Hands"
+  ],
+  "Materials": [
+    "Leather"
+  ]
+}

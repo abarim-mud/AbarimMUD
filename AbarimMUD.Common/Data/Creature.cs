@@ -177,22 +177,36 @@ namespace AbarimMUD.Data
 			// By default there's one attack
 			var attacksCount = 1;
 
-			// Apply modifier
+			// Apply attacks count modifiers
 			int a;
 			if (modifiers.Modifiers.TryGetValue(ModifierType.AttacksCount, out a))
 			{
 				attacksCount += a;
 			}
 
-			_stats = CreateBaseStats(attacksCount);
-
-			// Apply weapon to attacks
 			var weapon = Equipment.GetSlot(EquipmentSlotType.Wield).Item;
-
 			var usesWeapon = false;
 			if (weapon != null && weapon.Info.DamageRange != null)
 			{
 				usesWeapon = true;
+				if (modifiers.Modifiers.TryGetValue(ModifierType.WeaponAttackBonus, out a))
+				{
+					attacksCount += a;
+				}
+			} else
+			{
+				if (modifiers.Modifiers.TryGetValue(ModifierType.MartialArtsAttacksCount, out a))
+				{
+					attacksCount += a;
+				}
+
+			}
+
+			_stats = CreateBaseStats(attacksCount);
+
+			// Apply weapon to attacks
+			if (usesWeapon)
+			{
 				foreach (var attack in _stats.Attacks)
 				{
 					if (weapon.Info.AttackType != null)
@@ -214,9 +228,41 @@ namespace AbarimMUD.Data
 					}
 				}
 			}
+			else if (this is Character)
+			{
+				int? martialArtsMin = null;
+				int? martialArtsMax = null;
 
-			// Apply modifiers
-			foreach (var pair in modifiers.Modifiers)
+				// Apply martial arts damage range
+				if (modifiers.Modifiers.TryGetValue(ModifierType.MartialArtsMinimumDamage, out a))
+				{
+					martialArtsMin = a;
+				}
+
+				if (modifiers.Modifiers.TryGetValue(ModifierType.MartialArtsMaximumDamage, out a))
+				{
+					martialArtsMax = a;
+				}
+
+				if (martialArtsMin != null || martialArtsMax != null)
+				{
+					foreach (var atk in _stats.Attacks)
+					{
+						if (martialArtsMin != null)
+						{
+							atk.DamageRange.Minimum = Math.Max(atk.DamageRange.Minimum, martialArtsMin.Value);
+						}
+
+						if (martialArtsMax != null)
+						{
+							atk.DamageRange.Maximum = Math.Max(atk.DamageRange.Maximum, martialArtsMax.Value);
+						}
+					}
+				}
+			}
+
+				// Apply modifiers
+				foreach (var pair in modifiers.Modifiers)
 			{
 				_stats.Apply(pair.Key, pair.Value, usesWeapon);
 			}

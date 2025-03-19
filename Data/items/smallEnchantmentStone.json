@@ -7,8 +7,8 @@
   ],
   "ShortDescription": "a small enchantment stone",
   "Description": "a small enchantment stone",
-  "ItemType": "Enchant1",
-  "Price": 1000,
+  "ItemType": "Enchant2",
+  "Price": 10000,
   "Affects": {},
   "Flags": []
 }

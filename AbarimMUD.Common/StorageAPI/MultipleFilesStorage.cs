@@ -128,7 +128,6 @@ namespace AbarimMUD.Storage
 			}
 
 			return Directory.EnumerateFiles(Folder, "*.json", SearchOption.AllDirectories).ToArray();
-
 		}
 
 		private string BuildPath(string key) => Path.ChangeExtension(Path.Combine(Folder, key), "json");

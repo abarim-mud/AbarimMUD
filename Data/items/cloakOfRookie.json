@@ -1,12 +1,12 @@
 {
-  "Id": "cloakOfNoviceRogue",
+  "Id": "cloakOfRookie",
   "Keywords": [
     "novice",
     "cloak",
     "rogue"
   ],
-  "ShortDescription": "a cloak of the novice rogue",
-  "Description": "a cloak of the novice rogue",
+  "ShortDescription": "a cloak of the rookie",
+  "Description": "a cloak of the rookie",
   "ItemType": "Equipment",
   "EquipmentSlot": "Cloak",
   "Price": 1000,

@@ -1,14 +1,13 @@
 {
-  "Id": "rogue",
-  "Name": "Rogue",
-  "Description": "Master of dagger and shadows.",
+  "Id": "monk",
+  "Name": "Monk",
+  "Description": "Master of martial arts.",
   "HitpointsRange": "30-1100",
   "ManaRange": "100-400",
   "MovesRange": "100-500",
   "StartingEquipment": [
     "greenLantern",
     "cloakOfRookie",
-    "ironDagger",
     "leatherHelmet",
     "leatherArmor",
     "leatherGloves",
@@ -17,14 +16,10 @@
     "leatherShield"
   ],
   "StartingSkills": [
-    "sneaking",
-    "melee"
+    "martialArts",
+    "survival"
   ],
   "StartingInventory": [
-    {
-      "Item": "ironSword",
-      "Quantity": 1
-    },
     {
       "Item": "novicePotionOfHealing",
       "Quantity": 5

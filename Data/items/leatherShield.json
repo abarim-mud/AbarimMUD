@@ -4,8 +4,8 @@
     "leather",
     "shield"
   ],
-  "ShortDescription": "an leather shield",
-  "Description": "an leather shield",
+  "ShortDescription": "a leather shield",
+  "Description": "a leather shield",
   "ItemType": "Equipment",
   "EquipmentSlot": "Shield",
   "Price": 400,

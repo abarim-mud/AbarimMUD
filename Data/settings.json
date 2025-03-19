@@ -10,7 +10,7 @@
   "PeaceRegenMultiplier": 2,
   "PauseBetweenFightRoundsInMs": 3000,
   "NegativeRegen": 20,
-  "CharacterBarehandedDamage": "1-4",
+  "BaseMartialArtsDamage": "1-4",
   "PrimarySkillsLevelsConstraints": [
     1,
     5,

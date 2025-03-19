@@ -109,7 +109,7 @@ namespace AbarimMUD.Commands.Player
 			// Check item type
 			if (enchantment.HasSlotTypesFilters && !enchantment.SlotTypes.Contains(invItem.Info.EquipmentSlot.Value))
 			{
-				Tell.Execute(enchanter.GetContext(), $"{creature.ShortDescription} The enchantment '{enchantment.Name}' can't be applied to {invItem.Name} of type {invItem.Info.ItemType}. It could be applied only to following item types: {enchantment.SlotTypes.JoinByComma()}");
+				Tell.Execute(enchanter.GetContext(), $"{creature.ShortDescription} The enchantment '{enchantment.Name}' can't be applied to {invItem.Name} of type {invItem.Info.EquipmentSlot}. It could be applied only to following item types: {enchantment.SlotTypes.JoinByComma()}");
 				return false;
 			}
 

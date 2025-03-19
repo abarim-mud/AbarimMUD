@@ -21,6 +21,7 @@ namespace AbarimMUD.Data
 		public List<Ability> Abilities { get; } = new List<Ability>();
 		public int BuyPriceRebatePercentage { get; internal set; }
 		public int SellPriceBonusPercentage { get; internal set; }
+		public int DamageReduction { get; internal set; }
 
 		public int GetHitpointsRegen(bool isFighting)
 		{
@@ -93,7 +94,7 @@ namespace AbarimMUD.Data
 		public long CalculateXpAward()
 		{
 			long xpAward = Configuration.XpMultiply;
-			
+
 			xpAward *= Math.Max(1, MaxHitpoints);
 
 			var k = CalculateArmorPenK(Armor);
@@ -147,6 +148,15 @@ namespace AbarimMUD.Data
 						}
 					}
 					break;
+				case ModifierType.MartialArtsAttackBonus:
+					foreach (var atk in Attacks)
+					{
+						if (!usesWeapon)
+						{
+							atk.Bonus += val;
+						}
+					}
+					break;
 				case ModifierType.Damage:
 					foreach (var atk in Attacks)
 					{
@@ -157,6 +167,15 @@ namespace AbarimMUD.Data
 					foreach (var atk in Attacks)
 					{
 						if (usesWeapon)
+						{
+							atk.DamageRange += val;
+						}
+					}
+					break;
+				case ModifierType.MartialArtsDamage:
+					foreach (var atk in Attacks)
+					{
+						if (!usesWeapon)
 						{
 							atk.DamageRange += val;
 						}
@@ -189,6 +208,27 @@ namespace AbarimMUD.Data
 					break;
 				case ModifierType.SellPriceBonusPercentage:
 					SellPriceBonusPercentage += val;
+					break;
+				case ModifierType.MartialArtsMinimumDamage:
+					foreach (var atk in Attacks)
+					{
+						if (!usesWeapon)
+						{
+							atk.DamageRange.Minimum = Math.Max(atk.DamageRange.Minimum, val);
+						}
+					}
+					break;
+				case ModifierType.MartialArtsMaximumDamage:
+					foreach (var atk in Attacks)
+					{
+						if (!usesWeapon)
+						{
+							atk.DamageRange.Maximum = Math.Max(atk.DamageRange.Maximum, val);
+						}
+					}
+					break;
+				case ModifierType.DamageReduction:
+					DamageReduction += val;
 					break;
 			}
 		}

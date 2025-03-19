@@ -7,8 +7,8 @@
   ],
   "ShortDescription": "an average enchantment stone",
   "Description": "an average enchantment stone",
-  "ItemType": "Enchant2",
-  "Price": 10000,
+  "ItemType": "Enchant3",
+  "Price": 50000,
   "Affects": {},
   "Flags": []
 }
