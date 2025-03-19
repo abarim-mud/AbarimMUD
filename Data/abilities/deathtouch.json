@@ -1,0 +1,6 @@
+{
+  "Id": "deathtouch",
+  "Name": "deathtouch",
+  "Type": "Physical",
+  "MovesCost": 20
+}

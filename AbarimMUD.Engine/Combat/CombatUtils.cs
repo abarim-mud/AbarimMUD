@@ -293,6 +293,60 @@ namespace AbarimMUD.Combat
 			}
 		}
 
+		public static void Deathtouch(this ExecutionContext attacker, Ability ability, ExecutionContext target)
+		{
+			attacker.State.Moves -= ability.MovesCost;
+
+			// Success chance 95
+			// Firstly roll overall success chance
+			var successChancePercentage = 95 ;
+			var success = RollSpecialAttack(attacker, target, "Deathtouch", successChancePercentage);
+			if (!success)
+			{
+				attacker.SendBattleMessage($"{target.ShortDescription} manages to avoid your deathtouch!");
+
+				var roomMessage = $"{target.ShortDescription} manages to avoid {attacker.ShortDescription}'s deathtouch!";
+				attacker.SendRoomExceptMe(roomMessage);
+
+				return;
+			}
+
+			// Now roll the damage
+			var damage = 0;
+			var attack = attacker.Stats.Attacks[0];
+			for (var j = 0; j < attacker.Stats.DeathtouchMultiplier; ++j)
+			{
+				damage += attack.CalculateDamage();
+			}
+
+			target.Creature.State.Hitpoints -= damage;
+			if (target.Creature.State.Hitpoints < 0)
+			{
+				attacker.SendBattleMessage($"{target.ShortDescription} becomes very silent and falls on the ground as you land a deathtouch!");
+
+				var roomMessage = $"{target.ShortDescription} becomes very silent and falls on the ground as {attacker.ShortDescription} lands a deathtouch!";
+				attacker.SendRoomExceptMe(roomMessage);
+
+				attacker.Slain(target);
+				return;
+			}
+
+			if (damage <= 0)
+			{
+				attacker.SendBattleMessage($"Your deathtouch deals no damage to {target.ShortDescription}!");
+
+				var roomMessage = $"{attacker.ShortDescription}'s deathtouch deals no damage to {target.ShortDescription}!";
+				attacker.SendRoomExceptMe(roomMessage);
+			}
+			else
+			{
+				attacker.SendBattleMessage($"{target.ShortDescription} spits out some blood as you land a deathtouch!");
+
+				var roomMessage = $"{target.ShortDescription} spits out some blood as {attacker.ShortDescription} lands a deathtouch!";
+				attacker.SendRoomExceptMe(roomMessage);
+			}
+		}
+
 		private static string GetAttackMessage(AttackRollResult attackRoll, int damage, string attackerName, string targetName, AttackType attackType)
 		{
 			string result;

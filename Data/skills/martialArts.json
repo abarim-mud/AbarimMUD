@@ -23,8 +23,10 @@
     },
     {
       "Modifiers": {
-        "DamageReduction": 1,
+        "MartialArtsMinimumDamage": 2,
+        "MartialArtsMaximumDamage": 14,
         "MartialArtsAttacksCount": 1,
+        "DamageReduction": 1,
         "MartialArtsAttackBonus": 10
       }
     },
@@ -36,6 +38,9 @@
     },
     {
       "Modifiers": {
+        "MartialArtsMinimumDamage": 3,
+        "MartialArtsMaximumDamage": 18,
+        "MartialArtsAttacksCount": 1,
         "DamageReduction": 1,
         "MartialArtsAttackBonus": 10
       }

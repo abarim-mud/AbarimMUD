@@ -61,6 +61,7 @@ namespace AbarimMUD.Commands
 		public static readonly Kick Kick = new Kick();
 		public static readonly Backstab Backstab = new Backstab();
 		public static readonly Circlestab Circlestab = new Circlestab();
+		public static readonly Deathtouch Deathtouch = new Deathtouch();
 
 		// Builders
 		public static readonly Recall Recall = new Recall();

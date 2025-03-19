@@ -36,13 +36,14 @@ namespace AbarimMUD.Commands.Player
 				if (!string.IsNullOrEmpty(asCharacter.StabWeapon))
 				{
 					var message = $"Stabweapon is set to '{asCharacter.StabWeapon}'. ";
-					
+
 					bool isWielded;
 					var weapon = context.Creature.FindStabWeapon(asCharacter.StabWeapon, out isWielded);
 					if (weapon == null)
 					{
 						message += "It doesn't correspond to any item.";
-					} else
+					}
+					else
 					{
 						message += $"It corresponds to an item '{weapon.Name}'";
 
@@ -87,6 +88,11 @@ namespace AbarimMUD.Commands.Player
 				}
 			}
 
+			if (stats.DeathtouchMultiplier > 0 && stats.GetAbility("deathtouch") != null)
+			{
+				context.Send($"You can deathtouch with multiplier equal to {stats.DeathtouchMultiplier}.");
+			}
+
 			if (asCharacter != null)
 			{
 				context.Send("Skills:");
@@ -127,7 +133,7 @@ namespace AbarimMUD.Commands.Player
 
 				var now = DateTime.Now;
 
-				foreach(var pair in context.Creature.TemporaryAffects)
+				foreach (var pair in context.Creature.TemporaryAffects)
 				{
 					var tempAffect = pair.Value;
 					var left = tempAffect.Affect.DurationInSeconds.Value - (int)(now - tempAffect.Started).TotalSeconds;

@@ -1,0 +1,36 @@
+{
+  "Id": "deathtouch",
+  "Name": "Deathtouch",
+  "Class": "monk",
+  "Levels": [
+    {
+      "Modifiers": {
+        "DeathtouchMultiplier": 2
+      },
+      "Abilities": [
+        "deathtouch"
+      ]
+    },
+    {
+      "Modifiers": {
+        "DeathtouchMultiplier": 2
+      }
+    },
+    {
+      "Modifiers": {
+        "DeathtouchMultiplier": 2
+      }
+    },
+    {
+      "Modifiers": {
+        "DeathtouchMultiplier": 2
+      }
+    },
+    {
+      "Modifiers": {
+        "DeathtouchMultiplier": 2
+      }
+    }
+  ],
+  "Cost": 1
+}

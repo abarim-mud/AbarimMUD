@@ -3,6 +3,7 @@
   "Name": "Martial Arts Mastery",
   "Type": "Passive",
   "Modifiers": {
+    "DeathtouchMultiplier": 1,
     "DamageReduction": 2,
     "MartialArtsAttackBonus": 20
   },

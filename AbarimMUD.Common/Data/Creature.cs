@@ -52,7 +52,15 @@ namespace AbarimMUD.Data
 				}
 				else
 				{
-					_modifiers[modifier] += value;
+					if (modifier == ModifierType.MartialArtsMinimumDamage ||
+						modifier == ModifierType.MartialArtsMaximumDamage)
+					{
+						_modifiers[modifier] = Math.Max(_modifiers[modifier], value);
+					}
+					else
+					{
+						_modifiers[modifier] += value;
+					}
 				}
 			}
 		}
@@ -147,7 +155,7 @@ namespace AbarimMUD.Data
 
 				if (item.Enchantment != null)
 				{
-					foreach(var pair in item.Enchantment.Affects)
+					foreach (var pair in item.Enchantment.Affects)
 					{
 						result.Add(pair.Key, pair.Value);
 					}
@@ -193,13 +201,13 @@ namespace AbarimMUD.Data
 				{
 					attacksCount += a;
 				}
-			} else
+			}
+			else
 			{
 				if (modifiers.Modifiers.TryGetValue(ModifierType.MartialArtsAttacksCount, out a))
 				{
 					attacksCount += a;
 				}
-
 			}
 
 			_stats = CreateBaseStats(attacksCount);
@@ -261,8 +269,8 @@ namespace AbarimMUD.Data
 				}
 			}
 
-				// Apply modifiers
-				foreach (var pair in modifiers.Modifiers)
+			// Apply modifiers
+			foreach (var pair in modifiers.Modifiers)
 			{
 				_stats.Apply(pair.Key, pair.Value, usesWeapon);
 			}

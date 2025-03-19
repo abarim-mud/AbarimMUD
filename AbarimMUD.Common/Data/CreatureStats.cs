@@ -22,6 +22,7 @@ namespace AbarimMUD.Data
 		public int BuyPriceRebatePercentage { get; internal set; }
 		public int SellPriceBonusPercentage { get; internal set; }
 		public int DamageReduction { get; internal set; }
+		public int DeathtouchMultiplier { get; internal set; }
 
 		public int GetHitpointsRegen(bool isFighting)
 		{
@@ -229,6 +230,9 @@ namespace AbarimMUD.Data
 					break;
 				case ModifierType.DamageReduction:
 					DamageReduction += val;
+					break;
+				case ModifierType.DeathtouchMultiplier:
+					DeathtouchMultiplier += val;
 					break;
 			}
 		}
