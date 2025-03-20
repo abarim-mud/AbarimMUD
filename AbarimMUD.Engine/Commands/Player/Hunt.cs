@@ -33,7 +33,7 @@ namespace AbarimMUD.Commands.Player
 			// Finally search in the world
 			if (target == null)
 			{
-				foreach(var area in Area.Storage)
+				foreach (var area in Area.Storage)
 				{
 					if (area.Name == context.CurrentArea.Name)
 					{
@@ -61,15 +61,8 @@ namespace AbarimMUD.Commands.Player
 				return false;
 			}
 
-			int moveSteps;
-			var dir = PathFinding.FindFirstStep(context.Room, target.Room, out moveSteps);
-			if (dir == null)
-			{
-				context.Send($"{target.ShortDescription} can't be reached.");
-				return false;
-			}
-
-			context.Send($"You start to hunt {target.ShortDescription}");
+			PathFinding.BuildPathAsync(context.Room, target.Room);
+			context.Send($"You start to hunt {target.ShortDescription}.");
 			context.HuntTarget = target.Creature;
 			context.LastHunt = DateTime.Now;
 

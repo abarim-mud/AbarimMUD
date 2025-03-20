@@ -66,11 +66,11 @@ namespace AbarimMUD
 
 			DataContext.Load(dataFolder);
 
-			// Area.Storage.SaveAll();
+			Area.Storage.SaveAll();
 			// PlayerClass.Storage.SaveAll();
-			// Skill.Storage.SaveAll();
-			// Ability.Storage.SaveAll();
-			Configuration.Save();
+			Skill.Storage.SaveAll();
+			Ability.Storage.SaveAll();
+			// Configuration.Save();
 			// SkillCostInfo.Storage.SaveAll();
 			// Item.Storage.SaveAll();
 			// GenericLoot.Save();
@@ -78,7 +78,7 @@ namespace AbarimMUD
 			// Forge.Storage.SaveAll();
 			// ForgeShop.Storage.SaveAll();
 			// ExchangeShop.Storage.SaveAll();
-			// Enchantment.Storage.SaveAll();
+			Enchantment.Storage.SaveAll();
 		}
 
 		private bool ProcessRegen(ref int currentValue, int maxValue, ref float fractionalValue, int regenValue, float secondsPassed)
@@ -132,15 +132,19 @@ namespace AbarimMUD
 			}
 			else
 			{
-				int moveSteps;
-				var dir = PathFinding.FindFirstStep(ctx.Room, ctx.HuntTarget.Room, out moveSteps);
-				if (dir == null)
+				var result = PathFinding.BuildPathAsync(ctx.Room, ctx.HuntTarget.Room);
+                if (result == null)
+                {
+                    // Not build yet
+                }
+                else if (result.Success == false)
 				{
-					ctx.Send($"{ctx.HuntTarget.ShortDescription} can't be reached.");
+					ctx.Send($"{ctx.HuntTarget.ShortDescription} can't be reached. The hunt is over.");
 					ctx.HuntTarget = null;
 				}
 				else
 				{
+					var moveSteps = result.StepsCount;
 					string farAway;
 					if (moveSteps > 20)
 					{
@@ -169,7 +173,7 @@ namespace AbarimMUD
 					{
 						ctx.SuppressStopHuntOnMovement = true;
 
-						switch (dir.Value)
+						switch (result.FirstDirection)
 						{
 							case Direction.North:
 								BaseCommand.North.Execute(ctx);
@@ -196,6 +200,10 @@ namespace AbarimMUD
 							// Found
 							ctx.Send($"The hunt is over. You found {ctx.HuntTarget.ShortDescription}.");
 							ctx.HuntTarget = null;
+						} else
+						{
+							// Build next step
+							PathFinding.BuildPathAsync(ctx.Room, ctx.HuntTarget.Room);
 						}
 					}
 					finally

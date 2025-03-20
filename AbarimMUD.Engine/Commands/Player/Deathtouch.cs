@@ -21,10 +21,8 @@ namespace AbarimMUD.Commands.Player
 				return false;
 			}
 
-			// Check the player weapon can stab
-			var character = context.Creature as Character;
+			// Check the player weapon
 			var weapon = context.Creature.Equipment.GetSlot(EquipmentSlotType.Wield).Item;
-
 			if (weapon != null)
 			{
 				context.Send("You can't deathtouch when wielding a weapon.");
@@ -77,7 +75,7 @@ namespace AbarimMUD.Commands.Player
 
 		public override int CalculateLagInMs(ExecutionContext context, string data = "")
 		{
-			return Configuration.PauseBetweenFightRoundsInMs * 2 / 3;
+			return Configuration.PauseBetweenFightRoundsInMs;
 		}
 
 		public override CommandCost CalculateCost(ExecutionContext context, string data = "")

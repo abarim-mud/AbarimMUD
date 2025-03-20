@@ -299,8 +299,7 @@ namespace AbarimMUD.Combat
 
 			// Success chance 95
 			// Firstly roll overall success chance
-			var successChancePercentage = 95 ;
-			var success = RollSpecialAttack(attacker, target, "Deathtouch", successChancePercentage);
+			var success = RollSpecialAttack(attacker, target, "Deathtouch", 95);
 			if (!success)
 			{
 				attacker.SendBattleMessage($"{target.ShortDescription} manages to avoid your deathtouch!");
@@ -322,7 +321,7 @@ namespace AbarimMUD.Combat
 			target.Creature.State.Hitpoints -= damage;
 			if (target.Creature.State.Hitpoints < 0)
 			{
-				attacker.SendBattleMessage($"{target.ShortDescription} becomes very silent and falls on the ground as you land a deathtouch!");
+				attacker.SendBattleMessage($"{target.ShortDescription} becomes very silent and falls on the ground as you land a deathtouch ({damage})!");
 
 				var roomMessage = $"{target.ShortDescription} becomes very silent and falls on the ground as {attacker.ShortDescription} lands a deathtouch!";
 				attacker.SendRoomExceptMe(roomMessage);
@@ -340,7 +339,7 @@ namespace AbarimMUD.Combat
 			}
 			else
 			{
-				attacker.SendBattleMessage($"{target.ShortDescription} spits out some blood as you land a deathtouch!");
+				attacker.SendBattleMessage($"{target.ShortDescription} spits out some blood as you land a deathtouch ({damage})!");
 
 				var roomMessage = $"{target.ShortDescription} spits out some blood as {attacker.ShortDescription} lands a deathtouch!";
 				attacker.SendRoomExceptMe(roomMessage);
