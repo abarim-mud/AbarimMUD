@@ -381,7 +381,7 @@ namespace AbarimMUD.Commands
 				return;
 			}
 
-			context.Send("You stop the hunt.");
+			context.Send($"You stop to hunt {context.HuntTarget.ShortDescription}.");
 			context.HuntTarget = null;
 		}
 

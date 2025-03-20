@@ -132,13 +132,9 @@ namespace AbarimMUD
 			}
 			else
 			{
-				var result = PathFinding.BuildPathAsync(ctx.Room, ctx.HuntTarget.Room);
+				var result = PathFinding.BuildPath(ctx.Room, ctx.HuntTarget.Room);
                 if (result == null)
                 {
-                    // Not build yet
-                }
-                else if (result.Success == false)
-				{
 					ctx.Send($"{ctx.HuntTarget.ShortDescription} can't be reached. The hunt is over.");
 					ctx.HuntTarget = null;
 				}
@@ -200,10 +196,6 @@ namespace AbarimMUD
 							// Found
 							ctx.Send($"The hunt is over. You found {ctx.HuntTarget.ShortDescription}.");
 							ctx.HuntTarget = null;
-						} else
-						{
-							// Build next step
-							PathFinding.BuildPathAsync(ctx.Room, ctx.HuntTarget.Room);
 						}
 					}
 					finally

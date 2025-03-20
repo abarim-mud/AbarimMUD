@@ -10,16 +10,13 @@ namespace AbarimMUD.Data
 	{
 		public class PathFindingResult
 		{
-			public Room SourceRoom { get; }
-			public Room TargetRoom { get; }
-			public bool Success { get; internal set; }
-			public Direction FirstDirection { get; internal set; }
-			public int StepsCount { get; internal set; }
+			public Direction FirstDirection { get; }
+			public int StepsCount { get; }
 
-			internal PathFindingResult(Room sourceRoom, Room targetRoom)
+			internal PathFindingResult(Direction firstDirection, int stepsCount)
 			{
-				SourceRoom = sourceRoom ?? throw new ArgumentNullException(nameof(sourceRoom));
-				TargetRoom = targetRoom ?? throw new ArgumentNullException(nameof(targetRoom));
+				FirstDirection = firstDirection;
+				StepsCount = stepsCount;
 			}
 		}
 
@@ -39,7 +36,6 @@ namespace AbarimMUD.Data
 		}
 
 		private static bool _coordsDirty = true;
-		private static readonly ConcurrentDictionary<string, PathFindingResult> _queries = new ConcurrentDictionary<string, PathFindingResult>();
 
 		internal static void InvalidateCoords()
 		{
@@ -127,109 +123,92 @@ namespace AbarimMUD.Data
 			return dx * dx + dy * dy + dz * dz;
 		}
 
-		private static string BuildQueryKey(Room source, Room target) => $"{source.Id}-{target.Id}";
-
-		private static void InternalBuildPath(Room source, Room target)
-		{
-			try
-			{
-				var result = new PathFindingResult(source, target);
-
-				// Enqueue first room, the direction isn't important
-				var visited = new HashSet<int>
-				{
-					source.Id
-				};
-
-				var data = new PriorityQueue<Node, int>();
-				data.Enqueue(new Node(source, Direction.North, null), Distance(source, target));
-
-				var step = 0;
-				while (data.Count > 0)
-				{
-					var node = data.Dequeue();
-					var room = node.Room;
-
-					if (room.Id == target.Id)
-					{
-						// Reached
-						Debug.WriteLine($"FindFirstStep: Found required room at {step} step.");
-
-						// Go back to the start, counting steps
-						var moveSteps = 1;
-						var n = node;
-						while (n.Source != null && n.Source.Room.Id != source.Id)
-						{
-							++moveSteps;
-							n = n.Source;
-						}
-
-						if (n.Source == null)
-						{
-							// Should never happen
-							Debug.Assert(false);
-							break;
-						}
-
-						result.Success = true;
-						result.StepsCount = moveSteps;
-						result.FirstDirection = n.SourceDirection;
-						break;
-					}
-
-					++step;
-
-					foreach (var pair in room.Exits)
-					{
-						if (pair.Value == null || pair.Value.TargetRoom == null || visited.Contains(pair.Value.TargetRoom.Id))
-						{
-							continue;
-						}
-
-						var targetRoom = pair.Value.TargetRoom;
-						visited.Add(targetRoom.Id);
-
-						var dist = Distance(targetRoom, target);
-						data.Enqueue(new Node(targetRoom, pair.Key, node), dist);
-					}
-				}
-
-				var key = BuildQueryKey(source, target);
-				_queries[key] = result;
-			}
-			catch (Exception)
-			{
-			}
-		}
-
 		/// <summary>
 		/// Find path(not necessarily shortest) between two rooms using simple algorithm with distance heuristics
 		/// </summary>
 		/// <param name="source"></param>
 		/// <param name="target"></param>
 		/// <returns></returns>
-		public static PathFindingResult BuildPathAsync(Room source, Room target)
+		public static PathFindingResult BuildPath(Room source, Room target)
 		{
-			// Check if the path had been builder
-			var key = BuildQueryKey(source, target);
-
-			PathFindingResult result = null;
-			if (_queries.TryRemove(key, out result))
-			{
-				// Found
-				return result;
-			}
-
 			if (source.Id == target.Id)
 			{
 				return null;
 			}
 
+			PathFindingResult result = null;
+
 			UpdateCoords();
 
-			// Build path in the separate thread
-			Task.Run(() => InternalBuildPath(source, target));
-			return null;
+			var s = Stopwatch.StartNew();
+
+			// Enqueue first room, the direction isn't important
+			var visited = new HashSet<int>
+			{
+				source.Id
+			};
+
+			var data = new PriorityQueue<Node, int>();
+			data.Enqueue(new Node(source, Direction.North, null), Distance(source, target));
+
+			var step = 0;
+			while (data.Count > 0)
+			{
+				var node = data.Dequeue();
+				var room = node.Room;
+
+				if (room.Id == target.Id)
+				{
+					// Reached
+					Debug.WriteLine($"BuildPathAsync: Found required room at {step} step.");
+
+					// Go back to the start, counting steps
+					var moveSteps = 1;
+					var n = node;
+					while (n.Source != null && n.Source.Room.Id != source.Id)
+					{
+						++moveSteps;
+						n = n.Source;
+					}
+
+					if (n.Source == null)
+					{
+						// Should never happen
+						Debug.Assert(false);
+						break;
+					}
+
+					result = new PathFindingResult(n.SourceDirection, moveSteps);
+					break;
+				}
+
+				++step;
+
+				foreach (var pair in room.Exits)
+				{
+					if (pair.Value == null || pair.Value.TargetRoom == null || visited.Contains(pair.Value.TargetRoom.Id))
+					{
+						continue;
+					}
+
+					var targetRoom = pair.Value.TargetRoom;
+					visited.Add(targetRoom.Id);
+
+					var dist = Distance(targetRoom, target);
+					data.Enqueue(new Node(targetRoom, pair.Key, node), dist);
+				}
+			}
+
+			s.Stop();
+
+			if (result == null)
+			{
+				Debug.WriteLine($"BuildPathAsync: Destination room unreachable at {step} step.");
+			}
+
+			Debug.WriteLine($"Took {s.ElapsedMilliseconds} ms");
+
+			return result;
 		}
 	}
 }
