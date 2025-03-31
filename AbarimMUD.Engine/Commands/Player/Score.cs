@@ -1,4 +1,5 @@
 ﻿using AbarimMUD.Data;
+using AbarimMUD.Utils;
 using System;
 
 namespace AbarimMUD.Commands.Player
@@ -97,10 +98,19 @@ namespace AbarimMUD.Commands.Player
 			{
 				context.Send("Skills:");
 
+				var skillsGrid = new AsciiGrid();
+				var i = 0;
 				foreach (var pair in asCharacter.Skills)
 				{
-					context.Send($"{pair.Value.Skill.Name}: {pair.Value.Level}");
+					var x = i % 2;
+					var y = i / 2;
+
+					skillsGrid.SetValue(x, y, $"{pair.Value.Skill.Name}: {pair.Value.Level}");
+
+					++i;
 				}
+
+				context.Send(skillsGrid.ToString());
 
 				if (asCharacter.SkillPoints == 0)
 				{

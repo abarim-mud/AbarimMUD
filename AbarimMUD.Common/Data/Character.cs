@@ -106,7 +106,7 @@ namespace AbarimMUD.Data
 
 		public long Experience { get; set; }
 
-		public Dictionary<string, SkillValue> Skills { get; set; } = new Dictionary<string, SkillValue>();
+		public SortedDictionary<string, SkillValue> Skills { get; set; } = new SortedDictionary<string, SkillValue>();
 
 		public int SpentSkillPointsCount
 		{
@@ -235,14 +235,25 @@ namespace AbarimMUD.Data
 			// Apply skills and abilities
 			foreach (var pair in Skills)
 			{
+				var skill = pair.Value.Skill;
 				// Apply all levels up to learned one
 				for (var level = 0; level <= (int)pair.Value.Level; ++level)
 				{
-					var def = pair.Value.Skill.Levels[level];
+					var def = skill.Levels[level];
 
 					foreach (var modPair in def.Modifiers)
 					{
 						result.Add(modPair.Key, modPair.Value);
+					}
+
+					if (Class.Id.EqualsToIgnoreCase(skill.Class.Id))
+					{
+						// Prime class skill
+						// Apply prime modifiers too
+						foreach (var modPair in def.PrimeModifiers)
+						{
+							result.Add(modPair.Key, modPair.Value);
+						}
 					}
 
 					if (def.Abilities != null)

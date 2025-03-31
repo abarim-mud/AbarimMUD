@@ -6,9 +6,18 @@ namespace AbarimMUD.Data
 {
 	public class CreatureStats
 	{
-		public int MaxHitpoints { get; internal set; }
-		public int MaxMana { get; internal set; }
-		public int MaxMoves { get; internal set; }
+		public int HitpointsBase { get; internal set; }
+		public int ManaBase { get; internal set; }
+		public int MovesBase { get; internal set; }
+
+		public int HitpointsBonus { get; internal set; }
+		public int ManaBonus { get; internal set; }
+		public int MovesBonus { get; internal set; }
+
+
+		public int MaxHitpoints => HitpointsBase + HitpointsBonus;
+		public int MaxMana => ManaBase + ManaBonus;
+		public int MaxMoves => MovesBase + MovesBonus;
 
 		public int HpRegenBonus { get; internal set; }
 		public int ManaRegenBonus { get; internal set; }
@@ -26,33 +35,29 @@ namespace AbarimMUD.Data
 
 		public int GetHitpointsRegen(bool isFighting)
 		{
-			var result = (int)(Configuration.HitpointsRegenPercentagePerMinute * MaxHitpoints / 100.0f);
+			var result = (int)(Configuration.HitpointsRegenPercentagePerMinute * HitpointsBase / 100.0f) + HpRegenBonus;
 			if (!isFighting)
 			{
 				result *= Configuration.PeaceRegenMultiplier;
 			}
-
-			result += HpRegenBonus;
 
 			return result;
 		}
 
 		public int GetManaRegen(bool isFighting)
 		{
-			var result = (int)(Configuration.ManaRegenPercentagePerMinute * MaxMana / 100.0f);
+			var result = (int)(Configuration.ManaRegenPercentagePerMinute * ManaBase / 100.0f) + ManaRegenBonus;
 			if (!isFighting)
 			{
 				result *= Configuration.PeaceRegenMultiplier;
 			}
-
-			result += ManaRegenBonus;
 
 			return result;
 		}
 
 		public int GetMovesRegen(bool isFighting)
 		{
-			var result = (int)(Configuration.MovesRegenPercentagePerMinute * MaxMoves / 100.0f);
+			var result = (int)(Configuration.MovesRegenPercentagePerMinute * MaxMoves / 100.0f) + MovesRegenBonus;
 			if (!isFighting)
 			{
 				result *= Configuration.PeaceRegenMultiplier;
@@ -65,7 +70,7 @@ namespace AbarimMUD.Data
 
 		public Ability GetAbility(string id)
 		{
-			return (from ab in Abilities where string.Equals(ab.Id, id, System.StringComparison.InvariantCultureIgnoreCase) select ab).FirstOrDefault();
+			return (from ab in Abilities where ab.Id.EqualsToIgnoreCase(id) select ab).FirstOrDefault();
 		}
 
 		public int GetBuyPrice(int originalPrice)
@@ -88,9 +93,8 @@ namespace AbarimMUD.Data
 
 		private static float CalculateArmorPenK(int value)
 		{
-			return Math.Max(1, Math.Min(value, 300) / 100.0f);
+			return 1.0f + Math.Min(value, 300) / 100.0f;
 		}
-
 
 		public long CalculateXpAward()
 		{
@@ -126,13 +130,13 @@ namespace AbarimMUD.Data
 			switch (type)
 			{
 				case ModifierType.Hitpoints:
-					MaxHitpoints += val;
+					HitpointsBonus += val;
 					break;
 				case ModifierType.Mana:
-					MaxMana += val;
+					ManaBonus += val;
 					break;
 				case ModifierType.Moves:
-					MaxMoves += val;
+					MovesBonus += val;
 					break;
 				case ModifierType.AttackBonus:
 					foreach (var atk in Attacks)

@@ -82,9 +82,9 @@ namespace AbarimMUD.Data
 
 			var stats = new CreatureStats
 			{
-				MaxHitpoints = hitpoints.CalculateValue(level),
-				MaxMana = mana.CalculateValue(level),
-				MaxMoves = moves.CalculateValue(level),
+				HitpointsBase = hitpoints.CalculateValue(level),
+				ManaBase = mana.CalculateValue(level),
+				MovesBase = moves.CalculateValue(level),
 			};
 
 			return stats;

@@ -1,43 +1,38 @@
 {
-  "Id": "deathtouch",
-  "Name": "Deathtouch",
+  "Id": "constitution",
+  "Name": "Constitution",
   "Class": "monk",
   "Levels": [
     {
       "Modifiers": {
-        "DeathtouchMultiplier": 2
-      },
-      "PrimeModifiers": {
-        "DeathtouchMultiplier": 1
-      },
-      "Abilities": [
-        "deathtouch"
-      ]
-    },
-    {
-      "Modifiers": {
-        "DeathtouchMultiplier": 2
+        "Hitpoints": 20
       },
       "PrimeModifiers": {}
     },
     {
       "Modifiers": {
-        "DeathtouchMultiplier": 2
+        "Hitpoints": 20
       },
       "PrimeModifiers": {}
     },
     {
       "Modifiers": {
-        "DeathtouchMultiplier": 2
+        "Hitpoints": 20
       },
       "PrimeModifiers": {}
     },
     {
       "Modifiers": {
-        "DeathtouchMultiplier": 2
+        "Hitpoints": 20
+      },
+      "PrimeModifiers": {}
+    },
+    {
+      "Modifiers": {
+        "Hitpoints": 20
       },
       "PrimeModifiers": {}
     }
   ],
-  "Cost": 1
+  "Cost": 2
 }

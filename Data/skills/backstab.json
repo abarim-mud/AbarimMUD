@@ -1,6 +1,6 @@
 {
-  "Id": "sneaking",
-  "Name": "Sneaking",
+  "Id": "backstab",
+  "Name": "Backstab",
   "Class": "rogue",
   "Levels": [
     {
@@ -8,21 +8,25 @@
         "BackstabCount": 1,
         "BackstabMultiplier": 2
       },
+      "PrimeModifiers": {
+        "BackstabMultiplier": 1
+      },
       "Abilities": [
-        "backstab",
-        "backstabMastery"
+        "backstab"
       ]
     },
     {
       "Modifiers": {
         "BackstabMultiplier": 2
-      }
+      },
+      "PrimeModifiers": {}
     },
     {
       "Modifiers": {
         "BackstabCount": 1,
         "BackstabMultiplier": 2
       },
+      "PrimeModifiers": {},
       "Abilities": [
         "circlestab"
       ]
@@ -30,13 +34,15 @@
     {
       "Modifiers": {
         "BackstabMultiplier": 2
-      }
+      },
+      "PrimeModifiers": {}
     },
     {
       "Modifiers": {
         "BackstabMultiplier": 2
-      }
+      },
+      "PrimeModifiers": {}
     }
   ],
-  "Cost": 2
+  "Cost": 1
 }

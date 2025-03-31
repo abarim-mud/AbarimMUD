@@ -4,9 +4,9 @@
   "WebServiceUrl": "http://localhost:8080/AbarimMUD/",
   "StartRoomId": 19087,
   "DefaultCharacter": "Yang",
-  "HitpointsRegenPercentagePerMinute": 20,
-  "ManaRegenPercentagePerMinute": 20,
-  "MovesRegenPercentagePerMinute": 20,
+  "HitpointsRegenPercentagePerMinute": 8,
+  "ManaRegenPercentagePerMinute": 8,
+  "MovesRegenPercentagePerMinute": 8,
   "PeaceRegenMultiplier": 2,
   "PauseBetweenFightRoundsInMs": 3000,
   "NegativeRegen": 20,
@@ -28,6 +28,6 @@
   "RecallManaCost": 35,
   "BaseBuyPricePercentage": 150,
   "BaseSellPricePercentage": 25,
-  "XpMultiply": 2,
+  "XpMultiply": 1,
   "HuntPauseInMs": 6000
 }

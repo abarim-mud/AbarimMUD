@@ -346,9 +346,9 @@ namespace AbarimMUD.Data
 		{
 			var stats = new CreatureStats
 			{
-				MaxHitpoints = Hitpoints,
-				MaxMana = Mana,
-				MaxMoves = Moves,
+				HitpointsBase = Hitpoints,
+				ManaBase = Mana,
+				MovesBase = Moves,
 				Armor = Armor
 			};
 

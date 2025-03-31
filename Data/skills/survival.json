@@ -5,21 +5,26 @@
   "Levels": [
     {
       "Modifiers": {},
+      "PrimeModifiers": {},
       "Abilities": [
         "hunt"
       ]
     },
     {
-      "Modifiers": {}
+      "Modifiers": {},
+      "PrimeModifiers": {}
     },
     {
-      "Modifiers": {}
+      "Modifiers": {},
+      "PrimeModifiers": {}
     },
     {
-      "Modifiers": {}
+      "Modifiers": {},
+      "PrimeModifiers": {}
     },
     {
-      "Modifiers": {}
+      "Modifiers": {},
+      "PrimeModifiers": {}
     }
   ],
   "Cost": 1

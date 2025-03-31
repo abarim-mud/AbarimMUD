@@ -10,16 +10,20 @@
         "MartialArtsAttacksCount": 1,
         "MartialArtsAttackBonus": 10
       },
+      "PrimeModifiers": {
+        "DamageReduction": 2,
+        "MartialArtsAttackBonus": 20
+      },
       "Abilities": [
-        "kick",
-        "martialArtsMastery"
+        "kick"
       ]
     },
     {
       "Modifiers": {
         "DamageReduction": 1,
         "MartialArtsAttackBonus": 10
-      }
+      },
+      "PrimeModifiers": {}
     },
     {
       "Modifiers": {
@@ -28,13 +32,15 @@
         "MartialArtsAttacksCount": 1,
         "DamageReduction": 1,
         "MartialArtsAttackBonus": 10
-      }
+      },
+      "PrimeModifiers": {}
     },
     {
       "Modifiers": {
         "DamageReduction": 1,
         "MartialArtsAttackBonus": 10
-      }
+      },
+      "PrimeModifiers": {}
     },
     {
       "Modifiers": {
@@ -43,7 +49,8 @@
         "MartialArtsAttacksCount": 1,
         "DamageReduction": 1,
         "MartialArtsAttackBonus": 10
-      }
+      },
+      "PrimeModifiers": {}
     }
   ],
   "Cost": 2

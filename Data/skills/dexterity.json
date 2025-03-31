@@ -1,0 +1,43 @@
+{
+  "Id": "dexterity",
+  "Name": "Dexterity",
+  "Class": "rogue",
+  "Levels": [
+    {
+      "Modifiers": {
+        "Armor": 8,
+        "Moves": 10
+      },
+      "PrimeModifiers": {}
+    },
+    {
+      "Modifiers": {
+        "Armor": 8,
+        "Moves": 10
+      },
+      "PrimeModifiers": {}
+    },
+    {
+      "Modifiers": {
+        "Armor": 8,
+        "Moves": 10
+      },
+      "PrimeModifiers": {}
+    },
+    {
+      "Modifiers": {
+        "Armor": 8,
+        "Moves": 10
+      },
+      "PrimeModifiers": {}
+    },
+    {
+      "Modifiers": {
+        "Armor": 8,
+        "Moves": 10
+      },
+      "PrimeModifiers": {}
+    }
+  ],
+  "Cost": 2
+}

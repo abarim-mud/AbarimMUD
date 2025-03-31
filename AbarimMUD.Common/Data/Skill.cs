@@ -1,5 +1,4 @@
-﻿using AbarimMUD.Attributes;
-using AbarimMUD.Storage;
+﻿using AbarimMUD.Storage;
 using System;
 using System.Collections.Generic;
 
@@ -17,6 +16,7 @@ namespace AbarimMUD.Data
 	public class SkillLevelDefinition
 	{
 		public Dictionary<ModifierType, int> Modifiers { get; set; } = new Dictionary<ModifierType, int>();
+		public Dictionary<ModifierType, int> PrimeModifiers { get; set; } = new Dictionary<ModifierType, int>();
 		public Ability[] Abilities { get; set; }
 	}
 
