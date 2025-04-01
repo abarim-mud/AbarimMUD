@@ -197,7 +197,7 @@ namespace AbarimMUD.Data
 			if (weapon != null && weapon.Info.DamageRange != null)
 			{
 				usesWeapon = true;
-				if (modifiers.Modifiers.TryGetValue(ModifierType.WeaponAttackBonus, out a))
+				if (modifiers.Modifiers.TryGetValue(ModifierType.WeaponAttacksCount, out a))
 				{
 					attacksCount += a;
 				}

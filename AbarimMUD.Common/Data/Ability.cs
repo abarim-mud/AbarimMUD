@@ -8,6 +8,7 @@ namespace AbarimMUD.Data
 	{
 		Passive,
 		Physical,
+		Spell,
 		Custom
 	}
 
@@ -79,6 +80,12 @@ namespace AbarimMUD.Data
 		public Dictionary<ModifierType, int> Modifiers { get; set; }
 		public PlayerClass PrimeClass { get; set; }
 		public int MovesCost { get; set; }
+		public string MessageMissUser { get; set; }
+		public string MessageMissRoom { get; set; }
+		public string MessageHitUser { get; set; }
+		public string MessageHitRoom { get; set; }
+		public string MessageKillUser { get; set; }
+		public string MessageKillRoom { get; set; }
 
 		public void Create() => Storage.Create(this);
 		public void Save() => Storage.Save(this);

@@ -16,6 +16,13 @@ namespace AbarimMUD.Data
 		Owner
 	}
 
+	public enum FightDetails
+	{
+		None,
+		Damage,
+		All
+	}
+
 	public sealed class Character : Creature, IStoredInFile
 	{
 		public static readonly List<Character> ActiveCharacters = new List<Character>();
@@ -125,6 +132,7 @@ namespace AbarimMUD.Data
 		public string FightSkill { get; set; }
 		public string StabWeapon { get; set; }
 		public string Title { get; set; }
+		public FightDetails FightDetails { get; set; } = FightDetails.Damage;
 
 		public override string ShortDescription => Name;
 		public override string Description => PlayerDescription;

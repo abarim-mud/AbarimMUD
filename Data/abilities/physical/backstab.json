@@ -1,0 +1,12 @@
+{
+  "Id": "backstab",
+  "Name": "backstab",
+  "Type": "Physical",
+  "MovesCost": 20,
+  "MessageMissUser": "{target.Name} quickly avoids your backstab and you nearly cut your own finger{info}!",
+  "MessageMissRoom": "{target.Name} quickly avoids {user.Name}\u0027s backstab and {user.Name} nearly cuts their own finger!",
+  "MessageHitUser": "You place {weapon} in the back of {target.Name}, resulting in some strange noises and some blood{info}!",
+  "MessageHitRoom": "{target.Name} makes a strange sound but is suddenly very silent as {user.Name} places {weapon} in its back.",
+  "MessageKillUser": "You place {weapon} in the back of {target.Name}, resulting in some strange noises and some blood{info}!",
+  "MessageKillRoom": "{user.Name} places {weapon} in the back of {target.Name}, resulting in some strange noises and some blood!"
+}

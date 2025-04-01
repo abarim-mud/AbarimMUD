@@ -1,0 +1,13 @@
+{
+  "Id": "circlestab",
+  "Name": "Circlestab",
+  "Type": "Physical",
+  "PrimeClass": "rogue",
+  "MovesCost": 8,
+  "MessageMissUser": "{target.Name} quickly avoids your circlestab and you nearly cut your own finger{info}!",
+  "MessageMissRoom": "{target.Name} quickly avoids {user.Name}\u0027s circlestab and {user.Name} nearly cuts their own finger!",
+  "MessageHitUser": "You quickly move from {target.Name}\u0027s eyesight and stab it with {weapon}{info}!",
+  "MessageHitRoom": "{user.Name} quickly moves from {target.Name}\u0027s eyesight and stabs it with {weapon}!",
+  "MessageKillUser": "You struck {target.Name} right in the heart{info}!",
+  "MessageKillRoom": "{user.Name} strucks {target.Name} right in the heart!"
+}

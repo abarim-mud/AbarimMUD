@@ -1,0 +1,12 @@
+{
+  "Id": "kick",
+  "Name": "Kick",
+  "Type": "Physical",
+  "MovesCost": 0,
+  "MessageMissUser": "You miss {target.Name} with your kick{info}!",
+  "MessageMissRoom": "{user.Name} misses {target.Name} with your kick!",
+  "MessageHitUser": "You kick {target.Name}{info}!",
+  "MessageHitRoom": "{user.Name} kicks {target.Name}!",
+  "MessageKillUser": "Your masterful kick put the end of the life of {target.Name}{info}!",
+  "MessageKillRoom": "{user.Name}\u0027s masterful kick puts the end of the life of {target.Name}!"
+}

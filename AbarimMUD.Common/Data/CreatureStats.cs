@@ -23,6 +23,10 @@ namespace AbarimMUD.Data
 		public int ManaRegenBonus { get; internal set; }
 		public int MovesRegenBonus { get; internal set; }
 
+		public int HpRegenBonus2 { get; internal set; }
+		public int ManaRegenBonus2 { get; internal set; }
+		public int MovesRegenBonus2 { get; internal set; }
+
 		public List<Attack> Attacks { get; } = new List<Attack>();
 		public int BackstabCount { get; internal set; }
 		public int BackstabMultiplier { get; internal set; }
@@ -35,35 +39,42 @@ namespace AbarimMUD.Data
 
 		public int GetHitpointsRegen(bool isFighting)
 		{
-			var result = (int)(Configuration.HitpointsRegenPercentagePerMinute * HitpointsBase / 100.0f) + HpRegenBonus;
+			var r = (int)(Configuration.HitpointsRegenPercentagePerMinute * HitpointsBase / 100.0f);
+			var result = Math.Max(r, Configuration.HitpointsRegenMinimumPerMinute) + HpRegenBonus;
 			if (!isFighting)
 			{
 				result *= Configuration.PeaceRegenMultiplier;
 			}
+
+			result += HpRegenBonus2;
 
 			return result;
 		}
 
 		public int GetManaRegen(bool isFighting)
 		{
-			var result = (int)(Configuration.ManaRegenPercentagePerMinute * ManaBase / 100.0f) + ManaRegenBonus;
+			var r = (int)(Configuration.ManaRegenPercentagePerMinute * ManaBase / 100.0f);
+			var result = Math.Max(r, Configuration.ManaRegenMinimumPerMinute) + ManaRegenBonus;
 			if (!isFighting)
 			{
 				result *= Configuration.PeaceRegenMultiplier;
 			}
+
+			result += ManaRegenBonus2;
 
 			return result;
 		}
 
 		public int GetMovesRegen(bool isFighting)
 		{
-			var result = (int)(Configuration.MovesRegenPercentagePerMinute * MaxMoves / 100.0f) + MovesRegenBonus;
+			var r = (int)(Configuration.MovesRegenPercentagePerMinute * MaxMoves / 100.0f);
+			var result = Math.Max(r, Configuration.MovesRegenMinimumPerMinute) + MovesRegenBonus;
 			if (!isFighting)
 			{
 				result *= Configuration.PeaceRegenMultiplier;
 			}
 
-			result += MovesRegenBonus;
+			result += MovesRegenBonus2;
 
 			return result;
 		}
@@ -203,6 +214,15 @@ namespace AbarimMUD.Data
 					break;
 				case ModifierType.MovesRegen:
 					MovesRegenBonus += val;
+					break;
+				case ModifierType.HpRegen2:
+					HpRegenBonus2 += val;
+					break;
+				case ModifierType.ManaRegen2:
+					ManaRegenBonus2 += val;
+					break;
+				case ModifierType.MovesRegen2:
+					MovesRegenBonus2 += val;
 					break;
 				case ModifierType.AttacksCount:
 					// This is calculated on earlier stage of Creature.UpdateStats

@@ -26,6 +26,7 @@ namespace AbarimMUD.Commands
 
 		public static readonly Who Who = new Who();
 		public static readonly Title Title = new Title();
+		public static readonly FightDetailsCommand FightDetails = new FightDetailsCommand();
 
 		public static readonly Say Say = new Say();
 		public static readonly Gossip Gossip = new Gossip();

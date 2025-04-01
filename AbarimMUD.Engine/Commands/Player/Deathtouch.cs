@@ -67,7 +67,7 @@ namespace AbarimMUD.Commands.Player
 				return false;
 			}
 
-			context.Deathtouch(ab, target);
+			context.Deathtouch(target);
 			Fight.Start(context, target);
 
 			return true;

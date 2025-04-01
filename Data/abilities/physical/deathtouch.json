@@ -1,0 +1,12 @@
+{
+  "Id": "deathtouch",
+  "Name": "deathtouch",
+  "Type": "Physical",
+  "MovesCost": 20,
+  "MessageMissUser": "{target.Name} manages to avoid your deathtouch{info}!",
+  "MessageMissRoom": "{target.Name} manages to avoid {user.Name}\u0027s deathtouch!",
+  "MessageHitUser": "{target.Name} spits out some blood as you land a deathtouch{info}!",
+  "MessageHitRoom": "{target.Name} spits out some blood as {user.Name} lands a deathtouch!",
+  "MessageKillUser": "{target.Name} becomes very silent and falls on the ground as you land a deathtouch{info}!",
+  "MessageKillRoom": "{target.Name} becomes very silent and falls on the ground as {user.Name} lands a deathtouch!"
+}

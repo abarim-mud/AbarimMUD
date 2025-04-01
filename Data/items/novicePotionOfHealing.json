@@ -10,7 +10,7 @@
   "ItemType": "Potion",
   "Price": 200,
   "Affects": {
-    "HpRegen": {
+    "HpRegen2": {
       "Value": 60,
       "DurationInSeconds": 60,
       "AffectSlotName": "potionOfHealing"

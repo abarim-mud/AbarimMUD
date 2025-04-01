@@ -71,7 +71,7 @@ namespace AbarimMUD.Commands.Player
 				target = context.FightInfo.Target;
 			}
 
-			context.Circlestab(ab, weapon, target);
+			context.Circlestab(weapon, target);
 			Fight.Start(context, target);
 
 			return true;

@@ -3,7 +3,7 @@ using AbarimMUD.Data;
 
 namespace AbarimMUD.Commands.Player
 {
-	public class Backstab: PlayerCommand
+	public class Backstab : PlayerCommand
 	{
 		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
@@ -88,19 +88,21 @@ namespace AbarimMUD.Commands.Player
 			if (weapon != null && weapon.Info.Flags.Contains(ItemFlags.Stab))
 			{
 				// Wielded weapon can stab
-				context.Backstab(ab, weapon, target);
-			} else if (weapon == null)
+				context.Backstab(weapon, target);
+			}
+			else if (weapon == null)
 			{
 				// Wield stab and remove, since figthing with bare hands
 				if (!context.WearItem(stabWeapon))
 				{
 					return false;
 				}
-				
-				context.Backstab(ab, stabWeapon, target);
-				
+
+				context.Backstab(stabWeapon, target);
+
 				context.RemoveItem(EquipmentSlotType.Wield);
-			} else
+			}
+			else
 			{
 				// Remove non-stab weapon, wield stab, stab, remove stab, wield non-stab
 				if (!context.RemoveItem(EquipmentSlotType.Wield))
@@ -115,7 +117,7 @@ namespace AbarimMUD.Commands.Player
 					return false;
 				}
 
-				context.Backstab(ab, stabWeapon, target);
+				context.Backstab(stabWeapon, target);
 				if (context.RemoveItem(EquipmentSlotType.Wield))
 				{
 					context.WearItem(weapon);

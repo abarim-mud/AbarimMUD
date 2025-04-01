@@ -2,6 +2,7 @@
 using AbarimMUD.Data;
 using AbarimMUD.Utils;
 using System;
+using System.Text;
 
 namespace AbarimMUD.Combat
 {
@@ -44,16 +45,126 @@ namespace AbarimMUD.Combat
 			}
 		}
 
+		private static string FormatMessage(string message, ExecutionContext user, ExecutionContext target, string weapon, string info)
+		{
+			if (string.IsNullOrEmpty(message))
+			{
+				return message;
+			}
+
+			var result = new StringBuilder();
+			var variable = new StringBuilder();
+
+			var readingVariable = false;
+			for (var i = 0; i < message.Length; ++i)
+			{
+				var c = message[i];
+
+				if (c == '{' && !readingVariable)
+				{
+					variable.Clear();
+					readingVariable = true;
+				}
+				else if (c == '}' && readingVariable)
+				{
+					var v = variable.ToString().ToLower();
+
+					string value;
+					switch (v)
+					{
+						case "user.name":
+							value = user.ShortDescription;
+							break;
+
+						case "target.name":
+							value = target.ShortDescription;
+							break;
+
+						case "weapon":
+							value = weapon;
+							break;
+
+						case "info":
+							value = info;
+							break;
+
+						default:
+							throw new Exception($"Unknown variable '{v}'");
+					}
+
+					result.Append(value);
+					readingVariable = false;
+				}
+				else
+				{
+					if (!readingVariable)
+					{
+						result.Append(c);
+					}
+					else
+					{
+						variable.Append(c);
+					}
+				}
+			}
+
+			if (readingVariable)
+			{
+				throw new Exception("Unfinished variable name");
+			}
+
+			return result.ToString();
+		}
+
+		private static string FormatDetails(string info)
+		{
+			if (string.IsNullOrEmpty(info))
+			{
+				return string.Empty;
+			}
+			return " (" + info + ")";
+		}
+
+		private static void SendMissMessage(this ExecutionContext attacker, Ability ability, ExecutionContext target, string weapon, string info)
+		{
+			info = FormatDetails(info);
+			attacker.SendBattleMessage(FormatMessage(ability.MessageMissUser, attacker, target, weapon, info));
+			attacker.SendRoomExceptMe(FormatMessage(ability.MessageMissRoom, attacker, target, weapon, info));
+		}
+
+		private static void SendHitMessage(this ExecutionContext attacker, Ability ability, ExecutionContext target, string weapon, string info)
+		{
+			info = FormatDetails(info);
+			attacker.SendBattleMessage(FormatMessage(ability.MessageHitUser, attacker, target, weapon, info));
+			attacker.SendRoomExceptMe(FormatMessage(ability.MessageHitRoom, attacker, target, weapon, info));
+		}
+
+		private static void SendKillMessage(this ExecutionContext attacker, Ability ability, ExecutionContext target, string weapon, string info)
+		{
+			info = FormatDetails(info);
+			attacker.SendBattleMessage(FormatMessage(ability.MessageKillUser, attacker, target, weapon, info));
+			attacker.SendRoomExceptMe(FormatMessage(ability.MessageKillRoom, attacker, target, weapon, info));
+		}
+
+		private static FightDetails GetFightDetails(this ExecutionContext ctx)
+		{
+			var fightDetails = FightDetails.Damage;
+			var character = ctx.Creature as Character;
+			if (character != null)
+			{
+				fightDetails = character.FightDetails;
+			}
+
+			return fightDetails;
+		}
 
 		public static void SingleAttack(this ExecutionContext attacker, int attackIndex, ExecutionContext target)
 		{
+			var fightDetails = attacker.GetFightDetails();
 			var stats = attacker.Creature.Stats;
 			var attacks = stats.Attacks;
-
 			var attack = attacks[attackIndex];
-
 			var targetStats = target.Stats;
-
 			var damage = 0;
 
 			var attackRoll = attack.DoAttackRoll(targetStats.Armor);
@@ -79,7 +190,12 @@ namespace AbarimMUD.Combat
 						message = $"You miss {target.Creature.ShortDescription} with your {attack.Type.GetAttackNoun()}";
 					}
 
-					message += $" ({attackRoll}).";
+					if (fightDetails == FightDetails.All)
+					{
+						message += FormatDetails(attackRoll.ToString());
+					}
+
+					message += ".";
 				}
 				else
 				{
@@ -103,7 +219,7 @@ namespace AbarimMUD.Combat
 						targetName = "you";
 					}
 
-					message = GetAttackMessage(attackRoll, damage, attackerName, targetName, attack.Type);
+					message = GetAttackMessage(attackRoll, damage, attackerName, targetName, attack.Type, fightDetails);
 				}
 
 				var context = (ExecutionContext)character.Tag;
@@ -116,237 +232,157 @@ namespace AbarimMUD.Combat
 			}
 		}
 
-		private static bool RollSpecialAttack(this ExecutionContext attacker, ExecutionContext target, string attackName, int successChancePercentage)
+		private static void AbilityAttack(this ExecutionContext attacker,
+			Ability ability, Func<int> damageRoller, int successChancePercentage,
+			ItemInstance weapon, ExecutionContext target, out bool slain)
 		{
-			var attack = attacker.Stats.Attacks[0];
+			slain = false;
 
-			attacker.SendInfoMessage($"{attackName} success chance: {successChancePercentage}%");
-			var success = Utility.RollPercentage(successChancePercentage);
-			if (success)
-			{
-				// Then hit change
-				var attackRoll = attack.DoAttackRoll(target.Stats.Armor);
-				if (!attackRoll.Hit)
-				{
-					success = false;
-				}
+			var fightDetails = attacker.GetFightDetails();
+			var weaponStr = weapon != null ? weapon.Info.ShortDescription : string.Empty;
 
-				attacker.SendInfoMessage($"Attack Roll: {attackRoll}");
-			}
-
-			return success;
-		}
-
-
-		public static void Backstab(this ExecutionContext attacker, Ability ability, ItemInstance weapon, ExecutionContext target)
-		{
 			attacker.State.Moves -= ability.MovesCost;
 
-			// Success chance 95 - (i * 20)
-			for (var i = 0; i < attacker.Stats.BackstabCount; ++i)
+			var skillRollSuccess = Utility.RollPercentage(successChancePercentage);
+			var attackRoll = new AttackRollResult();
+			if (skillRollSuccess)
 			{
-				// Firstly roll overall success chance
-				var successChancePercentage = 95 - (i * 20);
-				var success = RollSpecialAttack(attacker, target, "Backstab", successChancePercentage);
-				if (!success)
-				{
-					attacker.SendBattleMessage($"{target.ShortDescription} quickly avoids your backstab and you nearly cut your own finger!");
-
-					var roomMessage = $"{target.ShortDescription} quickly avoids {attacker.ShortDescription}'s backstab and {attacker.ShortDescription} nearly cuts their own finger!";
-					attacker.SendRoomExceptMe(roomMessage);
-
-					return;
-				}
-
-				// Now roll the damage
-				var damage = 0;
+				// Then hit change
 				var attack = attacker.Stats.Attacks[0];
-				for (var j = 0; j < attacker.Stats.BackstabMultiplier; ++j)
-				{
-					damage += attack.CalculateDamage();
-				}
-
-				target.Creature.State.Hitpoints -= damage;
-				if (target.Creature.State.Hitpoints < 0)
-				{
-					attacker.SendBattleMessage($"{target.ShortDescription} makes a strange sound but is suddenly very silent as you place {weapon.Name} in its back ({damage}).");
-
-					var roomMessage = $"{target.ShortDescription} makes a strange sound but is suddenly very silent as {attacker.ShortDescription} places {weapon.Name} in its back ({damage}).";
-					attacker.SendRoomExceptMe(roomMessage);
-
-					attacker.Slain(target);
-					return;
-				}
-
-				if (damage <= 0)
-				{
-					attacker.SendBattleMessage($"Your blade scratches the armor of {target.ShortDescription} with the grinding sound!");
-
-					var roomMessage = $"{attacker.ShortDescription}'s blade scratches the armor of {target.ShortDescription} with the grinding sound!";
-					attacker.SendRoomExceptMe(roomMessage);
-				}
-				else
-				{
-					attacker.SendBattleMessage($"You place {weapon.Name} in the back of {target.ShortDescription}, resulting in some strange noises and some blood ({damage})!");
-
-					var roomMessage = $"{attacker.ShortDescription} places {weapon.Name} in the back of {target.ShortDescription}, resulting in some strange noises and some blood ({damage})!";
-					attacker.SendRoomExceptMe(roomMessage);
-				}
-			}
-		}
-
-		public static void Circlestab(this ExecutionContext attacker, Ability circlestab, ItemInstance weapon, ExecutionContext target)
-		{
-			attacker.State.Moves -= circlestab.MovesCost;
-
-			// Success chance is 95%
-			var success = RollSpecialAttack(attacker, target, "Circlestab", 95);
-			if (!success)
-			{
-				attacker.SendBattleMessage($"{target.ShortDescription} quickly avoids your circlestab and you nearly cut your own finger!");
-
-				var roomMessage = $"{target.ShortDescription} quickly avoids {attacker.ShortDescription}'s circlestab and {attacker.ShortDescription} nearly cuts their own finger!";
-				attacker.SendRoomExceptMe(roomMessage);
-
-				return;
+				attackRoll = attack.DoAttackRoll(target.Stats.Armor);
 			}
 
 			var damage = 0;
-			var circleMultiplier = attacker.Stats.BackstabMultiplier / 3;
-			var attack = attacker.Stats.Attacks[0];
-			for (var j = 0; j < circleMultiplier; ++j)
+			if (attackRoll.Hit)
 			{
-				damage += attack.CalculateDamage();
+				// Now roll the damage
+				damage = damageRoller();
 			}
 
-			target.Creature.State.Hitpoints -= damage;
-			if (target.Creature.State.Hitpoints < 0)
+			var info = string.Empty;
+			if (damage == 0)
 			{
-				attacker.SendBattleMessage($"You struck {target.ShortDescription} right in the heart!");
+				// Miss
+				if (fightDetails == FightDetails.All)
+				{
+					if (!skillRollSuccess)
+					{
+						info = "skill";
+					}
+					else if (!attackRoll.Hit)
+					{
+						info = attackRoll.ToString();
+					}
+					else
+					{
+						info = "no damage";
+					}
+				}
 
-				var roomMessage = $"{attacker.ShortDescription} strucks {target.ShortDescription} right in the heart!";
-				attacker.SendRoomExceptMe(roomMessage);
-
-				attacker.Slain(target);
+				attacker.SendMissMessage(ability, target, weaponStr, info);
 				return;
 			}
 
-			if (damage <= 0)
+			switch (fightDetails)
 			{
-				attacker.SendBattleMessage($"Your blade scratches the armor of {target.ShortDescription} with the grinding sound!");
+				case FightDetails.Damage:
+					info = damage.ToString();
+					break;
 
-				var roomMessage = $"{attacker.ShortDescription}'s blade scratches the armor of {target.ShortDescription} with the grinding sound!";
-				attacker.SendRoomExceptMe(roomMessage);
+				case FightDetails.All:
+					info = attackRoll.AttackRoll + ", " + damage;
+					break;
 			}
-			else
+
+
+			target.Creature.State.Hitpoints -= damage;
+			if (target.Creature.State.Hitpoints >= 0)
 			{
-				attacker.SendBattleMessage($"You quickly move from {target.ShortDescription}'s eyesight and stab it with {weapon.Name} ({damage})!");
-
-				var roomMessage = $"{attacker.ShortDescription} quickly moves from {target.ShortDescription}'s eyesight and stabs it with {weapon.Name} ({damage})!";
-				attacker.SendRoomExceptMe(roomMessage);
+				attacker.SendHitMessage(ability, target, weaponStr, info);
+				return;
 			}
+
+			attacker.SendKillMessage(ability, target, weaponStr, info);
+			attacker.Slain(target);
+			slain = true;
+		}
+
+		public static void Backstab(this ExecutionContext attacker, ItemInstance weapon, ExecutionContext target)
+		{
+			// Success chance 95 - (i * 20)
+			for (var i = 0; i < attacker.Stats.BackstabCount; ++i)
+			{
+				var successChancePercentage = 95 - (i * 20);
+				bool slain;
+				attacker.AbilityAttack(Ability.Backstab,
+					() =>
+					{
+						var damage = 0;
+						var attack = attacker.Stats.Attacks[0];
+						for (var j = 0; j < attacker.Stats.BackstabMultiplier; ++j)
+						{
+							damage += attack.CalculateDamage();
+						}
+
+						return damage;
+					},
+					successChancePercentage, weapon, target, out slain);
+
+				if (slain)
+				{
+					break;
+				}
+			}
+		}
+
+		public static void Circlestab(this ExecutionContext attacker, ItemInstance weapon, ExecutionContext target)
+		{
+			bool slain;
+			attacker.AbilityAttack(Ability.Circlestab, () =>
+				{
+					var damage = 0;
+					var circleMultiplier = attacker.Stats.BackstabMultiplier / 3;
+					var attack = attacker.Stats.Attacks[0];
+					for (var j = 0; j < circleMultiplier; ++j)
+					{
+						damage += attack.CalculateDamage();
+					}
+
+					return damage;
+				},
+				95, weapon, target, out slain);
 		}
 
 		public static void Kick(this ExecutionContext attacker, ExecutionContext target)
 		{
-			// Success chance is 95%
-			var success = RollSpecialAttack(attacker, target, "Kick", 95);
-			if (!success)
-			{
-				attacker.SendBattleMessage($"You miss {target.ShortDescription} with your kick!");
-
-				var roomMessage = $"{attacker.ShortDescription} misses {target.ShortDescription} with your kick!";
-				attacker.SendRoomExceptMe(roomMessage);
-
-				return;
-			}
-
-			var baseDamage = Math.Min(attacker.Level, 20);
-			var damageRange = new ValueRange(baseDamage, baseDamage + 4);
-
-			var damage = damageRange.Random();
-			target.Creature.State.Hitpoints -= damage;
-			if (target.Creature.State.Hitpoints < 0)
-			{
-				attacker.SendBattleMessage($"Your masterful kick put the end of the life of {target.ShortDescription}!");
-
-				var roomMessage = $"{attacker.ShortDescription}'s masterful kick puts the end of the life of {target.ShortDescription}!";
-				attacker.SendRoomExceptMe(roomMessage);
-
-				attacker.Slain(target);
-				return;
-			}
-
-			if (damage <= 0)
-			{
-				attacker.SendBattleMessage($"Your kick can't break through the armor of {target.ShortDescription}!");
-
-				var roomMessage = $"{attacker.ShortDescription}'s kick can't break through the armor of {target.ShortDescription}!";
-				attacker.SendRoomExceptMe(roomMessage);
-			}
-			else
-			{
-				attacker.SendBattleMessage($"You kick {target.ShortDescription} ({damage})!");
-
-				var roomMessage = $"{attacker.ShortDescription} kicks {target.ShortDescription} ({damage})!";
-				attacker.SendRoomExceptMe(roomMessage);
-			}
+			bool slain;
+			attacker.AbilityAttack(Ability.Kick, () =>
+				{
+					var baseDamage = Math.Min(attacker.Level, 20);
+					var damageRange = new ValueRange(baseDamage, baseDamage + 4);
+					return damageRange.Random();
+				},
+				95, null, target, out slain);
 		}
 
-		public static void Deathtouch(this ExecutionContext attacker, Ability ability, ExecutionContext target)
+		public static void Deathtouch(this ExecutionContext attacker, ExecutionContext target)
 		{
-			attacker.State.Moves -= ability.MovesCost;
+			bool slain;
+			attacker.AbilityAttack(Ability.Deathtouch, () =>
+				{
+					var damage = 0;
+					var attack = attacker.Stats.Attacks[0];
+					for (var j = 0; j < attacker.Stats.DeathtouchMultiplier; ++j)
+					{
+						damage += attack.CalculateDamage();
+					}
 
-			// Success chance 95
-			// Firstly roll overall success chance
-			var success = RollSpecialAttack(attacker, target, "Deathtouch", 95);
-			if (!success)
-			{
-				attacker.SendBattleMessage($"{target.ShortDescription} manages to avoid your deathtouch!");
-
-				var roomMessage = $"{target.ShortDescription} manages to avoid {attacker.ShortDescription}'s deathtouch!";
-				attacker.SendRoomExceptMe(roomMessage);
-
-				return;
-			}
-
-			// Now roll the damage
-			var damage = 0;
-			var attack = attacker.Stats.Attacks[0];
-			for (var j = 0; j < attacker.Stats.DeathtouchMultiplier; ++j)
-			{
-				damage += attack.CalculateDamage();
-			}
-
-			target.Creature.State.Hitpoints -= damage;
-			if (target.Creature.State.Hitpoints < 0)
-			{
-				attacker.SendBattleMessage($"{target.ShortDescription} becomes very silent and falls on the ground as you land a deathtouch ({damage})!");
-
-				var roomMessage = $"{target.ShortDescription} becomes very silent and falls on the ground as {attacker.ShortDescription} lands a deathtouch!";
-				attacker.SendRoomExceptMe(roomMessage);
-
-				attacker.Slain(target);
-				return;
-			}
-
-			if (damage <= 0)
-			{
-				attacker.SendBattleMessage($"Your deathtouch deals no damage to {target.ShortDescription}!");
-
-				var roomMessage = $"{attacker.ShortDescription}'s deathtouch deals no damage to {target.ShortDescription}!";
-				attacker.SendRoomExceptMe(roomMessage);
-			}
-			else
-			{
-				attacker.SendBattleMessage($"{target.ShortDescription} spits out some blood as you land a deathtouch ({damage})!");
-
-				var roomMessage = $"{target.ShortDescription} spits out some blood as {attacker.ShortDescription} lands a deathtouch!";
-				attacker.SendRoomExceptMe(roomMessage);
-			}
+					return damage;
+				},
+				95, null, target, out slain);
 		}
 
-		private static string GetAttackMessage(AttackRollResult attackRoll, int damage, string attackerName, string targetName, AttackType attackType)
+		private static string GetAttackMessage(AttackRollResult attackRoll, int damage, string attackerName, string targetName, AttackType attackType, FightDetails fightDetails)
 		{
 			string result;
 			string attackVerb, massacre, massacre2;
@@ -397,7 +433,19 @@ namespace AbarimMUD.Combat
 				result = $"{attackerName} viciously {massacre} {targetName} to small fragments with {massacre2}";
 			}
 
-			result += $" ({attackRoll}, {damage}).";
+			switch (fightDetails)
+			{
+				case FightDetails.None:
+					break;
+				case FightDetails.Damage:
+					result += FormatDetails(damage.ToString());
+					break;
+				case FightDetails.All:
+					result += FormatDetails($"{attackRoll}, {damage}");
+					break;
+			}
+
+			result += ".";
 
 			return result;
 		}
