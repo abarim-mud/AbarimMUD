@@ -10,7 +10,7 @@
   "ItemType": "Potion",
   "Price": 400,
   "Affects": {
-    "ManaRegen2": {
+    "ManaRegenAbsolute2": {
       "Value": 60,
       "DurationInSeconds": 60,
       "AffectSlotName": "potionOfMana"

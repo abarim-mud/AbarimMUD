@@ -6,35 +6,40 @@
     {
       "Modifiers": {
         "Armor": 8,
-        "Moves": 10
+        "Moves": 10,
+        "MovesRegenPercentage": 1
       },
       "PrimeModifiers": {}
     },
     {
       "Modifiers": {
         "Armor": 8,
-        "Moves": 10
+        "Moves": 10,
+        "MovesRegenPercentage": 1
       },
       "PrimeModifiers": {}
     },
     {
       "Modifiers": {
         "Armor": 8,
-        "Moves": 10
+        "Moves": 10,
+        "MovesRegenPercentage": 1
       },
       "PrimeModifiers": {}
     },
     {
       "Modifiers": {
         "Armor": 8,
-        "Moves": 10
+        "Moves": 10,
+        "MovesRegenPercentage": 1
       },
       "PrimeModifiers": {}
     },
     {
       "Modifiers": {
         "Armor": 8,
-        "Moves": 10
+        "Moves": 10,
+        "MovesRegenPercentage": 1
       },
       "PrimeModifiers": {}
     }
