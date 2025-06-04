@@ -2,8 +2,8 @@
   "Id": "pantsOfBruceLee",
   "Keywords": [
     "pants",
-	"bruce",
-	"lee"
+    "bruce",
+    "lee"
   ],
   "ShortDescription": "The Pants of Bruce Lee",
   "Description": "The Pants of Bruce Lee",
@@ -12,7 +12,9 @@
   "Price": 80000000,
   "Affects": {
     "Armor": 80,
-	"DamageReduction": 15
+    "DamageReduction": 15
   },
-  "Flags": []
+  "Flags": [
+    "HideFromEquipmentList"
+  ]
 }

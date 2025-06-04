@@ -39,7 +39,7 @@ namespace AbarimMUD.Data
 	public enum ItemFlags
 	{
 		Stab,
-		Artefact
+		HideFromEquipmentList,
 	}
 
 	public enum ItemMaterial

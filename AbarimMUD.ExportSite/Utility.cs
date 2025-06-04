@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using AbarimMUD.Data;
 using MUDMapBuilder;
@@ -15,9 +16,11 @@ namespace AbarimMUD
 
 			// Check if the room is special
 			var isSpecial = Configuration.StartRoomId == room.Id ||
-				(room.Mobiles != null && (from m in room.Mobiles where 
-				 m.Info.Guildmaster != null || m.Info.Shop != null || 
-				 m.Info.ExchangeShop != null || m.Info.Flags.Contains(MobileFlags.Enchanter) select m).FirstOrDefault() != null);
+				(room.Mobiles != null && (from m in room.Mobiles
+										  where
+				 m.Info.Guildmaster != null || m.Info.Shop != null ||
+				 m.Info.ExchangeShop != null || m.Info.Flags.Contains(MobileFlags.Enchanter)
+										  select m).FirstOrDefault() != null);
 
 			if (isSpecial)
 			{
@@ -34,37 +37,37 @@ namespace AbarimMUD
 
 				var conn = new MMBRoomConnection(pair.Key.ToMMBDirection(), exit.TargetRoom.Id);
 
-/*				foreach (var reset in area.Resets)
-				{
-					if (reset.ResetType != AreaResetType.Door || reset.Value2 != room.Id || reset.Value3 != (int)pair.Key || reset.Value4 != 2)
-					{
-						continue;
-					}
+				/*				foreach (var reset in area.Resets)
+								{
+									if (reset.ResetType != AreaResetType.Door || reset.Value2 != room.Id || reset.Value3 != (int)pair.Key || reset.Value4 != 2)
+									{
+										continue;
+									}
 
-					conn.IsDoor = true;
+									conn.IsDoor = true;
 
-					// Add locked door
-					if (conn.DoorSigns == null)
-					{
-						conn.DoorSigns = new List<MMBRoomContentRecord>();
-					}
+									// Add locked door
+									if (conn.DoorSigns == null)
+									{
+										conn.DoorSigns = new List<MMBRoomContentRecord>();
+									}
 
-					if (!exit.Flags.Contains(RoomExitFlags.PickProof))
-					{
-						conn.DoorColor = Color.CornflowerBlue;
-					}
-					else
-					{
-						conn.DoorColor = Color.IndianRed;
-					}
+									if (!exit.Flags.Contains(RoomExitFlags.PickProof))
+									{
+										conn.DoorColor = Color.CornflowerBlue;
+									}
+									else
+									{
+										conn.DoorColor = Color.IndianRed;
+									}
 
-					conn.Color = conn.DoorColor;
+									conn.Color = conn.DoorColor;
 
-					if (exit.KeyObject != null)
-					{
-						conn.DoorSigns.Add(new MMBRoomContentRecord($"{exit.KeyObject.ShortDescription} #{exit.KeyObject.Id}", conn.DoorColor));
-					}
-				}*/
+									if (exit.KeyObject != null)
+									{
+										conn.DoorSigns.Add(new MMBRoomContentRecord($"{exit.KeyObject.ShortDescription} #{exit.KeyObject.Id}", conn.DoorColor));
+									}
+								}*/
 
 				result.Connections[pair.Key.ToMMBDirection()] = conn;
 
@@ -90,5 +93,31 @@ namespace AbarimMUD
 
 			return result;
 		}
+
+		public static string JoinOrAny<T>(this HashSet<T> data)
+		{
+			if (data == null || data.Count == 0)
+			{
+				return "Any";
+			}
+
+			return string.Join(", ", data);
+		}
+
+		private static string ValueWithSign(this int value)
+		{
+			var s = value > 0 ? "+" : "-";
+
+			s += value.ToString();
+
+			return s;
+		}
+
+		public static string ToPermanentAffect(this ModifierType type, int value)
+		{
+			return $"{value.ValueWithSign()} {type}".SpaceToNbsp();
+		}
+
+		public static string SpaceToNbsp(this string s) => s.Replace(" ", "&nbsp;");
 	}
 }

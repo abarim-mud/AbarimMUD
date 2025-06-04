@@ -3,7 +3,7 @@
   "Keywords": [
     "jacket",
     "bruce",
-	"lee"
+    "lee"
   ],
   "ShortDescription": "The Jacket of Bruce Lee",
   "Description": "The Jacket of Bruce Lee",
@@ -12,7 +12,9 @@
   "Price": 800000000,
   "Affects": {
     "Armor": 120,
-	"DamageReduction": 20
+    "DamageReduction": 20
   },
-  "Flags": []
+  "Flags": [
+    "HideFromEquipmentList"
+  ]
 }

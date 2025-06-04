@@ -34,15 +34,18 @@ namespace AbarimMUD.ExportAreasToMMB
 		{
 			public string Name { get; }
 			public string Slot { get; }
+			public string Material { get; }
 			public string Price { get; }
 			public string EnchantmentTier { get; }
 			public string Stats { get; }
-			public Dictionary<string, string> Affects { get; } = new Dictionary<string, string>();
+			public List<string> Affects { get; } = new List<string>();
+			public List<string> ForgeComponents { get; } = new List<string>();
 
-			public EquipmentData(string name, string slot, string price, string enchantmentTier, string stats)
+			public EquipmentData(string name, string slot, string material, string price, string enchantmentTier, string stats)
 			{
 				Name = name;
 				Slot = slot;
+				Material = material;
 				Price = price;
 				EnchantmentTier = enchantmentTier;
 				Stats = stats;
@@ -60,6 +63,25 @@ namespace AbarimMUD.ExportAreasToMMB
 			{
 				Name = name;
 				Type = type;
+				Price = price;
+			}
+		}
+
+		class EnchantmentData
+		{
+			public string Name { get; }
+			public string Stones { get; }
+			public string Slots { get; }
+			public string Materials { get; }
+			public string Price { get; }
+			public List<string> Affects { get; } = new List<string>();
+
+			public EnchantmentData(string name, string stones, string slots, string materials, string price)
+			{
+				Name = name;
+				Stones = stones;
+				Slots = slots;
+				Materials = materials;
 				Price = price;
 			}
 		}
@@ -266,7 +288,7 @@ namespace AbarimMUD.ExportAreasToMMB
 			var eqData = new List<EquipmentData>();
 			foreach (var item in Item.Storage)
 			{
-				if (item.ItemType != ItemType.Equipment)
+				if (item.Flags.Contains(ItemFlags.HideFromEquipmentList) || item.ItemType != ItemType.Equipment)
 				{
 					continue;
 				}
@@ -292,15 +314,16 @@ namespace AbarimMUD.ExportAreasToMMB
 					}
 				}
 
-				var d = new EquipmentData(item.ShortDescription,
+				var d = new EquipmentData(item.ShortDescription.SpaceToNbsp(),
 					item.EquipmentSlot.ToString(),
+					item.Material != null ? item.Material.ToString() : string.Empty,
 					item.Price.ToString(),
 					item.EnchantmentTier != null ? item.EnchantmentTier.Value.ToString() : string.Empty,
 					stats);
 
 				if (item.Flags.Contains(ItemFlags.Stab))
 				{
-					d.Affects["Stab"] = "true";
+					d.Affects.Add("Stab");
 				}
 
 				foreach (var pair in item.Affects)
@@ -311,7 +334,37 @@ namespace AbarimMUD.ExportAreasToMMB
 						continue;
 					}
 
-					d.Affects[pair.Key.ToString()] = pair.Value.Value.ToString();
+					var affect = pair.Value;
+
+					d.Affects.Add(affect.Type.ToPermanentAffect(affect.Value));
+				}
+
+				foreach (var forgeShop in ForgeShop.Storage)
+				{
+					foreach (var forge in forgeShop.Forges)
+					{
+						if (forge.Result.Id != item.Id)
+						{
+							continue;
+						}
+
+						if (forge.Price != 0)
+						{
+							d.ForgeComponents.Add($"{forge.Price} gold coins".SpaceToNbsp());
+						}
+
+						foreach (var component in forge.Components)
+						{
+							if (component.Quantity == 1)
+							{
+								d.ForgeComponents.Add(component.Name.SpaceToNbsp());
+							}
+							else
+							{
+								d.ForgeComponents.Add($"{component.Name} ({component.Quantity})".SpaceToNbsp());
+							}
+						}
+					}
 				}
 
 				eqData.Add(d);
@@ -341,10 +394,10 @@ namespace AbarimMUD.ExportAreasToMMB
 					item.ItemType.ToString(),
 					item.Price.ToString());
 
-				foreach(var pair in item.Affects)
+				foreach (var pair in item.Affects)
 				{
 					var affect = pair.Value;
-					d.Affects.Add($"raises {affect.Type} by {affect.Value} for {affect.DurationInSeconds} seconds." );
+					d.Affects.Add($"raises {affect.Type} by {affect.Value} for {affect.DurationInSeconds} seconds.");
 				}
 
 				consumableData.Add(d);
@@ -360,6 +413,35 @@ namespace AbarimMUD.ExportAreasToMMB
 			File.WriteAllText(constumableFile, s);
 		}
 
+		static void ExportEnchantments(string outputFolder)
+		{
+			var enchantmentData = new List<EnchantmentData>();
+			foreach (var enchantment in Enchantment.Storage)
+			{
+				var d = new EnchantmentData(enchantment.Name,
+					enchantment.EnchantmentStones.ToString(),
+					enchantment.SlotTypes.JoinOrAny(),
+					enchantment.Materials.JoinOrAny(),
+					enchantment.Price.ToString());
+
+				foreach (var pair in enchantment.Affects)
+				{
+					d.Affects.Add(pair.Key.ToPermanentAffect(pair.Value));
+				}
+
+				enchantmentData.Add(d);
+			}
+
+			enchantmentData = enchantmentData.OrderBy(c => c.Name).ToList();
+
+			var jsonOptions = CreateJsonOptions();
+			var s = JsonSerializer.Serialize(enchantmentData, jsonOptions);
+
+			var dataFolder = DataFolder(outputFolder);
+			var constumableFile = Path.Combine(dataFolder, "enchantments.json");
+			File.WriteAllText(constumableFile, s);
+		}
+
 		static void Process(string inputFolder, string outputFolder)
 		{
 			StorageUtility.InitializeStorage(Log);
@@ -369,6 +451,7 @@ namespace AbarimMUD.ExportAreasToMMB
 			ExportAreas(outputFolder);
 			ExportEquipment(outputFolder);
 			ExportConsumables(outputFolder);
+			ExportEnchantments(outputFolder);
 		}
 
 		static void Main(string[] args)

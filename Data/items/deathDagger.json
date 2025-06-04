@@ -14,7 +14,8 @@
     "WeaponAttackBonus": 50
   },
   "Flags": [
-    "Stab"
+    "Stab",
+    "HideFromEquipmentList"
   ],
   "DamageRange": "50-80"
 }
