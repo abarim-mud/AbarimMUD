@@ -228,7 +228,7 @@ namespace AbarimMUD.Commands
 
 				if (forceDotAtTheEnd.Value && !text.EndsWith("."))
 				{
-					output.Append('.');
+//					output.Append('.');
 				}
 
 				// Always append color reset
@@ -377,6 +377,7 @@ namespace AbarimMUD.Commands
 			{
 				return;
 			}
+
 
 			var lastLevel = character.Level;
 			character.GainXp(xpAward);

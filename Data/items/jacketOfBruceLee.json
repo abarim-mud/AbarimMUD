@@ -1,0 +1,18 @@
+{
+  "Id": "jacketOfBruceLee",
+  "Keywords": [
+    "jacket",
+    "bruce",
+	"lee"
+  ],
+  "ShortDescription": "The Jacket of Bruce Lee",
+  "Description": "The Jacket of Bruce Lee",
+  "ItemType": "Equipment",
+  "EquipmentSlot": "Body",
+  "Price": 800000000,
+  "Affects": {
+    "Armor": 120,
+	"DamageReduction": 20
+  },
+  "Flags": []
+}

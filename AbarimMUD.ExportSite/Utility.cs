@@ -78,7 +78,7 @@ namespace AbarimMUD
 			var result = new MMBArea
 			{
 				Name = area.Name,
-				Credits = area.Builders,
+				Credits = area.Credits,
 				MinimumLevel = area.MinimumLevel,
 				MaximumLevel = area.MaximumLevel
 			};

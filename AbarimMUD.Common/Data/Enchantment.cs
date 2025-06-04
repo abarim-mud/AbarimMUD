@@ -14,7 +14,7 @@ namespace AbarimMUD.Data
 		public string Name { get; set; }
 
 		public HashSet<string> Keywords { get; set; } = new HashSet<string>();
-		public int EnchantmentStones { get; set; } = 5;
+		public int EnchantmentStones { get; set; } = 4;
 		public int Price { get; set; } = 1000;
 
 		public Dictionary<ModifierType, int> Affects { get; set; } = new Dictionary<ModifierType, int>();

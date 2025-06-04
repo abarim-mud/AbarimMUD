@@ -5,8 +5,6 @@ VisualStudioVersion = 17.8.34322.80
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbarimMUD.Common", "AbarimMUD.Common\AbarimMUD.Common.csproj", "{18708949-46D1-471D-85CB-698197F1001C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbarimMUD.ExportAreasToMMB", "AbarimMUD.ExportAreasToMMB\AbarimMUD.ExportAreasToMMB.csproj", "{33D9A725-D66C-4136-9D51-06E5877EC2B3}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MUDMapBuilder", "..\MUDMapBuilder\MUDMapBuilder\MUDMapBuilder.csproj", "{A3AB4AA0-5328-4101-99D5-E83EDE2BA396}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DikuLoad.Data", "..\DikuLoad\DikuLoad.Data\DikuLoad.Data.csproj", "{E76FF25D-B90A-4D4C-8FDB-E98A055F4EAC}"
@@ -25,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DikuLoad.Import.CSL", "..\D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbarimMUD.MapViewer", "AbarimMUD.MapViewer\AbarimMUD.MapViewer.csproj", "{9C57BA5C-D5A4-48DE-9189-A2594ABDF74F}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbarimMUD.ExportSite", "AbarimMUD.ExportSite\AbarimMUD.ExportSite.csproj", "{95C5853E-8FF2-475B-B254-6D92A90ECB81}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,10 +35,6 @@ Global
 		{18708949-46D1-471D-85CB-698197F1001C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18708949-46D1-471D-85CB-698197F1001C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18708949-46D1-471D-85CB-698197F1001C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{33D9A725-D66C-4136-9D51-06E5877EC2B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{33D9A725-D66C-4136-9D51-06E5877EC2B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{33D9A725-D66C-4136-9D51-06E5877EC2B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{33D9A725-D66C-4136-9D51-06E5877EC2B3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A3AB4AA0-5328-4101-99D5-E83EDE2BA396}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A3AB4AA0-5328-4101-99D5-E83EDE2BA396}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3AB4AA0-5328-4101-99D5-E83EDE2BA396}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -75,6 +71,10 @@ Global
 		{9C57BA5C-D5A4-48DE-9189-A2594ABDF74F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C57BA5C-D5A4-48DE-9189-A2594ABDF74F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C57BA5C-D5A4-48DE-9189-A2594ABDF74F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95C5853E-8FF2-475B-B254-6D92A90ECB81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95C5853E-8FF2-475B-B254-6D92A90ECB81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95C5853E-8FF2-475B-B254-6D92A90ECB81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95C5853E-8FF2-475B-B254-6D92A90ECB81}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

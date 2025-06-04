@@ -1,0 +1,19 @@
+{
+  "Id": "glovesOfJetLi",
+  "Keywords": [
+    "gloves",
+	"jet",
+	"li"
+  ],
+  "ShortDescription": "The Gloves Of Jet Li",
+  "Description": "The Gloves Of Jet Li",
+  "ItemType": "Equipment",
+  "EquipmentSlot": "Hands",
+  "Price": 40000,
+  "Affects": {
+    "Armor": 4,
+    "MartialArtsAttackBonus": 200,
+	"MartialArtsDamage": 50
+  },
+  "Flags": []
+}
