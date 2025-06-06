@@ -1063,8 +1063,8 @@
       "Id": 19099
     },
     {
-      "Name": "General Store",
-      "Description": "Clean and organized, this shop seems to have all the neccessary conveniences\none may want as they travel and explore. From small kayaks, various sized sacks\nand canteens, You can be sure to find what you need.",
+      "Name": "Alchemist Store",
+      "Description": "The storeroom is dimly lit, its air thick with the scent of herbs and sulfur.\nShelves sag under the weight of vials, tomes, and peculiar artifacts.\nA flickering lantern casts eerie shadows over a cluttered workbench covered\nin bubbling concoctions and arcane symbols. Strange ingredients dangle from hooks,\nshimmering minerals pulse with unnatural light, and a locked cabinet hums with\nconcealed power. The room breathes with alchemical mystery, every item whispering\nof failed experiments and hidden secrets.",
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
@@ -1074,8 +1074,8 @@
       "Id": 19100
     },
     {
-      "Name": "Armory",
-      "Description": "The armory shop has tall, short, skinny and fat dummies for the display of\nchainmail and platemail armor. No matter your size or race, if you prefer your\narmor to be stiff and strong, this is the shop for you.",
+      "Name": "Blacksmith",
+      "Description": "The forge roars at all hours, its heat spilling into the front of the shop where\nracks of gleaming swords, battleaxes, and chainmail sets await buyers. An anvil sits near\nthe entrance, dented from years of use, and the air carries a thick scent of molten metal\nand burning coal. The counter bears deep scratches, likely from impatient warriors testing\nblades before paying.",
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
@@ -1318,21 +1318,20 @@
       "Id": 19121
     },
     {
-      "Name": "Assassins Guild",
-      "Description": "You see a dimly lit space with thick stone walls, narrow passageways, and\nalcoves for concealment. The atmosphere is hushed, and the only sounds are\nthe occasional murmur of whispered conversations and the soft shuffling of\nfootsteps. Adorned with dark tapestries and flickering candles,and filled\nwith weapons, such as daggers, crossbows, and poisons. A library of arcane\nknowledge, including forbidden texts on the art of assassination and dark\nmagic, is hidden away in a secret chamber accessible only to the most\ntrusted members of the guild.",
+      "Name": "Monks Guild",
+      "Description": "A serene stillness fills the entrance of the Monk\u2019s Guild, where faint incense lingers\nin the air. A stone fountain at the center flows endlessly, symbolizing balance and discipline.\nPolished wooden beams overhead bear ancient teachings, while a scroll on the eastern\nwall outlines the guild\u2019s tenets.",
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
         "North": 19123,
-        "East": 19124,
         "West": 19041
       },
       "Id": 19122
     },
     {
-      "Name": "Assassins Guidance",
-      "Description": "You have entered an austere, sparsely furnished space. The walls are made\nof rough-hewn stone, and the only light comes from a few flickering candles\nset in sconces. In the center of the room is a low table, surrounded by\ncushions, where the guildmaster sits cross-legged, ready to presiding over\nmeetings and promotions. The table is strewn with scrolls, inkwells, and\nquills, as well as a selection of lethal weapons, such as daggers and\npoisons. The guildmasters throne is a simple wooden chair, unadorned except\nfor a few engraved runes and symbols of ancient power. The atmosphere in\nthe room is tense, as aspiring assassins waitubg anxiously for their turn\nto be evaluated by the guildmaster and potentially promoted to the next\nrank.",
+      "Name": "Monks Guidance",
+      "Description": "A deep silence lingers here, broken only by the soft crackle of incense. A low wooden\ntable, adorned with ancient scrolls and prayer beads, sits at the center. Etched proverbs\nline the walls, offering wisdom to those who seek it. A small shrine in the corner honors\npast masters, their presence felt in the teachings passed down.",
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
@@ -1340,17 +1339,6 @@
         "South": 19122
       },
       "Id": 19123
-    },
-    {
-      "Name": "Secret Alcove",
-      "Description": "You see a dimly lit space with thick stone walls, an alcove hidden away for\nconcealment. Adorned with dark tapestries and flickering candles, and\nfilled with a library of arcane knowledge, including forbidden texts on the\nart of assassination and dark magic. This hidden secret chamber is\naccessible only to the most trusted members of the guild.",
-      "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
-      "Exits": {
-        "West": 19122
-      },
-      "Id": 19124
     }
   ],
   "Mobiles": [
@@ -1518,12 +1506,12 @@
     },
     {
       "Keywords": [
-        "Mack",
-        "shopkeep"
+        "alchemist",
+        "malrik"
       ],
-      "ShortDescription": "Mack the shopkeeper",
-      "LongDescription": "A shopkeeper is here.",
-      "Description": "A Grumpy old man beckons you over.",
+      "ShortDescription": "Malrik the alchemist",
+      "LongDescription": "Malrik the alchemist is here.",
+      "Description": "Malrik is a wiry old man, his robes stained with the remnants of countless\nexperiments. Thick goggles rest on his forehead, and his sharp eyes glint with both\ncuriosity and wisdom. A mischievous smirk and cryptic remarks hint at secrets\u2014perhaps\neven the key to immortality. The scent of burnt herbs clings to him as he absently twirls\na vial of shimmering liquid.",
       "Level": 50,
       "Gold": 13000,
       "Sex": "Male",
@@ -1862,7 +1850,7 @@
       "AttacksCount": 7,
       "AttackType": "Hit",
       "Hit": 1275,
-      "DamageRange": "24-64",
+      "DamageRange": "120-160",
       "Loot": [],
       "Flags": [
         "Sentinel",
@@ -1902,12 +1890,13 @@
     },
     {
       "Keywords": [
-        "merchant",
-        "Sid"
+        "blacksmith",
+        "thane",
+        "ironjaw"
       ],
-      "ShortDescription": "the merchant",
-      "LongDescription": "Sid stands at the counter, waiting for your order.",
-      "Description": "A big bearded man is beckons you over to look at his wares.",
+      "ShortDescription": "Thane the blacksmith",
+      "LongDescription": "Blacksmith Thane Ironjaw stands at the counter, waiting for your order.",
+      "Description": "Thane Ironjaw is a towering, broad-shouldered man with the physique of\nsomeone who has spent a lifetime hammering steel. His arms are thick with muscle,\nbearing countless burn scars from stray embers and molten metal. A long, grizzled beard\n\u2014once deep auburn, now streaked with silver\u2014frames his square jaw, giving him the look\nof a battle-hardened veteran. His dark eyes gleam like tempered steel, ever watchful over\nhis shop\u2019s wares and customers alike. His leather apron, heavy with soot, smells faintly of\niron and sweat, and his hands, calloused and strong, move with practiced ease as he\ninspects blades and hammers.",
       "Level": 50,
       "Gold": 13000,
       "Sex": "Male",
@@ -2316,11 +2305,11 @@
     },
     {
       "Keywords": [
-        "assassin",
+        "monk",
         "guard"
       ],
       "ShortDescription": "the guild guard",
-      "LongDescription": "A guard is here, protecting the assassin guild from intruders.",
+      "LongDescription": "A guard is here, protecting the monks guild from intruders.",
       "Description": "A tall, agile guild guard.",
       "Level": 50,
       "Gold": 1500,
@@ -2344,12 +2333,14 @@
     {
       "Keywords": [
         "trainer",
-        "assassin",
-        "guildmaster"
+        "monk",
+        "guildmaster",
+        "zhen",
+        "taoru"
       ],
-      "ShortDescription": "the assassin guildmaster",
-      "LongDescription": "The assassin guildmaster stands here, ready to teach you his ways.",
-      "Description": "The guildmaster is dressed in a simple yet elegant black robe, unadorned except\nfor a few gold threads woven into the hem and cuffs. The robe is made of a soft,\nsupple material that allows the guildmaster to move quickly and silently when\nnecessary. His face is partially obscured by a black hood, which casts his\nfeatures into shadow and conceals his identity from prying eyes. His eyes are\npiercing and intense, able to see through lies and deception with ease. His\nmovements are fluid and graceful, yet also deadly and precise, reflecting the\ndeadly art of assassination that he hasmastered. The guildmaster is a figure of\nfear and respect, inspiring both loyalty and terror among his followers, and\ncommanding a dark and powerful presence that few could match.",
+      "ShortDescription": "the monk guildmaster",
+      "LongDescription": "The monk guildmaster stands here, ready to teach you his ways.",
+      "Description": "A master of discipline, Zhen Taoru commands respect through wisdom, not force. His\namber eyes hold the weight of countless lessons, and his movements\u2014fluid and precise\u2014\nreflect decades of training. Draped in a simple robe, he speaks in measured riddles,\nguiding students toward their own truths.\n\nA worn wooden staff rests at his side\u2014a symbol of mastery rather than necessity. Though\nage has tempered his stride, none doubt his ability to wield it with effortless precision.",
       "Level": 50,
       "Gold": 5000,
       "Sex": "Male",
