@@ -1739,6 +1739,32 @@
       ],
       "SpecialAttacks": [],
       "Id": 51519
+    },
+    {
+      "Keywords": [
+        "oldstyle",
+        "rabbit"
+      ],
+      "ShortDescription": "the cute rabbit",
+      "LongDescription": "A cute rabbit is here.",
+      "Description": "It is a small, furry creature with long ears and big feet.",
+      "Level": 1,
+      "Gold": 100,
+      "Sex": "None",
+      "Hitpoints": 19,
+      "Mana": 105,
+      "Moves": 1000,
+      "Armor": 0,
+      "AttacksCount": 1,
+      "AttackType": "Hit",
+      "Hit": 5,
+      "DamageRange": "4-4",
+      "Loot": [],
+      "Flags": [
+        "AssistRace"
+      ],
+      "SpecialAttacks": [],
+      "Id": 309
     }
   ],
   "MobileResets": [
