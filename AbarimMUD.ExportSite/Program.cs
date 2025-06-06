@@ -443,45 +443,10 @@ namespace AbarimMUD.ExportAreasToMMB
 			File.WriteAllText(constumableFile, s);
 		}
 
-		static void ExportSkills(StringBuilder sb, string className, string[] skillsOrder)
+		static void ExportSkill(StringBuilder sb, Skill skill)
 		{
+			sb.AppendLine($"#### {skill.Name.CasedName()} ({skill.Cost} sp)");
 			sb.AppendLine();
-			sb.AppendLine($"### {className.CasedName()} Skills");
-			sb.AppendLine();
-
-			sb.Append("Levels|");
-
-			// Header
-			var sizes = new int[skillsOrder.Length];
-			for (var i = 0; i < skillsOrder.Length; i++)
-			{
-				var skillName = skillsOrder[i];
-				var skill = Skill.EnsureSkillById(skillName);
-
-				var s = $"{skill.Name} ({skill.Cost})";
-				sizes[i] = s.Length;
-				sb.Append(s);
-
-				if (i < skillsOrder.Length - 1)
-				{
-					sb.Append("|");
-				}
-			}
-
-			sb.AppendLine();
-
-			sb.Append("------|");
-			for (var i = 0; i < sizes.Length; i++)
-			{
-				sb.Append(new string('-', sizes[i]));
-
-				if (i < skillsOrder.Length - 1)
-				{
-					sb.Append("|");
-				}
-			}
-			sb.AppendLine();
-
 
 			// Data
 			for (var i = 0; i < 5; ++i)
@@ -489,48 +454,53 @@ namespace AbarimMUD.ExportAreasToMMB
 				var skillLevel = (SkillLevel)i;
 				sb.Append($"{skillLevel}|");
 
-				for (var j = 0; j < skillsOrder.Length; j++)
+				var def = skill.Levels[i];
+
+				var strings = new List<string>();
+
+				if (def.Abilities != null)
 				{
-					var skillName = skillsOrder[j];
-					var skill = Skill.EnsureSkillById(skillName);
-
-					var def = skill.Levels[i];
-
-					var strings = new List<string>();
-
-					if (def.Abilities != null)
+					foreach (var ab in def.Abilities)
 					{
-						foreach (var ab in def.Abilities)
-						{
-							strings.Add($"{ab.Name.CasedName()}");
-						}
-					}
-
-					if (def.Modifiers != null)
-					{
-						foreach (var pair in def.Modifiers)
-						{
-							strings.Add(pair.Key.ToPermanentAffect(pair.Value));
-						}
-					}
-
-					if (def.PrimeModifiers != null)
-					{
-						foreach (var pair in def.PrimeModifiers)
-						{
-							strings.Add($"{pair.Key.ToPermanentAffect(pair.Value)}&nbsp;(prime)");
-						}
-					}
-
-					sb.Append(string.Join("<br>", strings.ToArray()));
-
-					if (j < skillsOrder.Length - 1)
-					{
-						sb.Append("|");
+						strings.Add($"{ab.Name.CasedName()}");
 					}
 				}
 
+				if (def.Modifiers != null)
+				{
+					foreach (var pair in def.Modifiers)
+					{
+						strings.Add(pair.Key.ToPermanentAffect(pair.Value));
+					}
+				}
+
+				if (def.PrimeModifiers != null)
+				{
+					foreach (var pair in def.PrimeModifiers)
+					{
+						strings.Add($"{pair.Key.ToPermanentAffect(pair.Value)} (prime)");
+					}
+				}
+
+				sb.Append(string.Join("<br>", strings.ToArray()));
 				sb.AppendLine();
+			}
+
+			sb.AppendLine();
+		}
+
+		static void ExportSkills(StringBuilder sb, string className, string[] skillsOrder)
+		{
+			sb.AppendLine();
+			sb.AppendLine($"### {className.CasedName()} Skills");
+			sb.AppendLine();
+
+			for (var i = 0; i < skillsOrder.Length; i++)
+			{
+				var skillName = skillsOrder[i];
+				var skill = Skill.EnsureSkillById(skillName);
+
+				ExportSkill(sb, skill);
 			}
 		}
 
