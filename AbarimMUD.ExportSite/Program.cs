@@ -9,6 +9,7 @@ using System.Drawing;
 using static MUDMapBuilder.MMBProject;
 using System.Text.Json.Serialization;
 using System.Text.Json;
+using System.Text;
 
 namespace AbarimMUD.ExportAreasToMMB
 {
@@ -442,6 +443,111 @@ namespace AbarimMUD.ExportAreasToMMB
 			File.WriteAllText(constumableFile, s);
 		}
 
+		static void ExportSkills(StringBuilder sb, string className, string[] skillsOrder)
+		{
+			sb.AppendLine();
+			sb.AppendLine($"### {className.CasedName()} Skills");
+			sb.AppendLine();
+
+			sb.Append("Levels|");
+
+			// Header
+			var sizes = new int[skillsOrder.Length];
+			for (var i = 0; i < skillsOrder.Length; i++)
+			{
+				var skillName = skillsOrder[i];
+				var skill = Skill.EnsureSkillById(skillName);
+
+				var s = $"{skill.Name} ({skill.Cost})";
+				sizes[i] = s.Length;
+				sb.Append(s);
+
+				if (i < skillsOrder.Length - 1)
+				{
+					sb.Append("|");
+				}
+			}
+
+			sb.AppendLine();
+
+			sb.Append("------|");
+			for (var i = 0; i < sizes.Length; i++)
+			{
+				sb.Append(new string('-', sizes[i]));
+
+				if (i < skillsOrder.Length - 1)
+				{
+					sb.Append("|");
+				}
+			}
+			sb.AppendLine();
+
+
+			// Data
+			for (var i = 0; i < 5; ++i)
+			{
+				var skillLevel = (SkillLevel)i;
+				sb.Append($"{skillLevel}|");
+
+				for (var j = 0; j < skillsOrder.Length; j++)
+				{
+					var skillName = skillsOrder[j];
+					var skill = Skill.EnsureSkillById(skillName);
+
+					var def = skill.Levels[i];
+
+					var strings = new List<string>();
+
+					if (def.Abilities != null)
+					{
+						foreach (var ab in def.Abilities)
+						{
+							strings.Add($"{ab.Name.CasedName()}");
+						}
+					}
+
+					if (def.Modifiers != null)
+					{
+						foreach (var pair in def.Modifiers)
+						{
+							strings.Add(pair.Key.ToPermanentAffect(pair.Value));
+						}
+					}
+
+					if (def.PrimeModifiers != null)
+					{
+						foreach (var pair in def.PrimeModifiers)
+						{
+							strings.Add($"{pair.Key.ToPermanentAffect(pair.Value)}&nbsp;(prime)");
+						}
+					}
+
+					sb.Append(string.Join("<br>", strings.ToArray()));
+
+					if (j < skillsOrder.Length - 1)
+					{
+						sb.Append("|");
+					}
+				}
+
+				sb.AppendLine();
+			}
+		}
+
+		static void ExportSkills(string outputFolder)
+		{
+			var sb = new StringBuilder();
+
+			sb.Append("---\r\nlayout: page\r\ntitle: Skills\r\n---");
+
+			ExportSkills(sb, "warrior", new[] { "melee", "survival", "strength" });
+			ExportSkills(sb, "rogue", new[] { "backstab", "dexterity" });
+			ExportSkills(sb, "monk", new[] { "martialArts", "deathtouch", "constitution" });
+
+			var skillsFile = Path.Combine(outputFolder, "skills.markdown");
+			File.WriteAllText(skillsFile, sb.ToString());
+		}
+
 		static void Process(string inputFolder, string outputFolder)
 		{
 			StorageUtility.InitializeStorage(Log);
@@ -452,6 +558,7 @@ namespace AbarimMUD.ExportAreasToMMB
 			ExportEquipment(outputFolder);
 			ExportConsumables(outputFolder);
 			ExportEnchantments(outputFolder);
+			ExportSkills(outputFolder);
 		}
 
 		static void Main(string[] args)
@@ -466,5 +573,4 @@ namespace AbarimMUD.ExportAreasToMMB
 			}
 		}
 	}
-
 }
