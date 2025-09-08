@@ -15,7 +15,7 @@ namespace AbarimMUD.Common.Tests
 				Directory.Delete("Data", true);
 			}
 
-			DataContext.Initialize("Data", s => Trace.WriteLine(s));
+			StorageUtility.InitializeStorage(s => Trace.WriteLine(s));
 		}
 
 		[Test]
@@ -23,12 +23,9 @@ namespace AbarimMUD.Common.Tests
 		{
 			ResetData();
 
-			DataContext.Register(Account.Storage);
-			DataContext.Register(Character.Storage);
-			DataContext.Register(GameClass.Storage);
-			DataContext.Load();
+			DataContext.Load("Data");
 
-			var testClass = new GameClass
+			var testClass = new PlayerClass
 			{
 				Id = "testClass",
 				Name = "Test Class"
@@ -46,7 +43,7 @@ namespace AbarimMUD.Common.Tests
 			{
 				Account = newAcc,
 				Name = "char1",
-				PlayerClass = testClass,
+				Class = testClass,
 				PlayerLevel = 1,
 
 			};
@@ -56,7 +53,7 @@ namespace AbarimMUD.Common.Tests
 			{
 				Account = newAcc,
 				Name = "char2",
-				PlayerClass = testClass,
+				Class = testClass,
 				PlayerLevel = 1,
 			};
 			newChar2.Create();
@@ -72,7 +69,7 @@ namespace AbarimMUD.Common.Tests
 			Assert.That(charsGet[0].Name, Is.EqualTo("char1"));
 			Assert.That(charsGet[1].Name, Is.EqualTo("char2"));
 
-			DataContext.Load();
+			DataContext.Load("Data");
 
 			accGet = Account.GetAccountByName(newAcc.Name);
 			Assert.That(accGet, Is.Not.Null);
@@ -94,8 +91,7 @@ namespace AbarimMUD.Common.Tests
 		{
 			ResetData();
 
-			DataContext.Register(Area.Storage);
-			DataContext.Load();
+			DataContext.Load("Data");
 
 			var area = new Area
 			{
@@ -126,24 +122,17 @@ namespace AbarimMUD.Common.Tests
 				TargetRoom = room
 			};
 
-			var testClass = new GameClass
-			{
-				Id = "testClass"
-			};
-			testClass.Create();
-
 			var mobile = new Mobile
 			{
 				Id = Area.NextMobileId,
 				ShortDescription = "a test mobile",
-				Class = testClass,
 				Level = 1,
 			};
 			area.Mobiles.Add(mobile);
 			area.Create();
 
 			// Reload
-			DataContext.Load();
+			DataContext.Load("Data");
 
 			area = Area.GetAreaByName("test");
 			Assert.That(area, Is.Not.Null);

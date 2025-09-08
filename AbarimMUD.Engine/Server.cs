@@ -13,7 +13,6 @@ using AbarimMUD.Combat;
 using System.Threading;
 using AbarimMUD.Commands;
 using NLog.Targets;
-using AbarimMUD.Commands.Player;
 
 namespace AbarimMUD
 {
@@ -66,10 +65,10 @@ namespace AbarimMUD
 
 			DataContext.Load(dataFolder);
 
-			Area.Storage.SaveAll();
+			// Area.Storage.SaveAll();
 			// PlayerClass.Storage.SaveAll();
-			Skill.Storage.SaveAll();
-			Ability.Storage.SaveAll();
+			// Skill.Storage.SaveAll();
+			// Ability.Storage.SaveAll();
 			// Configuration.Save();
 			// SkillCostInfo.Storage.SaveAll();
 			// Item.Storage.SaveAll();
@@ -78,7 +77,7 @@ namespace AbarimMUD
 			// Forge.Storage.SaveAll();
 			// ForgeShop.Storage.SaveAll();
 			// ExchangeShop.Storage.SaveAll();
-			Enchantment.Storage.SaveAll();
+			// Enchantment.Storage.SaveAll();
 		}
 
 		private bool ProcessRegen(ref int currentValue, int maxValue, ref float fractionalValue, int regenValue, float secondsPassed)
