@@ -11,7 +11,13 @@ namespace AbarimMUD
 		{
 			try
 			{
-				Server.Instance.Start(@"D:\Projects\AbarimMUD\Data");
+				if (args.Length == 0)
+				{
+					Console.WriteLine("Usage: AbarimMUD.Launcher <data_folder>");
+					return;
+				}
+
+				Server.Instance.Start(args[0]);
 			}
 			catch (Exception ex)
 			{
