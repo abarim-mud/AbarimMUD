@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Text.RegularExpressions;
 
 namespace AbarimMUD
 {
@@ -79,6 +80,11 @@ namespace AbarimMUD
 			}
 
 			return val;
+		}
+
+		public static bool IsNameCorrect(this string name)
+		{
+			return !string.IsNullOrEmpty(name) && name.Length >= 2 && Regex.IsMatch(name, @"^[a-zA-Z]+$");
 		}
 
 		public static string CasedName(this string name)

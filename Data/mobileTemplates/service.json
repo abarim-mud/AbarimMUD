@@ -1,0 +1,23 @@
+{
+  "Id": "service",
+  "Keywords": [
+    "service"
+  ],
+  "ShortDescription": "the service",
+  "Level": 100,
+  "Gold": 50000,
+  "Sex": "Male",
+  "Hitpoints": 10000,
+  "Mana": 10000,
+  "Moves": 1000,
+  "Armor": 250,
+  "AttacksCount": 8,
+  "AttackType": "Hit",
+  "Hit": 1275,
+  "DamageRange": "120-160",
+  "SpecialAttacks": [],
+  "Flags": [
+    "Sentinel"
+  ],
+  "Loot": []
+}

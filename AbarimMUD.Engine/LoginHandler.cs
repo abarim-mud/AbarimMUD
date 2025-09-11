@@ -158,6 +158,13 @@ namespace AbarimMUD
 
 		private void ProcessAccount(string name)
 		{
+			if (!name.IsNameCorrect())
+			{
+				SendLine($"Invalid login '{name}'. Only latin letters are allowed.");
+				SendAccountPrompt();
+				return;
+			}
+
 			name = name.CasedName();
 			if (string.IsNullOrEmpty(name))
 			{

@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using System.Text;
 using AbarimMUD.Data;
-using AbarimMUD.Utils;
 
 namespace AbarimMUD
 {
@@ -90,6 +89,13 @@ namespace AbarimMUD
 
 		private void ProcessName(string name)
 		{
+			if (!name.IsNameCorrect())
+			{
+				SendLine($"Invalid name '{name}'. Only latin letters are allowed.");
+				SendCharacterNamePrompt();
+				return;
+			}
+
 			name = name.CasedName();
 			if (string.IsNullOrEmpty(name))
 			{
