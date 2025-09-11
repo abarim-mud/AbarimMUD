@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Text;
-using AbarimMUD.Commands;
 using AbarimMUD.Data;
 using NLog;
 
@@ -135,6 +134,12 @@ namespace AbarimMUD
 
 		public void Disconnect()
 		{
+			if (_character != null)
+			{
+				Creature.ActiveCreatures.Remove(_character);
+				Character.ActiveCharacters.Remove(_character);
+			}
+
 			_connection.Disconnect();
 
 			var ev = Disconnected;
