@@ -1378,6 +1378,7 @@
   ],
   "Mobiles": [
     {
+      "Id": 51400,
       "Keywords": [
         "john",
         "lumberjack"
@@ -1385,9 +1386,6 @@
       "ShortDescription": "John the Lumberjack",
       "LongDescription": "John the Lumberjack is here, looking for some trees to chop down.",
       "Description": "He is six feet tall and looks quite strong, muscles bulging under his heavy,\nchequered shirt.  His features are worn with hard work and his expression is\none of a peaceful man leading a simple life.",
-      "Level": 6,
-      "Gold": 20,
-      "Sex": "Male",
       "Hitpoints": 81,
       "Mana": 118,
       "Moves": 1000,
@@ -1396,21 +1394,21 @@
       "AttackType": "Hit",
       "Hit": 30,
       "DamageRange": "8-8",
-      "Loot": [],
-      "Flags": [],
+      "Level": 6,
+      "Gold": 20,
+      "Sex": "Male",
       "SpecialAttacks": [],
-      "Id": 51400
+      "Flags": [],
+      "Loot": []
     },
     {
+      "Id": 51402,
       "Keywords": [
         "bear"
       ],
       "ShortDescription": "the brown bear",
       "LongDescription": "A big, brown, angry-looking bear is here.",
       "Description": "The bear is a big, brown, furry animal with very large claws and very sharp\nteeth.  It doesn\u0027t resemble those cute little thingies from toy shops at all.",
-      "Level": 8,
-      "Gold": 800,
-      "Sex": "Female",
       "Hitpoints": 106,
       "Mana": 122,
       "Moves": 1000,
@@ -1419,21 +1417,21 @@
       "AttackType": "Hit",
       "Hit": 40,
       "DamageRange": "9-9",
-      "Loot": [],
-      "Flags": [],
+      "Level": 8,
+      "Gold": 800,
+      "Sex": "Female",
       "SpecialAttacks": [],
-      "Id": 51402
+      "Flags": [],
+      "Loot": []
     },
     {
+      "Id": 51403,
       "Keywords": [
         "rabbit"
       ],
       "ShortDescription": "the ferocious rabbit",
       "LongDescription": "A ferocious rabbit is here, glaring hungrily at you.",
       "Description": "This small, furry creature with long ears and big feet has been attacked by\nthe dreaded rabbit rabies, a horrible disease that turns helpless and innocent\nrabbits into ferocious and bloodthirsty monsters.",
-      "Level": 3,
-      "Gold": 300,
-      "Sex": "Female",
       "Hitpoints": 44,
       "Mana": 109,
       "Moves": 1000,
@@ -1442,21 +1440,21 @@
       "AttackType": "Hit",
       "Hit": 15,
       "DamageRange": "6-6",
-      "Loot": [],
-      "Flags": [],
+      "Level": 3,
+      "Gold": 300,
+      "Sex": "Female",
       "SpecialAttacks": [],
-      "Id": 51403
+      "Flags": [],
+      "Loot": []
     },
     {
+      "Id": 51404,
       "Keywords": [
         "deer"
       ],
       "ShortDescription": "the fallow deer",
       "LongDescription": "A fallow deer is grazing peacefully here.",
       "Description": "She is a graceful creature on long, slender legs, and with large, brown eyes\nlooking back at you with an air of watchful interest.",
-      "Level": 2,
-      "Gold": 200,
-      "Sex": "Female",
       "Hitpoints": 31,
       "Mana": 109,
       "Moves": 1000,
@@ -1465,21 +1463,21 @@
       "AttackType": "Hit",
       "Hit": 10,
       "DamageRange": "5-5",
-      "Loot": [],
-      "Flags": [],
+      "Level": 2,
+      "Gold": 200,
+      "Sex": "Female",
       "SpecialAttacks": [],
-      "Id": 51404
+      "Flags": [],
+      "Loot": []
     },
     {
+      "Id": 51405,
       "Keywords": [
         "fox"
       ],
       "ShortDescription": "the brown fox",
       "LongDescription": "A brown fox is here, looking for some rabbits to chew up.",
       "Description": "It is a large fox with beautiful, red-brown fur and a long, thick brush.",
-      "Level": 2,
-      "Gold": 200,
-      "Sex": "Female",
       "Hitpoints": 31,
       "Mana": 109,
       "Moves": 1000,
@@ -1488,12 +1486,15 @@
       "AttackType": "Hit",
       "Hit": 10,
       "DamageRange": "5-5",
-      "Loot": [],
-      "Flags": [],
+      "Level": 2,
+      "Gold": 200,
+      "Sex": "Female",
       "SpecialAttacks": [],
-      "Id": 51405
+      "Flags": [],
+      "Loot": []
     },
     {
+      "Id": 51500,
       "Keywords": [
         "warg",
         "vicious"
@@ -1501,9 +1502,6 @@
       "ShortDescription": "the vicious warg",
       "LongDescription": "A vicious warg is here, snarling angrily at you.",
       "Description": "It is an exceptionally large wolf with thick, black fur.  Saliva is dripping\nquickly from its long, white fangs.  It looks quite dangerous and very angry.",
-      "Level": 5,
-      "Gold": 500,
-      "Sex": "Female",
       "Hitpoints": 69,
       "Mana": 113,
       "Moves": 1000,
@@ -1512,12 +1510,15 @@
       "AttackType": "Hit",
       "Hit": 25,
       "DamageRange": "7-7",
-      "Loot": [],
-      "Flags": [],
+      "Level": 5,
+      "Gold": 500,
+      "Sex": "Female",
       "SpecialAttacks": [],
-      "Id": 51500
+      "Flags": [],
+      "Loot": []
     },
     {
+      "Id": 51501,
       "Keywords": [
         "warg",
         "ferocious"
@@ -1525,9 +1526,6 @@
       "ShortDescription": "the ferocious warg",
       "LongDescription": "A ferocious warg is here, snarling angrily at you.",
       "Description": "It is an exceptionally large wolf with thick, black fur.  Saliva is dripping\nquickly from its long, white fangs.  It looks quite dangerous and very angry.",
-      "Level": 5,
-      "Gold": 500,
-      "Sex": "Female",
       "Hitpoints": 69,
       "Mana": 113,
       "Moves": 1000,
@@ -1536,12 +1534,15 @@
       "AttackType": "Hit",
       "Hit": 25,
       "DamageRange": "7-7",
-      "Loot": [],
-      "Flags": [],
+      "Level": 5,
+      "Gold": 500,
+      "Sex": "Female",
       "SpecialAttacks": [],
-      "Id": 51501
+      "Flags": [],
+      "Loot": []
     },
     {
+      "Id": 51502,
       "Keywords": [
         "wolf",
         "grey"
@@ -1549,9 +1550,6 @@
       "ShortDescription": "the large, grey wolf",
       "LongDescription": "A large, grey wolf is here, glaring hungrily at you.",
       "Description": "The large, grey wolf eyes you with interest while licking its lips.",
-      "Level": 3,
-      "Gold": 300,
-      "Sex": "Female",
       "Hitpoints": 44,
       "Mana": 109,
       "Moves": 1000,
@@ -1560,12 +1558,15 @@
       "AttackType": "Hit",
       "Hit": 15,
       "DamageRange": "6-6",
-      "Loot": [],
-      "Flags": [],
+      "Level": 3,
+      "Gold": 300,
+      "Sex": "Female",
       "SpecialAttacks": [],
-      "Id": 51502
+      "Flags": [],
+      "Loot": []
     },
     {
+      "Id": 51503,
       "Keywords": [
         "wolf",
         "black"
@@ -1573,9 +1574,6 @@
       "ShortDescription": "the large, black wolf",
       "LongDescription": "A large, black wolf is here, glaring hungrily at you.",
       "Description": "The large, black wolf eyes you with interest while licking its lips.",
-      "Level": 3,
-      "Gold": 300,
-      "Sex": "Female",
       "Hitpoints": 44,
       "Mana": 109,
       "Moves": 1000,
@@ -1584,12 +1582,15 @@
       "AttackType": "Hit",
       "Hit": 15,
       "DamageRange": "6-6",
-      "Loot": [],
-      "Flags": [],
+      "Level": 3,
+      "Gold": 300,
+      "Sex": "Female",
       "SpecialAttacks": [],
-      "Id": 51503
+      "Flags": [],
+      "Loot": []
     },
     {
+      "Id": 51512,
       "Keywords": [
         "dragon",
         "green"
@@ -1597,9 +1598,6 @@
       "ShortDescription": "the huge, green dragon",
       "LongDescription": "A huge green dragon is here, its narrow yellow eyes glowing with rage.",
       "Description": "This enormous winged serpent has dark green scales covering most of its\ncolossal body.  Numerous holes in its heavy wings tell of many fights as does\nthe nicks in the horns on its head.  It smells as disgusting as only dragons\ndo.",
-      "Level": 25,
-      "Gold": 25000,
-      "Sex": "Female",
       "Hitpoints": 580,
       "Mana": 158,
       "Moves": 1000,
@@ -1608,12 +1606,15 @@
       "AttackType": "Hit",
       "Hit": 125,
       "DamageRange": "17-27",
-      "Loot": [],
-      "Flags": [],
+      "Level": 25,
+      "Gold": 25000,
+      "Sex": "Female",
       "SpecialAttacks": [],
-      "Id": 51512
+      "Flags": [],
+      "Loot": []
     },
     {
+      "Id": 51515,
       "Keywords": [
         "shargugh",
         "brownie"
@@ -1621,9 +1622,6 @@
       "ShortDescription": "Shargugh",
       "LongDescription": "Shargugh the Forest Brownie is here, grinning broadly at you.",
       "Description": "This little fellow is only three foot tall with wild matted brown hair and long\ntangled brown beard.  He wears ragged brown and green clothing and looks as if\nhe is having great fun.",
-      "Level": 10,
-      "Gold": 500,
-      "Sex": "Male",
       "Hitpoints": 131,
       "Mana": 127,
       "Moves": 1000,
@@ -1632,12 +1630,15 @@
       "AttackType": "Hit",
       "Hit": 50,
       "DamageRange": "6-10",
-      "Loot": [],
-      "Flags": [],
+      "Level": 10,
+      "Gold": 500,
+      "Sex": "Male",
       "SpecialAttacks": [],
-      "Id": 51515
+      "Flags": [],
+      "Loot": []
     },
     {
+      "Id": 51516,
       "Keywords": [
         "elder",
         "druid"
@@ -1645,9 +1646,6 @@
       "ShortDescription": "the elder druid",
       "LongDescription": "The elder druid is here ... he looks very upset at your presence in his home.",
       "Description": "The druid looks quite old.  You would think him venerable, but you know\nhe would be a tough foe.",
-      "Level": 17,
-      "Gold": 2500,
-      "Sex": "Male",
       "Hitpoints": 276,
       "Mana": 181,
       "Moves": 1000,
@@ -1656,12 +1654,15 @@
       "AttackType": "Hit",
       "Hit": 85,
       "DamageRange": "10-16",
-      "Loot": [],
-      "Flags": [],
+      "Level": 17,
+      "Gold": 2500,
+      "Sex": "Male",
       "SpecialAttacks": [],
-      "Id": 51516
+      "Flags": [],
+      "Loot": []
     },
     {
+      "Id": 51517,
       "Keywords": [
         "bunny",
         "rabbit"
@@ -1669,9 +1670,6 @@
       "ShortDescription": "a bunny",
       "LongDescription": "A bunny rabbit hops around playfully.",
       "Description": "This rabbit is a small, furry animal with long hind legs and short front legs.\nIt has a round, compact body and a short, fluffy tail. It has large, round ears\nthat can move independently, and its eyes are situated on the sides of its head,\ngiving it a wide field of vision. Its fur is soft and gray. It has large, strong\nhind legs that it uses for jumping and running, and sharp claws that it uses for\ndigging burrows. It has large, flat teeth designed for chewing tough vegetation.\nOverall, this rabbit have a distinctive and recognizable appearance, with its\nsoft, round body and long hind legs making it look both cute and nimble.",
-      "Level": 1,
-      "Gold": 100,
-      "Sex": "None",
       "Hitpoints": 30,
       "Mana": 0,
       "Moves": 1000,
@@ -1680,12 +1678,15 @@
       "AttackType": "Hit",
       "Hit": 5,
       "DamageRange": "2-2",
-      "Loot": [],
-      "Flags": [],
+      "Level": 1,
+      "Gold": 100,
+      "Sex": "None",
       "SpecialAttacks": [],
-      "Id": 51517
+      "Flags": [],
+      "Loot": []
     },
     {
+      "Id": 51518,
       "Keywords": [
         "Thalionorin",
         "Leafwhisperer",
@@ -1695,9 +1696,6 @@
       "ShortDescription": "the ranger guildmaster",
       "LongDescription": "Thalionorin Leafwhisperer, master of the rangers guild rests here waiting for the next student.",
       "Description": "A tall, lean, and muscular figure with piercing green eyes, long curly brown\nhair, and dons a suit of green and brown leather armor. Thalionorin is a skilled\nmaster ranger, holding a staff made from the wood of this massive. He is wise\nand compassionate, with a deep love for nature and its balance. As guildmaster,\nThalionorin trains and mentors new rangers while overseeing guild operations\nwith a fair but firm leadership style, earning the respect and reverence of all\nwho know him.",
-      "Level": 51,
-      "Gold": 5100,
-      "Sex": "Male",
       "Hitpoints": 6050,
       "Mana": 1015,
       "Moves": 1000,
@@ -1706,14 +1704,17 @@
       "AttackType": "Hit",
       "Hit": 1255,
       "DamageRange": "19-55",
-      "Loot": [],
+      "Level": 51,
+      "Gold": 5100,
+      "Sex": "Male",
+      "SpecialAttacks": [],
       "Flags": [
         "Sentinel"
       ],
-      "SpecialAttacks": [],
-      "Id": 51518
+      "Loot": []
     },
     {
+      "Id": 51519,
       "Keywords": [
         "ranger",
         "guildguard",
@@ -1722,9 +1723,6 @@
       "ShortDescription": "the ranger guild guard",
       "LongDescription": "The ranger guild guard is alert here, scanning the shadows and bushes for\nsomeone trying to sneak into the guild.",
       "Description": "Dressed in green and brown leather armor adorned with nature-inspired designs,\nthis ranger guard blends in seamlessly with the surrounding forest. The ranger\nis peaceful sort, preferring to use non-lethal means to subdue intruders\nwhenever possible, using deadly force only as a last resort to protect the\nliving tree and its guild members.",
-      "Level": 40,
-      "Gold": 4000,
-      "Sex": "Male",
       "Hitpoints": 3100,
       "Mana": 815,
       "Moves": 1000,
@@ -1733,14 +1731,17 @@
       "AttackType": "Hit",
       "Hit": 400,
       "DamageRange": "15-35",
-      "Loot": [],
+      "Level": 40,
+      "Gold": 4000,
+      "Sex": "Male",
+      "SpecialAttacks": [],
       "Flags": [
         "Sentinel"
       ],
-      "SpecialAttacks": [],
-      "Id": 51519
+      "Loot": []
     },
     {
+      "Id": 309,
       "Keywords": [
         "oldstyle",
         "rabbit"
@@ -1748,9 +1749,6 @@
       "ShortDescription": "the cute rabbit",
       "LongDescription": "A cute rabbit is here.",
       "Description": "It is a small, furry creature with long ears and big feet.",
-      "Level": 1,
-      "Gold": 100,
-      "Sex": "None",
       "Hitpoints": 19,
       "Mana": 105,
       "Moves": 1000,
@@ -1759,12 +1757,14 @@
       "AttackType": "Hit",
       "Hit": 5,
       "DamageRange": "4-4",
-      "Loot": [],
+      "Level": 1,
+      "Gold": 100,
+      "Sex": "None",
+      "SpecialAttacks": [],
       "Flags": [
         "AssistRace"
       ],
-      "SpecialAttacks": [],
-      "Id": 309
+      "Loot": []
     }
   ],
   "MobileResets": [

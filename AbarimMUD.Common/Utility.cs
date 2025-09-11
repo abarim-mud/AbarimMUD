@@ -228,5 +228,96 @@ namespace AbarimMUD
 
 			return sb.ToString();
 		}
+
+		public static HashSet<T> MergeGet<T>(HashSet<T> a, HashSet<T> b)
+		{
+			if (a == null)
+			{
+				return b;
+			}
+
+			if (b == null)
+			{
+				return a;
+			}
+
+			if (a.Count == 0)
+			{
+				return b;
+			}
+
+			if (b.Count == 0)
+			{
+				return a;
+			}
+
+			var result = new HashSet<T>();
+			if (a != null)
+			{
+				foreach(var i in a)
+				{
+					result.Add(i);
+				}
+			}
+
+			if (b != null)
+			{
+				foreach(var i in b)
+				{
+					result.Add(i);
+				}
+			}
+
+			return result;
+		}
+
+		public static List<T> MergeGet<T>(List<T> a, List<T> b)
+		{
+			if (a == null)
+			{
+				return b;
+			}
+
+			if (b == null)
+			{
+				return a;
+			}
+
+			if (a.Count == 0)
+			{
+				return b;
+			}
+
+			if (b.Count == 0)
+			{
+				return a;
+			}
+
+			var result = new List<T>();
+			if (a != null)
+			{
+				result.AddRange(a);
+			}
+
+			if (b != null)
+			{
+				result.AddRange(b);
+			}
+
+			return result;
+		}
+
+		public static HashSet<T> MergeSet<T>(HashSet<T> template, HashSet<T> value)
+		{
+			if (template != null && value != null)
+			{
+				foreach(var i in template)
+				{
+					value.Remove(i);
+				}
+			}
+
+			return value;
+		}
 	}
 }

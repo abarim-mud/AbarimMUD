@@ -92,140 +92,314 @@ namespace AbarimMUD.Data
 
 	public class Mobile : AreaEntity
 	{
-		public const AttackType DefaultAttackType = AttackType.Hit;
+		public class MobileData
+		{
+			public int Id { get; set; }
+			public MobileTemplate Template { get; set; }
+			public HashSet<string> Keywords { get; set; }
+			public string ShortDescription { get; set; }
+			public string LongDescription { get; set; }
+			public string Description { get; set; }
+			public int? Hitpoints { get; set; }
+			public int? Mana { get; set; }
+			public int? Moves { get; set; }
+			public int? Armor { get; set; }
+			public int? AttacksCount { get; set; }
+			public AttackType? AttackType { get; set; }
+			public int? Hit { get; set; }
+			public ValueRange? DamageRange { get; set; }
+			public int? Level { get; set; }
+			public int? Gold { get; set; }
+			public Sex? Sex { get; set; }
 
-		public const int DefaultAttackRating = 0;
-		public const int DefaultArmor = 0;
-		public const int DefaultGold = 100;
-		public const int DefaultHitpoints = 100;
-		public const int DefaultMana = 100;
-		public const int DefaultMoves = 1000;
-		public static readonly ValueRange DefaultDamageRange = new ValueRange(1, 4);
+			public List<MobileSpecialAttack> SpecialAttacks { get; set; }
+			public HashSet<MobileFlags> Flags { get; set; }
 
+			public List<LootRecord> Loot { get; set; }
 
-		private int _hitpoints = DefaultHitpoints, _mana = DefaultMana, _moves = DefaultMoves;
-		private int _armor = DefaultArmor;
-		private int _attacksCount = 1;
-		private AttackType _attackType = AttackType.Hit;
-		private int _hit = DefaultAttackRating;
-		private ValueRange _damageRange = DefaultDamageRange;
-		private int _level;
-		private int _gold = DefaultGold;
-		private Shop _shop;
+			public Shop Shop { get; set; }
+
+			public PlayerClass Guildmaster { get; set; }
+
+			public ForgeShop ForgeShop { get; set; }
+
+			public ExchangeShop ExchangeShop { get; set; }
+		}
+
+		public override int Id
+		{
+			get => Data.Id;
+			set => Data.Id = value;
+		}
+
+		public MobileTemplate Template
+		{
+			get => Data.Template;
+			set => Data.Template = value;
+		}
+
+		public MobileData Data { get; set; }
 
 		[Browsable(false)]
-		public HashSet<string> Keywords { get; set; } = new HashSet<string>();
+		public HashSet<string> Keywords
+		{
+			get
+			{
+				if (Data.Keywords.Count == 0 && Template != null)
+				{
+					return Template.Keywords;
+				}
+
+				return Data.Keywords;
+			}
+
+			set => Data.Keywords = value;
+		}
 
 		[OLCAlias("short")]
-		public string ShortDescription { get; set; }
+		public string ShortDescription
+		{
+			get
+			{
+				if (string.IsNullOrEmpty(Data.ShortDescription) && Template != null)
+				{
+					return Template.ShortDescription;
+				}
+
+				return Data.ShortDescription;
+			}
+
+			set => Data.ShortDescription = value;
+		}
 
 		[OLCAlias("long")]
-		public string LongDescription { get; set; }
+		public string LongDescription
+		{
+			get
+			{
+				if (string.IsNullOrEmpty(Data.LongDescription) && Template != null)
+				{
+					return Template.LongDescription;
+				}
 
-		public string Description { get; set; }
+				return Data.LongDescription;
+			}
+
+			set => Data.LongDescription = value;
+		}
+
+		public string Description
+		{
+			get
+			{
+				if (string.IsNullOrEmpty(Data.Description) && Template != null)
+				{
+					return Template.Description;
+				}
+
+				return Data.Description;
+			}
+
+			set => Data.Description = value;
+		}
 
 		public int Level
 		{
-			get => _level;
+			get
+			{
+				if (Data.Level == null && Template != null)
+				{
+					return Template.Level;
+				}
+
+				EnsureSet(Data.Level, "Level");
+
+				return Data.Level.Value;
+			}
 
 			set
 			{
-				if (value == _level)
+				if (value == Data.Level)
 				{
 					return;
 				}
 
-				_level = value;
+				Data.Level = value;
 				InvalidateCreaturesOfThisClass();
 			}
 		}
 
 		public int Gold
 		{
-			get => _gold;
+			get
+			{
+				if (Data.Gold == null && Template != null)
+				{
+					return Template.Gold;
+				}
+
+				EnsureSet(Data.Gold, "Gold");
+
+				return Data.Gold.Value;
+			}
+
 
 			set
 			{
-				if (value == _gold)
+				if (value == Data.Gold)
 				{
 					return;
 				}
 
-				_gold = value;
+				Data.Gold = value;
 				InvalidateCreaturesOfThisClass();
 			}
 		}
 
 
-		public Sex Sex { get; set; }
-
-		public int Hitpoints
+		public Sex Sex
 		{
-			get => _hitpoints;
+			get
+			{
+				if (Data.Sex == null && Template != null)
+				{
+					return Template.Sex;
+				}
+
+				EnsureSet(Data.Sex, "Sex");
+
+				return Data.Sex.Value;
+			}
 
 			set
 			{
-				if (value == _hitpoints)
+				if (value == Data.Sex)
 				{
 					return;
 				}
 
-				_hitpoints = value;
+				Data.Sex = value;
+				InvalidateCreaturesOfThisClass();
+			}
+		}
+
+		public int Hitpoints
+		{
+			get
+			{
+				if (Data.Hitpoints == null && Template != null)
+				{
+					return Template.Hitpoints;
+				}
+
+				EnsureSet(Data.Hitpoints, "Hitpoints");
+
+				return Data.Hitpoints.Value;
+			}
+
+			set
+			{
+				if (value == Data.Hitpoints)
+				{
+					return;
+				}
+
+				Data.Hitpoints = value;
 				InvalidateCreaturesOfThisClass();
 			}
 		}
 
 		public int Mana
 		{
-			get => _mana;
+			get
+			{
+				if (Data.Mana == null && Template != null)
+				{
+					return Template.Mana;
+				}
+
+				EnsureSet(Data.Mana, "Mana");
+
+				return Data.Mana.Value;
+			}
 
 			set
 			{
-				if (value == _mana)
+				if (value == Data.Mana)
 				{
 					return;
 				}
 
-				_mana = value;
+				Data.Mana = value;
 				InvalidateCreaturesOfThisClass();
 			}
 		}
 
 		public int Moves
 		{
-			get => _moves;
+			get
+			{
+				if (Data.Moves == null && Template != null)
+				{
+					return Template.Moves;
+				}
+
+				EnsureSet(Data.Moves, "Moves");
+
+				return Data.Moves.Value;
+			}
 
 			set
 			{
-				if (value == _moves)
+				if (value == Data.Moves)
 				{
 					return;
 				}
 
-				_moves = value;
+				Data.Moves = value;
 				InvalidateCreaturesOfThisClass();
 			}
 		}
 
 		public int Armor
 		{
-			get => _armor;
+			get
+			{
+				if (Data.Armor == null && Template != null)
+				{
+					return Template.Armor;
+				}
+
+				EnsureSet(Data.Armor, "Armor");
+
+				return Data.Armor.Value;
+			}
 
 			set
 			{
-				if (value == _armor)
+				if (value == Data.Armor)
 				{
 					return;
 				}
 
-				_armor = value;
+				Data.Armor = value;
 				InvalidateCreaturesOfThisClass();
 			}
 		}
 
 		public int AttacksCount
 		{
-			get => _attacksCount;
+			get
+			{
+				if (Data.AttacksCount == null && Template != null)
+				{
+					return Template.AttacksCount;
+				}
+
+				EnsureSet(Data.AttacksCount, "AttacksCount");
+
+				return Data.AttacksCount.Value;
+			}
 
 			set
 			{
@@ -234,88 +408,155 @@ namespace AbarimMUD.Data
 					value = 1;
 				}
 
-				if (value == _attacksCount)
+				if (value == Data.AttacksCount)
 				{
 					return;
 				}
 
-				_attacksCount = value;
+				Data.AttacksCount = value;
 				InvalidateCreaturesOfThisClass();
 			}
 		}
 
-
 		public AttackType AttackType
 		{
-			get => _attackType;
+			get
+			{
+				if (Data.AttackType == null && Template != null)
+				{
+					return Template.AttackType;
+				}
+
+				EnsureSet(Data.AttackType, "AttackType");
+
+				return Data.AttackType.Value;
+			}
 
 			set
 			{
-				if (value == _attackType)
+				if (value == Data.AttackType)
 				{
 					return;
 				}
 
-				_attackType = value;
+				Data.AttackType = value;
 				InvalidateCreaturesOfThisClass();
 			}
 		}
 
 		public int Hit
 		{
-			get => _hit;
+			get
+			{
+				if (Data.Hit == null && Template != null)
+				{
+					return Template.Hit;
+				}
+
+				EnsureSet(Data.Hit, "Hit");
+
+				return Data.Hit.Value;
+			}
 
 			set
 			{
-				if (value == _hit)
+				if (value == Data.Hit)
 				{
 					return;
 				}
 
-				_hit = value;
+				Data.Hit = value;
 				InvalidateCreaturesOfThisClass();
 			}
 		}
 
 		public ValueRange DamageRange
 		{
-			get => _damageRange;
+			get
+			{
+				if (Data.DamageRange == null && Template != null)
+				{
+					return Template.DamageRange;
+				}
+
+				EnsureSet(Data.DamageRange, "DamageRange");
+
+				return Data.DamageRange.Value;
+			}
 
 			set
 			{
-				if (value == _damageRange)
+				if (value == Data.DamageRange)
 				{
 					return;
 				}
 
-				_damageRange = value;
+				Data.DamageRange = value;
 				InvalidateCreaturesOfThisClass();
 			}
 		}
 
-		public List<LootRecord> Loot { get; set; } = new List<LootRecord>();
-
 		[Browsable(false)]
-		public PlayerClass Guildmaster { get; set; }
-
-		[Browsable(false)]
-		public HashSet<MobileFlags> Flags { get; set; } = new HashSet<MobileFlags>();
-
-		[Browsable(false)]
-		public List<MobileSpecialAttack> SpecialAttacks { get; set; } = new List<MobileSpecialAttack>();
-
-		public Shop Shop
+		public HashSet<MobileFlags> Flags
 		{
-			get => _shop;
+			get
+			{
+				if (Template != null)
+				{
+					return Utility.MergeGet(Template.Flags, Data.Flags);
+				}
+
+				return Data.Flags;
+			}
 
 			set
 			{
-				if (value == _shop)
+				if (Template != null)
+				{
+					Data.Flags = Utility.MergeSet(Template.Flags, value);
+				}
+				else
+				{
+					Data.Flags = value;
+				}
+			}
+		}
+
+		public List<LootRecord> Loot
+		{
+			get
+			{
+				if (Template != null)
+				{
+					return Utility.MergeGet(Template.Loot, Data.Loot);
+				}
+
+				return Data.Loot;
+			}
+		}
+
+		[Browsable(false)]
+		public PlayerClass Guildmaster
+		{
+			get => Data.Guildmaster;
+			set => Data.Guildmaster = value;
+		}
+
+		[Browsable(false)]
+		public List<MobileSpecialAttack> SpecialAttacks => Data.SpecialAttacks;
+
+		public Shop Shop
+		{
+			get => Data.Shop;
+
+			set
+			{
+				if (value == Data.Shop)
 				{
 					return;
 				}
 
-				_shop = value;
+				Data.Shop = value;
 
 				// Rebuild inventories
 				foreach (var creature in Creature.ActiveCreatures)
@@ -334,9 +575,35 @@ namespace AbarimMUD.Data
 			}
 		}
 
-		public ForgeShop ForgeShop { get; set; }
-		public ExchangeShop ExchangeShop { get; set; }
+		public ForgeShop ForgeShop
+		{
+			get => Data.ForgeShop;
+			set => Data.ForgeShop = value;
+		}
 
+		public ExchangeShop ExchangeShop
+		{
+			get => Data.ExchangeShop;
+			set => Data.ExchangeShop = value;
+		}
+
+		public Mobile()
+		{
+			Data = new MobileData();
+		}
+
+		public Mobile(MobileData data)
+		{
+			Data = data ?? throw new ArgumentNullException(nameof(data));
+		}
+
+		private void EnsureSet<T>(T? value, string prop) where T : struct
+		{
+			if (value == null)
+			{
+				throw new Exception($"{ShortDescription}'s {prop} is not set.");
+			}
+		}
 
 		public bool MatchesKeyword(string keyword) => Keywords.StartsWithPattern(keyword);
 
@@ -392,7 +659,7 @@ namespace AbarimMUD.Data
 				clone.Keywords.Add(word);
 			}
 
-			foreach(var lootRec in Loot)
+			foreach (var lootRec in Loot)
 			{
 				clone.Loot.Add(lootRec.Clone());
 			}

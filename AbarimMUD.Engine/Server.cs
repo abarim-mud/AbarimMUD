@@ -65,7 +65,7 @@ namespace AbarimMUD
 
 			DataContext.Load(dataFolder);
 
-			// Area.Storage.SaveAll();
+			Area.Storage.SaveAll();
 			// PlayerClass.Storage.SaveAll();
 			// Skill.Storage.SaveAll();
 			// Ability.Storage.SaveAll();
@@ -78,6 +78,7 @@ namespace AbarimMUD
 			// ForgeShop.Storage.SaveAll();
 			// ExchangeShop.Storage.SaveAll();
 			// Enchantment.Storage.SaveAll();
+			MobileTemplate.Storage.SaveAll();
 		}
 
 		private bool ProcessRegen(ref int currentValue, int maxValue, ref float fractionalValue, int regenValue, float secondsPassed)

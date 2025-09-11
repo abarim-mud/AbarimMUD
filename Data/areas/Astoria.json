@@ -1343,15 +1343,13 @@
   ],
   "Mobiles": [
     {
+      "Id": 19000,
       "Keywords": [
         "trainer"
       ],
       "ShortDescription": "the trainer",
       "LongDescription": "The trainer stands here, ready to teach you his ways.",
       "Description": "",
-      "Level": 50,
-      "Gold": 5000,
-      "Sex": "Male",
       "Hitpoints": 805,
       "Mana": 805,
       "Moves": 1000,
@@ -1360,14 +1358,17 @@
       "AttackType": "Hit",
       "Hit": 500,
       "DamageRange": "20-110",
-      "Loot": [],
+      "Level": 50,
+      "Gold": 5000,
+      "Sex": "Male",
+      "SpecialAttacks": [],
       "Flags": [
         "Sentinel"
       ],
-      "SpecialAttacks": [],
-      "Id": 19000
+      "Loot": []
     },
     {
+      "Id": 19001,
       "Keywords": [
         "banker",
         "teller"
@@ -1375,9 +1376,6 @@
       "ShortDescription": "a banker",
       "LongDescription": "A bank teller stands here, ready to take your gold.",
       "Description": "The bank teller is a prim and proper figure. She has a demure smile, a small\nnose, and soft blue eyes that reflect her impeccable attention to detail. Her\nhair is styled in a fashionable updo, adorned with a delicate hat that adds to\nher sophisticated appearance. Her skin is a warm, creamy complexion, and she\ncarries herself with grace and poise. She radiates an aura of efficiency and\nprofessionalism, her meticulous nature inspiring trust in her customers. Despite\nher quiet demeanor, she is well-versed in the intricacies of finance, and her\nexpertise in managing money is second to none.",
-      "Level": 1,
-      "Gold": 100,
-      "Sex": "Female",
       "Hitpoints": 0,
       "Mana": 0,
       "Moves": 1000,
@@ -1386,15 +1384,18 @@
       "AttackType": "Hit",
       "Hit": 35,
       "DamageRange": "2-2",
-      "Loot": [],
+      "Level": 1,
+      "Gold": 100,
+      "Sex": "Female",
+      "SpecialAttacks": [],
       "Flags": [
         "Banker",
         "Sentinel"
       ],
-      "SpecialAttacks": [],
-      "Id": 19001
+      "Loot": []
     },
     {
+      "Id": 19002,
       "Keywords": [
         "cook",
         "Krolick"
@@ -1402,9 +1403,6 @@
       "ShortDescription": "the cook",
       "LongDescription": "Krolick stands at the counter, his bare arms completely covered in BBQ sauce.",
       "Description": "A big bearded, bare-armed man is covered in BBQ sauce up to his elbows.",
-      "Level": 50,
-      "Gold": 13000,
-      "Sex": "Male",
       "Hitpoints": 1000,
       "Mana": 100,
       "Moves": 1000,
@@ -1413,15 +1411,18 @@
       "AttackType": "Hit",
       "Hit": 350,
       "DamageRange": "28-28",
-      "Loot": [],
+      "Level": 50,
+      "Gold": 13000,
+      "Sex": "Male",
+      "SpecialAttacks": [],
       "Flags": [
         "Sentinel",
         "NoPurge"
       ],
-      "SpecialAttacks": [],
-      "Id": 19002
+      "Loot": []
     },
     {
+      "Id": 19003,
       "Keywords": [
         "Weapon",
         "Master"
@@ -1429,9 +1430,6 @@
       "ShortDescription": "the weapon master",
       "LongDescription": "A weapon master is here.",
       "Description": "A big barrel-chested man is behind the counter ready to sell you something sharp.",
-      "Level": 50,
-      "Gold": 13000,
-      "Sex": "Male",
       "Hitpoints": 1000,
       "Mana": 100,
       "Moves": 1000,
@@ -1440,15 +1438,18 @@
       "AttackType": "Hit",
       "Hit": 350,
       "DamageRange": "28-28",
-      "Loot": [],
+      "Level": 50,
+      "Gold": 13000,
+      "Sex": "Male",
+      "SpecialAttacks": [],
       "Flags": [
         "Sentinel",
         "NoPurge"
       ],
-      "SpecialAttacks": [],
-      "Id": 19003
+      "Loot": []
     },
     {
+      "Id": 19004,
       "Keywords": [
         "Clay",
         "the",
@@ -1457,9 +1458,6 @@
       "ShortDescription": "Clay the tanner",
       "LongDescription": "A tanner is here.",
       "Description": "A short man is behind the counter ready to sell you some gear.",
-      "Level": 50,
-      "Gold": 13000,
-      "Sex": "Male",
       "Hitpoints": 1000,
       "Mana": 100,
       "Moves": 1000,
@@ -1468,15 +1466,18 @@
       "AttackType": "Hit",
       "Hit": 750,
       "DamageRange": "28-28",
-      "Loot": [],
+      "Level": 50,
+      "Gold": 13000,
+      "Sex": "Male",
+      "SpecialAttacks": [],
       "Flags": [
         "Sentinel",
         "NoPurge"
       ],
-      "SpecialAttacks": [],
-      "Id": 19004
+      "Loot": []
     },
     {
+      "Id": 19005,
       "Keywords": [
         "Beatrice",
         "the",
@@ -1485,9 +1486,6 @@
       "ShortDescription": "Beatrice the weaver",
       "LongDescription": "A weaver is here.",
       "Description": "An exotic looking woman is beckoning you over.",
-      "Level": 50,
-      "Gold": 13000,
-      "Sex": "Female",
       "Hitpoints": 1000,
       "Mana": 100,
       "Moves": 1000,
@@ -1496,15 +1494,18 @@
       "AttackType": "Hit",
       "Hit": 500,
       "DamageRange": "28-28",
-      "Loot": [],
+      "Level": 50,
+      "Gold": 13000,
+      "Sex": "Female",
+      "SpecialAttacks": [],
       "Flags": [
         "Sentinel",
         "NoPurge"
       ],
-      "SpecialAttacks": [],
-      "Id": 19005
+      "Loot": []
     },
     {
+      "Id": 19006,
       "Keywords": [
         "alchemist",
         "malrik"
@@ -1512,9 +1513,6 @@
       "ShortDescription": "Malrik the alchemist",
       "LongDescription": "Malrik the alchemist is here.",
       "Description": "Malrik is a wiry old man, his robes stained with the remnants of countless\nexperiments. Thick goggles rest on his forehead, and his sharp eyes glint with both\ncuriosity and wisdom. A mischievous smirk and cryptic remarks hint at secrets\u2014perhaps\neven the key to immortality. The scent of burnt herbs clings to him as he absently twirls\na vial of shimmering liquid.",
-      "Level": 50,
-      "Gold": 13000,
-      "Sex": "Male",
       "Hitpoints": 1000,
       "Mana": 100,
       "Moves": 1000,
@@ -1523,17 +1521,20 @@
       "AttackType": "Hit",
       "Hit": 500,
       "DamageRange": "28-28",
-      "Loot": [],
+      "Level": 50,
+      "Gold": 13000,
+      "Sex": "Male",
+      "SpecialAttacks": [],
       "Flags": [
         "Sentinel",
         "NoPurge"
       ],
-      "SpecialAttacks": [],
+      "Loot": [],
       "Shop": "alchemist",
-      "ExchangeShop": "alchemist",
-      "Id": 19006
+      "ExchangeShop": "alchemist"
     },
     {
+      "Id": 19007,
       "Keywords": [
         "Wendy",
         "shopkeep"
@@ -1541,9 +1542,6 @@
       "ShortDescription": "Wendy the shopkeeper",
       "LongDescription": "Wendy the shopkeeper is here.",
       "Description": "A lovely lady beckons you over.",
-      "Level": 50,
-      "Gold": 13000,
-      "Sex": "Female",
       "Hitpoints": 1000,
       "Mana": 100,
       "Moves": 1000,
@@ -1552,16 +1550,20 @@
       "AttackType": "Hit",
       "Hit": 500,
       "DamageRange": "28-28",
-      "Loot": [],
+      "Level": 50,
+      "Gold": 13000,
+      "Sex": "Female",
+      "SpecialAttacks": [],
       "Flags": [
         "Sentinel",
         "NoPurge",
         "Enchanter"
       ],
-      "SpecialAttacks": [],
-      "Id": 19007
+      "Loot": []
     },
     {
+      "Id": 19008,
+      "Template": "service",
       "Keywords": [
         "trainer",
         "warrior",
@@ -1570,26 +1572,10 @@
       "ShortDescription": "the warrior guildmaster",
       "LongDescription": "The warrior guildmaster stands here, ready to teach you his ways.",
       "Description": "The warrior guildmaster is a formidable figure with a tall and athletic build.\nShe has a sharp jawline, a straight nose, and intense brown eyes that seem to\nsee right through you. Her hair is a deep auburn, styled in a practical braid\nthat keeps it out of her face during combat. Her skin is weathered from years\nof training and battles, bearing the scars of her experiences as badges of\nhonor. She exudes a confident and fearless energy, her presence commanding\nrespect and inspiring courage in those around her. She stands tall and proud,\nready to face any challenge that comes her way.",
-      "Level": 50,
-      "Gold": 5000,
-      "Sex": "Male",
-      "Hitpoints": 6050,
-      "Mana": 605,
-      "Moves": 1000,
-      "Armor": 0,
-      "AttacksCount": 7,
-      "AttackType": "Hit",
-      "Hit": 1250,
-      "DamageRange": "21-46",
-      "Loot": [],
-      "Guildmaster": "warrior",
-      "Flags": [
-        "Sentinel"
-      ],
-      "SpecialAttacks": [],
-      "Id": 19008
+      "Guildmaster": "warrior"
     },
     {
+      "Id": 19009,
       "Keywords": [
         "warrior",
         "guard"
@@ -1597,9 +1583,6 @@
       "ShortDescription": "the guild guard",
       "LongDescription": "A guard is here, protecting the warrior guild from intruders.",
       "Description": "A big, strong guild guard.",
-      "Level": 50,
-      "Gold": 1500,
-      "Sex": "None",
       "Hitpoints": 3100,
       "Mana": 150,
       "Moves": 1000,
@@ -1608,15 +1591,19 @@
       "AttackType": "Hit",
       "Hit": 750,
       "DamageRange": "21-46",
-      "Loot": [],
+      "Level": 50,
+      "Gold": 1500,
+      "Sex": "None",
+      "SpecialAttacks": [],
       "Flags": [
         "Sentinel",
         "AssistId"
       ],
-      "SpecialAttacks": [],
-      "Id": 19009
+      "Loot": []
     },
     {
+      "Id": 19010,
+      "Template": "service",
       "Keywords": [
         "trainer",
         "paladin",
@@ -1624,26 +1611,10 @@
       ],
       "ShortDescription": "the paladin guildmaster",
       "LongDescription": "The paladin guildmaster stands here, ready to teach you his ways.",
-      "Description": "The paladin guildmaster is a tall and muscular figure with a chiseled jawline,\na straight nose, and piercing green eyes. He has bright golden blonde hair\nstyled in a regal manner. His presence commands respect and his bearing exudes\na sense of justice and righteousness. His unwavering spirit and powerful aura\ninspire those around him to be brave and to fight for what is right.",
-      "Level": 50,
-      "Gold": 5000,
-      "Sex": "Male",
-      "Hitpoints": 6050,
-      "Mana": 5150,
-      "Moves": 1000,
-      "Armor": 0,
-      "AttacksCount": 7,
-      "AttackType": "Hit",
-      "Hit": 1250,
-      "DamageRange": "21-46",
-      "Loot": [],
-      "Flags": [
-        "Sentinel"
-      ],
-      "SpecialAttacks": [],
-      "Id": 19010
+      "Description": "The paladin guildmaster is a tall and muscular figure with a chiseled jawline,\na straight nose, and piercing green eyes. He has bright golden blonde hair\nstyled in a regal manner. His presence commands respect and his bearing exudes\na sense of justice and righteousness. His unwavering spirit and powerful aura\ninspire those around him to be brave and to fight for what is right."
     },
     {
+      "Id": 19011,
       "Keywords": [
         "paladin",
         "guard"
@@ -1651,9 +1622,6 @@
       "ShortDescription": "the guild guard",
       "LongDescription": "A guard is here, protecting the paladin guild from intruders.",
       "Description": "A big, strong guild guard.",
-      "Level": 50,
-      "Gold": 1500,
-      "Sex": "None",
       "Hitpoints": 3100,
       "Mana": 150,
       "Moves": 1000,
@@ -1662,15 +1630,19 @@
       "AttackType": "Hit",
       "Hit": 750,
       "DamageRange": "21-46",
-      "Loot": [],
+      "Level": 50,
+      "Gold": 1500,
+      "Sex": "None",
+      "SpecialAttacks": [],
       "Flags": [
         "Sentinel",
         "AssistId"
       ],
-      "SpecialAttacks": [],
-      "Id": 19011
+      "Loot": []
     },
     {
+      "Id": 19012,
+      "Template": "service",
       "Keywords": [
         "trainer",
         "healer",
@@ -1679,25 +1651,10 @@
       "ShortDescription": "the healer guildmaster",
       "LongDescription": "The healer guildmaster stands here, ready to teach you his ways.",
       "Description": "The healer guildmaster is a gentle and nurturing figure with a warm and kind\ndemeanor. She has a round face, a small nose, and soft brown eyes that exude a\nsense of compassion. Her hair is a light brown, styled in a simple and elegant\nmanner that allows her to move freely and attend to her patients. Her skin is a\nwarm, creamy complexion, and she carries herself with grace and poise. She\nradiates an aura of calm and serenity, her gentle presence inspiring trust and\ncomfort in those around her. Despite her petite stature, her mastery of the\nhealing arts is undeniable, and she is revered by her fellow healers.",
-      "Level": 50,
-      "Gold": 5000,
-      "Sex": "Female",
-      "Hitpoints": 15050,
-      "Mana": 10505,
-      "Moves": 1000,
-      "Armor": 0,
-      "AttacksCount": 7,
-      "AttackType": "Hit",
-      "Hit": 1250,
-      "DamageRange": "21-46",
-      "Loot": [],
-      "Flags": [
-        "Sentinel"
-      ],
-      "SpecialAttacks": [],
-      "Id": 19012
+      "Sex": "Female"
     },
     {
+      "Id": 19013,
       "Keywords": [
         "healer",
         "guard"
@@ -1705,9 +1662,6 @@
       "ShortDescription": "the guild guard",
       "LongDescription": "A guard is here, protecting the healer guild from intruders.",
       "Description": "A short, skinny guild guard.",
-      "Level": 50,
-      "Gold": 1500,
-      "Sex": "Female",
       "Hitpoints": 2760,
       "Mana": 2760,
       "Moves": 1000,
@@ -1716,15 +1670,19 @@
       "AttackType": "Hit",
       "Hit": 650,
       "DamageRange": "21-46",
-      "Loot": [],
+      "Level": 50,
+      "Gold": 1500,
+      "Sex": "Female",
+      "SpecialAttacks": [],
       "Flags": [
         "Sentinel",
         "AssistId"
       ],
-      "SpecialAttacks": [],
-      "Id": 19013
+      "Loot": []
     },
     {
+      "Id": 19014,
+      "Template": "service",
       "Keywords": [
         "trainer",
         "rogue",
@@ -1733,26 +1691,10 @@
       "ShortDescription": "the rogue guildmaster",
       "LongDescription": "The rogue guildmaster stands here, ready to teach you his ways.",
       "Description": "The rogue guildmaster is a slender and nimble figure with a quick wit and a\ncharming smile. He has a sharp jawline, a crooked nose, and sparkling brown eyes\nthat seem to always be on the lookout for his next big score. His hair is a\nshaggy mop of black, styled in a manner that adds to his roguish charm. He moves\nwith a feline grace, his confidence and cunning evident in every step. Despite\nhis sometimes questionable methods, he has a charismatic personality and a\nsilver tongue that makes him well-liked by his fellow thieves.",
-      "Level": 50,
-      "Gold": 5000,
-      "Sex": "Male",
-      "Hitpoints": 15050,
-      "Mana": 10505,
-      "Moves": 1000,
-      "Armor": 0,
-      "AttacksCount": 7,
-      "AttackType": "Hit",
-      "Hit": 750,
-      "DamageRange": "21-46",
-      "Loot": [],
-      "Guildmaster": "rogue",
-      "Flags": [
-        "Sentinel"
-      ],
-      "SpecialAttacks": [],
-      "Id": 19014
+      "Guildmaster": "rogue"
     },
     {
+      "Id": 19015,
       "Keywords": [
         "rogue",
         "guard"
@@ -1760,9 +1702,6 @@
       "ShortDescription": "the guild guard",
       "LongDescription": "A guard is here, protecting the rogue guild from intruders.",
       "Description": "A short, stocky guild guard.",
-      "Level": 50,
-      "Gold": 1500,
-      "Sex": "Male",
       "Hitpoints": 2760,
       "Mana": 2760,
       "Moves": 1000,
@@ -1771,15 +1710,19 @@
       "AttackType": "Hit",
       "Hit": 750,
       "DamageRange": "21-46",
-      "Loot": [],
+      "Level": 50,
+      "Gold": 1500,
+      "Sex": "Male",
+      "SpecialAttacks": [],
       "Flags": [
         "Sentinel",
         "AssistId"
       ],
-      "SpecialAttacks": [],
-      "Id": 19015
+      "Loot": []
     },
     {
+      "Id": 19016,
+      "Template": "service",
       "Keywords": [
         "trainer",
         "mage",
@@ -1788,25 +1731,10 @@
       "ShortDescription": "the mage guildmaster",
       "LongDescription": "The mage guildmaster stands here, ready to teach you her ways.",
       "Description": "The mage guildmaster is a serene and regal figure with an ethereal beauty. She\nhas a delicate jawline, a straight nose, and piercing blue eyes that seem to\nshimmer with an inner light. Her hair is a shining silver, styled in an\nelaborate up-do that adds to her stately appearance. Her skin is a warm,\ncreamy complexion, and she carries herself with grace and poise. She radiates\nan aura of calm and confidence, her gentle presence inspiring a sense of peace\nand security in those around her. Despite her quiet demeanor, her vast\nknowledge and mastery of magic is undeniable.",
-      "Level": 50,
-      "Gold": 5000,
-      "Sex": "Female",
-      "Hitpoints": 15050,
-      "Mana": 10505,
-      "Moves": 1000,
-      "Armor": 0,
-      "AttacksCount": 7,
-      "AttackType": "Hit",
-      "Hit": 1250,
-      "DamageRange": "21-46",
-      "Loot": [],
-      "Flags": [
-        "Sentinel"
-      ],
-      "SpecialAttacks": [],
-      "Id": 19016
+      "Sex": "Female"
     },
     {
+      "Id": 19017,
       "Keywords": [
         "mage",
         "guard"
@@ -1814,9 +1742,6 @@
       "ShortDescription": "the guild guard",
       "LongDescription": "A guard is here, protecting the mage guild from intruders.",
       "Description": "A short, skinny guild guard.",
-      "Level": 50,
-      "Gold": 1500,
-      "Sex": "Female",
       "Hitpoints": 3600,
       "Mana": 3600,
       "Moves": 1000,
@@ -1825,42 +1750,28 @@
       "AttackType": "Hit",
       "Hit": 750,
       "DamageRange": "21-46",
-      "Loot": [],
+      "Level": 50,
+      "Gold": 1500,
+      "Sex": "Female",
+      "SpecialAttacks": [],
       "Flags": [
         "Sentinel",
         "AssistId"
       ],
-      "SpecialAttacks": [],
-      "Id": 19017
+      "Loot": []
     },
     {
+      "Id": 19018,
+      "Template": "service",
       "Keywords": [
         "healer"
       ],
       "ShortDescription": "the healer",
       "LongDescription": "A healer is here, selling spells.",
-      "Description": "Although retired from adventuring, the healer still lends a hand. Type \u0027heal\u0027 to see a listing of spells.",
-      "Level": 55,
-      "Gold": 50000,
-      "Sex": "Male",
-      "Hitpoints": 10000,
-      "Mana": 10000,
-      "Moves": 1000,
-      "Armor": 250,
-      "AttacksCount": 7,
-      "AttackType": "Hit",
-      "Hit": 1275,
-      "DamageRange": "120-160",
-      "Loot": [],
-      "Flags": [
-        "Sentinel",
-        "NoPurge",
-        "Healer"
-      ],
-      "SpecialAttacks": [],
-      "Id": 19018
+      "Description": "Although retired from adventuring, the healer still lends a hand. Type \u0027heal\u0027 to see a listing of spells."
     },
     {
+      "Id": 19019,
       "Keywords": [
         "cityguard",
         "guard"
@@ -1868,9 +1779,6 @@
       "ShortDescription": "the cityguard",
       "LongDescription": "A cityguard is here, guarding the gate alertly.",
       "Description": "The city guard stands tall and imposing on the streets, their broad shoulders\nand sturdy frame making them a reassuring presence for the citizens. They have a\nstrong jawline, a straight nose, and piercing green eyes that reflect their\nvigilance and attention to detail. Their hair is a short crop, styled in a\npractical manner that doesn\u0027t distract from their duties. Their skin is rough\nand tanned from the sun, bearing the marks of a life spent outdoors. They carry\nthemselves with confidence and authority, their posture straight and their gait\nsteady. Despite their intimidating appearance, they are known to have a stern\nbut fair demeanor, earning the respect of the people they serve and protect.",
-      "Level": 15,
-      "Gold": 1500,
-      "Sex": "None",
       "Hitpoints": 420,
       "Mana": 150,
       "Moves": 1000,
@@ -1879,16 +1787,20 @@
       "AttackType": "Hit",
       "Hit": 225,
       "DamageRange": "8-12",
-      "Loot": [],
+      "Level": 15,
+      "Gold": 1500,
+      "Sex": "None",
+      "SpecialAttacks": [],
       "Flags": [
         "Sentinel",
         "Scavenger",
         "AssistId"
       ],
-      "SpecialAttacks": [],
-      "Id": 19019
+      "Loot": []
     },
     {
+      "Id": 19020,
+      "Template": "service",
       "Keywords": [
         "blacksmith",
         "thane",
@@ -1897,38 +1809,18 @@
       "ShortDescription": "Thane the blacksmith",
       "LongDescription": "Blacksmith Thane Ironjaw stands at the counter, waiting for your order.",
       "Description": "Thane Ironjaw is a towering, broad-shouldered man with the physique of\nsomeone who has spent a lifetime hammering steel. His arms are thick with muscle,\nbearing countless burn scars from stray embers and molten metal. A long, grizzled beard\n\u2014once deep auburn, now streaked with silver\u2014frames his square jaw, giving him the look\nof a battle-hardened veteran. His dark eyes gleam like tempered steel, ever watchful over\nhis shop\u2019s wares and customers alike. His leather apron, heavy with soot, smells faintly of\niron and sweat, and his hands, calloused and strong, move with practiced ease as he\ninspects blades and hammers.",
-      "Level": 50,
-      "Gold": 13000,
-      "Sex": "Male",
-      "Hitpoints": 3000,
-      "Mana": 100,
-      "Moves": 1000,
-      "Armor": 250,
-      "AttacksCount": 7,
-      "AttackType": "Hit",
-      "Hit": 750,
-      "DamageRange": "28-28",
-      "Loot": [],
-      "Flags": [
-        "Sentinel",
-        "NoPurge"
-      ],
-      "SpecialAttacks": [],
       "Shop": "smithy",
       "ForgeShop": "smithy",
-      "ExchangeShop": "smithy",
-      "Id": 19020
+      "ExchangeShop": "smithy"
     },
     {
+      "Id": 19021,
       "Keywords": [
         "boy"
       ],
       "ShortDescription": "the pet shop boy",
       "LongDescription": "A pet shop boy is here, humming gently.",
       "Description": "He is young and close-cropped and looks quite happy.",
-      "Level": 23,
-      "Gold": 10000,
-      "Sex": "Male",
       "Hitpoints": 10000,
       "Mana": 100,
       "Moves": 1000,
@@ -1937,15 +1829,18 @@
       "AttackType": "Hit",
       "Hit": 615,
       "DamageRange": "30-50",
-      "Loot": [],
+      "Level": 23,
+      "Gold": 10000,
+      "Sex": "Male",
+      "SpecialAttacks": [],
       "Flags": [
         "Sentinel",
         "NoPurge"
       ],
-      "SpecialAttacks": [],
-      "Id": 19021
+      "Loot": []
     },
     {
+      "Id": 19022,
       "Keywords": [
         "kitten",
         "cat",
@@ -1954,9 +1849,6 @@
       "ShortDescription": "the kitten",
       "LongDescription": "A small loyal kitten is here.",
       "Description": "The kitten looks like a cute, little, fierce fighter.",
-      "Level": 1,
-      "Gold": 100,
-      "Sex": "None",
       "Hitpoints": 20,
       "Mana": 100,
       "Moves": 1000,
@@ -1965,15 +1857,18 @@
       "AttackType": "Hit",
       "Hit": 25,
       "DamageRange": "4-4",
-      "Loot": [],
+      "Level": 1,
+      "Gold": 100,
+      "Sex": "None",
+      "SpecialAttacks": [],
       "Flags": [
         "Sentinel",
         "NoAlign"
       ],
-      "SpecialAttacks": [],
-      "Id": 19022
+      "Loot": []
     },
     {
+      "Id": 19023,
       "Keywords": [
         "puppy",
         "dog",
@@ -1982,9 +1877,6 @@
       "ShortDescription": "the puppy",
       "LongDescription": "A small loyal puppy is here.",
       "Description": "The puppy looks like a cute, little, fierce fighter.",
-      "Level": 3,
-      "Gold": 300,
-      "Sex": "None",
       "Hitpoints": 40,
       "Mana": 100,
       "Moves": 1000,
@@ -1993,15 +1885,18 @@
       "AttackType": "Hit",
       "Hit": 35,
       "DamageRange": "6-6",
-      "Loot": [],
+      "Level": 3,
+      "Gold": 300,
+      "Sex": "None",
+      "SpecialAttacks": [],
       "Flags": [
         "Sentinel",
         "NoAlign"
       ],
-      "SpecialAttacks": [],
-      "Id": 19023
+      "Loot": []
     },
     {
+      "Id": 19024,
       "Keywords": [
         "beagle",
         "dog",
@@ -2010,9 +1905,6 @@
       "ShortDescription": "the beagle",
       "LongDescription": "A small, quick, loyal beagle is here.",
       "Description": "The beagle looks like a fierce fighter.",
-      "Level": 5,
-      "Gold": 500,
-      "Sex": "None",
       "Hitpoints": 74,
       "Mana": 100,
       "Moves": 1000,
@@ -2021,15 +1913,18 @@
       "AttackType": "Hit",
       "Hit": 55,
       "DamageRange": "6-6",
-      "Loot": [],
+      "Level": 5,
+      "Gold": 500,
+      "Sex": "None",
+      "SpecialAttacks": [],
       "Flags": [
         "Sentinel",
         "NoAlign"
       ],
-      "SpecialAttacks": [],
-      "Id": 19024
+      "Loot": []
     },
     {
+      "Id": 19025,
       "Keywords": [
         "rottweiler",
         "dog",
@@ -2038,9 +1933,6 @@
       "ShortDescription": "the rottweiler",
       "LongDescription": "A large, loyal rottweiler is here.",
       "Description": "The rottweiler looks like a strong, fierce fighter.",
-      "Level": 7,
-      "Gold": 700,
-      "Sex": "None",
       "Hitpoints": 95,
       "Mana": 150,
       "Moves": 1000,
@@ -2049,15 +1941,18 @@
       "AttackType": "Hit",
       "Hit": 65,
       "DamageRange": "5-9",
-      "Loot": [],
+      "Level": 7,
+      "Gold": 700,
+      "Sex": "None",
+      "SpecialAttacks": [],
       "Flags": [
         "Sentinel",
         "NoAlign"
       ],
-      "SpecialAttacks": [],
-      "Id": 19025
+      "Loot": []
     },
     {
+      "Id": 19026,
       "Keywords": [
         "wolf",
         "pet"
@@ -2065,9 +1960,6 @@
       "ShortDescription": "the wolf",
       "LongDescription": "A large, trained wolf is here.",
       "Description": "The wolf looks like a strong, fearless fighter.",
-      "Level": 9,
-      "Gold": 900,
-      "Sex": "None",
       "Hitpoints": 115,
       "Mana": 100,
       "Moves": 1000,
@@ -2076,15 +1968,18 @@
       "AttackType": "Hit",
       "Hit": 75,
       "DamageRange": "6-11",
-      "Loot": [],
+      "Level": 9,
+      "Gold": 900,
+      "Sex": "None",
+      "SpecialAttacks": [],
       "Flags": [
         "Sentinel",
         "NoAlign"
       ],
-      "SpecialAttacks": [],
-      "Id": 19026
+      "Loot": []
     },
     {
+      "Id": 19027,
       "Keywords": [
         "eagle",
         "bird",
@@ -2093,9 +1988,6 @@
       "ShortDescription": "the eagle",
       "LongDescription": "A loyal eagle circles overhead.",
       "Description": "The eagle looks like a strong fierce fighter.",
-      "Level": 12,
-      "Gold": 1200,
-      "Sex": "None",
       "Hitpoints": 165,
       "Mana": 100,
       "Moves": 1000,
@@ -2104,16 +1996,19 @@
       "AttackType": "Hit",
       "Hit": 90,
       "DamageRange": "8-13",
-      "Loot": [],
+      "Level": 12,
+      "Gold": 1200,
+      "Sex": "None",
+      "SpecialAttacks": [],
       "Flags": [
         "Sentinel",
         "Pet",
         "NoAlign"
       ],
-      "SpecialAttacks": [],
-      "Id": 19027
+      "Loot": []
     },
     {
+      "Id": 19028,
       "Keywords": [
         "lion",
         "pet"
@@ -2121,9 +2016,6 @@
       "ShortDescription": "the lion",
       "LongDescription": "A large, faithful lion is here.",
       "Description": "The great lion looks very fierce.",
-      "Level": 15,
-      "Gold": 1500,
-      "Sex": "None",
       "Hitpoints": 227,
       "Mana": 100,
       "Moves": 1000,
@@ -2132,16 +2024,19 @@
       "AttackType": "Hit",
       "Hit": 225,
       "DamageRange": "18-26",
-      "Loot": [],
+      "Level": 15,
+      "Gold": 1500,
+      "Sex": "None",
+      "SpecialAttacks": [],
       "Flags": [
         "Sentinel",
         "Pet",
         "NoAlign"
       ],
-      "SpecialAttacks": [],
-      "Id": 19028
+      "Loot": []
     },
     {
+      "Id": 19029,
       "Keywords": [
         "tiger",
         "pet"
@@ -2149,9 +2044,6 @@
       "ShortDescription": "the tiger",
       "LongDescription": "A great, loyal tiger is here.",
       "Description": "The large, striped tiger looks like a savage fighter.",
-      "Level": 20,
-      "Gold": 2000,
-      "Sex": "None",
       "Hitpoints": 347,
       "Mana": 100,
       "Moves": 1000,
@@ -2160,16 +2052,19 @@
       "AttackType": "Hit",
       "Hit": 300,
       "DamageRange": "18-34",
-      "Loot": [],
+      "Level": 20,
+      "Gold": 2000,
+      "Sex": "None",
+      "SpecialAttacks": [],
       "Flags": [
         "Sentinel",
         "Pet",
         "NoAlign"
       ],
-      "SpecialAttacks": [],
-      "Id": 19029
+      "Loot": []
     },
     {
+      "Id": 19030,
       "Keywords": [
         "captain",
         "guard"
@@ -2177,9 +2072,6 @@
       "ShortDescription": "the guard captain",
       "LongDescription": "The captain is here, scheduling the guard rotation for the day.",
       "Description": "A big, strong guard captain.",
-      "Level": 50,
-      "Gold": 1500,
-      "Sex": "Male",
       "Hitpoints": 4400,
       "Mana": 150,
       "Moves": 1000,
@@ -2188,15 +2080,18 @@
       "AttackType": "Hit",
       "Hit": 750,
       "DamageRange": "21-46",
-      "Loot": [],
+      "Level": 50,
+      "Gold": 1500,
+      "Sex": "Male",
+      "SpecialAttacks": [],
       "Flags": [
         "Sentinel",
         "AssistPlayers"
       ],
-      "SpecialAttacks": [],
-      "Id": 19030
+      "Loot": []
     },
     {
+      "Id": 19031,
       "Keywords": [
         "lieutenant",
         "guard"
@@ -2204,9 +2099,6 @@
       "ShortDescription": "the guard captain",
       "LongDescription": "An angry looking guard lieutenant glares at you.",
       "Description": "An angry guard captain.",
-      "Level": 40,
-      "Gold": 1500,
-      "Sex": "Male",
       "Hitpoints": 8600,
       "Mana": 150,
       "Moves": 1000,
@@ -2215,14 +2107,18 @@
       "AttackType": "Hit",
       "Hit": 1200,
       "DamageRange": "22-52",
-      "Loot": [],
+      "Level": 40,
+      "Gold": 1500,
+      "Sex": "Male",
+      "SpecialAttacks": [],
       "Flags": [
         "Sentinel"
       ],
-      "SpecialAttacks": [],
-      "Id": 19031
+      "Loot": []
     },
     {
+      "Id": 19032,
+      "Template": "service",
       "Keywords": [
         "trainer",
         "bard",
@@ -2230,26 +2126,10 @@
       ],
       "ShortDescription": "the bard guildmaster",
       "LongDescription": "The bard guildmaster stands here, ready to teach you his ways.",
-      "Description": "The guildmaster is a tall and regal looking figure, with long flowing silver\nhair and piercing green eyes. He wears a garb of rich purple and gold,\nadorned with intricate musical symbols embroidered along the hem and sleeves.\nA lute is hung from a strap across his back, and a small harp is clasped in\nhis hand. A charming smile graces his lips, and his voice is like honey,\nsoothing the soul and captivating all who hear it. He exuded a sense of wisdom\nand leadership, and his mere presence commands respect from all those around.",
-      "Level": 50,
-      "Gold": 5000,
-      "Sex": "Male",
-      "Hitpoints": 6050,
-      "Mana": 5150,
-      "Moves": 1000,
-      "Armor": 0,
-      "AttacksCount": 7,
-      "AttackType": "Hit",
-      "Hit": 1250,
-      "DamageRange": "21-46",
-      "Loot": [],
-      "Flags": [
-        "Sentinel"
-      ],
-      "SpecialAttacks": [],
-      "Id": 19032
+      "Description": "The guildmaster is a tall and regal looking figure, with long flowing silver\nhair and piercing green eyes. He wears a garb of rich purple and gold,\nadorned with intricate musical symbols embroidered along the hem and sleeves.\nA lute is hung from a strap across his back, and a small harp is clasped in\nhis hand. A charming smile graces his lips, and his voice is like honey,\nsoothing the soul and captivating all who hear it. He exuded a sense of wisdom\nand leadership, and his mere presence commands respect from all those around."
     },
     {
+      "Id": 19033,
       "Keywords": [
         "bard",
         "guard"
@@ -2257,9 +2137,6 @@
       "ShortDescription": "the guild guard",
       "LongDescription": "A guard is here, protecting the bards guild from intruders.",
       "Description": "The guard is a formidable figure, standing tall and proud at the entrance to\nthe bard\u0027s guild. She is dressed in gleaming silver armor, adorned with musical\nnotes etched in gold. Her long cape, made of the finest velvet, flows in the\nbreeze, while her helmet is shaped like a lyre, symbolizing the music she\nprotects. In one hand, she holds a wooden dagger, the blade made of a magical\nwood that never breaks and the point shining like a star. In the other hand,\nshe carrys a lute, ready to strum a tune if needed.",
-      "Level": 50,
-      "Gold": 1500,
-      "Sex": "Female",
       "Hitpoints": 3600,
       "Mana": 3600,
       "Moves": 1000,
@@ -2268,15 +2145,18 @@
       "AttackType": "Hit",
       "Hit": 750,
       "DamageRange": "21-46",
-      "Loot": [],
+      "Level": 50,
+      "Gold": 1500,
+      "Sex": "Female",
+      "SpecialAttacks": [],
       "Flags": [
         "Sentinel",
         "AssistId"
       ],
-      "SpecialAttacks": [],
-      "Id": 19033
+      "Loot": []
     },
     {
+      "Id": 19034,
       "Keywords": [
         "merchant",
         "bard"
@@ -2284,9 +2164,6 @@
       "ShortDescription": "the traveling bard",
       "LongDescription": "A traveling bard sits here, displaying his wares.",
       "Description": "Dressed in ornate robes of emerald green and golden yellow, with a lute hanging\nfrom a strap across their back, this traveling bard exudes an air of confidence\nand pride. His long, curly hair is tied back in a messy bun, revealing a face\nfull of character and charisma. He is surrounded by a collection of instruments\nof all shapes and sizes.",
-      "Level": 40,
-      "Gold": 13000,
-      "Sex": "Male",
       "Hitpoints": 2000,
       "Mana": 100,
       "Moves": 1000,
@@ -2295,15 +2172,18 @@
       "AttackType": "Hit",
       "Hit": 600,
       "DamageRange": "28-52",
-      "Loot": [],
+      "Level": 40,
+      "Gold": 13000,
+      "Sex": "Male",
+      "SpecialAttacks": [],
       "Flags": [
         "Sentinel",
         "NoPurge"
       ],
-      "SpecialAttacks": [],
-      "Id": 19034
+      "Loot": []
     },
     {
+      "Id": 19035,
       "Keywords": [
         "monk",
         "guard"
@@ -2311,9 +2191,6 @@
       "ShortDescription": "the guild guard",
       "LongDescription": "A guard is here, protecting the monks guild from intruders.",
       "Description": "A tall, agile guild guard.",
-      "Level": 50,
-      "Gold": 1500,
-      "Sex": "Male",
       "Hitpoints": 2760,
       "Mana": 2760,
       "Moves": 1000,
@@ -2322,15 +2199,19 @@
       "AttackType": "Hit",
       "Hit": 750,
       "DamageRange": "21-46",
-      "Loot": [],
+      "Level": 50,
+      "Gold": 1500,
+      "Sex": "Male",
+      "SpecialAttacks": [],
       "Flags": [
         "Sentinel",
         "AssistId"
       ],
-      "SpecialAttacks": [],
-      "Id": 19035
+      "Loot": []
     },
     {
+      "Id": 19036,
+      "Template": "service",
       "Keywords": [
         "trainer",
         "monk",
@@ -2341,26 +2222,10 @@
       "ShortDescription": "the monk guildmaster",
       "LongDescription": "The monk guildmaster stands here, ready to teach you his ways.",
       "Description": "A master of discipline, Zhen Taoru commands respect through wisdom, not force. His\namber eyes hold the weight of countless lessons, and his movements\u2014fluid and precise\u2014\nreflect decades of training. Draped in a simple robe, he speaks in measured riddles,\nguiding students toward their own truths.\n\nA worn wooden staff rests at his side\u2014a symbol of mastery rather than necessity. Though\nage has tempered his stride, none doubt his ability to wield it with effortless precision.",
-      "Level": 50,
-      "Gold": 5000,
-      "Sex": "Male",
-      "Hitpoints": 15050,
-      "Mana": 10505,
-      "Moves": 1000,
-      "Armor": 0,
-      "AttacksCount": 7,
-      "AttackType": "Hit",
-      "Hit": 750,
-      "DamageRange": "21-46",
-      "Loot": [],
-      "Guildmaster": "monk",
-      "Flags": [
-        "Sentinel"
-      ],
-      "SpecialAttacks": [],
-      "Id": 19036
+      "Guildmaster": "monk"
     },
     {
+      "Id": 19037,
       "Keywords": [
         "lizard",
         "tail"
@@ -2368,9 +2233,6 @@
       "ShortDescription": "the squirming tail",
       "LongDescription": "The squirming tail is here, recently detached from a lizard.",
       "Description": "The detached lizard tail is squirming and contorting as if it still has a life of its own.",
-      "Level": 15,
-      "Gold": 1500,
-      "Sex": "None",
       "Hitpoints": 485,
       "Mana": 510,
       "Moves": 1000,
@@ -2379,23 +2241,23 @@
       "AttackType": "Hit",
       "Hit": 195,
       "DamageRange": "28-40",
-      "Loot": [],
+      "Level": 15,
+      "Gold": 1500,
+      "Sex": "None",
+      "SpecialAttacks": [],
       "Flags": [
         "AssistPlayers"
       ],
-      "SpecialAttacks": [],
-      "Id": 19037
+      "Loot": []
     },
     {
+      "Id": 19038,
       "Keywords": [
         "wolf"
       ],
       "ShortDescription": "a vicious wolf",
       "LongDescription": "A vicious wolf is here, serving its master.",
       "Description": "A large, muscular wolf with pointed ears, sharp teeth and claws and piercing\neyes is here. Its fur a shade of gray with brown sprinkled in, with a\nstreamlined body built for speed and agility.",
-      "Level": 1,
-      "Gold": 100,
-      "Sex": "None",
       "Hitpoints": 0,
       "Mana": 0,
       "Moves": 1000,
@@ -2404,23 +2266,23 @@
       "AttackType": "Hit",
       "Hit": 15,
       "DamageRange": "2-2",
-      "Loot": [],
+      "Level": 1,
+      "Gold": 100,
+      "Sex": "None",
+      "SpecialAttacks": [],
       "Flags": [
         "NoWander"
       ],
-      "SpecialAttacks": [],
-      "Id": 19038
+      "Loot": []
     },
     {
+      "Id": 19039,
       "Keywords": [
         "serpent"
       ],
       "ShortDescription": "a vicious serpent",
       "LongDescription": "A vicious serpent is here, serving its master.",
       "Description": "A long, sinuous serpent with smooth scales and a flickering tongue is here. Its\nbody is lithe and flexible, able to move swiftly and gracefully through the\nunderbrush. Its scales are a shade of green with black spots, and it has a\ntriangular head with sharp fangs. The serpent\u0027s eyes appear to be be keen and\nwatchful, and it moves with a fluid, serpentine grace.",
-      "Level": 1,
-      "Gold": 100,
-      "Sex": "None",
       "Hitpoints": 0,
       "Mana": 0,
       "Moves": 1000,
@@ -2429,23 +2291,23 @@
       "AttackType": "Hit",
       "Hit": 15,
       "DamageRange": "2-2",
-      "Loot": [],
+      "Level": 1,
+      "Gold": 100,
+      "Sex": "None",
+      "SpecialAttacks": [],
       "Flags": [
         "NoWander"
       ],
-      "SpecialAttacks": [],
-      "Id": 19039
+      "Loot": []
     },
     {
+      "Id": 19040,
       "Keywords": [
         "bear"
       ],
       "ShortDescription": "a viscious bear",
       "LongDescription": "A viscious bear is here, serving its master.",
       "Description": "A massive, hulking bear with shaggy fur, sharp claws, and a powerful build is\nhere. Its fur is a shade of brown, and it has a broad, rounded head with small\nears and snout. Its eyes would are deep-set and watchful, and it moves with a\nlumbering, yet surprisingly quick gait. Despite its size and strength, the bear\nseems to possess a certain grace and fluidity of movement, as well as a primal,\nuntamed energy.",
-      "Level": 1,
-      "Gold": 100,
-      "Sex": "None",
       "Hitpoints": 0,
       "Mana": 0,
       "Moves": 1000,
@@ -2454,23 +2316,23 @@
       "AttackType": "Hit",
       "Hit": 15,
       "DamageRange": "2-2",
-      "Loot": [],
+      "Level": 1,
+      "Gold": 100,
+      "Sex": "None",
+      "SpecialAttacks": [],
       "Flags": [
         "NoWander"
       ],
-      "SpecialAttacks": [],
-      "Id": 19040
+      "Loot": []
     },
     {
+      "Id": 19041,
       "Keywords": [
         "owl"
       ],
       "ShortDescription": "a vicious owl",
       "LongDescription": "A vicious owl is here, serving its master.",
       "Description": "A vicious owl with sharp talons and beak are prominently displayed, ready to\nstrike at any moment. Its eyes are intense and focused, scanning the\nsurroundings for potential prey. Its feathers are dark and sleek, allowing it to\nmove swiftly and silently through the air. Overall, the vicious owl exudes a\nsense of power and danger, both feared and respected by those who encountered\nit.",
-      "Level": 1,
-      "Gold": 100,
-      "Sex": "None",
       "Hitpoints": 0,
       "Mana": 0,
       "Moves": 1000,
@@ -2479,14 +2341,18 @@
       "AttackType": "Hit",
       "Hit": 15,
       "DamageRange": "2-2",
-      "Loot": [],
+      "Level": 1,
+      "Gold": 100,
+      "Sex": "None",
+      "SpecialAttacks": [],
       "Flags": [
         "NoWander"
       ],
-      "SpecialAttacks": [],
-      "Id": 19041
+      "Loot": []
     },
     {
+      "Id": 19042,
+      "Template": "service",
       "Keywords": [
         "trainer",
         "shapeshifter",
@@ -2495,25 +2361,10 @@
       "ShortDescription": "the shapeshifter guildmaster",
       "LongDescription": "The shapeshifter guildmaster stands here, ready to teach you its ways.",
       "Description": "The guildmaster of the shapeshifters guild is a wise and mysterious figure,\nknown simply as the Elder. Whether male or female, their appearance is that of a\nperson who has lived many lives, with eyes that seem to hold the knowledge of\nthe ages. The Elder is revered by all who enter the guild, their words carrying\nthe weight of centuries of shapeshifting lore and wisdom. They have dedicated\ntheir life to the art of shapeshifting and are a master of all animal forms,\nable to shift effortlessly from one creature to another. The Elder is patient\nand compassionate, yet fierce in their determination to protect the balance\nbetween humans and nature. Their guidance is sought by all shapeshifters who\nseek to deepen their understanding of the natural world and hone their\nshapeshifting skills.",
-      "Level": 50,
-      "Gold": 5000,
-      "Sex": "None",
-      "Hitpoints": 15050,
-      "Mana": 10505,
-      "Moves": 1000,
-      "Armor": 0,
-      "AttacksCount": 7,
-      "AttackType": "Hit",
-      "Hit": 1250,
-      "DamageRange": "21-46",
-      "Loot": [],
-      "Flags": [
-        "Sentinel"
-      ],
-      "SpecialAttacks": [],
-      "Id": 19042
+      "Sex": "None"
     },
     {
+      "Id": 19043,
       "Keywords": [
         "shapeshifter",
         "guard"
@@ -2521,9 +2372,6 @@
       "ShortDescription": "the guild guard",
       "LongDescription": "A guard is here, protecting the shapeshifter guild from intruders.",
       "Description": "A short, skinny guild guard.",
-      "Level": 50,
-      "Gold": 1500,
-      "Sex": "Female",
       "Hitpoints": 3600,
       "Mana": 3600,
       "Moves": 1000,
@@ -2532,15 +2380,18 @@
       "AttackType": "Hit",
       "Hit": 750,
       "DamageRange": "21-46",
-      "Loot": [],
+      "Level": 50,
+      "Gold": 1500,
+      "Sex": "Female",
+      "SpecialAttacks": [],
       "Flags": [
         "Sentinel",
         "AssistId"
       ],
-      "SpecialAttacks": [],
-      "Id": 19043
+      "Loot": []
     },
     {
+      "Id": 19044,
       "Keywords": [
         "Seraphel",
         "Guardian"
@@ -2548,9 +2399,6 @@
       "ShortDescription": "Seraphel, Guardian of Light",
       "LongDescription": "Seraphel, Guardian of Light, is here, seeking out Ravenshadow.",
       "Description": "Radiant, with golden locks that shimmer like sunlight. Her eyes are a\nserene shade of azure, reflecting her calm and steadfast nature. Clad in\ngleaming silver armor, she carries a sword that emanates a soft, ethereal\nglow, signifying her divine allegiance.",
-      "Level": 55,
-      "Gold": 5500,
-      "Sex": "Female",
       "Hitpoints": 4210,
       "Mana": 4210,
       "Moves": 1000,
@@ -2559,14 +2407,17 @@
       "AttackType": "Hit",
       "Hit": 1075,
       "DamageRange": "22-85",
-      "Loot": [],
+      "Level": 55,
+      "Gold": 5500,
+      "Sex": "Female",
+      "SpecialAttacks": [],
       "Flags": [
         "AssistAlign"
       ],
-      "SpecialAttacks": [],
-      "Id": 19044
+      "Loot": []
     },
     {
+      "Id": 19045,
       "Keywords": [
         "Ravenshadow",
         "Chaosbringer"
@@ -2574,9 +2425,6 @@
       "ShortDescription": "Ravenshadow, The Chaosbringer",
       "LongDescription": "Ravenshadow, The Chaosbringer is here, causing havoc.",
       "Description": "Tall, wiry, with jet-black hair that cascades over a pale, gaunt face. Eyes\nare a deep shade of crimson, almost resembling pools of blood. Wears dark,\ntattered robes that flutter as if caught in a ceaseless, stormy wind. His\npresence is accompanied by the eerie cawing of unseen ravens.",
-      "Level": 55,
-      "Gold": 5500,
-      "Sex": "Male",
       "Hitpoints": 4210,
       "Mana": 4210,
       "Moves": 1000,
@@ -2585,12 +2433,14 @@
       "AttackType": "Hit",
       "Hit": 1075,
       "DamageRange": "22-85",
-      "Loot": [],
+      "Level": 55,
+      "Gold": 5500,
+      "Sex": "Male",
+      "SpecialAttacks": [],
       "Flags": [
         "AssistAlign"
       ],
-      "SpecialAttacks": [],
-      "Id": 19045
+      "Loot": []
     }
   ],
   "MobileResets": [

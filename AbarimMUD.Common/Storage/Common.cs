@@ -210,7 +210,6 @@ namespace AbarimMUD.Storage
 
 			public override void Write(Utf8JsonWriter writer, Inventory value, JsonSerializerOptions options)
 			{
-				// Write just an id
 				JsonSerializer.Serialize(writer, value.Items, DefaultOptions);
 			}
 		}
@@ -292,6 +291,46 @@ namespace AbarimMUD.Storage
 			}
 		}
 
+		public class MobileConverterType : JsonConverter<Mobile>
+		{
+			private static JsonSerializerOptions _defaultOptions;
+
+			public static JsonSerializerOptions DefaultOptions
+			{
+				get
+				{
+					if (_defaultOptions == null)
+					{
+						_defaultOptions = JsonUtils.CreateOptions();
+						_defaultOptions.Converters.Add(MobileTemplateConverter);
+						_defaultOptions.Converters.Add(ItemInstanceConverter);
+						_defaultOptions.Converters.Add(InventoryConverter);
+						_defaultOptions.Converters.Add(PlayerClassConverter);
+						_defaultOptions.Converters.Add(ShopConverter);
+						_defaultOptions.Converters.Add(ForgeShopConverter);
+						_defaultOptions.Converters.Add(ExchangeShopConverter);
+
+					}
+
+					return _defaultOptions;
+				}
+			}
+
+			public override Mobile Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+			{
+				var doc = JsonDocument.ParseValue(ref reader);
+
+				var data = JsonSerializer.Deserialize<Mobile.MobileData>(doc, DefaultOptions);
+
+				return new Mobile(data);
+			}
+
+			public override void Write(Utf8JsonWriter writer, Mobile value, JsonSerializerOptions options)
+			{
+				JsonSerializer.Serialize(writer, value.Data, DefaultOptions);
+			}
+		}
+
 		public static readonly EntityConverter<PlayerClass> PlayerClassConverter = new EntityConverter<PlayerClass>(s => s.Id);
 		public static readonly EntityConverter<Skill> SkillConverter = new EntityConverter<Skill>(s => s.Id);
 		public static readonly EntityConverter<Item> ItemConverter = new EntityConverter<Item>(i => i.Id);
@@ -305,6 +344,8 @@ namespace AbarimMUD.Storage
 		public static readonly EntityConverter<ForgeShop> ForgeShopConverter = new EntityConverter<ForgeShop>(f => f.Id);
 		public static readonly EntityConverter<ExchangeShop> ExchangeShopConverter = new EntityConverter<ExchangeShop>(f => f.Id);
 		public static readonly EntityConverter<Enchantment> EnchantmentConverter = new EntityConverter<Enchantment>(s => s.Id);
+		public static readonly MobileConverterType MobileConverter = new MobileConverterType();
+		public static readonly EntityConverter<MobileTemplate> MobileTemplateConverter = new EntityConverter<MobileTemplate>(s => s.Id);
 
 		public static void SetReferences(this ItemInstance item)
 		{
@@ -352,6 +393,17 @@ namespace AbarimMUD.Storage
 			foreach (var slot in eq.Slots)
 			{
 				slot.SetReferences();
+			}
+		}
+
+		public static void SetReferences(this MobileTemplate mobileTemplate)
+		{
+			if (mobileTemplate.Loot != null)
+			{
+				foreach (var loot in mobileTemplate.Loot)
+				{
+					loot.Items.SetReferences();
+				}
 			}
 		}
 	}

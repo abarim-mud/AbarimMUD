@@ -2165,6 +2165,7 @@
   ],
   "Mobiles": [
     {
+      "Id": 7000,
       "Keywords": [
         "oldstyle",
         "mud",
@@ -2174,9 +2175,6 @@
       "ShortDescription": "the horrifying mudmonster",
       "LongDescription": "A horrifying mudmonster is slowly evolving from the mud ...",
       "Description": "It sure looks like something out of a horror movie. It strongly resembles\na huge figure made up from mud alone, and it sure looks like it had human \nflesh for breakfast and is strongly intent on having the same for dinner.",
-      "Level": 12,
-      "Gold": 50,
-      "Sex": "None",
       "Hitpoints": 165,
       "Mana": 131,
       "Moves": 1000,
@@ -2185,14 +2183,17 @@
       "AttackType": "Hit",
       "Hit": 60,
       "DamageRange": "13-13",
-      "Loot": [],
+      "Level": 12,
+      "Gold": 50,
+      "Sex": "None",
+      "SpecialAttacks": [],
       "Flags": [
         "AssistId"
       ],
-      "SpecialAttacks": [],
-      "Id": 7000
+      "Loot": []
     },
     {
+      "Id": 7001,
       "Keywords": [
         "oldstyle",
         "bat"
@@ -2200,9 +2201,6 @@
       "ShortDescription": "the small bat",
       "LongDescription": "The small fierce-looking bat is hanging from the ceiling.",
       "Description": "You have never in your entire life seen such a mean looking small creature,\nthough it looks rather peaceful, hanging there. The thought of arousing this\ncruel creature doesn\u0027t seem appealing.",
-      "Level": 1,
-      "Gold": 100,
-      "Sex": "None",
       "Hitpoints": 19,
       "Mana": 105,
       "Moves": 1000,
@@ -2211,15 +2209,18 @@
       "AttackType": "Hit",
       "Hit": 5,
       "DamageRange": "4-4",
-      "Loot": [],
+      "Level": 1,
+      "Gold": 100,
+      "Sex": "None",
+      "SpecialAttacks": [],
       "Flags": [
         "Aggressive",
         "AssistRace"
       ],
-      "SpecialAttacks": [],
-      "Id": 7001
+      "Loot": []
     },
     {
+      "Id": 7002,
       "Keywords": [
         "oldstyle",
         "rat"
@@ -2227,9 +2228,6 @@
       "ShortDescription": "the great sewer rat",
       "LongDescription": "The huge hungry-looking sewer rat sits here.",
       "Description": "",
-      "Level": 5,
-      "Gold": 20,
-      "Sex": "Male",
       "Hitpoints": 69,
       "Mana": 113,
       "Moves": 1000,
@@ -2238,15 +2236,18 @@
       "AttackType": "Hit",
       "Hit": 25,
       "DamageRange": "7-7",
-      "Loot": [],
+      "Level": 5,
+      "Gold": 20,
+      "Sex": "Male",
+      "SpecialAttacks": [],
       "Flags": [
         "Aggressive",
         "AssistId"
       ],
-      "SpecialAttacks": [],
-      "Id": 7002
+      "Loot": []
     },
     {
+      "Id": 7003,
       "Keywords": [
         "oldstyle",
         "spider"
@@ -2254,9 +2255,6 @@
       "ShortDescription": "the small spider",
       "LongDescription": "The small hairy spider.",
       "Description": "",
-      "Level": 1,
-      "Gold": 100,
-      "Sex": "Male",
       "Hitpoints": 19,
       "Mana": 105,
       "Moves": 1000,
@@ -2265,15 +2263,18 @@
       "AttackType": "Hit",
       "Hit": 5,
       "DamageRange": "4-4",
-      "Loot": [],
+      "Level": 1,
+      "Gold": 100,
+      "Sex": "Male",
+      "SpecialAttacks": [],
       "Flags": [
         "Aggressive",
         "AssistId"
       ],
-      "SpecialAttacks": [],
-      "Id": 7003
+      "Loot": []
     },
     {
+      "Id": 7004,
       "Keywords": [
         "oldstyle",
         "beetle"
@@ -2281,9 +2282,6 @@
       "ShortDescription": "the giant earth beetle",
       "LongDescription": "The giant mean-looking earth beetle crawls towards you.",
       "Description": "",
-      "Level": 8,
-      "Gold": 50,
-      "Sex": "Male",
       "Hitpoints": 106,
       "Mana": 122,
       "Moves": 1000,
@@ -2292,14 +2290,17 @@
       "AttackType": "Hit",
       "Hit": 40,
       "DamageRange": "9-9",
-      "Loot": [],
+      "Level": 8,
+      "Gold": 50,
+      "Sex": "Male",
+      "SpecialAttacks": [],
       "Flags": [
         "AssistId"
       ],
-      "SpecialAttacks": [],
-      "Id": 7004
+      "Loot": []
     },
     {
+      "Id": 7005,
       "Keywords": [
         "oldstyle",
         "maggot"
@@ -2307,9 +2308,6 @@
       "ShortDescription": "the maggot",
       "LongDescription": "The giant maggot crawls toward you.",
       "Description": "",
-      "Level": 3,
-      "Gold": 300,
-      "Sex": "Male",
       "Hitpoints": 44,
       "Mana": 109,
       "Moves": 1000,
@@ -2318,14 +2316,17 @@
       "AttackType": "Hit",
       "Hit": 15,
       "DamageRange": "6-6",
-      "Loot": [],
+      "Level": 3,
+      "Gold": 300,
+      "Sex": "Male",
+      "SpecialAttacks": [],
       "Flags": [
         "AssistId"
       ],
-      "SpecialAttacks": [],
-      "Id": 7005
+      "Loot": []
     },
     {
+      "Id": 7006,
       "Keywords": [
         "oldstyle",
         "snake"
@@ -2333,9 +2334,6 @@
       "ShortDescription": "the slithering snake",
       "LongDescription": "The snake slithers towards you.",
       "Description": "",
-      "Level": 4,
-      "Gold": 400,
-      "Sex": "None",
       "Hitpoints": 56,
       "Mana": 113,
       "Moves": 1000,
@@ -2344,15 +2342,18 @@
       "AttackType": "Hit",
       "Hit": 20,
       "DamageRange": "6-6",
-      "Loot": [],
+      "Level": 4,
+      "Gold": 400,
+      "Sex": "None",
+      "SpecialAttacks": [],
       "Flags": [
         "Aggressive",
         "AssistRace"
       ],
-      "SpecialAttacks": [],
-      "Id": 7006
+      "Loot": []
     },
     {
+      "Id": 7007,
       "Keywords": [
         "oldstyle",
         "wanderer"
@@ -2360,9 +2361,6 @@
       "ShortDescription": "the evil wanderer",
       "LongDescription": "The evil wanderer stares at you.",
       "Description": "The evil wanderer is very thin.  He is dressed in a grey cloak.",
-      "Level": 10,
-      "Gold": 150,
-      "Sex": "Male",
       "Hitpoints": 131,
       "Mana": 127,
       "Moves": 1000,
@@ -2371,16 +2369,19 @@
       "AttackType": "Hit",
       "Hit": 50,
       "DamageRange": "6-10",
-      "Loot": [],
+      "Level": 10,
+      "Gold": 150,
+      "Sex": "Male",
+      "SpecialAttacks": [],
       "Flags": [
         "Scavenger",
         "Wimpy",
         "AssistId"
       ],
-      "SpecialAttacks": [],
-      "Id": 7007
+      "Loot": []
     },
     {
+      "Id": 7008,
       "Keywords": [
         "oldstyle",
         "homonculus",
@@ -2389,9 +2390,6 @@
       "ShortDescription": "the homonculus",
       "LongDescription": "The homonculus is here, looking at you with an evil look.",
       "Description": "The Homonculus appears in a man-like form, about 18\u0027\u0027 tall, it has a\ngreenish, reptilian skin, leathery wings, and a bat-like mouth, with\nteeth gleaming yellow.",
-      "Level": 11,
-      "Gold": 250,
-      "Sex": "None",
       "Hitpoints": 146,
       "Mana": 127,
       "Moves": 1000,
@@ -2400,14 +2398,17 @@
       "AttackType": "Hit",
       "Hit": 55,
       "DamageRange": "12-12",
-      "Loot": [],
+      "Level": 11,
+      "Gold": 250,
+      "Sex": "None",
+      "SpecialAttacks": [],
       "Flags": [
         "AssistId"
       ],
-      "SpecialAttacks": [],
-      "Id": 7008
+      "Loot": []
     },
     {
+      "Id": 7010,
       "Keywords": [
         "oldstyle",
         "chreffn"
@@ -2415,9 +2416,6 @@
       "ShortDescription": "the evil chreffn",
       "LongDescription": "The chreffn are crawling here, looking around with their yellow eyes.",
       "Description": "The head and torso of a chreffn is copper-covered, with yellow,\nglowing eyes. The lower body is in an orange shading.",
-      "Level": 12,
-      "Gold": 750,
-      "Sex": "None",
       "Hitpoints": 165,
       "Mana": 131,
       "Moves": 1000,
@@ -2426,16 +2424,19 @@
       "AttackType": "Hit",
       "Hit": 60,
       "DamageRange": "13-13",
-      "Loot": [],
+      "Level": 12,
+      "Gold": 750,
+      "Sex": "None",
+      "SpecialAttacks": [],
       "Flags": [
         "Scavenger",
         "Wimpy",
         "AssistId"
       ],
-      "SpecialAttacks": [],
-      "Id": 7010
+      "Loot": []
     },
     {
+      "Id": 7011,
       "Keywords": [
         "oldstyle",
         "morkoth"
@@ -2443,9 +2444,6 @@
       "ShortDescription": "the shadowy morkoth",
       "LongDescription": "The morkoth is standing here, waiting for someone to KILL!",
       "Description": "It\u0027s a five feet tall, shadow monster. The shape of this creature lies\nsomewhere between a human and a rat. It breaths very heavily, while staring\nat you with such a glint in the eyes that reminds you of immense hunger.",
-      "Level": 10,
-      "Gold": 1000,
-      "Sex": "None",
       "Hitpoints": 131,
       "Mana": 127,
       "Moves": 1000,
@@ -2454,16 +2452,19 @@
       "AttackType": "Hit",
       "Hit": 50,
       "DamageRange": "6-10",
-      "Loot": [],
+      "Level": 10,
+      "Gold": 1000,
+      "Sex": "None",
+      "SpecialAttacks": [],
       "Flags": [
         "Aggressive",
         "Wimpy",
         "AssistId"
       ],
-      "SpecialAttacks": [],
-      "Id": 7011
+      "Loot": []
     },
     {
+      "Id": 7013,
       "Keywords": [
         "oldstyle",
         "mud",
@@ -2473,9 +2474,6 @@
       "ShortDescription": "the horrifying mudmonster",
       "LongDescription": "A horrifying mudmonster is slowly evolving from the mud ...",
       "Description": "It sure looks like something out of a horror movie. It strongly resembles\na huge figure made up from mud alone, and it sure looks like it had human \nflesh for breakfast and is strongly intent on having the same for dinner.",
-      "Level": 12,
-      "Gold": 500,
-      "Sex": "None",
       "Hitpoints": 165,
       "Mana": 131,
       "Moves": 1000,
@@ -2484,15 +2482,18 @@
       "AttackType": "Hit",
       "Hit": 60,
       "DamageRange": "13-13",
-      "Loot": [],
+      "Level": 12,
+      "Gold": 500,
+      "Sex": "None",
+      "SpecialAttacks": [],
       "Flags": [
         "Aggressive",
         "AssistId"
       ],
-      "SpecialAttacks": [],
-      "Id": 7013
+      "Loot": []
     },
     {
+      "Id": 7040,
       "Keywords": [
         "red",
         "dragon"
@@ -2500,9 +2501,6 @@
       "ShortDescription": "the red dragon",
       "LongDescription": "The red fierce-looking dragon stares at you angrily.",
       "Description": "The red dragon stares at you, angrily, as it wakes when you\narrives.  It says \u0027Oh, human YOU woke me up ... Hsss\u0027, while\nit moves closer.  \u0027Can one NEVER sleep in peace ... Hsss\u0027.",
-      "Level": 32,
-      "Gold": 50000,
-      "Sex": "None",
       "Hitpoints": 1055,
       "Mana": 176,
       "Moves": 1000,
@@ -2511,16 +2509,19 @@
       "AttackType": "Hit",
       "Hit": 160,
       "DamageRange": "13-33",
-      "Loot": [],
+      "Level": 32,
+      "Gold": 50000,
+      "Sex": "None",
+      "SpecialAttacks": [],
       "Flags": [
         "Sentinel",
         "Aggressive",
         "AssistId"
       ],
-      "SpecialAttacks": [],
-      "Id": 7040
+      "Loot": []
     },
     {
+      "Id": 7041,
       "Keywords": [
         "oldstyle",
         "sea",
@@ -2529,9 +2530,6 @@
       "ShortDescription": "the sea hag",
       "LongDescription": "The sea hag is swimming around here.",
       "Description": "The sea hag is so ghastly looking that you feel the deepest fear.\nBig yellow eyes and sharp teeth.  Its ears are very big,\nand it has small sharp horns.  It hates beauty.",
-      "Level": 14,
-      "Gold": 1400,
-      "Sex": "Female",
       "Hitpoints": 205,
       "Mana": 136,
       "Moves": 1000,
@@ -2540,15 +2538,18 @@
       "AttackType": "Hit",
       "Hit": 70,
       "DamageRange": "15-15",
-      "Loot": [],
+      "Level": 14,
+      "Gold": 1400,
+      "Sex": "Female",
+      "SpecialAttacks": [],
       "Flags": [
         "Aggressive",
         "AssistId"
       ],
-      "SpecialAttacks": [],
-      "Id": 7041
+      "Loot": []
     },
     {
+      "Id": 7042,
       "Keywords": [
         "oldstyle",
         "guardian",
@@ -2557,9 +2558,6 @@
       "ShortDescription": "the guardian naga",
       "LongDescription": "The guardian naga looks kindly at you.",
       "Description": "The naga are a snake-liked creature. She is covered in green-gold\nscale with silvery triangles along her back. Her eyes are golden.\nShe notice that you look at her, and she says: \u0027Watch out. This way\nleads to some evil creatures\u0027.",
-      "Level": 12,
-      "Gold": 50,
-      "Sex": "Female",
       "Hitpoints": 165,
       "Mana": 158,
       "Moves": 1000,
@@ -2568,15 +2566,18 @@
       "AttackType": "Hit",
       "Hit": 60,
       "DamageRange": "7-11",
-      "Loot": [],
+      "Level": 12,
+      "Gold": 50,
+      "Sex": "Female",
+      "SpecialAttacks": [],
       "Flags": [
         "Sentinel",
         "AssistId"
       ],
-      "SpecialAttacks": [],
-      "Id": 7042
+      "Loot": []
     },
     {
+      "Id": 7043,
       "Keywords": [
         "oldstyle",
         "basilisk"
@@ -2584,9 +2585,6 @@
       "ShortDescription": "the scaled basilisk",
       "LongDescription": "The scaled basilisk crawls towards you slowly.",
       "Description": "The basilisk is a reptilian monster. It has eight legs, and a strong\ntoothy jaws. It is dull brown with yellowish underbelly. It\u0027s eyes are\nglowing pale green.",
-      "Level": 13,
-      "Gold": 170,
-      "Sex": "Male",
       "Hitpoints": 185,
       "Mana": 131,
       "Moves": 1000,
@@ -2595,16 +2593,19 @@
       "AttackType": "Hit",
       "Hit": 65,
       "DamageRange": "8-13",
-      "Loot": [],
+      "Level": 13,
+      "Gold": 170,
+      "Sex": "Male",
+      "SpecialAttacks": [],
       "Flags": [
         "Scavenger",
         "Aggressive",
         "AssistId"
       ],
-      "SpecialAttacks": [],
-      "Id": 7043
+      "Loot": []
     },
     {
+      "Id": 7044,
       "Keywords": [
         "oldstyle",
         "lemure",
@@ -2613,9 +2614,6 @@
       "ShortDescription": "the lemure blob",
       "LongDescription": "The lemure blob slithers terribly precisely towards you for an attack!",
       "Description": "This looks like a vaguely human blob. Big black yellow eyes, and a\nmouth going a little bit out from the face. The lemure does not look\ninterested in you at all, but anyway it attacks. It looks like it\u0027s\nmind has been burned out.",
-      "Level": 5,
-      "Gold": 500,
-      "Sex": "None",
       "Hitpoints": 69,
       "Mana": 113,
       "Moves": 1000,
@@ -2624,15 +2622,18 @@
       "AttackType": "Hit",
       "Hit": 25,
       "DamageRange": "7-7",
-      "Loot": [],
+      "Level": 5,
+      "Gold": 500,
+      "Sex": "None",
+      "SpecialAttacks": [],
       "Flags": [
         "Aggressive",
         "AssistId"
       ],
-      "SpecialAttacks": [],
-      "Id": 7044
+      "Loot": []
     },
     {
+      "Id": 7045,
       "Keywords": [
         "oldstyle",
         "jones",
@@ -2642,9 +2643,6 @@
       "ShortDescription": "Jones",
       "LongDescription": "Jones \u0027Cruncher\u0027 the ettin is standing here glaring at you.",
       "Description": "At the first sight you thought Jones was an orc, but when it came\ncloser you saw his second head. He wears an animal skin dress,\nfilthy and moth eaten. Jones really stinks...",
-      "Level": 10,
-      "Gold": 30,
-      "Sex": "Male",
       "Hitpoints": 131,
       "Mana": 127,
       "Moves": 1000,
@@ -2653,16 +2651,19 @@
       "AttackType": "Hit",
       "Hit": 50,
       "DamageRange": "6-10",
-      "Loot": [],
+      "Level": 10,
+      "Gold": 30,
+      "Sex": "Male",
+      "SpecialAttacks": [],
       "Flags": [
         "Scavenger",
         "Aggressive",
         "AssistId"
       ],
-      "SpecialAttacks": [],
-      "Id": 7045
+      "Loot": []
     },
     {
+      "Id": 7046,
       "Keywords": [
         "oldstyle",
         "herald",
@@ -2673,9 +2674,6 @@
       "ShortDescription": "Herald",
       "LongDescription": "Herald \u0027Mouse-Killer\u0027 the ettin is standing here looking confused at you.",
       "Description": "When you look at Herald, you feel pity. His dress are really poor,\nand the one of his heads hangs down. At the rope around his stomach\nhangs dead mouses and rats. He does not smell good.",
-      "Level": 6,
-      "Gold": 20,
-      "Sex": "Male",
       "Hitpoints": 81,
       "Mana": 118,
       "Moves": 1000,
@@ -2684,15 +2682,18 @@
       "AttackType": "Hit",
       "Hit": 30,
       "DamageRange": "8-8",
-      "Loot": [],
+      "Level": 6,
+      "Gold": 20,
+      "Sex": "Male",
+      "SpecialAttacks": [],
       "Flags": [
         "Scavenger",
         "AssistId"
       ],
-      "SpecialAttacks": [],
-      "Id": 7046
+      "Loot": []
     },
     {
+      "Id": 7200,
       "Keywords": [
         "oldstyle",
         "master",
@@ -2702,9 +2703,6 @@
       "ShortDescription": "the master mindflayer",
       "LongDescription": "The master mindflayer is here, looking at you with an evil look.",
       "Description": "It\u0027s a seven foot tall humanoid dressed in a purple cloak, and swinging a\nblack and purple rod above its head as if it was going to attack you any\nmoment now. In the middle of its head are four tentacles with sharp points.",
-      "Level": 14,
-      "Gold": 500,
-      "Sex": "None",
       "Hitpoints": 185,
       "Mana": 167,
       "Moves": 1000,
@@ -2713,16 +2711,19 @@
       "AttackType": "Hit",
       "Hit": 70,
       "DamageRange": "12-12",
-      "Loot": [],
+      "Level": 14,
+      "Gold": 500,
+      "Sex": "None",
+      "SpecialAttacks": [],
       "Flags": [
         "Scavenger",
         "Aggressive",
         "AssistId"
       ],
-      "SpecialAttacks": [],
-      "Id": 7200
+      "Loot": []
     },
     {
+      "Id": 7201,
       "Keywords": [
         "oldstyle",
         "senior",
@@ -2732,9 +2733,6 @@
       "ShortDescription": "the senior mindflayer",
       "LongDescription": "The senior mindflayer walks around here, looking for something useful.",
       "Description": "This is a horrifying monster indeed, 6\u00276\u0022 high. Dressed in purple and black,\nand carrying a large mace in its hand. In the center of its head are four large\ntentacles with very sharp points.",
-      "Level": 8,
-      "Gold": 200,
-      "Sex": "None",
       "Hitpoints": 94,
       "Mana": 140,
       "Moves": 1000,
@@ -2743,16 +2741,19 @@
       "AttackType": "Hit",
       "Hit": 40,
       "DamageRange": "7-7",
-      "Loot": [],
+      "Level": 8,
+      "Gold": 200,
+      "Sex": "None",
+      "SpecialAttacks": [],
       "Flags": [
         "Scavenger",
         "Aggressive",
         "AssistId"
       ],
-      "SpecialAttacks": [],
-      "Id": 7201
+      "Loot": []
     },
     {
+      "Id": 7202,
       "Keywords": [
         "oldstyle",
         "junior",
@@ -2762,9 +2763,6 @@
       "ShortDescription": "the junior mindflayer",
       "LongDescription": "The junior mindflayer is here, watching you carefully from the corner.",
       "Description": "This mindflayer is six foot high. It has a small mace in its belt, and is\ndressed in purple and black cloth. It has four small tentacles in the \ncenter of its head.",
-      "Level": 6,
-      "Gold": 100,
-      "Sex": "None",
       "Hitpoints": 69,
       "Mana": 131,
       "Moves": 1000,
@@ -2773,16 +2771,19 @@
       "AttackType": "Hit",
       "Hit": 30,
       "DamageRange": "6-6",
-      "Loot": [],
+      "Level": 6,
+      "Gold": 100,
+      "Sex": "None",
+      "SpecialAttacks": [],
       "Flags": [
         "Scavenger",
         "Aggressive",
         "AssistId"
       ],
-      "SpecialAttacks": [],
-      "Id": 7202
+      "Loot": []
     },
     {
+      "Id": 7203,
       "Keywords": [
         "oldstyle",
         "wererat",
@@ -2792,9 +2793,6 @@
       "ShortDescription": "the ugly wererat",
       "LongDescription": "An ugly wererat is here, looking at you with a strange flick in his eyes.",
       "Description": "The wererat is about four foot tall. It looks very much like rat, except\nthat it is standing.",
-      "Level": 6,
-      "Gold": 20,
-      "Sex": "None",
       "Hitpoints": 81,
       "Mana": 118,
       "Moves": 1000,
@@ -2803,16 +2801,19 @@
       "AttackType": "Hit",
       "Hit": 30,
       "DamageRange": "8-8",
-      "Loot": [],
+      "Level": 6,
+      "Gold": 20,
+      "Sex": "None",
+      "SpecialAttacks": [],
       "Flags": [
         "Scavenger",
         "Aggressive",
         "AssistId"
       ],
-      "SpecialAttacks": [],
-      "Id": 7203
+      "Loot": []
     },
     {
+      "Id": 7204,
       "Keywords": [
         "oldstyle",
         "rat",
@@ -2821,9 +2822,6 @@
       "ShortDescription": "the gigantic rat",
       "LongDescription": "There is a gigantic rat here, looking at you with a hungry look.",
       "Description": "The gigantic rat is about ten foot long from head to tail and has claws\nthe size of your head looking very nasty.",
-      "Level": 12,
-      "Gold": 1250,
-      "Sex": "Male",
       "Hitpoints": 165,
       "Mana": 131,
       "Moves": 1000,
@@ -2832,14 +2830,16 @@
       "AttackType": "Hit",
       "Hit": 60,
       "DamageRange": "13-13",
-      "Loot": [],
+      "Level": 12,
+      "Gold": 1250,
+      "Sex": "Male",
+      "SpecialAttacks": [],
       "Flags": [
         "Sentinel",
         "Aggressive",
         "AssistId"
       ],
-      "SpecialAttacks": [],
-      "Id": 7204
+      "Loot": []
     }
   ],
   "MobileResets": [

@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
 {
-	public class AreaEntity : IHasId<int>
+	public abstract class AreaEntity : IHasId<int>
 	{
 
 		[Browsable(false)]
@@ -13,6 +13,11 @@ namespace AbarimMUD.Data
 
 		[Browsable(false)]
 		[OLCIgnore]
-		public int Id { get; set; }
+		public abstract int Id { get; set; }
+	}
+
+	public class AreaEntityWithId : AreaEntity
+	{
+		public override int Id { get; set; }
 	}
 }

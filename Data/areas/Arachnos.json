@@ -670,6 +670,7 @@
   ],
   "Mobiles": [
     {
+      "Id": 6301,
       "Keywords": [
         "spider",
         "young"
@@ -677,9 +678,6 @@
       "ShortDescription": "the young spider",
       "LongDescription": "The young spider is ballooning by you.",
       "Description": "He looks freshly hatched and sprightly.  His young fangs are just\ngrowing in as of late.",
-      "Level": 5,
-      "Gold": 50,
-      "Sex": "Female",
       "Hitpoints": 69,
       "Mana": 113,
       "Moves": 1000,
@@ -688,12 +686,15 @@
       "AttackType": "Hit",
       "Hit": 25,
       "DamageRange": "7-7",
-      "Loot": [],
-      "Flags": [],
+      "Level": 5,
+      "Gold": 50,
+      "Sex": "Female",
       "SpecialAttacks": [],
-      "Id": 6301
+      "Flags": [],
+      "Loot": []
     },
     {
+      "Id": 6302,
       "Keywords": [
         "dragon",
         "Yevaud"
@@ -701,9 +702,6 @@
       "ShortDescription": "Yevaud",
       "LongDescription": "Yevaud the Usurper of Midgaard is here, grinning evilly at you.",
       "Description": "Old, scaly, but still with a lot of bite in him left.",
-      "Level": 24,
-      "Gold": 5000,
-      "Sex": "Male",
       "Hitpoints": 530,
       "Mana": 158,
       "Moves": 1000,
@@ -712,12 +710,15 @@
       "AttackType": "Hit",
       "Hit": 120,
       "DamageRange": "16-26",
-      "Loot": [],
-      "Flags": [],
+      "Level": 24,
+      "Gold": 5000,
+      "Sex": "Male",
       "SpecialAttacks": [],
-      "Id": 6302
+      "Flags": [],
+      "Loot": []
     },
     {
+      "Id": 6303,
       "Keywords": [
         "spider",
         "wolf"
@@ -725,9 +726,6 @@
       "ShortDescription": "the Wolf Spider",
       "LongDescription": "The Wolf Spider is here, licking its bloody fangs.",
       "Description": "The Wolf Spider is hairy, very hairy.",
-      "Level": 6,
-      "Gold": 620,
-      "Sex": "Female",
       "Hitpoints": 81,
       "Mana": 118,
       "Moves": 1000,
@@ -736,21 +734,21 @@
       "AttackType": "Hit",
       "Hit": 30,
       "DamageRange": "8-8",
-      "Loot": [],
-      "Flags": [],
+      "Level": 6,
+      "Gold": 620,
+      "Sex": "Female",
       "SpecialAttacks": [],
-      "Id": 6303
+      "Flags": [],
+      "Loot": []
     },
     {
+      "Id": 6304,
       "Keywords": [
         "orc"
       ],
       "ShortDescription": "the orc",
       "LongDescription": "The orc is stuck in the web and he can\u0027t get out.",
       "Description": "You notice an evil look in his eyes.",
-      "Level": 5,
-      "Gold": 50,
-      "Sex": "Male",
       "Hitpoints": 69,
       "Mana": 113,
       "Moves": 1000,
@@ -759,12 +757,15 @@
       "AttackType": "Hit",
       "Hit": 25,
       "DamageRange": "7-7",
-      "Loot": [],
-      "Flags": [],
+      "Level": 5,
+      "Gold": 50,
+      "Sex": "Male",
       "SpecialAttacks": [],
-      "Id": 6304
+      "Flags": [],
+      "Loot": []
     },
     {
+      "Id": 6305,
       "Keywords": [
         "wasp",
         "queen"
@@ -772,9 +773,6 @@
       "ShortDescription": "the Queen Wasp",
       "LongDescription": "The Queen Wasp is here, thinking that you would make a tasty offering\n to her master.",
       "Description": "You notice a glazed look in her eyes.",
-      "Level": 12,
-      "Gold": 750,
-      "Sex": "Female",
       "Hitpoints": 165,
       "Mana": 131,
       "Moves": 1000,
@@ -783,12 +781,15 @@
       "AttackType": "Hit",
       "Hit": 60,
       "DamageRange": "13-13",
-      "Loot": [],
-      "Flags": [],
+      "Level": 12,
+      "Gold": 750,
+      "Sex": "Female",
       "SpecialAttacks": [],
-      "Id": 6305
+      "Flags": [],
+      "Loot": []
     },
     {
+      "Id": 6306,
       "Keywords": [
         "spider",
         "drone"
@@ -796,9 +797,6 @@
       "ShortDescription": "the drone spider",
       "LongDescription": "The drone spider walks around doing her master\u0027s bidding.",
       "Description": "An ordinary drone spider.",
-      "Level": 6,
-      "Gold": 100,
-      "Sex": "Male",
       "Hitpoints": 81,
       "Mana": 118,
       "Moves": 1000,
@@ -807,12 +805,15 @@
       "AttackType": "Hit",
       "Hit": 30,
       "DamageRange": "8-8",
-      "Loot": [],
-      "Flags": [],
+      "Level": 6,
+      "Gold": 100,
+      "Sex": "Male",
       "SpecialAttacks": [],
-      "Id": 6306
+      "Flags": [],
+      "Loot": []
     },
     {
+      "Id": 6307,
       "Keywords": [
         "spider",
         "ethereal"
@@ -820,9 +821,6 @@
       "ShortDescription": "the ethereal spider",
       "LongDescription": "The ethereal spider strides here, traveling to different worlds.",
       "Description": "She winks in and out.",
-      "Level": 10,
-      "Gold": 620,
-      "Sex": "Female",
       "Hitpoints": 131,
       "Mana": 127,
       "Moves": 1000,
@@ -831,12 +829,15 @@
       "AttackType": "Hit",
       "Hit": 50,
       "DamageRange": "6-10",
-      "Loot": [],
-      "Flags": [],
+      "Level": 10,
+      "Gold": 620,
+      "Sex": "Female",
       "SpecialAttacks": [],
-      "Id": 6307
+      "Flags": [],
+      "Loot": []
     },
     {
+      "Id": 6308,
       "Keywords": [
         "slave",
         "human"
@@ -844,9 +845,6 @@
       "ShortDescription": "the slave of Arachnos",
       "LongDescription": "The slave works here relentlessly.",
       "Description": "The slave does not mind you, but will fight like a warrior if attacked.",
-      "Level": 8,
-      "Gold": 250,
-      "Sex": "Male",
       "Hitpoints": 106,
       "Mana": 122,
       "Moves": 1000,
@@ -855,21 +853,21 @@
       "AttackType": "Hit",
       "Hit": 40,
       "DamageRange": "9-9",
-      "Loot": [],
-      "Flags": [],
+      "Level": 8,
+      "Gold": 250,
+      "Sex": "Male",
       "SpecialAttacks": [],
-      "Id": 6308
+      "Flags": [],
+      "Loot": []
     },
     {
+      "Id": 6309,
       "Keywords": [
         "quasit"
       ],
       "ShortDescription": "the quasit",
       "LongDescription": "The quasit blinks in and out, grinning at you.",
       "Description": "Demoniac in nature, but more mischievous.  He twiddles his thumbs\nand creates a magical treasure!",
-      "Level": 10,
-      "Gold": 500,
-      "Sex": "Male",
       "Hitpoints": 131,
       "Mana": 127,
       "Moves": 1000,
@@ -878,12 +876,15 @@
       "AttackType": "Hit",
       "Hit": 50,
       "DamageRange": "6-10",
-      "Loot": [],
-      "Flags": [],
+      "Level": 10,
+      "Gold": 500,
+      "Sex": "Male",
       "SpecialAttacks": [],
-      "Id": 6309
+      "Flags": [],
+      "Loot": []
     },
     {
+      "Id": 6310,
       "Keywords": [
         "spider",
         "bird"
@@ -891,9 +892,6 @@
       "ShortDescription": "the Bird Spider",
       "LongDescription": "The Bird Spider snaps its powerful jaws.",
       "Description": "The Bird Spider has very powerful jaws.",
-      "Level": 14,
-      "Gold": 870,
-      "Sex": "Female",
       "Hitpoints": 205,
       "Mana": 136,
       "Moves": 1000,
@@ -902,21 +900,21 @@
       "AttackType": "Hit",
       "Hit": 70,
       "DamageRange": "15-15",
-      "Loot": [],
-      "Flags": [],
+      "Level": 14,
+      "Gold": 870,
+      "Sex": "Female",
       "SpecialAttacks": [],
-      "Id": 6310
+      "Flags": [],
+      "Loot": []
     },
     {
+      "Id": 6311,
       "Keywords": [
         "hermit"
       ],
       "ShortDescription": "the Hermit",
       "LongDescription": "The Hermit sits here and warns, \u0022Go back before it\u0027s too late!\u0022",
       "Description": "A dishevelled veteran warrior in disguise is what he is, but he\nmeans well.",
-      "Level": 7,
-      "Gold": 370,
-      "Sex": "Male",
       "Hitpoints": 94,
       "Mana": 118,
       "Moves": 1000,
@@ -925,21 +923,21 @@
       "AttackType": "Hit",
       "Hit": 35,
       "DamageRange": "9-9",
-      "Loot": [],
-      "Flags": [],
+      "Level": 7,
+      "Gold": 370,
+      "Sex": "Male",
       "SpecialAttacks": [],
-      "Id": 6311
+      "Flags": [],
+      "Loot": []
     },
     {
+      "Id": 6312,
       "Keywords": [
         "donjonkeeper"
       ],
       "ShortDescription": "the Donjonkeeper",
       "LongDescription": "The Donjonkeeper eyes you and wonders how pure your soul is.",
       "Description": "He delves deeper into you as you stare at him.",
-      "Level": 25,
-      "Gold": 3000,
-      "Sex": "Male",
       "Hitpoints": 580,
       "Mana": 158,
       "Moves": 1000,
@@ -948,21 +946,21 @@
       "AttackType": "Hit",
       "Hit": 125,
       "DamageRange": "17-27",
-      "Loot": [],
-      "Flags": [],
+      "Level": 25,
+      "Gold": 3000,
+      "Sex": "Male",
       "SpecialAttacks": [],
-      "Id": 6312
+      "Flags": [],
+      "Loot": []
     },
     {
+      "Id": 6313,
       "Keywords": [
         "guardian"
       ],
       "ShortDescription": "The guardian",
       "LongDescription": "The guardian is obviously not doing his job.",
       "Description": "He looks like a lazy bum who sleeps half the time.",
-      "Level": 17,
-      "Gold": 800,
-      "Sex": "Male",
       "Hitpoints": 276,
       "Mana": 140,
       "Moves": 1000,
@@ -971,12 +969,15 @@
       "AttackType": "Hit",
       "Hit": 85,
       "DamageRange": "8-16",
-      "Loot": [],
-      "Flags": [],
+      "Level": 17,
+      "Gold": 800,
+      "Sex": "Male",
       "SpecialAttacks": [],
-      "Id": 6313
+      "Flags": [],
+      "Loot": []
     },
     {
+      "Id": 6314,
       "Keywords": [
         "spider",
         "empress",
@@ -985,9 +986,6 @@
       "ShortDescription": "Arachnos",
       "LongDescription": "Arachnos the Empress of Spiders welcomes you with an evil smile.",
       "Description": "She is a very attractive spider with an ornate gown.  She tempts you\ninto being one of her many slaves.  She does not possess the venomous\nfangs of normal spiders, but then, as you realize, she does not need\nthem.",
-      "Level": 26,
-      "Gold": 5000,
-      "Sex": "Female",
       "Hitpoints": 630,
       "Mana": 163,
       "Moves": 1000,
@@ -996,21 +994,21 @@
       "AttackType": "Hit",
       "Hit": 130,
       "DamageRange": "14-28",
-      "Loot": [],
-      "Flags": [],
+      "Level": 26,
+      "Gold": 5000,
+      "Sex": "Female",
       "SpecialAttacks": [],
-      "Id": 6314
+      "Flags": [],
+      "Loot": []
     },
     {
+      "Id": 6315,
       "Keywords": [
         "ki-rin"
       ],
       "ShortDescription": "the Ki-Rin",
       "LongDescription": "The Ki-Rin smiles good-naturedly to you.",
       "Description": "She is the last bastion of good in this realm.  Her mission is to\nsomeday free the slaves of the Empress.",
-      "Level": 26,
-      "Gold": 7500,
-      "Sex": "Female",
       "Hitpoints": 630,
       "Mana": 163,
       "Moves": 1000,
@@ -1019,12 +1017,15 @@
       "AttackType": "Hit",
       "Hit": 130,
       "DamageRange": "14-28",
-      "Loot": [],
-      "Flags": [],
+      "Level": 26,
+      "Gold": 7500,
+      "Sex": "Female",
       "SpecialAttacks": [],
-      "Id": 6315
+      "Flags": [],
+      "Loot": []
     },
     {
+      "Id": 6316,
       "Keywords": [
         "dragon",
         "wormkin",
@@ -1033,9 +1034,6 @@
       "ShortDescription": "the young dragon wormkin",
       "LongDescription": "A wormkin with no teeth plays here.",
       "Description": "Rather small, you almost feel sad in killing it.",
-      "Level": 10,
-      "Gold": 500,
-      "Sex": "Male",
       "Hitpoints": 131,
       "Mana": 127,
       "Moves": 1000,
@@ -1044,12 +1042,15 @@
       "AttackType": "Hit",
       "Hit": 50,
       "DamageRange": "6-10",
-      "Loot": [],
-      "Flags": [],
+      "Level": 10,
+      "Gold": 500,
+      "Sex": "Male",
       "SpecialAttacks": [],
-      "Id": 6316
+      "Flags": [],
+      "Loot": []
     },
     {
+      "Id": 6317,
       "Keywords": [
         "dragon",
         "wormkin",
@@ -1058,9 +1059,6 @@
       "ShortDescription": "the medium dragon wormkin",
       "LongDescription": "A wormkin that has grown a bit stares at you inquisitively.",
       "Description": "A medium-sized dragon--seems it hasn\u0027t killed anything yet by itself.",
-      "Level": 13,
-      "Gold": 2500,
-      "Sex": "Male",
       "Hitpoints": 185,
       "Mana": 131,
       "Moves": 1000,
@@ -1069,12 +1067,15 @@
       "AttackType": "Hit",
       "Hit": 65,
       "DamageRange": "8-13",
-      "Loot": [],
-      "Flags": [],
+      "Level": 13,
+      "Gold": 2500,
+      "Sex": "Male",
       "SpecialAttacks": [],
-      "Id": 6317
+      "Flags": [],
+      "Loot": []
     },
     {
+      "Id": 6318,
       "Keywords": [
         "spider",
         "poisonous"
@@ -1082,9 +1083,6 @@
       "ShortDescription": "the huge, poisonous spider",
       "LongDescription": "A huge, poisonous spider is here.",
       "Description": "This disgusting creature is at the size of a human crawling on all four.  It\nhas eight hairy legs that gives it a tremendous speed on almost any surface and\nsharp poisonous fangs to paralyze or kill its prey.",
-      "Level": 8,
-      "Gold": 800,
-      "Sex": "Female",
       "Hitpoints": 106,
       "Mana": 122,
       "Moves": 1000,
@@ -1093,12 +1091,15 @@
       "AttackType": "Hit",
       "Hit": 40,
       "DamageRange": "9-9",
-      "Loot": [],
-      "Flags": [],
+      "Level": 8,
+      "Gold": 800,
+      "Sex": "Female",
       "SpecialAttacks": [],
-      "Id": 6318
+      "Flags": [],
+      "Loot": []
     },
     {
+      "Id": 6319,
       "Keywords": [
         "queen",
         "spider"
@@ -1106,9 +1107,6 @@
       "ShortDescription": "the Queen Spider",
       "LongDescription": "The huge, bulky Queen Spider is here.",
       "Description": "This disgusting creature is at the size of a small elephant.  It has eight\nhuge, hairy legs that would give it a tremendous speed on almost any surface\nif it wasn\u0027t so immensely fat.  Its large, bulbous eyes stare back at you.",
-      "Level": 15,
-      "Gold": 1500,
-      "Sex": "Female",
       "Hitpoints": 226,
       "Mana": 136,
       "Moves": 1000,
@@ -1117,10 +1115,12 @@
       "AttackType": "Hit",
       "Hit": 75,
       "DamageRange": "9-15",
-      "Loot": [],
-      "Flags": [],
+      "Level": 15,
+      "Gold": 1500,
+      "Sex": "Female",
       "SpecialAttacks": [],
-      "Id": 6319
+      "Flags": [],
+      "Loot": []
     }
   ],
   "MobileResets": [

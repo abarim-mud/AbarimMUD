@@ -47,7 +47,7 @@ namespace AbarimMUD.Data
 		Nowhere,
 	}
 
-	public class Room : AreaEntity
+	public class Room : AreaEntityWithId
 	{
 		public string Name { get; set; }
 		public string Description { get; set; }

@@ -217,9 +217,18 @@ namespace AbarimMUD.Storage
 				{
 					var mobile = area.Mobiles[i];
 
-					foreach (var loot in mobile.Loot)
+					if (mobile.Template != null)
 					{
-						loot.Items.SetReferences();
+						mobile.Template = MobileTemplate.EnsureMobileTemplateById(mobile.Template.Id);
+						mobile.Template.SetReferences();
+					}
+
+					if (mobile.Loot != null)
+					{
+						foreach (var loot in mobile.Loot)
+						{
+							loot.Items.SetReferences();
+						}
 					}
 
 					if (mobile.Shop != null)
@@ -249,11 +258,7 @@ namespace AbarimMUD.Storage
 		{
 			var result = base.CreateJsonOptions();
 			result.Converters.Add(RoomExitConverter);
-			result.Converters.Add(Common.InventoryConverter);
-			result.Converters.Add(Common.PlayerClassConverter);
-			result.Converters.Add(Common.ShopConverter);
-			result.Converters.Add(Common.ForgeShopConverter);
-			result.Converters.Add(Common.ExchangeShopConverter);
+			result.Converters.Add(Common.MobileConverter);
 
 			return result;
 		}
