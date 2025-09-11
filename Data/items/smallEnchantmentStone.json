@@ -9,6 +9,5 @@
   "Description": "a small enchantment stone",
   "ItemType": "Enchant2",
   "Price": 10000,
-  "Affects": {},
   "Flags": []
 }

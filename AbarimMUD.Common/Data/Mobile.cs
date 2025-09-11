@@ -112,10 +112,10 @@ namespace AbarimMUD.Data
 			public int? Gold { get; set; }
 			public Sex? Sex { get; set; }
 
-			public List<MobileSpecialAttack> SpecialAttacks { get; set; }
-			public HashSet<MobileFlags> Flags { get; set; }
+			public List<MobileSpecialAttack> SpecialAttacks { get; set; } = new List<MobileSpecialAttack>();
+			public HashSet<MobileFlags> Flags { get; set; } = new HashSet<MobileFlags>();
 
-			public List<LootRecord> Loot { get; set; }
+			public List<LootRecord> Loot { get; set; } = new List<LootRecord>();
 
 			public Shop Shop { get; set; }
 

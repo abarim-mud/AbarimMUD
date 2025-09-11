@@ -18,27 +18,23 @@
     {
       "Modifiers": {
         "WeaponAttackBonus": 10
-      },
-      "PrimeModifiers": {}
+      }
     },
     {
       "Modifiers": {
         "WeaponAttacksCount": 1,
         "WeaponAttackBonus": 10
-      },
-      "PrimeModifiers": {}
+      }
     },
     {
       "Modifiers": {
         "WeaponAttackBonus": 10
-      },
-      "PrimeModifiers": {}
+      }
     },
     {
       "Modifiers": {
         "WeaponAttackBonus": 10
-      },
-      "PrimeModifiers": {}
+      }
     }
   ],
   "Cost": 2

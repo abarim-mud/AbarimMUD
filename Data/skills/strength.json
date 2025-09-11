@@ -6,33 +6,28 @@
     {
       "Modifiers": {
         "AttackBonus": 10
-      },
-      "PrimeModifiers": {}
+      }
     },
     {
       "Modifiers": {
         "Damage": 1
-      },
-      "PrimeModifiers": {}
+      }
     },
     {
       "Modifiers": {
         "AttackBonus": 10
-      },
-      "PrimeModifiers": {}
+      }
     },
     {
       "Modifiers": {
         "Damage": 1
-      },
-      "PrimeModifiers": {}
+      }
     },
     {
       "Modifiers": {
         "AttackBonus": 10,
         "Damage": 1
-      },
-      "PrimeModifiers": {}
+      }
     }
   ],
   "Cost": 2

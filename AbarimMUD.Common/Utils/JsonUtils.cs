@@ -1,7 +1,10 @@
-﻿using System.Text.Json.Serialization;
-using System.Text.Json;
-using System;
+﻿using System;
+using System.Collections;
 using System.IO;
+using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Text.Json.Serialization.Metadata;
 
 namespace AbarimMUD.Utils
 {
@@ -25,7 +28,7 @@ namespace AbarimMUD.Utils
 			}
 		}
 
-		private class RandomRangeConverterType: JsonConverter<ValueRange>
+		private class RandomRangeConverterType : JsonConverter<ValueRange>
 		{
 			public override ValueRange Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 			{
@@ -50,6 +53,25 @@ namespace AbarimMUD.Utils
 		private static readonly LongConverterType LongConverter = new LongConverterType();
 		private static readonly RandomRangeConverterType RandomRangeConverter = new RandomRangeConverterType();
 
+		private static void IgnoreEmptyListOfStrings(JsonTypeInfo typeInfo)
+		{
+			var collectionProperties = typeInfo.Properties.Where(p => typeof(ICollection).IsAssignableFrom(p.PropertyType));
+
+			foreach (JsonPropertyInfo propertyInfo in collectionProperties)
+			{
+				propertyInfo.ShouldSerialize = (_, val) =>
+				{
+					var col = val as ICollection;
+					if (val == null)
+					{
+						return false;
+					}
+
+					return col.Count > 0;
+				};
+			}
+		}
+
 		public static JsonSerializerOptions CreateOptions()
 		{
 			var result = new JsonSerializerOptions
@@ -59,6 +81,11 @@ namespace AbarimMUD.Utils
 				IncludeFields = true,
 				IgnoreReadOnlyFields = true,
 				IgnoreReadOnlyProperties = true,
+				TypeInfoResolver = new DefaultJsonTypeInfoResolver
+				{
+					// This modifier will suppress empty lists
+					Modifiers = { IgnoreEmptyListOfStrings }
+				}
 			};
 
 			result.Converters.Add(new JsonStringEnumConverter());

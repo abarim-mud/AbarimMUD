@@ -23,7 +23,6 @@
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "Exits": {},
       "Id": 6201
     },
     {
@@ -32,7 +31,6 @@
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "Exits": {},
       "Id": 6202
     },
     {
@@ -617,7 +615,6 @@
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "Exits": {},
       "Id": 6380
     },
     {
@@ -689,9 +686,7 @@
       "Level": 5,
       "Gold": 50,
       "Sex": "Female",
-      "SpecialAttacks": [],
-      "Flags": [],
-      "Loot": []
+      "Flags": []
     },
     {
       "Id": 6302,
@@ -713,9 +708,7 @@
       "Level": 24,
       "Gold": 5000,
       "Sex": "Male",
-      "SpecialAttacks": [],
-      "Flags": [],
-      "Loot": []
+      "Flags": []
     },
     {
       "Id": 6303,
@@ -737,9 +730,7 @@
       "Level": 6,
       "Gold": 620,
       "Sex": "Female",
-      "SpecialAttacks": [],
-      "Flags": [],
-      "Loot": []
+      "Flags": []
     },
     {
       "Id": 6304,
@@ -760,9 +751,7 @@
       "Level": 5,
       "Gold": 50,
       "Sex": "Male",
-      "SpecialAttacks": [],
-      "Flags": [],
-      "Loot": []
+      "Flags": []
     },
     {
       "Id": 6305,
@@ -784,9 +773,7 @@
       "Level": 12,
       "Gold": 750,
       "Sex": "Female",
-      "SpecialAttacks": [],
-      "Flags": [],
-      "Loot": []
+      "Flags": []
     },
     {
       "Id": 6306,
@@ -808,9 +795,7 @@
       "Level": 6,
       "Gold": 100,
       "Sex": "Male",
-      "SpecialAttacks": [],
-      "Flags": [],
-      "Loot": []
+      "Flags": []
     },
     {
       "Id": 6307,
@@ -832,9 +817,7 @@
       "Level": 10,
       "Gold": 620,
       "Sex": "Female",
-      "SpecialAttacks": [],
-      "Flags": [],
-      "Loot": []
+      "Flags": []
     },
     {
       "Id": 6308,
@@ -856,9 +839,7 @@
       "Level": 8,
       "Gold": 250,
       "Sex": "Male",
-      "SpecialAttacks": [],
-      "Flags": [],
-      "Loot": []
+      "Flags": []
     },
     {
       "Id": 6309,
@@ -879,9 +860,7 @@
       "Level": 10,
       "Gold": 500,
       "Sex": "Male",
-      "SpecialAttacks": [],
-      "Flags": [],
-      "Loot": []
+      "Flags": []
     },
     {
       "Id": 6310,
@@ -903,9 +882,7 @@
       "Level": 14,
       "Gold": 870,
       "Sex": "Female",
-      "SpecialAttacks": [],
-      "Flags": [],
-      "Loot": []
+      "Flags": []
     },
     {
       "Id": 6311,
@@ -926,9 +903,7 @@
       "Level": 7,
       "Gold": 370,
       "Sex": "Male",
-      "SpecialAttacks": [],
-      "Flags": [],
-      "Loot": []
+      "Flags": []
     },
     {
       "Id": 6312,
@@ -949,9 +924,7 @@
       "Level": 25,
       "Gold": 3000,
       "Sex": "Male",
-      "SpecialAttacks": [],
-      "Flags": [],
-      "Loot": []
+      "Flags": []
     },
     {
       "Id": 6313,
@@ -972,9 +945,7 @@
       "Level": 17,
       "Gold": 800,
       "Sex": "Male",
-      "SpecialAttacks": [],
-      "Flags": [],
-      "Loot": []
+      "Flags": []
     },
     {
       "Id": 6314,
@@ -997,9 +968,7 @@
       "Level": 26,
       "Gold": 5000,
       "Sex": "Female",
-      "SpecialAttacks": [],
-      "Flags": [],
-      "Loot": []
+      "Flags": []
     },
     {
       "Id": 6315,
@@ -1020,9 +989,7 @@
       "Level": 26,
       "Gold": 7500,
       "Sex": "Female",
-      "SpecialAttacks": [],
-      "Flags": [],
-      "Loot": []
+      "Flags": []
     },
     {
       "Id": 6316,
@@ -1045,9 +1012,7 @@
       "Level": 10,
       "Gold": 500,
       "Sex": "Male",
-      "SpecialAttacks": [],
-      "Flags": [],
-      "Loot": []
+      "Flags": []
     },
     {
       "Id": 6317,
@@ -1070,9 +1035,7 @@
       "Level": 13,
       "Gold": 2500,
       "Sex": "Male",
-      "SpecialAttacks": [],
-      "Flags": [],
-      "Loot": []
+      "Flags": []
     },
     {
       "Id": 6318,
@@ -1094,9 +1057,7 @@
       "Level": 8,
       "Gold": 800,
       "Sex": "Female",
-      "SpecialAttacks": [],
-      "Flags": [],
-      "Loot": []
+      "Flags": []
     },
     {
       "Id": 6319,
@@ -1118,9 +1079,7 @@
       "Level": 15,
       "Gold": 1500,
       "Sex": "Female",
-      "SpecialAttacks": [],
-      "Flags": [],
-      "Loot": []
+      "Flags": []
     }
   ],
   "MobileResets": [

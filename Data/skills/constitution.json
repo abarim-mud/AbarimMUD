@@ -7,36 +7,31 @@
       "Modifiers": {
         "Hitpoints": 20,
         "HpRegenPercentage": 1
-      },
-      "PrimeModifiers": {}
+      }
     },
     {
       "Modifiers": {
         "Hitpoints": 20,
         "HpRegenPercentage": 1
-      },
-      "PrimeModifiers": {}
+      }
     },
     {
       "Modifiers": {
         "Hitpoints": 20,
         "HpRegenPercentage": 1
-      },
-      "PrimeModifiers": {}
+      }
     },
     {
       "Modifiers": {
         "Hitpoints": 20,
         "HpRegenPercentage": 1
-      },
-      "PrimeModifiers": {}
+      }
     },
     {
       "Modifiers": {
         "Hitpoints": 20,
         "HpRegenPercentage": 1
-      },
-      "PrimeModifiers": {}
+      }
     }
   ],
   "Cost": 2

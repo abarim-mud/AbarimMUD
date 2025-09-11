@@ -7,6 +7,6 @@
     <RootNamespace>AbarimMUD</RootNamespace>
     <Description>C# Diku Based MUD Engine</Description>
     <VersionPrefix>0.3.0</VersionPrefix>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
 </Project>

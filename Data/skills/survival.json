@@ -4,28 +4,14 @@
   "Class": "warrior",
   "Levels": [
     {
-      "Modifiers": {},
-      "PrimeModifiers": {},
       "Abilities": [
         "hunt"
       ]
     },
-    {
-      "Modifiers": {},
-      "PrimeModifiers": {}
-    },
-    {
-      "Modifiers": {},
-      "PrimeModifiers": {}
-    },
-    {
-      "Modifiers": {},
-      "PrimeModifiers": {}
-    },
-    {
-      "Modifiers": {},
-      "PrimeModifiers": {}
-    }
+    {},
+    {},
+    {},
+    {}
   ],
   "Cost": 1
 }

@@ -18,15 +18,13 @@
     {
       "Modifiers": {
         "BackstabMultiplier": 2
-      },
-      "PrimeModifiers": {}
+      }
     },
     {
       "Modifiers": {
         "BackstabCount": 1,
         "BackstabMultiplier": 2
       },
-      "PrimeModifiers": {},
       "Abilities": [
         "circlestab"
       ]
@@ -34,14 +32,12 @@
     {
       "Modifiers": {
         "BackstabMultiplier": 2
-      },
-      "PrimeModifiers": {}
+      }
     },
     {
       "Modifiers": {
         "BackstabMultiplier": 2
-      },
-      "PrimeModifiers": {}
+      }
     }
   ],
   "Cost": 1

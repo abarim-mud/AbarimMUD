@@ -8,6 +8,5 @@
   "Description": "a chunk of leather",
   "ItemType": "Material",
   "Price": 100,
-  "Affects": {},
   "Flags": []
 }

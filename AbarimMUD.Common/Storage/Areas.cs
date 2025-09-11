@@ -223,12 +223,9 @@ namespace AbarimMUD.Storage
 						mobile.Template.SetReferences();
 					}
 
-					if (mobile.Loot != null)
+					foreach (var loot in mobile.Loot)
 					{
-						foreach (var loot in mobile.Loot)
-						{
-							loot.Items.SetReferences();
-						}
+						loot.Items.SetReferences();
 					}
 
 					if (mobile.Shop != null)

@@ -9,6 +9,5 @@
   "Description": "an average enchantment stone",
   "ItemType": "Enchant3",
   "Price": 50000,
-  "Affects": {},
   "Flags": []
 }

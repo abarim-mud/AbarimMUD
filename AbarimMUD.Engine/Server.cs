@@ -66,18 +66,17 @@ namespace AbarimMUD
 			DataContext.Load(dataFolder);
 
 			Area.Storage.SaveAll();
-			// PlayerClass.Storage.SaveAll();
-			// Skill.Storage.SaveAll();
-			// Ability.Storage.SaveAll();
-			// Configuration.Save();
-			// SkillCostInfo.Storage.SaveAll();
-			// Item.Storage.SaveAll();
-			// GenericLoot.Save();
-			// Shop.Storage.SaveAll();
-			// Forge.Storage.SaveAll();
-			// ForgeShop.Storage.SaveAll();
-			// ExchangeShop.Storage.SaveAll();
-			// Enchantment.Storage.SaveAll();
+			PlayerClass.Storage.SaveAll();
+			Skill.Storage.SaveAll();
+			Ability.Storage.SaveAll();
+			Configuration.Save();
+			SkillCostInfo.Storage.SaveAll();
+			Item.Storage.SaveAll();
+			GenericLoot.Save();
+			Shop.Storage.SaveAll();
+			ForgeShop.Storage.SaveAll();
+			ExchangeShop.Storage.SaveAll();
+			Enchantment.Storage.SaveAll();
 			MobileTemplate.Storage.SaveAll();
 		}
 

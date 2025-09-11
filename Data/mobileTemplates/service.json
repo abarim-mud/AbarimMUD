@@ -15,9 +15,7 @@
   "AttackType": "Hit",
   "Hit": 1275,
   "DamageRange": "120-160",
-  "SpecialAttacks": [],
   "Flags": [
     "Sentinel"
-  ],
-  "Loot": []
+  ]
 }

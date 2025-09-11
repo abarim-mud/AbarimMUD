@@ -8,6 +8,5 @@
   "Description": "an iron ingot",
   "ItemType": "Material",
   "Price": 100,
-  "Affects": {},
   "Flags": []
 }

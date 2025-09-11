@@ -691,7 +691,6 @@
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "Exits": {},
       "Id": 51531
     },
     {
@@ -1397,9 +1396,7 @@
       "Level": 6,
       "Gold": 20,
       "Sex": "Male",
-      "SpecialAttacks": [],
-      "Flags": [],
-      "Loot": []
+      "Flags": []
     },
     {
       "Id": 51402,
@@ -1420,9 +1417,7 @@
       "Level": 8,
       "Gold": 800,
       "Sex": "Female",
-      "SpecialAttacks": [],
-      "Flags": [],
-      "Loot": []
+      "Flags": []
     },
     {
       "Id": 51403,
@@ -1443,9 +1438,7 @@
       "Level": 3,
       "Gold": 300,
       "Sex": "Female",
-      "SpecialAttacks": [],
-      "Flags": [],
-      "Loot": []
+      "Flags": []
     },
     {
       "Id": 51404,
@@ -1466,9 +1459,7 @@
       "Level": 2,
       "Gold": 200,
       "Sex": "Female",
-      "SpecialAttacks": [],
-      "Flags": [],
-      "Loot": []
+      "Flags": []
     },
     {
       "Id": 51405,
@@ -1489,9 +1480,7 @@
       "Level": 2,
       "Gold": 200,
       "Sex": "Female",
-      "SpecialAttacks": [],
-      "Flags": [],
-      "Loot": []
+      "Flags": []
     },
     {
       "Id": 51500,
@@ -1513,9 +1502,7 @@
       "Level": 5,
       "Gold": 500,
       "Sex": "Female",
-      "SpecialAttacks": [],
-      "Flags": [],
-      "Loot": []
+      "Flags": []
     },
     {
       "Id": 51501,
@@ -1537,9 +1524,7 @@
       "Level": 5,
       "Gold": 500,
       "Sex": "Female",
-      "SpecialAttacks": [],
-      "Flags": [],
-      "Loot": []
+      "Flags": []
     },
     {
       "Id": 51502,
@@ -1561,9 +1546,7 @@
       "Level": 3,
       "Gold": 300,
       "Sex": "Female",
-      "SpecialAttacks": [],
-      "Flags": [],
-      "Loot": []
+      "Flags": []
     },
     {
       "Id": 51503,
@@ -1585,9 +1568,7 @@
       "Level": 3,
       "Gold": 300,
       "Sex": "Female",
-      "SpecialAttacks": [],
-      "Flags": [],
-      "Loot": []
+      "Flags": []
     },
     {
       "Id": 51512,
@@ -1609,9 +1590,7 @@
       "Level": 25,
       "Gold": 25000,
       "Sex": "Female",
-      "SpecialAttacks": [],
-      "Flags": [],
-      "Loot": []
+      "Flags": []
     },
     {
       "Id": 51515,
@@ -1633,9 +1612,7 @@
       "Level": 10,
       "Gold": 500,
       "Sex": "Male",
-      "SpecialAttacks": [],
-      "Flags": [],
-      "Loot": []
+      "Flags": []
     },
     {
       "Id": 51516,
@@ -1657,9 +1634,7 @@
       "Level": 17,
       "Gold": 2500,
       "Sex": "Male",
-      "SpecialAttacks": [],
-      "Flags": [],
-      "Loot": []
+      "Flags": []
     },
     {
       "Id": 51517,
@@ -1681,9 +1656,7 @@
       "Level": 1,
       "Gold": 100,
       "Sex": "None",
-      "SpecialAttacks": [],
-      "Flags": [],
-      "Loot": []
+      "Flags": []
     },
     {
       "Id": 51518,
@@ -1707,11 +1680,9 @@
       "Level": 51,
       "Gold": 5100,
       "Sex": "Male",
-      "SpecialAttacks": [],
       "Flags": [
         "Sentinel"
-      ],
-      "Loot": []
+      ]
     },
     {
       "Id": 51519,
@@ -1734,11 +1705,9 @@
       "Level": 40,
       "Gold": 4000,
       "Sex": "Male",
-      "SpecialAttacks": [],
       "Flags": [
         "Sentinel"
-      ],
-      "Loot": []
+      ]
     },
     {
       "Id": 309,
@@ -1760,11 +1729,9 @@
       "Level": 1,
       "Gold": 100,
       "Sex": "None",
-      "SpecialAttacks": [],
       "Flags": [
         "AssistRace"
-      ],
-      "Loot": []
+      ]
     }
   ],
   "MobileResets": [

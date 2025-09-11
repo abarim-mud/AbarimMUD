@@ -940,7 +940,6 @@
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "Exits": {},
       "Id": 7114
     },
     {
@@ -1072,7 +1071,6 @@
       "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
-      "Exits": {},
       "Id": 7130
     },
     {
@@ -1081,7 +1079,6 @@
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
-      "Exits": {},
       "Id": 7190
     },
     {
@@ -1549,7 +1546,6 @@
       "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
-      "Exits": {},
       "Id": 7284
     },
     {
@@ -1581,7 +1577,6 @@
       "SectorType": "Field",
       "HealRate": 0,
       "ManaRate": 0,
-      "Exits": {},
       "Id": 7301
     },
     {
@@ -2186,11 +2181,9 @@
       "Level": 12,
       "Gold": 50,
       "Sex": "None",
-      "SpecialAttacks": [],
       "Flags": [
         "AssistId"
-      ],
-      "Loot": []
+      ]
     },
     {
       "Id": 7001,
@@ -2212,12 +2205,10 @@
       "Level": 1,
       "Gold": 100,
       "Sex": "None",
-      "SpecialAttacks": [],
       "Flags": [
         "Aggressive",
         "AssistRace"
-      ],
-      "Loot": []
+      ]
     },
     {
       "Id": 7002,
@@ -2239,12 +2230,10 @@
       "Level": 5,
       "Gold": 20,
       "Sex": "Male",
-      "SpecialAttacks": [],
       "Flags": [
         "Aggressive",
         "AssistId"
-      ],
-      "Loot": []
+      ]
     },
     {
       "Id": 7003,
@@ -2266,12 +2255,10 @@
       "Level": 1,
       "Gold": 100,
       "Sex": "Male",
-      "SpecialAttacks": [],
       "Flags": [
         "Aggressive",
         "AssistId"
-      ],
-      "Loot": []
+      ]
     },
     {
       "Id": 7004,
@@ -2293,11 +2280,9 @@
       "Level": 8,
       "Gold": 50,
       "Sex": "Male",
-      "SpecialAttacks": [],
       "Flags": [
         "AssistId"
-      ],
-      "Loot": []
+      ]
     },
     {
       "Id": 7005,
@@ -2319,11 +2304,9 @@
       "Level": 3,
       "Gold": 300,
       "Sex": "Male",
-      "SpecialAttacks": [],
       "Flags": [
         "AssistId"
-      ],
-      "Loot": []
+      ]
     },
     {
       "Id": 7006,
@@ -2345,12 +2328,10 @@
       "Level": 4,
       "Gold": 400,
       "Sex": "None",
-      "SpecialAttacks": [],
       "Flags": [
         "Aggressive",
         "AssistRace"
-      ],
-      "Loot": []
+      ]
     },
     {
       "Id": 7007,
@@ -2372,13 +2353,11 @@
       "Level": 10,
       "Gold": 150,
       "Sex": "Male",
-      "SpecialAttacks": [],
       "Flags": [
         "Scavenger",
         "Wimpy",
         "AssistId"
-      ],
-      "Loot": []
+      ]
     },
     {
       "Id": 7008,
@@ -2401,11 +2380,9 @@
       "Level": 11,
       "Gold": 250,
       "Sex": "None",
-      "SpecialAttacks": [],
       "Flags": [
         "AssistId"
-      ],
-      "Loot": []
+      ]
     },
     {
       "Id": 7010,
@@ -2427,13 +2404,11 @@
       "Level": 12,
       "Gold": 750,
       "Sex": "None",
-      "SpecialAttacks": [],
       "Flags": [
         "Scavenger",
         "Wimpy",
         "AssistId"
-      ],
-      "Loot": []
+      ]
     },
     {
       "Id": 7011,
@@ -2455,13 +2430,11 @@
       "Level": 10,
       "Gold": 1000,
       "Sex": "None",
-      "SpecialAttacks": [],
       "Flags": [
         "Aggressive",
         "Wimpy",
         "AssistId"
-      ],
-      "Loot": []
+      ]
     },
     {
       "Id": 7013,
@@ -2485,12 +2458,10 @@
       "Level": 12,
       "Gold": 500,
       "Sex": "None",
-      "SpecialAttacks": [],
       "Flags": [
         "Aggressive",
         "AssistId"
-      ],
-      "Loot": []
+      ]
     },
     {
       "Id": 7040,
@@ -2512,13 +2483,11 @@
       "Level": 32,
       "Gold": 50000,
       "Sex": "None",
-      "SpecialAttacks": [],
       "Flags": [
         "Sentinel",
         "Aggressive",
         "AssistId"
-      ],
-      "Loot": []
+      ]
     },
     {
       "Id": 7041,
@@ -2541,12 +2510,10 @@
       "Level": 14,
       "Gold": 1400,
       "Sex": "Female",
-      "SpecialAttacks": [],
       "Flags": [
         "Aggressive",
         "AssistId"
-      ],
-      "Loot": []
+      ]
     },
     {
       "Id": 7042,
@@ -2569,12 +2536,10 @@
       "Level": 12,
       "Gold": 50,
       "Sex": "Female",
-      "SpecialAttacks": [],
       "Flags": [
         "Sentinel",
         "AssistId"
-      ],
-      "Loot": []
+      ]
     },
     {
       "Id": 7043,
@@ -2596,13 +2561,11 @@
       "Level": 13,
       "Gold": 170,
       "Sex": "Male",
-      "SpecialAttacks": [],
       "Flags": [
         "Scavenger",
         "Aggressive",
         "AssistId"
-      ],
-      "Loot": []
+      ]
     },
     {
       "Id": 7044,
@@ -2625,12 +2588,10 @@
       "Level": 5,
       "Gold": 500,
       "Sex": "None",
-      "SpecialAttacks": [],
       "Flags": [
         "Aggressive",
         "AssistId"
-      ],
-      "Loot": []
+      ]
     },
     {
       "Id": 7045,
@@ -2654,13 +2615,11 @@
       "Level": 10,
       "Gold": 30,
       "Sex": "Male",
-      "SpecialAttacks": [],
       "Flags": [
         "Scavenger",
         "Aggressive",
         "AssistId"
-      ],
-      "Loot": []
+      ]
     },
     {
       "Id": 7046,
@@ -2685,12 +2644,10 @@
       "Level": 6,
       "Gold": 20,
       "Sex": "Male",
-      "SpecialAttacks": [],
       "Flags": [
         "Scavenger",
         "AssistId"
-      ],
-      "Loot": []
+      ]
     },
     {
       "Id": 7200,
@@ -2714,13 +2671,11 @@
       "Level": 14,
       "Gold": 500,
       "Sex": "None",
-      "SpecialAttacks": [],
       "Flags": [
         "Scavenger",
         "Aggressive",
         "AssistId"
-      ],
-      "Loot": []
+      ]
     },
     {
       "Id": 7201,
@@ -2744,13 +2699,11 @@
       "Level": 8,
       "Gold": 200,
       "Sex": "None",
-      "SpecialAttacks": [],
       "Flags": [
         "Scavenger",
         "Aggressive",
         "AssistId"
-      ],
-      "Loot": []
+      ]
     },
     {
       "Id": 7202,
@@ -2774,13 +2727,11 @@
       "Level": 6,
       "Gold": 100,
       "Sex": "None",
-      "SpecialAttacks": [],
       "Flags": [
         "Scavenger",
         "Aggressive",
         "AssistId"
-      ],
-      "Loot": []
+      ]
     },
     {
       "Id": 7203,
@@ -2804,13 +2755,11 @@
       "Level": 6,
       "Gold": 20,
       "Sex": "None",
-      "SpecialAttacks": [],
       "Flags": [
         "Scavenger",
         "Aggressive",
         "AssistId"
-      ],
-      "Loot": []
+      ]
     },
     {
       "Id": 7204,
@@ -2833,13 +2782,11 @@
       "Level": 12,
       "Gold": 1250,
       "Sex": "Male",
-      "SpecialAttacks": [],
       "Flags": [
         "Sentinel",
         "Aggressive",
         "AssistId"
-      ],
-      "Loot": []
+      ]
     }
   ],
   "MobileResets": [
