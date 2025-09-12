@@ -24,8 +24,7 @@ namespace AbarimMUD
 
 		public override void OnSet()
 		{
-			Send(string.Format("Account {0} is already connected. Would you like to reconnect(Y/n)?",
-				_previousSession.Account.Name));
+			Send($"{_previousSession.Account.Name}/{_previousSession.Character.Name} is in-game. Would you like to reconnect(Y/n)?");
 		}
 
 		public override void Process(string data)
@@ -45,7 +44,7 @@ namespace AbarimMUD
 
 			// Clone handler
 			var handlerType = _previousSession.CurrentHandler.GetType();
-			var newHandler = (Handler) Activator.CreateInstance(handlerType, Session);
+			var newHandler = (Handler)Activator.CreateInstance(handlerType, Session);
 			Session.CurrentHandler = newHandler;
 
 			// Disconnect previous session

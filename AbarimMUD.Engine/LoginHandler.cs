@@ -98,31 +98,30 @@ namespace AbarimMUD
 			Session.Account = _account;
 
 			// Check if there are already sessions with that account
-			var accountSessions = (from s in Server.Instance.Sessions
-				where s != Session &&
-				      s.Account != null && s.Account.Name == _account.Name
-				select s).ToList();
+			var activeSessions = (from s in Server.Instance.Sessions
+								   where s != Session && s.Account != null && s.Account.Name == _account.Name
+								   select s).ToList();
 
-			// Find non-reconnecting session among them
-			var session =
-				(from s in accountSessions where !(s.CurrentHandler is ReconnectHandler) select s).FirstOrDefault();
-			Logger.Info("{0} active sessions with that account has been found.", accountSessions.Count);
+			Logger.Info("{0} active sessions with that account has been found.", activeSessions.Count);
 
-			if (session != null)
+			// Find game session among them
+			var gameSession = (from s in activeSessions where s.CurrentHandler is GameHandler select s).FirstOrDefault();
+
+			if (gameSession != null)
 			{
-				accountSessions.Remove(session);
+				activeSessions.Remove(gameSession);
 			}
 
 			// Close all others
-			foreach (var s in accountSessions)
+			foreach (var s in activeSessions)
 			{
 				s.Disconnect();
 			}
 
-			if (session != null)
+			if (gameSession != null)
 			{
 				// Handle reconnection
-				Session.CurrentHandler = new ReconnectHandler(Session, session);
+				Session.CurrentHandler = new ReconnectHandler(Session, gameSession);
 			}
 			else
 			{

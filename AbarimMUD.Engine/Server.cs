@@ -413,6 +413,8 @@ namespace AbarimMUD
 									_sessions.Add(session);
 								}
 
+								Logger.Info($"Active sessions: {_sessions.Count}");
+
 								_newConnections.Clear();
 							}
 						}
@@ -494,6 +496,7 @@ namespace AbarimMUD
 				lock (_sessions)
 				{
 					_sessions.Remove(session);
+					Logger.Info($"Active sessions: {_sessions.Count}");
 				}
 			}
 			catch (Exception ex)
