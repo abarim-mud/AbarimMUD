@@ -40,7 +40,8 @@ namespace AbarimMUD.Commands.Builder
 					{
 						var item = new ItemInstance((Item)obj);
 						context.Creature.Inventory.AddItem(item, 1);
-						context.Send($"{item} appeared in your inventory");
+						context.SendRoomExceptMe($"{item} appears in {context.ShortDescription}'s inventory.");
+						context.Send($"{item} appears in your inventory.");
 					}
 
 					break;

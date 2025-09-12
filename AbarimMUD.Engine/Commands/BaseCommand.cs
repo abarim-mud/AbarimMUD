@@ -49,6 +49,7 @@ namespace AbarimMUD.Commands
 		public static readonly Enchant Enchant = new Enchant();
 
 		public static readonly Player.Inventory Inventory = new Player.Inventory();
+		public static readonly Give Give = new Give();
 		public static readonly Wear Wear = new Wear();
 		public static readonly Wield Wield = new Wield();
 		public static readonly Remove Remove = new Remove();
