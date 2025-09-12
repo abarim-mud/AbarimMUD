@@ -186,6 +186,7 @@ namespace AbarimMUD.Combat
 
 		public static void Start(ExecutionContext attacker, ExecutionContext target)
 		{
+			attacker.BreakHunt();
 			if (!attacker.IsAlive || !target.IsAlive || attacker == target || attacker.FightInfo.Fight != null)
 			{
 				return;

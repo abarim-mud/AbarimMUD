@@ -134,6 +134,11 @@ namespace AbarimMUD
 
 		public void Disconnect()
 		{
+			if (_connection.Alive)
+			{
+				FlushOutput();
+			}
+
 			if (_character != null)
 			{
 				Creature.ActiveCreatures.Remove(_character);

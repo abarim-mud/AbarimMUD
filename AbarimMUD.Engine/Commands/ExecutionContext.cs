@@ -68,6 +68,7 @@ namespace AbarimMUD.Commands
 		public Creature HuntTarget { get; set; }
 		public DateTime LastHunt { get; set; }
 		public bool SuppressStopHuntOnMovement { get; set; }
+		public bool AppendPrompt { get; set; } = true;
 
 		public ExecutionContext(Session session)
 		{
@@ -200,6 +201,11 @@ namespace AbarimMUD.Commands
 
 		public void BeforeOutputSent(StringBuilder output)
 		{
+			if (!AppendPrompt)
+			{
+				return;
+			}
+
 			var text = output.ToString();
 			text = text.TrimEnd();
 

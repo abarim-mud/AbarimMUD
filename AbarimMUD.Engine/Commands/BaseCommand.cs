@@ -13,7 +13,9 @@ namespace AbarimMUD.Commands
 		private static readonly Dictionary<string, BaseCommand> _allCommands = new Dictionary<string, BaseCommand>();
 
 		// Players
+		public static readonly Quit Quit = new Quit();
 		public static readonly Help Help = new Help();
+		public static readonly AreaStats AreaStats = new AreaStats();
 
 		public static readonly Move East = new Move(Direction.East);
 		public static readonly Move West = new Move(Direction.West);
@@ -86,7 +88,6 @@ namespace AbarimMUD.Commands
 		public static readonly RoomLink RoomLink = new RoomLink();
 		public static readonly RoomLinkClear RoomLinkClear = new RoomLinkClear();
 		public static readonly RoomSaveResets RoomSaveResets = new RoomSaveResets();
-		public static readonly AreaStats AreaStats = new AreaStats();
 		public static readonly RespawnArea RespawnArea = new RespawnArea();
 
 		// Administrator
