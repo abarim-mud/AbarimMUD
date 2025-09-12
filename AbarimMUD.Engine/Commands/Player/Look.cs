@@ -61,7 +61,7 @@ namespace AbarimMUD.Commands.Player
 					continue;
 				}
 
-				sb.AppendLine($"{character.NameAndTitle()} is standing here.");
+				sb.AppendLine($"{character.NameAndTitleAndOffline()} is standing here.");
 			}
 
 			// Mobiles

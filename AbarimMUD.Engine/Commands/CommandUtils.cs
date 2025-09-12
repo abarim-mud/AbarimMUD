@@ -402,9 +402,16 @@ namespace AbarimMUD.Commands
 			return string.IsNullOrEmpty(character.Title) ? "The Untitled" : character.Title;
 		}
 
-		public static string NameAndTitle(this Character character)
+		public static string NameAndTitleAndOffline(this Character character)
 		{
-			return $"{character.Name} {character.BuildTitle()}";
+			var result = $"{character.Name} {character.BuildTitle()}";
+
+			if (!character.GetContext().Session.Connection.Alive)
+			{
+				result += " (offline)";
+			}
+
+			return result;
 		}
 	}
 }

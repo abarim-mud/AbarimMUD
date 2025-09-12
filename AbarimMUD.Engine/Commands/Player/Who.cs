@@ -23,7 +23,7 @@ namespace AbarimMUD.Commands.Player
 					var c = staff[y];
 
 					grid.SetValue(0, y, $"[**{c.Role}**]");
-					grid.SetValue(1, y, $"{c.NameAndTitle()}");
+					grid.SetValue(1, y, $"{c.NameAndTitleAndOffline()}");
 				}
 
 				sb.AppendLine(grid.ToString());
@@ -39,7 +39,7 @@ namespace AbarimMUD.Commands.Player
 				var c = players[y];
 
 				grid.SetValue(0, y, $"[{c.ClassName} {c.Level}]");
-				grid.SetValue(1, y, $"{c.NameAndTitle()}");
+				grid.SetValue(1, y, $"{c.NameAndTitleAndOffline()}");
 			}
 
 			sb.AppendLine(grid.ToString());

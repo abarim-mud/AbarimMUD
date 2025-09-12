@@ -1,5 +1,4 @@
 ﻿using AbarimMUD.Data;
-using System;
 using System.Linq;
 
 namespace AbarimMUD.Commands.Player
@@ -21,7 +20,7 @@ namespace AbarimMUD.Commands.Player
 				return false;
 			}
 
-			var whom = (from ch in Character.ActiveCharacters where ch.Name.StartsWith(parts[0], StringComparison.OrdinalIgnoreCase) select ch).FirstOrDefault();
+			var whom = (from ch in Character.ActiveCharacters where ch.Name.EqualsToIgnoreCase(parts[0]) select ch).FirstOrDefault();
 			if (whom == null)
 			{
 				context.Send($"There's no character '{parts[0]}' online.");
@@ -34,8 +33,14 @@ namespace AbarimMUD.Commands.Player
 				return false;
 			}
 
-			var ctx = (ExecutionContext)whom.Tag;
+			var ctx = whom.GetContext();
+			if (!ctx.Session.Connection.Alive)
+			{
+				context.Send($"{whom.Name} is offline.");
+				return false;
+			}
 
+			context.Send($"[magenta]You told {ctx.ShortDescription} '{parts[1]}'[reset]");
 			ctx.Send($"[magenta]{context.Creature.ShortDescription} tells you '{parts[1]}'[reset]");
 
 			return true;
