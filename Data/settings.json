@@ -3,7 +3,6 @@
   "ServerPort": 6101,
   "WebServiceUrl": "http://localhost:8080/AbarimMUD/",
   "StartRoomId": 19087,
-  "DefaultCharacter": "Yang",
   "HitpointsRegenPercentagePerMinute": 5,
   "ManaRegenPercentagePerMinute": 5,
   "MovesRegenPercentagePerMinute": 5,
