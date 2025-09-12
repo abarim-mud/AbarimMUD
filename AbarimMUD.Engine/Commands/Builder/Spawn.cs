@@ -49,11 +49,7 @@ namespace AbarimMUD.Commands.Builder
 					{
 						// Create new mobile
 						var mobile = (Mobile)obj;
-						var newMobile = new MobileInstance(mobile)
-						{
-							Room = context.Room
-						};
-
+						var newMobile = new MobileInstance(mobile, context.Room);
 						new ExecutionContext(newMobile);
 
 						foreach (var ctx in context.AllInRoom())

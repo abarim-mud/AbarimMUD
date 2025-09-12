@@ -1082,6 +1082,7 @@
       "Flags": []
     }
   ],
+  "RespawnTimeInMinutes": 30,
   "MobileResets": [
     {
       "MobileId": 6301,

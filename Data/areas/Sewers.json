@@ -2789,6 +2789,7 @@
       ]
     }
   ],
+  "RespawnTimeInMinutes": 30,
   "MobileResets": [
     {
       "MobileId": 7200,

@@ -209,6 +209,8 @@ namespace AbarimMUD
 			return long.TryParse(value, out number);
 		}
 
+		public static string FormatFloat(this float f) => f.ToString("0.##");
+
 		public static string FormatTime(this int seconds)
 		{
 			var hours = seconds / 3600;

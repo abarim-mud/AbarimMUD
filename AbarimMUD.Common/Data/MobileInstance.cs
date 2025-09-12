@@ -38,19 +38,28 @@ namespace AbarimMUD.Data
 			}
 		}
 
+		public AreaMobileReset AreaMobileReset { get; private set; }
+
 		public override HashSet<string> Keywords => Info.Keywords;
 
 		public override event EventHandler RoomChanged;
 
-		public MobileInstance(Mobile mobile)
+		public MobileInstance(Mobile mobile, Room room, AreaMobileReset areaMobileReset = null)
 		{
 			Info = mobile ?? throw new ArgumentNullException(nameof(mobile));
 			Gold = Info.Gold;
+			Room = room ?? throw new ArgumentNullException(nameof(room));
 
 			Restore();
 			RebuildInventory();
 
 			ActiveCreatures.Add(this);
+			AreaMobileReset = areaMobileReset;
+
+			if (AreaMobileReset != null)
+			{
+				AreaMobileReset.MobileInstance = this;
+			}
 		}
 
 		public override bool MatchesKeyword(string keyword) => Info.MatchesKeyword(keyword);
@@ -60,6 +69,12 @@ namespace AbarimMUD.Data
 			base.Slain();
 			ActiveCreatures.Remove(this);
 			Room = null;
+
+			if (AreaMobileReset != null)
+			{
+				AreaMobileReset.MobileInstance = null;
+				AreaMobileReset = null;
+			}
 		}
 
 		// Mobiles ignore attacksCount, since their attacks are set explicitly

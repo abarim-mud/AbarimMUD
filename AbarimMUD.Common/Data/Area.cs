@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
 {
@@ -18,6 +19,9 @@ namespace AbarimMUD.Data
 	{
 		public int MobileId { get; set; }
 		public int RoomId { get; set; }
+
+		[JsonIgnore]
+		public MobileInstance MobileInstance { get; internal set; }
 
 		public AreaMobileReset()
 		{
@@ -108,7 +112,12 @@ namespace AbarimMUD.Data
 			}
 		}
 
+		public float RespawnTimeInMinutes { get; set; } = 30;
+
 		public List<AreaMobileReset> MobileResets { get; set; }
+
+		[JsonIgnore]
+		public DateTime LastSpawn { get; set; }
 
 		public event EventHandler RoomsChanged;
 		public event EventHandler MobilesChanged;

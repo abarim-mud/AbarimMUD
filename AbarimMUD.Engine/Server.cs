@@ -13,6 +13,7 @@ using AbarimMUD.Combat;
 using System.Threading;
 using AbarimMUD.Commands;
 using NLog.Targets;
+using AbarimMUD.Commands.Builder;
 
 namespace AbarimMUD
 {
@@ -132,8 +133,8 @@ namespace AbarimMUD
 			else
 			{
 				var result = PathFinding.BuildPath(ctx.Room, ctx.HuntTarget.Room);
-                if (result == null)
-                {
+				if (result == null)
+				{
 					ctx.Send($"{ctx.HuntTarget.ShortDescription} can't be reached. The hunt is over.");
 					ctx.HuntTarget = null;
 				}
@@ -219,6 +220,17 @@ namespace AbarimMUD
 			}
 			else if ((now - _lastRegenDt.Value).TotalMilliseconds >= 1000)
 			{
+				// Areas' repop
+				foreach(var area in Area.Storage)
+				{
+					var passed = (float)(now - area.LastSpawn).TotalMinutes;
+
+					if (passed > area.RespawnTimeInMinutes)
+					{
+						SpawnArea(area);
+					}
+				}
+
 				var secondsPassed = (float)(now - _lastRegenDt.Value).TotalSeconds;
 
 				// Process creature
@@ -311,6 +323,53 @@ namespace AbarimMUD
 			}
 		}
 
+		public void SpawnArea(Area area, Action<string> spawnLogger = null)
+		{
+			var count = 0;
+			foreach (var mobileReset in area.MobileResets)
+			{
+				if (mobileReset.MobileInstance != null)
+				{
+					continue;
+				}
+
+				var mobile = Mobile.GetMobileById(mobileReset.MobileId);
+				if (mobile == null)
+				{
+					Logger.Warn($"{area.Name}: Couldn't find mobile with id {mobileReset.MobileId}");
+					continue;
+				}
+
+				var room = Room.GetRoomById(mobileReset.RoomId);
+				if (room == null)
+				{
+					Logger.Warn($"{area.Name}: Couldn't find room with id {mobileReset.RoomId}");
+					continue;
+				}
+
+				// Spawn
+				var newMobile = new MobileInstance(mobile, room, mobileReset);
+				new Commands.ExecutionContext(newMobile);
+
+				if (spawnLogger != null)
+				{
+					spawnLogger($"Spawned {newMobile} at {room}");
+				}
+
+				++count;
+			}
+
+			var str = $"Spawned {count} mobiles for area {area}";
+			Logger.Info(str);
+
+			if (spawnLogger != null)
+			{
+				spawnLogger(str);
+			}
+
+			area.LastSpawn = DateTime.Now;
+		}
+
 		public void Start(string dataFolder)
 		{
 			try
@@ -320,30 +379,7 @@ namespace AbarimMUD
 				Logger.Info("Spawning areas");
 				foreach (var area in Area.Storage)
 				{
-					foreach (var mobileReset in area.MobileResets)
-					{
-						var mobile = Mobile.GetMobileById(mobileReset.MobileId);
-						if (mobile == null)
-						{
-							Logger.Warn($"{area.Name}: Couldn't find mobile with id {mobileReset.MobileId}");
-							continue;
-						}
-
-						var room = Room.GetRoomById(mobileReset.RoomId);
-						if (room == null)
-						{
-							Logger.Warn($"{area.Name}: Couldn't find room with id {mobileReset.RoomId}");
-							continue;
-						}
-
-						// Spawn
-						var newMobile = new MobileInstance(mobile)
-						{
-							Room = room
-						};
-
-						new Commands.ExecutionContext(newMobile);
-					}
+					SpawnArea(area);
 				}
 
 				Logger.Info("Starting WebService");
