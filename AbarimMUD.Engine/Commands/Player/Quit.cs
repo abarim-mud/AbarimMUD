@@ -1,4 +1,6 @@
-﻿namespace AbarimMUD.Commands.Player
+﻿using AbarimMUD.Data;
+
+namespace AbarimMUD.Commands.Player
 {
 	public class Quit : PlayerCommand
 	{
@@ -13,6 +15,9 @@
 			context.Send("Bye!");
 
 			context.Session.Disconnect();
+
+			Commands.ExecutionContext.SendAll($"[magenta]{context.ShortDescription} left the game.[reset]");
+
 
 			return true;
 		}

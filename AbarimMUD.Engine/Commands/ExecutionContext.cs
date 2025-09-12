@@ -85,6 +85,20 @@ namespace AbarimMUD.Commands
 
 		public bool MatchesKeyword(string keyword) => Creature.MatchesKeyword(keyword);
 
+		public static IEnumerable<ExecutionContext> All()
+		{
+			foreach (var s in Server.Instance.Sessions)
+			{
+				var asGameHandler = s.CurrentHandler as GameHandler;
+				if (asGameHandler == null)
+				{
+					continue;
+				}
+
+				yield return asGameHandler.Context;
+			}
+		}
+
 		public IEnumerable<ExecutionContext> AllExceptMe()
 		{
 			foreach (var s in Server.Instance.Sessions)
@@ -101,6 +115,14 @@ namespace AbarimMUD.Commands
 				}
 
 				yield return asGameHandler.Context;
+			}
+		}
+
+		public static void SendAll(string message)
+		{
+			foreach(var ctx in All())
+			{
+				ctx.Send(message);
 			}
 		}
 

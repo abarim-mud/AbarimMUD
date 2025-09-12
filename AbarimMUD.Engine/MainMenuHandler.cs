@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using System.Threading;
 using AbarimMUD.Data;
 
 namespace AbarimMUD
@@ -107,8 +108,11 @@ namespace AbarimMUD
 					character.LastLogin = DateTime.UtcNow;
 					character.Save();
 
+					Commands.ExecutionContext.SendAll($"[magenta]{character.Name} entered the game.[reset]");
+
 					Session.Character = character;
 					Session.CurrentHandler = new GameHandler(Session);
+
 					return;
 				}
 
