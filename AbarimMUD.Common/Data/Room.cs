@@ -10,6 +10,7 @@ namespace AbarimMUD.Data
 {
 	public enum SectorType
 	{
+		Unknown,
 		Inside,
 		City,
 		Field,

@@ -18,7 +18,7 @@ namespace AbarimMUD.Import.Diku
 				Id = room.VNum,
 				Name = room.Name,
 				Description = room.Description,
-				SectorType = Enum.Parse<SectorType>(room.SectorType.ToString(), true),
+				SectorType = room.SectorType.ParseEnum<SectorType, DikuLoad.Data.SectorType>(),
 			};
 
 			foreach (var exit in room.Exits)
@@ -66,7 +66,7 @@ namespace AbarimMUD.Import.Diku
 				LongDescription = mobile.LongDescription,
 				Description = mobile.Description,
 				Level = level,
-				Sex = Enum.Parse<Sex>(mobile.Sex, true),
+				Sex = mobile.Sex.ParseEnum<Sex>(),
 				Gold = gold,
 				Hitpoints = mobile.HitDice.Average,
 				Mana = mobile.ManaDice.Average,
@@ -111,5 +111,24 @@ namespace AbarimMUD.Import.Diku
 
 			return result;
 		}
+
+		public static T ParseEnum<T>(this string s, T defaultValue = default(T)) where T : struct
+		{
+			if (string.IsNullOrEmpty(s))
+			{
+				return defaultValue;
+			}
+
+			T result;
+			if (!Enum.TryParse<T>(s, true, out result))
+			{
+				return defaultValue;
+			}
+
+			return result;
+		}
+
+		public static T ParseEnum<T, T2>(this T2 e, T defaultValue = default(T)) where T : struct
+			where T2 : struct => e.ToString().ParseEnum(defaultValue);
 	}
 }

@@ -31,7 +31,7 @@ namespace AbarimMUD.Import.Diku
 				builders.Add(main.Builders);
 			}
 
-			if (!string.IsNullOrEmpty (merged.Builders))
+			if (!string.IsNullOrEmpty(merged.Builders))
 			{
 				builders.Add(merged.Builders);
 			}
@@ -77,9 +77,9 @@ namespace AbarimMUD.Import.Diku
 
 			importer.Process();
 
-/*			var astoria = (from a in importer.Areas where a.Name == "Astoria" select a).First();
-			var outskirts = (from a in importer.Areas where a.Name == "Outskirts of Astoria" select a).First();
-			MergeAreas(importer.Areas, astoria, outskirts);*/
+			/*			var astoria = (from a in importer.Areas where a.Name == "Astoria" select a).First();
+						var outskirts = (from a in importer.Areas where a.Name == "Outskirts of Astoria" select a).First();
+						MergeAreas(importer.Areas, astoria, outskirts);*/
 
 			// Convert DikuLoad areas to AM Areas
 			var outputAreasCount = 0;
@@ -94,7 +94,7 @@ namespace AbarimMUD.Import.Diku
 				var area = dikuArea.ToAmArea();
 
 				// Set resets
-				foreach(var reset in dikuArea.Resets)
+				foreach (var reset in dikuArea.Resets)
 				{
 					if (reset.ResetType != DikuLoad.Data.AreaResetType.NPC)
 					{
@@ -117,10 +117,23 @@ namespace AbarimMUD.Import.Diku
 					foreach (var pair in room.Exits)
 					{
 						var exit = pair.Value;
-						var roomId = (int)exit.Tag;
+						if (exit == null || exit.Tag == null)
+						{
+							continue;
+						}
 
-						exit.TargetRoom = Room.EnsureRoomById(roomId);
+						var roomId = (int)exit.Tag;
 						exit.Tag = null;
+
+						var targetRoom = Room.GetRoomById(roomId);
+						if (targetRoom == null)
+						{
+							Console.WriteLine($"Warning: Could not find room with id {roomId}.");
+							continue;
+
+						}
+
+						exit.TargetRoom = targetRoom;
 					}
 				}
 
@@ -134,10 +147,14 @@ namespace AbarimMUD.Import.Diku
 		{
 			try
 			{
-				Process(null,
-					new[] { "Astoria", "Sewers", "Haon Dor", "Arachnos", "Plains" },
-					@"D:\Projects\CrimsonStainedLands\master\CrimsonStainedLands\data\areas",
-					@"D:\Projects\AbarimMUD\Data");
+				/*				Process(null,
+									new[] { "Astoria", "Sewers", "Haon Dor", "Arachnos", "Plains" },
+									@"D:\Projects\CrimsonStainedLands\master\CrimsonStainedLands\data\areas",
+									@"D:\Projects\AbarimMUD\Data");*/
+				Process(SourceType.Soulmud,
+								new[] { "Kobolds" },
+								@"D:\Projects\chaos\soulmud",
+								@"D:\Projects\AbarimMUD\Data");
 			}
 			catch (Exception ex)
 			{
