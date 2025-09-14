@@ -1389,10 +1389,13 @@
       "Mana": 118,
       "Moves": 1000,
       "Armor": 10,
-      "AttacksCount": 1,
-      "AttackType": "Hit",
-      "Hit": 30,
-      "DamageRange": "8-8",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 30,
+          "DamageRange": "8-8"
+        }
+      ],
       "Level": 6,
       "Gold": 20,
       "Sex": "Male",
@@ -1410,10 +1413,18 @@
       "Mana": 122,
       "Moves": 1000,
       "Armor": 10,
-      "AttacksCount": 2,
-      "AttackType": "Hit",
-      "Hit": 40,
-      "DamageRange": "9-9",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 40,
+          "DamageRange": "9-9"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 40,
+          "DamageRange": "9-9"
+        }
+      ],
       "Level": 8,
       "Gold": 800,
       "Sex": "Female",
@@ -1431,10 +1442,13 @@
       "Mana": 109,
       "Moves": 1000,
       "Armor": 0,
-      "AttacksCount": 1,
-      "AttackType": "Hit",
-      "Hit": 15,
-      "DamageRange": "6-6",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 15,
+          "DamageRange": "6-6"
+        }
+      ],
       "Level": 3,
       "Gold": 300,
       "Sex": "Female",
@@ -1452,10 +1466,13 @@
       "Mana": 109,
       "Moves": 1000,
       "Armor": 0,
-      "AttacksCount": 1,
-      "AttackType": "Hit",
-      "Hit": 10,
-      "DamageRange": "5-5",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 10,
+          "DamageRange": "5-5"
+        }
+      ],
       "Level": 2,
       "Gold": 200,
       "Sex": "Female",
@@ -1473,10 +1490,13 @@
       "Mana": 109,
       "Moves": 1000,
       "Armor": 0,
-      "AttacksCount": 1,
-      "AttackType": "Hit",
-      "Hit": 10,
-      "DamageRange": "5-5",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 10,
+          "DamageRange": "5-5"
+        }
+      ],
       "Level": 2,
       "Gold": 200,
       "Sex": "Female",
@@ -1495,10 +1515,13 @@
       "Mana": 113,
       "Moves": 1000,
       "Armor": 10,
-      "AttacksCount": 1,
-      "AttackType": "Hit",
-      "Hit": 25,
-      "DamageRange": "7-7",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 25,
+          "DamageRange": "7-7"
+        }
+      ],
       "Level": 5,
       "Gold": 500,
       "Sex": "Female",
@@ -1517,10 +1540,13 @@
       "Mana": 113,
       "Moves": 1000,
       "Armor": 10,
-      "AttacksCount": 1,
-      "AttackType": "Hit",
-      "Hit": 25,
-      "DamageRange": "7-7",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 25,
+          "DamageRange": "7-7"
+        }
+      ],
       "Level": 5,
       "Gold": 500,
       "Sex": "Female",
@@ -1539,10 +1565,13 @@
       "Mana": 109,
       "Moves": 1000,
       "Armor": 0,
-      "AttacksCount": 1,
-      "AttackType": "Hit",
-      "Hit": 15,
-      "DamageRange": "6-6",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 15,
+          "DamageRange": "6-6"
+        }
+      ],
       "Level": 3,
       "Gold": 300,
       "Sex": "Female",
@@ -1561,10 +1590,13 @@
       "Mana": 109,
       "Moves": 1000,
       "Armor": 0,
-      "AttacksCount": 1,
-      "AttackType": "Hit",
-      "Hit": 15,
-      "DamageRange": "6-6",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 15,
+          "DamageRange": "6-6"
+        }
+      ],
       "Level": 3,
       "Gold": 300,
       "Sex": "Female",
@@ -1583,10 +1615,28 @@
       "Mana": 158,
       "Moves": 1000,
       "Armor": 40,
-      "AttacksCount": 4,
-      "AttackType": "Hit",
-      "Hit": 125,
-      "DamageRange": "17-27",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 125,
+          "DamageRange": "17-27"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 125,
+          "DamageRange": "17-27"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 125,
+          "DamageRange": "17-27"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 125,
+          "DamageRange": "17-27"
+        }
+      ],
       "Level": 25,
       "Gold": 25000,
       "Sex": "Female",
@@ -1605,10 +1655,18 @@
       "Mana": 127,
       "Moves": 1000,
       "Armor": 20,
-      "AttacksCount": 2,
-      "AttackType": "Hit",
-      "Hit": 50,
-      "DamageRange": "6-10",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 50,
+          "DamageRange": "6-10"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 50,
+          "DamageRange": "6-10"
+        }
+      ],
       "Level": 10,
       "Gold": 500,
       "Sex": "Male",
@@ -1627,10 +1685,23 @@
       "Mana": 181,
       "Moves": 1000,
       "Armor": 40,
-      "AttacksCount": 3,
-      "AttackType": "Hit",
-      "Hit": 85,
-      "DamageRange": "10-16",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 85,
+          "DamageRange": "10-16"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 85,
+          "DamageRange": "10-16"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 85,
+          "DamageRange": "10-16"
+        }
+      ],
       "Level": 17,
       "Gold": 2500,
       "Sex": "Male",
@@ -1649,10 +1720,13 @@
       "Mana": 0,
       "Moves": 1000,
       "Armor": 0,
-      "AttacksCount": 1,
-      "AttackType": "Hit",
-      "Hit": 5,
-      "DamageRange": "2-2",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 5,
+          "DamageRange": "2-2"
+        }
+      ],
       "Level": 1,
       "Gold": 100,
       "Sex": "None",
@@ -1673,10 +1747,43 @@
       "Mana": 1015,
       "Moves": 1000,
       "Armor": 100,
-      "AttacksCount": 7,
-      "AttackType": "Hit",
-      "Hit": 1255,
-      "DamageRange": "19-55",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 1255,
+          "DamageRange": "19-55"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 1255,
+          "DamageRange": "19-55"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 1255,
+          "DamageRange": "19-55"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 1255,
+          "DamageRange": "19-55"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 1255,
+          "DamageRange": "19-55"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 1255,
+          "DamageRange": "19-55"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 1255,
+          "DamageRange": "19-55"
+        }
+      ],
       "Level": 51,
       "Gold": 5100,
       "Sex": "Male",
@@ -1698,10 +1805,38 @@
       "Mana": 815,
       "Moves": 1000,
       "Armor": 100,
-      "AttacksCount": 6,
-      "AttackType": "Hit",
-      "Hit": 400,
-      "DamageRange": "15-35",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 400,
+          "DamageRange": "15-35"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 400,
+          "DamageRange": "15-35"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 400,
+          "DamageRange": "15-35"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 400,
+          "DamageRange": "15-35"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 400,
+          "DamageRange": "15-35"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 400,
+          "DamageRange": "15-35"
+        }
+      ],
       "Level": 40,
       "Gold": 4000,
       "Sex": "Male",
@@ -1722,10 +1857,13 @@
       "Mana": 105,
       "Moves": 1000,
       "Armor": 0,
-      "AttacksCount": 1,
-      "AttackType": "Hit",
-      "Hit": 5,
-      "DamageRange": "4-4",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 5,
+          "DamageRange": "4-4"
+        }
+      ],
       "Level": 1,
       "Gold": 100,
       "Sex": "None",

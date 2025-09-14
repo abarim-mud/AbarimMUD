@@ -337,7 +337,7 @@ namespace AbarimMUD.MapViewer.UI
 					{
 						lastAttack = new Tuple<int, Attack>(1, atk);
 					}
-					else if (lastAttack.Item2.Bonus == atk.Bonus &&
+					else if (lastAttack.Item2.AttackBonus == atk.AttackBonus &&
 						lastAttack.Item2.MinimumDamage == atk.MinimumDamage &&
 						lastAttack.Item2.MaximumDamage == atk.MaximumDamage)
 					{
@@ -359,7 +359,7 @@ namespace AbarimMUD.MapViewer.UI
 				for (var i = 0; i < mergedAttacks.Count; ++i)
 				{
 					var atk = mergedAttacks[i].Item2;
-					sb.Append($"{mergedAttacks[i].Item1}x({atk.Bonus}:{atk.MinimumDamage}-{atk.MaximumDamage})");
+					sb.Append($"{mergedAttacks[i].Item1}x({atk.AttackBonus}:{atk.MinimumDamage}-{atk.MaximumDamage})");
 
 					if (i < mergedAttacks.Count - 1)
 					{

@@ -22,13 +22,8 @@ namespace AbarimMUD.Data
 
 		private int _hitpoints = DefaultHitpoints, _mana = DefaultMana, _moves = DefaultMoves;
 		private int _armor = DefaultArmor;
-		private int _attacksCount = 1;
-		private AttackType _attackType = AttackType.Hit;
-		private int _hit = DefaultAttackRating;
-		private ValueRange _damageRange = DefaultDamageRange;
 		private int _level;
 		private int _gold = DefaultGold;
-
 
 		public string Id { get; set; }
 
@@ -142,75 +137,7 @@ namespace AbarimMUD.Data
 			}
 		}
 
-		public int AttacksCount
-		{
-			get => _attacksCount;
-
-			set
-			{
-				if (value < 1)
-				{
-					value = 1;
-				}
-
-				if (value == _attacksCount)
-				{
-					return;
-				}
-
-				_attacksCount = value;
-				InvalidateCreaturesOfThisTemplate();
-			}
-		}
-
-
-		public AttackType AttackType
-		{
-			get => _attackType;
-
-			set
-			{
-				if (value == _attackType)
-				{
-					return;
-				}
-
-				_attackType = value;
-				InvalidateCreaturesOfThisTemplate();
-			}
-		}
-
-		public int Hit
-		{
-			get => _hit;
-
-			set
-			{
-				if (value == _hit)
-				{
-					return;
-				}
-
-				_hit = value;
-				InvalidateCreaturesOfThisTemplate();
-			}
-		}
-
-		public ValueRange DamageRange
-		{
-			get => _damageRange;
-
-			set
-			{
-				if (value == _damageRange)
-				{
-					return;
-				}
-
-				_damageRange = value;
-				InvalidateCreaturesOfThisTemplate();
-			}
-		}
+		public Attack[] Attacks { get; set; }
 
 		[Browsable(false)]
 		public List<MobileSpecialAttack> SpecialAttacks { get; set; } = new List<MobileSpecialAttack>();

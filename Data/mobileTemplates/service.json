@@ -11,10 +11,48 @@
   "Mana": 10000,
   "Moves": 1000,
   "Armor": 250,
-  "AttacksCount": 8,
-  "AttackType": "Hit",
-  "Hit": 1275,
-  "DamageRange": "120-160",
+  "Attacks": [
+    {
+      "Type": "Hit",
+      "AttackBonus": 1275,
+      "DamageRange": "120-160"
+    },
+    {
+      "Type": "Hit",
+      "AttackBonus": 1275,
+      "DamageRange": "120-160"
+    },
+    {
+      "Type": "Hit",
+      "AttackBonus": 1275,
+      "DamageRange": "120-160"
+    },
+    {
+      "Type": "Hit",
+      "AttackBonus": 1275,
+      "DamageRange": "120-160"
+    },
+    {
+      "Type": "Hit",
+      "AttackBonus": 1275,
+      "DamageRange": "120-160"
+    },
+    {
+      "Type": "Hit",
+      "AttackBonus": 1275,
+      "DamageRange": "120-160"
+    },
+    {
+      "Type": "Hit",
+      "AttackBonus": 1275,
+      "DamageRange": "120-160"
+    },
+    {
+      "Type": "Hit",
+      "AttackBonus": 1275,
+      "DamageRange": "120-160"
+    }
+  ],
   "Flags": [
     "Sentinel"
   ]

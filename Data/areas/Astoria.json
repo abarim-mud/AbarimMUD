@@ -1354,10 +1354,43 @@
       "Mana": 805,
       "Moves": 1000,
       "Armor": 0,
-      "AttacksCount": 7,
-      "AttackType": "Hit",
-      "Hit": 500,
-      "DamageRange": "20-110",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 500,
+          "DamageRange": "20-110"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 500,
+          "DamageRange": "20-110"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 500,
+          "DamageRange": "20-110"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 500,
+          "DamageRange": "20-110"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 500,
+          "DamageRange": "20-110"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 500,
+          "DamageRange": "20-110"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 500,
+          "DamageRange": "20-110"
+        }
+      ],
       "Level": 50,
       "Gold": 5000,
       "Sex": "Male",
@@ -1378,10 +1411,13 @@
       "Mana": 0,
       "Moves": 1000,
       "Armor": 100,
-      "AttacksCount": 1,
-      "AttackType": "Hit",
-      "Hit": 35,
-      "DamageRange": "2-2",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 35,
+          "DamageRange": "2-2"
+        }
+      ],
       "Level": 1,
       "Gold": 100,
       "Sex": "Female",
@@ -1403,10 +1439,43 @@
       "Mana": 100,
       "Moves": 1000,
       "Armor": 250,
-      "AttacksCount": 7,
-      "AttackType": "Hit",
-      "Hit": 350,
-      "DamageRange": "28-28",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 350,
+          "DamageRange": "28-28"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 350,
+          "DamageRange": "28-28"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 350,
+          "DamageRange": "28-28"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 350,
+          "DamageRange": "28-28"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 350,
+          "DamageRange": "28-28"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 350,
+          "DamageRange": "28-28"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 350,
+          "DamageRange": "28-28"
+        }
+      ],
       "Level": 50,
       "Gold": 13000,
       "Sex": "Male",
@@ -1428,10 +1497,43 @@
       "Mana": 100,
       "Moves": 1000,
       "Armor": 250,
-      "AttacksCount": 7,
-      "AttackType": "Hit",
-      "Hit": 350,
-      "DamageRange": "28-28",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 350,
+          "DamageRange": "28-28"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 350,
+          "DamageRange": "28-28"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 350,
+          "DamageRange": "28-28"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 350,
+          "DamageRange": "28-28"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 350,
+          "DamageRange": "28-28"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 350,
+          "DamageRange": "28-28"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 350,
+          "DamageRange": "28-28"
+        }
+      ],
       "Level": 50,
       "Gold": 13000,
       "Sex": "Male",
@@ -1454,10 +1556,43 @@
       "Mana": 100,
       "Moves": 1000,
       "Armor": 250,
-      "AttacksCount": 7,
-      "AttackType": "Hit",
-      "Hit": 750,
-      "DamageRange": "28-28",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "28-28"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "28-28"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "28-28"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "28-28"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "28-28"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "28-28"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "28-28"
+        }
+      ],
       "Level": 50,
       "Gold": 13000,
       "Sex": "Male",
@@ -1480,10 +1615,43 @@
       "Mana": 100,
       "Moves": 1000,
       "Armor": 250,
-      "AttacksCount": 7,
-      "AttackType": "Hit",
-      "Hit": 500,
-      "DamageRange": "28-28",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 500,
+          "DamageRange": "28-28"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 500,
+          "DamageRange": "28-28"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 500,
+          "DamageRange": "28-28"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 500,
+          "DamageRange": "28-28"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 500,
+          "DamageRange": "28-28"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 500,
+          "DamageRange": "28-28"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 500,
+          "DamageRange": "28-28"
+        }
+      ],
       "Level": 50,
       "Gold": 13000,
       "Sex": "Female",
@@ -1505,10 +1673,43 @@
       "Mana": 100,
       "Moves": 1000,
       "Armor": 250,
-      "AttacksCount": 7,
-      "AttackType": "Hit",
-      "Hit": 500,
-      "DamageRange": "28-28",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 500,
+          "DamageRange": "28-28"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 500,
+          "DamageRange": "28-28"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 500,
+          "DamageRange": "28-28"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 500,
+          "DamageRange": "28-28"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 500,
+          "DamageRange": "28-28"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 500,
+          "DamageRange": "28-28"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 500,
+          "DamageRange": "28-28"
+        }
+      ],
       "Level": 50,
       "Gold": 13000,
       "Sex": "Male",
@@ -1532,10 +1733,43 @@
       "Mana": 100,
       "Moves": 1000,
       "Armor": 250,
-      "AttacksCount": 7,
-      "AttackType": "Hit",
-      "Hit": 500,
-      "DamageRange": "28-28",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 500,
+          "DamageRange": "28-28"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 500,
+          "DamageRange": "28-28"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 500,
+          "DamageRange": "28-28"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 500,
+          "DamageRange": "28-28"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 500,
+          "DamageRange": "28-28"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 500,
+          "DamageRange": "28-28"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 500,
+          "DamageRange": "28-28"
+        }
+      ],
       "Level": 50,
       "Gold": 13000,
       "Sex": "Female",
@@ -1556,6 +1790,13 @@
       "ShortDescription": "the warrior guildmaster",
       "LongDescription": "The warrior guildmaster stands here, ready to teach you his ways.",
       "Description": "The warrior guildmaster is a formidable figure with a tall and athletic build.\nShe has a sharp jawline, a straight nose, and intense brown eyes that seem to\nsee right through you. Her hair is a deep auburn, styled in a practical braid\nthat keeps it out of her face during combat. Her skin is weathered from years\nof training and battles, bearing the scars of her experiences as badges of\nhonor. She exudes a confident and fearless energy, her presence commanding\nrespect and inspiring courage in those around her. She stands tall and proud,\nready to face any challenge that comes her way.",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 0,
+          "DamageRange": "1-4"
+        }
+      ],
       "Flags": [],
       "Guildmaster": "warrior"
     },
@@ -1572,10 +1813,43 @@
       "Mana": 150,
       "Moves": 1000,
       "Armor": 20,
-      "AttacksCount": 7,
-      "AttackType": "Hit",
-      "Hit": 750,
-      "DamageRange": "21-46",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        }
+      ],
       "Level": 50,
       "Gold": 1500,
       "Sex": "None",
@@ -1595,6 +1869,13 @@
       "ShortDescription": "the paladin guildmaster",
       "LongDescription": "The paladin guildmaster stands here, ready to teach you his ways.",
       "Description": "The paladin guildmaster is a tall and muscular figure with a chiseled jawline,\na straight nose, and piercing green eyes. He has bright golden blonde hair\nstyled in a regal manner. His presence commands respect and his bearing exudes\na sense of justice and righteousness. His unwavering spirit and powerful aura\ninspire those around him to be brave and to fight for what is right.",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 0,
+          "DamageRange": "1-4"
+        }
+      ],
       "Flags": []
     },
     {
@@ -1610,10 +1891,43 @@
       "Mana": 150,
       "Moves": 1000,
       "Armor": 20,
-      "AttacksCount": 7,
-      "AttackType": "Hit",
-      "Hit": 750,
-      "DamageRange": "21-46",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        }
+      ],
       "Level": 50,
       "Gold": 1500,
       "Sex": "None",
@@ -1633,6 +1947,13 @@
       "ShortDescription": "the healer guildmaster",
       "LongDescription": "The healer guildmaster stands here, ready to teach you his ways.",
       "Description": "The healer guildmaster is a gentle and nurturing figure with a warm and kind\ndemeanor. She has a round face, a small nose, and soft brown eyes that exude a\nsense of compassion. Her hair is a light brown, styled in a simple and elegant\nmanner that allows her to move freely and attend to her patients. Her skin is a\nwarm, creamy complexion, and she carries herself with grace and poise. She\nradiates an aura of calm and serenity, her gentle presence inspiring trust and\ncomfort in those around her. Despite her petite stature, her mastery of the\nhealing arts is undeniable, and she is revered by her fellow healers.",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 0,
+          "DamageRange": "1-4"
+        }
+      ],
       "Sex": "Female",
       "Flags": []
     },
@@ -1649,10 +1970,43 @@
       "Mana": 2760,
       "Moves": 1000,
       "Armor": 20,
-      "AttacksCount": 7,
-      "AttackType": "Hit",
-      "Hit": 650,
-      "DamageRange": "21-46",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 650,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 650,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 650,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 650,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 650,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 650,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 650,
+          "DamageRange": "21-46"
+        }
+      ],
       "Level": 50,
       "Gold": 1500,
       "Sex": "Female",
@@ -1672,6 +2026,13 @@
       "ShortDescription": "the rogue guildmaster",
       "LongDescription": "The rogue guildmaster stands here, ready to teach you his ways.",
       "Description": "The rogue guildmaster is a slender and nimble figure with a quick wit and a\ncharming smile. He has a sharp jawline, a crooked nose, and sparkling brown eyes\nthat seem to always be on the lookout for his next big score. His hair is a\nshaggy mop of black, styled in a manner that adds to his roguish charm. He moves\nwith a feline grace, his confidence and cunning evident in every step. Despite\nhis sometimes questionable methods, he has a charismatic personality and a\nsilver tongue that makes him well-liked by his fellow thieves.",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 0,
+          "DamageRange": "1-4"
+        }
+      ],
       "Flags": [],
       "Guildmaster": "rogue"
     },
@@ -1688,10 +2049,43 @@
       "Mana": 2760,
       "Moves": 1000,
       "Armor": 20,
-      "AttacksCount": 7,
-      "AttackType": "Hit",
-      "Hit": 750,
-      "DamageRange": "21-46",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        }
+      ],
       "Level": 50,
       "Gold": 1500,
       "Sex": "Male",
@@ -1711,6 +2105,13 @@
       "ShortDescription": "the mage guildmaster",
       "LongDescription": "The mage guildmaster stands here, ready to teach you her ways.",
       "Description": "The mage guildmaster is a serene and regal figure with an ethereal beauty. She\nhas a delicate jawline, a straight nose, and piercing blue eyes that seem to\nshimmer with an inner light. Her hair is a shining silver, styled in an\nelaborate up-do that adds to her stately appearance. Her skin is a warm,\ncreamy complexion, and she carries herself with grace and poise. She radiates\nan aura of calm and confidence, her gentle presence inspiring a sense of peace\nand security in those around her. Despite her quiet demeanor, her vast\nknowledge and mastery of magic is undeniable.",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 0,
+          "DamageRange": "1-4"
+        }
+      ],
       "Sex": "Female",
       "Flags": []
     },
@@ -1727,10 +2128,43 @@
       "Mana": 3600,
       "Moves": 1000,
       "Armor": 0,
-      "AttacksCount": 7,
-      "AttackType": "Hit",
-      "Hit": 750,
-      "DamageRange": "21-46",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        }
+      ],
       "Level": 50,
       "Gold": 1500,
       "Sex": "Female",
@@ -1748,6 +2182,13 @@
       "ShortDescription": "the healer",
       "LongDescription": "A healer is here, selling spells.",
       "Description": "Although retired from adventuring, the healer still lends a hand. Type \u0027heal\u0027 to see a listing of spells.",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 0,
+          "DamageRange": "1-4"
+        }
+      ],
       "Flags": []
     },
     {
@@ -1763,10 +2204,18 @@
       "Mana": 150,
       "Moves": 1000,
       "Armor": 20,
-      "AttacksCount": 2,
-      "AttackType": "Hit",
-      "Hit": 225,
-      "DamageRange": "8-12",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 225,
+          "DamageRange": "8-12"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 225,
+          "DamageRange": "8-12"
+        }
+      ],
       "Level": 15,
       "Gold": 1500,
       "Sex": "None",
@@ -1787,6 +2236,13 @@
       "ShortDescription": "Thane the blacksmith",
       "LongDescription": "Blacksmith Thane Ironjaw stands at the counter, waiting for your order.",
       "Description": "Thane Ironjaw is a towering, broad-shouldered man with the physique of\nsomeone who has spent a lifetime hammering steel. His arms are thick with muscle,\nbearing countless burn scars from stray embers and molten metal. A long, grizzled beard\n\u2014once deep auburn, now streaked with silver\u2014frames his square jaw, giving him the look\nof a battle-hardened veteran. His dark eyes gleam like tempered steel, ever watchful over\nhis shop\u2019s wares and customers alike. His leather apron, heavy with soot, smells faintly of\niron and sweat, and his hands, calloused and strong, move with practiced ease as he\ninspects blades and hammers.",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 0,
+          "DamageRange": "1-4"
+        }
+      ],
       "Flags": [],
       "Shop": "smithy",
       "ForgeShop": "smithy",
@@ -1804,10 +2260,23 @@
       "Mana": 100,
       "Moves": 1000,
       "Armor": 250,
-      "AttacksCount": 3,
-      "AttackType": "Hit",
-      "Hit": 615,
-      "DamageRange": "30-50",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 615,
+          "DamageRange": "30-50"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 615,
+          "DamageRange": "30-50"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 615,
+          "DamageRange": "30-50"
+        }
+      ],
       "Level": 23,
       "Gold": 10000,
       "Sex": "Male",
@@ -1830,10 +2299,13 @@
       "Mana": 100,
       "Moves": 1000,
       "Armor": 20,
-      "AttacksCount": 1,
-      "AttackType": "Hit",
-      "Hit": 25,
-      "DamageRange": "4-4",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 25,
+          "DamageRange": "4-4"
+        }
+      ],
       "Level": 1,
       "Gold": 100,
       "Sex": "None",
@@ -1856,10 +2328,13 @@
       "Mana": 100,
       "Moves": 1000,
       "Armor": 30,
-      "AttacksCount": 1,
-      "AttackType": "Hit",
-      "Hit": 35,
-      "DamageRange": "6-6",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 35,
+          "DamageRange": "6-6"
+        }
+      ],
       "Level": 3,
       "Gold": 300,
       "Sex": "None",
@@ -1882,10 +2357,13 @@
       "Mana": 100,
       "Moves": 1000,
       "Armor": 50,
-      "AttacksCount": 1,
-      "AttackType": "Hit",
-      "Hit": 55,
-      "DamageRange": "6-6",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 55,
+          "DamageRange": "6-6"
+        }
+      ],
       "Level": 5,
       "Gold": 500,
       "Sex": "None",
@@ -1908,10 +2386,13 @@
       "Mana": 150,
       "Moves": 1000,
       "Armor": 60,
-      "AttacksCount": 1,
-      "AttackType": "Hit",
-      "Hit": 65,
-      "DamageRange": "5-9",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 65,
+          "DamageRange": "5-9"
+        }
+      ],
       "Level": 7,
       "Gold": 700,
       "Sex": "None",
@@ -1933,10 +2414,18 @@
       "Mana": 100,
       "Moves": 1000,
       "Armor": 60,
-      "AttacksCount": 2,
-      "AttackType": "Hit",
-      "Hit": 75,
-      "DamageRange": "6-11",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 75,
+          "DamageRange": "6-11"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 75,
+          "DamageRange": "6-11"
+        }
+      ],
       "Level": 9,
       "Gold": 900,
       "Sex": "None",
@@ -1959,10 +2448,18 @@
       "Mana": 100,
       "Moves": 1000,
       "Armor": 100,
-      "AttacksCount": 2,
-      "AttackType": "Hit",
-      "Hit": 90,
-      "DamageRange": "8-13",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 90,
+          "DamageRange": "8-13"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 90,
+          "DamageRange": "8-13"
+        }
+      ],
       "Level": 12,
       "Gold": 1200,
       "Sex": "None",
@@ -1985,10 +2482,18 @@
       "Mana": 100,
       "Moves": 1000,
       "Armor": 120,
-      "AttacksCount": 2,
-      "AttackType": "Hit",
-      "Hit": 225,
-      "DamageRange": "18-26",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 225,
+          "DamageRange": "18-26"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 225,
+          "DamageRange": "18-26"
+        }
+      ],
       "Level": 15,
       "Gold": 1500,
       "Sex": "None",
@@ -2011,10 +2516,23 @@
       "Mana": 100,
       "Moves": 1000,
       "Armor": 140,
-      "AttacksCount": 3,
-      "AttackType": "Hit",
-      "Hit": 300,
-      "DamageRange": "18-34",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 300,
+          "DamageRange": "18-34"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 300,
+          "DamageRange": "18-34"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 300,
+          "DamageRange": "18-34"
+        }
+      ],
       "Level": 20,
       "Gold": 2000,
       "Sex": "None",
@@ -2037,10 +2555,43 @@
       "Mana": 150,
       "Moves": 1000,
       "Armor": 20,
-      "AttacksCount": 7,
-      "AttackType": "Hit",
-      "Hit": 750,
-      "DamageRange": "21-46",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        }
+      ],
       "Level": 50,
       "Gold": 1500,
       "Sex": "Male",
@@ -2062,10 +2613,38 @@
       "Mana": 150,
       "Moves": 1000,
       "Armor": 200,
-      "AttacksCount": 6,
-      "AttackType": "Hit",
-      "Hit": 1200,
-      "DamageRange": "22-52",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 1200,
+          "DamageRange": "22-52"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 1200,
+          "DamageRange": "22-52"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 1200,
+          "DamageRange": "22-52"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 1200,
+          "DamageRange": "22-52"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 1200,
+          "DamageRange": "22-52"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 1200,
+          "DamageRange": "22-52"
+        }
+      ],
       "Level": 40,
       "Gold": 1500,
       "Sex": "Male",
@@ -2084,6 +2663,13 @@
       "ShortDescription": "the bard guildmaster",
       "LongDescription": "The bard guildmaster stands here, ready to teach you his ways.",
       "Description": "The guildmaster is a tall and regal looking figure, with long flowing silver\nhair and piercing green eyes. He wears a garb of rich purple and gold,\nadorned with intricate musical symbols embroidered along the hem and sleeves.\nA lute is hung from a strap across his back, and a small harp is clasped in\nhis hand. A charming smile graces his lips, and his voice is like honey,\nsoothing the soul and captivating all who hear it. He exuded a sense of wisdom\nand leadership, and his mere presence commands respect from all those around.",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 0,
+          "DamageRange": "1-4"
+        }
+      ],
       "Flags": []
     },
     {
@@ -2099,10 +2685,43 @@
       "Mana": 3600,
       "Moves": 1000,
       "Armor": 0,
-      "AttacksCount": 7,
-      "AttackType": "Hit",
-      "Hit": 750,
-      "DamageRange": "21-46",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        }
+      ],
       "Level": 50,
       "Gold": 1500,
       "Sex": "Female",
@@ -2124,10 +2743,38 @@
       "Mana": 100,
       "Moves": 1000,
       "Armor": 250,
-      "AttacksCount": 6,
-      "AttackType": "Hit",
-      "Hit": 600,
-      "DamageRange": "28-52",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 600,
+          "DamageRange": "28-52"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 600,
+          "DamageRange": "28-52"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 600,
+          "DamageRange": "28-52"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 600,
+          "DamageRange": "28-52"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 600,
+          "DamageRange": "28-52"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 600,
+          "DamageRange": "28-52"
+        }
+      ],
       "Level": 40,
       "Gold": 13000,
       "Sex": "Male",
@@ -2149,10 +2796,43 @@
       "Mana": 2760,
       "Moves": 1000,
       "Armor": 20,
-      "AttacksCount": 7,
-      "AttackType": "Hit",
-      "Hit": 750,
-      "DamageRange": "21-46",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        }
+      ],
       "Level": 50,
       "Gold": 1500,
       "Sex": "Male",
@@ -2174,6 +2854,13 @@
       "ShortDescription": "the monk guildmaster",
       "LongDescription": "The monk guildmaster stands here, ready to teach you his ways.",
       "Description": "A master of discipline, Zhen Taoru commands respect through wisdom, not force. His\namber eyes hold the weight of countless lessons, and his movements\u2014fluid and precise\u2014\nreflect decades of training. Draped in a simple robe, he speaks in measured riddles,\nguiding students toward their own truths.\n\nA worn wooden staff rests at his side\u2014a symbol of mastery rather than necessity. Though\nage has tempered his stride, none doubt his ability to wield it with effortless precision.",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 0,
+          "DamageRange": "1-4"
+        }
+      ],
       "Flags": [],
       "Guildmaster": "monk"
     },
@@ -2190,10 +2877,18 @@
       "Mana": 510,
       "Moves": 1000,
       "Armor": 20,
-      "AttacksCount": 2,
-      "AttackType": "Hit",
-      "Hit": 195,
-      "DamageRange": "28-40",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 195,
+          "DamageRange": "28-40"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 195,
+          "DamageRange": "28-40"
+        }
+      ],
       "Level": 15,
       "Gold": 1500,
       "Sex": "None",
@@ -2213,10 +2908,13 @@
       "Mana": 0,
       "Moves": 1000,
       "Armor": 300,
-      "AttacksCount": 1,
-      "AttackType": "Hit",
-      "Hit": 15,
-      "DamageRange": "2-2",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 15,
+          "DamageRange": "2-2"
+        }
+      ],
       "Level": 1,
       "Gold": 100,
       "Sex": "None",
@@ -2236,10 +2934,13 @@
       "Mana": 0,
       "Moves": 1000,
       "Armor": 500,
-      "AttacksCount": 1,
-      "AttackType": "Hit",
-      "Hit": 15,
-      "DamageRange": "2-2",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 15,
+          "DamageRange": "2-2"
+        }
+      ],
       "Level": 1,
       "Gold": 100,
       "Sex": "None",
@@ -2259,10 +2960,13 @@
       "Mana": 0,
       "Moves": 1000,
       "Armor": 1100,
-      "AttacksCount": 1,
-      "AttackType": "Hit",
-      "Hit": 15,
-      "DamageRange": "2-2",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 15,
+          "DamageRange": "2-2"
+        }
+      ],
       "Level": 1,
       "Gold": 100,
       "Sex": "None",
@@ -2282,10 +2986,13 @@
       "Mana": 0,
       "Moves": 1000,
       "Armor": 500,
-      "AttacksCount": 1,
-      "AttackType": "Hit",
-      "Hit": 15,
-      "DamageRange": "2-2",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 15,
+          "DamageRange": "2-2"
+        }
+      ],
       "Level": 1,
       "Gold": 100,
       "Sex": "None",
@@ -2304,6 +3011,13 @@
       "ShortDescription": "the shapeshifter guildmaster",
       "LongDescription": "The shapeshifter guildmaster stands here, ready to teach you its ways.",
       "Description": "The guildmaster of the shapeshifters guild is a wise and mysterious figure,\nknown simply as the Elder. Whether male or female, their appearance is that of a\nperson who has lived many lives, with eyes that seem to hold the knowledge of\nthe ages. The Elder is revered by all who enter the guild, their words carrying\nthe weight of centuries of shapeshifting lore and wisdom. They have dedicated\ntheir life to the art of shapeshifting and are a master of all animal forms,\nable to shift effortlessly from one creature to another. The Elder is patient\nand compassionate, yet fierce in their determination to protect the balance\nbetween humans and nature. Their guidance is sought by all shapeshifters who\nseek to deepen their understanding of the natural world and hone their\nshapeshifting skills.",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 0,
+          "DamageRange": "1-4"
+        }
+      ],
       "Sex": "None",
       "Flags": []
     },
@@ -2320,10 +3034,43 @@
       "Mana": 3600,
       "Moves": 1000,
       "Armor": 0,
-      "AttacksCount": 7,
-      "AttackType": "Hit",
-      "Hit": 750,
-      "DamageRange": "21-46",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 750,
+          "DamageRange": "21-46"
+        }
+      ],
       "Level": 50,
       "Gold": 1500,
       "Sex": "Female",
@@ -2345,10 +3092,43 @@
       "Mana": 4210,
       "Moves": 1000,
       "Armor": 100,
-      "AttacksCount": 7,
-      "AttackType": "Hit",
-      "Hit": 1075,
-      "DamageRange": "22-85",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 1075,
+          "DamageRange": "22-85"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 1075,
+          "DamageRange": "22-85"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 1075,
+          "DamageRange": "22-85"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 1075,
+          "DamageRange": "22-85"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 1075,
+          "DamageRange": "22-85"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 1075,
+          "DamageRange": "22-85"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 1075,
+          "DamageRange": "22-85"
+        }
+      ],
       "Level": 55,
       "Gold": 5500,
       "Sex": "Female",
@@ -2369,10 +3149,43 @@
       "Mana": 4210,
       "Moves": 1000,
       "Armor": 100,
-      "AttacksCount": 7,
-      "AttackType": "Hit",
-      "Hit": 1075,
-      "DamageRange": "22-85",
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 1075,
+          "DamageRange": "22-85"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 1075,
+          "DamageRange": "22-85"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 1075,
+          "DamageRange": "22-85"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 1075,
+          "DamageRange": "22-85"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 1075,
+          "DamageRange": "22-85"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 1075,
+          "DamageRange": "22-85"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 1075,
+          "DamageRange": "22-85"
+        }
+      ],
       "Level": 55,
       "Gold": 5500,
       "Sex": "Male",

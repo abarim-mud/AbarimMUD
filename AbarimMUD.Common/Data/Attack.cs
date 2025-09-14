@@ -1,4 +1,5 @@
 ﻿using AbarimMUD.Utils;
+using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
 {
@@ -28,10 +29,11 @@ namespace AbarimMUD.Data
 	{
 		public AttackType Type { get; set; }
 
-		public int Bonus { get; set; }
+		public int AttackBonus { get; set; }
 
 		public ValueRange DamageRange;
 
+		[JsonIgnore]
 		public int MinimumDamage
 		{
 			get => DamageRange.Minimum;
@@ -39,6 +41,7 @@ namespace AbarimMUD.Data
 			set => DamageRange.Minimum = value;
 		}
 
+		[JsonIgnore]
 		public int MaximumDamage
 		{
 			get => DamageRange.Maximum;
@@ -48,10 +51,14 @@ namespace AbarimMUD.Data
 
 		public int AverageDamage => MinimumDamage + (MaximumDamage - MinimumDamage) / 2;
 
-		public Attack(AttackType type, int rating, ValueRange damageRange)
+		public Attack()
+		{
+		}
+
+		public Attack(AttackType type, int attackBonus, ValueRange damageRange)
 		{
 			Type = type;
-			Bonus = rating;
+			AttackBonus = attackBonus;
 			DamageRange = damageRange;
 		}
 
@@ -59,7 +66,7 @@ namespace AbarimMUD.Data
 		{
 		}
 
-		public Attack Clone() => new Attack(Type, Bonus, DamageRange);
+		public Attack Clone() => new Attack(Type, AttackBonus, DamageRange);
 
 		public AttackRollResult DoAttackRoll(int armorClass)
 		{
@@ -80,7 +87,7 @@ namespace AbarimMUD.Data
 			else
 			{
 				//
-				result.AttackRoll = result.AttackDice + Bonus - 100;
+				result.AttackRoll = result.AttackDice + AttackBonus - 100;
 				result.Hit = result.AttackRoll >= armorClass;
 			}
 
@@ -105,7 +112,7 @@ namespace AbarimMUD.Data
 
 		public override string ToString()
 		{
-			return $"{Type}, {Bonus}, {DamageRange}";
+			return $"{Type}, {AttackBonus}, {DamageRange}";
 		}
 	}
 }

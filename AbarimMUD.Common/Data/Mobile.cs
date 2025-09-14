@@ -104,10 +104,7 @@ namespace AbarimMUD.Data
 			public int? Mana { get; set; }
 			public int? Moves { get; set; }
 			public int? Armor { get; set; }
-			public int? AttacksCount { get; set; }
-			public AttackType? AttackType { get; set; }
-			public int? Hit { get; set; }
-			public ValueRange? DamageRange { get; set; }
+			public Attack[] Attacks { get; set; }
 			public int? Level { get; set; }
 			public int? Gold { get; set; }
 			public Sex? Sex { get; set; }
@@ -387,111 +384,21 @@ namespace AbarimMUD.Data
 			}
 		}
 
-		public int AttacksCount
+		public Attack[] Attacks
 		{
 			get
 			{
-				if (Data.AttacksCount == null && Template != null)
+				if (Data.Attacks == null && Template != null)
 				{
-					return Template.AttacksCount;
+					return Template.Attacks;
 				}
 
-				EnsureSet(Data.AttacksCount, "AttacksCount");
-
-				return Data.AttacksCount.Value;
+				return Data.Attacks;
 			}
 
 			set
 			{
-				if (value < 1)
-				{
-					value = 1;
-				}
-
-				if (value == Data.AttacksCount)
-				{
-					return;
-				}
-
-				Data.AttacksCount = value;
-				InvalidateCreaturesOfThisClass();
-			}
-		}
-
-		public AttackType AttackType
-		{
-			get
-			{
-				if (Data.AttackType == null && Template != null)
-				{
-					return Template.AttackType;
-				}
-
-				EnsureSet(Data.AttackType, "AttackType");
-
-				return Data.AttackType.Value;
-			}
-
-			set
-			{
-				if (value == Data.AttackType)
-				{
-					return;
-				}
-
-				Data.AttackType = value;
-				InvalidateCreaturesOfThisClass();
-			}
-		}
-
-		public int Hit
-		{
-			get
-			{
-				if (Data.Hit == null && Template != null)
-				{
-					return Template.Hit;
-				}
-
-				EnsureSet(Data.Hit, "Hit");
-
-				return Data.Hit.Value;
-			}
-
-			set
-			{
-				if (value == Data.Hit)
-				{
-					return;
-				}
-
-				Data.Hit = value;
-				InvalidateCreaturesOfThisClass();
-			}
-		}
-
-		public ValueRange DamageRange
-		{
-			get
-			{
-				if (Data.DamageRange == null && Template != null)
-				{
-					return Template.DamageRange;
-				}
-
-				EnsureSet(Data.DamageRange, "DamageRange");
-
-				return Data.DamageRange.Value;
-			}
-
-			set
-			{
-				if (value == Data.DamageRange)
-				{
-					return;
-				}
-
-				Data.DamageRange = value;
+				Data.Attacks = value;
 				InvalidateCreaturesOfThisClass();
 			}
 		}
@@ -619,12 +526,7 @@ namespace AbarimMUD.Data
 				Armor = Armor
 			};
 
-			// Calculate attacks' values
-			for (var i = 0; i < AttacksCount; ++i)
-			{
-				var attack = new Attack(AttackType, Hit, DamageRange);
-				stats.Attacks.Add(attack);
-			}
+			stats.Attacks.AddRange(Attacks);
 
 			return stats;
 		}
@@ -644,10 +546,7 @@ namespace AbarimMUD.Data
 				Mana = Mana,
 				Moves = Moves,
 				Armor = Armor,
-				AttacksCount = AttacksCount,
-				AttackType = AttackType,
-				Hit = Hit,
-				DamageRange = DamageRange,
+				Attacks = Attacks,
 				Guildmaster = Guildmaster,
 				Shop = Shop,
 				ForgeShop = ForgeShop,
