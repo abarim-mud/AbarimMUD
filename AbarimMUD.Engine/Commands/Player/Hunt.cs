@@ -23,7 +23,6 @@ namespace AbarimMUD.Commands.Player
 
 			// Search in the room
 			var target = context.Room.Find(data);
-
 			if (target == null)
 			{
 				// Search in the area
@@ -72,7 +71,7 @@ namespace AbarimMUD.Commands.Player
 			var result = PathFinding.BuildPath(context.Room, target.Room);
 			if (result == null)
 			{
-				context.Send($"{context.HuntTarget.ShortDescription} can't be reached.");
+				context.Send($"{target.ShortDescription} can't be reached.");
 				return false;
 			}
 

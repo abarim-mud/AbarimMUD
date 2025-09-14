@@ -125,7 +125,18 @@ namespace AbarimMUD
 
 		public static bool StartsWithPattern(this HashSet<string> keywords, string pattern)
 		{
-			return (from k in keywords where k.StartsWith(pattern, StringComparison.OrdinalIgnoreCase) select k).Any();
+			var parts = pattern.Split('-', StringSplitOptions.RemoveEmptyEntries);
+
+			foreach (var part in parts)
+			{
+				if (!(from k in keywords where k.StartsWith(part, StringComparison.OrdinalIgnoreCase) select k).Any())
+				{
+					return false;
+				}
+
+			}
+
+			return true;
 		}
 
 		public static bool EqualsToIgnoreCase(this string name, string otherName) => string.Equals(name, otherName, StringComparison.OrdinalIgnoreCase);

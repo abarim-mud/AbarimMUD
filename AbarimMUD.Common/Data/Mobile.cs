@@ -87,7 +87,11 @@ namespace AbarimMUD.Data
 		Chomp,
 		Thrust,
 		Slime,
-		Shock
+		Shock,
+		Bludgeon,
+		Rake,
+		Beat,
+		Zap
 	}
 
 	public class Mobile : AreaEntity
@@ -641,6 +645,10 @@ namespace AbarimMUD.Data
 			_attackNames[(int)AttackType.Thrust] = new AttackNames("thrusts");
 			_attackNames[(int)AttackType.Slime] = new AttackNames("slimes");
 			_attackNames[(int)AttackType.Shock] = new AttackNames("shocks");
+			_attackNames[(int)AttackType.Bludgeon] = new AttackNames("bludgeons");
+			_attackNames[(int)AttackType.Rake] = new AttackNames("rakes");
+			_attackNames[(int)AttackType.Beat] = new AttackNames("beats");
+			_attackNames[(int)AttackType.Zap] = new AttackNames("zaps");
 		}
 
 		public static string GetAttackNoun(this AttackType attackType)

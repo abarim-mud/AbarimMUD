@@ -1,6 +1,7 @@
 ﻿using AbarimMUD.Data;
 using AbarimMUD.Utils;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace AbarimMUD.Import.Diku
@@ -48,10 +49,6 @@ namespace AbarimMUD.Import.Diku
 				level = 1;
 			}
 
-			var at = AttackType.Hit;
-			Enum.TryParse(mobile.AttackType, out at);
-
-			var maximumArmor = Math.Max(mobile.ArmorClassBash, Math.Max(mobile.ArmorClassPierce, Math.Max(mobile.ArmorClassSlash, mobile.ArmorClassExotic)));
 			var gold = mobile.Wealth;
 			if (gold == 0)
 			{
@@ -70,12 +67,22 @@ namespace AbarimMUD.Import.Diku
 				Gold = gold,
 				Hitpoints = mobile.HitDice.Average,
 				Mana = mobile.ManaDice.Average,
-				Armor = 100 - maximumArmor,
-				AttacksCount = 1 + level / 8,
-				AttackType = at,
-				Hit = level * 5 + mobile.HitRoll * 10,
-				DamageRange = mobile.DamageDice.ToValueRange(),
+				Moves = 100,
+				Armor = Math.Max((10 - mobile.ArmorClass) * 10, 0),
 			};
+
+			var attacks = new List<Attack>();
+			foreach (var dikuAttack in mobile.Attacks)
+			{
+				var at = Enum.Parse<AttackType>(dikuAttack.AttackType, true);
+
+				var attack = new Attack(at,
+					Math.Max((20 - dikuAttack.Hit) * 10, 0),
+					dikuAttack.DamageDice.ToValueRange());
+				attacks.Add(attack);
+			}
+
+			result.Attacks = attacks.ToArray();
 
 			foreach (var dikuFlag in mobile.Flags)
 			{
