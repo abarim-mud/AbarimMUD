@@ -7,6 +7,16 @@ namespace AbarimMUD.Commands.Player
 {
 	public class Train : PlayerCommand
 	{
+		private static readonly int[] PrimarySkillsLevelsConstraints5 =
+		[
+			1, 5, 10, 15, 20
+		];
+
+		private static readonly int[] PrimarySkillsLevelsConstraints10 =
+		[
+			1, 3, 5, 7, 9, 10, 12, 15, 17, 20
+		];
+
 		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
 			var character = context.Creature as Character;
@@ -93,26 +103,30 @@ namespace AbarimMUD.Commands.Player
 					return false;
 				}
 
-				int[] constraints;
-				switch (skillToTrain.TotalLevels)
+				var levelConstraint = 1;
+				if (skillValue != null)
 				{
-					case 5:
-						constraints = Configuration.PrimarySkillsLevelsConstraints5;
-						break;
-					case 10:
-						constraints = Configuration.PrimarySkillsLevelsConstraints10;
-						break;
-					default:
-						throw new Exception($"Levels constraints for {skillToTrain.TotalLevels} levels not set.");
-				}
+					int[] constraints;
+					switch (skillToTrain.TotalLevels)
+					{
+						case 5:
+							constraints = PrimarySkillsLevelsConstraints5;
+							break;
+						case 10:
+							constraints = PrimarySkillsLevelsConstraints10;
+							break;
+						default:
+							throw new Exception($"Levels constraints for {skillToTrain.TotalLevels} levels not set.");
+					}
 
-				var skillNextLevelIndex = skillValue != null ? skillValue.Level : 0;
-				var levelConstraint = constraints[skillNextLevelIndex];
+					var skillNextLevelIndex = skillValue != null ? skillValue.Level : 0;
+					levelConstraint = constraints[skillNextLevelIndex];
 
-				if (!character.Class.Id.EqualsToIgnoreCase(trainer.Info.Guildmaster.Id))
-				{
-					// Skill not of the primary class
-					levelConstraint *= 2;
+					if (!character.Class.Id.EqualsToIgnoreCase(trainer.Info.Guildmaster.Id))
+					{
+						// Skill not of the primary class
+						levelConstraint *= 2;
+					}
 				}
 
 				if (character.Level < levelConstraint)
