@@ -60,7 +60,7 @@ namespace AbarimMUD.Commands.Player
 				return false;
 			}
 
-			if (context.HuntTarget == target.Creature)
+			if (context.HuntInfo.Target == target.Creature)
 			{
 				context.Send($"You are hunting {target.ShortDescription} already.");
 				return false;
@@ -68,16 +68,14 @@ namespace AbarimMUD.Commands.Player
 
 			context.BreakHunt();
 
-			var result = PathFinding.BuildPath(context.Room, target.Room);
-			if (result == null)
+			if (!context.HuntInfo.SetTarget(context.Room, target.Creature))
 			{
 				context.Send($"{target.ShortDescription} can't be reached.");
 				return false;
 			}
 
 			context.Send($"You start to hunt {target.ShortDescription}.");
-			context.HuntTarget = target.Creature;
-			context.LastHunt = DateTime.Now;
+			context.HuntInfo.LastHunt = DateTime.Now;
 
 			return true;
 		}

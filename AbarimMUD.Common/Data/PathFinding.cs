@@ -1,37 +1,24 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Threading.Tasks;
 
 namespace AbarimMUD.Data
 {
 	public static class PathFinding
 	{
-		public class PathFindingResult
-		{
-			public Direction FirstDirection { get; }
-			public int StepsCount { get; }
-
-			internal PathFindingResult(Direction firstDirection, int stepsCount)
-			{
-				FirstDirection = firstDirection;
-				StepsCount = stepsCount;
-			}
-		}
-
-
 		private class Node
 		{
 			public Room Room { get; }
 			public Direction SourceDirection { get; }
 			public Node Source { get; }
+			public int Steps { get; }
 
 			public Node(Room room, Direction sourceDirection, Node source)
 			{
 				Room = room ?? throw new ArgumentNullException(nameof(room));
 				SourceDirection = sourceDirection;
 				Source = source;
+				Steps = source != null ? source.Steps + 1 : 0;
 			}
 		}
 
@@ -129,15 +116,25 @@ namespace AbarimMUD.Data
 		/// <param name="source"></param>
 		/// <param name="target"></param>
 		/// <returns></returns>
-		public static PathFindingResult BuildPath(Room source, Room target)
+		public static Direction[] BuildPath(Room source, Room target)
 		{
 			if (source.Id == target.Id)
 			{
 				return null;
 			}
 
-			PathFindingResult result = null;
+			// Check that room is adjancent
+			foreach (var pair in source.Exits)
+			{
+				var targetRoom = pair.Value.TargetRoom;
+				if (targetRoom != null && targetRoom.Id == target.Id)
+				{
+					Debug.WriteLine($"BuildPath: Target room is adjancent");
+					return [pair.Key];
+				}
+			}
 
+			Direction[] result = null;
 			UpdateCoords();
 
 			var s = Stopwatch.StartNew();
@@ -159,26 +156,23 @@ namespace AbarimMUD.Data
 
 				if (room.Id == target.Id)
 				{
-					// Reached
-					Debug.WriteLine($"BuildPathAsync: Found required room at {step} step.");
-
-					// Go back to the start, counting steps
-					var moveSteps = 1;
+					// Reconstruct path
 					var n = node;
-					while (n.Source != null && n.Source.Room.Id != source.Id)
+					var dirs = new List<Direction>();
+
+					do
 					{
-						++moveSteps;
+						dirs.Add(n.SourceDirection);
 						n = n.Source;
 					}
+					while (n.Source != null);
 
-					if (n.Source == null)
-					{
-						// Should never happen
-						Debug.Assert(false);
-						break;
-					}
+					dirs.Reverse();
 
-					result = new PathFindingResult(n.SourceDirection, moveSteps);
+					result = dirs.ToArray();
+
+					Debug.WriteLine($"BuildPath: Found required room at {step} step. Steps: {node.Steps}");
+
 					break;
 				}
 
@@ -203,7 +197,7 @@ namespace AbarimMUD.Data
 
 			if (result == null)
 			{
-				Debug.WriteLine($"BuildPathAsync: Destination room unreachable at {step} step.");
+				Debug.WriteLine($"BuildPath: Destination room unreachable at {step} step.");
 			}
 
 			Debug.WriteLine($"Took {s.ElapsedMilliseconds} ms");

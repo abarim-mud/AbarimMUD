@@ -11,7 +11,7 @@
 				return false;
 			}
 
-			if (context.HuntTarget == null)
+			if (!context.HuntInfo.IsActive)
 			{
 				context.Send("You aren't hunting.");
 				return false;

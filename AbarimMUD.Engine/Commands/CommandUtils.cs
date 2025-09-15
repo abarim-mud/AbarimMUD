@@ -376,13 +376,13 @@ namespace AbarimMUD.Commands
 
 		public static void BreakHunt(this ExecutionContext context)
 		{
-			if (context.HuntTarget == null)
+			if (!context.HuntInfo.IsActive)
 			{
 				return;
 			}
 
-			context.Send($"You stop to hunt {context.HuntTarget.ShortDescription}.");
-			context.HuntTarget = null;
+			context.Send($"You stop to hunt {context.HuntInfo.Target.ShortDescription}.");
+			context.HuntInfo.Reset();
 		}
 
 		public static Ability EnsureAbility(this ExecutionContext context, string name)

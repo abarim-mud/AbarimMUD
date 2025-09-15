@@ -119,28 +119,36 @@ namespace AbarimMUD
 		private void ProcessHunt(Commands.ExecutionContext ctx)
 		{
 			var now = DateTime.Now;
-			if (ctx.HuntTarget == null || (now - ctx.LastHunt).TotalMilliseconds < Configuration.HuntPauseInMs)
+
+			if (!ctx.HuntInfo.IsActive || (now - ctx.HuntInfo.LastHunt).TotalMilliseconds < Configuration.HuntPauseInMs)
 			{
 				return;
 			}
 
-			if (ctx.HuntTarget.Room.Id == ctx.Room.Id)
+			var target = ctx.HuntInfo.Target;
+			if (target.Room.Id == ctx.Room.Id)
 			{
 				// Found
-				ctx.Send($"The hunt is over. You found {ctx.HuntTarget.ShortDescription}.");
-				ctx.HuntTarget = null;
+				ctx.Send($"The hunt is over. You found {target.ShortDescription}.");
+				ctx.HuntInfo.Reset();
 			}
 			else
 			{
-				var result = PathFinding.BuildPath(ctx.Room, ctx.HuntTarget.Room);
-				if (result == null)
+				if (ctx.HuntInfo.TargetRoomId != target.Room.Id)
 				{
-					ctx.Send($"{ctx.HuntTarget.ShortDescription} can't be reached. The hunt is over.");
-					ctx.HuntTarget = null;
+					// Target moved, rebuild path
+					if (!ctx.HuntInfo.SetTarget(ctx.Room, target))
+					{
+						ctx.Send($"{target.ShortDescription} can't be reached. The hunt is over.");
+					}
 				}
-				else
+
+				if (ctx.HuntInfo.IsActive)
 				{
-					var moveSteps = result.StepsCount;
+					var moveSteps = ctx.HuntInfo.RemainingSteps;
+
+					Debug.WriteLine($"{ctx.ShortDescription} hunts {target.ShortDescription}. Remaining steps: {moveSteps}");
+
 					string farAway;
 					if (moveSteps > 20)
 					{
@@ -163,13 +171,14 @@ namespace AbarimMUD
 						farAway = "very close";
 					}
 
-					ctx.Send($"You continue to hunt {ctx.HuntTarget.ShortDescription}. The target is {farAway}.");
+					ctx.Send($"You continue to hunt {target.ShortDescription}. The target is {farAway}.");
 
 					try
 					{
 						ctx.SuppressStopHuntOnMovement = true;
 
-						switch (result.FirstDirection)
+						var direction = ctx.HuntInfo.GetNextDirection();
+						switch (direction)
 						{
 							case Direction.North:
 								BaseCommand.North.Execute(ctx);
@@ -191,11 +200,11 @@ namespace AbarimMUD
 								break;
 						}
 
-						if (ctx.HuntTarget.Room.Id == ctx.Room.Id)
+						if (target.Room.Id == ctx.Room.Id)
 						{
 							// Found
-							ctx.Send($"The hunt is over. You found {ctx.HuntTarget.ShortDescription}.");
-							ctx.HuntTarget = null;
+							ctx.Send($"The hunt is over. You found {target.ShortDescription}.");
+							ctx.HuntInfo.Reset();
 						}
 					}
 					finally
@@ -203,7 +212,7 @@ namespace AbarimMUD
 						ctx.SuppressStopHuntOnMovement = false;
 					}
 
-					ctx.LastHunt = now;
+					ctx.HuntInfo.LastHunt = now;
 				}
 			}
 		}

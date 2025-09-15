@@ -7,6 +7,50 @@ using AbarimMUD.Combat;
 
 namespace AbarimMUD.Commands
 {
+	public class HuntInfo
+	{
+		private Direction[] _path;
+		private int _step;
+
+		public Creature Target { get; private set; }
+		public DateTime LastHunt { get; set; }
+		public int TargetRoomId { get; private set; }
+		public bool IsActive => Target != null;
+		public int RemainingSteps => _path.Length - _step;
+
+		public void Reset()
+		{
+			Target = null;
+			_path = null;
+			_step = 0;
+		}
+
+		public bool SetTarget(Room sourceRoom, Creature target)
+		{
+			Reset();
+			var result = PathFinding.BuildPath(sourceRoom, target.Room);
+			if (result == null)
+			{
+				return false;
+			}
+
+			Target = target;
+			TargetRoomId = target.Room.Id;
+			_path = result;
+			_step = 0;
+
+			return true;
+		}
+
+		public Direction GetNextDirection()
+		{
+			var result = _path[_step];
+			++_step;
+
+			return result;
+		}
+	}
+
 	public class ExecutionContext
 	{
 		private Creature _creature;
@@ -65,8 +109,7 @@ namespace AbarimMUD.Commands
 		public int Level => Creature.Level;
 
 		public bool HasCommands => _commandQueue.Count > 0;
-		public Creature HuntTarget { get; set; }
-		public DateTime LastHunt { get; set; }
+		public HuntInfo HuntInfo { get; } = new HuntInfo();
 		public bool SuppressStopHuntOnMovement { get; set; }
 		public bool AppendPrompt { get; set; } = true;
 
@@ -120,7 +163,7 @@ namespace AbarimMUD.Commands
 
 		public static void SendAll(string message)
 		{
-			foreach(var ctx in All())
+			foreach (var ctx in All())
 			{
 				ctx.Send(message);
 			}
@@ -128,7 +171,7 @@ namespace AbarimMUD.Commands
 
 		public void SendAllExceptMe(string message)
 		{
-			foreach(var ctx in AllExceptMe())
+			foreach (var ctx in AllExceptMe())
 			{
 				ctx.Send(message);
 			}
@@ -151,7 +194,7 @@ namespace AbarimMUD.Commands
 
 		public void SendRoomExceptMe(string message)
 		{
-			foreach(var ctx in AllExceptMeInRoom())
+			foreach (var ctx in AllExceptMeInRoom())
 			{
 				ctx.Send(message);
 			}
@@ -256,7 +299,7 @@ namespace AbarimMUD.Commands
 
 				if (forceDotAtTheEnd.Value && !text.EndsWith("."))
 				{
-//					output.Append('.');
+					//					output.Append('.');
 				}
 
 				// Always append color reset
