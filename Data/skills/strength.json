@@ -25,10 +25,34 @@
     },
     {
       "Modifiers": {
-        "AttackBonus": 10,
+        "AttackBonus": 10
+      }
+    },
+    {
+      "Modifiers": {
+        "Damage": 1
+      }
+    },
+    {
+      "Modifiers": {
+        "AttackBonus": 10
+      }
+    },
+    {
+      "Modifiers": {
+        "Damage": 1
+      }
+    },
+    {
+      "Modifiers": {
+        "AttackBonus": 10
+      }
+    },
+    {
+      "Modifiers": {
         "Damage": 1
       }
     }
   ],
-  "Cost": 2
+  "Cost": 1
 }

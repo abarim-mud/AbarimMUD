@@ -13,19 +13,24 @@
   "PauseBetweenFightRoundsInMs": 3000,
   "NegativeRegen": 20,
   "BaseMartialArtsDamage": "1-4",
-  "PrimarySkillsLevelsConstraints": [
+  "PrimarySkillsLevelsConstraints5": [
     1,
     5,
     10,
     15,
     20
   ],
-  "NonPrimarySkillsLevelsConstraints": [
+  "PrimarySkillsLevelsConstraints10": [
     1,
+    3,
+    5,
+    7,
+    9,
     10,
-    20,
-    30,
-    40
+    12,
+    15,
+    17,
+    20
   ],
   "RecallManaCost": 35,
   "BaseBuyPricePercentage": 150,

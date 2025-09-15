@@ -105,7 +105,7 @@ namespace AbarimMUD.Commands.Player
 					var x = i % 2;
 					var y = i / 2;
 
-					skillsGrid.SetValue(x, y, $"{pair.Value.Skill.Name}: {pair.Value.Level}");
+					skillsGrid.SetValue(x, y, $"{pair.Value.Skill.Name}: {pair.Value.Level}/{pair.Value.Skill.TotalLevels}");
 
 					++i;
 				}

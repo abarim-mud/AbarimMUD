@@ -1,4 +1,5 @@
 ﻿using AbarimMUD.Data;
+using System;
 using System.Linq;
 using System.Text;
 
@@ -50,7 +51,7 @@ namespace AbarimMUD.Commands.Player
 					skillValue = pair.Value;
 				}
 
-				if (pair.Value.Level == SkillLevel.Master)
+				if (pair.Value.IsMaxed)
 				{
 					trainableSkills.Remove(pair.Value.Skill);
 				}
@@ -86,23 +87,32 @@ namespace AbarimMUD.Commands.Player
 					return false;
 				}
 
-				if (skillValue != null && skillValue.Level == SkillLevel.Master)
+				if (skillValue != null && skillValue.IsMaxed)
 				{
 					Tell.Execute(trainerContext, $"{context.Creature.ShortDescription} You are master in '{data}' already.");
 					return false;
 				}
 
-				var levelConstraint = 1;
-				var skillNextLevel = skillValue != null ? ((int)skillValue.Level + 1) : 0;
-				if (character.Class.Id.EqualsToIgnoreCase(trainer.Info.Guildmaster.Id))
+				int[] constraints;
+				switch (skillToTrain.TotalLevels)
 				{
-					// Skill of the primary class
-					levelConstraint = Configuration.PrimarySkillsLevelsConstraints[skillNextLevel];
+					case 5:
+						constraints = Configuration.PrimarySkillsLevelsConstraints5;
+						break;
+					case 10:
+						constraints = Configuration.PrimarySkillsLevelsConstraints10;
+						break;
+					default:
+						throw new Exception($"Levels constraints for {skillToTrain.TotalLevels} levels not set.");
 				}
-				else
+
+				var skillNextLevelIndex = skillValue != null ? skillValue.Level : 0;
+				var levelConstraint = constraints[skillNextLevelIndex];
+
+				if (!character.Class.Id.EqualsToIgnoreCase(trainer.Info.Guildmaster.Id))
 				{
 					// Skill not of the primary class
-					levelConstraint = Configuration.NonPrimarySkillsLevelsConstraints[skillNextLevel];
+					levelConstraint *= 2;
 				}
 
 				if (character.Level < levelConstraint)

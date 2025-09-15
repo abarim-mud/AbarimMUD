@@ -1,18 +1,10 @@
 ﻿using AbarimMUD.Storage;
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
 {
-	public enum SkillLevel
-	{
-		Novice,
-		Apprentice,
-		Adept,
-		Expert,
-		Master
-	}
-
 	public class SkillLevelDefinition
 	{
 		public Dictionary<ModifierType, int> Modifiers { get; set; } = new Dictionary<ModifierType, int>();
@@ -30,6 +22,9 @@ namespace AbarimMUD.Data
 		public SkillLevelDefinition[] Levels { get; set; }
 		public int Cost { get; set; }
 
+		[JsonIgnore]
+		public int TotalLevels => Levels.Length;
+
 		public void Create() => Storage.Create(this);
 		public void Save() => Storage.Save(this);
 
@@ -40,19 +35,21 @@ namespace AbarimMUD.Data
 	public class SkillValue
 	{
 		public Skill Skill { get; set; }
-		public SkillLevel Level { get; set; }
+		public int Level { get; set; }
+
+		public bool IsMaxed => Level >= Skill.TotalLevels;
 
 		internal SkillValue()
 		{
 		}
 
-		public SkillValue(Skill skill, SkillLevel level)
+		public SkillValue(Skill skill, int level)
 		{
 			Skill = skill ?? throw new ArgumentNullException(nameof(skill));
 			Level = level;
 		}
 
-		public SkillValue(Skill skill): this(skill, SkillLevel.Novice)
+		public SkillValue(Skill skill) : this(skill, 1)
 		{
 		}
 	}

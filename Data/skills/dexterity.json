@@ -5,39 +5,64 @@
   "Levels": [
     {
       "Modifiers": {
-        "Armor": 8,
-        "Moves": 10,
+        "Armor": 4,
+        "Moves": 10
+      }
+    },
+    {
+      "Modifiers": {
+        "Armor": 4,
         "MovesRegenPercentage": 1
       }
     },
     {
       "Modifiers": {
-        "Armor": 8,
-        "Moves": 10,
+        "Armor": 4,
+        "Moves": 10
+      }
+    },
+    {
+      "Modifiers": {
+        "Armor": 4,
         "MovesRegenPercentage": 1
       }
     },
     {
       "Modifiers": {
-        "Armor": 8,
-        "Moves": 10,
+        "Armor": 4,
+        "Moves": 10
+      }
+    },
+    {
+      "Modifiers": {
+        "Armor": 4,
         "MovesRegenPercentage": 1
       }
     },
     {
       "Modifiers": {
-        "Armor": 8,
-        "Moves": 10,
+        "Armor": 4,
+        "Moves": 10
+      }
+    },
+    {
+      "Modifiers": {
+        "Armor": 4,
         "MovesRegenPercentage": 1
       }
     },
     {
       "Modifiers": {
-        "Armor": 8,
-        "Moves": 10,
+        "Armor": 4,
+        "Moves": 10
+      }
+    },
+    {
+      "Modifiers": {
+        "Armor": 4,
         "MovesRegenPercentage": 1
       }
     }
   ],
-  "Cost": 2
+  "Cost": 1
 }

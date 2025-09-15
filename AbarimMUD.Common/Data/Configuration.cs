@@ -30,10 +30,17 @@ namespace AbarimMUD.Data
 			public int NegativeRegen { get; set; }
 			public ValueRange BaseMartialArtsDamage { get; set; } = new ValueRange(1, 4);
 
-			public int[] PrimarySkillsLevelsConstraints { get; set; } = new[] { 1, 5, 10, 15, 20 };
+			public int[] PrimarySkillsLevelsConstraints5 { get; set; } = new[]
+			{
+				1, 5, 10, 15, 20
+			};
 
 
-			public int[] NonPrimarySkillsLevelsConstraints { get; set; } = new[] { 1, 10, 20, 30, 40 };
+			public int[] PrimarySkillsLevelsConstraints10 { get; set; } = new[]
+			{
+				1, 3, 5, 7, 9, 10, 12, 15, 17, 20
+			};
+
 			public int RecallManaCost { get; set; } = 35;
 			public int BaseBuyPricePercentage { get; set; } = 150;
 			public int BaseSellPricePercentage { get; set; } = 25;
@@ -67,9 +74,8 @@ namespace AbarimMUD.Data
 		public static int NegativeRegen => Instance.NegativeRegen;
 		public static ValueRange CharacterBarehandedDamage => Instance.BaseMartialArtsDamage;
 
-		public static int[] PrimarySkillsLevelsConstraints => Instance.PrimarySkillsLevelsConstraints;
-
-		public static int[] NonPrimarySkillsLevelsConstraints => Instance.NonPrimarySkillsLevelsConstraints;
+		public static int[] PrimarySkillsLevelsConstraints5 => Instance.PrimarySkillsLevelsConstraints5;
+		public static int[] PrimarySkillsLevelsConstraints10 => Instance.PrimarySkillsLevelsConstraints10;
 
 		public static int RecallManaCost => Instance.RecallManaCost;
 		public static int BaseBuyPricePercentage => Instance.BaseBuyPricePercentage;

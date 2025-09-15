@@ -6,7 +6,7 @@
     {
       "Modifiers": {
         "WeaponAttacksCount": 1,
-        "WeaponAttackBonus": 10
+        "WeaponAttackBonus": 20
       },
       "PrimeModifiers": {
         "WeaponAttackBonus": 20
@@ -17,25 +17,50 @@
     },
     {
       "Modifiers": {
-        "WeaponAttackBonus": 10
+        "WeaponAttackBonus": 20
+      }
+    },
+    {
+      "Modifiers": {
+        "WeaponAttackBonus": 20
+      }
+    },
+    {
+      "Modifiers": {
+        "WeaponAttackBonus": 20
+      }
+    },
+    {
+      "Modifiers": {
+        "WeaponAttackBonus": 20
+      }
+    },
+    {
+      "Modifiers": {
+        "WeaponAttackBonus": 20
+      }
+    },
+    {
+      "Modifiers": {
+        "WeaponAttackBonus": 20
       }
     },
     {
       "Modifiers": {
         "WeaponAttacksCount": 1,
-        "WeaponAttackBonus": 10
+        "WeaponAttackBonus": 20
       }
     },
     {
       "Modifiers": {
-        "WeaponAttackBonus": 10
+        "WeaponAttackBonus": 20
       }
     },
     {
       "Modifiers": {
-        "WeaponAttackBonus": 10
+        "WeaponAttackBonus": 20
       }
     }
   ],
-  "Cost": 2
+  "Cost": 1
 }

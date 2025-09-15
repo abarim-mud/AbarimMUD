@@ -48,7 +48,7 @@ namespace AbarimMUD.Storage
 				// The id is key in the dictionary
 				var value = reader.GetString();
 
-				var level = Enum.Parse<SkillLevel>(value);
+				var level = int.Parse(value);
 
 				return new SkillValue
 				{

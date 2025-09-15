@@ -8,7 +8,7 @@
         "MartialArtsMinimumDamage": 2,
         "MartialArtsMaximumDamage": 10,
         "MartialArtsAttacksCount": 1,
-        "MartialArtsAttackBonus": 10
+        "MartialArtsAttackBonus": 20
       },
       "PrimeModifiers": {
         "DamageReduction": 2,
@@ -20,34 +20,59 @@
     },
     {
       "Modifiers": {
-        "DamageReduction": 1,
-        "MartialArtsAttackBonus": 10
+        "MartialArtsAttackBonus": 20
       }
     },
     {
       "Modifiers": {
-        "MartialArtsMinimumDamage": 2,
-        "MartialArtsMaximumDamage": 14,
+        "DamageReduction": 1,
+        "MartialArtsAttackBonus": 20
+      }
+    },
+    {
+      "Modifiers": {
         "MartialArtsAttacksCount": 1,
-        "DamageReduction": 1,
-        "MartialArtsAttackBonus": 10
+        "MartialArtsAttackBonus": 20
       }
     },
     {
       "Modifiers": {
         "DamageReduction": 1,
-        "MartialArtsAttackBonus": 10
+        "MartialArtsAttackBonus": 20,
+        "MartialArtsMinimumDamage": 2,
+        "MartialArtsMaximumDamage": 14
+      }
+    },
+    {
+      "Modifiers": {
+        "MartialArtsAttackBonus": 20
+      }
+    },
+    {
+      "Modifiers": {
+        "DamageReduction": 1,
+        "MartialArtsAttackBonus": 20
+      }
+    },
+    {
+      "Modifiers": {
+        "MartialArtsAttacksCount": 1,
+        "MartialArtsAttackBonus": 20
+      }
+    },
+    {
+      "Modifiers": {
+        "DamageReduction": 1,
+        "MartialArtsAttackBonus": 20
       }
     },
     {
       "Modifiers": {
         "MartialArtsMinimumDamage": 3,
         "MartialArtsMaximumDamage": 18,
-        "MartialArtsAttacksCount": 1,
-        "DamageReduction": 1,
-        "MartialArtsAttackBonus": 10
+        "MartialArtsAttackBonus": 20
       }
     }
   ],
-  "Cost": 2
+  "Cost": 1
 }

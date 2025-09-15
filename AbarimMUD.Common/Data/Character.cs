@@ -122,7 +122,7 @@ namespace AbarimMUD.Data
 				var result = 0;
 				foreach (var pair in Skills)
 				{
-					result += ((int)pair.Value.Level + 1);
+					result += pair.Value.Level;
 				}
 
 				return result;
@@ -244,8 +244,9 @@ namespace AbarimMUD.Data
 			foreach (var pair in Skills)
 			{
 				var skill = pair.Value.Skill;
+
 				// Apply all levels up to learned one
-				for (var level = 0; level <= (int)pair.Value.Level; ++level)
+				for (var level = 0; level < pair.Value.Level; ++level)
 				{
 					var def = skill.Levels[level];
 
@@ -321,7 +322,7 @@ namespace AbarimMUD.Data
 				}
 			}
 
-			if (skillValue != null && skillValue.Level == SkillLevel.Master)
+			if (skillValue != null && skillValue.IsMaxed)
 			{
 				return;
 			}
