@@ -1,22 +1,22 @@
-﻿using System.Collections.Generic;
-using System.Text;
+﻿using AbarimMUD.Combat;
 using AbarimMUD.Data;
-using System.Linq;
 using System;
-using AbarimMUD.Combat;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using static AbarimMUD.Data.PathFinding;
 
 namespace AbarimMUD.Commands
 {
 	public class HuntInfo
 	{
-		private Direction[] _path;
+		private Dictionary<int, PathFindingResult> _path;
 		private int _step;
 
 		public Creature Target { get; private set; }
 		public DateTime LastHunt { get; set; }
 		public int TargetRoomId { get; private set; }
 		public bool IsActive => Target != null;
-		public int RemainingSteps => _path.Length - _step;
 
 		public void Reset()
 		{
@@ -42,10 +42,13 @@ namespace AbarimMUD.Commands
 			return true;
 		}
 
-		public Direction GetNextDirection()
+		public PathFindingResult? GetForRoom(int roomId)
 		{
-			var result = _path[_step];
-			++_step;
+			PathFindingResult result;
+			if (_path == null || !_path.TryGetValue(roomId, out result))
+			{
+				return null;
+			}
 
 			return result;
 		}

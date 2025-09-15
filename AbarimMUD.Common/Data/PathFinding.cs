@@ -6,19 +6,31 @@ namespace AbarimMUD.Data
 {
 	public static class PathFinding
 	{
+		public struct PathFindingResult
+		{
+			public Direction Direction;
+			public int RemainingSteps;
+
+			public PathFindingResult(Direction direction, int remainingSteps)
+			{
+				Direction = direction;
+				RemainingSteps = remainingSteps;
+			}
+
+			public override string ToString() => $"{Direction}, {RemainingSteps}";
+		}
+
 		private class Node
 		{
 			public Room Room { get; }
 			public Direction SourceDirection { get; }
 			public Node Source { get; }
-			public int Steps { get; }
 
 			public Node(Room room, Direction sourceDirection, Node source)
 			{
 				Room = room ?? throw new ArgumentNullException(nameof(room));
 				SourceDirection = sourceDirection;
 				Source = source;
-				Steps = source != null ? source.Steps + 1 : 0;
 			}
 		}
 
@@ -116,7 +128,7 @@ namespace AbarimMUD.Data
 		/// <param name="source"></param>
 		/// <param name="target"></param>
 		/// <returns></returns>
-		public static Direction[] BuildPath(Room source, Room target)
+		public static Dictionary<int, PathFindingResult> BuildPath(Room source, Room target)
 		{
 			if (source.Id == target.Id)
 			{
@@ -130,11 +142,14 @@ namespace AbarimMUD.Data
 				if (targetRoom != null && targetRoom.Id == target.Id)
 				{
 					Debug.WriteLine($"BuildPath: Target room is adjancent");
-					return [pair.Key];
+					return new Dictionary<int, PathFindingResult>()
+					{
+						[source.Id] = new PathFindingResult(pair.Key, 1)
+					};
 				}
 			}
 
-			Direction[] result = null;
+			Dictionary<int, PathFindingResult> result = null;
 			UpdateCoords();
 
 			var s = Stopwatch.StartNew();
@@ -158,20 +173,25 @@ namespace AbarimMUD.Data
 				{
 					// Reconstruct path
 					var n = node;
-					var dirs = new List<Direction>();
+					result = new Dictionary<int, PathFindingResult>();
 
+					if (node.Source == null)
+					{
+						// Should never happen
+						Debug.Assert(false);
+						return null;
+					}
+
+					var steps = 0;
 					do
 					{
-						dirs.Add(n.SourceDirection);
+						++steps;
+						result[n.Source.Room.Id] = new PathFindingResult(n.SourceDirection, steps);
 						n = n.Source;
 					}
 					while (n.Source != null);
 
-					dirs.Reverse();
-
-					result = dirs.ToArray();
-
-					Debug.WriteLine($"BuildPath: Found required room at {step} step. Steps: {node.Steps}");
+					Debug.WriteLine($"BuildPath: Found required room at {step} step. Steps: {steps}");
 
 					break;
 				}

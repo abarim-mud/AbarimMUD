@@ -140,80 +140,86 @@ namespace AbarimMUD
 					if (!ctx.HuntInfo.SetTarget(ctx.Room, target))
 					{
 						ctx.Send($"{target.ShortDescription} can't be reached. The hunt is over.");
+						return;
 					}
 				}
 
-				if (ctx.HuntInfo.IsActive)
+				var pr = ctx.HuntInfo.GetForRoom(ctx.Room.Id);
+				if (pr == null)
 				{
-					var moveSteps = ctx.HuntInfo.RemainingSteps;
-
-					Debug.WriteLine($"{ctx.ShortDescription} hunts {target.ShortDescription}. Remaining steps: {moveSteps}");
-
-					string farAway;
-					if (moveSteps > 20)
-					{
-						farAway = "very far away";
-					}
-					else if (moveSteps > 10)
-					{
-						farAway = "far away";
-					}
-					else if (moveSteps > 5)
-					{
-						farAway = "not so far away";
-					}
-					else if (moveSteps > 2)
-					{
-						farAway = "close";
-					}
-					else
-					{
-						farAway = "very close";
-					}
-
-					ctx.Send($"You continue to hunt {target.ShortDescription}. The target is {farAway}.");
-
-					try
-					{
-						ctx.SuppressStopHuntOnMovement = true;
-
-						var direction = ctx.HuntInfo.GetNextDirection();
-						switch (direction)
-						{
-							case Direction.North:
-								BaseCommand.North.Execute(ctx);
-								break;
-							case Direction.East:
-								BaseCommand.East.Execute(ctx);
-								break;
-							case Direction.South:
-								BaseCommand.South.Execute(ctx);
-								break;
-							case Direction.West:
-								BaseCommand.West.Execute(ctx);
-								break;
-							case Direction.Up:
-								BaseCommand.Up.Execute(ctx);
-								break;
-							case Direction.Down:
-								BaseCommand.Down.Execute(ctx);
-								break;
-						}
-
-						if (target.Room.Id == ctx.Room.Id)
-						{
-							// Found
-							ctx.Send($"The hunt is over. You found {target.ShortDescription}.");
-							ctx.HuntInfo.Reset();
-						}
-					}
-					finally
-					{
-						ctx.SuppressStopHuntOnMovement = false;
-					}
-
-					ctx.HuntInfo.LastHunt = now;
+					// Should never happen
+					ctx.HuntInfo.Reset();
+					ctx.Send($"{target.ShortDescription} can't be reached. The hunt is over.");
+					return;
 				}
+
+				var moveSteps = pr.Value.RemainingSteps;
+
+				Debug.WriteLine($"{ctx.ShortDescription} hunts {target.ShortDescription}. Remaining steps: {moveSteps}");
+
+				string farAway;
+				if (moveSteps > 20)
+				{
+					farAway = "very far away";
+				}
+				else if (moveSteps > 10)
+				{
+					farAway = "far away";
+				}
+				else if (moveSteps > 5)
+				{
+					farAway = "not so far away";
+				}
+				else if (moveSteps > 2)
+				{
+					farAway = "close";
+				}
+				else
+				{
+					farAway = "very close";
+				}
+
+				ctx.Send($"You continue to hunt {target.ShortDescription}. The target is {farAway}.");
+
+				try
+				{
+					ctx.SuppressStopHuntOnMovement = true;
+
+					switch (pr.Value.Direction)
+					{
+						case Direction.North:
+							BaseCommand.North.Execute(ctx);
+							break;
+						case Direction.East:
+							BaseCommand.East.Execute(ctx);
+							break;
+						case Direction.South:
+							BaseCommand.South.Execute(ctx);
+							break;
+						case Direction.West:
+							BaseCommand.West.Execute(ctx);
+							break;
+						case Direction.Up:
+							BaseCommand.Up.Execute(ctx);
+							break;
+						case Direction.Down:
+							BaseCommand.Down.Execute(ctx);
+							break;
+					}
+
+					if (target.Room.Id == ctx.Room.Id)
+					{
+						// Found
+						ctx.Send($"The hunt is over. You found {target.ShortDescription}.");
+						ctx.HuntInfo.Reset();
+					}
+				}
+				finally
+				{
+					ctx.SuppressStopHuntOnMovement = false;
+				}
+
+				ctx.HuntInfo.LastHunt = now;
 			}
 		}
 
