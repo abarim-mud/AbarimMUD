@@ -125,6 +125,8 @@ namespace AbarimMUD.Data
 					result += pair.Value.Level;
 				}
 
+				result -= Class.StartingSkills.Count;
+
 				return result;
 			}
 		}

@@ -175,7 +175,7 @@ namespace AbarimMUD.Storage
 			_allRoomsCache.Invalidate();
 		}
 
-		protected override void ClearCache()
+		public override void ClearCache()
 		{
 			foreach (var area in this)
 			{

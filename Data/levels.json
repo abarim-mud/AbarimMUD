@@ -1,9 +1,5 @@
 [
   {
-    "Level": 1,
-    "Experience": "0"
-  },
-  {
     "Level": 2,
     "Experience": "2,000"
   },
@@ -53,350 +49,350 @@
   },
   {
     "Level": 14,
-    "Experience": "300,000"
-  },
-  {
-    "Level": 15,
     "Experience": "400,000"
   },
   {
+    "Level": 15,
+    "Experience": "570,000"
+  },
+  {
     "Level": 16,
-    "Experience": "500,000"
-  },
-  {
-    "Level": 17,
-    "Experience": "600,000"
-  },
-  {
-    "Level": 18,
-    "Experience": "700,000"
-  },
-  {
-    "Level": 19,
     "Experience": "800,000"
   },
   {
-    "Level": 20,
+    "Level": 17,
     "Experience": "1,000,000"
   },
   {
-    "Level": 21,
-    "Experience": "1,200,000"
-  },
-  {
-    "Level": 22,
+    "Level": 18,
     "Experience": "1,500,000"
   },
   {
-    "Level": 23,
+    "Level": 19,
     "Experience": "2,000,000"
   },
   {
-    "Level": 24,
+    "Level": 20,
     "Experience": "2,500,000"
   },
   {
+    "Level": 21,
+    "Experience": "3,400,000"
+  },
+  {
+    "Level": 22,
+    "Experience": "4,300,000"
+  },
+  {
+    "Level": 23,
+    "Experience": "5,400,000"
+  },
+  {
+    "Level": 24,
+    "Experience": "6,800,000"
+  },
+  {
     "Level": 25,
-    "Experience": "3,000,000"
+    "Experience": "8,400,000"
   },
   {
     "Level": 26,
-    "Experience": "3,500,000"
-  },
-  {
-    "Level": 27,
-    "Experience": "4,000,000"
-  },
-  {
-    "Level": 28,
-    "Experience": "5,000,000"
-  },
-  {
-    "Level": 29,
-    "Experience": "6,000,000"
-  },
-  {
-    "Level": 30,
-    "Experience": "7,000,000"
-  },
-  {
-    "Level": 31,
-    "Experience": "8,500,000"
-  },
-  {
-    "Level": 32,
     "Experience": "10,000,000"
   },
   {
-    "Level": 33,
-    "Experience": "13,000,000"
+    "Level": 27,
+    "Experience": "12,000,000"
   },
   {
-    "Level": 34,
+    "Level": 28,
     "Experience": "15,000,000"
   },
   {
-    "Level": 35,
+    "Level": 29,
     "Experience": "18,000,000"
   },
   {
-    "Level": 36,
-    "Experience": "21,000,000"
+    "Level": 30,
+    "Experience": "22,000,000"
   },
   {
-    "Level": 37,
-    "Experience": "25,000,000"
+    "Level": 31,
+    "Experience": "26,000,000"
   },
   {
-    "Level": 38,
+    "Level": 32,
     "Experience": "30,000,000"
   },
   {
-    "Level": 39,
+    "Level": 33,
     "Experience": "35,000,000"
   },
   {
+    "Level": 34,
+    "Experience": "41,000,000"
+  },
+  {
+    "Level": 35,
+    "Experience": "48,000,000"
+  },
+  {
+    "Level": 36,
+    "Experience": "55,000,000"
+  },
+  {
+    "Level": 37,
+    "Experience": "64,000,000"
+  },
+  {
+    "Level": 38,
+    "Experience": "73,000,000"
+  },
+  {
+    "Level": 39,
+    "Experience": "83,000,000"
+  },
+  {
     "Level": 40,
-    "Experience": "40,000,000"
+    "Experience": "100,000,000"
   },
   {
     "Level": 41,
-    "Experience": "215,000,000"
+    "Experience": "110,000,000"
   },
   {
     "Level": 42,
-    "Experience": "244,000,000"
+    "Experience": "120,000,000"
   },
   {
     "Level": 43,
-    "Experience": "275,000,000"
+    "Experience": "140,000,000"
   },
   {
     "Level": 44,
-    "Experience": "300,000,000"
+    "Experience": "150,000,000"
   },
   {
     "Level": 45,
-    "Experience": "347,000,000"
+    "Experience": "170,000,000"
   },
   {
     "Level": 46,
-    "Experience": "388,000,000"
+    "Experience": "190,000,000"
   },
   {
     "Level": 47,
-    "Experience": "433,000,000"
+    "Experience": "220,000,000"
   },
   {
     "Level": 48,
-    "Experience": "482,000,000"
+    "Experience": "240,000,000"
   },
   {
     "Level": 49,
-    "Experience": "536,000,000"
+    "Experience": "270,000,000"
   },
   {
     "Level": 50,
-    "Experience": "594,000,000"
+    "Experience": "300,000,000"
   },
   {
     "Level": 51,
-    "Experience": "657,000,000"
+    "Experience": "330,000,000"
   },
   {
     "Level": 52,
-    "Experience": "726,000,000"
+    "Experience": "360,000,000"
   },
   {
     "Level": 53,
-    "Experience": "800,000,000"
+    "Experience": "400,000,000"
   },
   {
     "Level": 54,
-    "Experience": "880,000,000"
+    "Experience": "440,000,000"
   },
   {
     "Level": 55,
-    "Experience": "966,000,000"
+    "Experience": "480,000,000"
   },
   {
     "Level": 56,
-    "Experience": "1,060,000,000"
+    "Experience": "530,000,000"
   },
   {
     "Level": 57,
-    "Experience": "1,160,000,000"
+    "Experience": "580,000,000"
   },
   {
     "Level": 58,
-    "Experience": "1,270,000,000"
+    "Experience": "630,000,000"
   },
   {
     "Level": 59,
-    "Experience": "1,380,000,000"
+    "Experience": "690,000,000"
   },
   {
     "Level": 60,
-    "Experience": "1,500,000,000"
+    "Experience": "750,000,000"
   },
   {
     "Level": 61,
-    "Experience": "1,640,000,000"
+    "Experience": "820,000,000"
   },
   {
     "Level": 62,
-    "Experience": "1,780,000,000"
+    "Experience": "890,000,000"
   },
   {
     "Level": 63,
-    "Experience": "1,930,000,000"
+    "Experience": "960,000,000"
   },
   {
     "Level": 64,
-    "Experience": "2,000,000,000"
+    "Experience": "1,000,000,000"
   },
   {
     "Level": 65,
-    "Experience": "2,260,000,000"
+    "Experience": "1,100,000,000"
   },
   {
     "Level": 66,
-    "Experience": "2,440,000,000"
+    "Experience": "1,200,000,000"
   },
   {
     "Level": 67,
-    "Experience": "2,630,000,000"
+    "Experience": "1,300,000,000"
   },
   {
     "Level": 68,
-    "Experience": "2,840,000,000"
+    "Experience": "1,400,000,000"
   },
   {
     "Level": 69,
-    "Experience": "3,060,000,000"
+    "Experience": "1,500,000,000"
   },
   {
     "Level": 70,
-    "Experience": "3,300,000,000"
+    "Experience": "1,600,000,000"
   },
   {
     "Level": 71,
-    "Experience": "3,530,000,000"
+    "Experience": "1,800,000,000"
   },
   {
     "Level": 72,
-    "Experience": "3,800,000,000"
+    "Experience": "1,900,000,000"
   },
   {
     "Level": 73,
-    "Experience": "4,070,000,000"
+    "Experience": "2,000,000,000"
   },
   {
     "Level": 74,
-    "Experience": "4,360,000,000"
+    "Experience": "2,200,000,000"
   },
   {
     "Level": 75,
-    "Experience": "4,670,000,000"
+    "Experience": "2,300,000,000"
   },
   {
     "Level": 76,
-    "Experience": "5,000,000,000"
+    "Experience": "2,500,000,000"
   },
   {
     "Level": 77,
-    "Experience": "5,330,000,000"
+    "Experience": "2,700,000,000"
   },
   {
     "Level": 78,
-    "Experience": "5,700,000,000"
+    "Experience": "2,800,000,000"
   },
   {
     "Level": 79,
-    "Experience": "6,070,000,000"
+    "Experience": "3,000,000,000"
   },
   {
     "Level": 80,
-    "Experience": "6,470,000,000"
+    "Experience": "3,200,000,000"
   },
   {
     "Level": 81,
-    "Experience": "7,000,000,000"
+    "Experience": "3,400,000,000"
   },
   {
     "Level": 82,
-    "Experience": "7,330,000,000"
+    "Experience": "3,700,000,000"
   },
   {
     "Level": 83,
-    "Experience": "7,800,000,000"
+    "Experience": "3,900,000,000"
   },
   {
     "Level": 84,
-    "Experience": "8,280,000,000"
+    "Experience": "4,100,000,000"
   },
   {
     "Level": 85,
-    "Experience": "8,800,000,000"
+    "Experience": "4,400,000,000"
   },
   {
     "Level": 86,
-    "Experience": "9,330,000,000"
+    "Experience": "4,700,000,000"
   },
   {
     "Level": 87,
-    "Experience": "10,000,000,000"
+    "Experience": "4,900,000,000"
   },
   {
     "Level": 88,
-    "Experience": "10,500,000,000"
+    "Experience": "5,200,000,000"
   },
   {
     "Level": 89,
-    "Experience": "11,000,000,000"
+    "Experience": "5,500,000,000"
   },
   {
     "Level": 90,
-    "Experience": "11,700,000,000"
+    "Experience": "5,900,000,000"
   },
   {
     "Level": 91,
-    "Experience": "12,400,000,000"
+    "Experience": "6,200,000,000"
   },
   {
     "Level": 92,
-    "Experience": "13,000,000,000"
+    "Experience": "6,600,000,000"
   },
   {
     "Level": 93,
-    "Experience": "14,000,000,000"
+    "Experience": "6,900,000,000"
   },
   {
     "Level": 94,
-    "Experience": "14,600,000,000"
+    "Experience": "7,300,000,000"
   },
   {
     "Level": 95,
-    "Experience": "15,400,000,000"
+    "Experience": "7,700,000,000"
   },
   {
     "Level": 96,
-    "Experience": "16,300,000,000"
+    "Experience": "8,100,000,000"
   },
   {
     "Level": 97,
-    "Experience": "17,000,000,000"
+    "Experience": "8,600,000,000"
   },
   {
     "Level": 98,
-    "Experience": "18,000,000,000"
+    "Experience": "9,000,000,000"
   },
   {
     "Level": 99,
-    "Experience": "19,000,000,000"
+    "Experience": "9,500,000,000"
   },
   {
     "Level": 100,
-    "Experience": "20,000,000,000"
+    "Experience": "10,000,000,000"
   }
 ]

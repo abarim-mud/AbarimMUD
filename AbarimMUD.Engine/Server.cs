@@ -12,8 +12,6 @@ using System.Collections.Generic;
 using AbarimMUD.Combat;
 using System.Threading;
 using AbarimMUD.Commands;
-using NLog.Targets;
-using AbarimMUD.Commands.Builder;
 
 namespace AbarimMUD
 {
@@ -66,7 +64,7 @@ namespace AbarimMUD
 
 			DataContext.Load(dataFolder);
 
-			Area.Storage.SaveAll();
+/*			Area.Storage.SaveAll();
 			PlayerClass.Storage.SaveAll();
 			Skill.Storage.SaveAll();
 			Ability.Storage.SaveAll();
@@ -79,6 +77,7 @@ namespace AbarimMUD
 			ExchangeShop.Storage.SaveAll();
 			Enchantment.Storage.SaveAll();
 			MobileTemplate.Storage.SaveAll();
+			LevelInfo.Storage.SaveAll();*/
 		}
 
 		private bool ProcessRegen(ref int currentValue, int maxValue, ref float fractionalValue, int regenValue, float secondsPassed)
@@ -236,7 +235,7 @@ namespace AbarimMUD
 			else if ((now - _lastRegenDt.Value).TotalMilliseconds >= 1000)
 			{
 				// Areas' repop
-				foreach(var area in Area.Storage)
+				foreach (var area in Area.Storage)
 				{
 					var passed = (float)(now - area.LastSpawn).TotalMinutes;
 

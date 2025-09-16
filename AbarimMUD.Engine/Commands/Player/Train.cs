@@ -33,7 +33,7 @@ namespace AbarimMUD.Commands.Player
 				return false;
 			}
 
-			var price = SkillCostInfo.GetSkillCostInfo(spentSkillPoints).Gold;
+			var price = SkillCostInfo.GetSkillCostInfo(spentSkillPoints + 1).Gold;
 
 			var trainer = (from m in context.Room.Mobiles where m.Info.Guildmaster != null select m).FirstOrDefault();
 			if (trainer == null)

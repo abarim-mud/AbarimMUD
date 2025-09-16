@@ -11,7 +11,6 @@ namespace AbarimMUD.Commands
 	public class HuntInfo
 	{
 		private Dictionary<int, PathFindingResult> _path;
-		private int _step;
 
 		public Creature Target { get; private set; }
 		public DateTime LastHunt { get; set; }
@@ -22,7 +21,6 @@ namespace AbarimMUD.Commands
 		{
 			Target = null;
 			_path = null;
-			_step = 0;
 		}
 
 		public bool SetTarget(Room sourceRoom, Creature target)
@@ -37,7 +35,6 @@ namespace AbarimMUD.Commands
 			Target = target;
 			TargetRoomId = target.Room.Id;
 			_path = result;
-			_step = 0;
 
 			return true;
 		}
