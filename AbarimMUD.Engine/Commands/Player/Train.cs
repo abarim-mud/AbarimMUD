@@ -83,7 +83,7 @@ namespace AbarimMUD.Commands.Player
 
 			var trainerContext = (ExecutionContext)trainer.Tag;
 
-			var trainableSkills = (from s in Skill.Storage where s.Class.Id.EqualsToIgnoreCase(trainer.Info.Guildmaster.Id) select s).ToList();
+			var trainableSkills = (from s in Data.Skill.Storage where s.Class.Id.EqualsToIgnoreCase(trainer.Info.Guildmaster.Id) select s).ToList();
 
 			Skill skillToTrain = null;
 			if (!string.IsNullOrEmpty(data))

@@ -24,7 +24,7 @@ namespace AbarimMUD.Commands.Player
 			skillsGrid.SetHeader(2, "Guild");
 			skillsGrid.SetHeader(3, "Next Train Level");
 
-			var orderedSkills = from s in Skill.Storage orderby s.Class.Id, s.Name select s;
+			var orderedSkills = from s in Data.Skill.Storage orderby s.Class.Id, s.Name select s;
 
 			var i = 0;
 			foreach (var skill in orderedSkills)
