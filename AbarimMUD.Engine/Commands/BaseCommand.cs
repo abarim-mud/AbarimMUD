@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using AbarimMUD.Data;
 using System.Reflection;
 using AbarimMUD.Commands.Administrator;
+using System.Linq;
 
 namespace AbarimMUD.Commands
 {
@@ -134,17 +135,17 @@ namespace AbarimMUD.Commands
 
 		public static BaseCommand FindCommand(string name)
 		{
-			name = name.ToLower();
-			foreach (var ac in _allCommands)
+			// First search by exact match
+			var result = (from c in _allCommands where c.Key.EqualsToIgnoreCase(name) select c.Value).FirstOrDefault();
+			if (result != null)
 			{
-				if (ac.Key.StartsWith(name))
-				{
-					return ac.Value;
-				}
+				return result;
 			}
 
-			// Not found
-			return null;
+			// Then by prefix
+			result = (from c in _allCommands where c.Key.StartsWith(name, System.StringComparison.OrdinalIgnoreCase) select c.Value).FirstOrDefault();
+
+			return result;
 		}
 
 		public void ShowHelp(ExecutionContext context)

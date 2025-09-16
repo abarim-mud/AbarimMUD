@@ -131,10 +131,7 @@ namespace AbarimMUD.ExportAreasToMMB
 					}
 
 					// Spawn
-					var newMobile = new MobileInstance(mobile)
-					{
-						Room = room
-					};
+					var newMobile = new MobileInstance(mobile, room);
 				}
 			}
 
@@ -445,14 +442,13 @@ namespace AbarimMUD.ExportAreasToMMB
 
 		static void ExportSkill(StringBuilder sb, Skill skill)
 		{
-			sb.AppendLine($"#### {skill.Name.CasedName()} ({skill.Cost} sp)");
+			sb.AppendLine($"#### {skill.Name.CasedName()}");
 			sb.AppendLine();
 
 			// Data
-			for (var i = 0; i < 5; ++i)
+			for (var i = 0; i < skill.TotalLevels; ++i)
 			{
-				var skillLevel = (SkillLevel)i;
-				sb.Append($"{skillLevel}|");
+				sb.Append($"{i + 1}|");
 
 				var def = skill.Levels[i];
 

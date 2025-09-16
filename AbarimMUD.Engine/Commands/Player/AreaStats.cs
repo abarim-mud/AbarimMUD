@@ -10,7 +10,6 @@ namespace AbarimMUD.Commands.Player
 
 			context.Send(area.ToString());
 			context.Send("Respawn Time In Minutes: " + area.RespawnTimeInMinutes.FormatFloat());
-			context.Send("Last spawn time: " + area.LastSpawn);
 
 			var passed = (float)(DateTime.Now - area.LastSpawn).TotalSeconds;
 			var toRespawn = (int)(area.RespawnTimeInMinutes * 60.0f - passed);
