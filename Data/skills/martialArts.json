@@ -20,6 +20,12 @@
     },
     {
       "Modifiers": {
+        "DamageReduction": 1,
+        "MartialArtsAttackBonus": 20
+      }
+    },
+    {
+      "Modifiers": {
         "MartialArtsAttackBonus": 20
       }
     },
@@ -31,13 +37,6 @@
     },
     {
       "Modifiers": {
-        "MartialArtsAttacksCount": 1,
-        "MartialArtsAttackBonus": 20
-      }
-    },
-    {
-      "Modifiers": {
-        "DamageReduction": 1,
         "MartialArtsAttackBonus": 20,
         "MartialArtsMinimumDamage": 2,
         "MartialArtsMaximumDamage": 14
@@ -45,6 +44,13 @@
     },
     {
       "Modifiers": {
+        "MartialArtsAttacksCount": 1,
+        "DamageReduction": 1,
+        "MartialArtsAttackBonus": 20
+      }
+    },
+    {
+      "Modifiers": {
         "MartialArtsAttackBonus": 20
       }
     },
@@ -63,11 +69,6 @@
     {
       "Modifiers": {
         "DamageReduction": 1,
-        "MartialArtsAttackBonus": 20
-      }
-    },
-    {
-      "Modifiers": {
         "MartialArtsMinimumDamage": 3,
         "MartialArtsMaximumDamage": 18,
         "MartialArtsAttackBonus": 20

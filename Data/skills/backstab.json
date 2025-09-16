@@ -18,16 +18,16 @@
     {
       "Modifiers": {
         "BackstabMultiplier": 2
-      }
+      },
+      "Abilities": [
+        "circlestab"
+      ]
     },
     {
       "Modifiers": {
         "BackstabCount": 1,
         "BackstabMultiplier": 2
-      },
-      "Abilities": [
-        "circlestab"
-      ]
+      }
     },
     {
       "Modifiers": {

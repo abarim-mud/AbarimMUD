@@ -313,6 +313,17 @@ namespace AbarimMUD.Data
 
 		public override bool MatchesKeyword(string keyword) => Name.StartsWith(keyword, StringComparison.OrdinalIgnoreCase);
 
+		public SkillValue GetSkillValue(Skill skill)
+		{
+			SkillValue skillValue;
+			if (!Skills.TryGetValue(skill.Id, out skillValue))
+			{
+				return null;
+			}
+
+			return skillValue;
+		}
+
 		public void Train(Skill skill)
 		{
 			SkillValue skillValue = null;

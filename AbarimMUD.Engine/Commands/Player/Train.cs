@@ -17,6 +17,45 @@ namespace AbarimMUD.Commands.Player
 			1, 3, 5, 7, 9, 10, 12, 15, 17, 20
 		];
 
+		public static int? CalculateLevelConstraint(Character character, Skill skill)
+		{
+			var skillValue = character.GetSkillValue(skill);
+			if (skillValue == null)
+			{
+				// Skill unknown
+				return 1;
+			}
+
+			if (skillValue.IsMaxed)
+			{
+				return null;
+			}
+
+			int[] constraints;
+			switch (skill.TotalLevels)
+			{
+				case 5:
+					constraints = PrimarySkillsLevelsConstraints5;
+					break;
+				case 10:
+					constraints = PrimarySkillsLevelsConstraints10;
+					break;
+				default:
+					throw new Exception($"Levels constraints for {skill.TotalLevels} levels not set.");
+			}
+
+			var skillNextLevelIndex = skillValue != null ? skillValue.Level : 0;
+			var levelConstraint = constraints[skillNextLevelIndex];
+
+			if (!character.Class.Id.EqualsToIgnoreCase(skill.Class.Id))
+			{
+				// Skill not of the primary class
+				levelConstraint *= 2;
+			}
+
+			return levelConstraint;
+		}
+
 		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
 			var character = context.Creature as Character;
@@ -53,14 +92,8 @@ namespace AbarimMUD.Commands.Player
 			}
 
 			// Remove maxed out skills
-			SkillValue skillValue = null;
 			foreach (var pair in character.Skills)
 			{
-				if (skillToTrain != null && skillToTrain.Id == pair.Value.Skill.Id)
-				{
-					skillValue = pair.Value;
-				}
-
 				if (pair.Value.IsMaxed)
 				{
 					trainableSkills.Remove(pair.Value.Skill);
@@ -97,39 +130,14 @@ namespace AbarimMUD.Commands.Player
 					return false;
 				}
 
-				if (skillValue != null && skillValue.IsMaxed)
+				var levelConstraint = CalculateLevelConstraint(character, skillToTrain);
+				if (levelConstraint == null)
 				{
 					Tell.Execute(trainerContext, $"{context.Creature.ShortDescription} You are master in '{data}' already.");
 					return false;
 				}
 
-				var levelConstraint = 1;
-				if (skillValue != null)
-				{
-					int[] constraints;
-					switch (skillToTrain.TotalLevels)
-					{
-						case 5:
-							constraints = PrimarySkillsLevelsConstraints5;
-							break;
-						case 10:
-							constraints = PrimarySkillsLevelsConstraints10;
-							break;
-						default:
-							throw new Exception($"Levels constraints for {skillToTrain.TotalLevels} levels not set.");
-					}
-
-					var skillNextLevelIndex = skillValue != null ? skillValue.Level : 0;
-					levelConstraint = constraints[skillNextLevelIndex];
-
-					if (!character.Class.Id.EqualsToIgnoreCase(trainer.Info.Guildmaster.Id))
-					{
-						// Skill not of the primary class
-						levelConstraint *= 2;
-					}
-				}
-
-				if (character.Level < levelConstraint)
+				if (character.Level < levelConstraint.Value)
 				{
 					Tell.Execute(trainerContext, $"{context.Creature.ShortDescription} You need to have at least level {levelConstraint} to learn that.");
 					return false;
@@ -147,6 +155,7 @@ namespace AbarimMUD.Commands.Player
 					return false;
 				}
 
+				var skillValue = character.GetSkillValue(skillToTrain);
 				character.Train(skillToTrain);
 				character.Gold -= price;
 				character.SkillPoints -= skillToTrain.Cost;

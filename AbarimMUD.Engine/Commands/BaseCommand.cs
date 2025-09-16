@@ -39,6 +39,7 @@ namespace AbarimMUD.Commands
 		public static readonly Name NameCommand = new Name();
 
 		public static readonly Score Score = new Score();
+		public static readonly Skills Skills = new Skills();
 
 		public static readonly Train Train = new Train();
 

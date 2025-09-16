@@ -94,49 +94,6 @@ namespace AbarimMUD.Commands.Player
 				context.Send($"You can deathtouch with multiplier equal to {stats.DeathtouchMultiplier}.");
 			}
 
-			if (asCharacter != null)
-			{
-				context.Send("Skills:");
-
-				var skillsGrid = new AsciiGrid();
-				var i = 0;
-				foreach (var pair in asCharacter.Skills)
-				{
-					var x = i % 2;
-					var y = i / 2;
-
-					skillsGrid.SetValue(x, y, $"{pair.Value.Skill.Name}: {pair.Value.Level}/{pair.Value.Skill.TotalLevels}");
-
-					++i;
-				}
-
-				context.Send(skillsGrid.ToString());
-
-				if (asCharacter.SkillPoints == 0)
-				{
-					context.Send("You have zero skill points.");
-
-				}
-				else if (asCharacter.SkillPoints == 1)
-				{
-					context.Send("You have 1 skill point.");
-				}
-				else
-				{
-					context.Send($"You have {asCharacter.SkillPoints} skill point.");
-				}
-
-				var spentSkillPoints = asCharacter.SpentSkillPointsCount;
-				if (spentSkillPoints >= SkillCostInfo.Storage.Count)
-				{
-					context.Send($"You can't train anymore.");
-				}
-				else
-				{
-					context.Send($"Training next skill level would cost {SkillCostInfo.GetSkillCostInfo(spentSkillPoints + 1).Gold.FormatBigNumber()} gold.");
-				}
-			}
-
 			if (context.Creature.TemporaryAffects.Count > 0)
 			{
 				context.Send("Affects:");
