@@ -133,7 +133,7 @@ namespace AbarimMUD.Commands.Player
 				}
 				else
 				{
-					context.Send($"Training next skill level would cost {SkillCostInfo.GetSkillCostInfo(spentSkillPoints).Gold.FormatBigNumber()} gold.");
+					context.Send($"Training next skill level would cost {SkillCostInfo.GetSkillCostInfo(spentSkillPoints + 1).Gold.FormatBigNumber()} gold.");
 				}
 			}
 
