@@ -449,7 +449,6 @@ namespace AbarimMUD.Commands
 				return;
 			}
 
-
 			var lastLevel = character.Level;
 			character.GainXp(xpAward);
 
@@ -459,7 +458,13 @@ namespace AbarimMUD.Commands
 				var previousHp = character.Class.HitpointsRange.CalculateValue(level - 1);
 				var newHp = character.Class.HitpointsRange.CalculateValue(level);
 
-				Send($"Welcome to the level {level}! You gained {newHp - previousHp} hitpoints.");
+				var previousMana = character.Class.ManaRange.CalculateValue(level - 1);
+				var newMana = character.Class.ManaRange.CalculateValue(level);
+
+				var previousMoves = character.Class.MovesRange.CalculateValue(level - 1);
+				var newMoves = character.Class.MovesRange.CalculateValue(level);
+
+				Send($"Welcome to the level {level}! You gained {newHp - previousHp} hitpoints, {newMana - previousMana} mana and {newMoves - previousMoves} moves.");
 
 				if (level % 10 == 0)
 				{

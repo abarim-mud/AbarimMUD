@@ -8,9 +8,6 @@
         "WeaponAttacksCount": 1,
         "WeaponAttackBonus": 20
       },
-      "PrimeModifiers": {
-        "WeaponAttackBonus": 20
-      },
       "Abilities": [
         "kick"
       ]
