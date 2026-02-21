@@ -138,7 +138,7 @@ namespace AbarimMUD.Storage
 		public IReadOnlyDictionary<int, Room> AllRooms => _allRoomsCache.All;
 		public IReadOnlyDictionary<int, Mobile> AllMobiles => _allMobilesCache.All;
 
-		internal Areas() : base(a => a.Name, SubfolderName)
+		internal Areas() : base(a => a.Id, SubfolderName)
 		{
 			_allRoomsCache = new EntityCache<Room>(this, a => a.Rooms);
 			_allMobilesCache = new EntityCache<Mobile>(this, a => a.Mobiles);
@@ -195,6 +195,11 @@ namespace AbarimMUD.Storage
 
 			foreach (var area in this)
 			{
+				if (!string.IsNullOrEmpty(area.OwnerName))
+				{
+					area.Owner = Character.GetCharacterByName(area.OwnerName);
+				}
+
 				foreach (var room in area.Rooms)
 				{
 					foreach (var pair2 in room.Exits)

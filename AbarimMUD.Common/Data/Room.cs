@@ -10,7 +10,6 @@ namespace AbarimMUD.Data
 {
 	public enum SectorType
 	{
-		Unknown,
 		Inside,
 		City,
 		Field,
@@ -50,6 +49,8 @@ namespace AbarimMUD.Data
 
 	public class Room : AreaEntityWithId
 	{
+		public static readonly Room DefaultRoom;
+
 		public string Name { get; set; }
 		public string Description { get; set; }
 
@@ -60,7 +61,6 @@ namespace AbarimMUD.Data
 		public int ManaRate { get; set; }
 		public string ExtraKeyword { get; set; }
 		public string ExtraDescription { get; set; }
-		public string Owner { get; set; }
 
 		[Browsable(false)]
 		public Dictionary<Direction, RoomExit> Exits { get; set; } = new Dictionary<Direction, RoomExit>();
@@ -77,6 +77,14 @@ namespace AbarimMUD.Data
 		[JsonIgnore]
 		public int X, Y, Z;
 
+		static Room()
+		{
+			DefaultRoom = new Room
+			{
+				Name = "Default Room",
+				Description = "The game has no rooms yet. Create the first area by command 'create area _id_'."
+			};
+		}
 
 		public void AddCharacter(Character character)
 		{

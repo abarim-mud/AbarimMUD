@@ -154,6 +154,7 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 			_records["item"] = new OLCRecordString<Item>(Item.Storage, true);
 			_records["character"] = new OLCRecordString<Character>(Character.Storage, false);
 			_records["mobile"] = new OLCRecordInt<Mobile>(() => Area.Storage.AllMobiles, m => m.ShortDescription, true);
+			_records["area"] = new OLCRecordString<Area>(Area.Storage, false);
 			_records["room"] = new OLCRecordInt<Room>(() => Area.Storage.AllRooms, r => r.Name, false);
 
 			_keys = _records.Keys.ToArray();
@@ -163,7 +164,7 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 
 		public static IOLCStorage GetStorage(string key)
 		{
-			foreach(var pair in _records)
+			foreach (var pair in _records)
 			{
 				if (pair.Key.StartsWith(key, StringComparison.InvariantCultureIgnoreCase))
 				{

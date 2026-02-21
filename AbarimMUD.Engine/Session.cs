@@ -47,7 +47,17 @@ namespace AbarimMUD
 			{
 				_character = value;
 				_character.Restore();
-				_character.Room = Room.EnsureRoomById(Configuration.StartRoomId);
+
+				Room spawnRoom;
+				if (Area.Storage.AllRooms.Count == 0)
+				{
+					spawnRoom = Room.DefaultRoom;
+				} else
+				{
+					spawnRoom = Room.EnsureRoomById(Configuration.StartRoomId);
+				}
+
+				_character.Room = spawnRoom;
 				Creature.ActiveCreatures.Add(_character);
 				Character.ActiveCharacters.Add(_character);
 			}

@@ -117,10 +117,10 @@ namespace AbarimMUD
 		{
 			if (maxCount == null)
 			{
-				return value.Split(new char[0], StringSplitOptions.RemoveEmptyEntries);
+				return value.Split(new char[0], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
 			}
 
-			return value.Split(new char[0], maxCount.Value, StringSplitOptions.RemoveEmptyEntries);
+			return value.Split(new char[0], maxCount.Value, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
 		}
 
 		public static bool StartsWithPattern(this HashSet<string> keywords, string pattern)
@@ -273,7 +273,7 @@ namespace AbarimMUD
 			var result = new HashSet<T>();
 			if (a != null)
 			{
-				foreach(var i in a)
+				foreach (var i in a)
 				{
 					result.Add(i);
 				}
@@ -281,7 +281,7 @@ namespace AbarimMUD
 
 			if (b != null)
 			{
-				foreach(var i in b)
+				foreach (var i in b)
 				{
 					result.Add(i);
 				}
@@ -330,7 +330,7 @@ namespace AbarimMUD
 		{
 			if (template != null && value != null)
 			{
-				foreach(var i in template)
+				foreach (var i in template)
 				{
 					value.Remove(i);
 				}

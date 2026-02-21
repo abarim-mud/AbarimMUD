@@ -56,6 +56,16 @@ namespace AbarimMUD.Data
 
 		public string MaximumLevel { get; set; }
 
+		[OLCAlias("owner")]
+		public string OwnerName { get; set; }
+
+		[OLCIgnore]
+		[JsonIgnore]
+		public Character Owner { get; set; }
+
+		public int StartId { get; set; }
+		public int IdCount { get; set; } = 1000;
+
 		public ObservableCollection<Room> Rooms
 		{
 			get => _rooms;

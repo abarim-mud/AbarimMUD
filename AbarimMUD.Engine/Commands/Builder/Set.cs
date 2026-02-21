@@ -25,8 +25,8 @@ namespace AbarimMUD.Commands.Builder
 
 			var item = (Item)obj;
 
-			
-//			item.SetArmor(armor);
+
+			//			item.SetArmor(armor);
 
 			return true;
 		}
@@ -52,7 +52,7 @@ namespace AbarimMUD.Commands.Builder
 			}
 
 			var item = (Item)obj;
-//			item.SetWeapon(penetration, minimumDamage, maximumDamage);
+			//			item.SetWeapon(penetration, minimumDamage, maximumDamage);
 
 			return true;
 		}
@@ -62,7 +62,7 @@ namespace AbarimMUD.Commands.Builder
 			var parts = data.SplitByWhitespace();
 			if (parts.Length < 1)
 			{
-				context.Send($"Usage: set {OLCManager.KeysString} _propertyName_ _params_ _id_");
+				context.Send($"Usage: set {OLCManager.KeysString} _propertyName_ _params_ [_id_]");
 				return false;
 			}
 
@@ -76,7 +76,15 @@ namespace AbarimMUD.Commands.Builder
 			var editor = ClassEditor.GetEditor(storage.ObjectType);
 			if (parts.Length < 2)
 			{
-				context.Send($"Usage: set {objectType} {editor.PropertiesString} _params_ _id_");
+				if (objectType != "room")
+				{
+					context.Send($"Usage: set {objectType} {editor.PropertiesString} _params_ _id_");
+				}
+				else
+				{
+					context.Send($"Usage: set {objectType} {editor.PropertiesString} _params_");
+				}
+
 				return false;
 			}
 
@@ -90,17 +98,30 @@ namespace AbarimMUD.Commands.Builder
 
 			var paramsString = property.ParamsString;
 			var paramsCount = paramsString.SplitByWhitespace().Length;
+
+			var partsDelta = 3;
+			object obj;
 			if (parts.Length < 3 + paramsCount)
 			{
-				context.Send($"Usage: set {objectType} {propertyName} {paramsString} _id_");
-				return false;
+				if (objectType != "room")
+				{
+					context.Send($"Usage: set {objectType} {propertyName} {paramsString} _id_");
+					return false;
+				}
+				else
+				{
+					obj = context.Room;
+					partsDelta = 2;
+				}
 			}
-
-			var objectId = parts[parts.Length - 1].ToLower();
-			var obj = context.EnsureItemById(storage, objectId);
-			if (obj == null)
+			else
 			{
-				return false;
+				var objectId = parts[parts.Length - 1].ToLower();
+				obj = context.EnsureItemById(storage, objectId);
+				if (obj == null)
+				{
+					return false;
+				}
 			}
 
 			if (propertyName == "id")
@@ -112,10 +133,9 @@ namespace AbarimMUD.Commands.Builder
 					context.Send($"Id {newId} is used already.");
 					return false;
 				}
-
 			}
 
-			var args = new ArraySegment<string>(parts, 2, parts.Length - 3);
+			var args = new ArraySegment<string>(parts, 2, parts.Length - partsDelta);
 			if (!property.SetStringValue(context, obj, args))
 			{
 				return false;

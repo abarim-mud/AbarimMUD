@@ -1,9 +1,94 @@
 ﻿using AbarimMUD.Commands.Builder.OLCUtils;
+using AbarimMUD.Data;
 
 namespace AbarimMUD.Commands.Builder
 {
-	public class Create: BuilderCommand
+	public class Create : BuilderCommand
 	{
+		private bool CreateArea(ExecutionContext context, string id)
+		{
+			var existingArea = Area.GetAreaByName(id);
+			if (existingArea != null)
+			{
+				context.Send($"Area with id '{id}' already exists.");
+				return false;
+			}
+
+			// Determine max start id
+			var maxId = 0;
+			foreach (var a in Area.Storage.All)
+			{
+				if (a.StartId + a.IdCount > maxId)
+				{
+					maxId = a.StartId + a.IdCount;
+				}
+			}
+
+			var character = (Character)context.Creature;
+			var newArea = new Area
+			{
+				Id = id,
+				Name = "New Area",
+				StartId = maxId,
+				OwnerName = character.Name,
+				Builders = character.Name,
+				Owner = character
+			};
+
+			var firstRoom = new Room
+			{
+				Id = newArea.StartId,
+				Name = "First Room"
+			};
+
+			newArea.Rooms.Add(firstRoom);
+
+			Area.Storage.Save(newArea);
+
+			context.Send($"Created area '{id}'. Room id range: {maxId}-{maxId + newArea.IdCount}");
+
+			Goto.Execute(context, firstRoom.Id.ToString());
+
+			return true;
+		}
+
+		private bool CreateRoom(ExecutionContext context)
+		{
+			if (context.Creature.Room.Area == null)
+			{
+				context.Send($"Can't create a room for the default area.");
+				return false;
+			}
+
+			// Determine new room id
+			var area = context.CurrentArea;
+			var newId = area.StartId;
+			foreach (var r in area.Rooms)
+			{
+				if (r.Id > newId)
+				{
+					newId = r.Id;
+				}
+			}
+
+			++newId;
+
+			// Create new room
+			var newRoom = new Room
+			{
+				Id = newId,
+				Name = "New Room"
+			};
+
+			area.Rooms.Add(newRoom);
+			area.Save();
+
+			context.Send($"New room (#{newRoom.Id}) had been created for the area '{context.Room.Area.Name}'");
+			Goto.Execute(context, newRoom.Id.ToString());
+
+			return true;
+		}
+
 		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
 			var parts = data.SplitByWhitespace(4);
@@ -18,6 +103,25 @@ namespace AbarimMUD.Commands.Builder
 			if (storage == null)
 			{
 				return false;
+			}
+
+			// Todo room creation doesnt require id
+			if (objectType != "room")
+			{
+				if (parts.Length < 2)
+				{
+					context.Send($"Usage: create {objectType} _id_");
+					return false;
+				}
+			}
+
+			switch (objectType)
+			{
+				case "area":
+					return CreateArea(context, parts[1]);
+
+				case "room":
+					return CreateRoom(context);
 			}
 
 			/*			// Create new mobile
