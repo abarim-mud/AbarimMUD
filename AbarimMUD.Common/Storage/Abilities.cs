@@ -10,7 +10,7 @@ namespace AbarimMUD.Storage
 		{
 		}
 
-		protected override string BuildPath(Ability entity)
+		public override string BuildPath(Ability entity)
 		{
 			if (entity.Type == AbilityType.Physical)
 			{

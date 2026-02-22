@@ -78,7 +78,7 @@ namespace AbarimMUD.Storage
 			}
 		}
 
-		protected override string BuildPath(Character entity)
+		public override string BuildPath(Character entity)
 		{
 			// Add account folder
 			var characterFolder = entity.BuildCharacterFolder();

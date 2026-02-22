@@ -24,7 +24,7 @@ namespace AbarimMUD.Storage
 			return Directory.EnumerateFiles(Folder, AccountFileName, SearchOption.AllDirectories).ToArray();
 		}
 
-		protected override string BuildPath(Account entity)
+		public override string BuildPath(Account entity)
 		{
 			// Add account folder
 			var accountFolder = entity.BuildAccountFolder();

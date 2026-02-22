@@ -132,7 +132,7 @@ namespace AbarimMUD.Storage
 
 		private string BuildPath(string key) => Path.ChangeExtension(Path.Combine(Folder, key), "json");
 
-		protected virtual string BuildPath(ItemType entity) => BuildPath(GetKey(entity, false));
+		public virtual string BuildPath(ItemType entity) => BuildPath(GetKey(entity, false));
 
 		public override void Remove(ItemType entity)
 		{

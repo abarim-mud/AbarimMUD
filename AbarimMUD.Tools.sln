@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.8.34322.80
+# Visual Studio Version 18
+VisualStudioVersion = 18.2.11430.68 d18.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbarimMUD.Common", "AbarimMUD.Common\AbarimMUD.Common.csproj", "{18708949-46D1-471D-85CB-698197F1001C}"
 EndProject
@@ -28,6 +28,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbarimMUD.CostsGenerator", "AbarimMUD.CostsGenerator\AbarimMUD.CostsGenerator.csproj", "{9C2AB601-2600-499A-9C3E-3F7D496B2555}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbarimMUD.MapService", "AbarimMUD.MapService\AbarimMUD.MapService.csproj", "{070622D2-54BD-497E-BE81-4C6A44843440}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbarimMUD.Common.Tools", "AbarimMUD.Common.Tools\AbarimMUD.Common.Tools.csproj", "{0B093F8A-3FC0-423B-8A05-A8878008BD39}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,6 +87,14 @@ Global
 		{9C2AB601-2600-499A-9C3E-3F7D496B2555}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C2AB601-2600-499A-9C3E-3F7D496B2555}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C2AB601-2600-499A-9C3E-3F7D496B2555}.Release|Any CPU.Build.0 = Release|Any CPU
+		{070622D2-54BD-497E-BE81-4C6A44843440}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{070622D2-54BD-497E-BE81-4C6A44843440}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{070622D2-54BD-497E-BE81-4C6A44843440}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{070622D2-54BD-497E-BE81-4C6A44843440}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B093F8A-3FC0-423B-8A05-A8878008BD39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B093F8A-3FC0-423B-8A05-A8878008BD39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B093F8A-3FC0-423B-8A05-A8878008BD39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B093F8A-3FC0-423B-8A05-A8878008BD39}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -96,6 +108,8 @@ Global
 		{9C57BA5C-D5A4-48DE-9189-A2594ABDF74F} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{95C5853E-8FF2-475B-B254-6D92A90ECB81} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{9C2AB601-2600-499A-9C3E-3F7D496B2555} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{070622D2-54BD-497E-BE81-4C6A44843440} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{0B093F8A-3FC0-423B-8A05-A8878008BD39} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {103EEE7A-AFF7-400A-9C2A-ED9F59C6A8BB}
