@@ -58,5 +58,15 @@ namespace AbarimMUD.Storage
 				storage.SetReferences();
 			}
 		}
+
+		public static void Clear()
+		{
+			Log($"Clearing all data from the memory");
+
+			foreach (var storage in _storages)
+			{
+				storage.Clear();
+			}
+		}
 	}
 }

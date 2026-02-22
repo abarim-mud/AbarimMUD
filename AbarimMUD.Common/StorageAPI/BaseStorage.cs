@@ -17,6 +17,8 @@ namespace AbarimMUD.Storage
 			Loaded = true;
 		}
 
+		internal abstract void Clear();
+
 		protected abstract void InternalLoad();
 
 		protected internal virtual void SetReferences()

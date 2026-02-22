@@ -92,6 +92,8 @@ namespace AbarimMUD.Storage
 			return null;
 		}
 
+		internal override void Clear() => ClearCache();
+
 		public virtual void ClearCache() => _cache.Clear();
 
 		protected void EnsureFolder(string folderPath)

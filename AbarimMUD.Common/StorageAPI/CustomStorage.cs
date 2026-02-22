@@ -2,7 +2,7 @@
 
 namespace AbarimMUD.Storage
 {
-	public class CustomStorage<T> : BaseStorage where T : new()
+	public class CustomStorage<T> : BaseStorage where T : class, new()
 	{
 		private T _item;
 
@@ -23,6 +23,8 @@ namespace AbarimMUD.Storage
 		{
 			_item = DeserializeOrCreate(Filename);
 		}
+
+		internal override void Clear() => _item = null;
 
 		private T DeserializeOrCreate(string fileName)
 		{
