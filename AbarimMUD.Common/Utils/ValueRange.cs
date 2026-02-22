@@ -40,6 +40,45 @@ namespace AbarimMUD.Utils
 			return (int)value;
 		}
 
+		public static bool TryParse(string value, out ValueRange range)
+		{
+			range = new ValueRange();
+
+			var parts = value.Split('-', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+			if (parts.Length != 2)
+			{
+				return false;
+			}
+
+			int min;
+			if (!int.TryParse(parts[0], out min))
+			{
+				return false;
+			}
+
+			int max;
+			if (!int.TryParse(parts[1], out max))
+			{
+				return false;
+			}
+
+			range.Minimum = min;
+			range.Maximum = max;
+
+			return true;
+		}
+
+		public static ValueRange Parse(string value)
+		{
+			ValueRange result;
+			if (!TryParse(value, out result))
+			{
+				throw new Exception($"Unable to parse ValueRange '{value}'");
+			}
+
+			return result;
+		}
+
 		public static ValueRange operator +(ValueRange r1, ValueRange r2)
 		{
 			return new ValueRange(r1.Minimum + r2.Minimum, r1.Maximum + r2.Maximum);

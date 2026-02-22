@@ -33,14 +33,8 @@ namespace AbarimMUD.Utils
 			public override ValueRange Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 			{
 				var value = reader.GetString();
-				var parts = value.Split('-');
 
-				if (parts.Length != 2)
-				{
-					throw new Exception($"Unable to parse RandomRange '{value}'");
-				}
-
-				return new ValueRange(int.Parse(parts[0].Trim()), int.Parse(parts[1].Trim()));
+				return ValueRange.Parse(value);
 			}
 
 			public override void Write(Utf8JsonWriter writer, ValueRange value, JsonSerializerOptions options)

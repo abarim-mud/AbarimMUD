@@ -237,6 +237,56 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 
 				SetValue(item, cls);
 			}
+			else if (Type == typeof(Attack[]))
+			{
+				var attacks = new List<Attack>();
+				for (var i = 0; i < values.Count; ++i)
+				{
+					var attacksString = values[i];
+					var parts = values[i].Split('x', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+
+					var attacksCount = 1;
+					if (parts.Length > 1)
+					{
+						if (!int.TryParse(parts[0], out attacksCount))
+						{
+							context.Send($"Unable to parse amount of attacks '{parts[0]}'");
+							return false;
+						}
+
+						attacksString = parts[1];
+					}
+
+					parts = attacksString.Split('/', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+
+					AttackType attackType;
+					if (!context.EnsureEnum(parts[0], out attackType))
+					{
+						return false;
+					}
+
+					int attackBonus;
+					if (!int.TryParse(parts[1], out attackBonus))
+					{
+						context.Send($"Unable to parse attack bonus '{parts[1]}'");
+						return false;
+					}
+
+					ValueRange damageRange;
+					if (!context.EnsureValueRange(parts[2], out damageRange))
+					{
+						return false;
+					}
+
+					for (var j = 0; j < attacksCount; ++j)
+					{
+						var attack = new Attack(attackType, attackBonus, damageRange);
+						attacks.Add(attack);
+					}
+
+					SetValue(item, attacks.ToArray());
+				}
+			}
 			else
 			{
 				context.Send($"Setting propertes of type '{TypeName}' isn't implemented.");

@@ -64,6 +64,17 @@ namespace AbarimMUD.Commands
 			return true;
 		}
 
+		public static bool EnsureValueRange(this ExecutionContext context, string value, out ValueRange range)
+		{
+			if (!ValueRange.TryParse(value, out range))
+			{
+				context.Send($"Unable to parse ValueRange '{value}'");
+				return false;
+			}
+
+			return true;
+		}
+
 		public static IOLCStorage EnsureStorage(this ExecutionContext context, string key)
 		{
 			var result = OLCManager.GetStorage(key);

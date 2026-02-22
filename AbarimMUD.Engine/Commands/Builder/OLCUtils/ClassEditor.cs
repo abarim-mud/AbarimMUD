@@ -82,12 +82,9 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 		{
 			if (type == typeof(HashSet<string>) ||
 				type == typeof(List<string>) ||
-				type == typeof(string[]))
-			{
-				return true;
-			}
-
-			if (type.IsHashSetOfEnums())
+				type == typeof(string[]) ||
+				type == typeof(Attack[]) ||
+				type.IsHashSetOfEnums())
 			{
 				return true;
 			}
