@@ -1,0 +1,352 @@
+{
+  "Id": "carandor",
+  "Name": "Carandor",
+  "Builders": "Yang",
+  "Version": 0,
+  "MinimumLevel": "10",
+  "OwnerName": "Yang",
+  "StartId": 0,
+  "IdCount": 1000,
+  "Rooms": [
+    {
+      "Name": "Fountain",
+      "SectorType": "City",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "West": 1,
+        "North": 11,
+        "East": 18
+      },
+      "Id": 0
+    },
+    {
+      "Name": "Horizontal Street",
+      "SectorType": "City",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 0,
+        "West": 2
+      },
+      "Id": 1
+    },
+    {
+      "Name": "Horizontal Street",
+      "SectorType": "City",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 1,
+        "West": 3,
+        "North": 4,
+        "South": 5
+      },
+      "Id": 2
+    },
+    {
+      "Name": "Horizontal Street",
+      "SectorType": "City",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 2,
+        "West": 6
+      },
+      "Id": 3
+    },
+    {
+      "Name": "Smithy",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "South": 2
+      },
+      "Id": 4
+    },
+    {
+      "Name": "Alchemist Store",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 2
+      },
+      "Id": 5
+    },
+    {
+      "Name": "Horizontal Street",
+      "SectorType": "City",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 3,
+        "West": 7,
+        "North": 9
+      },
+      "Id": 6
+    },
+    {
+      "Name": "Horizontal Street",
+      "SectorType": "City",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 6,
+        "West": 8
+      },
+      "Id": 7
+    },
+    {
+      "Name": "West Gate",
+      "SectorType": "City",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 7,
+        "West": 10
+      },
+      "Id": 8
+    },
+    {
+      "Name": "Magic Shop",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "South": 6
+      },
+      "Id": 9
+    },
+    {
+      "Name": "Outside West Gate",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 8
+      },
+      "Id": 10
+    },
+    {
+      "Name": "Vertical Street",
+      "SectorType": "City",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "South": 0,
+        "North": 12
+      },
+      "Id": 11
+    },
+    {
+      "Name": "Vertical Street",
+      "SectorType": "City",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "South": 11,
+        "North": 13,
+        "West": 25
+      },
+      "Id": 12
+    },
+    {
+      "Name": "Vertical Street",
+      "SectorType": "City",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "South": 12,
+        "North": 14
+      },
+      "Id": 13
+    },
+    {
+      "Name": "Vertical Street",
+      "SectorType": "City",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "South": 13,
+        "North": 15,
+        "West": 27,
+        "East": 29
+      },
+      "Id": 14
+    },
+    {
+      "Name": "Vertical Street",
+      "SectorType": "City",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "South": 14,
+        "North": 16
+      },
+      "Id": 15
+    },
+    {
+      "Name": "North Gate",
+      "SectorType": "City",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "South": 15,
+        "North": 17
+      },
+      "Id": 16
+    },
+    {
+      "Name": "Outside North Gate",
+      "SectorType": "City",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "South": 16
+      },
+      "Id": 17
+    },
+    {
+      "Name": "Horizontal Street",
+      "SectorType": "City",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "West": 0,
+        "East": 19
+      },
+      "Id": 18
+    },
+    {
+      "Name": "Horizontal Street",
+      "SectorType": "City",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "West": 18,
+        "East": 20
+      },
+      "Id": 19
+    },
+    {
+      "Name": "Horizontal Street",
+      "SectorType": "City",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "West": 19,
+        "East": 21
+      },
+      "Id": 20
+    },
+    {
+      "Name": "Horizontal Street",
+      "SectorType": "City",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "West": 20,
+        "East": 22
+      },
+      "Id": 21
+    },
+    {
+      "Name": "Horizontal Street",
+      "SectorType": "City",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "West": 21,
+        "East": 23
+      },
+      "Id": 22
+    },
+    {
+      "Name": "East Gate",
+      "SectorType": "City",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "West": 22,
+        "East": 24
+      },
+      "Id": 23
+    },
+    {
+      "Name": "Outside East Gate",
+      "SectorType": "City",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "West": 23
+      },
+      "Id": 24
+    },
+    {
+      "Name": "Outside Warriors Guild",
+      "SectorType": "City",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 12,
+        "North": 26
+      },
+      "Id": 25
+    },
+    {
+      "Name": "Warriors Guild",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "South": 25
+      },
+      "Id": 26
+    },
+    {
+      "Name": "Outside Rogue Guild",
+      "SectorType": "City",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 14,
+        "North": 28
+      },
+      "Id": 27
+    },
+    {
+      "Name": "Rogue Guild",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "South": 27
+      },
+      "Id": 28
+    },
+    {
+      "Name": "Outside Monks Guild",
+      "SectorType": "City",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "West": 14,
+        "North": 30
+      },
+      "Id": 29
+    },
+    {
+      "Name": "Monks Guild",
+      "SectorType": "Inside",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "South": 29
+      },
+      "Id": 30
+    }
+  ],
+  "RespawnTimeInMinutes": 30
+}
