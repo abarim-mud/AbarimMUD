@@ -196,6 +196,11 @@ namespace AbarimMUD
 			return type.GenericTypeArguments[0];
 		}
 
+		public static bool IsHashSetOfEnums(this Type type)
+		{
+			return type.IsGenericType && type.GetGenericTypeDefinition() == typeof(HashSet<>) && type.GetGenericArguments()[0].IsEnum;
+		}
+
 		public static string FormatBigNumber(this int number)
 		{
 			return number.ToString("#,0", _bigNumbersFormatCulture);

@@ -41,7 +41,7 @@ namespace AbarimMUD.MapViewer
 		{
 			// Build dict of all mobiles
 			var areas = new List<MMBArea>();
-			var allMobiles = new Dictionary<int, Mobile>();
+			var allMobiles = new Dictionary<int, MobileSpawn>();
 			foreach (var sourceArea in Area.Storage)
 			{
 				if (sourceArea.Rooms == null || sourceArea.Rooms.Count == 0)
@@ -144,7 +144,7 @@ namespace AbarimMUD.MapViewer
 			{
 				foreach (var reset in sourceArea.MobileResets)
 				{
-					Mobile mobile;
+					MobileSpawn mobile;
 					if (!allMobiles.TryGetValue(reset.MobileId, out mobile))
 					{
 						Console.WriteLine($"Warning: Unable to find mobile with vnum {reset.MobileId}.");

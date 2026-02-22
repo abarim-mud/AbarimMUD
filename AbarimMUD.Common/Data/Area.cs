@@ -39,7 +39,7 @@ namespace AbarimMUD.Data
 		public static readonly Areas Storage = new Areas();
 
 		private ObservableCollection<Room> _rooms;
-		private ObservableCollection<Mobile> _mobiles;
+		private ObservableCollection<MobileSpawn> _mobiles;
 
 		[OLCIgnore]
 		public string Id { get; set; }
@@ -94,7 +94,7 @@ namespace AbarimMUD.Data
 			}
 		}
 
-		public ObservableCollection<Mobile> Mobiles
+		public ObservableCollection<MobileSpawn> Mobiles
 		{
 			get => _mobiles;
 			set
@@ -135,7 +135,7 @@ namespace AbarimMUD.Data
 		public Area()
 		{
 			Rooms = new ObservableCollection<Room>();
-			Mobiles = new ObservableCollection<Mobile>();
+			Mobiles = new ObservableCollection<MobileSpawn>();
 			MobileResets = new List<AreaMobileReset>();
 		}
 

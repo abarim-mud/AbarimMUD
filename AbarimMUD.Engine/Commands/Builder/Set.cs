@@ -25,7 +25,6 @@ namespace AbarimMUD.Commands.Builder
 
 			var item = (Item)obj;
 
-
 			//			item.SetArmor(armor);
 
 			return true;
@@ -62,7 +61,7 @@ namespace AbarimMUD.Commands.Builder
 			var parts = data.SplitByWhitespace();
 			if (parts.Length < 1)
 			{
-				context.Send($"Usage: set {OLCManager.KeysString} _propertyName_ _params_ [_id_]");
+				context.Send($"Usage: set {OLCManager.KeysString} [_id_] _propertyName_ _params_");
 				return false;
 			}
 
@@ -73,12 +72,13 @@ namespace AbarimMUD.Commands.Builder
 				return false;
 			}
 
+			var requiresId = objectType != "room" && objectType != "area";
 			var editor = ClassEditor.GetEditor(storage.ObjectType);
 			if (parts.Length < 2)
 			{
-				if (objectType != "room")
+				if (requiresId)
 				{
-					context.Send($"Usage: set {objectType} {editor.PropertiesString} _params_ _id_");
+					context.Send($"Usage: set {objectType} _id_ {editor.PropertiesString} _params_");
 				}
 				else
 				{
@@ -88,7 +88,46 @@ namespace AbarimMUD.Commands.Builder
 				return false;
 			}
 
-			var propertyName = parts[1].ToLower();
+			var propertyIndex = 1;
+			object obj;
+			switch(objectType)
+			{
+				case "room":
+					obj = context.Room;
+					break;
+
+				case "area":
+					obj = context.CurrentArea;
+					break;
+
+				default:
+					var objectId = parts[1].ToLower();
+					obj = context.EnsureItemById(storage, objectId);
+					if (obj == null)
+					{
+						return false;
+					}
+
+					++propertyIndex;
+
+					break;
+			}
+
+			if (parts.Length <= propertyIndex)
+			{
+				if (requiresId)
+				{
+					context.Send($"Usage: set {objectType} _id_ {editor.PropertiesString} _params_");
+				}
+				else
+				{
+					context.Send($"Usage: set {objectType} {editor.PropertiesString} _params_");
+				}
+
+				return false;
+			}
+
+			var propertyName = parts[propertyIndex].ToLower();
 			var property = editor.FindByName(propertyName);
 			if (property == null)
 			{
@@ -96,33 +135,14 @@ namespace AbarimMUD.Commands.Builder
 				return false;
 			}
 
+			if (parts.Length == propertyIndex + 1)
+			{
+				context.Send("No _params_ specified.");
+				return false;
+			}
+
 			var paramsString = property.ParamsString;
 			var paramsCount = paramsString.SplitByWhitespace().Length;
-
-			var partsDelta = 3;
-			object obj;
-			if (parts.Length < 3 + paramsCount)
-			{
-				if (objectType != "room")
-				{
-					context.Send($"Usage: set {objectType} {propertyName} {paramsString} _id_");
-					return false;
-				}
-				else
-				{
-					obj = context.Room;
-					partsDelta = 2;
-				}
-			}
-			else
-			{
-				var objectId = parts[parts.Length - 1].ToLower();
-				obj = context.EnsureItemById(storage, objectId);
-				if (obj == null)
-				{
-					return false;
-				}
-			}
 
 			if (propertyName == "id")
 			{
@@ -135,7 +155,7 @@ namespace AbarimMUD.Commands.Builder
 				}
 			}
 
-			var args = new ArraySegment<string>(parts, 2, parts.Length - partsDelta);
+			var args = new ArraySegment<string>(parts, propertyIndex + 1, parts.Length - propertyIndex - 1);
 			if (!property.SetStringValue(context, obj, args))
 			{
 				return false;

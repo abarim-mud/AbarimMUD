@@ -316,7 +316,7 @@ namespace AbarimMUD.Data
 			}
 		}
 
-		public static void InvalidateMobiles(Mobile mobile)
+		public static void InvalidateMobiles(MobileSpawn mobile)
 		{
 			foreach (var creature in ActiveCreatures)
 			{

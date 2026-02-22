@@ -83,8 +83,30 @@ namespace AbarimMUD.Commands.Builder
 			area.Rooms.Add(newRoom);
 			area.Save();
 
-			context.Send($"New room (#{newRoom.Id}) had been created for the area '{context.Room.Area.Name}'");
+			context.Send($"New room (#{newRoom.Id}) had been created for the area '{context.Room.Area.Name}'.");
 			Goto.Execute(context, newRoom.Id.ToString());
+
+			return true;
+		}
+
+		private bool CreateMobile(ExecutionContext context, string id)
+		{
+			var newMobile = new Mobile
+			{
+				Id = id,
+				Sex = Sex.Male,
+				Level = 1
+			};
+
+			var attack = new Attack(AttackType.Hit, 0, 5, 10);
+			newMobile.Attacks = new Attack[]
+			{
+				attack
+			};
+
+			Mobile.Storage.Save(newMobile);
+
+			context.Send($"Created new mobile (#{newMobile.Id}).");
 
 			return true;
 		}
@@ -122,6 +144,9 @@ namespace AbarimMUD.Commands.Builder
 
 				case "room":
 					return CreateRoom(context);
+
+				case "mobile":
+					return CreateMobile(context, parts[1]);
 			}
 
 			/*			// Create new mobile

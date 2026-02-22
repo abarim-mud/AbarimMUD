@@ -3,9 +3,9 @@ using System.Text.Json;
 
 namespace AbarimMUD.Storage
 {
-	internal class MobileTemplates: MultipleFilesStorage<MobileTemplate>
+	internal class Mobiles: MultipleFilesStorage<Mobile>
 	{
-		public MobileTemplates(): base(t => t.Id, "mobileTemplates")
+		public Mobiles(): base(t => t.Id, "mobiles")
 		{
 		}
 

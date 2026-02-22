@@ -21,6 +21,10 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 				{
 					p = Type.BuildEnumString();
 				}
+				else if (Type.IsHashSetOfEnums())
+				{
+					p = Type.GetGenericArguments()[0].BuildEnumString();
+				}
 				else if (Type == typeof(ValueRange))
 				{
 					p = "_level1Value_ _level100Value_";
@@ -124,6 +128,37 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 
 				SetValue(item, val);
 			}
+			else if (Type.IsHashSetOfEnums())
+			{
+				object val;
+				if (values.Count > 0)
+				{
+					var enumType = Type.GetGenericArguments()[0];
+
+					// Create array of T
+					var enumArray = Array.CreateInstance(enumType, values.Count);
+					for (var i = 0; i < values.Count; ++i)
+					{
+						object v;
+						if (!context.EnsureEnum(values[i], enumType, out v))
+						{
+							return false;
+						}
+
+						enumArray.SetValue(v, i);
+					}
+
+					// New set
+					val = Activator.CreateInstance(Type, enumArray);
+				}
+				else
+				{
+					// Set to empty
+					val = Activator.CreateInstance(Type);
+				}
+
+				SetValue(item, val);
+			}
 			else if (Type == typeof(ValueRange))
 			{
 				int level1Value;
@@ -140,7 +175,7 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 
 				SetValue(item, new ValueRange(level1Value, level100Value));
 			}
-			else if (Type == typeof(Mobile))
+			else if (Type == typeof(MobileSpawn))
 			{
 				int id;
 				if (!context.EnsureInt(s, out id))

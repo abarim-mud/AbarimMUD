@@ -129,19 +129,19 @@ namespace AbarimMUD.Storage
 		internal const string SubfolderName = "areas";
 
 		private readonly EntityCache<Room> _allRoomsCache;
-		private readonly EntityCache<Mobile> _allMobilesCache;
+		private readonly EntityCache<MobileSpawn> _allMobilesCache;
 
 		public int NewRoomId => _allRoomsCache.NextId;
 
 		public int NewMobileId => _allMobilesCache.NextId;
 
 		public IReadOnlyDictionary<int, Room> AllRooms => _allRoomsCache.All;
-		public IReadOnlyDictionary<int, Mobile> AllMobiles => _allMobilesCache.All;
+		public IReadOnlyDictionary<int, MobileSpawn> AllMobiles => _allMobilesCache.All;
 
 		internal Areas() : base(a => a.Id, SubfolderName)
 		{
 			_allRoomsCache = new EntityCache<Room>(this, a => a.Rooms);
-			_allMobilesCache = new EntityCache<Mobile>(this, a => a.Mobiles);
+			_allMobilesCache = new EntityCache<MobileSpawn>(this, a => a.Mobiles);
 		}
 
 		public override Area LoadEntity(string filePath)
@@ -224,7 +224,7 @@ namespace AbarimMUD.Storage
 
 					if (mobile.Template != null)
 					{
-						mobile.Template = MobileTemplate.EnsureMobileTemplateById(mobile.Template.Id);
+						mobile.Template = Mobile.EnsureMobileById(mobile.Template.Id);
 						mobile.Template.SetReferences();
 					}
 
@@ -267,7 +267,7 @@ namespace AbarimMUD.Storage
 
 		public Room GetRoomById(int id) => _allRoomsCache.GetById(id);
 		public Room EnsureRoomById(int id) => _allRoomsCache.EnsureById(id);
-		public Mobile GetMobileById(int id) => _allMobilesCache.GetById(id);
-		public Mobile EnsureMobileById(int id) => _allMobilesCache.GetById(id);
+		public MobileSpawn GetMobileById(int id) => _allMobilesCache.GetById(id);
+		public MobileSpawn EnsureMobileById(int id) => _allMobilesCache.GetById(id);
 	}
 }

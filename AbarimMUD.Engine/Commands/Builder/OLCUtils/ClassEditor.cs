@@ -87,6 +87,11 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 				return true;
 			}
 
+			if (type.IsHashSetOfEnums())
+			{
+				return true;
+			}
+
 			if (type != typeof(string) && typeof(IEnumerable).IsAssignableFrom(type))
 			{
 				return false;

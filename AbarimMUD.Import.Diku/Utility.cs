@@ -41,7 +41,7 @@ namespace AbarimMUD.Import.Diku
 			return result;
 		}
 
-		public static Mobile ToAmMobile(this DikuLoad.Data.Mobile mobile)
+		public static MobileSpawn ToAmMobile(this DikuLoad.Data.Mobile mobile)
 		{
 			var level = mobile.Level;
 			if (level < 1)
@@ -55,7 +55,7 @@ namespace AbarimMUD.Import.Diku
 				gold = mobile.Level * 100;
 			}
 
-			var result = new Mobile
+			var result = new MobileSpawn
 			{
 				Id = mobile.VNum,
 				Keywords = mobile.Name.SplitByWhitespace().ToHashSet(),

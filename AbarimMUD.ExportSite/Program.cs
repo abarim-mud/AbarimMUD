@@ -116,7 +116,7 @@ namespace AbarimMUD.ExportAreasToMMB
 			{
 				foreach (var mobileReset in area.MobileResets)
 				{
-					var mobile = Mobile.GetMobileById(mobileReset.MobileId);
+					var mobile = MobileSpawn.GetMobileById(mobileReset.MobileId);
 					if (mobile == null)
 					{
 						Log($"{area.Name}: Couldn't find mobile with id {mobileReset.MobileId}");
@@ -138,7 +138,7 @@ namespace AbarimMUD.ExportAreasToMMB
 			// Convert DikuLoad areas to MMB Areas
 			// And build dict of all mobiles
 			var areas = new List<MMBArea>();
-			var allMobiles = new Dictionary<int, Mobile>();
+			var allMobiles = new Dictionary<int, MobileSpawn>();
 			foreach (var dikuArea in Area.Storage)
 			{
 				if (dikuArea.Rooms == null || dikuArea.Rooms.Count == 0)
@@ -215,7 +215,7 @@ namespace AbarimMUD.ExportAreasToMMB
 			{
 				foreach (var reset in dikuArea.MobileResets)
 				{
-					Mobile mobile;
+					MobileSpawn mobile;
 					if (!allMobiles.TryGetValue(reset.MobileId, out mobile))
 					{
 						Console.WriteLine($"Warning: Unable to find mobile with Id {reset.MobileId}.");

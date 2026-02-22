@@ -291,7 +291,7 @@ namespace AbarimMUD.Storage
 			}
 		}
 
-		public class MobileConverterType : JsonConverter<Mobile>
+		public class MobileConverterType : JsonConverter<MobileSpawn>
 		{
 			private static JsonSerializerOptions _defaultOptions;
 
@@ -316,16 +316,16 @@ namespace AbarimMUD.Storage
 				}
 			}
 
-			public override Mobile Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+			public override MobileSpawn Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 			{
 				var doc = JsonDocument.ParseValue(ref reader);
 
-				var data = JsonSerializer.Deserialize<Mobile.MobileData>(doc, DefaultOptions);
+				var data = JsonSerializer.Deserialize<MobileSpawn.MobileData>(doc, DefaultOptions);
 
-				return new Mobile(data);
+				return new MobileSpawn(data);
 			}
 
-			public override void Write(Utf8JsonWriter writer, Mobile value, JsonSerializerOptions options)
+			public override void Write(Utf8JsonWriter writer, MobileSpawn value, JsonSerializerOptions options)
 			{
 				JsonSerializer.Serialize(writer, value.Data, DefaultOptions);
 			}
@@ -345,7 +345,7 @@ namespace AbarimMUD.Storage
 		public static readonly EntityConverter<ExchangeShop> ExchangeShopConverter = new EntityConverter<ExchangeShop>(f => f.Id);
 		public static readonly EntityConverter<Enchantment> EnchantmentConverter = new EntityConverter<Enchantment>(s => s.Id);
 		public static readonly MobileConverterType MobileConverter = new MobileConverterType();
-		public static readonly EntityConverter<MobileTemplate> MobileTemplateConverter = new EntityConverter<MobileTemplate>(s => s.Id);
+		public static readonly EntityConverter<Mobile> MobileTemplateConverter = new EntityConverter<Mobile>(s => s.Id);
 
 		public static void SetReferences(this ItemInstance item)
 		{
@@ -396,7 +396,7 @@ namespace AbarimMUD.Storage
 			}
 		}
 
-		public static void SetReferences(this MobileTemplate mobileTemplate)
+		public static void SetReferences(this Mobile mobileTemplate)
 		{
 			if (mobileTemplate.Loot != null)
 			{

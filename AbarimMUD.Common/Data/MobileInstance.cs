@@ -7,7 +7,7 @@ namespace AbarimMUD.Data
 	{
 		private Room _room;
 
-		public Mobile Info { get; }
+		public MobileSpawn Info { get; }
 
 		public override string ShortDescription => Info.ShortDescription;
 		public override string Description => Info.Description;
@@ -44,7 +44,7 @@ namespace AbarimMUD.Data
 
 		public override event EventHandler RoomChanged;
 
-		public MobileInstance(Mobile mobile, Room room, AreaMobileReset areaMobileReset = null)
+		public MobileInstance(MobileSpawn mobile, Room room, AreaMobileReset areaMobileReset = null)
 		{
 			Info = mobile ?? throw new ArgumentNullException(nameof(mobile));
 			Gold = Info.Gold;

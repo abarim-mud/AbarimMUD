@@ -25,7 +25,7 @@ namespace AbarimMUD.Storage
 			DataContext.Register(ForgeShop.Storage);
 			DataContext.Register(ExchangeShop.Storage);
 			DataContext.Register(Enchantment.Storage);
-			DataContext.Register(MobileTemplate.Storage);
+			DataContext.Register(Mobile.Storage);
 		}
 	}
 }

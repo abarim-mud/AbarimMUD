@@ -62,7 +62,7 @@ namespace AbarimMUD.Data
 			DamageRange = damageRange;
 		}
 
-		public Attack(AttackType attackType, int penetration, int min, int max) : this(attackType, penetration, new ValueRange(min, max))
+		public Attack(AttackType attackType, int attackBonus, int min, int max) : this(attackType, attackBonus, new ValueRange(min, max))
 		{
 		}
 
