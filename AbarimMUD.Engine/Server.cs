@@ -76,7 +76,7 @@ namespace AbarimMUD
 			ForgeShop.Storage.SaveAll();
 			ExchangeShop.Storage.SaveAll();
 			Enchantment.Storage.SaveAll();
-			MobileTemplate.Storage.SaveAll();
+			Mobile.Storage.SaveAll();
 			LevelInfo.Storage.SaveAll();*/
 		}
 
@@ -347,7 +347,7 @@ namespace AbarimMUD
 					continue;
 				}
 
-				var mobile = Mobile.GetMobileById(mobileReset.MobileId);
+				var mobile = MobileSpawn.GetMobileById(mobileReset.MobileId);
 				if (mobile == null)
 				{
 					Logger.Warn($"{area.Name}: Couldn't find mobile with id {mobileReset.MobileId}");

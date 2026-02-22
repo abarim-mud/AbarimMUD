@@ -122,13 +122,13 @@ namespace AbarimMUD.Common.Tests
 				TargetRoom = room
 			};
 
-			var mobile = new Mobile
+/*			var mobile = new Mobile
 			{
 				Id = Area.NextMobileId,
 				ShortDescription = "a test mobile",
 				Level = 1,
 			};
-			area.Mobiles.Add(mobile);
+			area.Mobiles.Add(mobile);*/
 			area.Create();
 
 			// Reload
