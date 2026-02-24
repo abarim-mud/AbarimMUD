@@ -291,7 +291,7 @@ namespace AbarimMUD.Storage
 			}
 		}
 
-		public class MobileConverterType : JsonConverter<MobileSpawn>
+		public class MobileSpawnConverterType : JsonConverter<MobileSpawn>
 		{
 			private static JsonSerializerOptions _defaultOptions;
 
@@ -302,7 +302,7 @@ namespace AbarimMUD.Storage
 					if (_defaultOptions == null)
 					{
 						_defaultOptions = JsonUtils.CreateOptions();
-						_defaultOptions.Converters.Add(MobileTemplateConverter);
+						_defaultOptions.Converters.Add(MobileConverter);
 						_defaultOptions.Converters.Add(ItemInstanceConverter);
 						_defaultOptions.Converters.Add(InventoryConverter);
 						_defaultOptions.Converters.Add(PlayerClassConverter);
@@ -318,16 +318,33 @@ namespace AbarimMUD.Storage
 
 			public override MobileSpawn Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 			{
+				if (reader.TokenType == JsonTokenType.String)
+				{
+					// Just an id
+					var mobileId = reader.GetString();
+
+					return new MobileSpawn
+					{
+						Mobile = new Mobile { Id = mobileId }
+					};
+				}
+
+				// Standard parse
 				var doc = JsonDocument.ParseValue(ref reader);
-
-				var data = JsonSerializer.Deserialize<MobileSpawn.MobileData>(doc, DefaultOptions);
-
-				return new MobileSpawn(data);
+				return JsonSerializer.Deserialize<MobileSpawn>(doc, DefaultOptions);
 			}
 
 			public override void Write(Utf8JsonWriter writer, MobileSpawn value, JsonSerializerOptions options)
 			{
-				JsonSerializer.Serialize(writer, value.Data, DefaultOptions);
+				// Write just an id
+				if (value.NoCustomParams)
+				{
+					writer.WriteStringValue(value.Mobile.Id);
+					return;
+				}
+
+				// Full serialization
+				JsonSerializer.Serialize(writer, value, DefaultOptions);
 			}
 		}
 
@@ -344,8 +361,8 @@ namespace AbarimMUD.Storage
 		public static readonly EntityConverter<ForgeShop> ForgeShopConverter = new EntityConverter<ForgeShop>(f => f.Id);
 		public static readonly EntityConverter<ExchangeShop> ExchangeShopConverter = new EntityConverter<ExchangeShop>(f => f.Id);
 		public static readonly EntityConverter<Enchantment> EnchantmentConverter = new EntityConverter<Enchantment>(s => s.Id);
-		public static readonly MobileConverterType MobileConverter = new MobileConverterType();
-		public static readonly EntityConverter<Mobile> MobileTemplateConverter = new EntityConverter<Mobile>(s => s.Id);
+		public static readonly MobileSpawnConverterType MobileSpawnConverter = new MobileSpawnConverterType();
+		public static readonly EntityConverter<Mobile> MobileConverter = new EntityConverter<Mobile>(s => s.Id);
 
 		public static void SetReferences(this ItemInstance item)
 		{

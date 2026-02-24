@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
-using System.Linq;
 using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
@@ -49,6 +47,8 @@ namespace AbarimMUD.Data
 
 	public class Room : AreaEntityWithId
 	{
+		private ObservableCollection<MobileSpawn> _mobileSpawns;
+
 		public static readonly Room DefaultRoom;
 
 		public string Name { get; set; }
@@ -61,6 +61,25 @@ namespace AbarimMUD.Data
 		public int ManaRate { get; set; }
 		public string ExtraKeyword { get; set; }
 		public string ExtraDescription { get; set; }
+
+		public ObservableCollection<MobileSpawn> MobileSpawns
+		{
+			get => _mobileSpawns;
+			set
+			{
+				if (value == null)
+				{
+					throw new ArgumentNullException(nameof(value));
+				}
+
+				if (value == _mobileSpawns)
+				{
+					return;
+				}
+
+				_mobileSpawns = value;
+			}
+		}
 
 		[Browsable(false)]
 		public Dictionary<Direction, RoomExit> Exits { get; set; } = new Dictionary<Direction, RoomExit>();

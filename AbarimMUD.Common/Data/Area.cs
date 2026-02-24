@@ -15,31 +15,11 @@ namespace AbarimMUD.Data
 		ResetAlways
 	}
 
-	public class AreaMobileReset
-	{
-		public int MobileId { get; set; }
-		public int RoomId { get; set; }
-
-		[JsonIgnore]
-		public MobileInstance MobileInstance { get; internal set; }
-
-		public AreaMobileReset()
-		{
-		}
-
-		public AreaMobileReset(int mobileId, int roomId)
-		{
-			MobileId = mobileId;
-			RoomId = roomId;
-		}
-	}
-
 	public class Area : IStoredInFile
 	{
 		public static readonly Areas Storage = new Areas();
 
 		private ObservableCollection<Room> _rooms;
-		private ObservableCollection<MobileSpawn> _mobiles;
 
 		[OLCIgnore]
 		public string Id { get; set; }
@@ -94,37 +74,7 @@ namespace AbarimMUD.Data
 			}
 		}
 
-		public ObservableCollection<MobileSpawn> Mobiles
-		{
-			get => _mobiles;
-			set
-			{
-				if (value == null)
-				{
-					throw new ArgumentNullException(nameof(value));
-				}
-
-				if (value == _mobiles)
-				{
-					return;
-				}
-
-				if (_mobiles != null)
-				{
-					_mobiles.CollectionChanged -= OnMobilesChanged;
-				}
-
-				_mobiles = value;
-
-				_mobiles.CollectionChanged += OnMobilesChanged;
-
-				UpdateEntities(Mobiles);
-			}
-		}
-
 		public float RespawnTimeInMinutes { get; set; } = 30;
-
-		public List<AreaMobileReset> MobileResets { get; set; }
 
 		[JsonIgnore]
 		public DateTime LastSpawn { get; set; }
@@ -135,20 +85,12 @@ namespace AbarimMUD.Data
 		public Area()
 		{
 			Rooms = new ObservableCollection<Room>();
-			Mobiles = new ObservableCollection<MobileSpawn>();
-			MobileResets = new List<AreaMobileReset>();
 		}
 
 		private void OnRoomsChanged(object sender, NotifyCollectionChangedEventArgs e)
 		{
 			UpdateEntities(Rooms);
 			RoomsChanged?.Invoke(this, EventArgs.Empty);
-		}
-
-		private void OnMobilesChanged(object sender, NotifyCollectionChangedEventArgs e)
-		{
-			UpdateEntities(Mobiles);
-			MobilesChanged?.Invoke(this, EventArgs.Empty);
 		}
 
 		private void UpdateEntities(IEnumerable<AreaEntity> entities)

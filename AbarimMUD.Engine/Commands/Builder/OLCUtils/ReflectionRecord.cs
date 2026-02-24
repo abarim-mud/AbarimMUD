@@ -243,7 +243,7 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 				for (var i = 0; i < values.Count; ++i)
 				{
 					var attacksString = values[i];
-					var parts = values[i].Split('x', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+					var parts = values[i].Split(':', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
 
 					var attacksCount = 1;
 					if (parts.Length > 1)

@@ -260,7 +260,7 @@ namespace AbarimMUD.Storage
 		{
 			var result = base.CreateJsonOptions();
 			result.Converters.Add(RoomExitConverter);
-			result.Converters.Add(Common.MobileConverter);
+			result.Converters.Add(Common.MobileSpawnConverter);
 
 			return result;
 		}

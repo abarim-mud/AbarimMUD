@@ -7,7 +7,7 @@ namespace AbarimMUD.Data
 	{
 		private Room _room;
 
-		public MobileSpawn Info { get; }
+		public Mobile Info { get; }
 
 		public override string ShortDescription => Info.ShortDescription;
 		public override string Description => Info.Description;
@@ -37,8 +37,6 @@ namespace AbarimMUD.Data
 				RoomChanged?.Invoke(this, EventArgs.Empty);
 			}
 		}
-
-		public AreaMobileReset AreaMobileReset { get; private set; }
 
 		public override HashSet<string> Keywords => Info.Keywords;
 

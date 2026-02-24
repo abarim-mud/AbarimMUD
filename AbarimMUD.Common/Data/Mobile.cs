@@ -240,12 +240,12 @@ namespace AbarimMUD.Data
 			foreach (var creature in Creature.ActiveCreatures)
 			{
 				var asMobile = creature as MobileInstance;
-				if (asMobile == null || asMobile.Info.Template == null)
+				if (asMobile == null || asMobile.Info == null)
 				{
 					continue;
 				}
 
-				if (asMobile.Info.Template.Id == Id)
+				if (asMobile.Info.Id == Id)
 				{
 					creature.InvalidateStats();
 				}
@@ -257,6 +257,5 @@ namespace AbarimMUD.Data
 
 		public static Mobile GetMobileById(string id) => Storage.GetByKey(id);
 		public static Mobile EnsureMobileById(string id) => Storage.EnsureByKey(id);
-
 	}
 }

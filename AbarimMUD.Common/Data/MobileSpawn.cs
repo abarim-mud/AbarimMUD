@@ -1,385 +1,44 @@
 ﻿using AbarimMUD.Attributes;
-using AbarimMUD.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
 {
-	public class MobileSpawn : AreaEntity
+	public class MobileSpawn
 	{
-		public class MobileData
-		{
-			public int Id { get; set; }
-			public Mobile Template { get; set; }
-			public HashSet<string> Keywords { get; set; }
-			public string ShortDescription { get; set; }
-			public string LongDescription { get; set; }
-			public string Description { get; set; }
-			public int? Hitpoints { get; set; }
-			public int? Mana { get; set; }
-			public int? Moves { get; set; }
-			public int? Armor { get; set; }
-			public Attack[] Attacks { get; set; }
-			public int? Level { get; set; }
-			public int? Gold { get; set; }
-			public Sex? Sex { get; set; }
-
-			public List<MobileSpecialAttack> SpecialAttacks { get; set; } = new List<MobileSpecialAttack>();
-			public HashSet<MobileFlags> Flags { get; set; } = new HashSet<MobileFlags>();
-
-			public List<LootRecord> Loot { get; set; } = new List<LootRecord>();
-
-			public Shop Shop { get; set; }
-
-			public PlayerClass Guildmaster { get; set; }
-
-			public ForgeShop ForgeShop { get; set; }
-
-			public ExchangeShop ExchangeShop { get; set; }
-		}
-
-		public override int Id
-		{
-			get => Data.Id;
-			set => Data.Id = value;
-		}
-
-		public Mobile Template
-		{
-			get => Data.Template;
-			set => Data.Template = value;
-		}
-
-		public MobileData Data { get; set; }
+		private Shop _shop;
 
 		[Browsable(false)]
-		public HashSet<string> Keywords
-		{
-			get
-			{
-				if (Data.Keywords.Count == 0 && Template != null)
-				{
-					return Template.Keywords;
-				}
+		public Mobile Mobile { get; set; }
 
-				return Data.Keywords;
-			}
-
-			set => Data.Keywords = value;
-		}
+		[Browsable(false)]
+		public HashSet<string> Keywords { get; set; }
 
 		[OLCAlias("short")]
-		public string ShortDescription
-		{
-			get
-			{
-				if (string.IsNullOrEmpty(Data.ShortDescription) && Template != null)
-				{
-					return Template.ShortDescription;
-				}
-
-				return Data.ShortDescription;
-			}
-
-			set => Data.ShortDescription = value;
-		}
+		public string ShortDescription { get; set; }
 
 		[OLCAlias("long")]
-		public string LongDescription
-		{
-			get
-			{
-				if (string.IsNullOrEmpty(Data.LongDescription) && Template != null)
-				{
-					return Template.LongDescription;
-				}
+		public string LongDescription { get; set; }
 
-				return Data.LongDescription;
-			}
-
-			set => Data.LongDescription = value;
-		}
-
-		public string Description
-		{
-			get
-			{
-				if (string.IsNullOrEmpty(Data.Description) && Template != null)
-				{
-					return Template.Description;
-				}
-
-				return Data.Description;
-			}
-
-			set => Data.Description = value;
-		}
-
-		public int Level
-		{
-			get
-			{
-				if (Data.Level == null && Template != null)
-				{
-					return Template.Level;
-				}
-
-				EnsureSet(Data.Level, "Level");
-
-				return Data.Level.Value;
-			}
-
-			set
-			{
-				if (value == Data.Level)
-				{
-					return;
-				}
-
-				Data.Level = value;
-				InvalidateCreaturesOfThisClass();
-			}
-		}
-
-		public int Gold
-		{
-			get
-			{
-				if (Data.Gold == null && Template != null)
-				{
-					return Template.Gold;
-				}
-
-				EnsureSet(Data.Gold, "Gold");
-
-				return Data.Gold.Value;
-			}
-
-
-			set
-			{
-				if (value == Data.Gold)
-				{
-					return;
-				}
-
-				Data.Gold = value;
-				InvalidateCreaturesOfThisClass();
-			}
-		}
-
-
-		public Sex Sex
-		{
-			get
-			{
-				if (Data.Sex == null && Template != null)
-				{
-					return Template.Sex;
-				}
-
-				EnsureSet(Data.Sex, "Sex");
-
-				return Data.Sex.Value;
-			}
-
-			set
-			{
-				if (value == Data.Sex)
-				{
-					return;
-				}
-
-				Data.Sex = value;
-				InvalidateCreaturesOfThisClass();
-			}
-		}
-
-		public int Hitpoints
-		{
-			get
-			{
-				if (Data.Hitpoints == null && Template != null)
-				{
-					return Template.Hitpoints;
-				}
-
-				EnsureSet(Data.Hitpoints, "Hitpoints");
-
-				return Data.Hitpoints.Value;
-			}
-
-			set
-			{
-				if (value == Data.Hitpoints)
-				{
-					return;
-				}
-
-				Data.Hitpoints = value;
-				InvalidateCreaturesOfThisClass();
-			}
-		}
-
-		public int Mana
-		{
-			get
-			{
-				if (Data.Mana == null && Template != null)
-				{
-					return Template.Mana;
-				}
-
-				EnsureSet(Data.Mana, "Mana");
-
-				return Data.Mana.Value;
-			}
-
-			set
-			{
-				if (value == Data.Mana)
-				{
-					return;
-				}
-
-				Data.Mana = value;
-				InvalidateCreaturesOfThisClass();
-			}
-		}
-
-		public int Moves
-		{
-			get
-			{
-				if (Data.Moves == null && Template != null)
-				{
-					return Template.Moves;
-				}
-
-				EnsureSet(Data.Moves, "Moves");
-
-				return Data.Moves.Value;
-			}
-
-			set
-			{
-				if (value == Data.Moves)
-				{
-					return;
-				}
-
-				Data.Moves = value;
-				InvalidateCreaturesOfThisClass();
-			}
-		}
-
-		public int Armor
-		{
-			get
-			{
-				if (Data.Armor == null && Template != null)
-				{
-					return Template.Armor;
-				}
-
-				EnsureSet(Data.Armor, "Armor");
-
-				return Data.Armor.Value;
-			}
-
-			set
-			{
-				if (value == Data.Armor)
-				{
-					return;
-				}
-
-				Data.Armor = value;
-				InvalidateCreaturesOfThisClass();
-			}
-		}
-
-		public Attack[] Attacks
-		{
-			get
-			{
-				if (Data.Attacks == null && Template != null)
-				{
-					return Template.Attacks;
-				}
-
-				return Data.Attacks;
-			}
-
-			set
-			{
-				Data.Attacks = value;
-				InvalidateCreaturesOfThisClass();
-			}
-		}
+		public string Description { get; set; }
 
 		[Browsable(false)]
-		public HashSet<MobileFlags> Flags
-		{
-			get
-			{
-				if (Template != null)
-				{
-					return Utility.MergeGet(Template.Flags, Data.Flags);
-				}
-
-				return Data.Flags;
-			}
-
-			set
-			{
-				if (Template != null)
-				{
-					Data.Flags = Utility.MergeSet(Template.Flags, value);
-				}
-				else
-				{
-					Data.Flags = value;
-				}
-			}
-		}
-
-		public List<LootRecord> Loot
-		{
-			get
-			{
-				if (Template != null)
-				{
-					return Utility.MergeGet(Template.Loot, Data.Loot);
-				}
-
-				return Data.Loot;
-			}
-		}
-
-		[Browsable(false)]
-		public PlayerClass Guildmaster
-		{
-			get => Data.Guildmaster;
-			set => Data.Guildmaster = value;
-		}
-
-		[Browsable(false)]
-		public List<MobileSpecialAttack> SpecialAttacks => Data.SpecialAttacks;
+		public PlayerClass Guildmaster { get; set; }
 
 		public Shop Shop
 		{
-			get => Data.Shop;
+			get => _shop;
 
 			set
 			{
-				if (value == Data.Shop)
+				if (value == _shop)
 				{
 					return;
 				}
 
-				Data.Shop = value;
+				_shop = value;
 
 				// Rebuild inventories
 				foreach (var creature in Creature.ActiveCreatures)
@@ -390,7 +49,7 @@ namespace AbarimMUD.Data
 						continue;
 					}
 
-					if (asMobile.Info.Id == Id)
+					if (asMobile.Info.Id == Mobile.Id)
 					{
 						asMobile.RebuildInventory();
 					}
@@ -398,33 +57,23 @@ namespace AbarimMUD.Data
 			}
 		}
 
-		public ForgeShop ForgeShop
-		{
-			get => Data.ForgeShop;
-			set => Data.ForgeShop = value;
-		}
+		public ForgeShop ForgeShop { get; set; }
 
-		public ExchangeShop ExchangeShop
-		{
-			get => Data.ExchangeShop;
-			set => Data.ExchangeShop = value;
-		}
+		public ExchangeShop ExchangeShop { get; set; }
 
-		public MobileSpawn()
+		[JsonIgnore]
+		public bool NoCustomParams
 		{
-			Data = new MobileData();
-		}
-
-		public MobileSpawn(MobileData data)
-		{
-			Data = data ?? throw new ArgumentNullException(nameof(data));
-		}
-
-		private void EnsureSet<T>(T? value, string prop) where T : struct
-		{
-			if (value == null)
+			get
 			{
-				throw new Exception($"{ShortDescription}'s {prop} is not set.");
+				return (Keywords == null || Keywords.Count == 0) &&
+					string.IsNullOrEmpty(ShortDescription) &&
+					string.IsNullOrEmpty(LongDescription) &&
+					string.IsNullOrEmpty(Description) &&
+					Guildmaster == null &&
+					Shop == null &&
+					ForgeShop == null &&
+					ExchangeShop == null;
 			}
 		}
 
