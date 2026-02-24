@@ -135,13 +135,21 @@ namespace AbarimMUD.Commands.Builder
 				return false;
 			}
 
+			var paramsString = property.ParamsString;
 			if (parts.Length == propertyIndex + 1)
 			{
-				context.Send("No _params_ specified.");
+				if (requiresId)
+				{
+					context.Send($"Usage: set {objectType} _id_ {propertyName} {paramsString}");
+				}
+				else
+				{
+					context.Send($"Usage: set {objectType} {propertyName} {paramsString}");
+				}
+
 				return false;
 			}
 
-			var paramsString = property.ParamsString;
 			var paramsCount = paramsString.SplitByWhitespace().Length;
 
 			if (propertyName == "id")
