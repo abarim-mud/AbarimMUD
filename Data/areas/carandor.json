@@ -81,7 +81,10 @@
           ],
           "CustomShortDescription": "Thane the blacksmith",
           "CustomLongDescription": "Blacksmith Thane Ironjaw stands at the counter, waiting for your order.",
-          "CustomDescription": "Thane Ironjaw is a towering, broad-shouldered man with the physique of\\nsomeone who has spent a lifetime hammering steel. His arms are thick with muscle,\\nbearing countless burn scars from stray embers and molten metal. A long, grizzled beard\\n\\u2014once deep auburn, now streaked with silver\\u2014frames his square jaw, giving him the look\\nof a battle-hardened veteran. His dark eyes gleam like tempered steel, ever watchful over\\nhis shop\\u2019s wares and customers alike. His leather apron, heavy with soot, smells faintly of\\niron and sweat, and his hands, calloused and strong, move with practiced ease as he\\ninspects blades and hammers."
+          "CustomDescription": "Thane Ironjaw is a towering, broad-shouldered man with the physique of\\nsomeone who has spent a lifetime hammering steel. His arms are thick with muscle,\\nbearing countless burn scars from stray embers and molten metal. A long, grizzled beard\\n\\u2014once deep auburn, now streaked with silver\\u2014frames his square jaw, giving him the look\\nof a battle-hardened veteran. His dark eyes gleam like tempered steel, ever watchful over\\nhis shop\\u2019s wares and customers alike. His leather apron, heavy with soot, smells faintly of\\niron and sweat, and his hands, calloused and strong, move with practiced ease as he\\ninspects blades and hammers.",
+          "Shop": "smithy",
+          "ForgeShop": "smithy",
+          "ExchangeShop": "smithy"
         }
       ],
       "Exits": {

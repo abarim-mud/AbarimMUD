@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AbarimMUD.Storage;
+using System;
 using System.Collections.Generic;
 
 namespace AbarimMUD.Data
@@ -89,6 +90,15 @@ namespace AbarimMUD.Data
 
 		private MobileSpawn Spawn { get; set; }
 
+		public PlayerClass Guildmaster => Spawn != null ? Spawn.Guildmaster : null;
+
+		public Shop Shop => Spawn != null ? Spawn.Shop : null;
+
+		public ForgeShop ForgeShop => Spawn != null ? Spawn.ForgeShop : null;
+
+		public ExchangeShop ExchangeShop => Spawn != null ? Spawn.ExchangeShop : null;
+
+
 		public override event EventHandler RoomChanged;
 
 		public MobileInstance(Mobile mobile, Room room)
@@ -140,7 +150,7 @@ namespace AbarimMUD.Data
 			Inventory.Items.Clear();
 
 			// Generic loot
-			if (Info.Shop == null && Info.Guildmaster == null)
+			if (Spawn == null || Spawn.Shop == null)
 			{
 				foreach (var pair in GenericLoot.Items)
 				{
@@ -176,11 +186,10 @@ namespace AbarimMUD.Data
 					}
 				}
 			}
-
-			if (Info.Shop != null)
+			else
 			{
 				// Shop
-				Inventory.AddInventory(Info.Shop.Inventory);
+				Inventory.AddInventory(Spawn.Shop.Inventory);
 			}
 		}
 

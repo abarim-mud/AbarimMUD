@@ -303,6 +303,10 @@ namespace AbarimMUD.Storage
 					{
 						_defaultOptions = JsonUtils.CreateOptions();
 						_defaultOptions.Converters.Add(MobileConverter);
+						_defaultOptions.Converters.Add(PlayerClassConverter);
+						_defaultOptions.Converters.Add(ShopConverter);
+						_defaultOptions.Converters.Add(ForgeShopConverter);
+						_defaultOptions.Converters.Add(ExchangeShopConverter);
 					}
 
 					return _defaultOptions;

@@ -13,7 +13,7 @@ namespace AbarimMUD.Commands.Player
 			}
 
 			// Find shopkeeper
-			var shopKeeper = (from cr in context.Room.Mobiles where cr.Info.Shop != null select cr).FirstOrDefault();
+			var shopKeeper = (from cr in context.Room.Mobiles where cr.Shop != null select cr).FirstOrDefault();
 			if (shopKeeper == null)
 			{
 				context.Send("Sorry, but you cannot do that here!");

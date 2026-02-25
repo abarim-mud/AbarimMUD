@@ -18,14 +18,14 @@ namespace AbarimMUD.Commands.Player
 			}
 
 			// Find shopkeeper
-			var shopKeeper = (from cr in context.Room.Mobiles where cr.Info.ExchangeShop != null select cr).FirstOrDefault();
+			var shopKeeper = (from cr in context.Room.Mobiles where cr.ExchangeShop != null select cr).FirstOrDefault();
 			if (shopKeeper == null)
 			{
 				context.Send("Sorry, but you cannot do that here!");
 				return false;
 			}
 
-			var exchanges = shopKeeper.Info.ExchangeShop.Exchanges;
+			var exchanges = shopKeeper.ExchangeShop.Exchanges;
 			if (data.EqualsToIgnoreCase("list"))
 			{
 				var grid = new AsciiGrid();

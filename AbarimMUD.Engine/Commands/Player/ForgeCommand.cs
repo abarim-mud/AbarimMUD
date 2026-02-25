@@ -19,14 +19,14 @@ namespace AbarimMUD.Commands.Player
 			}
 
 			// Find shopkeeper
-			var shopKeeper = (from cr in context.Room.Mobiles where cr.Info.ForgeShop != null select cr).FirstOrDefault();
+			var shopKeeper = (from cr in context.Room.Mobiles where cr.ForgeShop != null select cr).FirstOrDefault();
 			if (shopKeeper == null)
 			{
 				context.Send("Sorry, but you cannot do that here!");
 				return false;
 			}
 
-			var forges = shopKeeper.Info.ForgeShop.Forges;
+			var forges = shopKeeper.ForgeShop.Forges;
 			if (data.EqualsToIgnoreCase("list"))
 			{
 				var grid = new AsciiGrid();

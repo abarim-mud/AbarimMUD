@@ -25,26 +25,6 @@ namespace AbarimMUD.Storage
 
 			foreach(var mobile in this)
 			{
-				if (mobile.Shop != null)
-				{
-					mobile.Shop = Shop.EnsureShopById(mobile.Shop.Id);
-				}
-
-				if (mobile.ForgeShop != null)
-				{
-					mobile.ForgeShop = ForgeShop.EnsureForgeShopById(mobile.ForgeShop.Id);
-				}
-
-				if (mobile.ExchangeShop != null)
-				{
-					mobile.ExchangeShop = ExchangeShop.EnsureExchangeShopById(mobile.ExchangeShop.Id);
-				}
-
-				if (mobile.Guildmaster != null)
-				{
-					mobile.Guildmaster = PlayerClass.EnsureClassById(mobile.Guildmaster.Id);
-				}
-
 				if (mobile.Loot != null)
 				{
 					foreach (var loot in mobile.Loot)

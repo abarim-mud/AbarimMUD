@@ -9,7 +9,7 @@ namespace AbarimMUD.Commands.Player
 		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
 			// Find shopkeeper
-			var shopKeeper = (from cr in context.Room.Mobiles where cr.Info.Shop != null select cr).FirstOrDefault();
+			var shopKeeper = (from cr in context.Room.Mobiles where cr.Shop != null select cr).FirstOrDefault();
 			if (shopKeeper == null)
 			{
 				context.Send("Sorry, but you cannot do that here!");
@@ -22,7 +22,7 @@ namespace AbarimMUD.Commands.Player
 			grid.SetHeader(2, "Quantity");
 
 			var y = 0;
-			for(var i = 0; i < shopKeeper.Inventory.Items.Count; ++i)
+			for (var i = 0; i < shopKeeper.Inventory.Items.Count; ++i)
 			{
 				var item = shopKeeper.Inventory.Items[i].Item;
 				var price = context.Creature.Stats.GetBuyPrice(item.Price);

@@ -75,11 +75,13 @@ namespace AbarimMUD.Commands.Builder
 
 			var requiresId = objectType != "room" && objectType != "area";
 			var editor = ClassEditor.GetEditor(storage.ObjectType);
+
+			var idName = objectType != "mobilespawn" ? "id" : "index";
 			if (parts.Length < 2)
 			{
 				if (requiresId)
 				{
-					context.Send($"Usage: set {objectType} _id_ {editor.PropertiesString} _params_");
+					context.Send($"Usage: set {objectType} _{idName}_ {editor.PropertiesString} _params_");
 				}
 				else
 				{
@@ -118,7 +120,7 @@ namespace AbarimMUD.Commands.Builder
 			{
 				if (requiresId)
 				{
-					context.Send($"Usage: set {objectType} _id_ {editor.PropertiesString} _params_");
+					context.Send($"Usage: set {objectType} _{idName}_ {editor.PropertiesString} _params_");
 				}
 				else
 				{
@@ -141,7 +143,7 @@ namespace AbarimMUD.Commands.Builder
 			{
 				if (requiresId)
 				{
-					context.Send($"Usage: set {objectType} _id_ {propertyName} {paramsString}");
+					context.Send($"Usage: set {objectType} _{idName}_ {propertyName} {paramsString}");
 				}
 				else
 				{

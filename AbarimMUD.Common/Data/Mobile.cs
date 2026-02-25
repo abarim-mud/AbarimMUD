@@ -108,7 +108,6 @@ namespace AbarimMUD.Data
 		private int _armor = DefaultArmor;
 		private int _level;
 		private int _gold = DefaultGold;
-		private Shop _shop;
 
 		public string Id { get; set; }
 
@@ -224,51 +223,11 @@ namespace AbarimMUD.Data
 
 		public Attack[] Attacks { get; set; }
 
-		[Browsable(false)]
 		public List<MobileSpecialAttack> SpecialAttacks { get; set; } = new List<MobileSpecialAttack>();
 
-		[Browsable(false)]
 		public HashSet<MobileFlags> Flags { get; set; } = new HashSet<MobileFlags>();
 
-		[Browsable(false)]
 		public List<LootRecord> Loot { get; set; } = new List<LootRecord>();
-
-		[Browsable(false)]
-		public PlayerClass Guildmaster { get; set; }
-
-		public Shop Shop
-		{
-			get => _shop;
-
-			set
-			{
-				if (value == _shop)
-				{
-					return;
-				}
-
-				_shop = value;
-
-				// Rebuild inventories
-				foreach (var creature in Creature.ActiveCreatures)
-				{
-					var asMobile = creature as MobileInstance;
-					if (asMobile == null)
-					{
-						continue;
-					}
-
-					if (asMobile.Info.Id == Id)
-					{
-						asMobile.RebuildInventory();
-					}
-				}
-			}
-		}
-
-		public ForgeShop ForgeShop { get; set; }
-
-		public ExchangeShop ExchangeShop { get; set; }
 
 		public Mobile()
 		{
@@ -325,10 +284,6 @@ namespace AbarimMUD.Data
 				Moves = Moves,
 				Armor = Armor,
 				Attacks = Attacks,
-				Guildmaster = Guildmaster,
-				Shop = Shop,
-				ForgeShop = ForgeShop,
-				ExchangeShop = ExchangeShop,
 				Gold = Gold,
 			};
 

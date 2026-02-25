@@ -74,7 +74,7 @@ namespace AbarimMUD.Commands.Player
 
 			var price = SkillCostInfo.GetSkillCostInfo(spentSkillPoints + 1).Gold;
 
-			var trainer = (from m in context.Room.Mobiles where m.Info.Guildmaster != null select m).FirstOrDefault();
+			var trainer = (from m in context.Room.Mobiles where m.Guildmaster != null select m).FirstOrDefault();
 			if (trainer == null)
 			{
 				context.Send("Noone can train you here.");
@@ -83,7 +83,7 @@ namespace AbarimMUD.Commands.Player
 
 			var trainerContext = (ExecutionContext)trainer.Tag;
 
-			var trainableSkills = (from s in Data.Skill.Storage where s.Class.Id.EqualsToIgnoreCase(trainer.Info.Guildmaster.Id) select s).ToList();
+			var trainableSkills = (from s in Data.Skill.Storage where s.Class.Id.EqualsToIgnoreCase(trainer.Guildmaster.Id) select s).ToList();
 
 			Skill skillToTrain = null;
 			if (!string.IsNullOrEmpty(data))

@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace AbarimMUD.Commands.Player
 {
-	public class Sell: PlayerCommand
+	public class Sell : PlayerCommand
 	{
 		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
@@ -13,7 +13,7 @@ namespace AbarimMUD.Commands.Player
 			}
 
 			// Find shopkeeper
-			var shopKeeper = (from cr in context.Room.Mobiles where cr.Info.Shop != null select cr).FirstOrDefault();
+			var shopKeeper = (from cr in context.Room.Mobiles where cr.Shop != null select cr).FirstOrDefault();
 			if (shopKeeper == null)
 			{
 				context.Send("Sorry, but you cannot do that here!");
@@ -28,7 +28,7 @@ namespace AbarimMUD.Commands.Player
 			}
 
 			var item = invItem.Item;
-			if (!shopKeeper.Info.Shop.ItemTypes.Contains(item.ItemType))
+			if (!shopKeeper.Shop.ItemTypes.Contains(item.ItemType))
 			{
 				Tell.Execute(shopKeeper.GetContext(), $"{context.Creature.ShortDescription} I don't deal in those.");
 				return false;

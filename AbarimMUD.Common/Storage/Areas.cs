@@ -1,6 +1,7 @@
 ﻿using AbarimMUD.Data;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -205,6 +206,26 @@ namespace AbarimMUD.Storage
 					foreach (var mobileSpawn in room.MobileSpawns)
 					{
 						mobileSpawn.Mobile = Mobile.EnsureMobileById(mobileSpawn.Mobile.Id);
+
+						if (mobileSpawn.Shop != null)
+						{
+							mobileSpawn.Shop = Shop.EnsureShopById(mobileSpawn.Shop.Id);
+						}
+
+						if (mobileSpawn.ForgeShop != null)
+						{
+							mobileSpawn.ForgeShop = ForgeShop.EnsureForgeShopById(mobileSpawn.ForgeShop.Id);
+						}
+
+						if (mobileSpawn.ExchangeShop != null)
+						{
+							mobileSpawn.ExchangeShop = ExchangeShop.EnsureExchangeShopById(mobileSpawn.ExchangeShop.Id);
+						}
+
+						if (mobileSpawn.Guildmaster != null)
+						{
+							mobileSpawn.Guildmaster = PlayerClass.EnsureClassById(mobileSpawn.Guildmaster.Id);
+						}
 					}
 				}
 			}
