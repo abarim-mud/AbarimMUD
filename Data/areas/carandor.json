@@ -14,16 +14,6 @@
       "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
-      "MobileSpawns": [
-        {
-          "Mobile": "service",
-          "CustomKeywords": [
-            "test"
-          ],
-          "CustomShortDescription": "test"
-        },
-        "citizen"
-      ],
       "Exits": {
         "West": 1,
         "North": 11,
@@ -97,6 +87,20 @@
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
+      "MobileSpawns": [
+        {
+          "Mobile": "service",
+          "CustomKeywords": [
+            "alchemist",
+            "malrik"
+          ],
+          "CustomShortDescription": "Malrik the alchemist",
+          "CustomLongDescription": "Malrik the alchemist is here.",
+          "CustomDescription": "Malrik is a wiry old man, his robes stained with the remnants of countless\\nexperiments. Thick goggles rest on his forehead, and his sharp eyes glint with both\\ncuriosity and wisdom. A mischievous smirk and cryptic remarks hint at secrets\\u2014perhaps\\neven the key to immortality. The scent of burnt herbs clings to him as he absently twirls\\na vial of shimmering liquid.",
+          "Shop": "alchemist",
+          "ExchangeShop": "alchemist"
+        }
+      ],
       "Exits": {
         "North": 2
       }
