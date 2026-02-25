@@ -9,12 +9,59 @@ namespace AbarimMUD.Data
 
 		public Mobile Info { get; }
 
-		public override string ShortDescription => Info.ShortDescription;
-		public override string Description => Info.Description;
-
 		public override int Level => Info.Level;
 
-		public override Sex Sex => Info.Sex;
+		public override Sex Sex
+		{
+			get
+			{
+				if (Spawn != null && Spawn.CustomSex != null)
+				{
+					return Spawn.CustomSex.Value;
+				}
+
+				return Info.Sex;
+			}
+		}
+
+		public override string ShortDescription
+		{
+			get
+			{
+				if (Spawn != null && !string.IsNullOrEmpty(Spawn.CustomShortDescription))
+				{
+					return Spawn.CustomShortDescription;
+				}
+
+				return Info.ShortDescription;
+			}
+		}
+
+		public string LongDescription
+		{
+			get
+			{
+				if (Spawn != null && !string.IsNullOrEmpty(Spawn.CustomLongDescription))
+				{
+					return Spawn.CustomLongDescription;
+				}
+
+				return Info.LongDescription;
+			}
+		}
+
+		public override string Description
+		{
+			get
+			{
+				if (Spawn != null && !string.IsNullOrEmpty(Spawn.CustomDescription))
+				{
+					return Spawn.CustomDescription;
+				}
+
+				return Info.Description;
+			}
+		}
 
 		public override Room Room
 		{
@@ -62,7 +109,15 @@ namespace AbarimMUD.Data
 			Spawn.Instance = this;
 		}
 
-		public override bool MatchesKeyword(string keyword) => Info.MatchesKeyword(keyword);
+		public override bool MatchesKeyword(string keyword)
+		{
+			if (Spawn != null && Spawn.CustomKeywords != null && Spawn.CustomKeywords.Count > 0)
+			{
+				return Spawn.CustomKeywords.StartsWithPattern(keyword);
+			}
+
+			return Info.MatchesKeyword(keyword);
+		}
 
 		protected override void Slain()
 		{

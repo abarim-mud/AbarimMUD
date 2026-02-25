@@ -9,18 +9,29 @@
   "IdCount": 1000,
   "Rooms": [
     {
+      "Id": 0,
       "Name": "Fountain",
       "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
+      "MobileSpawns": [
+        {
+          "Mobile": "service",
+          "CustomKeywords": [
+            "test"
+          ],
+          "CustomShortDescription": "test"
+        },
+        "citizen"
+      ],
       "Exits": {
         "West": 1,
         "North": 11,
         "East": 18
-      },
-      "Id": 0
+      }
     },
     {
+      "Id": 1,
       "Name": "Horizontal Street",
       "SectorType": "City",
       "HealRate": 0,
@@ -28,10 +39,10 @@
       "Exits": {
         "East": 0,
         "West": 2
-      },
-      "Id": 1
+      }
     },
     {
+      "Id": 2,
       "Name": "Horizontal Street",
       "SectorType": "City",
       "HealRate": 0,
@@ -41,10 +52,10 @@
         "West": 3,
         "North": 4,
         "South": 5
-      },
-      "Id": 2
+      }
     },
     {
+      "Id": 3,
       "Name": "Horizontal Street",
       "SectorType": "City",
       "HealRate": 0,
@@ -52,30 +63,43 @@
       "Exits": {
         "East": 2,
         "West": 6
-      },
-      "Id": 3
+      }
     },
     {
+      "Id": 4,
       "Name": "Smithy",
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
+      "MobileSpawns": [
+        {
+          "Mobile": "service",
+          "CustomKeywords": [
+            "blacksmith",
+            "thane",
+            "ironjaw"
+          ],
+          "CustomShortDescription": "Thane the blacksmith",
+          "CustomLongDescription": "Blacksmith Thane Ironjaw stands at the counter, waiting for your order.",
+          "CustomDescription": "Thane Ironjaw is a towering, broad-shouldered man with the physique of\\nsomeone who has spent a lifetime hammering steel. His arms are thick with muscle,\\nbearing countless burn scars from stray embers and molten metal. A long, grizzled beard\\n\\u2014once deep auburn, now streaked with silver\\u2014frames his square jaw, giving him the look\\nof a battle-hardened veteran. His dark eyes gleam like tempered steel, ever watchful over\\nhis shop\\u2019s wares and customers alike. His leather apron, heavy with soot, smells faintly of\\niron and sweat, and his hands, calloused and strong, move with practiced ease as he\\ninspects blades and hammers."
+        }
+      ],
       "Exits": {
         "South": 2
-      },
-      "Id": 4
+      }
     },
     {
+      "Id": 5,
       "Name": "Alchemist Store",
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
         "North": 2
-      },
-      "Id": 5
+      }
     },
     {
+      "Id": 6,
       "Name": "Horizontal Street",
       "SectorType": "City",
       "HealRate": 0,
@@ -84,10 +108,10 @@
         "East": 3,
         "West": 7,
         "North": 9
-      },
-      "Id": 6
+      }
     },
     {
+      "Id": 7,
       "Name": "Horizontal Street",
       "SectorType": "City",
       "HealRate": 0,
@@ -95,10 +119,10 @@
       "Exits": {
         "East": 6,
         "West": 8
-      },
-      "Id": 7
+      }
     },
     {
+      "Id": 8,
       "Name": "West Gate",
       "SectorType": "City",
       "HealRate": 0,
@@ -106,30 +130,30 @@
       "Exits": {
         "East": 7,
         "West": 10
-      },
-      "Id": 8
+      }
     },
     {
+      "Id": 9,
       "Name": "Magic Shop",
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
         "South": 6
-      },
-      "Id": 9
+      }
     },
     {
+      "Id": 10,
       "Name": "Outside West Gate",
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
         "East": 8
-      },
-      "Id": 10
+      }
     },
     {
+      "Id": 11,
       "Name": "Vertical Street",
       "SectorType": "City",
       "HealRate": 0,
@@ -137,10 +161,10 @@
       "Exits": {
         "South": 0,
         "North": 12
-      },
-      "Id": 11
+      }
     },
     {
+      "Id": 12,
       "Name": "Vertical Street",
       "SectorType": "City",
       "HealRate": 0,
@@ -149,10 +173,10 @@
         "South": 11,
         "North": 13,
         "West": 25
-      },
-      "Id": 12
+      }
     },
     {
+      "Id": 13,
       "Name": "Vertical Street",
       "SectorType": "City",
       "HealRate": 0,
@@ -160,10 +184,10 @@
       "Exits": {
         "South": 12,
         "North": 14
-      },
-      "Id": 13
+      }
     },
     {
+      "Id": 14,
       "Name": "Vertical Street",
       "SectorType": "City",
       "HealRate": 0,
@@ -173,10 +197,10 @@
         "North": 15,
         "West": 27,
         "East": 29
-      },
-      "Id": 14
+      }
     },
     {
+      "Id": 15,
       "Name": "Vertical Street",
       "SectorType": "City",
       "HealRate": 0,
@@ -184,10 +208,10 @@
       "Exits": {
         "South": 14,
         "North": 16
-      },
-      "Id": 15
+      }
     },
     {
+      "Id": 16,
       "Name": "North Gate",
       "SectorType": "City",
       "HealRate": 0,
@@ -195,20 +219,20 @@
       "Exits": {
         "South": 15,
         "North": 17
-      },
-      "Id": 16
+      }
     },
     {
+      "Id": 17,
       "Name": "Outside North Gate",
       "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
         "South": 16
-      },
-      "Id": 17
+      }
     },
     {
+      "Id": 18,
       "Name": "Horizontal Street",
       "SectorType": "City",
       "HealRate": 0,
@@ -216,10 +240,10 @@
       "Exits": {
         "West": 0,
         "East": 19
-      },
-      "Id": 18
+      }
     },
     {
+      "Id": 19,
       "Name": "Horizontal Street",
       "SectorType": "City",
       "HealRate": 0,
@@ -227,10 +251,10 @@
       "Exits": {
         "West": 18,
         "East": 20
-      },
-      "Id": 19
+      }
     },
     {
+      "Id": 20,
       "Name": "Horizontal Street",
       "SectorType": "City",
       "HealRate": 0,
@@ -238,10 +262,10 @@
       "Exits": {
         "West": 19,
         "East": 21
-      },
-      "Id": 20
+      }
     },
     {
+      "Id": 21,
       "Name": "Horizontal Street",
       "SectorType": "City",
       "HealRate": 0,
@@ -249,10 +273,10 @@
       "Exits": {
         "West": 20,
         "East": 22
-      },
-      "Id": 21
+      }
     },
     {
+      "Id": 22,
       "Name": "Horizontal Street",
       "SectorType": "City",
       "HealRate": 0,
@@ -260,10 +284,10 @@
       "Exits": {
         "West": 21,
         "East": 23
-      },
-      "Id": 22
+      }
     },
     {
+      "Id": 23,
       "Name": "East Gate",
       "SectorType": "City",
       "HealRate": 0,
@@ -271,20 +295,20 @@
       "Exits": {
         "West": 22,
         "East": 24
-      },
-      "Id": 23
+      }
     },
     {
+      "Id": 24,
       "Name": "Outside East Gate",
       "SectorType": "City",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
         "West": 23
-      },
-      "Id": 24
+      }
     },
     {
+      "Id": 25,
       "Name": "Outside Warriors Guild",
       "SectorType": "City",
       "HealRate": 0,
@@ -292,20 +316,20 @@
       "Exits": {
         "East": 12,
         "North": 26
-      },
-      "Id": 25
+      }
     },
     {
+      "Id": 26,
       "Name": "Warriors Guild",
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
         "South": 25
-      },
-      "Id": 26
+      }
     },
     {
+      "Id": 27,
       "Name": "Outside Rogue Guild",
       "SectorType": "City",
       "HealRate": 0,
@@ -313,20 +337,20 @@
       "Exits": {
         "East": 14,
         "North": 28
-      },
-      "Id": 27
+      }
     },
     {
+      "Id": 28,
       "Name": "Rogue Guild",
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
         "South": 27
-      },
-      "Id": 28
+      }
     },
     {
+      "Id": 29,
       "Name": "Outside Monks Guild",
       "SectorType": "City",
       "HealRate": 0,
@@ -334,18 +358,17 @@
       "Exits": {
         "West": 14,
         "North": 30
-      },
-      "Id": 29
+      }
     },
     {
+      "Id": 30,
       "Name": "Monks Guild",
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
         "South": 29
-      },
-      "Id": 30
+      }
     }
   ],
   "RespawnTimeInMinutes": 30

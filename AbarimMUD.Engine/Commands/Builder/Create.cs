@@ -95,8 +95,13 @@ namespace AbarimMUD.Commands.Builder
 			{
 				Id = id,
 				Sex = Sex.Male,
-				Level = 1
+				Level = 1,
+				ShortDescription = id,
+				LongDescription = id,
+				Description = id
 			};
+
+			newMobile.Keywords.Add(id);
 
 			var attack = new Attack(AttackType.Hit, 0, 5, 10);
 			newMobile.Attacks = new Attack[]
@@ -107,6 +112,24 @@ namespace AbarimMUD.Commands.Builder
 			Mobile.Storage.Save(newMobile);
 
 			context.Send($"Created new mobile (#{newMobile.Id}).");
+
+			return true;
+		}
+
+		private bool CreateMobileSpawn(ExecutionContext context, string mobileId)
+		{
+			var mobile = context.EnsureMobileById(mobileId);
+
+			var newMobileSpawn = new MobileSpawn
+			{
+				Mobile = mobile,
+			};
+
+			context.Room.MobileSpawns.Add(newMobileSpawn);
+
+			context.Room.Area.Save();
+
+			context.Send($"Created new mobile spawn #{mobile.Id} in the room #{context.Room.Id}.");
 
 			return true;
 		}
@@ -132,7 +155,14 @@ namespace AbarimMUD.Commands.Builder
 			{
 				if (parts.Length < 2)
 				{
-					context.Send($"Usage: create {objectType} _id_");
+					if (objectType != "mobilespawn")
+					{
+						context.Send($"Usage: create {objectType} _id_");
+					} else
+					{
+						context.Send($"Usage: create {objectType} _mobileId_");
+					}
+
 					return false;
 				}
 			}
@@ -147,6 +177,9 @@ namespace AbarimMUD.Commands.Builder
 
 				case "mobile":
 					return CreateMobile(context, parts[1]);
+
+				case "mobilespawn":
+					return CreateMobileSpawn(context, parts[1]);
 			}
 
 			/*			// Create new mobile

@@ -293,21 +293,51 @@ namespace AbarimMUD.Storage
 
 		public class MobileSpawnConverterType : JsonConverter<MobileSpawn>
 		{
+			private static JsonSerializerOptions _defaultOptions;
+
+			public static JsonSerializerOptions DefaultOptions
+			{
+				get
+				{
+					if (_defaultOptions == null)
+					{
+						_defaultOptions = JsonUtils.CreateOptions();
+						_defaultOptions.Converters.Add(MobileConverter);
+					}
+
+					return _defaultOptions;
+				}
+			}
+
 			public override MobileSpawn Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 			{
-				// Just an id
-				var mobileId = reader.GetString();
-
-				return new MobileSpawn
+				if (reader.TokenType == JsonTokenType.String)
 				{
-					Mobile = new Mobile { Id = mobileId }
-				};
+					// Just an id
+					var mobileId = reader.GetString();
+
+					return new MobileSpawn
+					{
+						Mobile = new Mobile { Id = mobileId }
+					};
+				}
+
+				// Standard parse
+				var doc = JsonDocument.ParseValue(ref reader);
+				return JsonSerializer.Deserialize<MobileSpawn>(doc, DefaultOptions);
 			}
 
 			public override void Write(Utf8JsonWriter writer, MobileSpawn value, JsonSerializerOptions options)
 			{
 				// Write just an id
-				writer.WriteStringValue(value.Mobile.Id);
+				if (!value.HasCustomParams)
+				{
+					writer.WriteStringValue(value.Mobile.Id);
+					return;
+				}
+
+				// Full serialization
+				JsonSerializer.Serialize(writer, value, DefaultOptions);
 			}
 		}
 

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AbarimMUD.Attributes;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace AbarimMUD.Data
@@ -15,6 +17,7 @@ namespace AbarimMUD.Data
 			set
 			{
 				_mobile = value ?? throw new ArgumentNullException(nameof(value));
+				Instance = null;
 			}
 		}
 
@@ -23,5 +26,31 @@ namespace AbarimMUD.Data
 
 		[Browsable(false)]
 		public MobileInstance Instance { get; internal set; }
+
+		[OLCAlias("sex")]
+		public Sex? CustomSex { get; set; }
+
+		[OLCAlias("keywords")]
+		public HashSet<string> CustomKeywords { get; set; }
+
+		[OLCAlias("short")]
+		public string CustomShortDescription { get; set; }
+
+		[OLCAlias("long")]
+		public string CustomLongDescription { get; set; }
+
+		[OLCAlias("description")]
+		public string CustomDescription { get; set; }
+
+		public bool HasCustomParams
+		{
+			get
+			{
+				return (CustomKeywords != null && CustomKeywords.Count > 0) ||
+					!string.IsNullOrEmpty(CustomShortDescription) ||
+					!string.IsNullOrEmpty(CustomLongDescription) ||
+					!string.IsNullOrEmpty(CustomDescription);
+			}
+		}
 	}
 }

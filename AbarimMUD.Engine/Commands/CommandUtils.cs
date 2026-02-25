@@ -9,6 +9,28 @@ namespace AbarimMUD.Commands
 {
 	public static class CommandUtils
 	{
+		public static bool EnsureId(this ExecutionContext context, string value, int exclusiveMaxValue, out int result)
+		{
+			if (!context.EnsureInt(value, out result))
+			{
+				return false;
+			}
+
+			if (result < 0)
+			{
+				context.Send($"Value {value} is negative.");
+				return false;
+			}
+
+			if (result >= exclusiveMaxValue)
+			{
+				context.Send($"Value {value} >= {exclusiveMaxValue}.");
+				return false;
+			}
+
+			return true;
+		}
+
 		public static bool EnsureInt(this ExecutionContext context, string value, out int result)
 		{
 			if (!int.TryParse(value, out result))
@@ -229,6 +251,12 @@ namespace AbarimMUD.Commands
 				return asIntEntity.Id.ToString();
 			}
 
+			var asMobileSpawn = entity as MobileSpawn;
+			if (asMobileSpawn != null)
+			{
+				return asMobileSpawn.Room.MobileSpawns.IndexOf(asMobileSpawn).ToString();
+			}
+
 			throw new Exception($"Can't determine id of {entity}");
 		}
 
@@ -270,6 +298,13 @@ namespace AbarimMUD.Commands
 				if (asRoom != null)
 				{
 					asRoom.Area.Save();
+					break;
+				}
+
+				var mobileSpawn = item as MobileSpawn;
+				if (mobileSpawn != null)
+				{
+					mobileSpawn.Room.Area.Save();
 					break;
 				}
 

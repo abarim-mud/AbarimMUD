@@ -56,6 +56,7 @@ namespace AbarimMUD.Commands.Builder
 			return true;
 		}
 
+
 		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
 			var parts = data.SplitByWhitespace();
@@ -90,7 +91,7 @@ namespace AbarimMUD.Commands.Builder
 
 			var propertyIndex = 1;
 			object obj;
-			switch(objectType)
+			switch (objectType)
 			{
 				case "room":
 					obj = context.Room;

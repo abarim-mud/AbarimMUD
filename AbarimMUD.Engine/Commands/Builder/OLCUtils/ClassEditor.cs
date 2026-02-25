@@ -99,6 +99,22 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 
 		private static bool CanBeAdded(MemberInfo memberInfo)
 		{
+			var asPropertyInfo = memberInfo as PropertyInfo;
+			if (asPropertyInfo != null)
+			{
+				var getMethod = asPropertyInfo.GetMethod;
+				if (getMethod == null || !getMethod.IsPublic)
+				{
+					return false;
+				}
+
+				var setMethod = asPropertyInfo.SetMethod;
+				if (setMethod == null || !setMethod.IsPublic)
+				{
+					return false;
+				}
+			}
+
 			return !memberInfo.HasAttribute<OLCIgnoreAttribute>() &&
 				!memberInfo.HasAttribute<JsonIgnoreAttribute>();
 		}

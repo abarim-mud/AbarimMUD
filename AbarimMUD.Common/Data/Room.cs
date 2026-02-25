@@ -49,7 +49,7 @@ namespace AbarimMUD.Data
 
 	public class Room : IHasId<int>
 	{
-		private ObservableCollection<MobileSpawn> _mobileSpawns = new ObservableCollection<MobileSpawn>();
+		private ObservableCollection<MobileSpawn> _mobileSpawns;
 
 		public static readonly Room DefaultRoom;
 
@@ -98,6 +98,11 @@ namespace AbarimMUD.Data
 
 				UpdateMobileSpawns();
 			}
+		}
+
+		public Room()
+		{
+			MobileSpawns = new ObservableCollection<MobileSpawn>();
 		}
 
 		private void UpdateMobileSpawns()

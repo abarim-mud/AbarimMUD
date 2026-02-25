@@ -138,6 +138,38 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 			}
 		}
 
+		private class OLCRecordMobileSpawn : IOLCStorage
+		{
+			public bool RequiresId => true;
+
+			public Type ObjectType => typeof(MobileSpawn);
+
+			public bool CanSpawn => false;
+
+			public object FindById(ExecutionContext context, string id)
+			{
+				var maxValue = context.Room.MobileSpawns.Count;
+
+				int num;
+				if (!context.EnsureId(id, maxValue, out num))
+				{
+					return null;
+				}
+
+				return context.Room.MobileSpawns[num];
+			}
+
+			public IEnumerator GetEnumerator()
+			{
+				throw new NotImplementedException();
+			}
+
+			public IEnumerable<object> Lookup(ExecutionContext context, string pattern)
+			{
+				throw new NotImplementedException();
+			}
+		}
+
 
 		private static readonly string[] _keys;
 		private static readonly string _keysString;
@@ -154,6 +186,7 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 			_records["item"] = new OLCRecordString<Item>(Item.Storage, true);
 			_records["character"] = new OLCRecordString<Character>(Character.Storage, false);
 			_records["mobile"] = new OLCRecordString<Mobile>(Mobile.Storage, true);
+			_records["mobilespawn"] = new OLCRecordMobileSpawn();
 			_records["area"] = new OLCRecordString<Area>(Area.Storage, false);
 			_records["room"] = new OLCRecordInt<Room>(() => Area.Storage.AllRooms, r => r.Name, false);
 

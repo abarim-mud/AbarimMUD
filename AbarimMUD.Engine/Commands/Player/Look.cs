@@ -48,6 +48,21 @@ namespace AbarimMUD.Commands.Player
 
 			sb.AppendLine("[reset]");
 
+			if (context.IsStaff)
+			{
+				// Show mobile spawns
+				foreach (var mobileSpawn in room.MobileSpawns)
+				{
+					var location = "dead";
+					if (mobileSpawn.Instance != null)
+					{
+						location = mobileSpawn.Instance.Room.Id == room.Id ? "here" : $" at #{mobileSpawn.Instance.Room.Id}";
+					}
+
+					sb.AppendLine($"Mobile Spawn: #{mobileSpawn.Mobile.Id}, {location}");
+				}
+			}
+
 			if (room.Characters.Count > 0 || room.Mobiles.Count > 0)
 			{
 				sb.Append("[yellow]");
@@ -67,10 +82,10 @@ namespace AbarimMUD.Commands.Player
 			// Mobiles
 			foreach (var mobile in room.Mobiles)
 			{
-				var desc = mobile.Info.LongDescription;
+				var desc = mobile.LongDescription;
 				if (string.IsNullOrEmpty(desc))
 				{
-					desc = Defaults.DefaultMobileLongDesc(mobile.Info.ShortDescription);
+					desc = Defaults.DefaultMobileLongDesc(mobile.ShortDescription);
 				}
 
 				if (context.IsStaff)
