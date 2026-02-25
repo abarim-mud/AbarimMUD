@@ -293,58 +293,21 @@ namespace AbarimMUD.Storage
 
 		public class MobileSpawnConverterType : JsonConverter<MobileSpawn>
 		{
-			private static JsonSerializerOptions _defaultOptions;
-
-			public static JsonSerializerOptions DefaultOptions
-			{
-				get
-				{
-					if (_defaultOptions == null)
-					{
-						_defaultOptions = JsonUtils.CreateOptions();
-						_defaultOptions.Converters.Add(MobileConverter);
-						_defaultOptions.Converters.Add(ItemInstanceConverter);
-						_defaultOptions.Converters.Add(InventoryConverter);
-						_defaultOptions.Converters.Add(PlayerClassConverter);
-						_defaultOptions.Converters.Add(ShopConverter);
-						_defaultOptions.Converters.Add(ForgeShopConverter);
-						_defaultOptions.Converters.Add(ExchangeShopConverter);
-
-					}
-
-					return _defaultOptions;
-				}
-			}
-
 			public override MobileSpawn Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 			{
-				if (reader.TokenType == JsonTokenType.String)
+				// Just an id
+				var mobileId = reader.GetString();
+
+				return new MobileSpawn
 				{
-					// Just an id
-					var mobileId = reader.GetString();
-
-					return new MobileSpawn
-					{
-						Mobile = new Mobile { Id = mobileId }
-					};
-				}
-
-				// Standard parse
-				var doc = JsonDocument.ParseValue(ref reader);
-				return JsonSerializer.Deserialize<MobileSpawn>(doc, DefaultOptions);
+					Mobile = new Mobile { Id = mobileId }
+				};
 			}
 
 			public override void Write(Utf8JsonWriter writer, MobileSpawn value, JsonSerializerOptions options)
 			{
 				// Write just an id
-				if (value.NoCustomParams)
-				{
-					writer.WriteStringValue(value.Mobile.Id);
-					return;
-				}
-
-				// Full serialization
-				JsonSerializer.Serialize(writer, value, DefaultOptions);
+				writer.WriteStringValue(value.Mobile.Id);
 			}
 		}
 

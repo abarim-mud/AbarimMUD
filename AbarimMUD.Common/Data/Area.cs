@@ -80,7 +80,6 @@ namespace AbarimMUD.Data
 		public DateTime LastSpawn { get; set; }
 
 		public event EventHandler RoomsChanged;
-		public event EventHandler MobilesChanged;
 
 		public Area()
 		{
@@ -93,7 +92,7 @@ namespace AbarimMUD.Data
 			RoomsChanged?.Invoke(this, EventArgs.Empty);
 		}
 
-		private void UpdateEntities(IEnumerable<AreaEntity> entities)
+		private void UpdateEntities(IEnumerable<Room> entities)
 		{
 			foreach (var r in entities)
 			{
@@ -107,7 +106,6 @@ namespace AbarimMUD.Data
 		public override string ToString() => $"{MinimumLevel}-{MaximumLevel} {Builders} {Name}";
 
 		public static int NextRoomId => Storage.NewRoomId;
-		public static int NextMobileId => Storage.NewMobileId;
 
 		public static Area GetAreaByName(string name) => Storage.GetByKey(name);
 		public static Area EnsureAreaByName(string name) => Storage.EnsureByKey(name);

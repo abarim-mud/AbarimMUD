@@ -316,21 +316,6 @@ namespace AbarimMUD.Data
 			}
 		}
 
-		public static void InvalidateMobiles(MobileSpawn mobile)
-		{
-			foreach (var creature in ActiveCreatures)
-			{
-				var asMobile = creature as MobileInstance;
-				if (asMobile == null || asMobile.Info != mobile)
-				{
-					continue;
-				}
-
-				asMobile.InvalidateStats();
-				asMobile.Restore();
-			}
-		}
-
 		public void AddTemporaryAffect(string slot, string name, Affect affect)
 		{
 			_temporaryAffects[slot] = new TemporaryAffect(name, affect);

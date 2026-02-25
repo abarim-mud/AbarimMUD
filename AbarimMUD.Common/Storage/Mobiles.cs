@@ -23,11 +23,31 @@ namespace AbarimMUD.Storage
 		{
 			base.SetReferences();
 
-			foreach(var mobileTemplate in this)
+			foreach(var mobile in this)
 			{
-				if (mobileTemplate.Loot != null)
+				if (mobile.Shop != null)
 				{
-					foreach (var loot in mobileTemplate.Loot)
+					mobile.Shop = Shop.EnsureShopById(mobile.Shop.Id);
+				}
+
+				if (mobile.ForgeShop != null)
+				{
+					mobile.ForgeShop = ForgeShop.EnsureForgeShopById(mobile.ForgeShop.Id);
+				}
+
+				if (mobile.ExchangeShop != null)
+				{
+					mobile.ExchangeShop = ExchangeShop.EnsureExchangeShopById(mobile.ExchangeShop.Id);
+				}
+
+				if (mobile.Guildmaster != null)
+				{
+					mobile.Guildmaster = PlayerClass.EnsureClassById(mobile.Guildmaster.Id);
+				}
+
+				if (mobile.Loot != null)
+				{
+					foreach (var loot in mobile.Loot)
 					{
 						loot.Items.SetReferences();
 					}

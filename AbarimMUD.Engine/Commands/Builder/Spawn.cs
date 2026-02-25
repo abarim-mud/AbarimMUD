@@ -49,7 +49,7 @@ namespace AbarimMUD.Commands.Builder
 				case "mobile":
 					{
 						// Create new mobile
-						var mobile = (MobileSpawn)obj;
+						var mobile = (Mobile)obj;
 						var newMobile = new MobileInstance(mobile, context.Room);
 						new ExecutionContext(newMobile);
 

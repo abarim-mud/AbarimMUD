@@ -1,6 +1,8 @@
-﻿using System;
+﻿using AbarimMUD.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
 
@@ -45,11 +47,19 @@ namespace AbarimMUD.Data
 		Nowhere,
 	}
 
-	public class Room : AreaEntityWithId
+	public class Room : IHasId<int>
 	{
-		private ObservableCollection<MobileSpawn> _mobileSpawns;
+		private ObservableCollection<MobileSpawn> _mobileSpawns = new ObservableCollection<MobileSpawn>();
 
 		public static readonly Room DefaultRoom;
+
+		[Browsable(false)]
+		[JsonIgnore]
+		public Area Area { get; set; }
+
+		[Browsable(false)]
+		[OLCIgnore]
+		public int Id { get; set; }
 
 		public string Name { get; set; }
 		public string Description { get; set; }
@@ -77,8 +87,30 @@ namespace AbarimMUD.Data
 					return;
 				}
 
+				if (_mobileSpawns != null)
+				{
+					_mobileSpawns.CollectionChanged -= OnCollectionChanged;
+				}
+
 				_mobileSpawns = value;
+
+				_mobileSpawns.CollectionChanged += OnCollectionChanged;
+
+				UpdateMobileSpawns();
 			}
+		}
+
+		private void UpdateMobileSpawns()
+		{
+			foreach(var mobileSpawn in _mobileSpawns)
+			{
+				mobileSpawn.Room = this;
+			}
+		}
+
+		private void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+		{
+			UpdateMobileSpawns();
 		}
 
 		[Browsable(false)]

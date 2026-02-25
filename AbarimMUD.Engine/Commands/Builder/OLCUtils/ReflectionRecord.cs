@@ -175,14 +175,9 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 
 				SetValue(item, new ValueRange(level1Value, level100Value));
 			}
-			else if (Type == typeof(MobileSpawn))
+			else if (Type == typeof(Mobile))
 			{
-				int id;
-				if (!context.EnsureInt(s, out id))
-				{
-					return false;
-				}
-
+				var id = s;
 				var cls = context.EnsureMobileById(id);
 				if (cls == null)
 				{

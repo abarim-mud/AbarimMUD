@@ -165,7 +165,7 @@ namespace AbarimMUD.Commands
 			return item;
 		}
 
-		public static MobileSpawn EnsureMobileById(this ExecutionContext context, int id) => EnsureById(context, id, MobileSpawn.GetMobileById);
+		public static Mobile EnsureMobileById(this ExecutionContext context, string id) => EnsureById(context, id, Mobile.GetMobileById);
 		public static Character EnsureCharacterByName(this ExecutionContext context, string name) => EnsureById(context, name, Character.GetCharacterByName);
 		public static PlayerClass EnsurePlayerClassById(this ExecutionContext context, string id) => EnsureById(context, id, PlayerClass.GetClassById);
 		public static Shop EnsureShopById(this ExecutionContext context, string id) => EnsureById(context, id, Shop.GetShopById);
@@ -266,10 +266,10 @@ namespace AbarimMUD.Commands
 					break;
 				}
 
-				var asAreaEntity = item as AreaEntity;
-				if (asAreaEntity != null)
+				var asRoom = item as Room;
+				if (asRoom != null)
 				{
-					asAreaEntity.Area.Save();
+					asRoom.Area.Save();
 					break;
 				}
 

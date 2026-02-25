@@ -8,11 +8,11 @@ namespace AbarimMUD.Storage
 {
 	public class Areas : MultipleFilesStorage<Area>
 	{
-		private class EntityCache<T> where T : AreaEntity
+		private class RoomCache
 		{
 			private readonly Areas _areas;
-			private readonly Func<Area, IEnumerable<T>> _getter;
-			private readonly Dictionary<int, T> _cache = new Dictionary<int, T>();
+			private readonly Func<Area, IEnumerable<Room>> _getter;
+			private readonly Dictionary<int, Room> _cache = new Dictionary<int, Room>();
 			private bool _dirty = true;
 			private int _nextId = 1;
 
@@ -27,7 +27,7 @@ namespace AbarimMUD.Storage
 				}
 			}
 
-			public IReadOnlyDictionary<int, T> All
+			public IReadOnlyDictionary<int, Room> All
 			{
 				get
 				{
@@ -37,7 +37,7 @@ namespace AbarimMUD.Storage
 				}
 			}
 
-			public EntityCache(Areas areas, Func<Area, IEnumerable<T>> getter)
+			public RoomCache(Areas areas, Func<Area, IEnumerable<Room>> getter)
 			{
 				_areas = areas ?? throw new ArgumentNullException(nameof(areas));
 				_getter = getter ?? throw new ArgumentNullException(nameof(getter));
@@ -75,11 +75,11 @@ namespace AbarimMUD.Storage
 				_dirty = false;
 			}
 
-			public T GetById(int id)
+			public Room GetById(int id)
 			{
 				Update();
 
-				T result;
+				Room result;
 				if (!_cache.TryGetValue(id, out result))
 				{
 					return null;
@@ -88,12 +88,12 @@ namespace AbarimMUD.Storage
 				return result;
 			}
 
-			public T EnsureById(int id)
+			public Room EnsureById(int id)
 			{
 				var result = GetById(id);
 				if (result == null)
 				{
-					throw new Exception($"Could not find {typeof(T).Name.ToLower()} with vnum {id}");
+					throw new Exception($"Could not find Room with vnum {id}");
 				}
 
 				return result;
@@ -128,20 +128,15 @@ namespace AbarimMUD.Storage
 
 		internal const string SubfolderName = "areas";
 
-		private readonly EntityCache<Room> _allRoomsCache;
-		private readonly EntityCache<MobileSpawn> _allMobilesCache;
+		private readonly RoomCache _allRoomsCache;
 
 		public int NewRoomId => _allRoomsCache.NextId;
 
-		public int NewMobileId => _allMobilesCache.NextId;
-
 		public IReadOnlyDictionary<int, Room> AllRooms => _allRoomsCache.All;
-		public IReadOnlyDictionary<int, MobileSpawn> AllMobiles => _allMobilesCache.All;
 
 		internal Areas() : base(a => a.Id, SubfolderName)
 		{
-			_allRoomsCache = new EntityCache<Room>(this, a => a.Rooms);
-			_allMobilesCache = new EntityCache<MobileSpawn>(this, a => a.Mobiles);
+			_allRoomsCache = new RoomCache(this, a => a.Rooms);
 		}
 
 		public override Area LoadEntity(string filePath)
@@ -149,17 +144,10 @@ namespace AbarimMUD.Storage
 			var area = base.LoadEntity(filePath);
 
 			area.RoomsChanged += Area_RoomsChanged;
-			area.MobilesChanged += Area_MobilesChanged;
 
 			_allRoomsCache.Invalidate();
-			_allMobilesCache.Invalidate();
 
 			return area;
-		}
-
-		private void Area_MobilesChanged(object sender, EventArgs e)
-		{
-			_allMobilesCache.Invalidate();
 		}
 
 		private void Area_RoomsChanged(object sender, EventArgs e)
@@ -171,7 +159,6 @@ namespace AbarimMUD.Storage
 		{
 			base.AddToCache(entity);
 
-			_allMobilesCache.Invalidate();
 			_allRoomsCache.Invalidate();
 		}
 
@@ -180,10 +167,8 @@ namespace AbarimMUD.Storage
 			foreach (var area in this)
 			{
 				area.RoomsChanged -= Area_RoomsChanged;
-				area.MobilesChanged -= Area_MobilesChanged;
 			}
 
-			_allMobilesCache.Invalidate();
 			_allRoomsCache.Invalidate();
 
 			base.ClearCache();
@@ -216,41 +201,10 @@ namespace AbarimMUD.Storage
 						exit.TargetRoom = GetRoomById(vnum);
 						exit.Tag = null;
 					}
-				}
 
-				for (var i = 0; i < area.Mobiles.Count; ++i)
-				{
-					var mobile = area.Mobiles[i];
-
-					if (mobile.Template != null)
+					foreach (var mobileSpawn in room.MobileSpawns)
 					{
-						mobile.Template = Mobile.EnsureMobileById(mobile.Template.Id);
-						mobile.Template.SetReferences();
-					}
-
-					foreach (var loot in mobile.Loot)
-					{
-						loot.Items.SetReferences();
-					}
-
-					if (mobile.Shop != null)
-					{
-						mobile.Shop = Shop.EnsureShopById(mobile.Shop.Id);
-					}
-
-					if (mobile.ForgeShop != null)
-					{
-						mobile.ForgeShop = ForgeShop.EnsureForgeShopById(mobile.ForgeShop.Id);
-					}
-
-					if (mobile.ExchangeShop != null)
-					{
-						mobile.ExchangeShop = ExchangeShop.EnsureExchangeShopById(mobile.ExchangeShop.Id);
-					}
-
-					if (mobile.Guildmaster != null)
-					{
-						mobile.Guildmaster = PlayerClass.EnsureClassById(mobile.Guildmaster.Id);
+						mobileSpawn.Mobile = Mobile.EnsureMobileById(mobileSpawn.Mobile.Id);
 					}
 				}
 			}
@@ -267,7 +221,5 @@ namespace AbarimMUD.Storage
 
 		public Room GetRoomById(int id) => _allRoomsCache.GetById(id);
 		public Room EnsureRoomById(int id) => _allRoomsCache.EnsureById(id);
-		public MobileSpawn GetMobileById(int id) => _allMobilesCache.GetById(id);
-		public MobileSpawn EnsureMobileById(int id) => _allMobilesCache.GetById(id);
 	}
 }

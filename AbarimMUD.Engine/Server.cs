@@ -64,20 +64,20 @@ namespace AbarimMUD
 
 			DataContext.Load(dataFolder);
 
-/*			Area.Storage.SaveAll();
-			PlayerClass.Storage.SaveAll();
-			Skill.Storage.SaveAll();
-			Ability.Storage.SaveAll();
-			Configuration.Save();
-			SkillCostInfo.Storage.SaveAll();
-			Item.Storage.SaveAll();
-			GenericLoot.Save();
-			Shop.Storage.SaveAll();
-			ForgeShop.Storage.SaveAll();
-			ExchangeShop.Storage.SaveAll();
-			Enchantment.Storage.SaveAll();
-			Mobile.Storage.SaveAll();
-			LevelInfo.Storage.SaveAll();*/
+			/*			Area.Storage.SaveAll();
+						PlayerClass.Storage.SaveAll();
+						Skill.Storage.SaveAll();
+						Ability.Storage.SaveAll();
+						Configuration.Save();
+						SkillCostInfo.Storage.SaveAll();
+						Item.Storage.SaveAll();
+						GenericLoot.Save();
+						Shop.Storage.SaveAll();
+						ForgeShop.Storage.SaveAll();
+						ExchangeShop.Storage.SaveAll();
+						Enchantment.Storage.SaveAll();
+						Mobile.Storage.SaveAll();
+						LevelInfo.Storage.SaveAll();*/
 		}
 
 		private bool ProcessRegen(ref int currentValue, int maxValue, ref float fractionalValue, int regenValue, float secondsPassed)
@@ -340,37 +340,27 @@ namespace AbarimMUD
 		public void SpawnArea(Area area, Action<string> spawnLogger = null)
 		{
 			var count = 0;
-			foreach (var mobileReset in area.MobileResets)
+
+			foreach (var room in area.Rooms)
 			{
-				if (mobileReset.MobileInstance != null)
+				foreach (var mobileSpawn in room.MobileSpawns)
 				{
-					continue;
+					if (mobileSpawn.Instance != null)
+					{
+						continue;
+					}
+
+					// Spawn
+					var newMobile = new MobileInstance(mobileSpawn);
+					new Commands.ExecutionContext(newMobile);
+
+					if (spawnLogger != null)
+					{
+						spawnLogger($"Spawned {newMobile} at {room}");
+					}
+
+					++count;
 				}
-
-				var mobile = MobileSpawn.GetMobileById(mobileReset.MobileId);
-				if (mobile == null)
-				{
-					Logger.Warn($"{area.Name}: Couldn't find mobile with id {mobileReset.MobileId}");
-					continue;
-				}
-
-				var room = Room.GetRoomById(mobileReset.RoomId);
-				if (room == null)
-				{
-					Logger.Warn($"{area.Name}: Couldn't find room with id {mobileReset.RoomId}");
-					continue;
-				}
-
-				// Spawn
-				var newMobile = new MobileInstance(mobile, room, mobileReset);
-				new Commands.ExecutionContext(newMobile);
-
-				if (spawnLogger != null)
-				{
-					spawnLogger($"Spawned {newMobile} at {room}");
-				}
-
-				++count;
 			}
 
 			var str = $"Spawned {count} mobiles for area {area}";
