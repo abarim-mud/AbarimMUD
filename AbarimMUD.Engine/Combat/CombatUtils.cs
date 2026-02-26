@@ -43,6 +43,13 @@ namespace AbarimMUD.Combat
 					$"{attacker.ShortDescription} buries the corpse of {targetMobile.ShortDescription}.";
 				attacker.SendRoomExceptMe(roomMessage);
 			}
+
+			// Make sure target hp is negative
+			// Which will force its death
+			if (target.State.Hitpoints > 0)
+			{
+				target.State.Hitpoints = -1;
+			}
 		}
 
 		private static string FormatMessage(string message, ExecutionContext user, ExecutionContext target, string weapon, string info)
