@@ -1,8 +1,10 @@
 ﻿using AbarimMUD.Data;
 using MUDMapBuilder;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.Json.Serialization.Metadata;
@@ -18,15 +20,43 @@ public static class ToolsUtility
 	{
 		var result = new MMBRoom(room.Id, $"{room.Name} #{room.Id}");
 
-		// Check if the room is special
-		var isSpecial = Configuration.StartRoomId == room.Id ||
-			(room.Mobiles != null && (from m in room.Mobiles
-									  where
-			 m.Info.Guildmaster != null || m.Info.Shop != null ||
-			 m.Info.ExchangeShop != null || m.Info.Flags.Contains(MobileFlags.Enchanter)
-									  select m).FirstOrDefault() != null);
+		var isSpecialRoom = false;
+		foreach (var mobileSpawn in room.MobileSpawns)
+		{
+			var color = Color.Green;
 
-		if (isSpecial)
+			var mobile = mobileSpawn.Mobile;
+			if (mobile.Flags.Contains(MobileFlags.Aggressive) && !mobile.Flags.Contains(MobileFlags.Wimpy))
+			{
+				color = Color.Red;
+			}
+
+			if (result.Contents == null)
+			{
+				result.Contents = new List<MMBRoomContentRecord>();
+			}
+
+			var name = mobileSpawn.CustomShortDescription;
+			if (string.IsNullOrEmpty(name))
+			{
+				name = mobile.ShortDescription;
+			}
+			result.Contents.Add(new MMBRoomContentRecord($"{name} #{mobile.Id}", color));
+
+			if(mobileSpawn.Guildmaster != null || mobileSpawn.Shop != null || 
+				mobileSpawn.ForgeShop != null || mobileSpawn.ExchangeShop != null ||
+				mobile.Flags.Contains(MobileFlags.Enchanter))
+			{
+				isSpecialRoom = true;
+			}
+		}
+
+		if (!isSpecialRoom)
+		{
+			isSpecialRoom = Configuration.StartRoomId == room.Id;
+		}
+
+		if (isSpecialRoom)
 		{
 			result.Color = result.FrameColor = Color.Brown;
 		}
