@@ -141,7 +141,7 @@ internal static class Program
 
 			DataContext.Clear();
 
-			Thread.Sleep(5 * 1000);
+			Thread.Sleep(60 * 1000);
 		}
 	}
 
