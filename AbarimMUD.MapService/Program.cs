@@ -6,6 +6,7 @@ using MUDMapBuilder;
 using AbarimMUD.Common.Tools;
 using System.Collections.Generic;
 using System.Threading;
+using System.Text;
 
 namespace AbarimMUD.MapService;
 
@@ -14,7 +15,8 @@ internal static class Program
 	private const string OutputFolder = "output";
 	private const string PngFolder = "png";
 	private const string JsonFolder = "json";
-	private const string MapsInfoPath = "mapsInfo.json";
+	private const string HtmlFile = "index.html";
+	private const string MapsInfoFile = "mapsInfo.json";
 
 	static void Log(string message) => Console.WriteLine($"{DateTime.Now}: {message}");
 
@@ -22,11 +24,13 @@ internal static class Program
 	{
 		StorageUtility.InitializeStorage(Log);
 
+		var outputFolder = Path.Combine(Path.GetDirectoryName(Environment.ProcessPath), OutputFolder);
+
 		while (true)
 		{
 			Log($"Waking up...");
 
-			var mapsInfoPath = Path.Combine(OutputFolder, MapsInfoPath);
+			var mapsInfoPath = Path.Combine(outputFolder, MapsInfoFile);
 
 			Dictionary<string, DateTime> mapsInfo;
 			if (!File.Exists(mapsInfoPath))
@@ -40,13 +44,16 @@ internal static class Program
 
 			DataContext.Load(dataFolder);
 
-			var pngFolder = Path.Combine(OutputFolder, PngFolder);
-			var jsonFolder = Path.Combine(OutputFolder, JsonFolder);
+			var pngFolder = Path.Combine(outputFolder, PngFolder);
+			var jsonFolder = Path.Combine(outputFolder, JsonFolder);
 
-			ToolsUtility.EnsureFolder(OutputFolder);
+			ToolsUtility.EnsureFolder(outputFolder);
 			ToolsUtility.EnsureFolder(pngFolder);
 			ToolsUtility.EnsureFolder(jsonFolder);
 
+			var changed = false;
+
+			var pngMap = new Dictionary<string, string>();
 			foreach (var area in Area.Storage)
 			{
 				var skip = true;
@@ -59,6 +66,7 @@ internal static class Program
 				}
 
 				var pngPath = Path.Combine(pngFolder, $"{area.Id}.png");
+				pngMap[area.Id] = pngPath;
 				if (skip && !File.Exists(pngPath))
 				{
 					Log($"MMB Png FIle {jsonPath} doesnt exist.");
@@ -96,23 +104,44 @@ internal static class Program
 				if (buildResult == null)
 				{
 					Log("Error: No rooms to process");
-					return;
 				}
-
-				var pngData = buildResult.Last.BuildPng().PngData;
-				File.WriteAllBytes(pngPath, pngData);
-
-				if (buildResult.ResultType != ResultType.Success)
+				else if (buildResult.ResultType != ResultType.Success)
 				{
 					Log($"Error: {buildResult.ResultType}. Try raising amount of MaxSteps in the BuildOptions.");
 				}
+				else
+				{
+					var pngData = buildResult.Last.BuildPng().PngData;
+					File.WriteAllBytes(pngPath, pngData);
+
+					changed = true;
+				}
+			}
+
+			if (changed)
+			{
+				// Write html
+				var htmlPath = Path.Combine(outputFolder, HtmlFile);
+
+				var sb = new StringBuilder();
+
+				sb.AppendLine("<html><body><table>");
+
+				foreach(var pair in pngMap)
+				{
+					sb.AppendLine($"<tr><td><a href='{pair.Value}'>{pair.Key}</a></td></tr>");
+				}
+
+				sb.AppendLine("</table></body></html>");
+
+				File.WriteAllText(htmlPath, sb.ToString());
 			}
 
 			ToolsUtility.SerializeToFile(mapsInfoPath, mapsInfo);
 
 			DataContext.Clear();
 
-			Thread.Sleep(60 * 1000);
+			Thread.Sleep(5 * 1000);
 		}
 	}
 
