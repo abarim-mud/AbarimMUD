@@ -108,6 +108,18 @@ namespace AbarimMUD.Commands
 			return result;
 		}
 
+		public static Room EnsureRoomById(this ExecutionContext context, int roomId)
+		{
+			var destRoom = Room.GetRoomById(roomId);
+			if (destRoom == null)
+			{
+				context.Send(string.Format("Could not find room with id {0}", roomId));
+				return null;
+			}
+
+			return destRoom;
+		}
+
 		public static object EnsureItemById(this ExecutionContext context, IOLCStorage storage, string id)
 		{
 			var item = storage.FindById(context, id);

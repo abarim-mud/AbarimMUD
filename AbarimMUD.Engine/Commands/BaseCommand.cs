@@ -82,6 +82,7 @@ namespace AbarimMUD.Commands
 		public static readonly Set Set = new Set();
 		public static readonly Create Create = new Create();
 		public static readonly CreateCopy CreateCopy = new CreateCopy();
+		public static readonly Delete Delete = new Delete();
 		public static readonly Spawn Spawn = new Spawn();
 		public static readonly Slain Slain = new Slain();
 
