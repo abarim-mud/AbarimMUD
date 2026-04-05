@@ -2,9 +2,12 @@
   "Id": "monk",
   "Name": "Monk",
   "Description": "Master of martial arts.",
-  "HitpointsRange": "30-1100",
-  "ManaRange": "100-400",
-  "MovesRange": "100-500",
+  "StartHitpoints": 450,
+  "StartMana": 300,
+  "StartMoves": 200,
+  "HitpointsPerLevel": 4,
+  "ManaPerLevel": 4,
+  "MovesPerLevel": 1,
   "StartingEquipment": [
     "greenLantern",
     "cloakOfRookie",
@@ -17,7 +20,8 @@
   ],
   "StartingSkills": [
     "martialArts",
-    "deathtouch"
+    "deathtouch",
+    "constitution"
   ],
   "StartingInventory": [
     {

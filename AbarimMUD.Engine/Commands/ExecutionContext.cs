@@ -452,19 +452,12 @@ namespace AbarimMUD.Commands
 			var lastLevel = character.Level;
 			character.GainXp(xpAward);
 
+			var cls = character.Class;
+
 			// Append level up messages
 			for (var level = lastLevel + 1; level <= character.Level; ++level)
 			{
-				var previousHp = character.Class.HitpointsRange.CalculateValue(level - 1);
-				var newHp = character.Class.HitpointsRange.CalculateValue(level);
-
-				var previousMana = character.Class.ManaRange.CalculateValue(level - 1);
-				var newMana = character.Class.ManaRange.CalculateValue(level);
-
-				var previousMoves = character.Class.MovesRange.CalculateValue(level - 1);
-				var newMoves = character.Class.MovesRange.CalculateValue(level);
-
-				Send($"Welcome to the level {level}! You gained {newHp - previousHp} hitpoints, {newMana - previousMana} mana and {newMoves - previousMoves} moves.");
+				Send($"Welcome to the level {level}! You gained {cls.HitpointsPerLevel} hitpoints, {cls.ManaPerLevel} mana and {cls.MovesPerLevel} moves.");
 
 				if (level % 10 == 0)
 				{

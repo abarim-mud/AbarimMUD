@@ -1,0 +1,33 @@
+{
+  "Id": "evasion",
+  "Name": "Evasion",
+  "Class": "rogue",
+  "Levels": [
+    {
+      "Modifiers": {
+        "Armor": 4
+      }
+    },
+    {
+      "Modifiers": {
+        "Armor": 4
+      }
+    },
+    {
+      "Modifiers": {
+        "Armor": 4
+      }
+    },
+    {
+      "Modifiers": {
+        "Armor": 4
+      }
+    },
+    {
+      "Modifiers": {
+        "Armor": 4
+      }
+    }
+  ],
+  "Cost": 1
+}

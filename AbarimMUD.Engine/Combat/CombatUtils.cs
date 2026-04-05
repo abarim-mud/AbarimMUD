@@ -18,7 +18,7 @@ namespace AbarimMUD.Combat
 			var targetMobile = target.Creature as MobileInstance;
 			if (character != null && targetMobile != null)
 			{
-				var xpAward = targetMobile.Stats.CalculateXpAward();
+				var xpAward = targetMobile.Info.CalculateXpAward();
 				attacker.Send($"Total exp for kill is {xpAward.FormatBigNumber()}.");
 
 				// Awarding Xp will do the save

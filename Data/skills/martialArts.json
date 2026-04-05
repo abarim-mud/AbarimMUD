@@ -10,29 +10,9 @@
         "MartialArtsAttacksCount": 1,
         "MartialArtsAttackBonus": 20
       },
-      "PrimeModifiers": {
-        "DamageReduction": 2
-      },
       "Abilities": [
         "kick"
       ]
-    },
-    {
-      "Modifiers": {
-        "DamageReduction": 1,
-        "MartialArtsAttackBonus": 20
-      }
-    },
-    {
-      "Modifiers": {
-        "MartialArtsAttackBonus": 20
-      }
-    },
-    {
-      "Modifiers": {
-        "DamageReduction": 1,
-        "MartialArtsAttackBonus": 20
-      }
     },
     {
       "Modifiers": {
@@ -43,34 +23,21 @@
     },
     {
       "Modifiers": {
-        "MartialArtsAttacksCount": 1,
-        "DamageReduction": 1,
-        "MartialArtsAttackBonus": 20
+        "MartialArtsAttackBonus": 20,
+        "MartialArtsAttacksCount": 1
       }
     },
     {
       "Modifiers": {
-        "MartialArtsAttackBonus": 20
-      }
-    },
-    {
-      "Modifiers": {
-        "DamageReduction": 1,
-        "MartialArtsAttackBonus": 20
-      }
-    },
-    {
-      "Modifiers": {
-        "MartialArtsAttacksCount": 1,
-        "MartialArtsAttackBonus": 20
-      }
-    },
-    {
-      "Modifiers": {
-        "DamageReduction": 1,
         "MartialArtsMinimumDamage": 3,
         "MartialArtsMaximumDamage": 18,
         "MartialArtsAttackBonus": 20
+      }
+    },
+    {
+      "Modifiers": {
+        "MartialArtsAttackBonus": 20,
+        "MartialArtsAttacksCount": 1
       }
     }
   ],

@@ -2,9 +2,12 @@
   "Id": "rogue",
   "Name": "Rogue",
   "Description": "Master of dagger and shadows.",
-  "HitpointsRange": "30-1100",
-  "ManaRange": "100-400",
-  "MovesRange": "100-500",
+  "StartHitpoints": 400,
+  "StartMana": 250,
+  "StartMoves": 250,
+  "HitpointsPerLevel": 4,
+  "ManaPerLevel": 3,
+  "MovesPerLevel": 1,
   "StartingEquipment": [
     "greenLantern",
     "cloakOfRookie",
@@ -18,7 +21,8 @@
   ],
   "StartingSkills": [
     "backstab",
-    "melee"
+    "melee",
+    "mobility"
   ],
   "StartingInventory": [
     {

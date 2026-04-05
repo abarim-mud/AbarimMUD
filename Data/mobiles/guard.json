@@ -1,0 +1,30 @@
+{
+  "Id": "guard",
+  "Keywords": [
+    "guard"
+  ],
+  "ShortDescription": "guard",
+  "LongDescription": "guard",
+  "Description": "guard",
+  "Level": 15,
+  "Gold": 2000,
+  "Sex": "Male",
+  "Hitpoints": 800,
+  "Mana": 200,
+  "Moves": 1000,
+  "Armor": 60,
+  "Attacks": [
+    {
+      "Type": "Slash",
+      "AttackBonus": 80,
+      "DamageRange": "10-20"
+    },
+    {
+      "Type": "Slash",
+      "AttackBonus": 80,
+      "DamageRange": "10-20"
+    }
+  ],
+  "Flags": [],
+  "Experience": "138,240"
+}

@@ -32,6 +32,8 @@ namespace AbarimMUD.Storage
 						loot.Items.SetReferences();
 					}
 				}
+
+				mobile.Experience = mobile.CalculateXpAward();
 			}
 		}
 	}

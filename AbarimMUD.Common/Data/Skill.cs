@@ -53,4 +53,24 @@ namespace AbarimMUD.Data
 		{
 		}
 	}
+
+	public static class SkillExtensions
+	{
+		private static readonly string[] DefaultSkillLevelNames =
+		{
+			"Unknown",
+			"Novice",
+			"Apprentice",
+			"Adept",
+			"Expert",
+			"Master"
+		};
+
+		public static string GetDefaultSkillLevelName(this SkillValue val)
+		{
+			var level = val != null ? val.Level : 0;
+
+			return DefaultSkillLevelNames[level];
+		}
+	}
 }

@@ -106,40 +106,6 @@ namespace AbarimMUD.Data
 			return originalPrice * perc / 100;
 		}
 
-		private static float CalculateArmorPenK(int value)
-		{
-			return 1.0f + Math.Min(value, 300) / 100.0f;
-		}
-
-		public long CalculateXpAward()
-		{
-			long xpAward = Configuration.XpMultiply;
-
-			xpAward *= Math.Max(1, MaxHitpoints);
-
-			var k = CalculateArmorPenK(Armor);
-			xpAward = (int)(xpAward * k);
-
-			long attackXpFactor = 0;
-			foreach (var attack in Attacks)
-			{
-				k = CalculateArmorPenK(attack.AttackBonus);
-
-				var t = (long)(Math.Max(1, attack.AverageDamage) * k);
-
-				attackXpFactor += t;
-			}
-
-			xpAward *= attackXpFactor;
-
-			if (xpAward < 1)
-			{
-				xpAward = 1;
-			}
-
-			return xpAward;
-		}
-
 		public void Apply(ModifierType type, int val, bool usesWeapon)
 		{
 			switch (type)
@@ -272,6 +238,42 @@ namespace AbarimMUD.Data
 					DeathtouchMultiplier += val;
 					break;
 			}
+		}
+
+		public long CalculateXpAward() => CalculateXpAward(MaxHitpoints, Armor, Attacks);
+
+		private static float CalculateArmorPenK(int value)
+		{
+			return 1.0f + Math.Min(value, 300) / 100.0f;
+		}
+
+		public static long CalculateXpAward(int hitpoints, int armor, IEnumerable<Attack> attacks)
+		{
+			long xpAward = Configuration.XpMultiply;
+
+			xpAward *= Math.Max(1, hitpoints);
+
+			var k = CalculateArmorPenK(armor);
+			xpAward = (int)(xpAward * k);
+
+			long attackXpFactor = 0;
+			foreach (var attack in attacks)
+			{
+				k = CalculateArmorPenK(attack.AttackBonus);
+
+				var t = (long)(Math.Max(1, attack.AverageDamage) * k);
+
+				attackXpFactor += t;
+			}
+
+			xpAward *= attackXpFactor;
+
+			if (xpAward < 1)
+			{
+				xpAward = 1;
+			}
+
+			return xpAward;
 		}
 	}
 }

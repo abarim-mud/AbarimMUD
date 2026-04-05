@@ -2,9 +2,12 @@
   "Id": "warrior",
   "Name": "Warrior",
   "Description": "Master of armor and sword.",
-  "HitpointsRange": "40-1200",
-  "ManaRange": "100-400",
-  "MovesRange": "100-400",
+  "StartHitpoints": 500,
+  "StartMana": 250,
+  "StartMoves": 150,
+  "HitpointsPerLevel": 5,
+  "ManaPerLevel": 3,
+  "MovesPerLevel": 1,
   "StartingEquipment": [
     "greenLantern",
     "cloakOfRookie",
@@ -18,7 +21,8 @@
   ],
   "StartingSkills": [
     "melee",
-    "survival"
+    "constitution",
+    "damage"
   ],
   "StartingInventory": [
     {

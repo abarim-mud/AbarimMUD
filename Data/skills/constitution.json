@@ -5,51 +5,31 @@
   "Levels": [
     {
       "Modifiers": {
-        "Hitpoints": 20
-      }
-    },
-    {
-      "Modifiers": {
+        "Hitpoints": 20,
         "HpRegenPercentage": 1
       }
     },
     {
       "Modifiers": {
-        "Hitpoints": 20
-      }
-    },
-    {
-      "Modifiers": {
+        "Hitpoints": 20,
         "HpRegenPercentage": 1
       }
     },
     {
       "Modifiers": {
-        "Hitpoints": 20
-      }
-    },
-    {
-      "Modifiers": {
+        "Hitpoints": 20,
         "HpRegenPercentage": 1
       }
     },
     {
       "Modifiers": {
-        "Hitpoints": 20
-      }
-    },
-    {
-      "Modifiers": {
+        "Hitpoints": 20,
         "HpRegenPercentage": 1
       }
     },
     {
       "Modifiers": {
-        "Hitpoints": 20
-      }
-    },
-    {
-      "Modifiers": {
+        "Hitpoints": 20,
         "HpRegenPercentage": 1
       }
     }

@@ -1,6 +1,6 @@
 {
-  "Id": "strength",
-  "Name": "Strength",
+  "Id": "accuracy",
+  "Name": "Accuracy",
   "Class": "warrior",
   "Levels": [
     {
@@ -10,7 +10,7 @@
     },
     {
       "Modifiers": {
-        "Damage": 1
+        "AttackBonus": 10
       }
     },
     {
@@ -20,37 +20,12 @@
     },
     {
       "Modifiers": {
-        "Damage": 1
-      }
-    },
-    {
-      "Modifiers": {
         "AttackBonus": 10
       }
     },
     {
       "Modifiers": {
-        "Damage": 1
-      }
-    },
-    {
-      "Modifiers": {
         "AttackBonus": 10
-      }
-    },
-    {
-      "Modifiers": {
-        "Damage": 1
-      }
-    },
-    {
-      "Modifiers": {
-        "AttackBonus": 10
-      }
-    },
-    {
-      "Modifiers": {
-        "Damage": 1
       }
     }
   ],

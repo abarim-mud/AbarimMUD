@@ -1,0 +1,38 @@
+{
+  "Id": "mobility",
+  "Name": "Mobility",
+  "Class": "rogue",
+  "Levels": [
+    {
+      "Modifiers": {
+        "Moves": 10,
+        "MovesRegenPercentage": 1
+      }
+    },
+    {
+      "Modifiers": {
+        "Moves": 10,
+        "MovesRegenPercentage": 1
+      }
+    },
+    {
+      "Modifiers": {
+        "Moves": 10,
+        "MovesRegenPercentage": 1
+      }
+    },
+    {
+      "Modifiers": {
+        "Moves": 10,
+        "MovesRegenPercentage": 1
+      }
+    },
+    {
+      "Modifiers": {
+        "Moves": 10,
+        "MovesRegenPercentage": 1
+      }
+    }
+  ],
+  "Cost": 1
+}

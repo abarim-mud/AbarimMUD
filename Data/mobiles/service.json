@@ -14,46 +14,47 @@
   "Attacks": [
     {
       "Type": "Hit",
-      "AttackBonus": 1275,
+      "AttackBonus": 200,
       "DamageRange": "120-160"
     },
     {
       "Type": "Hit",
-      "AttackBonus": 1275,
+      "AttackBonus": 200,
       "DamageRange": "120-160"
     },
     {
       "Type": "Hit",
-      "AttackBonus": 1275,
+      "AttackBonus": 200,
       "DamageRange": "120-160"
     },
     {
       "Type": "Hit",
-      "AttackBonus": 1275,
+      "AttackBonus": 200,
       "DamageRange": "120-160"
     },
     {
       "Type": "Hit",
-      "AttackBonus": 1275,
+      "AttackBonus": 200,
       "DamageRange": "120-160"
     },
     {
       "Type": "Hit",
-      "AttackBonus": 1275,
+      "AttackBonus": 200,
       "DamageRange": "120-160"
     },
     {
       "Type": "Hit",
-      "AttackBonus": 1275,
+      "AttackBonus": 200,
       "DamageRange": "120-160"
     },
     {
       "Type": "Hit",
-      "AttackBonus": 1275,
+      "AttackBonus": 200,
       "DamageRange": "120-160"
     }
   ],
   "Flags": [
     "Sentinel"
-  ]
+  ],
+  "Experience": "235,200,000"
 }

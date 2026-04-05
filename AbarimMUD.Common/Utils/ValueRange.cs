@@ -19,27 +19,6 @@ namespace AbarimMUD.Utils
 
 		public int Random() => Utility.RandomRange(Minimum, Maximum);
 
-		/// <summary>
-		/// Calculates interpolated value for specified level
-		/// Assuming that Minimum is level 1 value and Maximum is level 100 value
-		/// </summary>
-		/// <param name="level"></param>
-		/// <returns></returns>
-		/// <exception cref="ArgumentOutOfRangeException"></exception>
-		public int CalculateValue(int level)
-		{
-			if (level < 1)
-			{
-				throw new ArgumentOutOfRangeException(nameof(level));
-			}
-
-			// Log interpolation
-			var k = (float)Math.Log(1 + (LogInterpolationBase - 1) * (level - 1) / 99.0f, LogInterpolationBase);
-			var value = Minimum + k * (Maximum - Minimum);
-
-			return (int)value;
-		}
-
 		public static bool TryParse(string value, out ValueRange range)
 		{
 			range = new ValueRange();

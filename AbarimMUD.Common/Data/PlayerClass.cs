@@ -1,6 +1,5 @@
 ﻿using AbarimMUD.Attributes;
 using AbarimMUD.Storage;
-using AbarimMUD.Utils;
 using System.Collections.Generic;
 
 namespace AbarimMUD.Data
@@ -8,8 +7,8 @@ namespace AbarimMUD.Data
 	public class PlayerClass : IStoredInFile
 	{
 		public static readonly MultipleFilesStorage<PlayerClass> Storage = new PlayerClasses();
-
-		private ValueRange _hitpointsRange, _manaRange, _movesRange;
+		private int _startHitpoints, _startMana, _startMoves;
+		private int _hitpointsPerLevel, _manaPerLevel, _movesPerLevel;
 
 		[OLCIgnore]
 		public string Id { get; set; }
@@ -17,53 +16,98 @@ namespace AbarimMUD.Data
 		public string Name { get; set; }
 		public string Description { get; set; }
 
-		[OLCAlias("hprange")]
-		public ValueRange HitpointsRange
+		public int StartHitpoints
 		{
-			get => _hitpointsRange;
+			get => _startHitpoints;
 
 			set
 			{
-				if (value == _hitpointsRange)
+				if (value == _startHitpoints)
 				{
 					return;
 				}
 
-				_hitpointsRange = value;
+				_startHitpoints = value;
 				InvalidateCreaturesOfThisClass();
 			}
 		}
 
-		[OLCAlias("manarange")]
-		public ValueRange ManaRange
+		public int StartMana
 		{
-			get => _manaRange;
+			get => _startMana;
 
 			set
 			{
-				if (value == _manaRange)
+				if (value == _startMana)
 				{
 					return;
 				}
 
-				_manaRange = value;
+				_startMana = value;
 				InvalidateCreaturesOfThisClass();
 			}
 		}
 
-		[OLCAlias("mvrange")]
-		public ValueRange MovesRange
+		public int StartMoves
 		{
-			get => _movesRange;
+			get => _startMoves;
 
 			set
 			{
-				if (value == _movesRange)
+				if (value == _startMoves)
 				{
 					return;
 				}
 
-				_movesRange = value;
+				_startMoves = value;
+				InvalidateCreaturesOfThisClass();
+			}
+		}
+
+		public int HitpointsPerLevel
+		{
+			get => _hitpointsPerLevel;
+
+			set
+			{
+				if (value == _hitpointsPerLevel)
+				{
+					return;
+				}
+
+				_hitpointsPerLevel = value;
+				InvalidateCreaturesOfThisClass();
+			}
+		}
+
+		public int ManaPerLevel
+		{
+			get => _manaPerLevel;
+
+			set
+			{
+				if (value == _manaPerLevel)
+				{
+					return;
+				}
+
+				_manaPerLevel = value;
+				InvalidateCreaturesOfThisClass();
+			}
+		}
+
+		public int MovesPerLevel
+		{
+			get => _movesPerLevel;
+
+			set
+			{
+				if (value == _movesPerLevel)
+				{
+					return;
+				}
+
+				_movesPerLevel = value;
 				InvalidateCreaturesOfThisClass();
 			}
 		}
@@ -76,15 +120,14 @@ namespace AbarimMUD.Data
 
 		public CreatureStats CreateStats(int level)
 		{
-			var hitpoints = HitpointsRange;
-			var mana = ManaRange;
-			var moves = MovesRange;
-
+			// Make the level zero-based
+			--level;
+			
 			var stats = new CreatureStats
 			{
-				HitpointsBase = hitpoints.CalculateValue(level),
-				ManaBase = mana.CalculateValue(level),
-				MovesBase = moves.CalculateValue(level),
+				HitpointsBase = StartHitpoints + level * HitpointsPerLevel,
+				ManaBase = StartMana + level * ManaPerLevel,
+				MovesBase = StartMoves + level * MovesPerLevel,
 			};
 
 			return stats;

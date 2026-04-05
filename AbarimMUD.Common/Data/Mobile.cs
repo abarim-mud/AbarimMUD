@@ -229,6 +229,8 @@ namespace AbarimMUD.Data
 
 		public List<LootRecord> Loot { get; set; } = new List<LootRecord>();
 
+		public long Experience { get; set; }
+
 		public Mobile()
 		{
 		}
@@ -268,6 +270,8 @@ namespace AbarimMUD.Data
 				}
 			}
 		}
+
+		public long CalculateXpAward() => CreatureStats.CalculateXpAward(Hitpoints, Armor, Attacks);
 
 		public Mobile Clone()
 		{
