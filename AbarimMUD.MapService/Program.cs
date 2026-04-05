@@ -1,12 +1,14 @@
-﻿using System.IO;
-using System;
-using AbarimMUD.Storage;
+﻿using AbarimMUD.Common.Tools;
 using AbarimMUD.Data;
+using AbarimMUD.Storage;
 using MUDMapBuilder;
-using AbarimMUD.Common.Tools;
+using System;
 using System.Collections.Generic;
-using System.Threading;
+using System.Drawing;
+using System.IO;
+using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace AbarimMUD.MapService;
 
@@ -53,50 +55,106 @@ internal static class Program
 
 			var changed = false;
 
-			var pngMap = new Dictionary<string, string>();
+			// Build complete dictionaries of areas,rooms and area exits
+			var allAreas = new Dictionary<string, MMBArea>();
+			var allRooms = new Dictionary<int, MMBRoom>();
+			var allAreaExits = new Dictionary<int, MMBRoom>();
 			foreach (var area in Area.Storage)
 			{
+				var mmbArea = area.ToMMBArea();
+				allAreas[area.Id] = mmbArea;
+				foreach (var room in mmbArea.Rooms)
+				{
+					if (allRooms.ContainsKey(room.Id))
+					{
+						throw new Exception($"Dublicate room id. New room: {room}. Old room: {allRooms[room.Id]}");
+					}
+
+					allRooms[room.Id] = room;
+
+					var areaExit = room.Clone();
+
+					areaExit.Name = $"To {area.Name} #{areaExit.Id}";
+					areaExit.FrameColor = Color.Blue;
+					areaExit.Color = Color.Blue;
+
+					allAreaExits[room.Id] = areaExit;
+				}
+			}
+
+			// Now add areas exits
+			foreach (var pair in allAreas)
+			{
+				var area = pair.Value;
+				var areaExits = new Dictionary<int, MMBRoom>();
+				foreach (var room in area.Rooms)
+				{
+					foreach (var exit in room.Connections)
+					{
+						MMBRoom inAreaRoom;
+						inAreaRoom = (from r in area.Rooms where r.Id == exit.Value.RoomId select r).FirstOrDefault();
+						if (inAreaRoom != null)
+						{
+							continue;
+						}
+
+						areaExits[exit.Value.RoomId] = allAreaExits[exit.Value.RoomId];
+					}
+				}
+
+				foreach (var pair2 in areaExits)
+				{
+					area.Add(pair2.Value);
+				}
+			}
+
+			// Finally do the export
+			var pngMap = new Dictionary<string, string>();
+			foreach (var pair in allAreas)
+			{
+				var area = pair.Value;
 				var skip = true;
 
-				var jsonPath = Path.Combine(jsonFolder, $"{area.Id}.json");
+				var id = pair.Key;
+				var jsonPath = Path.Combine(jsonFolder, $"{id}.json");
 				if (!File.Exists(jsonPath))
 				{
 					Log($"MMB Json File {jsonPath} doesnt exist.");
 					skip = false;
 				}
 
-				var pngPath = Path.Combine(pngFolder, $"{area.Id}.png");
-				pngMap[area.Id] = pngPath;
+				var pngPath = Path.Combine(pngFolder, $"{id}.png");
+				pngMap[id] = pngPath;
 				if (skip && !File.Exists(pngPath))
 				{
 					Log($"MMB Png FIle {jsonPath} doesnt exist.");
 					skip = false;
 				}
 
-				if (skip && !mapsInfo.ContainsKey(area.Id))
+				if (skip && !mapsInfo.ContainsKey(id))
 				{
-					Log($"Maps info file doesnt have area with id '{area.Id}'.");
+					Log($"Maps info file doesnt have area with id '{id}'.");
 					skip = false;
 				}
 
-				var mapPath = Area.Storage.BuildPath(area);
+				var mapPath = Area.Storage.BuildPath((Area)area.Tag);
 				var fi = new FileInfo(mapPath);
 
-				if (skip && fi.LastWriteTime > mapsInfo[area.Id])
+				if (skip && fi.LastWriteTime > mapsInfo[id])
 				{
-					Log($"Maps info area with id '{area.Id}' last write date is less than actual file last write data({mapsInfo[area.Id]} < {fi.LastWriteTime}).");
+					Log($"Maps info area with id '{id}' last write date is less than actual file last write data({mapsInfo[id]} < {fi.LastWriteTime}).");
 					skip = false;
 				}
 
-				mapsInfo[area.Id] = fi.LastWriteTime;
+				mapsInfo[id] = fi.LastWriteTime;
 
 				if (skip)
 				{
-					Log($"Maps info area with id '{area.Id}' doesnt need to be regenerated.");
+					Log($"Maps info area with id '{id}' doesnt need to be regenerated.");
 					continue;
 				}
 
-				var project = new MMBProject(area.ToMMBArea());
+				var project = new MMBProject(area);
 
 				File.WriteAllText(jsonPath, project.ToJson());
 
@@ -127,7 +185,7 @@ internal static class Program
 
 				sb.AppendLine("<html><body><table>");
 
-				foreach(var pair in pngMap)
+				foreach (var pair in pngMap)
 				{
 					sb.AppendLine($"<tr><td><a href='{pair.Value}'>{pair.Key}</a></td></tr>");
 				}

@@ -3,12 +3,8 @@ using MUDMapBuilder;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System.Text.Json.Serialization.Metadata;
-using static MUDMapBuilder.MMBProject;
 
 namespace AbarimMUD.Common.Tools;
 
@@ -16,7 +12,7 @@ public static class ToolsUtility
 {
 	public static MMBDirection ToMMBDirection(this Direction dir) => (MMBDirection)dir;
 
-	public static MMBRoom ToMMBRoom(this Room room, Area area)
+	public static MMBRoom ToMMBRoom(this Room room)
 	{
 		var result = new MMBRoom(room.Id, $"{room.Name} #{room.Id}");
 
@@ -117,12 +113,13 @@ public static class ToolsUtility
 			Name = area.Name,
 			Credits = area.Credits,
 			MinimumLevel = area.MinimumLevel,
-			MaximumLevel = area.MaximumLevel
+			MaximumLevel = area.MaximumLevel,
+			Tag = area
 		};
 
 		foreach (var room in area.Rooms)
 		{
-			result.Add(room.ToMMBRoom(area));
+			result.Add(room.ToMMBRoom());
 		}
 
 		return result;
