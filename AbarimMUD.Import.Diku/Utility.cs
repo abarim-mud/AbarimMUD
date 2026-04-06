@@ -1,8 +1,6 @@
 ﻿using AbarimMUD.Data;
 using AbarimMUD.Utils;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace AbarimMUD.Import.Diku
 {
@@ -41,65 +39,13 @@ namespace AbarimMUD.Import.Diku
 			return result;
 		}
 
-		public static MobileSpawn ToAmMobile(this DikuLoad.Data.Mobile mobile)
-		{
-			var level = mobile.Level;
-			if (level < 1)
-			{
-				level = 1;
-			}
-
-			var gold = mobile.Wealth;
-			if (gold == 0)
-			{
-				gold = mobile.Level * 100;
-			}
-
-			var result = new MobileSpawn
-			{
-				Id = mobile.VNum,
-				Keywords = mobile.Name.SplitByWhitespace().ToHashSet(),
-				ShortDescription = mobile.ShortDescription,
-				LongDescription = mobile.LongDescription,
-				Description = mobile.Description,
-				Level = level,
-				Sex = mobile.Sex.ParseEnum<Sex>(),
-				Gold = gold,
-				Hitpoints = mobile.HitDice.Average,
-				Mana = mobile.ManaDice.Average,
-				Moves = 100,
-				Armor = Math.Max((10 - mobile.ArmorClass) * 10, 0),
-			};
-
-			var attacks = new List<Attack>();
-			foreach (var dikuAttack in mobile.Attacks)
-			{
-				var at = Enum.Parse<AttackType>(dikuAttack.AttackType, true);
-
-				var attack = new Attack(at,
-					Math.Max((20 - dikuAttack.Hit) * 10, 0),
-					dikuAttack.DamageDice.ToValueRange());
-				attacks.Add(attack);
-			}
-
-			result.Attacks = attacks.ToArray();
-
-			foreach (var dikuFlag in mobile.Flags)
-			{
-				MobileFlags flag;
-				if (Enum.TryParse(dikuFlag.ToString(), true, out flag))
-				{
-					result.Flags.Add(flag);
-				}
-			}
-
-			return result;
-		}
-
 		public static Area ToAmArea(this DikuLoad.Data.Area area)
 		{
+			var id = area.Name.Replace(" ", string.Empty);
+			id = char.ToLower(id[0]) + id.Substring(1);
 			var result = new Area
 			{
+				Id = id,
 				Name = area.Name,
 				Credits = area.Builders,
 				MinimumLevel = area.MinimumLevel,
@@ -109,11 +55,6 @@ namespace AbarimMUD.Import.Diku
 			foreach (var room in area.Rooms)
 			{
 				result.Rooms.Add(room.ToAmRoom());
-			}
-
-			foreach (var mobile in area.Mobiles)
-			{
-				result.Mobiles.Add(mobile.ToAmMobile());
 			}
 
 			return result;

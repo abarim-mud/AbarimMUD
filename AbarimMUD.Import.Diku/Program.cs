@@ -77,10 +77,6 @@ namespace AbarimMUD.Import.Diku
 
 			importer.Process();
 
-			/*			var astoria = (from a in importer.Areas where a.Name == "Astoria" select a).First();
-						var outskirts = (from a in importer.Areas where a.Name == "Outskirts of Astoria" select a).First();
-						MergeAreas(importer.Areas, astoria, outskirts);*/
-
 			// Convert DikuLoad areas to AM Areas
 			var outputAreasCount = 0;
 			foreach (var dikuArea in importer.Areas)
@@ -92,17 +88,6 @@ namespace AbarimMUD.Import.Diku
 				}
 
 				var area = dikuArea.ToAmArea();
-
-				// Set resets
-				foreach (var reset in dikuArea.Resets)
-				{
-					if (reset.ResetType != DikuLoad.Data.AreaResetType.NPC)
-					{
-						continue;
-					}
-
-					area.MobileResets.Add(new AreaMobileReset(reset.MobileVNum, reset.Value4));
-				}
 
 				area.Save();
 
@@ -151,10 +136,15 @@ namespace AbarimMUD.Import.Diku
 									new[] { "Astoria", "Sewers", "Haon Dor", "Arachnos", "Plains" },
 									@"D:\Projects\CrimsonStainedLands\master\CrimsonStainedLands\data\areas",
 									@"D:\Projects\AbarimMUD\Data");*/
-				Process(SourceType.Soulmud,
+				/*Process(SourceType.Soulmud,
 								new[] { "Kobolds" },
 								@"D:\Projects\chaos\soulmud",
-								@"D:\Projects\AbarimMUD\Data");
+								@"D:\Projects\AbarimMUD\Data");*/
+
+				Process(SourceType.ROM,
+					new[] { "Haon Dor" },
+					@"D:\Projects\chaos\ROM\area",
+					@"D:\Projects\AbarimMUD\Data");
 			}
 			catch (Exception ex)
 			{
