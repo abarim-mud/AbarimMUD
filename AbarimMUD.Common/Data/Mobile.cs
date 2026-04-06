@@ -95,7 +95,7 @@ namespace AbarimMUD.Data
 		Zap
 	}
 
-	public class Mobile : IStoredInFile
+	public class Mobile : IStoredInFile, ICloneable
 	{
 		public static readonly MultipleFilesStorage<Mobile> Storage = new Mobiles();
 
@@ -274,7 +274,7 @@ namespace AbarimMUD.Data
 
 		public long CalculateXpAward() => CreatureStats.CalculateXpAward(Hitpoints, Armor, Attacks);
 
-		public Mobile Clone()
+		public Mobile CloneMobile()
 		{
 			var clone = new Mobile
 			{
@@ -315,8 +315,15 @@ namespace AbarimMUD.Data
 			return clone;
 		}
 
+		public object Clone() => CloneMobile();
+
 		public void Create() => Storage.Create(this);
-		public void Save() => Storage.Save(this);
+		
+		public void Save()
+		{
+			Experience = CalculateXpAward();
+			Storage.Save(this);
+		}
 
 		public static Mobile GetMobileById(string id) => Storage.GetByKey(id);
 		public static Mobile EnsureMobileById(string id) => Storage.EnsureByKey(id);

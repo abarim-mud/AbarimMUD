@@ -86,12 +86,7 @@ namespace AbarimMUD.Commands.Builder
 			}
 
 			context.SaveObject(newObject);
-			context.Send($"Created new object {newObject.GetStringId()} of type {objectType}");
-
-			if (storage.CanSpawn)
-			{
-				Spawn.Execute(context, $"item {newId}");
-			}
+			context.Send($"Created copy of #{objId} of type {objectType}. New Id: #{newId}");
 
 			return true;
 		}

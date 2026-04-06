@@ -1,0 +1,25 @@
+{
+  "Id": "rabbit",
+  "Keywords": [
+    "rabbit"
+  ],
+  "ShortDescription": "the cute rabbit",
+  "LongDescription": "A cute rabbit is here.",
+  "Description": "It is a small, furry creature with long ears and big feet.",
+  "Level": 1,
+  "Gold": 100,
+  "Sex": "Male",
+  "Hitpoints": 150,
+  "Mana": 100,
+  "Moves": 1000,
+  "Armor": 0,
+  "Attacks": [
+    {
+      "Type": "Hit",
+      "AttackBonus": 0,
+      "DamageRange": "5-10"
+    }
+  ],
+  "Flags": [],
+  "Experience": "1,050"
+}

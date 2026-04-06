@@ -1,0 +1,26 @@
+{
+  "Id": "fallowDeer",
+  "Keywords": [
+    "fallow",
+    "deer"
+  ],
+  "ShortDescription": "the fallow deer",
+  "LongDescription": "A fallow deer is grazing peacefully here.",
+  "Description": "She is a graceful creature on long, slender legs, and with large, brown eyes\nlooking back at you with an air of watchful interest.",
+  "Level": 2,
+  "Gold": 200,
+  "Sex": "Male",
+  "Hitpoints": 250,
+  "Mana": 100,
+  "Moves": 1000,
+  "Armor": 0,
+  "Attacks": [
+    {
+      "Type": "Hit",
+      "AttackBonus": 0,
+      "DamageRange": "8-16"
+    }
+  ],
+  "Flags": [],
+  "Experience": "3,000"
+}

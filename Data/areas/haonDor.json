@@ -244,6 +244,9 @@
       "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
+      "MobileSpawns": [
+        "rabbit"
+      ],
       "Exits": {
         "North": 6007,
         "East": 6013,
@@ -282,6 +285,9 @@
       "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
+      "MobileSpawns": [
+        "rabbit"
+      ],
       "Exits": {
         "South": 6016,
         "West": 6014
@@ -306,6 +312,9 @@
       "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
+      "MobileSpawns": [
+        "rabbit"
+      ],
       "Exits": {
         "North": 6016,
         "West": 6018
@@ -331,6 +340,9 @@
       "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
+      "MobileSpawns": [
+        "rabbit"
+      ],
       "Exits": {
         "North": 6020,
         "East": 6018
@@ -379,6 +391,9 @@
       "SectorType": "Field",
       "HealRate": 0,
       "ManaRate": 0,
+      "MobileSpawns": [
+        "fallowDeer"
+      ],
       "Exits": {
         "South": 6018
       }
