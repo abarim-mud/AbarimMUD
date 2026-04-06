@@ -6,7 +6,7 @@
     {
       "Modifiers": {
         "WeaponAttacksCount": 1,
-        "WeaponAttackBonus": 20
+        "WeaponAttackBonus": 15
       },
       "Abilities": [
         "kick"
@@ -14,23 +14,48 @@
     },
     {
       "Modifiers": {
-        "WeaponAttackBonus": 20
+        "WeaponAttackBonus": 15
       }
     },
     {
       "Modifiers": {
-        "WeaponAttackBonus": 20
+        "WeaponAttackBonus": 15
+      }
+    },
+    {
+      "Modifiers": {
+        "WeaponAttackBonus": 15
+      }
+    },
+    {
+      "Modifiers": {
+        "WeaponAttackBonus": 15
+      }
+    },
+    {
+      "Modifiers": {
+        "WeaponAttackBonus": 15
+      }
+    },
+    {
+      "Modifiers": {
+        "WeaponAttackBonus": 15
       }
     },
     {
       "Modifiers": {
         "WeaponAttacksCount": 1,
-        "WeaponAttackBonus": 20
+        "WeaponAttackBonus": 15
       }
     },
     {
       "Modifiers": {
-        "WeaponAttackBonus": 20
+        "WeaponAttackBonus": 15
+      }
+    },
+    {
+      "Modifiers": {
+        "WeaponAttackBonus": 15
       }
     }
   ],
