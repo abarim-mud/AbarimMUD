@@ -458,8 +458,16 @@ namespace AbarimMUD.Commands
 			// Append level up messages
 			for (var level = lastLevel + 1; level <= character.Level; ++level)
 			{
-				Send($"Welcome to the level {level}! You gained {cls.Hitpoints.Multiplier.FormatFloat()} hitpoints, {cls.Mana.Multiplier.FormatFloat()} mana and {cls.Moves.Multiplier.FormatFloat()} moves.");
+				var previousHp = character.Class.Hitpoints.GetValueByLevel(level - 1);
+				var newHp = character.Class.Hitpoints.GetValueByLevel(level);
 
+				var previousMana = character.Class.Mana.GetValueByLevel(level - 1);
+				var newMana = character.Class.Mana.GetValueByLevel(level);
+
+				var previousMoves = character.Class.Moves.GetValueByLevel(level - 1);
+				var newMoves = character.Class.Moves.GetValueByLevel(level);
+
+				Send($"Welcome to the level {level}! You gained {newHp - previousHp} hitpoints, {newMana - previousMana} mana and {newMoves - previousMoves} moves.");
 				if (level % 10 == 0)
 				{
 					Send("You gained 2 skill points.");

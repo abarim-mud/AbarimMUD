@@ -17,6 +17,18 @@ namespace AbarimMUD.Utils
 
 		public int Random() => Utility.RandomRange(Minimum, Maximum);
 
+		/// <summary>
+		/// Returns level-based value(level 1 - min, level 100 - max)
+		/// </summary>
+		/// <param name="level"></param>
+		/// <returns></returns>
+		public int GetValueByLevel(int level)
+		{
+			var k = (float)(level - 1) / 99;
+
+			return Minimum + (int)(k * (Maximum - Minimum));
+		}
+
 		public static bool TryParse(string value, out ValueRange range)
 		{
 			range = new ValueRange();
