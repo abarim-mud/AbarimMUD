@@ -1,4 +1,6 @@
-﻿namespace AbarimMUD.Commands.Builder
+﻿using AbarimMUD.Utils;
+
+namespace AbarimMUD.Commands.Builder
 {
 	public sealed class Force : BuilderCommand
 	{

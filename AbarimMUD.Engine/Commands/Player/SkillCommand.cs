@@ -37,11 +37,6 @@ namespace AbarimMUD.Commands.Player
 				var lev = skillValue != null ? skillValue.Level : 0;
 				var s = $"{lev}/{skill.TotalLevels}";
 
-				if (skill.TotalLevels == 5)
-				{
-					s = skillValue.GetDefaultSkillLevelName();
-				}
-
 				skillsGrid.SetValue(1, i, s);
 				skillsGrid.SetValue(2, i, skill.Class.Name);
 

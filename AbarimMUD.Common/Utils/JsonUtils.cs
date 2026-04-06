@@ -28,7 +28,7 @@ namespace AbarimMUD.Utils
 			}
 		}
 
-		private class RandomRangeConverterType : JsonConverter<ValueRange>
+		private class ValueRangeConverterType : JsonConverter<ValueRange>
 		{
 			public override ValueRange Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 			{
@@ -39,13 +39,28 @@ namespace AbarimMUD.Utils
 
 			public override void Write(Utf8JsonWriter writer, ValueRange value, JsonSerializerOptions options)
 			{
-				writer.WriteStringValue($"{value.Minimum}-{value.Maximum}");
+				writer.WriteStringValue(value.ToString());
 			}
 		}
 
+		private class LeveledValueRangeConverterType : JsonConverter<LeveledValueRange>
+		{
+			public override LeveledValueRange Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+			{
+				var value = reader.GetString();
+
+				return LeveledValueRange.Parse(value);
+			}
+
+			public override void Write(Utf8JsonWriter writer, LeveledValueRange value, JsonSerializerOptions options)
+			{
+				writer.WriteStringValue(value.ToString());
+			}
+		}
 
 		private static readonly LongConverterType LongConverter = new LongConverterType();
-		private static readonly RandomRangeConverterType RandomRangeConverter = new RandomRangeConverterType();
+		private static readonly ValueRangeConverterType ValueRangeConverter = new ValueRangeConverterType();
+		private static readonly LeveledValueRangeConverterType LeveledValueRangeConverter = new LeveledValueRangeConverterType();
 
 		private static void IgnoreEmptyListOfStrings(JsonTypeInfo typeInfo)
 		{
@@ -84,7 +99,8 @@ namespace AbarimMUD.Utils
 
 			result.Converters.Add(new JsonStringEnumConverter());
 			result.Converters.Add(LongConverter);
-			result.Converters.Add(RandomRangeConverter);
+			result.Converters.Add(ValueRangeConverter);
+			result.Converters.Add(LeveledValueRangeConverter);
 
 			return result;
 		}

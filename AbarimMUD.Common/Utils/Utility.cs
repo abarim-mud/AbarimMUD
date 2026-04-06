@@ -2,18 +2,24 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Numerics;
 using System.Reflection;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 
-namespace AbarimMUD
+namespace AbarimMUD.Utils
 {
 	public static class Utility
 	{
 		private const string NumberGroupSeparator = ",";
 		private static readonly NumberFormatInfo _bigNumbersFormatCulture;
+
+		/// <summary>
+		/// The value for which all absolute numbers smaller than are considered equal to zero.
+		/// </summary>
+		public const float ZeroTolerance = 1e-6f;
 
 		public static Random Random { get; } = new Random();
 
@@ -21,6 +27,28 @@ namespace AbarimMUD
 		{
 			_bigNumbersFormatCulture = (NumberFormatInfo)CultureInfo.InvariantCulture.NumberFormat.Clone();
 			_bigNumbersFormatCulture.NumberGroupSeparator = NumberGroupSeparator;
+		}
+
+		/// <summary>
+		/// Compares two floating point numbers based on an epsilon zero tolerance.
+		/// </summary>
+		/// <param name="left">The first number to compare.</param>
+		/// <param name="right">The second number to compare.</param>
+		/// <param name="epsilon">The epsilon value to use for zero tolerance.</param>
+		/// <returns><c>true</c> if <paramref name="left"/> is within epsilon of <paramref name="right"/>; otherwise, <c>false</c>.</returns>
+		public static bool EpsilonEquals(this float left, float right, float epsilon = ZeroTolerance)
+		{
+			return Math.Abs(left - right) <= epsilon;
+		}
+
+		public static bool EpsilonEquals(this Vector2 left, Vector2 right, float epsilon = ZeroTolerance)
+		{
+			return left.X.EpsilonEquals(right.X, epsilon) && left.Y.EpsilonEquals(right.Y, epsilon);
+		}
+
+		public static bool IsZero(this float a)
+		{
+			return a.EpsilonEquals(0.0f);
 		}
 
 		public static bool RollPercentage(int percentage)
@@ -225,7 +253,7 @@ namespace AbarimMUD
 			return long.TryParse(value, out number);
 		}
 
-		public static string FormatFloat(this float f) => f.ToString("0.##");
+		public static string FormatFloat(this float f) => f.ToString("0.##", CultureInfo.InvariantCulture);
 
 		public static string FormatTime(this int seconds)
 		{

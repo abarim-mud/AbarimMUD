@@ -1,5 +1,6 @@
 ﻿using AbarimMUD.Combat;
 using AbarimMUD.Data;
+using AbarimMUD.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -457,7 +458,7 @@ namespace AbarimMUD.Commands
 			// Append level up messages
 			for (var level = lastLevel + 1; level <= character.Level; ++level)
 			{
-				Send($"Welcome to the level {level}! You gained {cls.HitpointsPerLevel} hitpoints, {cls.ManaPerLevel} mana and {cls.MovesPerLevel} moves.");
+				Send($"Welcome to the level {level}! You gained {cls.Hitpoints.Multiplier.FormatFloat()} hitpoints, {cls.Mana.Multiplier.FormatFloat()} mana and {cls.Moves.Multiplier.FormatFloat()} moves.");
 
 				if (level % 10 == 0)
 				{

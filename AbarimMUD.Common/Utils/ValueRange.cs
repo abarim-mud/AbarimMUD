@@ -4,8 +4,6 @@ namespace AbarimMUD.Utils
 {
 	public struct ValueRange
 	{
-		private const float LogInterpolationBase = 7;
-
 		public int Minimum;
 		public int Maximum;
 
@@ -80,5 +78,8 @@ namespace AbarimMUD.Utils
 
 		public static bool operator ==(ValueRange r1, ValueRange r2) => AreEqual(r1, r2);
 		public static bool operator !=(ValueRange r1, ValueRange r2) => !AreEqual(r1, r2);
+
+		public override bool Equals(object obj) => obj is ValueRange range && AreEqual(this, range);
+		public override int GetHashCode() => HashCode.Combine(Minimum, Maximum);
 	}
 }
