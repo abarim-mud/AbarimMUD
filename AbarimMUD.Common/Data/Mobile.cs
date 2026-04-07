@@ -109,6 +109,7 @@ namespace AbarimMUD.Data
 		private int _armor = DefaultArmor;
 		private int _level;
 		private int _gold = DefaultGold;
+		private Shop _shop;
 
 		public string Id { get; set; }
 
@@ -230,6 +231,42 @@ namespace AbarimMUD.Data
 
 		public List<LootRecord> Loot { get; set; } = new List<LootRecord>();
 
+		public PlayerClass Guildmaster { get; set; }
+
+		public Shop Shop
+		{
+			get => _shop;
+
+			set
+			{
+				if (value == _shop)
+				{
+					return;
+				}
+
+				_shop = value;
+
+				// Rebuild inventories
+				foreach (var creature in Creature.ActiveCreatures)
+				{
+					var asMobile = creature as MobileInstance;
+					if (asMobile == null)
+					{
+						continue;
+					}
+
+					if (asMobile.Info.Id == Id)
+					{
+						asMobile.RebuildInventory();
+					}
+				}
+			}
+		}
+
+		public ForgeShop ForgeShop { get; set; }
+
+		public ExchangeShop ExchangeShop { get; set; }
+
 		public long Experience { get; set; }
 
 		public Mobile()
@@ -318,7 +355,7 @@ namespace AbarimMUD.Data
 		public object Clone() => CloneMobile();
 
 		public void Create() => Storage.Create(this);
-		
+
 		public void Save()
 		{
 			Experience = CalculateXpAward();

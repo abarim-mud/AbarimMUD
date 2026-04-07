@@ -63,7 +63,7 @@
       "ManaRate": 0,
       "MobileSpawns": [
         {
-          "Mobile": "service",
+          "Mobile": "blacksmith",
           "CustomKeywords": [
             "blacksmith",
             "thane",
@@ -71,10 +71,7 @@
           ],
           "CustomShortDescription": "Thane the blacksmith",
           "CustomLongDescription": "Blacksmith Thane Ironjaw stands at the counter, waiting for your order.",
-          "CustomDescription": "Thane Ironjaw is a towering, broad-shouldered man with the physique of\nsomeone who has spent a lifetime hammering steel. His arms are thick with muscle,\nbearing countless burn scars from stray embers and molten metal. A long, grizzled beard\n\\u2014once deep auburn, now streaked with silver\\u2014frames his square jaw, giving him the look\nof a battle-hardened veteran. His dark eyes gleam like tempered steel, ever watchful over\nhis shop\\u2019s wares and customers alike. His leather apron, heavy with soot, smells faintly of\niron and sweat, and his hands, calloused and strong, move with practiced ease as he\ninspects blades and hammers.",
-          "Shop": "smithy",
-          "ForgeShop": "smithy",
-          "ExchangeShop": "smithy"
+          "CustomDescription": "Thane Ironjaw is a towering, broad-shouldered man with the physique of\nsomeone who has spent a lifetime hammering steel. His arms are thick with muscle,\nbearing countless burn scars from stray embers and molten metal. A long, grizzled beard\n\\u2014once deep auburn, now streaked with silver\\u2014frames his square jaw, giving him the look\nof a battle-hardened veteran. His dark eyes gleam like tempered steel, ever watchful over\nhis shop\\u2019s wares and customers alike. His leather apron, heavy with soot, smells faintly of\niron and sweat, and his hands, calloused and strong, move with practiced ease as he\ninspects blades and hammers."
         }
       ],
       "Exits": {
@@ -89,16 +86,14 @@
       "ManaRate": 0,
       "MobileSpawns": [
         {
-          "Mobile": "service",
+          "Mobile": "alchemist",
           "CustomKeywords": [
             "alchemist",
             "malrik"
           ],
           "CustomShortDescription": "Malrik the alchemist",
           "CustomLongDescription": "Malrik the alchemist is here.",
-          "CustomDescription": "Malrik is a wiry old man, his robes stained with the remnants of countless\nexperiments. Thick goggles rest on his forehead, and his sharp eyes glint with both\ncuriosity and wisdom. A mischievous smirk and cryptic remarks hint at secrets\\u2014perhaps\neven the key to immortality. The scent of burnt herbs clings to him as he absently twirls\na vial of shimmering liquid.",
-          "Shop": "alchemist",
-          "ExchangeShop": "alchemist"
+          "CustomDescription": "Malrik is a wiry old man, his robes stained with the remnants of countless\nexperiments. Thick goggles rest on his forehead, and his sharp eyes glint with both\ncuriosity and wisdom. A mischievous smirk and cryptic remarks hint at secrets\\u2014perhaps\neven the key to immortality. The scent of burnt herbs clings to him as he absently twirls\na vial of shimmering liquid."
         }
       ],
       "Exits": {
@@ -334,7 +329,7 @@
       "ManaRate": 0,
       "MobileSpawns": [
         {
-          "Mobile": "service",
+          "Mobile": "guildmasterWarrior",
           "CustomKeywords": [
             "trainer",
             "warrior",
@@ -342,8 +337,7 @@
           ],
           "CustomShortDescription": "the warrior guildmaster",
           "CustomLongDescription": "The warrior guildmaster stands here, ready to teach you his ways.",
-          "CustomDescription": "The warrior guildmaster is a formidable figure with a tall and athletic build.\nShe has a sharp jawline, a straight nose, and intense brown eyes that seem to\nsee right through you. Her hair is a deep auburn, styled in a practical braid\nthat keeps it out of her face during combat. Her skin is weathered from years\nof training and battles, bearing the scars of her experiences as badges of\nhonor. She exudes a confident and fearless energy, her presence commanding\nrespect and inspiring courage in those around her. She stands tall and proud,\nready to face any challenge that comes her way.",
-          "Guildmaster": "warrior"
+          "CustomDescription": "The warrior guildmaster is a formidable figure with a tall and athletic build.\nShe has a sharp jawline, a straight nose, and intense brown eyes that seem to\nsee right through you. Her hair is a deep auburn, styled in a practical braid\nthat keeps it out of her face during combat. Her skin is weathered from years\nof training and battles, bearing the scars of her experiences as badges of\nhonor. She exudes a confident and fearless energy, her presence commanding\nrespect and inspiring courage in those around her. She stands tall and proud,\nready to face any challenge that comes her way."
         }
       ],
       "Exits": {
@@ -369,7 +363,7 @@
       "ManaRate": 0,
       "MobileSpawns": [
         {
-          "Mobile": "service",
+          "Mobile": "guildmasterRogue",
           "CustomKeywords": [
             "trainer",
             "rogue",
@@ -377,8 +371,7 @@
           ],
           "CustomShortDescription": "the rogue guildmaster",
           "CustomLongDescription": "The rogue guildmaster stands here, ready to teach you his ways.",
-          "CustomDescription": "The rogue guildmaster is a slender and nimble figure with a quick wit and a\ncharming smile. He has a sharp jawline, a crooked nose, and sparkling brown eyes\nthat seem to always be on the lookout for his next big score. His hair is a\nshaggy mop of black, styled in a manner that adds to his roguish charm. He moves\nwith a feline grace, his confidence and cunning evident in every step. Despite\nhis sometimes questionable methods, he has a charismatic personality and a\nsilver tongue that makes him well-liked by his fellow thieves.",
-          "Guildmaster": "rogue"
+          "CustomDescription": "The rogue guildmaster is a slender and nimble figure with a quick wit and a\ncharming smile. He has a sharp jawline, a crooked nose, and sparkling brown eyes\nthat seem to always be on the lookout for his next big score. His hair is a\nshaggy mop of black, styled in a manner that adds to his roguish charm. He moves\nwith a feline grace, his confidence and cunning evident in every step. Despite\nhis sometimes questionable methods, he has a charismatic personality and a\nsilver tongue that makes him well-liked by his fellow thieves."
         }
       ],
       "Exits": {
@@ -404,7 +397,7 @@
       "ManaRate": 0,
       "MobileSpawns": [
         {
-          "Mobile": "service",
+          "Mobile": "guildmasterMonk",
           "CustomKeywords": [
             "trainer",
             "monk",
@@ -414,8 +407,7 @@
           ],
           "CustomShortDescription": "the monk guildmaster",
           "CustomLongDescription": "The monk guildmaster stands here, ready to teach you his ways.",
-          "CustomDescription": "A master of discipline, Zhen Taoru commands respect through wisdom, not force. His\namber eyes hold the weight of countless lessons, and his movements\\u2014fluid and precise\\u2014\nreflect decades of training. Draped in a simple robe, he speaks in measured riddles,\nguiding students toward their own truths.\n\nA worn wooden staff rests at his side\\u2014a symbol of mastery rather than necessity. Though\nage has tempered his stride, none doubt his ability to wield it with effortless precision.",
-          "Guildmaster": "monk"
+          "CustomDescription": "A master of discipline, Zhen Taoru commands respect through wisdom, not force. His\namber eyes hold the weight of countless lessons, and his movements\\u2014fluid and precise\\u2014\nreflect decades of training. Draped in a simple robe, he speaks in measured riddles,\nguiding students toward their own truths.\n\nA worn wooden staff rests at his side\\u2014a symbol of mastery rather than necessity. Though\nage has tempered his stride, none doubt his ability to wield it with effortless precision."
         }
       ],
       "Exits": {

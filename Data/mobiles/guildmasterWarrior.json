@@ -1,0 +1,61 @@
+{
+  "Id": "guildmasterWarrior",
+  "Keywords": [
+    "service"
+  ],
+  "ShortDescription": "the service",
+  "Level": 100,
+  "Gold": 50000,
+  "Sex": "Male",
+  "Hitpoints": 10000,
+  "Mana": 10000,
+  "Moves": 1000,
+  "Armor": 250,
+  "Attacks": [
+    {
+      "Type": "Hit",
+      "AttackBonus": 200,
+      "DamageRange": "120-160"
+    },
+    {
+      "Type": "Hit",
+      "AttackBonus": 200,
+      "DamageRange": "120-160"
+    },
+    {
+      "Type": "Hit",
+      "AttackBonus": 200,
+      "DamageRange": "120-160"
+    },
+    {
+      "Type": "Hit",
+      "AttackBonus": 200,
+      "DamageRange": "120-160"
+    },
+    {
+      "Type": "Hit",
+      "AttackBonus": 200,
+      "DamageRange": "120-160"
+    },
+    {
+      "Type": "Hit",
+      "AttackBonus": 200,
+      "DamageRange": "120-160"
+    },
+    {
+      "Type": "Hit",
+      "AttackBonus": 200,
+      "DamageRange": "120-160"
+    },
+    {
+      "Type": "Hit",
+      "AttackBonus": 200,
+      "DamageRange": "120-160"
+    }
+  ],
+  "Flags": [
+    "Sentinel"
+  ],
+  "Guildmaster": "warrior",
+  "Experience": "117,600,000"
+}
