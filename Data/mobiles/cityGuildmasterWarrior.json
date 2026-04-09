@@ -1,9 +1,10 @@
 {
-  "Id": "guildmasterWarrior",
+  "Id": "cityGuildmasterWarrior",
   "Keywords": [
-    "service"
+    "guildmaster",
+    "warrior"
   ],
-  "ShortDescription": "the service",
+  "ShortDescription": "the guildmaster warrior",
   "Level": 100,
   "Gold": 50000,
   "Sex": "Male",

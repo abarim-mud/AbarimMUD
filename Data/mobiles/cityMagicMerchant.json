@@ -1,9 +1,10 @@
 {
-  "Id": "blacksmith",
+  "Id": "cityMagicMerchant",
   "Keywords": [
-    "blacksmith"
+    "magic",
+    "merchant"
   ],
-  "ShortDescription": "the blacksmith",
+  "ShortDescription": "the magic merchant",
   "Level": 100,
   "Gold": 50000,
   "Sex": "Male",
@@ -54,10 +55,8 @@
     }
   ],
   "Flags": [
-    "Sentinel"
+    "Sentinel",
+    "Enchanter"
   ],
-  "Shop": "smithy",
-  "ForgeShop": "smithy",
-  "ExchangeShop": "smithy",
   "Experience": "117,600,000"
 }

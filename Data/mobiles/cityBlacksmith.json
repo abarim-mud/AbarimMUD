@@ -1,9 +1,9 @@
 {
-  "Id": "service",
+  "Id": "cityBlacksmith",
   "Keywords": [
-    "service"
+    "blacksmith"
   ],
-  "ShortDescription": "the service",
+  "ShortDescription": "the blacksmith",
   "Level": 100,
   "Gold": 50000,
   "Sex": "Male",
@@ -56,5 +56,8 @@
   "Flags": [
     "Sentinel"
   ],
+  "Shop": "smithy",
+  "ForgeShop": "smithy",
+  "ExchangeShop": "smithy",
   "Experience": "117,600,000"
 }

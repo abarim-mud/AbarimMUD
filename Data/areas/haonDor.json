@@ -922,6 +922,9 @@
       "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
+      "MobileSpawns": [
+        "dragonGreenAdult"
+      ],
       "Exits": {
         "South": 6142
       }

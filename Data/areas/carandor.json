@@ -63,7 +63,7 @@
       "ManaRate": 0,
       "MobileSpawns": [
         {
-          "Mobile": "blacksmith",
+          "Mobile": "cityBlacksmith",
           "CustomKeywords": [
             "blacksmith",
             "thane",
@@ -86,7 +86,7 @@
       "ManaRate": 0,
       "MobileSpawns": [
         {
-          "Mobile": "alchemist",
+          "Mobile": "cityAlchemist",
           "CustomKeywords": [
             "alchemist",
             "malrik"
@@ -140,6 +140,19 @@
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
+      "MobileSpawns": [
+        {
+          "Mobile": "cityMagicMerchant",
+          "CustomSex": "Female",
+          "CustomKeywords": [
+            "Wendy",
+            "shopkeeper"
+          ],
+          "CustomShortDescription": "Wendy the shopkeeper",
+          "CustomLongDescription": "Wendy the shopkeeper is here.",
+          "CustomDescription": "A lovely lady beckons you over."
+        }
+      ],
       "Exits": {
         "South": 6
       }
@@ -329,7 +342,7 @@
       "ManaRate": 0,
       "MobileSpawns": [
         {
-          "Mobile": "guildmasterWarrior",
+          "Mobile": "cityGuildmasterWarrior",
           "CustomKeywords": [
             "trainer",
             "warrior",
@@ -363,7 +376,7 @@
       "ManaRate": 0,
       "MobileSpawns": [
         {
-          "Mobile": "guildmasterRogue",
+          "Mobile": "cityGuildmasterRogue",
           "CustomKeywords": [
             "trainer",
             "rogue",
@@ -397,7 +410,7 @@
       "ManaRate": 0,
       "MobileSpawns": [
         {
-          "Mobile": "guildmasterMonk",
+          "Mobile": "cityGuildmasterMonk",
           "CustomKeywords": [
             "trainer",
             "monk",

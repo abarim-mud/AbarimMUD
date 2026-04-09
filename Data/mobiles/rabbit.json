@@ -8,7 +8,7 @@
   "LongDescription": "A cute rabbit is here.",
   "Description": "It is a small, furry creature with long ears and big feet.",
   "Level": 1,
-  "Gold": 100,
+  "Gold": 50,
   "Sex": "Male",
   "Hitpoints": 50,
   "Mana": 100,

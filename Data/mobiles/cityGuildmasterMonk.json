@@ -1,9 +1,10 @@
 {
-  "Id": "guildmasterRogue",
+  "Id": "cityGuildmasterMonk",
   "Keywords": [
-    "service"
+    "guildmaster",
+    "monk"
   ],
-  "ShortDescription": "the service",
+  "ShortDescription": "the monk guildmaster",
   "Level": 100,
   "Gold": 50000,
   "Sex": "Male",
@@ -13,42 +14,42 @@
   "Armor": 250,
   "Attacks": [
     {
-      "Type": "Pierce",
+      "Type": "Hit",
       "AttackBonus": 200,
       "DamageRange": "120-160"
     },
     {
-      "Type": "Pierce",
+      "Type": "Hit",
       "AttackBonus": 200,
       "DamageRange": "120-160"
     },
     {
-      "Type": "Pierce",
+      "Type": "Hit",
       "AttackBonus": 200,
       "DamageRange": "120-160"
     },
     {
-      "Type": "Pierce",
+      "Type": "Hit",
       "AttackBonus": 200,
       "DamageRange": "120-160"
     },
     {
-      "Type": "Pierce",
+      "Type": "Hit",
       "AttackBonus": 200,
       "DamageRange": "120-160"
     },
     {
-      "Type": "Pierce",
+      "Type": "Hit",
       "AttackBonus": 200,
       "DamageRange": "120-160"
     },
     {
-      "Type": "Pierce",
+      "Type": "Hit",
       "AttackBonus": 200,
       "DamageRange": "120-160"
     },
     {
-      "Type": "Pierce",
+      "Type": "Hit",
       "AttackBonus": 200,
       "DamageRange": "120-160"
     }
@@ -56,6 +57,6 @@
   "Flags": [
     "Sentinel"
   ],
-  "Guildmaster": "rogue",
+  "Guildmaster": "monk",
   "Experience": "117,600,000"
 }
