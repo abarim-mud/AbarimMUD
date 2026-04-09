@@ -1,0 +1,33 @@
+{
+  "Id": "greyWolf",
+  "Keywords": [
+    "wolf",
+    "grey"
+  ],
+  "ShortDescription": "the large, grey wolf",
+  "LongDescription": "A large, grey wolf is here, glaring hungrily at you.",
+  "Description": "The large, grey wolf eyes you with interest while licking its lips.",
+  "Level": 1,
+  "Gold": 100,
+  "Sex": "Male",
+  "Hitpoints": 100,
+  "Mana": 100,
+  "Moves": 1000,
+  "Armor": 30,
+  "Attacks": [
+    {
+      "Type": "Bite",
+      "AttackBonus": 30,
+      "DamageRange": "5-10"
+    },
+    {
+      "Type": "Bite",
+      "AttackBonus": 30,
+      "DamageRange": "5-10"
+    }
+  ],
+  "Flags": [
+    "Aggressive"
+  ],
+  "Experience": "2,340"
+}

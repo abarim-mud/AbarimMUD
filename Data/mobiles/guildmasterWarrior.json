@@ -13,42 +13,42 @@
   "Armor": 250,
   "Attacks": [
     {
-      "Type": "Hit",
+      "Type": "Slash",
       "AttackBonus": 200,
       "DamageRange": "120-160"
     },
     {
-      "Type": "Hit",
+      "Type": "Slash",
       "AttackBonus": 200,
       "DamageRange": "120-160"
     },
     {
-      "Type": "Hit",
+      "Type": "Slash",
       "AttackBonus": 200,
       "DamageRange": "120-160"
     },
     {
-      "Type": "Hit",
+      "Type": "Slash",
       "AttackBonus": 200,
       "DamageRange": "120-160"
     },
     {
-      "Type": "Hit",
+      "Type": "Slash",
       "AttackBonus": 200,
       "DamageRange": "120-160"
     },
     {
-      "Type": "Hit",
+      "Type": "Slash",
       "AttackBonus": 200,
       "DamageRange": "120-160"
     },
     {
-      "Type": "Hit",
+      "Type": "Slash",
       "AttackBonus": 200,
       "DamageRange": "120-160"
     },
     {
-      "Type": "Hit",
+      "Type": "Slash",
       "AttackBonus": 200,
       "DamageRange": "120-160"
     }

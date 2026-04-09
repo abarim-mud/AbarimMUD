@@ -7,13 +7,6 @@ namespace AbarimMUD.Commands.Player
 	{
 		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
-			// Check the player has the skill
-			var ability = context.EnsureAbility("hunt");
-			if (ability == null)
-			{
-				return false;
-			}
-
 			data = data.Trim();
 			if (string.IsNullOrEmpty(data))
 			{

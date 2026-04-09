@@ -2,7 +2,7 @@
   "Id": "monk",
   "Name": "Monk",
   "Description": "Master of martial arts.",
-  "Hitpoints": "450-850",
+  "Hitpoints": "200-850",
   "Mana": "300-500",
   "Moves": "200-300",
   "StartingEquipment": [

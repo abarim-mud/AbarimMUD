@@ -39,8 +39,8 @@ public static class ToolsUtility
 			}
 			result.Contents.Add(new MMBRoomContentRecord($"{name} #{mobile.Id}", color));
 
-			if(mobileSpawn.Guildmaster != null || mobileSpawn.Shop != null || 
-				mobileSpawn.ForgeShop != null || mobileSpawn.ExchangeShop != null ||
+			if (mobile.Guildmaster != null || mobile.Shop != null ||
+				mobile.ForgeShop != null || mobile.ExchangeShop != null ||
 				mobile.Flags.Contains(MobileFlags.Enchanter))
 			{
 				isSpecialRoom = true;

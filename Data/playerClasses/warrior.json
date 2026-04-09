@@ -2,7 +2,7 @@
   "Id": "warrior",
   "Name": "Warrior",
   "Description": "Master of armor and sword.",
-  "Hitpoints": "500-1000",
+  "Hitpoints": "250-1000",
   "Mana": "250-450",
   "Moves": "150-250",
   "StartingEquipment": [

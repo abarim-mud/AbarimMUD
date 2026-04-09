@@ -145,6 +145,9 @@
       "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
+      "MobileSpawns": [
+        "rabbit"
+      ],
       "Exits": {
         "East": 6003,
         "South": 6005,
@@ -170,6 +173,9 @@
       "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
+      "MobileSpawns": [
+        "brownFox"
+      ],
       "Exits": {
         "North": 6005,
         "East": 6007
@@ -272,6 +278,9 @@
       "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
+      "MobileSpawns": [
+        "brownFox"
+      ],
       "Exits": {
         "North": 6009,
         "East": 6015,
@@ -286,7 +295,7 @@
       "HealRate": 0,
       "ManaRate": 0,
       "MobileSpawns": [
-        "rabbit"
+        "greyWolf"
       ],
       "Exits": {
         "South": 6016,
@@ -341,7 +350,7 @@
       "HealRate": 0,
       "ManaRate": 0,
       "MobileSpawns": [
-        "rabbit"
+        "brownFox"
       ],
       "Exits": {
         "North": 6020,
@@ -380,6 +389,9 @@
       "SectorType": "Inside",
       "HealRate": 0,
       "ManaRate": 0,
+      "MobileSpawns": [
+        "brownBear"
+      ],
       "Exits": {
         "East": 6021
       }
@@ -455,6 +467,9 @@
       "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
+      "MobileSpawns": [
+        "greyWolf"
+      ],
       "Exits": {
         "North": 6101,
         "South": 6105
@@ -504,6 +519,9 @@
       "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
+      "MobileSpawns": [
+        "greyWolf"
+      ],
       "Exits": {
         "North": 6103,
         "South": 6107,
@@ -529,6 +547,9 @@
       "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
+      "MobileSpawns": [
+        "brownFox"
+      ],
       "Exits": {
         "North": 6144,
         "East": 6109,
@@ -554,6 +575,9 @@
       "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
+      "MobileSpawns": [
+        "greyWolf"
+      ],
       "Exits": {
         "North": 6111,
         "East": 6113,
@@ -579,6 +603,9 @@
       "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
+      "MobileSpawns": [
+        "rabbit"
+      ],
       "Exits": {
         "North": 6113,
         "East": 6115,
@@ -604,6 +631,9 @@
       "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
+      "MobileSpawns": [
+        "greyWolf"
+      ],
       "Exits": {
         "East": 6117,
         "South": 6115
@@ -629,6 +659,9 @@
       "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
+      "MobileSpawns": [
+        "greyWolf"
+      ],
       "Exits": {
         "South": 6119,
         "West": 6117
@@ -653,6 +686,9 @@
       "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
+      "MobileSpawns": [
+        "brownFox"
+      ],
       "Exits": {
         "North": 6119,
         "West": 6121
@@ -665,6 +701,9 @@
       "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
+      "MobileSpawns": [
+        "rabbit"
+      ],
       "Exits": {
         "East": 6120
       }
@@ -688,6 +727,9 @@
       "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
+      "MobileSpawns": [
+        "greyWolf"
+      ],
       "Exits": {
         "North": 6122,
         "East": 6124,
@@ -737,6 +779,9 @@
       "SectorType": "Forest",
       "HealRate": 0,
       "ManaRate": 0,
+      "MobileSpawns": [
+        "greyWolf"
+      ],
       "Exits": {
         "East": 6112,
         "South": 6126

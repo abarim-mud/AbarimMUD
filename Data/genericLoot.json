@@ -34,7 +34,7 @@
         ]
       },
       {
-        "ProbabilityPercentage": 20,
+        "ProbabilityPercentage": 50,
         "Choice": [
           {
             "Items": [
@@ -57,7 +57,7 @@
         ]
       },
       {
-        "ProbabilityPercentage": 10,
+        "ProbabilityPercentage": 30,
         "Choice": [
           {
             "Items": [

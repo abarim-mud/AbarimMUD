@@ -10,17 +10,22 @@
   "Level": 2,
   "Gold": 200,
   "Sex": "Male",
-  "Hitpoints": 250,
+  "Hitpoints": 200,
   "Mana": 100,
   "Moves": 1000,
-  "Armor": 0,
+  "Armor": 40,
   "Attacks": [
     {
       "Type": "Hit",
-      "AttackBonus": 0,
-      "DamageRange": "8-16"
+      "AttackBonus": 50,
+      "DamageRange": "6-12"
+    },
+    {
+      "Type": "Gore",
+      "AttackBonus": 50,
+      "DamageRange": "6-12"
     }
   ],
   "Flags": [],
-  "Experience": "3,000"
+  "Experience": "7,280"
 }

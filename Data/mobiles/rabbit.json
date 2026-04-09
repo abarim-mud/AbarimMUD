@@ -1,6 +1,7 @@
 {
   "Id": "rabbit",
   "Keywords": [
+    "cute",
     "rabbit"
   ],
   "ShortDescription": "the cute rabbit",
@@ -9,10 +10,10 @@
   "Level": 1,
   "Gold": 100,
   "Sex": "Male",
-  "Hitpoints": 150,
+  "Hitpoints": 50,
   "Mana": 100,
   "Moves": 1000,
-  "Armor": 0,
+  "Armor": 20,
   "Attacks": [
     {
       "Type": "Hit",
@@ -21,5 +22,5 @@
     }
   ],
   "Flags": [],
-  "Experience": "1,050"
+  "Experience": "420"
 }
