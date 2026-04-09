@@ -923,7 +923,12 @@
       "HealRate": 0,
       "ManaRate": 0,
       "MobileSpawns": [
-        "dragonGreenAdult"
+        {
+          "Mobile": "dragonGreenAdult",
+          "CustomShortDescription": "the huge, green dragon",
+          "CustomLongDescription": "A huge green dragon is here, its narrow yellow eyes glowing with rage.",
+          "CustomDescription": "This enormous winged serpent has dark green scales covering most of its\ncolossal body. Numerous holes in its heavy wings tell of many fights as does\nthe nicks in the horns on its head. It smells as disgusting as only dragons do."
+        }
       ],
       "Exits": {
         "South": 6142

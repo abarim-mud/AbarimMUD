@@ -54,7 +54,10 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 			}
 			else if (Type == typeof(string))
 			{
-				SetValue(item, string.Join(' ', values));
+				var val = string.Join(' ', values);
+				val = val.Replace("\\n", "\n");
+
+				SetValue(item, val);
 			}
 			else if (Type == typeof(bool) || Type == typeof(bool?))
 			{
