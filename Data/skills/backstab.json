@@ -6,27 +6,24 @@
     {
       "Modifiers": {
         "BackstabCount": 1,
-        "BackstabMultiplier": 2
-      },
-      "PrimeModifiers": {
-        "BackstabMultiplier": 1
+        "BackstabMultiplier": 2,
+        "CirclestabMultiplier": 2
       },
       "Abilities": [
-        "backstab"
-      ]
-    },
-    {
-      "Modifiers": {
-        "BackstabMultiplier": 2
-      },
-      "Abilities": [
+        "backstab",
         "circlestab"
       ]
     },
     {
       "Modifiers": {
-        "BackstabCount": 1,
         "BackstabMultiplier": 2
+      }
+    },
+    {
+      "Modifiers": {
+        "BackstabCount": 1,
+        "BackstabMultiplier": 2,
+        "CirclestabMultiplier": 1
       }
     },
     {

@@ -89,6 +89,12 @@ namespace AbarimMUD.Commands.Player
 				}
 			}
 
+			var ab = stats.GetAbility("circlestab");
+			if (ab != null)
+			{
+				context.Send($"You can circlestab with multiplier equal to {stats.CirclestabMultiplier.FormatFloat()}.");
+			}
+
 			if (stats.DeathtouchMultiplier > 0 && stats.GetAbility("deathtouch") != null)
 			{
 				context.Send($"You can deathtouch with multiplier equal to {stats.DeathtouchMultiplier}.");

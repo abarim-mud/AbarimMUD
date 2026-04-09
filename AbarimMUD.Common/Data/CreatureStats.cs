@@ -35,6 +35,8 @@ namespace AbarimMUD.Data
 		public List<Attack> Attacks { get; } = new List<Attack>();
 		public int BackstabCount { get; internal set; }
 		public int BackstabMultiplier { get; internal set; }
+
+		public float CirclestabMultiplier { get; internal set; }
 		public int Armor { get; internal set; }
 		public List<Ability> Abilities { get; } = new List<Ability>();
 		public int BuyPriceRebatePercentage { get; internal set; }
@@ -173,6 +175,9 @@ namespace AbarimMUD.Data
 					break;
 				case ModifierType.BackstabMultiplier:
 					BackstabMultiplier += val;
+					break;
+				case ModifierType.CirclestabMultiplier:
+					CirclestabMultiplier += val;
 					break;
 				case ModifierType.Armor:
 					Armor += val;

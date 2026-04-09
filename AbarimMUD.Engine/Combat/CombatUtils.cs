@@ -348,7 +348,7 @@ namespace AbarimMUD.Combat
 			attacker.AbilityAttack(Ability.Circlestab, () =>
 				{
 					var damage = 0;
-					var circleMultiplier = attacker.Stats.BackstabMultiplier / 3;
+					var circleMultiplier = attacker.Stats.CirclestabMultiplier;
 					var attack = attacker.Stats.Attacks[0];
 					for (var j = 0; j < circleMultiplier; ++j)
 					{

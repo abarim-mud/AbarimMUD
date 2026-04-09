@@ -69,6 +69,7 @@ namespace AbarimMUD.Data
 		public Inventory StartingInventory { get; set; }
 		public int StartingGold { get; set; }
 		public int StartingSkillPoints { get; set; }
+		public Dictionary<ModifierType, int> PrimeModifiers { get; set; } = new Dictionary<ModifierType, int>();
 
 		public CreatureStats CreateStats(int level)
 		{

@@ -36,5 +36,9 @@
     }
   ],
   "StartingGold": 2000,
-  "StartingSkillPoints": 1
+  "StartingSkillPoints": 1,
+  "PrimeModifiers": {
+    "Armor": 10,
+    "WeaponDamage": 2
+  }
 }

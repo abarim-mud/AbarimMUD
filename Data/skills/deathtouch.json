@@ -7,9 +7,6 @@
       "Modifiers": {
         "DeathtouchMultiplier": 2
       },
-      "PrimeModifiers": {
-        "DeathtouchMultiplier": 1
-      },
       "Abilities": [
         "deathtouch"
       ]

@@ -10,9 +10,6 @@
         "MartialArtsAttacksCount": 1,
         "MartialArtsAttackBonus": 15
       },
-      "PrimeModifiers": {
-        "DamageReduction": 2
-      },
       "Abilities": [
         "kick"
       ]

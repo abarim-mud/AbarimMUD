@@ -23,10 +23,6 @@
   ],
   "StartingInventory": [
     {
-      "Item": "ironSword",
-      "Quantity": 1
-    },
-    {
       "Item": "novicePotionOfHealing",
       "Quantity": 5
     },
@@ -40,5 +36,9 @@
     }
   ],
   "StartingGold": 2000,
-  "StartingSkillPoints": 1
+  "StartingSkillPoints": 1,
+  "PrimeModifiers": {
+    "Damage": 1,
+    "BackstabMultiplier": 1
+  }
 }

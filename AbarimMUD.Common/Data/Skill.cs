@@ -8,7 +8,6 @@ namespace AbarimMUD.Data
 	public class SkillLevelDefinition
 	{
 		public Dictionary<ModifierType, int> Modifiers { get; set; } = new Dictionary<ModifierType, int>();
-		public Dictionary<ModifierType, int> PrimeModifiers { get; set; } = new Dictionary<ModifierType, int>();
 		public Ability[] Abilities { get; set; }
 	}
 

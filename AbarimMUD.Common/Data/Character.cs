@@ -243,6 +243,12 @@ namespace AbarimMUD.Data
 		{
 			base.EnumerateModifiers(result);
 
+			// Apply class modifiers
+			foreach (var modPair in Class.PrimeModifiers)
+			{
+				result.Add(modPair.Key, modPair.Value);
+			}
+
 			// Apply skills and abilities
 			foreach (var pair in Skills)
 			{
@@ -256,16 +262,6 @@ namespace AbarimMUD.Data
 					foreach (var modPair in def.Modifiers)
 					{
 						result.Add(modPair.Key, modPair.Value);
-					}
-
-					if (Class.Id.EqualsToIgnoreCase(skill.Class.Id))
-					{
-						// Prime class skill
-						// Apply prime modifiers too
-						foreach (var modPair in def.PrimeModifiers)
-						{
-							result.Add(modPair.Key, modPair.Value);
-						}
 					}
 
 					if (def.Abilities != null)

@@ -15,6 +15,7 @@ namespace AbarimMUD.Data
 		WeaponDamage,
 		BackstabCount,
 		BackstabMultiplier,
+		CirclestabMultiplier,
 		Armor,
 		HpRegenPercentage,
 		ManaRegenPercentage,
