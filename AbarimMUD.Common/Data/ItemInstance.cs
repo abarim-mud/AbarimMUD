@@ -77,7 +77,8 @@ namespace AbarimMUD.Data
 
 		public ItemInstance Clone() => new ItemInstance
 		{
-			Info = Info
+			Info = Info,
+			Enchantment = Enchantment
 		};
 	}
 }

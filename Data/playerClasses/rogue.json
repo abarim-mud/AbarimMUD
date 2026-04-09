@@ -23,6 +23,10 @@
   ],
   "StartingInventory": [
     {
+      "Item": "ironSword",
+      "Quantity": 1
+    },
+    {
       "Item": "novicePotionOfHealing",
       "Quantity": 5
     },
