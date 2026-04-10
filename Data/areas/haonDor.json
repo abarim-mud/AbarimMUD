@@ -3,7 +3,7 @@
   "Name": "Haon Dor",
   "Credits": "None",
   "Version": 0,
-  "StartId": 0,
+  "StartId": 6000,
   "IdCount": 1000,
   "Rooms": [
     {

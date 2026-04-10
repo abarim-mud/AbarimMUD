@@ -320,7 +320,8 @@
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
-        "West": 23
+        "West": 23,
+        "East": 1000
       }
     },
     {
