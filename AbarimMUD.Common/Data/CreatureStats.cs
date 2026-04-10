@@ -74,7 +74,7 @@ namespace AbarimMUD.Data
 
 		public int GetMovesRegen(bool isFighting)
 		{
-			var r = (int)((Configuration.MovesRegenPercentagePerMinute + MovesRegenPercentage) * MaxMoves / 100.0f);
+			var r = (int)((Configuration.MovesRegenPercentagePerMinute + MovesRegenPercentage) * MovesBase / 100.0f);
 			var result = Math.Max(r, Configuration.MovesRegenMinimumPerMinute) + MovesRegenAbsolute;
 			if (!isFighting)
 			{
