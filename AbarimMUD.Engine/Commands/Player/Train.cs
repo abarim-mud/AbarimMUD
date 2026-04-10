@@ -156,20 +156,29 @@ namespace AbarimMUD.Commands.Player
 					return false;
 				}
 
-				var skillValue = character.GetSkillValue(skillToTrain);
+				var oldSkillValue = character.GetSkillValue(skillToTrain);
 				character.Train(skillToTrain);
 				character.Gold -= price;
 				character.SkillPoints -= skillToTrain.Cost;
 
 				character.Save();
 
-				if (skillValue == null)
+				if (oldSkillValue == null)
 				{
 					context.Send($"You learned new skill: {skillToTrain.Name}.");
 				}
 				else
 				{
 					context.Send($"You advanced {skillToTrain.Name} to the next level.");
+				}
+
+				var newSkillValue = character.GetSkillValue(skillToTrain);
+				if (newSkillValue.LevelDefinition.Abilities != null)
+				{
+					foreach(var ability in newSkillValue.LevelDefinition.Abilities)
+					{
+						context.Send($"You learned the new ability: {ability.Name}.");
+					}
 				}
 			}
 

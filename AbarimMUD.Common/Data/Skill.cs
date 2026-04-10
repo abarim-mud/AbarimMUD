@@ -35,6 +35,7 @@ namespace AbarimMUD.Data
 	{
 		public Skill Skill { get; set; }
 		public int Level { get; set; }
+		public SkillLevelDefinition LevelDefinition => Skill.Levels[Level];
 
 		public bool IsMaxed => Level >= Skill.TotalLevels;
 

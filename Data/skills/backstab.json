@@ -7,7 +7,7 @@
       "Modifiers": {
         "BackstabCount": 1,
         "BackstabMultiplier": 2,
-        "CirclestabMultiplier": 1
+        "CirclestabMultiplier": 2
       },
       "Abilities": [
         "backstab",
@@ -22,13 +22,13 @@
     {
       "Modifiers": {
         "BackstabCount": 1,
-        "BackstabMultiplier": 2,
-        "CirclestabMultiplier": 1
+        "BackstabMultiplier": 2
       }
     },
     {
       "Modifiers": {
-        "BackstabMultiplier": 2
+        "BackstabMultiplier": 2,
+        "CirclestabMultiplier": 1
       }
     },
     {
