@@ -47,19 +47,11 @@ namespace AbarimMUD.Data
 		Nowhere,
 	}
 
-	public class Room : IHasId<int>
+	public class Room : AreaEntity
 	{
 		private ObservableCollection<MobileSpawn> _mobileSpawns;
 
 		public static readonly Room DefaultRoom;
-
-		[Browsable(false)]
-		[JsonIgnore]
-		public Area Area { get; set; }
-
-		[Browsable(false)]
-		[OLCIgnore]
-		public int Id { get; set; }
 
 		public string Name { get; set; }
 		public string Description { get; set; }
@@ -107,7 +99,7 @@ namespace AbarimMUD.Data
 
 		private void UpdateMobileSpawns()
 		{
-			foreach(var mobileSpawn in _mobileSpawns)
+			foreach (var mobileSpawn in _mobileSpawns)
 			{
 				mobileSpawn.Room = this;
 			}

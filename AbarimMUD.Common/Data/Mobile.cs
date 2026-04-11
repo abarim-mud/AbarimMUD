@@ -1,7 +1,5 @@
 ﻿using AbarimMUD.Attributes;
-using AbarimMUD.Storage;
 using AbarimMUD.Utils;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 
@@ -59,10 +57,8 @@ namespace AbarimMUD.Data
 		AssistVNum = AssistId,
 	}
 
-	public class Mobile : IStoredInFile, ICloneable
+	public class Mobile : AreaEntity
 	{
-		public static readonly MultipleFilesStorage<Mobile> Storage = new Mobiles();
-
 		public const int DefaultArmor = 0;
 		public const int DefaultGold = 100;
 		public const int DefaultHitpoints = 100;
@@ -74,8 +70,6 @@ namespace AbarimMUD.Data
 		private int _level;
 		private int _gold = DefaultGold;
 		private Shop _shop;
-
-		public string Id { get; set; }
 
 		[Browsable(false)]
 		public HashSet<string> Keywords { get; set; } = new HashSet<string>();
@@ -189,7 +183,7 @@ namespace AbarimMUD.Data
 
 		public Attack[] Attacks { get; set; }
 
-		public List<MobileSpecialAttack> SpecialAttacks { get; set; } = new List<MobileSpecialAttack>();
+		public MobileSpecialAttack[] SpecialAttacks { get; set; }
 
 		public HashSet<MobileFlags> Flags { get; set; } = new HashSet<MobileFlags>();
 
@@ -211,19 +205,7 @@ namespace AbarimMUD.Data
 				_shop = value;
 
 				// Rebuild inventories
-				foreach (var creature in Creature.ActiveCreatures)
-				{
-					var asMobile = creature as MobileInstance;
-					if (asMobile == null)
-					{
-						continue;
-					}
-
-					if (asMobile.Info.Id == Id)
-					{
-						asMobile.RebuildInventory();
-					}
-				}
+				RebuildInventoriesOfThisTemplate();
 			}
 		}
 
@@ -236,10 +218,6 @@ namespace AbarimMUD.Data
 		public Mobile()
 		{
 		}
-
-		public bool MatchesKeyword(string keyword) => Keywords.StartsWithPattern(keyword);
-
-		public override string ToString() => $"{ShortDescription} (#{Id})";
 
 		public CreatureStats CreateStats()
 		{
@@ -256,24 +234,47 @@ namespace AbarimMUD.Data
 			return stats;
 		}
 
+
+		public long CalculateXpAward() => CreatureStats.CalculateXpAward(Hitpoints, Armor, Attacks);
+
+		private bool IsMobileOfThisTemplate(MobileInstance mobile)
+		{
+			return mobile.Info.Id == Id;
+		}
+
 		private void InvalidateCreaturesOfThisTemplate()
 		{
 			foreach (var creature in Creature.ActiveCreatures)
 			{
 				var asMobile = creature as MobileInstance;
-				if (asMobile == null || asMobile.Info == null)
+				if (asMobile == null)
 				{
 					continue;
 				}
 
-				if (asMobile.Info.Id == Id)
+				if (asMobile.Info.IsMobileOfThisTemplate(asMobile))
 				{
 					creature.InvalidateStats();
 				}
 			}
 		}
 
-		public long CalculateXpAward() => CreatureStats.CalculateXpAward(Hitpoints, Armor, Attacks);
+		private void RebuildInventoriesOfThisTemplate()
+		{
+			foreach (var creature in Creature.ActiveCreatures)
+			{
+				var asMobile = creature as MobileInstance;
+				if (asMobile == null)
+				{
+					continue;
+				}
+
+				if (asMobile.Info.IsMobileOfThisTemplate(asMobile))
+				{
+					asMobile.RebuildInventory();
+				}
+			}
+		}
 
 		public Mobile CloneMobile()
 		{
@@ -289,9 +290,14 @@ namespace AbarimMUD.Data
 				Mana = Mana,
 				Moves = Moves,
 				Armor = Armor,
-				Attacks = Attacks,
 				Gold = Gold,
 			};
+
+			clone.Attacks = new Attack[Attacks.Length];
+			for (var i = 0; i < clone.Attacks.Length; ++i)
+			{
+				clone.Attacks[i] = Attacks[i].Clone();
+			}
 
 			foreach (var word in Keywords)
 			{
@@ -308,9 +314,14 @@ namespace AbarimMUD.Data
 				clone.Flags.Add(flag);
 			}
 
-			foreach (var atk in SpecialAttacks)
+			if (SpecialAttacks != null && SpecialAttacks.Length > 0)
 			{
-				clone.SpecialAttacks.Add(atk.Clone());
+				clone.SpecialAttacks = new MobileSpecialAttack[SpecialAttacks.Length];
+
+				for (var i = 0; i < clone.SpecialAttacks.Length; ++i)
+				{
+					clone.SpecialAttacks[i] = SpecialAttacks[i].Clone();
+				}
 			}
 
 			return clone;
@@ -318,15 +329,11 @@ namespace AbarimMUD.Data
 
 		public object Clone() => CloneMobile();
 
-		public void Create() => Storage.Create(this);
+		public bool MatchesKeyword(string keyword) => Keywords.StartsWithPattern(keyword);
 
-		public void Save()
-		{
-			Experience = CalculateXpAward();
-			Storage.Save(this);
-		}
+		public override string ToString() => $"{ShortDescription} (#{Id})";
 
-		public static Mobile GetMobileById(string id) => Storage.GetByKey(id);
-		public static Mobile EnsureMobileById(string id) => Storage.EnsureByKey(id);
+		public static Mobile GetMobileById(int id) => Area.Storage.GetMobileById(id);
+		public static Mobile EnsureMobileById(int id) => Area.Storage.EnsureMobileById(id);
 	}
 }

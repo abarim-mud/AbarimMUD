@@ -61,18 +61,8 @@ namespace AbarimMUD.Commands.Builder
 				return false;
 			}
 
-			// Determine new room id
 			var area = context.CurrentArea;
-			var newId = area.StartId;
-			foreach (var r in area.Rooms)
-			{
-				if (r.Id > newId)
-				{
-					newId = r.Id;
-				}
-			}
-
-			++newId;
+			var newId = area.NextRoomId;
 
 			// Create new room
 			var newRoom = new Room
@@ -90,19 +80,26 @@ namespace AbarimMUD.Commands.Builder
 			return true;
 		}
 
-		private bool CreateMobile(ExecutionContext context, string id)
+		private bool CreateMobile(ExecutionContext context)
 		{
+			if (context.Creature.Room.Area == null)
+			{
+				context.Send($"Can't create a room for the default area.");
+				return false;
+			}
+
+			var area = context.CurrentArea;
+			var newId = area.NextMobileId;
+
 			var newMobile = new Mobile
 			{
-				Id = id,
+				Id = newId,
 				Sex = Sex.Male,
 				Level = 1,
-				ShortDescription = id,
-				LongDescription = id,
-				Description = id
+				ShortDescription = "short",
+				LongDescription = "long",
+				Description = "description"
 			};
-
-			newMobile.Keywords.Add(id);
 
 			var attack = new Attack(AttackType.Hit, 0, 5, 10);
 			newMobile.Attacks = new Attack[]
@@ -110,14 +107,16 @@ namespace AbarimMUD.Commands.Builder
 				attack
 			};
 
-			Mobile.Storage.Save(newMobile);
+			area.Mobiles.Add(newMobile);
 
-			context.Send($"Created new mobile (#{newMobile.Id}).");
+			area.Save();
+
+			context.Send($"New mobile (#{newMobile.Id}) had been created for the area '{context.Room.Area.Name}'.");
 
 			return true;
 		}
 
-		private bool CreateMobileSpawn(ExecutionContext context, string mobileId)
+		private bool CreateMobileSpawn(ExecutionContext context, int mobileId)
 		{
 			var mobile = context.EnsureMobileById(mobileId);
 
@@ -151,15 +150,16 @@ namespace AbarimMUD.Commands.Builder
 				return false;
 			}
 
-			// Todo room creation doesnt require id
-			if (objectType != "room")
+			// Todo room/mobile creation doesnt require id
+			if (objectType != "room" && objectType != "mobile")
 			{
 				if (parts.Length < 2)
 				{
 					if (objectType != "mobilespawn")
 					{
 						context.Send($"Usage: create {objectType} _id_");
-					} else
+					}
+					else
 					{
 						context.Send($"Usage: create {objectType} _mobileId_");
 					}
@@ -177,24 +177,19 @@ namespace AbarimMUD.Commands.Builder
 					return CreateRoom(context);
 
 				case "mobile":
-					return CreateMobile(context, parts[1]);
+					return CreateMobile(context);
 
 				case "mobilespawn":
-					return CreateMobileSpawn(context, parts[1]);
+					{
+						int id;
+						if (!context.EnsureInt(parts[1], out id))
+						{
+							return false;
+						}
+
+						return CreateMobileSpawn(context, id);
+					}
 			}
-
-			/*			// Create new mobile
-						var newEntity = new T();
-						context.SetStringId(newEntity, id);
-
-						PreCreate(context, newEntity);
-
-						newEntity.Create();
-
-						PostCreate(context, newEntity);
-
-						context.Send($"New {typeName} {id} was created.");*/
-
 
 			return true;
 		}

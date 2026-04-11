@@ -4,6 +4,7 @@ using System.Linq;
 using AbarimMUD.Data;
 using AbarimMUD.Storage;
 using System.Collections;
+using AbarimMUD.Utils;
 
 namespace AbarimMUD.Commands.Builder.OLCUtils
 {
@@ -185,10 +186,10 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 		{
 			_records["item"] = new OLCRecordString<Item>(Item.Storage, true);
 			_records["character"] = new OLCRecordString<Character>(Character.Storage, false);
-			_records["mobile"] = new OLCRecordString<Mobile>(Mobile.Storage, true);
 			_records["mobilespawn"] = new OLCRecordMobileSpawn();
 			_records["area"] = new OLCRecordString<Area>(Area.Storage, false);
 			_records["room"] = new OLCRecordInt<Room>(() => Area.Storage.AllRooms, r => r.Name, false);
+			_records["mobile"] = new OLCRecordInt<Mobile>(() => Area.Storage.AllMobiles, r => r.ShortDescription, true);
 
 			_keys = _records.Keys.ToArray();
 			_keysString = string.Join('|', _keys);
@@ -197,6 +198,14 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 
 		public static IOLCStorage GetStorage(string key)
 		{
+			foreach (var pair in _records)
+			{
+				if (pair.Key.EqualsToIgnoreCase(key))
+				{
+					return pair.Value;
+				}
+			}
+
 			foreach (var pair in _records)
 			{
 				if (pair.Key.StartsWith(key, StringComparison.InvariantCultureIgnoreCase))

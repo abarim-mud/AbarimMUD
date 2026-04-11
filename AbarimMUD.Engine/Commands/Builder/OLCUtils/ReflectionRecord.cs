@@ -180,7 +180,12 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 			}
 			else if (Type == typeof(Mobile))
 			{
-				var id = s;
+				int id;
+				if (!context.EnsureInt(s, out id))
+				{
+					return false;
+				}
+
 				var cls = context.EnsureMobileById(id);
 				if (cls == null)
 				{

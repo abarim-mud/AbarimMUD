@@ -2,6 +2,7 @@
 using AbarimMUD.Utils;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -302,7 +303,6 @@ namespace AbarimMUD.Storage
 					if (_defaultOptions == null)
 					{
 						_defaultOptions = JsonUtils.CreateOptions();
-						_defaultOptions.Converters.Add(MobileConverter);
 					}
 
 					return _defaultOptions;
@@ -318,7 +318,10 @@ namespace AbarimMUD.Storage
 
 					return new MobileSpawn
 					{
-						Mobile = new Mobile { Id = mobileId }
+						Mobile = new Mobile
+						{
+							Id = int.Parse(mobileId)
+						}
 					};
 				}
 
@@ -332,7 +335,7 @@ namespace AbarimMUD.Storage
 				// Write just an id
 				if (!value.HasCustomParams)
 				{
-					writer.WriteStringValue(value.Mobile.Id);
+					writer.WriteStringValue(value.Mobile.Id.ToString());
 					return;
 				}
 
@@ -355,7 +358,6 @@ namespace AbarimMUD.Storage
 		public static readonly EntityConverter<ExchangeShop> ExchangeShopConverter = new EntityConverter<ExchangeShop>(f => f.Id);
 		public static readonly EntityConverter<Enchantment> EnchantmentConverter = new EntityConverter<Enchantment>(s => s.Id);
 		public static readonly MobileSpawnConverterType MobileSpawnConverter = new MobileSpawnConverterType();
-		public static readonly EntityConverter<Mobile> MobileConverter = new EntityConverter<Mobile>(s => s.Id);
 
 		public static void SetReferences(this ItemInstance item)
 		{
@@ -406,15 +408,37 @@ namespace AbarimMUD.Storage
 			}
 		}
 
-		public static void SetReferences(this Mobile mobileTemplate)
+		public static void SetReferences(this Mobile mobile)
 		{
-			if (mobileTemplate.Loot != null)
+			if (mobile.Loot != null)
 			{
-				foreach (var loot in mobileTemplate.Loot)
+				foreach (var loot in mobile.Loot)
 				{
 					loot.Items.SetReferences();
 				}
 			}
+
+			if (mobile.Shop != null)
+			{
+				mobile.Shop = Shop.EnsureShopById(mobile.Shop.Id);
+			}
+
+			if (mobile.ForgeShop != null)
+			{
+				mobile.ForgeShop = ForgeShop.EnsureForgeShopById(mobile.ForgeShop.Id);
+			}
+
+			if (mobile.ExchangeShop != null)
+			{
+				mobile.ExchangeShop = ExchangeShop.EnsureExchangeShopById(mobile.ExchangeShop.Id);
+			}
+
+			if (mobile.Guildmaster != null)
+			{
+				mobile.Guildmaster = PlayerClass.EnsureClassById(mobile.Guildmaster.Id);
+			}
+
+			mobile.Experience = mobile.CalculateXpAward();
 		}
 	}
 }
