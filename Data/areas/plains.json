@@ -1,8 +1,10 @@
 {
   "Id": "plains",
   "Name": "Plains",
-  "Credits": "Copper  Plains of the North",
+  "Credits": "Copper",
   "Version": 0,
+  "MinimumLevel": "1",
+  "MaximumLevel": "20",
   "StartId": 0,
   "IdCount": 1000,
   "Rooms": [

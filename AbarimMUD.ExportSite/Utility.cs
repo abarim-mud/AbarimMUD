@@ -83,7 +83,8 @@ namespace AbarimMUD
 				Name = area.Name,
 				Credits = area.Credits,
 				MinimumLevel = area.MinimumLevel,
-				MaximumLevel = area.MaximumLevel
+				MaximumLevel = area.MaximumLevel,
+				Tag = area.Id
 			};
 
 			foreach (var room in area.Rooms)

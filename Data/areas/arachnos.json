@@ -1,8 +1,10 @@
 {
   "Id": "arachnos",
   "Name": "Arachnos",
-  "Credits": "Mahatma Arachnos",
+  "Credits": "Mahatma",
   "Version": 0,
+  "MinimumLevel": "5",
+  "MaximumLevel": "20",
   "StartId": 0,
   "IdCount": 1000,
   "Rooms": [

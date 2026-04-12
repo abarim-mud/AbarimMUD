@@ -1,8 +1,10 @@
 {
   "Id": "sewers",
   "Name": "Sewers",
-  "Credits": "Diku    Sewer",
+  "Credits": "Diku",
   "Version": 0,
+  "MinimumLevel": "5",
+  "MaximumLevel": "30",
   "StartId": 0,
   "IdCount": 1000,
   "Rooms": [

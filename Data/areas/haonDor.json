@@ -1,8 +1,10 @@
 {
   "Id": "haonDor",
   "Name": "Haon Dor",
-  "Credits": "Diku    Haon Dor",
+  "Credits": "Diku",
   "Version": 0,
+  "MinimumLevel": "5",
+  "MaximumLevel": "10",
   "StartId": 0,
   "IdCount": 1000,
   "Rooms": [

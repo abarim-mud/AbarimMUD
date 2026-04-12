@@ -93,7 +93,7 @@ namespace AbarimMUD.Import.Diku
 			{
 				Id = id,
 				Name = area.Name,
-				Credits = area.Builders,
+				Credits = area.Credits,
 				MinimumLevel = area.MinimumLevel,
 				MaximumLevel = area.MaximumLevel
 			};

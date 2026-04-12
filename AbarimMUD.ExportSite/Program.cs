@@ -18,13 +18,15 @@ namespace AbarimMUD.ExportAreasToMMB
 	{
 		class AreaData
 		{
+			public string Id { get; }
 			public string Name { get; }
 			public string Credits { get; }
 			public string MinLevel { get; }
 			public string MaxLevel { get; }
 
-			public AreaData(string name, string credits, string minLevel, string maxLevel)
+			public AreaData(string id, string name, string credits, string minLevel, string maxLevel)
 			{
+				Id = id;
 				Name = name;
 				Credits = credits;
 				MinLevel = minLevel;
@@ -228,7 +230,8 @@ namespace AbarimMUD.ExportAreasToMMB
 			var areasData = new List<AreaData>();
 			foreach (var area in areas)
 			{
-				var fileName = $"{area.Name}.json";
+				var id = area.Tag.ToString();
+				var fileName = $"{id}.json";
 				Log($"Saving {fileName}...");
 
 				// Copy build options
@@ -244,7 +247,7 @@ namespace AbarimMUD.ExportAreasToMMB
 				var data = project.ToJson();
 				File.WriteAllText(Path.Combine(jsonFolder, fileName), data);
 
-				areasData.Add(new AreaData(area.Name, area.Credits, area.MinimumLevel, area.MaximumLevel));
+				areasData.Add(new AreaData(id, area.Name, area.Credits, area.MinimumLevel, area.MaximumLevel));
 			}
 
 			var jsonOptions = CreateJsonOptions();
