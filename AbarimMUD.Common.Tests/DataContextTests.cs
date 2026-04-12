@@ -8,6 +8,8 @@ namespace AbarimMUD.Common.Tests
 {
 	public class DataContextTests
 	{
+		private static readonly Attack DefaultAttack = new Attack(AttackType.Hit, 50, 10, 100);
+
 		private static void ResetData()
 		{
 			if (Directory.Exists("Data"))
@@ -15,6 +17,7 @@ namespace AbarimMUD.Common.Tests
 				Directory.Delete("Data", true);
 			}
 
+			DataContext.Clear();
 			StorageUtility.InitializeStorage(s => Trace.WriteLine(s));
 		}
 
@@ -81,9 +84,6 @@ namespace AbarimMUD.Common.Tests
 			Assert.That(charsGet.Length, Is.EqualTo(2));
 			Assert.That(charsGet[0].Name, Is.EqualTo("char1"));
 			Assert.That(charsGet[1].Name, Is.EqualTo("char2"));
-
-			DataContext.Unregister(Account.Storage);
-			DataContext.Unregister(Character.Storage);
 		}
 
 		[Test]
@@ -95,19 +95,20 @@ namespace AbarimMUD.Common.Tests
 
 			var area = new Area
 			{
+				Id = "test",
 				Name = "test",
 			};
 
 			var room = new Room
 			{
-				Id = Area.NextRoomId,
+				Id = area.NextRoomId,
 				Name = "Test Room"
 			};
 			area.Rooms.Add(room);
 
 			var room2 = new Room
 			{
-				Id = Area.NextRoomId,
+				Id = area.NextRoomId,
 				Name = "Test Room2"
 			};
 			area.Rooms.Add(room2);
@@ -122,13 +123,14 @@ namespace AbarimMUD.Common.Tests
 				TargetRoom = room
 			};
 
-/*			var mobile = new Mobile
+			var mobile = new Mobile
 			{
-				Id = Area.NextMobileId,
+				Id = area.NextMobileId,
 				ShortDescription = "a test mobile",
 				Level = 1,
+				Attacks = new Attack[1] { DefaultAttack }
 			};
-			area.Mobiles.Add(mobile);*/
+			area.Mobiles.Add(mobile);
 			area.Create();
 
 			// Reload
