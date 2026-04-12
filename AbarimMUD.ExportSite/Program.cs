@@ -112,34 +112,10 @@ namespace AbarimMUD.ExportAreasToMMB
 
 		static void ExportAreas(string outputFolder)
 		{
-			// Spawn mobiles to properly color corresponding rooms
-			foreach (var area in Area.Storage)
-			{
-				foreach (var mobileReset in area.MobileResets)
-				{
-					var mobile = MobileSpawn.GetMobileById(mobileReset.MobileId);
-					if (mobile == null)
-					{
-						Log($"{area.Name}: Couldn't find mobile with id {mobileReset.MobileId}");
-						continue;
-					}
-
-					var room = Room.GetRoomById(mobileReset.RoomId);
-					if (room == null)
-					{
-						Log($"{area.Name}: Couldn't find room with id {mobileReset.RoomId}");
-						continue;
-					}
-
-					// Spawn
-					var newMobile = new MobileInstance(mobile, room);
-				}
-			}
-
 			// Convert DikuLoad areas to MMB Areas
 			// And build dict of all mobiles
 			var areas = new List<MMBArea>();
-			var allMobiles = new Dictionary<int, MobileSpawn>();
+			var allMobiles = new Dictionary<int, Mobile>();
 			foreach (var dikuArea in Area.Storage)
 			{
 				if (dikuArea.Rooms == null || dikuArea.Rooms.Count == 0)
@@ -181,7 +157,6 @@ namespace AbarimMUD.ExportAreasToMMB
 					areaExit.FrameColor = Color.Blue;
 					areaExit.Color = Color.Blue;
 
-
 					allAreaExits[room.Id] = areaExit;
 				}
 			}
@@ -212,36 +187,34 @@ namespace AbarimMUD.ExportAreasToMMB
 			}
 
 			// Finally add mobiles as content
-			foreach (var dikuArea in Area.Storage)
+			foreach (var area in Area.Storage)
 			{
-				foreach (var reset in dikuArea.MobileResets)
+				foreach (var room in area.Rooms)
 				{
-					MobileSpawn mobile;
-					if (!allMobiles.TryGetValue(reset.MobileId, out mobile))
+					MMBRoom mmbRoom;
+					if (!allRooms.TryGetValue(room.Id, out mmbRoom))
 					{
-						Console.WriteLine($"Warning: Unable to find mobile with Id {reset.MobileId}.");
+						Console.WriteLine($"Warning: Unable to find room with Id {room.Id}.");
 						continue;
 					}
 
-					MMBRoom room;
-					if (!allRooms.TryGetValue(reset.RoomId, out room))
+					foreach (var mobileSpawn in room.MobileSpawns)
 					{
-						Console.WriteLine($"Warning: Unable to find room with Id {reset.RoomId}.");
-						continue;
-					}
+						if (mmbRoom.Contents == null)
+						{
+							mmbRoom.Contents = new List<MMBRoomContentRecord>();
+						}
 
-					if (room.Contents == null)
-					{
-						room.Contents = new List<MMBRoomContentRecord>();
-					}
+						var mobile = mobileSpawn.Mobile;
 
-					var color = Color.Green;
-					if (mobile.Flags.Contains(MobileFlags.Aggressive) && !mobile.Flags.Contains(MobileFlags.Wimpy))
-					{
-						color = Color.Red;
-					}
+						var color = Color.Green;
+						if (mobile.Flags.Contains(MobileFlags.Aggressive) && !mobile.Flags.Contains(MobileFlags.Wimpy))
+						{
+							color = Color.Red;
+						}
 
-					room.Contents.Add(new MMBRoomContentRecord($"{mobile.ShortDescription} #{mobile.Id}", color));
+						mmbRoom.Contents.Add(new MMBRoomContentRecord($"{mobile.ShortDescription} #{mobile.Id}", color));
+					}
 				}
 			}
 
@@ -471,14 +444,6 @@ namespace AbarimMUD.ExportAreasToMMB
 					}
 				}
 
-				if (def.PrimeModifiers != null)
-				{
-					foreach (var pair in def.PrimeModifiers)
-					{
-						strings.Add($"{pair.Key.ToPermanentAffect(pair.Value)} (prime)");
-					}
-				}
-
 				sb.Append(string.Join("<br>", strings.ToArray()));
 				sb.AppendLine();
 			}
@@ -507,7 +472,7 @@ namespace AbarimMUD.ExportAreasToMMB
 
 			sb.Append("---\r\nlayout: page\r\ntitle: Skills\r\n---");
 
-			ExportSkills(sb, "warrior", new[] { "melee", "survival", "strength" });
+			ExportSkills(sb, "warrior", new[] { "melee", "strength" });
 			ExportSkills(sb, "rogue", new[] { "backstab", "dexterity" });
 			ExportSkills(sb, "monk", new[] { "martialArts", "deathtouch", "constitution" });
 
