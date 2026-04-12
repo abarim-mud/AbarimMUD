@@ -1,5 +1,6 @@
 ﻿using AbarimMUD.Attributes;
 using AbarimMUD.Utils;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 
@@ -64,6 +65,15 @@ namespace AbarimMUD.Data
 		public const int DefaultHitpoints = 100;
 		public const int DefaultMana = 100;
 		public const int DefaultMoves = 1000;
+
+		private static readonly ValueRange AutoLevelArmor = new ValueRange(10, 250);
+		private static readonly ValueRange AutoLevelGold = new ValueRange(100, 20000);
+		private static readonly ValueRange AutoLevelHitpoints = new ValueRange(100, 5000);
+		private static readonly ValueRange AutoLevelMana = new ValueRange(100, 1000);
+		private static readonly ValueRange AutoLevelAttackBonus = new ValueRange(10, 250);
+		private static readonly ValueRange AutoLevelMinimumDamage = new ValueRange(4, 50);
+		private static readonly ValueRange AutoLevelMaximumDamage = new ValueRange(8, 120);
+		private static readonly int[] AutoLevelAttacks = new int[] { 3, 15, 30, 45, 60, 80, 100 };
 
 		private int _hitpoints = DefaultHitpoints, _mana = DefaultMana, _moves = DefaultMoves;
 		private int _armor = DefaultArmor;
@@ -325,6 +335,61 @@ namespace AbarimMUD.Data
 			}
 
 			return clone;
+		}
+
+		/// <summary>
+		/// Sets the mobile parameters based on the level.
+		/// The level is set too.
+		/// </summary>
+		/// <param name="level"></param>
+		/// <param name=""></param>
+		public void SetAutoLevel(int level, AttackType attackType = AttackType.Hit)
+		{
+			Level = level;
+
+			Armor = AutoLevelArmor.GetValueByLevel(level).RoundDownToNearest(10);
+			Gold = AutoLevelGold.GetValueByLevel(level).RoundDownToNearest(100);
+
+			if (Gold > 1000)
+			{
+				if (Gold < 3000)
+				{
+					Gold = Gold.RoundUpToNearest(500);
+				} else if (Gold < 10000)
+				{
+					Gold = Gold.RoundUpToNearest(1000);
+				} else
+				{
+					Gold = Gold.RoundUpToNearest(5000);
+				}
+			}
+
+			Hitpoints = AutoLevelHitpoints.GetValueByLevel(level).RoundDownToNearest(100);
+			Mana = AutoLevelMana.GetValueByLevel(level).RoundDownToNearest(100);
+
+			var attackBonus = AutoLevelAttackBonus.GetValueByLevel(level).RoundDownToNearest(10);
+
+			var attacksCount = 1;
+			for (var i = 0; i < AutoLevelAttacks.Length; ++i)
+			{
+				var lvl = AutoLevelAttacks[i];
+				if (level < lvl)
+				{
+					break;
+				}
+
+				++attacksCount;
+			}
+
+			var damage = new ValueRange(AutoLevelMinimumDamage.GetValueByLevel(level), AutoLevelMaximumDamage.GetValueByLevel(level));
+
+			var attacks = new List<Attack>();
+			for (var i = 0; i < attacksCount; ++i)
+			{
+				attacks.Add(new Attack(attackType, attackBonus, damage));
+			}
+
+			Attacks = attacks.ToArray();
 		}
 
 		public object Clone() => CloneMobile();

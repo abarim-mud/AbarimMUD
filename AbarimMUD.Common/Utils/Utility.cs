@@ -371,5 +371,25 @@ namespace AbarimMUD.Utils
 
 			return value;
 		}
+
+		public static int RoundDownToNearest(this int number, int step)
+		{
+			if (step <= 0)
+			{
+				throw new ArgumentOutOfRangeException(nameof(step));
+			}
+
+			return (number / step) * step;
+		}
+
+		public static int RoundUpToNearest(this int number, int step)
+		{
+			if (step <= 0)
+			{
+				throw new ArgumentOutOfRangeException(nameof(step));
+			}
+
+			return ((number + step - 1) / step) * step;
+		}
 	}
 }

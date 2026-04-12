@@ -3,6 +3,13 @@ using AbarimMUD.Utils;
 
 namespace AbarimMUD.Data
 {
+	public enum RoomExitNotExistantBehavior
+	{
+		ThrowException,
+		DeleteRoomExit,
+		SetNull
+	}
+
 	public static class Configuration
 	{
 		private static readonly CustomStorage<ConfigurationInstance> InternalStorage = new CustomStorage<ConfigurationInstance>("settings.json");
@@ -35,6 +42,8 @@ namespace AbarimMUD.Data
 			public int BaseSellPricePercentage { get; set; } = 25;
 			public int XpMultiply { get; set; } = 2;
 			public int HuntPauseInMs { get; set; } = 6000;
+
+			public RoomExitNotExistantBehavior RoomExitNotExistantBehavior { get; set; } = RoomExitNotExistantBehavior.ThrowException;
 		}
 
 		public static BaseStorage Storage => InternalStorage;
@@ -68,6 +77,7 @@ namespace AbarimMUD.Data
 		public static int BaseSellPricePercentage => Instance.BaseSellPricePercentage;
 		public static int XpMultiply => Instance.XpMultiply;
 		public static int HuntPauseInMs => Instance.HuntPauseInMs;
+		public static RoomExitNotExistantBehavior RoomExitNotExistantBehavior => Instance.RoomExitNotExistantBehavior;
 
 		public static void Save() => InternalStorage.Save();
 	}

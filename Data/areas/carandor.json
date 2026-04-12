@@ -135,7 +135,7 @@
       "ManaRate": 0,
       "Exits": {
         "East": 8,
-        "West": null
+        "West": 51400
       },
       "Id": 10
     },

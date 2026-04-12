@@ -1,6 +1,8 @@
 ﻿using AbarimMUD.Data;
 using AbarimMUD.Utils;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace AbarimMUD.Import.Diku
 {
@@ -39,6 +41,50 @@ namespace AbarimMUD.Import.Diku
 			return result;
 		}
 
+		public static Mobile ToAmMobile(this DikuLoad.Data.Mobile mobile)
+		{
+			var level = mobile.Level;
+			if (level < 1)
+			{
+				level = 1;
+			}
+
+			var gold = mobile.Wealth;
+			if (gold == 0)
+			{
+				gold = mobile.Level * 100;
+			}
+
+			var result = new Mobile
+			{
+				Id = mobile.VNum,
+				Keywords = mobile.Name.SplitByWhitespace().ToHashSet(),
+				ShortDescription = mobile.ShortDescription,
+				LongDescription = mobile.LongDescription,
+				Description = mobile.Description,
+				Sex = mobile.Sex.ParseEnum<Sex>(),
+			};
+
+			var attackType = AttackType.Hit;
+			if (mobile.Attacks.Count > 0)
+			{
+				attackType = Enum.Parse<AttackType>(mobile.Attacks[0].AttackType, true);
+			}
+
+			result.SetAutoLevel(mobile.Level, attackType);
+
+			foreach (var dikuFlag in mobile.Flags)
+			{
+				MobileFlags flag;
+				if (Enum.TryParse(dikuFlag.ToString(), true, out flag))
+				{
+					result.Flags.Add(flag);
+				}
+			}
+
+			return result;
+		}
+
 		public static Area ToAmArea(this DikuLoad.Data.Area area)
 		{
 			var id = area.Name.Replace(" ", string.Empty);
@@ -57,6 +103,35 @@ namespace AbarimMUD.Import.Diku
 				result.Rooms.Add(room.ToAmRoom());
 			}
 
+			foreach (var mobile in area.Mobiles)
+			{
+				result.Mobiles.Add(mobile.ToAmMobile());
+			}
+
+			foreach(var mobileReset in area.Resets)
+			{
+				if (mobileReset.ResetType != DikuLoad.Data.AreaResetType.NPC)
+				{
+					continue;
+				}
+
+				var room = (from r in result.Rooms where r.Id == mobileReset.Value4 select r).FirstOrDefault();
+				if (room == null)
+				{
+					continue;
+				}
+
+				var mobileSpawn = new MobileSpawn
+				{
+					Mobile = new Mobile
+					{
+						Id = mobileReset.MobileVNum
+					}
+				};
+
+				room.MobileSpawns.Add(mobileSpawn);
+			}
+
 			return result;
 		}
 
@@ -68,7 +143,7 @@ namespace AbarimMUD.Import.Diku
 			}
 
 			T result;
-			if (!Enum.TryParse<T>(s, true, out result))
+			if (!Enum.TryParse(s, true, out result))
 			{
 				return defaultValue;
 			}

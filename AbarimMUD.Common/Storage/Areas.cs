@@ -134,7 +134,7 @@ namespace AbarimMUD.Storage
 		public IReadOnlyDictionary<int, Room> AllRooms => _allRoomsCache.All;
 		public IReadOnlyDictionary<int, Mobile> AllMobiles => _allMobilesCache.All;
 
-		internal Areas() : base(a => a.Name, SubfolderName)
+		internal Areas() : base(a => a.Id, SubfolderName)
 		{
 			_allRoomsCache = new EntityCache<Room>(this, a => a.Rooms);
 			_allMobilesCache = new EntityCache<Mobile>(this, a => a.Mobiles);
@@ -199,6 +199,7 @@ namespace AbarimMUD.Storage
 				// Rooms
 				foreach (var room in area.Rooms)
 				{
+					var toDelete = new HashSet<Direction>();
 					foreach (var pair2 in room.Exits)
 					{
 						var exit = pair2.Value;
@@ -210,8 +211,30 @@ namespace AbarimMUD.Storage
 						exit.Direction = pair2.Key;
 
 						var vnum = (int)exit.Tag;
-						exit.TargetRoom = GetRoomById(vnum);
+
+						var targetRoom = GetRoomById(vnum);
+						if (targetRoom == null)
+						{
+							switch (Configuration.RoomExitNotExistantBehavior)
+							{
+								case RoomExitNotExistantBehavior.ThrowException:
+									throw new Exception($"Unable to find room with id {vnum}");
+								case RoomExitNotExistantBehavior.DeleteRoomExit:
+									toDelete.Add(pair2.Key);
+									Log($"Unable to find room with id {vnum}. Deleting room exit {pair2.Key} for room {room}");
+									break;
+								case RoomExitNotExistantBehavior.SetNull:
+									break;
+							}
+						}
+
+						exit.TargetRoom = targetRoom;
 						exit.Tag = null;
+					}
+
+					foreach(var d in toDelete)
+					{
+						room.Exits.Remove(d);
 					}
 				}
 

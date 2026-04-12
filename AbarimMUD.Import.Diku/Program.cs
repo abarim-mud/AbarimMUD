@@ -132,19 +132,19 @@ namespace AbarimMUD.Import.Diku
 		{
 			try
 			{
-				/*				Process(null,
-									new[] { "Astoria", "Sewers", "Haon Dor", "Arachnos", "Plains" },
-									@"D:\Projects\CrimsonStainedLands\master\CrimsonStainedLands\data\areas",
-									@"D:\Projects\AbarimMUD\Data");*/
+				Process(null,
+					new[] { "Sewers", "Haon Dor", "Arachnos", "Plains" },
+					@"D:\Projects\CrimsonStainedLands\master\CrimsonStainedLands\data\areas",
+					@"D:\Projects\AbarimMUD\Data");
 				/*Process(SourceType.Soulmud,
 								new[] { "Kobolds" },
 								@"D:\Projects\chaos\soulmud",
 								@"D:\Projects\AbarimMUD\Data");*/
 
-				Process(SourceType.ROM,
-					new[] { "Haon Dor" },
+/*				Process(SourceType.ROM,
+					new[] { "Smurfville" },
 					@"D:\Projects\chaos\ROM\area",
-					@"D:\Projects\AbarimMUD\Data");
+					@"D:\Projects\AbarimMUD\Data");*/
 			}
 			catch (Exception ex)
 			{
