@@ -449,7 +449,7 @@ namespace AbarimMUD.Commands
 			context.HuntInfo.Reset();
 		}
 
-		public static Ability EnsureAbility(this ExecutionContext context, string name)
+		public static AbilityPower EnsureAbility(this ExecutionContext context, string name)
 		{
 			// Check the player has the skill
 			var result = context.Creature.Stats.GetAbility(name);

@@ -77,39 +77,15 @@ namespace AbarimMUD.Commands.Player
 				context.Send($"Attack #{i + 1}: {attack}");
 			}
 
-			if (stats.BackstabCount > 0)
-			{
-				if (stats.BackstabCount == 1)
-				{
-					context.Send($"You can do single backstab with multiplier equal to {stats.BackstabMultiplier}.");
-				}
-				else
-				{
-					context.Send($"You can do {stats.BackstabCount} backstabs with multiplier equal to {stats.BackstabMultiplier}.");
-				}
-			}
-
-			var ab = stats.GetAbility("circlestab");
-			if (ab != null)
-			{
-				context.Send($"You can circlestab with multiplier equal to {stats.CirclestabMultiplier.FormatFloat()}.");
-			}
-
-			if (stats.DeathtouchMultiplier > 0 && stats.GetAbility("deathtouch") != null)
-			{
-				context.Send($"You can deathtouch with multiplier equal to {stats.DeathtouchMultiplier}.");
-			}
-
 			if (context.Creature.TemporaryAffects.Count > 0)
 			{
 				context.Send("Affects:");
 
 				var now = DateTime.Now;
-
 				foreach (var pair in context.Creature.TemporaryAffects)
 				{
 					var tempAffect = pair.Value;
-					var left = tempAffect.Affect.DurationInSeconds.Value - (int)(now - tempAffect.Started).TotalSeconds;
+					var left = tempAffect.DurationInSeconds - (int)(now - tempAffect.Started).TotalSeconds;
 
 					context.Send($"{tempAffect.Name} ({left.FormatTime()})");
 				}

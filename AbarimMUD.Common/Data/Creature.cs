@@ -8,28 +8,23 @@ namespace AbarimMUD.Data
 	public class TemporaryAffect
 	{
 		public string Name { get; }
-		public Affect Affect { get; }
+		public ModifierType Type { get; }
+		public int Value { get; }
+		public int DurationInSeconds { get; }
 		public DateTime Started { get; }
 
-		public TemporaryAffect(string name, Affect affect)
+
+		public TemporaryAffect(string name, ModifierType type, int value, int durationInSeconds)
 		{
 			if (string.IsNullOrEmpty(name))
 			{
 				throw new ArgumentNullException("name");
 			}
 
-			if (affect == null)
-			{
-				throw new ArgumentNullException(nameof(affect));
-			}
-
-			if (affect.DurationInSeconds == null)
-			{
-				throw new ArgumentException("affect.DurationInSeconds isn't set");
-			}
-
 			Name = name;
-			Affect = affect;
+			Type = type;
+			Value = value;
+			DurationInSeconds = durationInSeconds;
 			Started = DateTime.Now;
 		}
 	}
@@ -42,7 +37,7 @@ namespace AbarimMUD.Data
 
 			public IReadOnlyDictionary<ModifierType, int> Modifiers => _modifiers;
 
-			public List<Ability> Abilities { get; } = new List<Ability>();
+			public Dictionary<string, AbilityPower> Abilities { get; set; } = new Dictionary<string, AbilityPower>();
 
 			public void Add(ModifierType modifier, int value)
 			{
@@ -149,7 +144,7 @@ namespace AbarimMUD.Data
 					foreach (var pair in item.Info.Affects)
 					{
 						var affect = pair.Value;
-						result.Add(affect.Type, affect.Value);
+						result.Add(affect.Type, affect.Value.Value);
 					}
 				}
 
@@ -165,7 +160,7 @@ namespace AbarimMUD.Data
 			// Temporary affects
 			foreach (var pair in _temporaryAffects)
 			{
-				var affect = pair.Value.Affect;
+				var affect = pair.Value;
 				result.Add(affect.Type, affect.Value);
 			}
 		}
@@ -276,7 +271,7 @@ namespace AbarimMUD.Data
 			}
 
 			// Add abilities
-			_stats.Abilities.AddRange(modifiers.Abilities);
+			_stats.Abilities.AddRange(modifiers.Abilities.Values);
 		}
 
 		public void Restore()
@@ -316,9 +311,9 @@ namespace AbarimMUD.Data
 			}
 		}
 
-		public void AddTemporaryAffect(string slot, string name, Affect affect)
+		public void AddTemporaryAffect(string slot, string name, ModifierType type, int value, int durationInSeconds)
 		{
-			_temporaryAffects[slot] = new TemporaryAffect(name, affect);
+			_temporaryAffects[slot] = new TemporaryAffect(name, type, value, durationInSeconds);
 			InvalidateStats();
 		}
 

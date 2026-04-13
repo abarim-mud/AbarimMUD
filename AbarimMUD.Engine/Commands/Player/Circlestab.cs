@@ -60,7 +60,7 @@ namespace AbarimMUD.Commands.Player
 				}
 			}
 
-			if (context.State.Moves < ab.MovesCost)
+			if (context.State.Moves < ab.Ability.MovesCost)
 			{
 				context.Send($"You're too tired to circlestab.");
 				return false;
@@ -71,7 +71,7 @@ namespace AbarimMUD.Commands.Player
 				target = context.FightInfo.Target;
 			}
 
-			context.Circlestab(weapon, target);
+			context.Circlestab(ab, weapon, target);
 			Fight.Start(context, target);
 
 			return true;

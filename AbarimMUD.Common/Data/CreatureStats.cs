@@ -34,15 +34,12 @@ namespace AbarimMUD.Data
 
 		public List<Attack> Attacks { get; } = new List<Attack>();
 		public int BackstabCount { get; internal set; }
-		public int BackstabMultiplier { get; internal set; }
 
-		public float CirclestabMultiplier { get; internal set; }
 		public int Armor { get; internal set; }
-		public List<Ability> Abilities { get; } = new List<Ability>();
+		public List<AbilityPower> Abilities { get; } = new List<AbilityPower>();
 		public int BuyPriceRebatePercentage { get; internal set; }
 		public int SellPriceBonusPercentage { get; internal set; }
 		public int DamageReduction { get; internal set; }
-		public int DeathtouchMultiplier { get; internal set; }
 		public int HealBonus { get; internal set; }
 		public int SpellBonus { get; internal set; }
 
@@ -88,7 +85,7 @@ namespace AbarimMUD.Data
 			return result;
 		}
 
-		public Ability GetAbility(string id)
+		public AbilityPower GetAbility(string id)
 		{
 			return (from ab in Abilities where ab.Id.EqualsToIgnoreCase(id) select ab).FirstOrDefault();
 		}
@@ -175,12 +172,6 @@ namespace AbarimMUD.Data
 				case ModifierType.BackstabCount:
 					BackstabCount += val;
 					break;
-				case ModifierType.BackstabMultiplier:
-					BackstabMultiplier += val;
-					break;
-				case ModifierType.CirclestabMultiplier:
-					CirclestabMultiplier += val;
-					break;
 				case ModifierType.Armor:
 					Armor += val;
 					break;
@@ -242,14 +233,9 @@ namespace AbarimMUD.Data
 				case ModifierType.DamageReduction:
 					DamageReduction += val;
 					break;
-				case ModifierType.DeathtouchMultiplier:
-					DeathtouchMultiplier += val;
-					break;
-
 				case ModifierType.HealBonus:
 					HealBonus += val;
 					break;
-
 				case ModifierType.SpellBonus:
 					SpellBonus += val;
 					break;

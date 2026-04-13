@@ -5,35 +5,35 @@
   "Levels": [
     {
       "Modifiers": {
-        "BackstabCount": 1,
-        "BackstabMultiplier": 2,
-        "CirclestabMultiplier": 2
+        "BackstabCount": 1
       },
-      "Abilities": [
-        "backstab",
-        "circlestab"
-      ]
+      "Abilities": {
+        "backstab": 2,
+        "circlestab": 2
+      }
     },
     {
-      "Modifiers": {
-        "BackstabMultiplier": 2
+      "Abilities": {
+        "backstab": 2
       }
     },
     {
       "Modifiers": {
-        "BackstabCount": 1,
-        "BackstabMultiplier": 2
+        "BackstabCount": 1
+      },
+      "Abilities": {
+        "backstab": 2
       }
     },
     {
-      "Modifiers": {
-        "BackstabMultiplier": 2,
-        "CirclestabMultiplier": 1
+      "Abilities": {
+        "backstab": 2,
+        "circlestab": 1
       }
     },
     {
-      "Modifiers": {
-        "BackstabMultiplier": 2
+      "Abilities": {
+        "backstab": 2
       }
     }
   ],

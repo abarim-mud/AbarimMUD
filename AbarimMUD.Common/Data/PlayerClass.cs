@@ -70,7 +70,8 @@ namespace AbarimMUD.Data
 		public int StartingGold { get; set; }
 		public int StartingSkillPoints { get; set; }
 		public Dictionary<ModifierType, int> PrimeModifiers { get; set; } = new Dictionary<ModifierType, int>();
-
+		public Dictionary<string, AbilityPower> PrimeAbilities { get; set; } = new Dictionary<string, AbilityPower>();
+		
 		public CreatureStats CreateStats(int level)
 		{
 			return new CreatureStats

@@ -51,7 +51,7 @@ namespace AbarimMUD.Commands.Player
 				target = context.FightInfo.Target;
 			}
 
-			context.Kick(target);
+			context.Kick(ability, target);
 			Fight.Start(context, target);
 
 			return true;

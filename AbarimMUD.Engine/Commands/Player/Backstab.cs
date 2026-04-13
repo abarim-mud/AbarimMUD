@@ -79,7 +79,7 @@ namespace AbarimMUD.Commands.Player
 				return false;
 			}
 
-			if (context.State.Moves < ab.MovesCost)
+			if (context.State.Moves < ab.Ability.MovesCost)
 			{
 				context.Send($"You're too tired to backstab.");
 				return false;
@@ -88,7 +88,7 @@ namespace AbarimMUD.Commands.Player
 			if (weapon != null && weapon.Info.Flags.Contains(ItemFlags.Stab))
 			{
 				// Wielded weapon can stab
-				context.Backstab(weapon, target);
+				context.Backstab(ab, weapon, target);
 			}
 			else if (weapon == null)
 			{
@@ -98,7 +98,7 @@ namespace AbarimMUD.Commands.Player
 					return false;
 				}
 
-				context.Backstab(stabWeapon, target);
+				context.Backstab(ab, stabWeapon, target);
 
 				context.RemoveItem(EquipmentSlotType.Wield);
 			}
@@ -117,7 +117,7 @@ namespace AbarimMUD.Commands.Player
 					return false;
 				}
 
-				context.Backstab(stabWeapon, target);
+				context.Backstab(ab, stabWeapon, target);
 				if (context.RemoveItem(EquipmentSlotType.Wield))
 				{
 					context.WearItem(weapon);

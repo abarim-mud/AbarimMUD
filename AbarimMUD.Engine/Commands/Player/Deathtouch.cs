@@ -15,7 +15,7 @@ namespace AbarimMUD.Commands.Player
 
 			// Check the player has the skill
 			var ab = context.Stats.GetAbility("deathtouch");
-			if (ab == null || context.Creature.Stats.DeathtouchMultiplier == 0)
+			if (ab == null)
 			{
 				context.Send($"You don't know how to deathtouch.");
 				return false;
@@ -61,13 +61,13 @@ namespace AbarimMUD.Commands.Player
 				return false;
 			}
 
-			if (context.State.Moves < ab.MovesCost)
+			if (context.State.Moves < ab.Ability.MovesCost)
 			{
 				context.Send($"You're too tired to deathtouch.");
 				return false;
 			}
 
-			context.Deathtouch(target);
+			context.Deathtouch(ab, target);
 			Fight.Start(context, target);
 
 			return true;

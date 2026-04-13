@@ -42,7 +42,9 @@
   "StartingGold": 2000,
   "StartingSkillPoints": 1,
   "PrimeModifiers": {
-    "Damage": 1,
-    "BackstabMultiplier": 1
+    "Damage": 1
+  },
+  "PrimeAbilities": {
+    "backstab": 1
   }
 }

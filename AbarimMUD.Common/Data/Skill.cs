@@ -5,10 +5,26 @@ using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
 {
+	public class AbilityPower
+	{
+		[JsonIgnore]
+		public string Id => Ability.Id;
+
+		[JsonIgnore]
+		public Ability Ability { get; internal set; }
+		public int Power { get; internal set; }
+
+		public AbilityPower Clone() => new AbilityPower
+		{
+			Ability = Ability,
+			Power = Power
+		};
+	}
+
 	public class SkillLevelDefinition
 	{
 		public Dictionary<ModifierType, int> Modifiers { get; set; } = new Dictionary<ModifierType, int>();
-		public Ability[] Abilities { get; set; }
+		public Dictionary<string, AbilityPower> Abilities { get; set; } = new Dictionary<string, AbilityPower>();
 	}
 
 	public class Skill : IStoredInFile

@@ -8,7 +8,6 @@
   "MessageDeactivatedUser": "Your accuracy is back to normal.",
   "Affects": {
     "AttackBonus": {
-      "Value": 10,
       "DurationInSeconds": 600,
       "AffectSlotName": "spellAccuracy"
     }

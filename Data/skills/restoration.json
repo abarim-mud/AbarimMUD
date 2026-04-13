@@ -4,11 +4,11 @@
   "Class": "cleric",
   "Levels": [
     {
-      "Abilities": [
-        "accuracy",
-        "armor",
-        "cureLightWounds"
-      ]
+      "Abilities": {
+        "accuracy": 10,
+        "armor": 10,
+        "cureLightWounds": 0
+      }
     },
     {},
     {},

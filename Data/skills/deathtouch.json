@@ -4,31 +4,28 @@
   "Class": "monk",
   "Levels": [
     {
-      "Modifiers": {
-        "DeathtouchMultiplier": 2
-      },
-      "Abilities": [
-        "deathtouch"
-      ]
-    },
-    {
-      "Modifiers": {
-        "DeathtouchMultiplier": 2
+      "Abilities": {
+        "deathtouch": 2
       }
     },
     {
-      "Modifiers": {
-        "DeathtouchMultiplier": 2
+      "Abilities": {
+        "deathtouch": 2
       }
     },
     {
-      "Modifiers": {
-        "DeathtouchMultiplier": 2
+      "Abilities": {
+        "deathtouch": 2
       }
     },
     {
-      "Modifiers": {
-        "DeathtouchMultiplier": 2
+      "Abilities": {
+        "deathtouch": 2
+      }
+    },
+    {
+      "Abilities": {
+        "deathtouch": 2
       }
     }
   ],

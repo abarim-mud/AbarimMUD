@@ -175,9 +175,16 @@ namespace AbarimMUD.Commands.Player
 				var newSkillValue = character.GetSkillValue(skillToTrain);
 				if (newSkillValue.LevelDefinition.Abilities != null)
 				{
-					foreach(var ability in newSkillValue.LevelDefinition.Abilities)
+					foreach(var pair in newSkillValue.LevelDefinition.Abilities)
 					{
-						context.Send($"You learned the new ability: {ability.Name}.");
+						var ab = context.Stats.GetAbility(pair.Key);
+						if (ab == null)
+						{
+							context.Send($"You learned the new ability: {ab.Id}.");
+						} else
+						{
+							context.Send($"The power of ability '{ab.Id}' has increased by {ab.Power}.");
+						}
 					}
 				}
 			}

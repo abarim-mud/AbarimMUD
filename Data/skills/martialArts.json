@@ -9,10 +9,7 @@
         "MartialArtsMaximumDamage": 10,
         "MartialArtsAttacksCount": 1,
         "MartialArtsAttackBonus": 15
-      },
-      "Abilities": [
-        "kick"
-      ]
+      }
     },
     {
       "Modifiers": {

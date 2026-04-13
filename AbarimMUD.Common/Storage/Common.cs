@@ -2,7 +2,6 @@
 using AbarimMUD.Utils;
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -122,6 +121,58 @@ namespace AbarimMUD.Storage
 					{
 						newDict[pair.Key] = pair.Value;
 					}
+				}
+
+				JsonSerializer.Serialize(writer, newDict, DefaultOptions);
+			}
+		}
+
+		public class AbilitiesConverterType : JsonConverter<Dictionary<string, AbilityPower>>
+		{
+			private static JsonSerializerOptions _defaultOptions;
+
+			public static JsonSerializerOptions DefaultOptions
+			{
+				get
+				{
+					if (_defaultOptions == null)
+					{
+						_defaultOptions = JsonUtils.CreateOptions();
+					}
+
+					return _defaultOptions;
+				}
+			}
+
+			public override Dictionary<string, AbilityPower> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+			{
+				var result = new Dictionary<string, AbilityPower>();
+				var doc = JsonDocument.ParseValue(ref reader);
+
+				foreach (var pair in doc.RootElement.EnumerateObject())
+				{
+					var ap = new AbilityPower
+					{
+						Ability = new Ability
+						{
+							Id = pair.Name
+						},
+						Power = int.Parse(pair.Value.ToString())
+					};
+
+					result[pair.Name] = ap;
+				}
+
+				return result;
+			}
+
+			public override void Write(Utf8JsonWriter writer, Dictionary<string, AbilityPower> value, JsonSerializerOptions options)
+			{
+				var newDict = new Dictionary<string, int>();
+
+				foreach (var pair in value)
+				{
+					newDict[pair.Key] = pair.Value.Power;
 				}
 
 				JsonSerializer.Serialize(writer, newDict, DefaultOptions);
@@ -348,9 +399,9 @@ namespace AbarimMUD.Storage
 		public static readonly EntityConverter<Skill> SkillConverter = new EntityConverter<Skill>(s => s.Id);
 		public static readonly EntityConverter<Item> ItemConverter = new EntityConverter<Item>(i => i.Id);
 		public static readonly ItemInstanceConverterType ItemInstanceConverter = new ItemInstanceConverterType();
-		public static readonly EntityConverter<Ability> AbilityConverter = new EntityConverter<Ability>(s => s.Id);
 		public static readonly SkillValueConverterType SkillValueConverter = new SkillValueConverterType();
 		public static readonly AffectsConverterType AffectsConverter = new AffectsConverterType();
+		public static readonly AbilitiesConverterType AbilitiesConverter = new AbilitiesConverterType();
 		public static readonly EntityConverter<Shop> ShopConverter = new EntityConverter<Shop>(s => s.Id);
 		public static readonly InventoryConverterType InventoryConverter = new InventoryConverterType();
 		public static readonly EquipmentConverterType EquipmentConverter = new EquipmentConverterType();

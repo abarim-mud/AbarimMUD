@@ -1,6 +1,5 @@
 ﻿using AbarimMUD.Attributes;
 using AbarimMUD.Storage;
-using AbarimMUD.Utils;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -266,25 +265,24 @@ namespace AbarimMUD.Data
 
 					if (def.Abilities != null)
 					{
-						foreach (var ab in def.Abilities)
+						foreach (var pair2 in def.Abilities)
 						{
+							var ab = pair2.Value.Ability;
 							if (ab.PrimeClass != null && ab.PrimeClass.Id != Class.Id)
 							{
 								// Prime ability
 								continue;
 							}
 
-							if (ab.Modifiers != null)
+							AbilityPower ap;
+							if (!result.Abilities.TryGetValue(ab.Id, out ap))
 							{
-								foreach (var modPair in ab.Modifiers)
-								{
-									result.Add(modPair.Key, modPair.Value);
-								}
+								ap = pair2.Value.Clone();
+								result.Abilities[ab.Id] = ap;
 							}
-
-							if (ab.Type != AbilityType.Passive)
+							else
 							{
-								result.Abilities.Add(ab);
+								ap.Power += pair2.Value.Power;
 							}
 						}
 					}

@@ -14,8 +14,6 @@ namespace AbarimMUD.Data
 		WeaponAttackBonus,
 		WeaponDamage,
 		BackstabCount,
-		BackstabMultiplier,
-		CirclestabMultiplier,
 		Armor,
 		HpRegenPercentage,
 		ManaRegenPercentage,
@@ -27,14 +25,13 @@ namespace AbarimMUD.Data
 		ManaRegenAbsolute2,
 		MovesRegenAbsolute2,
 		BuyPriceRebatePercentage,
-		SellPriceBonusPercentage,
+		SellPriceBonusPercentage, 
 		MartialArtsMinimumDamage,
 		MartialArtsMaximumDamage,
 		MartialArtsAttacksCount,
 		MartialArtsAttackBonus,
 		MartialArtsDamage,
 		DamageReduction,
-		DeathtouchMultiplier,
 		HealBonus,
 		SpellBonus
 	}
@@ -43,7 +40,7 @@ namespace AbarimMUD.Data
 	{
 		[JsonIgnore]
 		public ModifierType Type { get; set; }
-		public int Value { get; set; }
+		public int? Value { get; set; }
 		public int? DurationInSeconds { get; set; }
 		public string AffectSlotName { get; set; }
 
@@ -51,7 +48,7 @@ namespace AbarimMUD.Data
 		{
 		}
 
-		public Affect(ModifierType type, int value, int? durationInSeconds = null)
+		public Affect(ModifierType type, int? value, int? durationInSeconds = null)
 		{
 			Type = type;
 			Value = value;

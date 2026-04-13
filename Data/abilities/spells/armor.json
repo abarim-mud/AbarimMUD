@@ -8,7 +8,6 @@
   "MessageDeactivatedUser": "You are no longer protected.",
   "Affects": {
     "Armor": {
-      "Value": 20,
       "DurationInSeconds": 600,
       "AffectSlotName": "spellArmor"
     }

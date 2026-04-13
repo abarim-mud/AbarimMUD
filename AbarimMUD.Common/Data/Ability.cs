@@ -1,13 +1,11 @@
 ﻿using AbarimMUD.Attributes;
 using AbarimMUD.Storage;
 using System.Collections.Generic;
-using System.ComponentModel;
 
 namespace AbarimMUD.Data
 {
 	public enum AbilityType
 	{
-		Passive,
 		Physical,
 		Spell,
 		Custom
@@ -78,7 +76,6 @@ namespace AbarimMUD.Data
 		public string Id { get; set; }
 		public string Name { get; set; }
 		public AbilityType Type { get; set; }
-		public Dictionary<ModifierType, int> Modifiers { get; set; }
 		public PlayerClass PrimeClass { get; set; }
 
 		public int MovesCost { get; set; }

@@ -14,7 +14,7 @@ namespace AbarimMUD.Storage
 		{
 			var result = base.CreateJsonOptions();
 
-			result.Converters.Add(Common.AbilityConverter);
+			result.Converters.Add(Common.AbilitiesConverter);
 			result.Converters.Add(Common.PlayerClassConverter);
 
 			return result;
@@ -35,12 +35,9 @@ namespace AbarimMUD.Storage
 
 				foreach(var def in skill.Levels)
 				{
-					if (def.Abilities != null)
+					foreach(var pair in def.Abilities)
 					{
-						for(var i = 0; i < def.Abilities.Length; ++i)
-						{
-							def.Abilities[i] = Ability.EnsureAbilityById(def.Abilities[i].Id);
-						}
+						pair.Value.Ability = Ability.EnsureAbilityById(pair.Key);
 					}
 				}
 			}

@@ -257,7 +257,7 @@ namespace AbarimMUD.Combat
 			slain = true;
 		}
 
-		public static void Backstab(this ExecutionContext attacker, ItemInstance weapon, ExecutionContext target)
+		public static void Backstab(this ExecutionContext attacker, AbilityPower backstab, ItemInstance weapon, ExecutionContext target)
 		{
 			// Success chance 95 - (i * 20)
 			for (var i = 0; i < attacker.Stats.BackstabCount; ++i)
@@ -269,7 +269,7 @@ namespace AbarimMUD.Combat
 					{
 						var damage = 0;
 						var attack = attacker.Stats.Attacks[0];
-						for (var j = 0; j < attacker.Stats.BackstabMultiplier; ++j)
+						for (var j = 0; j < backstab.Power; ++j)
 						{
 							damage += attack.CalculateDamage();
 						}
@@ -285,15 +285,14 @@ namespace AbarimMUD.Combat
 			}
 		}
 
-		public static void Circlestab(this ExecutionContext attacker, ItemInstance weapon, ExecutionContext target)
+		public static void Circlestab(this ExecutionContext attacker, AbilityPower circlestab, ItemInstance weapon, ExecutionContext target)
 		{
 			bool slain;
 			attacker.AbilityAttack(Ability.Circlestab, () =>
 				{
 					var damage = 0;
-					var circleMultiplier = attacker.Stats.CirclestabMultiplier;
 					var attack = attacker.Stats.Attacks[0];
-					for (var j = 0; j < circleMultiplier; ++j)
+					for (var j = 0; j < circlestab.Power; ++j)
 					{
 						damage += attack.CalculateDamage();
 					}
@@ -303,26 +302,26 @@ namespace AbarimMUD.Combat
 				95, weapon, target, out slain);
 		}
 
-		public static void Kick(this ExecutionContext attacker, ExecutionContext target)
+		public static void Kick(this ExecutionContext attacker, AbilityPower kick, ExecutionContext target)
 		{
 			bool slain;
 			attacker.AbilityAttack(Ability.Kick, () =>
 				{
-					var baseDamage = Math.Min(attacker.Level, 20);
+					var baseDamage = kick.Power;
 					var damageRange = new ValueRange(baseDamage, baseDamage + 4);
 					return damageRange.Random();
 				},
 				95, null, target, out slain);
 		}
 
-		public static void Deathtouch(this ExecutionContext attacker, ExecutionContext target)
+		public static void Deathtouch(this ExecutionContext attacker, AbilityPower deathtouch, ExecutionContext target)
 		{
 			bool slain;
 			attacker.AbilityAttack(Ability.Deathtouch, () =>
 				{
 					var damage = 0;
 					var attack = attacker.Stats.Attacks[0];
-					for (var j = 0; j < attacker.Stats.DeathtouchMultiplier; ++j)
+					for (var j = 0; j < deathtouch.Power; ++j)
 					{
 						damage += attack.CalculateDamage();
 					}

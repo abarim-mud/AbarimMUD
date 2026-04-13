@@ -8,13 +8,32 @@
         "WeaponAttacksCount": 1,
         "WeaponAttackBonus": 15
       },
-      "Abilities": [
-        "kick"
-      ]
+      "Abilities": {
+        "kick": 2
+      }
     },
     {
       "Modifiers": {
         "WeaponAttackBonus": 15
+      },
+      "Abilities": {
+        "kick": 2
+      }
+    },
+    {
+      "Modifiers": {
+        "WeaponAttackBonus": 15
+      },
+      "Abilities": {
+        "kick": 2
+      }
+    },
+    {
+      "Modifiers": {
+        "WeaponAttackBonus": 15
+      },
+      "Abilities": {
+        "kick": 2
       }
     },
     {
@@ -25,37 +44,42 @@
     {
       "Modifiers": {
         "WeaponAttackBonus": 15
+      },
+      "Abilities": {
+        "kick": 2
       }
     },
     {
       "Modifiers": {
         "WeaponAttackBonus": 15
-      }
-    },
-    {
-      "Modifiers": {
-        "WeaponAttackBonus": 15
-      }
-    },
-    {
-      "Modifiers": {
-        "WeaponAttackBonus": 15
+      },
+      "Abilities": {
+        "kick": 2
       }
     },
     {
       "Modifiers": {
         "WeaponAttacksCount": 1,
         "WeaponAttackBonus": 15
+      },
+      "Abilities": {
+        "kick": 2
       }
     },
     {
       "Modifiers": {
         "WeaponAttackBonus": 15
+      },
+      "Abilities": {
+        "kick": 2
       }
     },
     {
       "Modifiers": {
         "WeaponAttackBonus": 15
+      },
+      "Abilities": {
+        "kick": 2
       }
     }
   ],
