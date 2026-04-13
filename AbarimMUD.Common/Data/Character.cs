@@ -288,6 +288,22 @@ namespace AbarimMUD.Data
 					}
 				}
 			}
+		
+			foreach(var pair in Class.PrimeAbilities)
+			{
+				var ab = pair.Value.Ability;
+
+				AbilityPower ap;
+				if (!result.Abilities.TryGetValue(ab.Id, out ap))
+				{
+					ap = pair.Value.Clone();
+					result.Abilities[ab.Id] = ap;
+				}
+				else
+				{
+					ap.Power += pair.Value.Power;
+				}
+			}
 		}
 
 		protected override CreatureStats CreateBaseStats(int attacksCount)
