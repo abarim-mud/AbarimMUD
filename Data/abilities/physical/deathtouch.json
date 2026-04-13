@@ -3,6 +3,7 @@
   "Name": "deathtouch",
   "Type": "Physical",
   "MovesCost": 20,
+  "ManaCost": 0,
   "MessageMissUser": "{target.Name} manages to avoid your deathtouch{info}!",
   "MessageMissRoom": "{target.Name} manages to avoid {user.Name}\u0027s deathtouch!",
   "MessageHitUser": "{target.Name} spits out some blood as you land a deathtouch{info}!",

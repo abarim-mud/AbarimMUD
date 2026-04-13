@@ -1,0 +1,16 @@
+{
+  "Id": "accuracy",
+  "Name": "accuracy",
+  "Type": "Spell",
+  "MovesCost": 0,
+  "ManaCost": 10,
+  "MessageHitUser": "Your accuracy has improved.",
+  "MessageDeactivatedUser": "Your accuracy is back to normal.",
+  "Affects": {
+    "AttackBonus": {
+      "Value": 10,
+      "DurationInSeconds": 600,
+      "AffectSlotName": "spellAccuracy"
+    }
+  }
+}

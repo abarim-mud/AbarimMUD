@@ -63,6 +63,8 @@ namespace AbarimMUD.Commands
 		public static readonly FightSkill Fightskill = new FightSkill();
 		public static readonly StabWeapon StabWeapon = new StabWeapon();
 
+		public static readonly Cast Cast = new Cast();
+
 		public static readonly Consider Consider = new Consider();
 		public static readonly Kill Kill = new Kill();
 		public static readonly Kick Kick = new Kick();

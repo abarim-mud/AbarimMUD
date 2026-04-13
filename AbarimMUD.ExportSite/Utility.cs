@@ -16,11 +16,11 @@ namespace AbarimMUD
 
 			// Check if the room is special
 			var isSpecial = Configuration.StartRoomId == room.Id ||
-				(room.Mobiles != null && (from m in room.Mobiles
-										  where
-				 m.Info.Guildmaster != null || m.Info.Shop != null ||
-				 m.Info.ExchangeShop != null || m.Info.Flags.Contains(MobileFlags.Enchanter)
-										  select m).FirstOrDefault() != null);
+				(room.MobileSpawns != null && (from ms in room.MobileSpawns
+											   where
+					  ms.Mobile.Guildmaster != null || ms.Mobile.Shop != null ||
+					  ms.Mobile.ExchangeShop != null || ms.Mobile.Flags.Contains(MobileFlags.Enchanter)
+											   select ms).FirstOrDefault() != null);
 
 			if (isSpecial)
 			{

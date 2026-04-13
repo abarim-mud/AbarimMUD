@@ -1,31 +1,27 @@
 {
-  "Id": "rogue",
-  "Name": "Rogue",
-  "Description": "Master of dagger and shadows.",
-  "Hitpoints": "200-800",
-  "Mana": "150-450",
-  "Moves": "250-350",
+  "Id": "cleric",
+  "Name": "Cleric",
+  "Description": "Master of healing and bane of the undead.",
+  "Hitpoints": "200-700",
+  "Mana": "300-700",
+  "Moves": "100-200",
   "StartingEquipment": [
     "greenLantern",
     "cloakOfRookie",
-    "ironDagger",
-    "leatherHelmet",
-    "leatherArmor",
-    "leatherGloves",
-    "leatherPants",
-    "leatherBoots",
-    "leatherShield"
+    "ironMace",
+    "ironHelmet",
+    "ironArmor",
+    "ironGloves",
+    "ironGreaves",
+    "ironBoots",
+    "ironShield"
   ],
   "StartingSkills": [
-    "backstab",
     "melee",
-    "dexterity"
+    "strength",
+    "restoration"
   ],
   "StartingInventory": [
-    {
-      "Item": "ironSword",
-      "Quantity": 1
-    },
     {
       "Item": "novicePotionOfHealing",
       "Quantity": 5
@@ -42,7 +38,7 @@
   "StartingGold": 2000,
   "StartingSkillPoints": 1,
   "PrimeModifiers": {
-    "Damage": 1,
-    "BackstabMultiplier": 1
+    "HealBonus": 5,
+    "ManaRegenAbsolute": 2
   }
 }

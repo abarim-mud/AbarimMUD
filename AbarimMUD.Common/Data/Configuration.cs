@@ -27,13 +27,11 @@ namespace AbarimMUD.Data
 			public int ManaRegenPercentagePerMinute { get; set; } = 5;
 			public int MovesRegenPercentagePerMinute { get; set; } = 5;
 
-			public int HitpointsRegenMinimumPerMinute { get; set; } = 20;
-			public int ManaRegenMinimumPerMinute { get; set; } = 20;
-			public int MovesRegenMinimumPerMinute { get; set; } = 20;
-
 			public int PeaceRegenMultiplier { get; set; } = 2;
 
-			public int PauseBetweenFightRoundsInMs { get; set; }
+			public int PauseBetweenFightRoundsInMs { get; set; } = 3000;
+			public int CastLagInMs = 2000;
+
 			public int NegativeRegen { get; set; }
 			public ValueRange BaseMartialArtsDamage { get; set; } = new ValueRange(1, 4);
 
@@ -57,12 +55,10 @@ namespace AbarimMUD.Data
 		public static int StartRoomId => Instance.StartRoomId;
 		public static string DefaultCharacter => Instance.DefaultCharacter;
 		public static int PauseBetweenFightRoundsInMs => Instance.PauseBetweenFightRoundsInMs;
+		public static int CastLagInMs => Instance.CastLagInMs;
 		public static int HitpointsRegenPercentagePerMinute => Instance.HitpointsRegenPercentagePerMinute;
 		public static int ManaRegenPercentagePerMinute => Instance.ManaRegenPercentagePerMinute;
 		public static int MovesRegenPercentagePerMinute => Instance.MovesRegenPercentagePerMinute;
-		public static int HitpointsRegenMinimumPerMinute => Instance.HitpointsRegenMinimumPerMinute;
-		public static int ManaRegenMinimumPerMinute => Instance.ManaRegenMinimumPerMinute;
-		public static int MovesRegenMinimumPerMinute => Instance.MovesRegenMinimumPerMinute;
 
 		public static int PeaceRegenMultiplier => Instance.PeaceRegenMultiplier;
 

@@ -3,6 +3,7 @@
   "Name": "Kick",
   "Type": "Physical",
   "MovesCost": 0,
+  "ManaCost": 0,
   "MessageMissUser": "You miss {target.Name} with your kick{info}!",
   "MessageMissRoom": "{user.Name} misses {target.Name} with your kick!",
   "MessageHitUser": "You kick {target.Name}{info}!",

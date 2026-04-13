@@ -34,7 +34,9 @@ namespace AbarimMUD.Data
 		MartialArtsAttackBonus,
 		MartialArtsDamage,
 		DamageReduction,
-		DeathtouchMultiplier
+		DeathtouchMultiplier,
+		HealBonus,
+		SpellBonus
 	}
 
 	public class Affect

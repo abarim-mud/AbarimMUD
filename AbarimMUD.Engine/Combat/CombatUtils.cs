@@ -2,6 +2,7 @@
 using AbarimMUD.Data;
 using AbarimMUD.Utils;
 using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace AbarimMUD.Combat
@@ -54,73 +55,15 @@ namespace AbarimMUD.Combat
 
 		private static string FormatMessage(string message, ExecutionContext user, ExecutionContext target, string weapon, string info)
 		{
-			if (string.IsNullOrEmpty(message))
+			var variables = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
 			{
-				return message;
-			}
+				{ "user.name", user.ShortDescription },
+				{ "target.name", target.ShortDescription },
+				{ "weapon", weapon },
+				{ "info", info }
+			};
 
-			var result = new StringBuilder();
-			var variable = new StringBuilder();
-
-			var readingVariable = false;
-			for (var i = 0; i < message.Length; ++i)
-			{
-				var c = message[i];
-
-				if (c == '{' && !readingVariable)
-				{
-					variable.Clear();
-					readingVariable = true;
-				}
-				else if (c == '}' && readingVariable)
-				{
-					var v = variable.ToString().ToLower();
-
-					string value;
-					switch (v)
-					{
-						case "user.name":
-							value = user.ShortDescription;
-							break;
-
-						case "target.name":
-							value = target.ShortDescription;
-							break;
-
-						case "weapon":
-							value = weapon;
-							break;
-
-						case "info":
-							value = info;
-							break;
-
-						default:
-							throw new Exception($"Unknown variable '{v}'");
-					}
-
-					result.Append(value);
-					readingVariable = false;
-				}
-				else
-				{
-					if (!readingVariable)
-					{
-						result.Append(c);
-					}
-					else
-					{
-						variable.Append(c);
-					}
-				}
-			}
-
-			if (readingVariable)
-			{
-				throw new Exception("Unfinished variable name");
-			}
-
-			return result.ToString();
+			return message.FormatMessage(variables);
 		}
 
 		private static string FormatDetails(string info)

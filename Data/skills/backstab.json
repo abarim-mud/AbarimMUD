@@ -33,8 +33,7 @@
     },
     {
       "Modifiers": {
-        "BackstabMultiplier": 2,
-        "CirclestabMultiplier": 1
+        "BackstabMultiplier": 2
       }
     }
   ],

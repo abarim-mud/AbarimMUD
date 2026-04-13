@@ -34,6 +34,7 @@ namespace AbarimMUD.Storage
 			var result = base.CreateJsonOptions();
 
 			result.Converters.Add(Common.PlayerClassConverter);
+			result.Converters.Add(Common.AffectsConverter);
 
 			return result;
 		}
@@ -42,7 +43,7 @@ namespace AbarimMUD.Storage
 		{
 			base.SetReferences();
 
-			foreach(var ability in this)
+			foreach (var ability in this)
 			{
 				if (ability.PrimeClass != null)
 				{

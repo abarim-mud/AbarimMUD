@@ -1,0 +1,24 @@
+{
+  "Id": "restoration",
+  "Name": "Restoration",
+  "Class": "cleric",
+  "Levels": [
+    {
+      "Abilities": [
+        "accuracy",
+        "armor",
+        "cureLightWounds"
+      ]
+    },
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {}
+  ],
+  "Cost": 1
+}

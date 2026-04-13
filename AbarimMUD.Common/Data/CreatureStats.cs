@@ -43,11 +43,13 @@ namespace AbarimMUD.Data
 		public int SellPriceBonusPercentage { get; internal set; }
 		public int DamageReduction { get; internal set; }
 		public int DeathtouchMultiplier { get; internal set; }
+		public int HealBonus { get; internal set; }
+		public int SpellBonus { get; internal set; }
 
 		public int GetHitpointsRegen(bool isFighting)
 		{
 			var r = (int)((Configuration.HitpointsRegenPercentagePerMinute + HpRegenPercentage) * HitpointsBase / 100.0f);
-			var result = Math.Max(r, Configuration.HitpointsRegenMinimumPerMinute) + HpRegenAbsolute;
+			var result = r + HpRegenAbsolute;
 			if (!isFighting)
 			{
 				result *= Configuration.PeaceRegenMultiplier;
@@ -61,7 +63,7 @@ namespace AbarimMUD.Data
 		public int GetManaRegen(bool isFighting)
 		{
 			var r = (int)((Configuration.ManaRegenPercentagePerMinute + ManaRegenPercentage) * ManaBase / 100.0f);
-			var result = Math.Max(r, Configuration.ManaRegenMinimumPerMinute) + ManaRegenAbsolute;
+			var result = r + ManaRegenAbsolute;
 			if (!isFighting)
 			{
 				result *= Configuration.PeaceRegenMultiplier;
@@ -75,7 +77,7 @@ namespace AbarimMUD.Data
 		public int GetMovesRegen(bool isFighting)
 		{
 			var r = (int)((Configuration.MovesRegenPercentagePerMinute + MovesRegenPercentage) * MovesBase / 100.0f);
-			var result = Math.Max(r, Configuration.MovesRegenMinimumPerMinute) + MovesRegenAbsolute;
+			var result = r + MovesRegenAbsolute;
 			if (!isFighting)
 			{
 				result *= Configuration.PeaceRegenMultiplier;
@@ -242,6 +244,14 @@ namespace AbarimMUD.Data
 					break;
 				case ModifierType.DeathtouchMultiplier:
 					DeathtouchMultiplier += val;
+					break;
+
+				case ModifierType.HealBonus:
+					HealBonus += val;
+					break;
+
+				case ModifierType.SpellBonus:
+					SpellBonus += val;
 					break;
 			}
 		}

@@ -1,0 +1,9 @@
+{
+  "Id": "cureLightWounds",
+  "Name": "cure light wounds",
+  "Type": "Spell",
+  "MovesCost": 0,
+  "ManaCost": 10,
+  "MessageHitUser": "You feel better.",
+  "MessageHitRoom": "{user.Name} feels better."
+}
