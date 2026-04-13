@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Text;
 using AbarimMUD.Data;
 using AbarimMUD.Utils;
 
@@ -34,6 +35,35 @@ namespace AbarimMUD.Commands.Player
 			return string.Empty;
 		}
 
+		private static string BuildDescription(Ability ab)
+		{
+			if (!string.IsNullOrEmpty(ab.Description))
+			{
+				return ab.Description;
+			}
+
+			var sb = new StringBuilder();
+
+			var firstLine = true;
+			foreach (var pair in ab.Affects)
+			{
+				if (!firstLine)
+				{
+					sb.AppendLine();
+				}
+
+				var affect = pair.Value;
+
+				var power = affect.Value == null ? "_power_" : affect.Value.ToString();
+				var minutes = (affect.DurationInSeconds.Value / 60.0f).FormatFloat();
+				sb.Append($"Raises {pair.Key} by {power} for {minutes} minutes.");
+
+				firstLine = false;
+			}
+
+			return sb.ToString();
+		}
+
 		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
 			var character = context.Creature as Character;
@@ -61,6 +91,7 @@ namespace AbarimMUD.Commands.Player
 				grid.SetValue(0, i, ability.Name);
 				grid.SetValue(1, i, PowerToString(ap.Power));
 				grid.SetValue(2, i, CostToString(ability));
+				grid.SetValue(3, i, BuildDescription(ability));
 
 				++i;
 			}
@@ -86,6 +117,7 @@ namespace AbarimMUD.Commands.Player
 				grid.SetValue(0, i, ability.Name);
 				grid.SetValue(1, i, PowerToString(ap.Power));
 				grid.SetValue(2, i, CostToString(ability));
+				grid.SetValue(3, i, BuildDescription(ability));
 
 				++i;
 			}

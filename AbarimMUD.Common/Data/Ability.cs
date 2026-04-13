@@ -87,6 +87,7 @@ namespace AbarimMUD.Data
 		public string MessageKillUser { get; set; }
 		public string MessageKillRoom { get; set; }
 		public string MessageDeactivatedUser { get; set; }
+		public string Description { get; set; }
 
 		public Dictionary<ModifierType, Affect> Affects { get; set; } = new Dictionary<ModifierType, Affect>();
 
