@@ -16,7 +16,8 @@
       "Exits": {
         "West": 1,
         "North": 11,
-        "East": 18
+        "East": 18,
+        "South": 31
       },
       "Id": 0
     },
@@ -366,6 +367,52 @@
         "South": 29
       },
       "Id": 30
+    },
+    {
+      "Name": "Vertical Street",
+      "SectorType": "City",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 0,
+        "South": 32
+      },
+      "Id": 31
+    },
+    {
+      "Name": "Vertical Street",
+      "SectorType": "City",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "North": 31,
+        "West": 33
+      },
+      "Id": 32
+    },
+    {
+      "Name": "Outside Clerics Guild",
+      "SectorType": "City",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "East": 32,
+        "North": 34
+      },
+      "Id": 33
+    },
+    {
+      "Name": "Clerics Guild",
+      "SectorType": "City",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "MobileSpawns": [
+        "6"
+      ],
+      "Exits": {
+        "South": 33
+      },
+      "Id": 34
     }
   ],
   "Mobiles": [
@@ -761,6 +808,71 @@
       "Guildmaster": "monk",
       "Experience": "117,600,000",
       "Id": 5
+    },
+    {
+      "Keywords": [
+        "trainer",
+        "cleric",
+        "guildmaster"
+      ],
+      "ShortDescription": "the cleric guildmaster",
+      "LongDescription": "The cleric guildmaster stands here, ready to teach you his ways.",
+      "Description": "The Cleric Guildmaster is a dignified man in flowing ivory and gold robes, marked with sacred\nsymbols of his order. His silver-streaked hair and steady, piercing gaze\nreflect wisdom and authority earned through years of devotion.\n\nHe carries a rune-carved staff and wears a faintly glowing amulet, both radiating quiet divine\npower. Calm and composed, he guides his followers with firm conviction - offering healing\nand guidance to the faithful, and swift judgment to those who stray.",
+      "Level": 100,
+      "Gold": 50000,
+      "Sex": "Male",
+      "Hitpoints": 10000,
+      "Mana": 10000,
+      "Moves": 1000,
+      "Armor": 250,
+      "Attacks": [
+        {
+          "Type": "Pound",
+          "AttackBonus": 200,
+          "DamageRange": "120-160"
+        },
+        {
+          "Type": "Pound",
+          "AttackBonus": 200,
+          "DamageRange": "120-160"
+        },
+        {
+          "Type": "Pound",
+          "AttackBonus": 200,
+          "DamageRange": "120-160"
+        },
+        {
+          "Type": "Pound",
+          "AttackBonus": 200,
+          "DamageRange": "120-160"
+        },
+        {
+          "Type": "Pound",
+          "AttackBonus": 200,
+          "DamageRange": "120-160"
+        },
+        {
+          "Type": "Pound",
+          "AttackBonus": 200,
+          "DamageRange": "120-160"
+        },
+        {
+          "Type": "Pound",
+          "AttackBonus": 200,
+          "DamageRange": "120-160"
+        },
+        {
+          "Type": "Pound",
+          "AttackBonus": 200,
+          "DamageRange": "120-160"
+        }
+      ],
+      "Flags": [
+        "Sentinel"
+      ],
+      "Guildmaster": "cleric",
+      "Experience": "117,600,000",
+      "Id": 6
     }
   ],
   "RespawnTimeInMinutes": 30

@@ -290,7 +290,6 @@ namespace AbarimMUD.Data
 		{
 			var clone = new Mobile
 			{
-				Id = Id,
 				ShortDescription = ShortDescription,
 				LongDescription = LongDescription,
 				Description = Description,
@@ -391,8 +390,6 @@ namespace AbarimMUD.Data
 
 			Attacks = attacks.ToArray();
 		}
-
-		public object Clone() => CloneMobile();
 
 		public bool MatchesKeyword(string keyword) => Keywords.StartsWithPattern(keyword);
 

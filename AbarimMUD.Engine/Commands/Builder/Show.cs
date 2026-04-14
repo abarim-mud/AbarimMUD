@@ -1,5 +1,5 @@
-﻿using AbarimMUD.Commands.Builder.OLCUtils;
-using AbarimMUD.Utils;
+﻿using AbarimMUD.Utils;
+using System.Collections.Generic;
 
 namespace AbarimMUD.Commands.Builder
 {
@@ -10,7 +10,7 @@ namespace AbarimMUD.Commands.Builder
 			var parts = data.SplitByWhitespace();
 			if (parts.Length < 1)
 			{
-				context.Send($"Usage: show {OLCManager.KeysString} [_searchPattern_]");
+				context.Send($"Usage: show mobile|room [_searchPattern_]");
 				return false;
 			}
 
@@ -30,8 +30,25 @@ namespace AbarimMUD.Commands.Builder
 			var count = 0;
 			var asciiGrid = new AsciiGrid();
 
-			var query = storage.Lookup(context, search);
-			foreach (var entity in query)
+			var area = context.CurrentArea;
+
+			var entities = new List<object>();
+			switch (key)
+			{
+				case "mobile":
+					entities.AddRange(area.Mobiles);
+					break;
+
+				case "room":
+					entities.AddRange(area.Rooms);
+					break;
+
+				default:
+					context.Send($"Unknown entity type: {key}");
+					return false;
+			}
+
+			foreach (var entity in entities)
 			{
 				asciiGrid.SetValue(0, count, entity.ToString());
 

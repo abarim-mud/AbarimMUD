@@ -1,6 +1,6 @@
 {
   "Id": "circlestab",
-  "Name": "Circlestab",
+  "Name": "circlestab",
   "Type": "Physical",
   "PrimeClass": "rogue",
   "MovesCost": 8,

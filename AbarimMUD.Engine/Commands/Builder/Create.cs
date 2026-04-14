@@ -139,7 +139,7 @@ namespace AbarimMUD.Commands.Builder
 			var parts = data.SplitByWhitespace(4);
 			if (parts.Length < 1)
 			{
-				context.Send($"Usage: create {OLCManager.KeysString} [_id_]");
+				context.Send($"Usage: create area|room|mobile|mobilespawn [_id_]");
 				return false;
 			}
 
@@ -189,9 +189,12 @@ namespace AbarimMUD.Commands.Builder
 
 						return CreateMobileSpawn(context, id);
 					}
+				default:
+					context.Send($"Unknown object type '{objectType}'.");
+					break;
 			}
 
-			return true;
+			return false;
 		}
 	}
 }

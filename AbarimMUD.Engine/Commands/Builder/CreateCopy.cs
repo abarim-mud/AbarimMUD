@@ -1,17 +1,81 @@
-﻿using AbarimMUD.Commands.Builder.OLCUtils;
+﻿using AbarimMUD.Data;
 using AbarimMUD.Utils;
-using System;
 
 namespace AbarimMUD.Commands.Builder
 {
 	public class CreateCopy : BuilderCommand
 	{
+		private bool CreateRoom(ExecutionContext context)
+		{
+			if (context.Creature.Room.Area == null)
+			{
+				context.Send($"Can't create a room for the default area.");
+				return false;
+			}
+
+			var area = context.CurrentArea;
+			var room = context.Room;
+			var newId = area.NextRoomId;
+
+			// Create new room
+			var newRoom = new Room
+			{
+				Id = newId,
+				Name = room.Name,
+				Description = room.Description,
+				SectorType = room.SectorType,
+				HealRate = room.HealRate,
+				ManaRate = room.ManaRate,
+				ExtraKeyword = room.ExtraKeyword,
+				ExtraDescription = room.ExtraDescription
+			};
+
+			if (room.Flags != null)
+			{
+				foreach (var flag in room.Flags)
+				{
+					newRoom.Flags.Add(flag);
+				}
+			}
+
+			area.Rooms.Add(newRoom);
+			area.Save();
+
+			context.Send($"New room (#{newRoom.Id}) had been created for the area '{context.Room.Area.Name}'.");
+			Goto.Execute(context, newRoom.Id.ToString());
+
+			return true;
+		}
+
+		private bool CreateMobile(ExecutionContext context, int mobileId)
+		{
+			if (context.Creature.Room.Area == null)
+			{
+				context.Send($"Can't create a room for the default area.");
+				return false;
+			}
+
+			var area = context.CurrentArea;
+			var mobile = area.Mobiles[mobileId];
+			var newId = area.NextMobileId;
+
+			var newMobile = mobile.CloneMobile();
+			newMobile.Id = newId;
+			area.Mobiles.Add(newMobile);
+
+			area.Save();
+
+			context.Send($"New mobile (#{newMobile.Id}) had been created for the area '{context.Room.Area.Name}'.");
+
+			return true;
+		}
+
 		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
 			var parts = data.SplitByWhitespace(4);
 			if (parts.Length < 1)
 			{
-				context.Send($"Usage: createcopy {OLCManager.KeysString} _templateId_ [_id_]");
+				context.Send($"Usage: createcopy room|mobile [_id_]");
 				return false;
 			}
 
@@ -22,73 +86,47 @@ namespace AbarimMUD.Commands.Builder
 				return false;
 			}
 
-			if (parts.Length < 2)
+			// Room creation doesnt require id
+			if (objectType != "room")
 			{
-				if (!storage.RequiresId)
+				if (parts.Length < 2)
 				{
-					context.Send($"Usage: createcopy {objectType} _templateId_");
-				}
-				else
-				{
-					context.Send($"Usage: createcopy {objectType} _templateId_ _id_");
-				}
+					if (objectType != "mobilespawn")
+					{
+						context.Send($"Usage: createcopy {objectType} _id_");
+					}
+					else
+					{
+						context.Send($"Usage: createcopy {objectType} _mobileId_");
+					}
 
-				return false;
-			}
-
-			var objId = parts[1].ToLower();
-			var obj = context.EnsureItemById(storage, objId);
-			if (obj == null)
-			{
-				return false;
-			}
-
-			var newId = string.Empty;
-			if (storage.RequiresId)
-			{
-				if (parts.Length < 3)
-				{
-					context.Send($"Usage: createcopy {objectType} _templateId_ _id_");
-					return false;
-				}
-
-				newId = parts[2];
-			}
-
-			if (!string.IsNullOrEmpty(newId) && storage.FindById(context, newId) != null)
-			{
-				context.Send($"Id {newId} is used already.");
-				return false;
-			}
-
-			var asCloneable = obj as ICloneable;
-			if (asCloneable == null)
-			{
-				context.Send($"Object of type {objectType} can't be copied.");
-				return false;
-			}
-
-			var newObject = asCloneable.Clone();
-			if (!string.IsNullOrEmpty(newId))
-			{
-				var editor = ClassEditor.GetEditor(storage.ObjectType);
-				var property = editor.FindByName("Id");
-				if (property == null)
-				{
-					context.Send($"Object of type {objectType} lacks 'Id' property.");
-					return false;
-				}
-
-				if (!property.SetStringValue(context, newObject, new[] { newId }))
-				{
 					return false;
 				}
 			}
 
-			context.SaveObject(newObject);
-			context.Send($"Created copy of #{objId} of type {objectType}. New Id: #{newId}");
+			switch (objectType)
+			{
+				case "room":
+					return CreateRoom(context);
 
-			return true;
+				case "mobile":
+					{
+						int id;
+						if (!context.EnsureInt(parts[1], out id))
+						{
+							return false;
+						}
+
+						return CreateMobile(context, id);
+					}
+
+				default:
+					context.Send($"Unknown object type '{objectType}'.");
+					break;
+			}
+
+			return false;
 		}
+
 	}
 }
