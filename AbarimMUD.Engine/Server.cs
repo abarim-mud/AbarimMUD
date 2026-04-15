@@ -294,7 +294,7 @@ namespace AbarimMUD
 						if (ta.DurationInSeconds > 2 * 60 && ta.DurationInSeconds - passed.TotalSeconds <= 60 && !ta.WarnedAboutToExpire)
 						{
 							// Warn that the affect is about to expire
-							ctx.Send($"{ta.Name} is about to expire.");
+							ctx.Send($"'{ta.Name}' is about to expire.");
 
 							ta.WarnedAboutToExpire = true;
 						}
