@@ -30,7 +30,7 @@ namespace AbarimMUD.Commands.Player
 			foreach (var pair in item.Info.Affects)
 			{
 				var affect = pair.Value;
-				context.Creature.AddTemporaryAffect(affect.AffectSlotName, item.Name, affect.Type, affect.Value.Value, affect.DurationInSeconds.Value);
+				context.Creature.AddTemporaryAffect(affect.AffectSlotName, item.Name, affect.Type, affect.Value.Value, affect.DurationInSeconds.Value, string.Empty);
 			}
 
 			context.Send($"You quaff '{item.Name}'.");

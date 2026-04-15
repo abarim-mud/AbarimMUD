@@ -5,30 +5,6 @@ using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
 {
-	public class TemporaryAffect
-	{
-		public string Name { get; }
-		public ModifierType Type { get; }
-		public int Value { get; }
-		public int DurationInSeconds { get; }
-		public DateTime Started { get; }
-
-
-		public TemporaryAffect(string name, ModifierType type, int value, int durationInSeconds)
-		{
-			if (string.IsNullOrEmpty(name))
-			{
-				throw new ArgumentNullException("name");
-			}
-
-			Name = name;
-			Type = type;
-			Value = value;
-			DurationInSeconds = durationInSeconds;
-			Started = DateTime.Now;
-		}
-	}
-
 	public abstract class Creature
 	{
 		protected class ModifiersAccumulator
@@ -319,9 +295,9 @@ namespace AbarimMUD.Data
 			}
 		}
 
-		public void AddTemporaryAffect(string slot, string name, ModifierType type, int value, int durationInSeconds)
+		public void AddTemporaryAffect(string slot, string name, ModifierType type, int value, int durationInSeconds, string expirationMessage)
 		{
-			_temporaryAffects[slot] = new TemporaryAffect(name, type, value, durationInSeconds);
+			_temporaryAffects[slot] = new TemporaryAffect(name, type, value, durationInSeconds, expirationMessage);
 			InvalidateStats();
 		}
 

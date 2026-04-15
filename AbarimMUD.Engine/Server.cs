@@ -291,10 +291,26 @@ namespace AbarimMUD
 						var ta = pair.Value;
 						var passed = now - ta.Started;
 
+						if (ta.DurationInSeconds > 2 * 60 && ta.DurationInSeconds - passed.TotalSeconds <= 60 && !ta.WarnedAboutToExpire)
+						{
+							// Warn that the affect is about to expire
+							ctx.Send($"{ta.Name} is about to expire.");
+
+							ta.WarnedAboutToExpire = true;
+						}
+
 						if (passed.TotalSeconds >= ta.DurationInSeconds)
 						{
 							_toDelete.Add(pair.Key);
-							ctx.Send($"'{ta.Name}' wears off.");
+
+							if (!string.IsNullOrEmpty(ta.MessageDeactivated))
+							{
+								ctx.Send(ta.MessageDeactivated);
+							}
+							else
+							{
+								ctx.Send($"'{ta.Name}' wears off.");
+							}
 						}
 					}
 
