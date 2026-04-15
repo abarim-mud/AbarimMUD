@@ -2,13 +2,10 @@
   "MaximumLevel": 40,
   "ServerPort": 6101,
   "WebServiceUrl": "http://localhost:8080/AbarimMUD/",
-  "StartRoomId": 19087,
+  "StartRoomId": 0,
   "HitpointsRegenPercentagePerMinute": 5,
   "ManaRegenPercentagePerMinute": 5,
   "MovesRegenPercentagePerMinute": 5,
-  "HitpointsRegenMinimumPerMinute": 20,
-  "ManaRegenMinimumPerMinute": 20,
-  "MovesRegenMinimumPerMinute": 20,
   "PeaceRegenMultiplier": 2,
   "PauseBetweenFightRoundsInMs": 3000,
   "NegativeRegen": 20,
@@ -16,6 +13,8 @@
   "RecallManaCost": 35,
   "BaseBuyPricePercentage": 150,
   "BaseSellPricePercentage": 25,
-  "XpMultiply": 2,
-  "HuntPauseInMs": 6000
+  "XpMultiply": 1,
+  "HuntPauseInMs": 6000,
+  "RoomExitNotExistantBehavior": "DeleteRoomExit",
+  "CastLagInMs": 2000
 }
