@@ -42,6 +42,7 @@ namespace AbarimMUD.Data
 			public int HuntPauseInMs { get; set; } = 6000;
 
 			public RoomExitNotExistantBehavior RoomExitNotExistantBehavior { get; set; } = RoomExitNotExistantBehavior.ThrowException;
+			public bool SaveDataOnStart { get; set; } = false;
 		}
 
 		public static BaseStorage Storage => InternalStorage;
@@ -74,6 +75,7 @@ namespace AbarimMUD.Data
 		public static int XpMultiply => Instance.XpMultiply;
 		public static int HuntPauseInMs => Instance.HuntPauseInMs;
 		public static RoomExitNotExistantBehavior RoomExitNotExistantBehavior => Instance.RoomExitNotExistantBehavior;
+		public static bool SaveDataOnStart => Instance.SaveDataOnStart;
 
 		public static void Save() => InternalStorage.Save();
 	}

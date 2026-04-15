@@ -85,10 +85,16 @@ namespace AbarimMUD.Data
 			return result;
 		}
 
-		public AbilityPower GetAbility(string id)
+		public AbilityPower GetAbilityById(string id)
 		{
 			return (from ab in Abilities where ab.Id.EqualsToIgnoreCase(id) select ab).FirstOrDefault();
 		}
+
+		public AbilityPower GetAbilityByName(string name)
+		{
+			return (from ab in Abilities where ab.Ability.Name.EqualsToIgnoreCase(name) select ab).FirstOrDefault();
+		}
+
 
 		public int GetBuyPrice(int originalPrice)
 		{

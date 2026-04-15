@@ -66,21 +66,6 @@ namespace AbarimMUD.Storage
 
 		public class AffectsConverterType : JsonConverter<Dictionary<ModifierType, Affect>>
 		{
-			private static JsonSerializerOptions _defaultOptions;
-
-			public static JsonSerializerOptions DefaultOptions
-			{
-				get
-				{
-					if (_defaultOptions == null)
-					{
-						_defaultOptions = JsonUtils.CreateOptions();
-					}
-
-					return _defaultOptions;
-				}
-			}
-
 			public override Dictionary<ModifierType, Affect> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 			{
 				var result = new Dictionary<ModifierType, Affect>();
@@ -98,7 +83,7 @@ namespace AbarimMUD.Storage
 					else
 					{
 						// Duration
-						result[modifier] = JsonSerializer.Deserialize<Affect>(pair.Value, DefaultOptions);
+						result[modifier] = JsonSerializer.Deserialize<Affect>(pair.Value, JsonUtils.DefaultOptions);
 						result[modifier].Type = modifier;
 					}
 				}
@@ -123,27 +108,12 @@ namespace AbarimMUD.Storage
 					}
 				}
 
-				JsonSerializer.Serialize(writer, newDict, DefaultOptions);
+				JsonSerializer.Serialize(writer, newDict, JsonUtils.DefaultOptions);
 			}
 		}
 
 		public class AbilitiesConverterType : JsonConverter<Dictionary<string, AbilityPower>>
 		{
-			private static JsonSerializerOptions _defaultOptions;
-
-			public static JsonSerializerOptions DefaultOptions
-			{
-				get
-				{
-					if (_defaultOptions == null)
-					{
-						_defaultOptions = JsonUtils.CreateOptions();
-					}
-
-					return _defaultOptions;
-				}
-			}
-
 			public override Dictionary<string, AbilityPower> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 			{
 				var result = new Dictionary<string, AbilityPower>();
@@ -175,7 +145,7 @@ namespace AbarimMUD.Storage
 					newDict[pair.Key] = pair.Value.Power;
 				}
 
-				JsonSerializer.Serialize(writer, newDict, DefaultOptions);
+				JsonSerializer.Serialize(writer, newDict, JsonUtils.DefaultOptions);
 			}
 		}
 
@@ -345,21 +315,6 @@ namespace AbarimMUD.Storage
 
 		public class MobileSpawnConverterType : JsonConverter<MobileSpawn>
 		{
-			private static JsonSerializerOptions _defaultOptions;
-
-			public static JsonSerializerOptions DefaultOptions
-			{
-				get
-				{
-					if (_defaultOptions == null)
-					{
-						_defaultOptions = JsonUtils.CreateOptions();
-					}
-
-					return _defaultOptions;
-				}
-			}
-
 			public override MobileSpawn Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 			{
 				if (reader.TokenType == JsonTokenType.String)
@@ -378,7 +333,7 @@ namespace AbarimMUD.Storage
 
 				// Standard parse
 				var doc = JsonDocument.ParseValue(ref reader);
-				return JsonSerializer.Deserialize<MobileSpawn>(doc, DefaultOptions);
+				return JsonSerializer.Deserialize<MobileSpawn>(doc, JsonUtils.DefaultOptions);
 			}
 
 			public override void Write(Utf8JsonWriter writer, MobileSpawn value, JsonSerializerOptions options)
@@ -391,7 +346,32 @@ namespace AbarimMUD.Storage
 				}
 
 				// Full serialization
-				JsonSerializer.Serialize(writer, value, DefaultOptions);
+				JsonSerializer.Serialize(writer, value, JsonUtils.DefaultOptions);
+			}
+		}
+
+		public class InstantEffectConverterType : JsonConverter<InstantEffect>
+		{
+			public override InstantEffect Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+			{
+				var s = reader.GetString();
+
+				var parts = s.Split(':', StringSplitOptions.TrimEntries);
+
+				var type = Enum.Parse<InstantEffectType>(parts[0]);
+				var power = ValueRange.Parse(parts[1]);
+
+				return new InstantEffect
+				{
+					Type = type,
+					Power = power
+				};
+			}
+
+			public override void Write(Utf8JsonWriter writer, InstantEffect value, JsonSerializerOptions options)
+			{
+				var s = $"{value.Type}:{value.Power}";
+				writer.WriteStringValue(s);
 			}
 		}
 
@@ -409,6 +389,7 @@ namespace AbarimMUD.Storage
 		public static readonly EntityConverter<ExchangeShop> ExchangeShopConverter = new EntityConverter<ExchangeShop>(f => f.Id);
 		public static readonly EntityConverter<Enchantment> EnchantmentConverter = new EntityConverter<Enchantment>(s => s.Id);
 		public static readonly MobileSpawnConverterType MobileSpawnConverter = new MobileSpawnConverterType();
+		public static readonly InstantEffectConverterType InstantEffectConverter = new InstantEffectConverterType();
 
 		public static void SetReferences(this ItemInstance item)
 		{

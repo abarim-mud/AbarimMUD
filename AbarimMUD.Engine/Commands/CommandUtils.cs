@@ -449,17 +449,37 @@ namespace AbarimMUD.Commands
 			context.HuntInfo.Reset();
 		}
 
-		public static AbilityPower EnsureAbility(this ExecutionContext context, string name)
+		public static AbilityPower EnsureAbilityById(this ExecutionContext context, string id)
 		{
 			// Check the player has the skill
-			var result = context.Creature.Stats.GetAbility(name);
+			var result = context.Creature.Stats.GetAbilityById(id);
 			if (result == null)
 			{
-				context.Send($"You don't know how to {name}.");
+				var ability = Ability.GetAbilityById(id);
+				if (ability != null)
+				{
+					context.Send($"You don't know how to {ability.Name}.");
+				} else
+				{
+					context.Send($"You don't know how to {id}.");
+				}
 			}
 
 			return result;
 		}
+
+		public static AbilityPower EnsureAbilityByName(this ExecutionContext context, string name)
+		{
+			// Check the player has the skill
+			var result = context.Creature.Stats.GetAbilityByName(name);
+			if (result == null)
+			{
+				context.Send($"You don't know how to '{name}'.");
+			}
+
+			return result;
+		}
+
 
 		public static string BuildTitle(this Character character)
 		{

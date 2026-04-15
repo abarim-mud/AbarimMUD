@@ -15,6 +15,10 @@ namespace AbarimMUD.Utils
 
 		public override string ToString() => $"{Minimum}-{Maximum}";
 
+		/// <summary>
+		/// Returns a random integer within the specified inclusive range(from Minimum to Maximum).
+		/// </summary>
+		/// <returns>A random integer within the range.</returns>
 		public int Random() => Utility.RandomRange(Minimum, Maximum);
 
 		/// <summary>

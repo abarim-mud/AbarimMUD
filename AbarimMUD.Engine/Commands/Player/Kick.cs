@@ -10,7 +10,7 @@ namespace AbarimMUD.Commands.Player
 		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
 			// Check the player has the skill
-			var ability = context.EnsureAbility("kick");
+			var ability = context.EnsureAbilityById("kick");
 			if (ability == null)
 			{
 				return false;

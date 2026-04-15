@@ -14,6 +14,16 @@ namespace AbarimMUD.Data
 		public Ability Ability { get; internal set; }
 		public int Power { get; internal set; }
 
+		public override string ToString()
+		{
+			if (Power == 0)
+			{
+				return Ability.Id;
+			}
+
+			return $"{Ability.Id} ({Power})";
+		}
+
 		public AbilityPower Clone() => new AbilityPower
 		{
 			Ability = Ability,

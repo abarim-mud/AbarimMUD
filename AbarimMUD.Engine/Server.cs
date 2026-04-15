@@ -64,20 +64,22 @@ namespace AbarimMUD
 
 			DataContext.Load(dataFolder);
 
-			/*			Area.Storage.SaveAll();
-						PlayerClass.Storage.SaveAll();
-						Skill.Storage.SaveAll();
-						Ability.Storage.SaveAll();
-						Configuration.Save();
-						SkillCostInfo.Storage.SaveAll();
-						Item.Storage.SaveAll();
-						GenericLoot.Save();
-						Shop.Storage.SaveAll();
-						ForgeShop.Storage.SaveAll();
-						ExchangeShop.Storage.SaveAll();
-						Enchantment.Storage.SaveAll();
-						Mobile.Storage.SaveAll();
-						LevelInfo.Storage.SaveAll();*/
+			if (Configuration.SaveDataOnStart)
+			{
+				Area.Storage.SaveAll();
+				PlayerClass.Storage.SaveAll();
+				Skill.Storage.SaveAll();
+				Ability.Storage.SaveAll();
+				Configuration.Save();
+				SkillCostInfo.Storage.SaveAll();
+				Item.Storage.SaveAll();
+				GenericLoot.Save();
+				Shop.Storage.SaveAll();
+				ForgeShop.Storage.SaveAll();
+				ExchangeShop.Storage.SaveAll();
+				Enchantment.Storage.SaveAll();
+				LevelInfo.Storage.SaveAll();
+			}
 		}
 
 		private bool ProcessRegen(ref int currentValue, int maxValue, ref float fractionalValue, int regenValue, float secondsPassed)
@@ -289,7 +291,7 @@ namespace AbarimMUD
 						var ta = pair.Value;
 						var passed = now - ta.Started;
 
-						if (passed.TotalSeconds >= ta.Affect.DurationInSeconds.Value)
+						if (passed.TotalSeconds >= ta.DurationInSeconds)
 						{
 							_toDelete.Add(pair.Key);
 							ctx.Send($"'{ta.Name}' wears off.");

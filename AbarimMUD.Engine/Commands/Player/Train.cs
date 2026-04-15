@@ -177,7 +177,7 @@ namespace AbarimMUD.Commands.Player
 				{
 					foreach(var pair in newSkillValue.LevelDefinition.Abilities)
 					{
-						var ab = context.Stats.GetAbility(pair.Key);
+						var ab = context.Stats.GetAbilityById(pair.Key);
 						if (ab == null)
 						{
 							context.Send($"You learned the new ability: {ab.Id}.");

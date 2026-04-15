@@ -274,6 +274,14 @@ namespace AbarimMUD.Data
 			_stats.Abilities.AddRange(modifiers.Abilities.Values);
 		}
 
+		public void Heal(int hitpoints, int mana, int moves)
+		{
+			var stats = Stats;
+			State.Hitpoints = Math.Min(State.Hitpoints + hitpoints, stats.MaxHitpoints);
+			State.Mana = Math.Min(State.Mana + mana, stats.MaxMana);
+			State.Moves = Math.Min(State.Moves + moves, stats.MaxMoves);
+		}
+
 		public void Restore()
 		{
 			var stats = Stats;

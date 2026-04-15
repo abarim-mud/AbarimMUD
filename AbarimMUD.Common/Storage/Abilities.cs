@@ -35,6 +35,7 @@ namespace AbarimMUD.Storage
 
 			result.Converters.Add(Common.PlayerClassConverter);
 			result.Converters.Add(Common.AffectsConverter);
+			result.Converters.Add(Common.InstantEffectConverter);
 
 			return result;
 		}

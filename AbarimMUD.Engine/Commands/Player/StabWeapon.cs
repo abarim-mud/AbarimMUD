@@ -31,7 +31,7 @@ namespace AbarimMUD.Commands.Player
 			}
 
 			// Check the player has the skill
-			var ab = context.Stats.GetAbility("backstab");
+			var ab = context.Stats.GetAbilityById("backstab");
 			if (ab == null || context.Creature.Stats.BackstabCount == 0)
 			{
 				context.Send($"You don't know how to backstab.");

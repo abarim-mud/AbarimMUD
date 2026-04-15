@@ -27,7 +27,7 @@ namespace AbarimMUD.Commands.Player
 			var spellName = match.Groups[1].Value;
 
 			// Check the player has the skill
-			var ap = context.EnsureAbility(spellName);
+			var ap = context.EnsureAbilityByName(spellName);
 			if (ap == null)
 			{
 				context.Send($"You don't know spell '{spellName}'.");
@@ -86,10 +86,27 @@ namespace AbarimMUD.Commands.Player
 				context.SendRoomExceptMe(message);
 			}
 
-			foreach (var pair in ability.Affects)
+			if (ability.Affects != null)
 			{
-				var affect = pair.Value;
-				context.Creature.AddTemporaryAffect(affect.AffectSlotName, ability.Name, affect.Type, affect.Value ?? ap.Power, affect.DurationInSeconds.Value);
+				foreach (var pair in ability.Affects)
+				{
+					var affect = pair.Value;
+					context.Creature.AddTemporaryAffect(affect.AffectSlotName, ability.Name, affect.Type, affect.Value ?? ap.Power, affect.DurationInSeconds.Value);
+				}
+			}
+
+			if (ability.InstantEffects != null)
+			{
+				foreach (var instantEffect in ability.InstantEffects)
+				{
+					var power = instantEffect.Power.Random();
+					switch (instantEffect.Type)
+					{
+						case InstantEffectType.Heal:
+							context.Creature.Heal(power, 0, 0);
+							break;
+					}
+				}
 			}
 
 			return true;

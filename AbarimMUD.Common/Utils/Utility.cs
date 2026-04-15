@@ -69,6 +69,13 @@ namespace AbarimMUD.Utils
 			return rnd <= percentage;
 		}
 
+		/// <summary>
+		/// Returns a random integer within the specified inclusive range.
+		/// </summary>
+		/// <param name="min">The inclusive lower bound of the random number to be generated.</param>
+		/// <param name="max">The inclusive upper bound of the random number to be generated.</param>
+		/// <returns>A random integer greater than or equal to min and less than or equal to max. If min is greater than or equal to
+		/// max, min is returned.</returns>
 		public static int RandomRange(int min, int max)
 		{
 			if (min >= max)

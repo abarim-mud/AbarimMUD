@@ -89,7 +89,8 @@ namespace AbarimMUD.Data
 		public string MessageDeactivatedUser { get; set; }
 		public string Description { get; set; }
 
-		public Dictionary<ModifierType, Affect> Affects { get; set; } = new Dictionary<ModifierType, Affect>();
+		public Dictionary<ModifierType, Affect> Affects { get; set; }
+		public InstantEffect[] InstantEffects { get; set; }
 
 		public void Create() => Storage.Create(this);
 		public void Save() => Storage.Save(this);

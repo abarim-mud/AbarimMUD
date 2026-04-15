@@ -14,7 +14,7 @@ namespace AbarimMUD.Commands.Player
 			}
 
 			// Check the player has the skill
-			var ab = context.Stats.GetAbility("deathtouch");
+			var ab = context.Stats.GetAbilityById("deathtouch");
 			if (ab == null)
 			{
 				context.Send($"You don't know how to deathtouch.");

@@ -45,20 +45,24 @@ namespace AbarimMUD.Commands.Player
 			var sb = new StringBuilder();
 
 			var firstLine = true;
-			foreach (var pair in ab.Affects)
+
+			if (ab.Affects != null)
 			{
-				if (!firstLine)
+				foreach (var pair in ab.Affects)
 				{
-					sb.AppendLine();
+					if (!firstLine)
+					{
+						sb.AppendLine();
+					}
+
+					var affect = pair.Value;
+
+					var power = affect.Value == null ? "_power_" : affect.Value.ToString();
+					var minutes = (affect.DurationInSeconds.Value / 60.0f).FormatFloat();
+					sb.Append($"Raises {pair.Key} by {power} for {minutes} minutes.");
+
+					firstLine = false;
 				}
-
-				var affect = pair.Value;
-
-				var power = affect.Value == null ? "_power_" : affect.Value.ToString();
-				var minutes = (affect.DurationInSeconds.Value / 60.0f).FormatFloat();
-				sb.Append($"Raises {pair.Key} by {power} for {minutes} minutes.");
-
-				firstLine = false;
 			}
 
 			return sb.ToString();
