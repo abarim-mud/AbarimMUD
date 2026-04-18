@@ -9,5 +9,6 @@
   "MessageHitUser": "You kick {target.Name}{info}!",
   "MessageHitRoom": "{user.Name} kicks {target.Name}!",
   "MessageKillUser": "Your masterful kick put the end of the life of {target.Name}{info}!",
-  "MessageKillRoom": "{user.Name}\u0027s masterful kick puts the end of the life of {target.Name}!"
+  "MessageKillRoom": "{user.Name}\u0027s masterful kick puts the end of the life of {target.Name}!",
+  "Description": "Kicks an enemy with the damage within the range [_power_, _power_ \u002B 4]."
 }

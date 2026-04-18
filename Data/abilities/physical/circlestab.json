@@ -10,5 +10,6 @@
   "MessageHitUser": "You quickly move from {target.Name}\u0027s eyesight and stab it with {weapon}{info}!",
   "MessageHitRoom": "{user.Name} quickly moves from {target.Name}\u0027s eyesight and stabs it with {weapon}!",
   "MessageKillUser": "You struck {target.Name} right in the heart{info}!",
-  "MessageKillRoom": "{user.Name} strucks {target.Name} right in the heart!"
+  "MessageKillRoom": "{user.Name} strucks {target.Name} right in the heart!",
+  "Description": "Circlestabs an enemy with the multiplier equal to _power_."
 }

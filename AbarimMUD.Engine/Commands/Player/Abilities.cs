@@ -54,14 +54,32 @@ namespace AbarimMUD.Commands.Player
 					{
 						sb.AppendLine();
 					}
+					firstLine = false;
 
 					var affect = pair.Value;
 
 					var power = affect.Value == null ? "_power_" : affect.Value.ToString();
 					var minutes = (affect.DurationInSeconds.Value / 60.0f).FormatFloat();
 					sb.Append($"Raises {pair.Key} by {power} for {minutes} minutes.");
+				}
+			}
 
+			if (ab.InstantEffects != null)
+			{
+				foreach (var eff in ab.InstantEffects)
+				{
+					if (!firstLine)
+					{
+						sb.AppendLine();
+					}
 					firstLine = false;
+
+					switch (eff.Type)
+					{
+						case InstantEffectType.Heal:
+							sb.Append($"Heals the target by {eff.Power}.");
+							break;
+					}
 				}
 			}
 
