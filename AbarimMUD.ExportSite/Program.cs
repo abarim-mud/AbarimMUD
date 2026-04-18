@@ -311,7 +311,7 @@ namespace AbarimMUD.ExportAreasToMMB
 
 					var affect = pair.Value;
 
-					d.Affects.Add(affect.Type.ToPermanentAffect(affect.Value));
+					d.Affects.Add(affect.Type.ToPermanentAffect(affect.Value.Value));
 				}
 
 				foreach (var forgeShop in ForgeShop.Storage)
@@ -422,6 +422,22 @@ namespace AbarimMUD.ExportAreasToMMB
 			sb.AppendLine($"#### {skill.Name.CasedName()}");
 			sb.AppendLine();
 
+			var hasModifiers = false;
+			var hasAbilities = false;
+			for (var i = 0; i < skill.TotalLevels; ++i)
+			{
+				var def = skill.Levels[i];
+				if (def.Modifiers != null && def.Modifiers.Count > 0)
+				{
+					hasModifiers = true;
+				}
+
+				if (def.Abilities != null && def.Abilities.Count > 0)
+				{
+					hasAbilities = true;
+				}
+			}
+
 			// Data
 			for (var i = 0; i < skill.TotalLevels; ++i)
 			{
@@ -431,23 +447,42 @@ namespace AbarimMUD.ExportAreasToMMB
 
 				var strings = new List<string>();
 
+				if (hasModifiers)
+				{
+					if (def.Modifiers != null)
+					{
+						foreach (var pair in def.Modifiers)
+						{
+							strings.Add(pair.Key.ToPermanentAffect(pair.Value));
+						}
+					}
+
+					sb.Append(string.Join("<br>", strings.ToArray()));
+
+					if (hasAbilities)
+					{
+						sb.Append("|");
+					}
+				}
+
+				strings.Clear();
 				if (def.Abilities != null)
 				{
-					foreach (var ab in def.Abilities)
+					foreach (var pair in def.Abilities)
 					{
-						strings.Add($"{ab.Name.CasedName()}");
+						var ap = pair.Value;
+
+						if (ap.Power == 0)
+						{
+							strings.Add($"{ap.Ability.Name}");
+						} else
+						{
+							strings.Add($"{ap.Ability.Name}: {ap.Power}");
+						}
 					}
 				}
-
-				if (def.Modifiers != null)
-				{
-					foreach (var pair in def.Modifiers)
-					{
-						strings.Add(pair.Key.ToPermanentAffect(pair.Value));
-					}
-				}
-
 				sb.Append(string.Join("<br>", strings.ToArray()));
+
 				sb.AppendLine();
 			}
 
@@ -476,6 +511,7 @@ namespace AbarimMUD.ExportAreasToMMB
 			sb.Append("---\r\nlayout: page\r\ntitle: Skills\r\n---");
 
 			ExportSkills(sb, "warrior", new[] { "melee", "strength" });
+			ExportSkills(sb, "cleric", new[] { "restoration", "wisdom" });
 			ExportSkills(sb, "rogue", new[] { "backstab", "dexterity" });
 			ExportSkills(sb, "monk", new[] { "martialArts", "deathtouch", "constitution" });
 

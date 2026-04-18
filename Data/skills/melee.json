@@ -39,6 +39,9 @@
     {
       "Modifiers": {
         "WeaponAttackBonus": 15
+      },
+      "Abilities": {
+        "kick": 2
       }
     },
     {
