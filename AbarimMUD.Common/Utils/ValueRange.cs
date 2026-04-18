@@ -13,7 +13,15 @@ namespace AbarimMUD.Utils
 			Maximum = max;
 		}
 
-		public override string ToString() => $"{Minimum}-{Maximum}";
+		public override string ToString()
+		{
+			if (Minimum == Maximum)
+			{
+				return Minimum.ToString();
+			}
+
+			return $"{Minimum}-{Maximum}";
+		}
 
 		/// <summary>
 		/// Returns a random integer within the specified inclusive range(from Minimum to Maximum).
@@ -38,7 +46,7 @@ namespace AbarimMUD.Utils
 			range = new ValueRange();
 
 			var parts = value.Split('-', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
-			if (parts.Length != 2)
+			if (parts.Length < 1)
 			{
 				return false;
 			}
@@ -49,14 +57,20 @@ namespace AbarimMUD.Utils
 				return false;
 			}
 
-			int max;
-			if (!int.TryParse(parts[1], out max))
+			range.Minimum = min;
+			range.Maximum = min;
+
+			if (parts.Length > 1)
 			{
-				return false;
+				int max;
+				if (!int.TryParse(parts[1], out max))
+				{
+					return false;
+				}
+
+				range.Maximum = max;
 			}
 
-			range.Minimum = min;
-			range.Maximum = max;
 
 			return true;
 		}

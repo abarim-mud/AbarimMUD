@@ -1,0 +1,12 @@
+{
+  "Id": "cureSeriousWounds",
+  "Name": "cure serious wounds",
+  "Type": "Spell",
+  "MovesCost": 0,
+  "ManaCost": 30,
+  "MessageHitUser": "You feel much better.",
+  "MessageHitRoom": "{user.Name} feels much better.",
+  "InstantEffects": [
+    "Heal:50-60"
+  ]
+}

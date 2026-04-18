@@ -1,0 +1,12 @@
+{
+  "Id": "heal",
+  "Name": "heal",
+  "Type": "Spell",
+  "MovesCost": 0,
+  "ManaCost": 40,
+  "MessageHitUser": "A warm feeling runs through your body.",
+  "MessageHitRoom": "{user.Name}\u0027s is healed.",
+  "InstantEffects": [
+    "Heal:100"
+  ]
+}

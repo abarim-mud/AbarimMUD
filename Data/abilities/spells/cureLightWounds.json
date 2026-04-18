@@ -7,6 +7,6 @@
   "MessageHitUser": "You feel better.",
   "MessageHitRoom": "{user.Name} feels better.",
   "InstantEffects": [
-    "Heal:10-15"
+    "Heal:20-30"
   ]
 }

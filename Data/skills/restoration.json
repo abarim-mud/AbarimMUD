@@ -5,20 +5,54 @@
   "Levels": [
     {
       "Abilities": {
-        "accuracy": 10,
-        "armor": 10,
         "cureLightWounds": 0
       }
     },
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {}
+    {
+      "Abilities": {
+        "accuracy": 10
+      }
+    },
+    {
+      "Abilities": {
+        "cureSeriousWounds": 0
+      }
+    },
+    {
+      "Abilities": {
+        "accuracy": 5
+      }
+    },
+    {
+      "Abilities": {
+        "heal": 0
+      }
+    },
+    {
+      "Abilities": {
+        "accuracy": 5
+      }
+    },
+    {
+      "Abilities": {
+        "greaterHeal": 0
+      }
+    },
+    {
+      "Abilities": {
+        "accuracy": 5
+      }
+    },
+    {
+      "Abilities": {
+        "restoration": 0
+      }
+    },
+    {
+      "Abilities": {
+        "accuracy": 5
+      }
+    }
   ],
   "Cost": 1
 }
