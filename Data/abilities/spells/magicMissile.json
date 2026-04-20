@@ -1,0 +1,12 @@
+{
+  "Id": "magicMissile",
+  "Name": "magic missile",
+  "Type": "Spell",
+  "MovesCost": 0,
+  "ManaCost": 10,
+  "MessageHitUser": "You feel better.",
+  "MessageHitRoom": "{user.Name} feels better.",
+  "InstantEffects": [
+    "Heal:20-30"
+  ]
+}

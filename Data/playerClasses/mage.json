@@ -1,0 +1,44 @@
+{
+  "Id": "mage",
+  "Name": "Mage",
+  "Description": "Master of magic.",
+  "Hitpoints": "150-650",
+  "Mana": "350-800",
+  "Moves": "100-200",
+  "StartingEquipment": [
+    "greenLantern",
+    "cloakOfRookie",
+    "ironSword",
+    "ironHelmet",
+    "ironArmor",
+    "ironGloves",
+    "ironGreaves",
+    "ironBoots",
+    "ironShield"
+  ],
+  "StartingSkills": [
+    "melee",
+    "restoration",
+    "wisdom"
+  ],
+  "StartingInventory": [
+    {
+      "Item": "novicePotionOfHealing",
+      "Quantity": 5
+    },
+    {
+      "Item": "novicePotionOfMana",
+      "Quantity": 5
+    },
+    {
+      "Item": "novicePotionOfMoves",
+      "Quantity": 5
+    }
+  ],
+  "StartingGold": 2000,
+  "StartingSkillPoints": 1,
+  "PrimeModifiers": {
+    "SpellBonus": 5,
+    "ManaRegenAbsolute": 2
+  }
+}

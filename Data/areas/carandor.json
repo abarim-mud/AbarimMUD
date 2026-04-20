@@ -386,7 +386,8 @@
       "ManaRate": 0,
       "Exits": {
         "North": 31,
-        "West": 33
+        "West": 33,
+        "East": 35
       },
       "Id": 32
     },
@@ -413,6 +414,30 @@
         "South": 33
       },
       "Id": 34
+    },
+    {
+      "Name": "Outside Mages Guild",
+      "SectorType": "City",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "Exits": {
+        "West": 32,
+        "North": 36
+      },
+      "Id": 35
+    },
+    {
+      "Name": "Mages Guild",
+      "SectorType": "City",
+      "HealRate": 0,
+      "ManaRate": 0,
+      "MobileSpawns": [
+        "7"
+      ],
+      "Exits": {
+        "South": 35
+      },
+      "Id": 36
     }
   ],
   "Mobiles": [
@@ -873,6 +898,71 @@
       "Guildmaster": "cleric",
       "Experience": "117,600,000",
       "Id": 6
+    },
+    {
+      "Keywords": [
+        "trainer",
+        "mage",
+        "guildmaster"
+      ],
+      "ShortDescription": "the mage guildmaster",
+      "LongDescription": "The mage guildmaster stands here, ready to teach you her ways.",
+      "Description": "The mage guildmaster is a serene and regal figure with an ethereal beauty. She\nhas a delicate jawline, a straight nose, and piercing blue eyes that seem to\nshimmer with an inner light. Her hair is a shining silver, styled in an\nelaborate up-do that adds to her stately appearance. Her skin is a warm,\ncreamy complexion, and she carries herself with grace and\npoise. She radiates\nan aura of calm and confidence, her gentle presence inspiring a sense of peace\nand security in those around her. Despite her quiet demeanor, her vast\nknowledge and mastery of magic is undeniable.",
+      "Level": 100,
+      "Gold": 50000,
+      "Sex": "Female",
+      "Hitpoints": 10000,
+      "Mana": 10000,
+      "Moves": 1000,
+      "Armor": 250,
+      "Attacks": [
+        {
+          "Type": "Slash",
+          "AttackBonus": 200,
+          "DamageRange": "120-160"
+        },
+        {
+          "Type": "Slash",
+          "AttackBonus": 200,
+          "DamageRange": "120-160"
+        },
+        {
+          "Type": "Slash",
+          "AttackBonus": 200,
+          "DamageRange": "120-160"
+        },
+        {
+          "Type": "Slash",
+          "AttackBonus": 200,
+          "DamageRange": "120-160"
+        },
+        {
+          "Type": "Slash",
+          "AttackBonus": 200,
+          "DamageRange": "120-160"
+        },
+        {
+          "Type": "Slash",
+          "AttackBonus": 200,
+          "DamageRange": "120-160"
+        },
+        {
+          "Type": "Slash",
+          "AttackBonus": 200,
+          "DamageRange": "120-160"
+        },
+        {
+          "Type": "Slash",
+          "AttackBonus": 200,
+          "DamageRange": "120-160"
+        }
+      ],
+      "Flags": [
+        "Sentinel"
+      ],
+      "Guildmaster": "mage",
+      "Experience": "117,600,000",
+      "Id": 7
     }
   ],
   "RespawnTimeInMinutes": 30

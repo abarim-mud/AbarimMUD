@@ -1,0 +1,58 @@
+{
+  "Id": "intelligence",
+  "Name": "Intelligence",
+  "Class": "mage",
+  "Levels": [
+    {
+      "Modifiers": {
+        "Mana": 20
+      }
+    },
+    {
+      "Modifiers": {
+        "SpellBonus": 2
+      }
+    },
+    {
+      "Modifiers": {
+        "Mana": 20
+      }
+    },
+    {
+      "Modifiers": {
+        "SpellBonus": 2
+      }
+    },
+    {
+      "Modifiers": {
+        "Mana": 20
+      }
+    },
+    {
+      "Modifiers": {
+        "SpellBonus": 2
+      }
+    },
+    {
+      "Modifiers": {
+        "Mana": 20
+      }
+    },
+    {
+      "Modifiers": {
+        "SpellBonus": 2
+      }
+    },
+    {
+      "Modifiers": {
+        "Mana": 20
+      }
+    },
+    {
+      "Modifiers": {
+        "SpellBonus": 2
+      }
+    }
+  ],
+  "Cost": 1
+}

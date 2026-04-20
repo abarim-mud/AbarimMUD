@@ -1,0 +1,58 @@
+{
+  "Id": "wisdom",
+  "Name": "Wisdom",
+  "Class": "cleric",
+  "Levels": [
+    {
+      "Modifiers": {
+        "HealBonus": 2
+      }
+    },
+    {
+      "Modifiers": {
+        "ManaRegenPercentage": 1
+      }
+    },
+    {
+      "Modifiers": {
+        "HealBonus": 2
+      }
+    },
+    {
+      "Modifiers": {
+        "ManaRegenPercentage": 1
+      }
+    },
+    {
+      "Modifiers": {
+        "HealBonus": 2
+      }
+    },
+    {
+      "Modifiers": {
+        "ManaRegenPercentage": 1
+      }
+    },
+    {
+      "Modifiers": {
+        "HealBonus": 2
+      }
+    },
+    {
+      "Modifiers": {
+        "ManaRegenPercentage": 1
+      }
+    },
+    {
+      "Modifiers": {
+        "HealBonus": 2
+      }
+    },
+    {
+      "Modifiers": {
+        "ManaRegenPercentage": 1
+      }
+    }
+  ],
+  "Cost": 1
+}
