@@ -4,12 +4,13 @@
   "Type": "Spell",
   "MovesCost": 0,
   "ManaCost": 10,
-  "MessageHitUser": "Your accuracy has improved.",
+  "MessageHitTarget": "Your accuracy has improved.",
   "MessageDeactivatedUser": "Your accuracy is back to normal.",
   "Affects": {
     "AttackBonus": {
       "DurationInSeconds": 600,
       "AffectSlotName": "spellAccuracy"
     }
-  }
+  },
+  "IsOffensive": false
 }

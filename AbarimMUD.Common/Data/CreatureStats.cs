@@ -92,7 +92,17 @@ namespace AbarimMUD.Data
 
 		public AbilityPower GetAbilityByName(string name)
 		{
-			return (from ab in Abilities where ab.Ability.Name.EqualsToIgnoreCase(name) select ab).FirstOrDefault();
+			// Check name equals
+			var result = (from ab in Abilities where ab.Ability.Name.EqualsToIgnoreCase(name) select ab).FirstOrDefault();
+			if (result != null)
+			{
+				return result;
+			}
+
+			// Check name starts with
+			result = (from ab in Abilities where ab.Ability.Name.StartsWith(name) select ab).FirstOrDefault();
+
+			return result;
 		}
 
 

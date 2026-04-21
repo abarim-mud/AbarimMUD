@@ -4,7 +4,8 @@ namespace AbarimMUD.Data
 {
 	public enum InstantEffectType
 	{
-		Heal
+		Heal,
+		MagicDamage
 	}
 
 	public class InstantEffect

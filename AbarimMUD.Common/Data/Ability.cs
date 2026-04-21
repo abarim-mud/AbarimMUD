@@ -83,6 +83,7 @@ namespace AbarimMUD.Data
 		public string MessageMissUser { get; set; }
 		public string MessageMissRoom { get; set; }
 		public string MessageHitUser { get; set; }
+		public string MessageHitTarget { get; set; }
 		public string MessageHitRoom { get; set; }
 		public string MessageKillUser { get; set; }
 		public string MessageKillRoom { get; set; }
@@ -91,6 +92,8 @@ namespace AbarimMUD.Data
 
 		public Dictionary<ModifierType, Affect> Affects { get; set; }
 		public InstantEffect[] InstantEffects { get; set; }
+
+		public bool IsOffensive { get; set; }
 
 		public void Create() => Storage.Create(this);
 		public void Save() => Storage.Save(this);

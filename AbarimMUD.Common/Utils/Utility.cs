@@ -175,6 +175,7 @@ namespace AbarimMUD.Utils
 		}
 
 		public static bool EqualsToIgnoreCase(this string name, string otherName) => string.Equals(name, otherName, StringComparison.OrdinalIgnoreCase);
+		public static bool StartsWithIgnoreCase(this string name, string otherName) => name.StartsWith(otherName, StringComparison.OrdinalIgnoreCase);
 
 		public static T FindAttribute<T>(this MemberInfo property) where T : Attribute
 		{

@@ -66,12 +66,13 @@ namespace AbarimMUD.Combat
 			return message.FormatMessage(variables);
 		}
 
-		private static string FormatDetails(string info)
+		public static string FormatDetails(string info)
 		{
 			if (string.IsNullOrEmpty(info))
 			{
 				return string.Empty;
 			}
+
 			return " (" + info + ")";
 		}
 
@@ -96,7 +97,7 @@ namespace AbarimMUD.Combat
 			attacker.SendRoomExceptMe(FormatMessage(ability.MessageKillRoom, attacker, target, weapon, info));
 		}
 
-		private static FightDetails GetFightDetails(this ExecutionContext ctx)
+		public static FightDetails GetFightDetails(this ExecutionContext ctx)
 		{
 			var fightDetails = FightDetails.Damage;
 			var character = ctx.Creature as Character;

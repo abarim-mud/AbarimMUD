@@ -4,9 +4,10 @@
   "Type": "Spell",
   "MovesCost": 0,
   "ManaCost": 55,
-  "MessageHitUser": "Your wounds disappear.",
+  "MessageHitTarget": "Your wounds disappear.",
   "MessageHitRoom": "{user.Name}\u0027s wounds disappear.",
   "InstantEffects": [
     "Heal:150"
-  ]
+  ],
+  "IsOffensive": false
 }

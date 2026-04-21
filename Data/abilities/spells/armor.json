@@ -4,12 +4,13 @@
   "Type": "Spell",
   "MovesCost": 0,
   "ManaCost": 10,
-  "MessageHitUser": "You feel protected.",
+  "MessageHitTarget": "You feel protected.",
   "MessageDeactivatedUser": "You are no longer protected.",
   "Affects": {
     "Armor": {
       "DurationInSeconds": 600,
       "AffectSlotName": "spellArmor"
     }
-  }
+  },
+  "IsOffensive": false
 }

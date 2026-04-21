@@ -288,8 +288,8 @@ namespace AbarimMUD.Data
 					}
 				}
 			}
-		
-			foreach(var pair in Class.PrimeAbilities)
+
+			foreach (var pair in Class.PrimeAbilities)
 			{
 				var ab = pair.Value.Ability;
 

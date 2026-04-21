@@ -10,5 +10,6 @@
   "MessageHitRoom": "{target.Name} spits out some blood as {user.Name} lands a deathtouch!",
   "MessageKillUser": "{target.Name} becomes very silent and falls on the ground as you land a deathtouch{info}!",
   "MessageKillRoom": "{target.Name} becomes very silent and falls on the ground as {user.Name} lands a deathtouch!",
-  "Description": "Deathtouches an enemy with the multiplier equal to _power_."
+  "Description": "Deathtouches an enemy with the multiplier equal to _power_.",
+  "IsOffensive": true
 }

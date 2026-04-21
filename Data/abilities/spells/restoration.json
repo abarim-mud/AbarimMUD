@@ -4,9 +4,10 @@
   "Type": "Spell",
   "MovesCost": 0,
   "ManaCost": 60,
-  "MessageHitUser": "You feel much, much better.",
+  "MessageHitTarget": "You feel much, much better.",
   "MessageHitRoom": "{user.Name} glows with the blinding light.",
   "InstantEffects": [
     "Heal:200"
-  ]
+  ],
+  "IsOffensive": false
 }

@@ -1,7 +1,6 @@
-﻿using AbarimMUD.Commands.Builder;
+﻿using AbarimMUD.Combat;
 using AbarimMUD.Data;
 using AbarimMUD.Utils;
-using NLog.Targets;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
@@ -44,6 +43,38 @@ namespace AbarimMUD.Commands.Player
 					context.Send($"There isnt '{targetName}' in this room");
 					return false;
 				}
+
+				if (ap.Ability.IsOffensive)
+				{
+					if (target == context)
+					{
+						context.Send($"You can't cast '{ap.Ability.Name}' on yourself.");
+						return false;
+					}
+
+					if (target.Creature is Character)
+					{
+						context.Send($"You can't attack {target.ShortDescription}");
+						return false;
+					}
+				}
+			}
+			else
+			{
+				if (ap.Ability.IsOffensive)
+				{
+					if (!context.IsFighting)
+					{
+						context.Send($"cast '{ap.Ability.Name}' on who?");
+						return false;
+					}
+
+					target = context.FightInfo.Target;
+				}
+				else
+				{
+					target = context;
+				}
 			}
 
 			var ability = ap.Ability;
@@ -62,39 +93,16 @@ namespace AbarimMUD.Commands.Player
 			context.Creature.State.Mana -= ability.ManaCost;
 			context.Creature.State.Moves -= ability.MovesCost;
 
-			context.Send($"You cast '{ability.Name}'.");
-
-			var variables = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
-			{
-				{ "user.name", context.ShortDescription },
-			};
-
-			if (target != null)
-			{
-				variables["target.name"] = target.ShortDescription;
-			}
-
-			if (!string.IsNullOrEmpty(ability.MessageHitUser))
-			{
-				var message = ability.MessageHitUser.FormatMessage(variables);
-				context.Send(message);
-			}
-
-			if (!string.IsNullOrEmpty(ability.MessageHitRoom))
-			{
-				var message = ability.MessageHitRoom.FormatMessage(variables);
-				context.SendRoomExceptMe(message);
-			}
-
 			if (ability.Affects != null)
 			{
 				foreach (var pair in ability.Affects)
 				{
 					var affect = pair.Value;
-					context.Creature.AddTemporaryAffect(affect.AffectSlotName, ability.Name, affect.Type, affect.Value ?? ap.Power, affect.DurationInSeconds.Value, ability.MessageDeactivatedUser);
+					target.Creature.AddTemporaryAffect(affect.AffectSlotName, ability.Name, affect.Type, affect.Value ?? ap.Power, affect.DurationInSeconds.Value, ability.MessageDeactivatedUser);
 				}
 			}
 
+			var totalPower = 0;
 			if (ability.InstantEffects != null)
 			{
 				foreach (var instantEffect in ability.InstantEffects)
@@ -103,10 +111,65 @@ namespace AbarimMUD.Commands.Player
 					switch (instantEffect.Type)
 					{
 						case InstantEffectType.Heal:
-							context.Creature.Heal(power, 0, 0);
+							target.Creature.Heal(power, 0, 0);
+							break;
+
+						case InstantEffectType.MagicDamage:
+							target.Creature.State.Hitpoints -= power;
 							break;
 					}
+
+					totalPower += power;
 				}
+			}
+
+			context.Send($"You cast '{ability.Name}'.");
+
+			var info = string.Empty;
+			var fightDetails = context.GetFightDetails();
+			switch (fightDetails)
+			{
+				case Data.FightDetails.Damage:
+				case Data.FightDetails.All:
+					info = totalPower.ToString();
+					break;
+			}
+
+			info = CombatUtils.FormatDetails(info);
+
+			var variables = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+			{
+				{ "user.name", context.ShortDescription },
+				{ "target.name", target.ShortDescription },
+				{ "info", info }
+			};
+
+			if (!string.IsNullOrEmpty(ability.MessageHitUser))
+			{
+				var message = ability.MessageHitUser.FormatMessage(variables);
+				context.Send(message);
+			}
+
+			if (!string.IsNullOrEmpty(ability.MessageHitTarget))
+			{
+				var message = ability.MessageHitTarget.FormatMessage(variables);
+				target.Send(message);
+			}
+
+			if (!string.IsNullOrEmpty(ability.MessageHitRoom))
+			{
+				var message = ability.MessageHitRoom.FormatMessage(variables);
+				context.SendRoomExceptMe(message);
+			}
+
+			if (target.State.Hitpoints < 0)
+			{
+				context.Slain(target);
+			}
+
+			if (ability.IsOffensive)
+			{
+				Fight.Start(context, target);
 			}
 
 			return true;
