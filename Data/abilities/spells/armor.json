@@ -12,5 +12,6 @@
       "AffectSlotName": "spellArmor"
     }
   },
-  "IsOffensive": false
+  "IsOffensive": false,
+  "IsFightSkill": false
 }

@@ -11,5 +11,6 @@
   "MessageKillUser": "You place {weapon} in the back of {target.Name}, resulting in some strange noises and some blood{info}!",
   "MessageKillRoom": "{user.Name} places {weapon} in the back of {target.Name}, resulting in some strange noises and some blood!",
   "Description": "Backstabs an enemy with the multiplier equal to _power_.",
-  "IsOffensive": true
+  "IsOffensive": true,
+  "IsFightSkill": false
 }

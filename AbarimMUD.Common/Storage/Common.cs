@@ -390,6 +390,7 @@ namespace AbarimMUD.Storage
 		public static readonly EntityConverter<Enchantment> EnchantmentConverter = new EntityConverter<Enchantment>(s => s.Id);
 		public static readonly MobileSpawnConverterType MobileSpawnConverter = new MobileSpawnConverterType();
 		public static readonly InstantEffectConverterType InstantEffectConverter = new InstantEffectConverterType();
+		public static readonly EntityConverter<Ability> AbilityConverter = new EntityConverter<Ability>(s => s.Id);
 
 		public static void SetReferences(this ItemInstance item)
 		{

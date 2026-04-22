@@ -131,7 +131,7 @@ namespace AbarimMUD.Data
 			}
 		}
 
-		public string FightSkill { get; set; }
+		public Ability FightSkill { get; set; }
 		public string StabWeapon { get; set; }
 		public string Title { get; set; }
 		public FightDetails FightDetails { get; set; } = FightDetails.Damage;

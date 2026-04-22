@@ -12,5 +12,6 @@
       "AffectSlotName": "spellAccuracy"
     }
   },
-  "IsOffensive": false
+  "IsOffensive": false,
+  "IsFightSkill": false
 }

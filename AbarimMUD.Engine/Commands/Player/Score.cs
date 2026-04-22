@@ -25,13 +25,13 @@ namespace AbarimMUD.Commands.Player
 
 				context.Send($"Gold: {asCharacter.Gold.FormatBigNumber()}");
 
-				if (string.IsNullOrEmpty(asCharacter.FightSkill))
+				if (asCharacter.FightSkill == null)
 				{
 					context.Send("You didnt set the fightskill.");
 				}
 				else
 				{
-					context.Send($"You current fightskill is {asCharacter.FightSkill}.");
+					context.Send($"You current fightskill is \"{asCharacter.FightSkill}\".");
 				}
 
 				if (!string.IsNullOrEmpty(asCharacter.StabWeapon))

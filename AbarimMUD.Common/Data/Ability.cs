@@ -7,8 +7,7 @@ namespace AbarimMUD.Data
 	public enum AbilityType
 	{
 		Physical,
-		Spell,
-		Custom
+		Spell
 	}
 
 	public class Ability : IStoredInFile
@@ -94,6 +93,17 @@ namespace AbarimMUD.Data
 		public InstantEffect[] InstantEffects { get; set; }
 
 		public bool IsOffensive { get; set; }
+		public bool IsFightSkill { get; set; }
+
+		public override string ToString()
+		{
+			if (Type == AbilityType.Physical)
+			{
+				return Name;
+			}
+
+			return $"cast '{Name}'";
+		}
 
 		public void Create() => Storage.Create(this);
 		public void Save() => Storage.Save(this);

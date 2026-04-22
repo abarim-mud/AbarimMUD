@@ -26,10 +26,9 @@ namespace AbarimMUD.Commands.Player
 			var spellName = match.Groups[1].Value;
 
 			// Check the player has the skill
-			var ap = context.EnsureAbilityByName(spellName);
+			var ap = context.EnsureSpellByName(spellName);
 			if (ap == null)
 			{
-				context.Send($"You don't know spell '{spellName}'.");
 				return false;
 			}
 

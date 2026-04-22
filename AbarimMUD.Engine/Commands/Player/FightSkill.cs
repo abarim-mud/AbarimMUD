@@ -1,10 +1,41 @@
 ﻿using AbarimMUD.Data;
 using AbarimMUD.Utils;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace AbarimMUD.Commands.Player
 {
 	public class FightSkill : PlayerCommand
 	{
+		private static readonly Regex SpellRegex = new Regex(@"'(.*)'", RegexOptions.Compiled);
+
+		private void SendUsage(ExecutionContext context)
+		{
+			var sb = new StringBuilder();
+
+			sb.Append("Usage: fightskill ");
+
+			foreach (var pair in AllCommands)
+			{
+				if (pair.Key.EqualsToIgnoreCase("cast") || !pair.Value.CanFightskill)
+				{
+					continue;
+				}
+
+				var ability = context.Creature.Stats.GetAbilityById(pair.Key);
+				if (ability == null)
+				{
+					continue;
+				}
+
+				sb.Append($"{pair.Key}|");
+			}
+
+			sb.Append("cast '_spellName'|off");
+
+			context.Send(sb.ToString());
+		}
+
 		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
 			var character = context.Creature as Character;
@@ -14,38 +45,74 @@ namespace AbarimMUD.Commands.Player
 				return false;
 			}
 
-			data = data.Trim();
-			if (string.IsNullOrEmpty(data))
+			var parts = data.SplitByWhitespace(2);
+			if (parts.Length == 0)
 			{
-				context.Send("Usage: fightskill _skillName_|off");
+				SendUsage(context);
 				return false;
 			}
 
-			if (data.EqualsToIgnoreCase("off"))
+			var isCast = parts[0].EqualsToIgnoreCase("cast");
+			if ((!isCast && parts.Length > 1) ||
+				(isCast && parts.Length != 2))
 			{
-				character.FightSkill = string.Empty;
+				SendUsage(context);
+				return false;
+			}
+
+			var cmd = parts[0].ToLower();
+			AbilityPower ap = null;
+			if (isCast)
+			{
+				// Parse the spell name
+				var spellName = parts[1].ToLower();
+				var match = SpellRegex.Match(spellName);
+				if (!match.Success)
+				{
+					context.Send($"Can't parse spell \"{spellName}\".");
+					return false;
+				}
+
+				spellName = match.Groups[1].Value;
+				ap = context.EnsureSpellByName(spellName);
+				if (ap == null)
+				{
+					return false;
+				}
+
+				if (!ap.Ability.IsFightSkill)
+				{
+					context.Send($"Spell \"{spellName}\" can't be set as the fight skill.");
+					return false;
+				}
+			}
+			else
+			{
+				ap = context.EnsurePhysicalByName(cmd);
+				if (ap == null)
+				{
+					return false;
+				}
+
+				if (!ap.Ability.IsFightSkill)
+				{
+					context.Send($"Ability \"{cmd}\" can't be set as the fight skill.");
+					return false;
+				}
+			}
+
+			if (cmd.EqualsToIgnoreCase("off"))
+			{
+				character.FightSkill = null;
 				character.Save();
 
 				context.Send("Cleared the current fightskill.");
 				return true;
 			}
 
-			var command = FindCommand(data);
-			if (command == null || command.RequiredRole > context.Role)
-			{
-				context.Send($"Unknown ability '{data}'.");
-				return false;
-			}
-
-			if (!command.CanFightskill)
-			{
-				context.Send($"Skill {command.Name} couldn't be set to auto.");
-				return false;
-			}
-
-			character.FightSkill = command.Name;
+			character.FightSkill = ap.Ability;
 			character.Save();
-			context.Send($"fightskill was set to {command.Name}.");
+			context.Send($"fightskill was set to \"{ap.Ability.Name}\".");
 
 			return true;
 		}

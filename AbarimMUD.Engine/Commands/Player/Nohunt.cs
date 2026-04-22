@@ -5,12 +5,6 @@
 		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
 			// Check the player has the skill
-			var ability = context.EnsureAbilityById("hunt");
-			if (ability == null)
-			{
-				return false;
-			}
-
 			if (!context.HuntInfo.IsActive)
 			{
 				context.Send("You aren't hunting.");

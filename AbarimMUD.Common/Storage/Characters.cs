@@ -37,6 +37,8 @@ namespace AbarimMUD.Storage
 			result.Converters.Add(Common.InventoryConverter);
 			result.Converters.Add(Common.SkillConverter);
 			result.Converters.Add(Common.SkillValueConverter);
+			result.Converters.Add(Common.ItemConverter);
+			result.Converters.Add(Common.AbilityConverter);
 
 			return result;
 		}
@@ -113,6 +115,11 @@ namespace AbarimMUD.Storage
 					{
 						pair.Value.Skill = Skill.EnsureSkillById(pair.Key);
 					}
+				}
+
+				if (ch.FightSkill != null)
+				{
+					ch.FightSkill = Ability.GetAbilityById(ch.FightSkill.Id);
 				}
 			}
 		}
