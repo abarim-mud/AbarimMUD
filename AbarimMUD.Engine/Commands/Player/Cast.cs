@@ -174,9 +174,6 @@ namespace AbarimMUD.Commands.Player
 			return true;
 		}
 
-		public override int CalculateLagInMs(ExecutionContext context, string data = "")
-		{
-			return Configuration.CastLagInMs;
-		}
+		public override int CalculateLagInMs(ExecutionContext context, string data = "") => Configuration.CastLagInMs;
 	}
 }

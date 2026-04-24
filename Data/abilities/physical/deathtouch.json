@@ -13,5 +13,6 @@
   "Description": "Deathtouches an enemy with the multiplier equal to _power_.",
   "Flags": [
     "Offensive"
-  ]
+  ],
+  "CommandLagInMs": 3000
 }

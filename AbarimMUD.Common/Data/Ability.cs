@@ -1,6 +1,7 @@
 ﻿using AbarimMUD.Attributes;
 using AbarimMUD.Storage;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
 {
@@ -100,6 +101,11 @@ namespace AbarimMUD.Data
 		public InstantEffect[] InstantEffects { get; set; }
 
 		public HashSet<AbilityFlags> Flags { get; set; } = new HashSet<AbilityFlags>();
+		public int? CommandLagInMs { get; set; }
+
+		[JsonIgnore]
+		public int PhysicalCommandLagInMs => CommandLagInMs ?? Configuration.PauseBetweenFightRoundsInMs;
+
 
 		public override string ToString()
 		{

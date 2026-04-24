@@ -13,5 +13,6 @@
   "Description": "Backstabs an enemy with the multiplier equal to _power_.",
   "Flags": [
     "Offensive"
-  ]
+  ],
+  "CommandLagInMs": 2000
 }
