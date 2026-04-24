@@ -9,6 +9,8 @@
   "InstantEffects": [
     "MagicDamage:15-20"
   ],
-  "IsOffensive": true,
-  "IsFightSkill": true
+  "Flags": [
+    "Offensive",
+    "FightSkill"
+  ]
 }

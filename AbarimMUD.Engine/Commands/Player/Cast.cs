@@ -43,7 +43,7 @@ namespace AbarimMUD.Commands.Player
 					return false;
 				}
 
-				if (ap.Ability.IsOffensive)
+				if (ap.Ability.Flags.Contains(AbilityFlags.Offensive))
 				{
 					if (target == context)
 					{
@@ -60,7 +60,7 @@ namespace AbarimMUD.Commands.Player
 			}
 			else
 			{
-				if (ap.Ability.IsOffensive)
+				if (ap.Ability.Flags.Contains(AbilityFlags.Offensive))
 				{
 					if (!context.IsFighting)
 					{
@@ -166,7 +166,7 @@ namespace AbarimMUD.Commands.Player
 				context.Slain(target);
 			}
 
-			if (ability.IsOffensive)
+			if (ability.Flags.Contains(AbilityFlags.Offensive))
 			{
 				Fight.Start(context, target);
 			}

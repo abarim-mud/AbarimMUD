@@ -11,6 +11,8 @@
   "MessageKillUser": "Your masterful kick put the end of the life of {target.Name}{info}!",
   "MessageKillRoom": "{user.Name}\u0027s masterful kick puts the end of the life of {target.Name}!",
   "Description": "Kicks an enemy with the damage within the range [_power_, _power_ \u002B 4].",
-  "IsOffensive": true,
-  "IsFightSkill": true
+  "Flags": [
+    "Offensive",
+    "FightSkill"
+  ]
 }

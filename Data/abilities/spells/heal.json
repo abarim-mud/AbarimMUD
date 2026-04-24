@@ -9,6 +9,5 @@
   "InstantEffects": [
     "Heal:100"
   ],
-  "IsOffensive": false,
-  "IsFightSkill": false
+  "Flags": []
 }

@@ -12,6 +12,8 @@
   "MessageKillUser": "You struck {target.Name} right in the heart{info}!",
   "MessageKillRoom": "{user.Name} strucks {target.Name} right in the heart!",
   "Description": "Circlestabs an enemy with the multiplier equal to _power_.",
-  "IsOffensive": true,
-  "IsFightSkill": true
+  "Flags": [
+    "Offensive",
+    "FightSkill"
+  ]
 }

@@ -10,6 +10,13 @@ namespace AbarimMUD.Data
 		Spell
 	}
 
+	public enum AbilityFlags
+	{
+		None,
+		Offensive,
+		FightSkill
+	}
+
 	public class Ability : IStoredInFile
 	{
 		public static readonly MultipleFilesStorage<Ability> Storage = new Abilities();
@@ -92,8 +99,7 @@ namespace AbarimMUD.Data
 		public Dictionary<ModifierType, Affect> Affects { get; set; }
 		public InstantEffect[] InstantEffects { get; set; }
 
-		public bool IsOffensive { get; set; }
-		public bool IsFightSkill { get; set; }
+		public HashSet<AbilityFlags> Flags { get; set; } = new HashSet<AbilityFlags>();
 
 		public override string ToString()
 		{

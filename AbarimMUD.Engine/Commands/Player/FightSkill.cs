@@ -80,7 +80,7 @@ namespace AbarimMUD.Commands.Player
 					return false;
 				}
 
-				if (!ap.Ability.IsFightSkill)
+				if (!ap.Ability.Flags.Contains(AbilityFlags.FightSkill))
 				{
 					context.Send($"Spell \"{spellName}\" can't be set as the fight skill.");
 					return false;
@@ -94,7 +94,7 @@ namespace AbarimMUD.Commands.Player
 					return false;
 				}
 
-				if (!ap.Ability.IsFightSkill)
+				if (!ap.Ability.Flags.Contains(AbilityFlags.FightSkill))
 				{
 					context.Send($"Ability \"{cmd}\" can't be set as the fight skill.");
 					return false;
