@@ -77,10 +77,5 @@ namespace AbarimMUD.Commands.Player
 		{
 			return Configuration.PauseBetweenFightRoundsInMs;
 		}
-
-		public override CommandCost CalculateCost(ExecutionContext context, string data = "")
-		{
-			return new CommandCost(0, 0, Ability.Deathtouch.MovesCost);
-		}
 	}
 }

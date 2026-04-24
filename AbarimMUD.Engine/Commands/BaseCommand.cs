@@ -162,11 +162,6 @@ namespace AbarimMUD.Commands
 			return 0;
 		}
 
-		public virtual CommandCost CalculateCost(ExecutionContext context, string data = "")
-		{
-			return CommandCost.Zero;
-		}
-
 		public bool Execute(ExecutionContext context, string data = "")
 		{
 			if (context.WaitingCommandLag())
