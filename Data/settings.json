@@ -15,6 +15,7 @@
   "BaseSellPricePercentage": 25,
   "XpMultiply": 1,
   "HuntPauseInMs": 6000,
+  "DefaultAbilityCheck": 95,
   "RoomExitNotExistantBehavior": "DeleteRoomExit",
   "CastLagInMs": 2000
 }

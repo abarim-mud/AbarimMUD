@@ -1,5 +1,4 @@
-﻿using AbarimMUD.Combat;
-using AbarimMUD.Data;
+﻿using AbarimMUD.Data;
 
 namespace AbarimMUD.Commands.Player
 {
@@ -30,51 +29,17 @@ namespace AbarimMUD.Commands.Player
 				return false;
 			}
 
-			data = data.Trim();
-			if (!context.IsFighting && string.IsNullOrEmpty(data))
+			return context.UseAbility(ab, data, () =>
 			{
-				context.Send($"Circlestab who?");
-				return false;
-			}
-
-			ExecutionContext target = null;
-			if (!string.IsNullOrWhiteSpace(data))
-			{
-				target = context.Room.Find(data);
-				if (target == null)
+				var damage = 0;
+				var attack = context.Stats.Attacks[0];
+				for (var j = 0; j < ab.Power; ++j)
 				{
-					context.Send($"There isnt '{data}' in this room");
-					return false;
+					damage += attack.CalculateDamage();
 				}
 
-				if (target == context)
-				{
-					context.Send("You can't circlestab yourself.");
-					return false;
-				}
-
-				if (target.Creature is Character)
-				{
-					context.Send($"You can't attack {target.ShortDescription}");
-					return false;
-				}
-			}
-
-			if (context.State.Moves < ab.Ability.MovesCost)
-			{
-				context.Send($"You're too tired to circlestab.");
-				return false;
-			}
-
-			if (target == null)
-			{
-				target = context.FightInfo.Target;
-			}
-
-			context.Circlestab(ab, weapon, target);
-			Fight.Start(context, target);
-
-			return true;
+				return damage;
+			}, weapon);
 		}
 
 		public override int CalculateLagInMs(ExecutionContext context, string data = "") => Ability.Circlestab.PhysicalCommandLagInMs;

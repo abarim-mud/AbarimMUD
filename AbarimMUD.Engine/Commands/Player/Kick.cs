@@ -1,5 +1,5 @@
-﻿using AbarimMUD.Combat;
-using AbarimMUD.Data;
+﻿using AbarimMUD.Data;
+using AbarimMUD.Utils;
 
 namespace AbarimMUD.Commands.Player
 {
@@ -16,45 +16,13 @@ namespace AbarimMUD.Commands.Player
 				return false;
 			}
 
-			data = data.Trim();
-			if (!context.IsFighting && string.IsNullOrEmpty(data))
-			{
-				context.Send($"Kick who?");
-				return false;
-			}
-
-			ExecutionContext target = null;
-			if (!string.IsNullOrWhiteSpace(data))
-			{
-				target = context.Room.Find(data);
-				if (target == null)
+			return context.UseAbility(ability, data,
+				() =>
 				{
-					context.Send($"There isnt '{data}' in this room");
-					return false;
-				}
-
-				if (target == context)
-				{
-					context.Send("You can't kick yourself.");
-					return false;
-				}
-
-				if (target.Creature is Character)
-				{
-					context.Send($"You can't attack {target.ShortDescription}");
-					return false;
-				}
-			}
-
-			if (target == null)
-			{
-				target = context.FightInfo.Target;
-			}
-
-			context.Kick(ability, target);
-			Fight.Start(context, target);
-
-			return true;
+					var baseDamage = ability.Power;
+					var damageRange = new ValueRange(baseDamage, baseDamage + 4);
+					return damageRange.Random();
+				}, null);
 		}
 
 		public override int CalculateLagInMs(ExecutionContext context, string data = "") => Ability.Kick.PhysicalCommandLagInMs;

@@ -3,7 +3,6 @@ using AbarimMUD.Data;
 using AbarimMUD.Utils;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace AbarimMUD.Combat
 {
@@ -76,25 +75,37 @@ namespace AbarimMUD.Combat
 			return " (" + info + ")";
 		}
 
-		private static void SendMissMessage(this ExecutionContext attacker, Ability ability, ExecutionContext target, string weapon, string info)
+		public static void SendMissMessage(this ExecutionContext attacker, Ability ability, ExecutionContext target, string weapon, string info)
 		{
 			info = FormatDetails(info);
 			attacker.SendBattleMessage(FormatMessage(ability.MessageMissUser, attacker, target, weapon, info));
 			attacker.SendRoomExceptMe(FormatMessage(ability.MessageMissRoom, attacker, target, weapon, info));
 		}
 
-		private static void SendHitMessage(this ExecutionContext attacker, Ability ability, ExecutionContext target, string weapon, string info)
+		public static void SendHitMessage(this ExecutionContext attacker, Ability ability, ExecutionContext target, string weapon, string info)
 		{
 			info = FormatDetails(info);
 			attacker.SendBattleMessage(FormatMessage(ability.MessageHitUser, attacker, target, weapon, info));
 			attacker.SendRoomExceptMe(FormatMessage(ability.MessageHitRoom, attacker, target, weapon, info));
 		}
 
-		private static void SendKillMessage(this ExecutionContext attacker, Ability ability, ExecutionContext target, string weapon, string info)
+		public static void SendKillMessage(this ExecutionContext attacker, Ability ability, ExecutionContext target, string weapon, string info)
 		{
 			info = FormatDetails(info);
-			attacker.SendBattleMessage(FormatMessage(ability.MessageKillUser, attacker, target, weapon, info));
-			attacker.SendRoomExceptMe(FormatMessage(ability.MessageKillRoom, attacker, target, weapon, info));
+
+			var message = ability.MessageHitUser;
+			if (!string.IsNullOrEmpty(ability.MessageKillUser))
+			{
+				message = ability.MessageKillUser;
+			}
+			attacker.SendBattleMessage(FormatMessage(message, attacker, target, weapon, info));
+
+			message = ability.MessageKillRoom;
+			if (!string.IsNullOrEmpty(ability.MessageKillRoom))
+			{
+				message = ability.MessageKillRoom;
+			}
+			attacker.SendRoomExceptMe(FormatMessage(message, attacker, target, weapon, info));
 		}
 
 		public static FightDetails GetFightDetails(this ExecutionContext ctx)
@@ -181,155 +192,6 @@ namespace AbarimMUD.Combat
 			{
 				attacker.Slain(target);
 			}
-		}
-
-		private static void AbilityAttack(this ExecutionContext attacker,
-			Ability ability, Func<int> damageRoller, int successChancePercentage,
-			ItemInstance weapon, ExecutionContext target, out bool slain)
-		{
-			slain = false;
-
-			var fightDetails = attacker.GetFightDetails();
-			var weaponStr = weapon != null ? weapon.Info.ShortDescription : string.Empty;
-
-			attacker.State.Moves -= ability.MovesCost;
-
-			var skillRollSuccess = Utility.RollPercentage(successChancePercentage);
-			var attackRoll = new AttackRollResult();
-			if (skillRollSuccess)
-			{
-				// Then hit change
-				var attack = attacker.Stats.Attacks[0];
-				attackRoll = attack.DoAttackRoll(target.Stats.Armor);
-			}
-
-			var damage = 0;
-			if (attackRoll.Hit)
-			{
-				// Now roll the damage
-				damage = damageRoller();
-			}
-
-			var info = string.Empty;
-			if (damage == 0)
-			{
-				// Miss
-				if (fightDetails == FightDetails.All)
-				{
-					if (!skillRollSuccess)
-					{
-						info = "skill";
-					}
-					else if (!attackRoll.Hit)
-					{
-						info = attackRoll.ToString();
-					}
-					else
-					{
-						info = "no damage";
-					}
-				}
-
-				attacker.SendMissMessage(ability, target, weaponStr, info);
-				return;
-			}
-
-			switch (fightDetails)
-			{
-				case FightDetails.Damage:
-					info = damage.ToString();
-					break;
-
-				case FightDetails.All:
-					info = attackRoll.AttackRoll + ", " + damage;
-					break;
-			}
-
-
-			target.Creature.State.Hitpoints -= damage;
-			if (target.Creature.State.Hitpoints >= 0)
-			{
-				attacker.SendHitMessage(ability, target, weaponStr, info);
-				return;
-			}
-
-			attacker.SendKillMessage(ability, target, weaponStr, info);
-			attacker.Slain(target);
-			slain = true;
-		}
-
-		public static void Backstab(this ExecutionContext attacker, AbilityPower backstab, ItemInstance weapon, ExecutionContext target)
-		{
-			// Success chance 95 - (i * 20)
-			for (var i = 0; i < attacker.Stats.BackstabCount; ++i)
-			{
-				var successChancePercentage = 95 - (i * 20);
-				bool slain;
-				attacker.AbilityAttack(Ability.Backstab,
-					() =>
-					{
-						var damage = 0;
-						var attack = attacker.Stats.Attacks[0];
-						for (var j = 0; j < backstab.Power; ++j)
-						{
-							damage += attack.CalculateDamage();
-						}
-
-						return damage;
-					},
-					successChancePercentage, weapon, target, out slain);
-
-				if (slain)
-				{
-					break;
-				}
-			}
-		}
-
-		public static void Circlestab(this ExecutionContext attacker, AbilityPower circlestab, ItemInstance weapon, ExecutionContext target)
-		{
-			bool slain;
-			attacker.AbilityAttack(Ability.Circlestab, () =>
-				{
-					var damage = 0;
-					var attack = attacker.Stats.Attacks[0];
-					for (var j = 0; j < circlestab.Power; ++j)
-					{
-						damage += attack.CalculateDamage();
-					}
-
-					return damage;
-				},
-				95, weapon, target, out slain);
-		}
-
-		public static void Kick(this ExecutionContext attacker, AbilityPower kick, ExecutionContext target)
-		{
-			bool slain;
-			attacker.AbilityAttack(Ability.Kick, () =>
-				{
-					var baseDamage = kick.Power;
-					var damageRange = new ValueRange(baseDamage, baseDamage + 4);
-					return damageRange.Random();
-				},
-				95, null, target, out slain);
-		}
-
-		public static void Deathtouch(this ExecutionContext attacker, AbilityPower deathtouch, ExecutionContext target)
-		{
-			bool slain;
-			attacker.AbilityAttack(Ability.Deathtouch, () =>
-				{
-					var damage = 0;
-					var attack = attacker.Stats.Attacks[0];
-					for (var j = 0; j < deathtouch.Power; ++j)
-					{
-						damage += attack.CalculateDamage();
-					}
-
-					return damage;
-				},
-				95, null, target, out slain);
 		}
 
 		private static string GetAttackMessage(AttackRollResult attackRoll, int damage, string attackerName, string targetName, AttackType attackType, FightDetails fightDetails)

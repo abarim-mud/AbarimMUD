@@ -1,0 +1,219 @@
+﻿using AbarimMUD.Combat;
+using AbarimMUD.Data;
+using AbarimMUD.Utils;
+using System;
+
+namespace AbarimMUD.Commands
+{
+	public static class AbilityHelper
+	{
+		private static readonly int[] DefaultAbilityChecks = new int[] { Configuration.DefaultAbilityCheck };
+
+		public static bool UseAbility(this ExecutionContext context, AbilityPower ap, string targetName, int[] abilityChecks, Func<int> physicalDamageRoller, ItemInstance weapon)
+		{
+			var ability = ap.Ability;
+			if (ability.Flags.Contains(AbilityFlags.NotFighting) && context.IsFighting)
+			{
+				context.Send($"You're too busy fighting with someone else.");
+				return false;
+			}
+
+			ExecutionContext target = null;
+			if (!string.IsNullOrWhiteSpace(targetName))
+			{
+				target = context.Room.Find(targetName);
+				if (target == null)
+				{
+					context.Send($"There isnt '{targetName}' in this room");
+					return false;
+				}
+
+				if (ap.Ability.Flags.Contains(AbilityFlags.Offensive))
+				{
+					if (target == context)
+					{
+						context.Send($"You can't use '{ability.Name}' on yourself.");
+						return false;
+					}
+
+					if (target.Creature is Character)
+					{
+						context.Send($"You can't attack {target.ShortDescription}");
+						return false;
+					}
+				}
+			}
+			else
+			{
+				if (ap.Ability.Flags.Contains(AbilityFlags.Offensive))
+				{
+					if (!context.IsFighting)
+					{
+						context.Send($"{ability.Name} who?");
+						return false;
+					}
+
+					target = context.FightInfo.Target;
+				}
+				else
+				{
+					target = context;
+				}
+			}
+
+			if (ability.Flags.Contains(AbilityFlags.TargetFullHp) && target.Creature.State.Hitpoints < target.Creature.Stats.MaxHitpoints)
+			{
+				context.Send($"You can't {ability.Name} a wounded creature.");
+				return false;
+			}
+
+			if (context.Creature.State.Moves < ability.MovesCost)
+			{
+				context.Send("Not enough moves.");
+				return false;
+			}
+
+			if (context.Creature.State.Mana < ability.ManaCost)
+			{
+				context.Send("Not enough mana.");
+				return false;
+			}
+
+			for (var i = 0; i < abilityChecks.Length; ++i)
+			{
+				context.Creature.State.Mana -= ability.ManaCost;
+				context.Creature.State.Moves -= ability.MovesCost;
+
+				// Ability check
+				var fightDetails = context.GetFightDetails();
+				var info = string.Empty;
+				int rnd;
+
+				var abilityCheck = abilityChecks[i];
+				var abilityRollSuccess = Utility.RollPercentage(abilityCheck, out rnd);
+				if (!abilityRollSuccess)
+				{
+					if (fightDetails == FightDetails.All)
+					{
+						info = $" ({rnd})";
+					}
+
+					if (ability.Type == AbilityType.Physical)
+					{
+						context.Send($"You failed to {ability.Name}{info}.");
+					}
+					else
+					{
+						context.Send($"You lost your concentration{info}.");
+					}
+
+					break;
+				}
+
+				var totalDamage = 0;
+				var weaponStr = weapon != null ? weapon.Info.ShortDescription : string.Empty;
+				AttackRollResult? physicalAttackRoll = null;
+				if (ability.Flags.Contains(AbilityFlags.Offensive) && ability.Type == AbilityType.Physical)
+				{
+					// Hit check
+					var attack = context.Stats.Attacks[0];
+					var attackRoll = attack.DoAttackRoll(target.Stats.Armor);
+
+					if (!attackRoll.Hit)
+					{
+						// Miss
+						if (fightDetails == FightDetails.All)
+						{
+							info = attackRoll.ToString();
+						}
+
+						context.SendMissMessage(ability, target, weaponStr, info);
+						break;
+					}
+
+					physicalAttackRoll = attackRoll;
+
+					// Now roll the damage
+					totalDamage = physicalDamageRoller();
+				}
+
+				// Apply affects
+				if (ability.Affects != null)
+				{
+					foreach (var pair in ability.Affects)
+					{
+						var affect = pair.Value;
+						target.Creature.AddTemporaryAffect(affect.AffectSlotName, ability.Name, affect.Type, affect.Value ?? ap.Power, affect.DurationInSeconds.Value, ability.MessageDeactivatedUser);
+					}
+				}
+
+				if (ability.InstantEffects != null)
+				{
+					foreach (var instantEffect in ability.InstantEffects)
+					{
+						var power = instantEffect.Power.Random();
+						switch (instantEffect.Type)
+						{
+							case InstantEffectType.Heal:
+								target.Creature.Heal(power, 0, 0);
+								break;
+
+							case InstantEffectType.MagicDamage:
+								totalDamage += power;
+								break;
+						}
+					}
+				}
+
+				if (ability.Type == AbilityType.Spell)
+				{
+					context.Send($"You cast '{ability.Name}'.");
+				}
+
+				target.Creature.State.Hitpoints -= totalDamage;
+
+				info = string.Empty;
+				switch (fightDetails)
+				{
+					case FightDetails.Damage:
+						info = totalDamage.ToString();
+						break;
+
+					case FightDetails.All:
+						if (physicalAttackRoll != null)
+						{
+							info = physicalAttackRoll.Value.AttackRoll + ", " + totalDamage;
+						}
+						else
+						{
+							info = totalDamage.ToString();
+						}
+						break;
+				}
+
+				if (target.Creature.State.Hitpoints >= 0)
+				{
+					context.SendHitMessage(ability, target, weaponStr, info);
+				}
+				else
+				{
+					context.SendKillMessage(ability, target, weaponStr, info);
+					context.Slain(target);
+				}
+			}
+
+			if (ability.Flags.Contains(AbilityFlags.Offensive))
+			{
+				Fight.Start(context, target);
+			}
+
+			return true;
+		}
+
+		public static bool UseAbility(this ExecutionContext context, AbilityPower ap, string targetName, int abilityCheck, Func<int> physicalDamageRoller, ItemInstance weapon) =>
+			context.UseAbility(ap, targetName, new[] { abilityCheck }, physicalDamageRoller, weapon);
+
+		public static bool UseAbility(this ExecutionContext context, AbilityPower ap, string targetName, Func<int> physicalDamageRoller, ItemInstance weapon) =>
+			context.UseAbility(ap, targetName, DefaultAbilityChecks, physicalDamageRoller, weapon);
+	}
+}

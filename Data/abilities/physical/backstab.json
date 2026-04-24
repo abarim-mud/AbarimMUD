@@ -12,7 +12,9 @@
   "MessageKillRoom": "{user.Name} places {weapon} in the back of {target.Name}, resulting in some strange noises and some blood!",
   "Description": "Backstabs an enemy with the multiplier equal to _power_.",
   "Flags": [
-    "Offensive"
+    "Offensive",
+    "TargetFullHp",
+    "NotFighting"
   ],
   "CommandLagInMs": 2000
 }

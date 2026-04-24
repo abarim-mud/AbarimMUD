@@ -1,18 +1,39 @@
-﻿using AbarimMUD.Combat;
-using AbarimMUD.Data;
+﻿using AbarimMUD.Data;
 
 namespace AbarimMUD.Commands.Player
 {
 	public class Backstab : PlayerCommand
 	{
-		protected override bool InternalExecute(ExecutionContext context, string data)
+		private static bool DoBackstab(ExecutionContext attacker, AbilityPower backstab, string targetName, ItemInstance weapon)
 		{
-			if (context.IsFighting)
+			if (attacker.Stats.BackstabCount < 1)
 			{
-				context.Send($"You're too busy fighting with someone else.");
-				return false;
+				return true;
 			}
 
+			var abilityChecks = new int[attacker.Stats.BackstabCount];
+			for (var i = 0; i < attacker.Stats.BackstabCount; ++i)
+			{
+				abilityChecks[i] = 95 - (i * 20);
+			}
+
+			return attacker.UseAbility(backstab, targetName, abilityChecks,
+					() =>
+					{
+						var damage = 0;
+						var attack = attacker.Stats.Attacks[0];
+						for (var j = 0; j < backstab.Power; ++j)
+						{
+							damage += attack.CalculateDamage();
+						}
+
+						return damage;
+					},
+					weapon);
+		}
+
+		protected override bool InternalExecute(ExecutionContext context, string data)
+		{
 			// Check the player has the skill
 			var ab = context.Stats.GetAbilityById("backstab");
 			if (ab == null || context.Creature.Stats.BackstabCount == 0)
@@ -47,48 +68,13 @@ namespace AbarimMUD.Commands.Player
 				}
 			}
 
-			data = data.Trim();
-			if (string.IsNullOrEmpty(data))
-			{
-				context.Send($"Backstab who?");
-				return false;
-			}
-
-			var target = context.Room.Find(data);
-			if (target == null)
-			{
-				context.Send($"There isnt '{data}' in this room");
-				return false;
-			}
-
-			if (target == context)
-			{
-				context.Send("You can't backstab yourself.");
-				return false;
-			}
-
-			if (target.Creature is Character)
-			{
-				context.Send($"You can't attack {target.ShortDescription}");
-				return false;
-			}
-
-			if (target.Creature.State.Hitpoints < target.Creature.Stats.MaxHitpoints)
-			{
-				context.Send($"You can't backstab a wounded creature.");
-				return false;
-			}
-
-			if (context.State.Moves < ab.Ability.MovesCost)
-			{
-				context.Send($"You're too tired to backstab.");
-				return false;
-			}
-
 			if (weapon != null && weapon.Info.Flags.Contains(ItemFlags.Stab))
 			{
 				// Wielded weapon can stab
-				context.Backstab(ab, weapon, target);
+				if (!DoBackstab(context, ab, data, weapon))
+				{
+					return false;
+				}
 			}
 			else if (weapon == null)
 			{
@@ -98,7 +84,10 @@ namespace AbarimMUD.Commands.Player
 					return false;
 				}
 
-				context.Backstab(ab, stabWeapon, target);
+				if (!DoBackstab(context, ab, data, stabWeapon))
+				{
+					return false;
+				}
 
 				context.RemoveItem(EquipmentSlotType.Wield);
 			}
@@ -117,14 +106,16 @@ namespace AbarimMUD.Commands.Player
 					return false;
 				}
 
-				context.Backstab(ab, stabWeapon, target);
+				if (!DoBackstab(context, ab, data, stabWeapon))
+				{
+					return false;
+				}
+
 				if (context.RemoveItem(EquipmentSlotType.Wield))
 				{
 					context.WearItem(weapon);
 				}
 			}
-
-			Fight.Start(context, target);
 
 			return true;
 		}

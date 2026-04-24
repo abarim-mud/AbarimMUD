@@ -12,7 +12,9 @@
   "MessageKillRoom": "{target.Name} becomes very silent and falls on the ground as {user.Name} lands a deathtouch!",
   "Description": "Deathtouches an enemy with the multiplier equal to _power_.",
   "Flags": [
-    "Offensive"
+    "Offensive",
+    "TargetFullHp",
+    "NotFighting"
   ],
   "CommandLagInMs": 3000
 }

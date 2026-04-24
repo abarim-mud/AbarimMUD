@@ -51,8 +51,9 @@ namespace AbarimMUD.Utils
 			return a.EpsilonEquals(0.0f);
 		}
 
-		public static bool RollPercentage(int percentage)
+		public static bool RollPercentage(int percentage, out int rnd)
 		{
+			rnd = Random.Next(1, 101);
 			if (percentage < 1)
 			{
 				// Fail
@@ -65,7 +66,6 @@ namespace AbarimMUD.Utils
 				return true;
 			}
 
-			var rnd = Random.Next(1, 101);
 			return rnd <= percentage;
 		}
 

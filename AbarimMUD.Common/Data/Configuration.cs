@@ -40,6 +40,7 @@ namespace AbarimMUD.Data
 			public int BaseSellPricePercentage { get; set; } = 25;
 			public int XpMultiply { get; set; } = 2;
 			public int HuntPauseInMs { get; set; } = 6000;
+			public int DefaultAbilityCheck { get; set; } = 95;
 
 			public RoomExitNotExistantBehavior RoomExitNotExistantBehavior { get; set; } = RoomExitNotExistantBehavior.ThrowException;
 			public bool SaveDataOnStart { get; set; } = false;
@@ -74,6 +75,7 @@ namespace AbarimMUD.Data
 		public static int BaseSellPricePercentage => Instance.BaseSellPricePercentage;
 		public static int XpMultiply => Instance.XpMultiply;
 		public static int HuntPauseInMs => Instance.HuntPauseInMs;
+		public static int DefaultAbilityCheck => Instance.DefaultAbilityCheck;
 		public static RoomExitNotExistantBehavior RoomExitNotExistantBehavior => Instance.RoomExitNotExistantBehavior;
 		public static bool SaveDataOnStart => Instance.SaveDataOnStart;
 

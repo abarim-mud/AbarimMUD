@@ -160,7 +160,8 @@ namespace AbarimMUD.Data
 						foreach (var genericLootRecord in pair.Value)
 						{
 							// Roll loot prob
-							if (!Utility.RollPercentage(genericLootRecord.ProbabilityPercentage))
+							int rnd;
+							if (!Utility.RollPercentage(genericLootRecord.ProbabilityPercentage, out rnd))
 							{
 								continue;
 							}
