@@ -52,19 +52,6 @@ namespace AbarimMUD.Combat
 			}
 		}
 
-		private static string FormatMessage(string message, ExecutionContext user, ExecutionContext target, string weapon, string info)
-		{
-			var variables = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
-			{
-				{ "user.name", user.ShortDescription },
-				{ "target.name", target.ShortDescription },
-				{ "weapon", weapon },
-				{ "info", info }
-			};
-
-			return message.FormatMessage(variables);
-		}
-
 		public static string FormatDetails(string info)
 		{
 			if (string.IsNullOrEmpty(info))
@@ -73,39 +60,6 @@ namespace AbarimMUD.Combat
 			}
 
 			return " (" + info + ")";
-		}
-
-		public static void SendMissMessage(this ExecutionContext attacker, Ability ability, ExecutionContext target, string weapon, string info)
-		{
-			info = FormatDetails(info);
-			attacker.SendBattleMessage(FormatMessage(ability.MessageMissUser, attacker, target, weapon, info));
-			attacker.SendRoomExceptMe(FormatMessage(ability.MessageMissRoom, attacker, target, weapon, info));
-		}
-
-		public static void SendHitMessage(this ExecutionContext attacker, Ability ability, ExecutionContext target, string weapon, string info)
-		{
-			info = FormatDetails(info);
-			attacker.SendBattleMessage(FormatMessage(ability.MessageHitUser, attacker, target, weapon, info));
-			attacker.SendRoomExceptMe(FormatMessage(ability.MessageHitRoom, attacker, target, weapon, info));
-		}
-
-		public static void SendKillMessage(this ExecutionContext attacker, Ability ability, ExecutionContext target, string weapon, string info)
-		{
-			info = FormatDetails(info);
-
-			var message = ability.MessageHitUser;
-			if (!string.IsNullOrEmpty(ability.MessageKillUser))
-			{
-				message = ability.MessageKillUser;
-			}
-			attacker.SendBattleMessage(FormatMessage(message, attacker, target, weapon, info));
-
-			message = ability.MessageKillRoom;
-			if (!string.IsNullOrEmpty(ability.MessageKillRoom))
-			{
-				message = ability.MessageKillRoom;
-			}
-			attacker.SendRoomExceptMe(FormatMessage(message, attacker, target, weapon, info));
 		}
 
 		public static FightDetails GetFightDetails(this ExecutionContext ctx)

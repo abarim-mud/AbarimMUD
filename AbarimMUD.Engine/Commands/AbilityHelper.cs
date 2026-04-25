@@ -2,12 +2,59 @@
 using AbarimMUD.Data;
 using AbarimMUD.Utils;
 using System;
+using System.Collections.Generic;
 
 namespace AbarimMUD.Commands
 {
 	public static class AbilityHelper
 	{
 		private static readonly int[] DefaultAbilityChecks = new int[] { Configuration.DefaultAbilityCheck };
+
+		private static string FormatMessage(string message, ExecutionContext user, ExecutionContext target, string weapon, string info)
+		{
+			var variables = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+			{
+				{ "user.name", user.ShortDescription },
+				{ "target.name", target.ShortDescription },
+				{ "weapon", weapon },
+				{ "info", info }
+			};
+
+			return message.FormatMessage(variables);
+		}
+
+		private static void SendMissMessage(this ExecutionContext attacker, Ability ability, ExecutionContext target, string weapon, string info)
+		{
+			info = CombatUtils.FormatDetails(info);
+			attacker.SendBattleMessage(FormatMessage(ability.MessageMissUser, attacker, target, weapon, info));
+			attacker.SendRoomExceptMe(FormatMessage(ability.MessageMissRoom, attacker, target, weapon, info));
+		}
+
+		private static void SendHitMessage(this ExecutionContext attacker, Ability ability, ExecutionContext target, string weapon, string info)
+		{
+			info = CombatUtils.FormatDetails(info);
+			attacker.SendBattleMessage(FormatMessage(ability.MessageHitUser, attacker, target, weapon, info));
+			attacker.SendRoomExceptMe(FormatMessage(ability.MessageHitRoom, attacker, target, weapon, info));
+		}
+
+		private static void SendKillMessage(this ExecutionContext attacker, Ability ability, ExecutionContext target, string weapon, string info)
+		{
+			info = CombatUtils.FormatDetails(info);
+
+			var message = ability.MessageHitUser;
+			if (!string.IsNullOrEmpty(ability.MessageKillUser))
+			{
+				message = ability.MessageKillUser;
+			}
+			attacker.SendBattleMessage(FormatMessage(message, attacker, target, weapon, info));
+
+			message = ability.MessageKillRoom;
+			if (!string.IsNullOrEmpty(ability.MessageKillRoom))
+			{
+				message = ability.MessageKillRoom;
+			}
+			attacker.SendRoomExceptMe(FormatMessage(message, attacker, target, weapon, info));
+		}
 
 		public static bool UseAbility(this ExecutionContext context, AbilityPower ap, string targetName, int[] abilityChecks, Func<int> physicalDamageRoller, ItemInstance weapon)
 		{
