@@ -511,9 +511,10 @@ namespace AbarimMUD.ExportAreasToMMB
 			sb.Append("---\r\nlayout: page\r\ntitle: Skills\r\n---");
 
 			ExportSkills(sb, "warrior", new[] { "melee", "strength" });
-			ExportSkills(sb, "cleric", new[] { "restoration", "wisdom" });
 			ExportSkills(sb, "rogue", new[] { "backstab", "dexterity" });
 			ExportSkills(sb, "monk", new[] { "martialArts", "deathtouch", "constitution" });
+			ExportSkills(sb, "cleric", new[] { "restoration", "wisdom" });
+			ExportSkills(sb, "mage", new[] { "wizardry", "intelligence" });
 
 			var skillsFile = Path.Combine(outputFolder, "skills.markdown");
 			File.WriteAllText(skillsFile, sb.ToString());
