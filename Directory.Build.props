@@ -5,8 +5,8 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/abarim-mud/AbarimMUD</PackageProjectUrl>
     <RootNamespace>AbarimMUD</RootNamespace>
-    <Description>C# Diku Based MUD Engine</Description>
-    <VersionPrefix>0.3.0</VersionPrefix>
+    <Description>C# Hack And Slash MUD Engine</Description>
+    <VersionPrefix>0.4.0</VersionPrefix>
     <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
 </Project>
