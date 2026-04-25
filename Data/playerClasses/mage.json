@@ -3,7 +3,7 @@
   "Name": "Mage",
   "Description": "Master of magic.",
   "Hitpoints": "150-650",
-  "Mana": "350-800",
+  "Mana": "300-800",
   "Moves": "100-200",
   "StartingEquipment": [
     "greenLantern",

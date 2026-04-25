@@ -3,7 +3,7 @@
   "Name": "Cleric",
   "Description": "Master of healing and bane of the undead.",
   "Hitpoints": "200-700",
-  "Mana": "300-700",
+  "Mana": "250-700",
   "Moves": "100-200",
   "StartingEquipment": [
     "greenLantern",
