@@ -1,0 +1,17 @@
+{
+  "Id": "strike",
+  "Name": "strike",
+  "Type": "Physical",
+  "MovesCost": 0,
+  "ManaCost": 0,
+  "MessageHitUser": "You land a powerful strike into a {target.Name}\u0027s side{info}.",
+  "MessageHitRoom": "{user.Name} lands a powerful strike into a {target.Name}\u0027s side.",
+  "MessageKillUser": "{target.Name} looks shocked as it sees your fist embedded in its abdomen, then collapses.",
+  "MessageKillRoom": "{target.Name} looks shocked as it sees {user.Name}\u0027s fist embedded in its abdomen, then collapses.",
+  "Description": "Strikes an enemy with the multiplier equal to _power_.",
+  "Flags": [
+    "Offensive",
+    "FightSkill"
+  ],
+  "CommandLagInMs": 3000
+}

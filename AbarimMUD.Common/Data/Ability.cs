@@ -27,6 +27,7 @@ namespace AbarimMUD.Data
 		private static Ability _kick;
 		private static Ability _backstab;
 		private static Ability _circlestab;
+		private static Ability _strike;
 		private static Ability _deathtouch;
 
 		public static Ability Kick
@@ -67,6 +68,20 @@ namespace AbarimMUD.Data
 				return _circlestab;
 			}
 		}
+
+		public static Ability Strike
+		{
+			get
+			{
+				if (_strike == null)
+				{
+					_strike = EnsureAbilityById("strike");
+				}
+
+				return _strike;
+			}
+		}
+
 
 		public static Ability Deathtouch
 		{
