@@ -1,5 +1,5 @@
 # AbarimMUD
-C# MUD Engine in the very early stage(basically there's no engine yet).
+AbarimMUD is modern hack and slash MUD engine made in C#.
 
 # License
 The C# source code of the engine itself uses MIT license. 
