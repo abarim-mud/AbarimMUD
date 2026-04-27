@@ -16,6 +16,7 @@ namespace AbarimMUD.Commands.Player
 
 			context.Room = Room.EnsureRoomById(Configuration.StartRoomId);
 			context.Send("You recalled.");
+			context.SendRoomExceptMe($"{context.ShortDescription} appears in the middle of the room.");
 
 			context.State.Mana -= Configuration.RecallManaCost;
 
