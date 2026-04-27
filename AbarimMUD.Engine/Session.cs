@@ -154,6 +154,7 @@ namespace AbarimMUD
 			{
 				Creature.ActiveCreatures.Remove(_character);
 				Character.ActiveCharacters.Remove(_character);
+				_character.Room = null;
 			}
 
 			_connection.Disconnect();

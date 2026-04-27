@@ -67,6 +67,13 @@ namespace AbarimMUD
 					continue;
 				}
 
+				var exit = mobile.Room.Exits[dir];
+				if (exit.TargetRoom.Area.Id != mobile.Info.Area.Id)
+				{
+					// Different area
+					continue;
+				}
+
 				_moveCommands[dir].Execute(ctx);
 			}
 
