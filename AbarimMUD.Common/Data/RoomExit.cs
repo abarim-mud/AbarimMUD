@@ -27,9 +27,19 @@ namespace AbarimMUD.Data
 
 	public class RoomExit
 	{
+		public static readonly Direction[] AllDirections = new Direction[]
+		{
+			Direction.North,
+			Direction.East,
+			Direction.South,
+			Direction.West,
+			Direction.Up,
+			Direction.Down
+		};
+
 		[JsonIgnore]
 		public Room TargetRoom { get; set; }
-		
+
 		[JsonIgnore]
 		public Direction Direction { get; set; }
 

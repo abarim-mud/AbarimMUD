@@ -25,6 +25,7 @@ namespace AbarimMUD
 		private readonly Service _webService = new Service();
 		private DateTime? _lastRegenDt;
 		private readonly List<string> _toDelete = new List<string>();
+		private readonly AIService _aiService = new AIService();
 
 		public static Logger Logger { get; private set; } = LogManager.GetLogger("Logs/Server");
 
@@ -234,7 +235,6 @@ namespace AbarimMUD
 			{
 				_lastRegenDt = now;
 			}
-
 			else if ((now - _lastRegenDt.Value).TotalMilliseconds >= 1000)
 			{
 				// Areas' repop
@@ -365,6 +365,8 @@ namespace AbarimMUD
 
 				_lastRegenDt = now;
 			}
+
+			_aiService.Update();
 		}
 
 		public void SpawnArea(Area area, Action<string> spawnLogger = null)

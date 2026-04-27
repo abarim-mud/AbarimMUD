@@ -131,7 +131,6 @@ namespace AbarimMUD.Storage
 
 				foreach (var pair in value)
 				{
-					// If there's no duration, then write just value
 					newDict[pair.Key] = pair.Value.TargetRoom.Id;
 				}
 
