@@ -17,5 +17,7 @@
   "HuntPauseInMs": 6000,
   "DefaultAbilityCheck": 95,
   "RoomExitNotExistantBehavior": "DeleteRoomExit",
+  "SaveDataOnStart": false,
+  "NpcWanderChance": 15,
   "CastLagInMs": 2000
 }
