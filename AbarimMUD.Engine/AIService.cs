@@ -53,9 +53,9 @@ namespace AbarimMUD
 					continue;
 				}
 
-				// 25% chance to wander
+				// 15% chance to wander
 				int rnd;
-				if (!Utility.RollPercentage(75, out rnd))
+				if (!Utility.RollPercentage(15, out rnd))
 				{
 					continue;
 				}
