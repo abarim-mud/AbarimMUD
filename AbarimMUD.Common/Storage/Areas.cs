@@ -1,4 +1,5 @@
 ﻿using AbarimMUD.Data;
+using AbarimMUD.Utils;
 using System;
 using System.Collections.Generic;
 using System.Text.Json;
@@ -100,27 +101,41 @@ namespace AbarimMUD.Storage
 			}
 		}
 
-		private class RoomExitConverterType : JsonConverter<RoomExit>
+		private class RoomExitConverterType : JsonConverter<Dictionary<Direction, RoomExit>>
 		{
-			public override RoomExit Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+			public override Dictionary<Direction, RoomExit> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 			{
-				var vnum = reader.GetInt32();
-				return new RoomExit
+				var result = new Dictionary<Direction, RoomExit>();
+				var doc = JsonDocument.ParseValue(ref reader);
+
+				foreach (var pair in doc.RootElement.EnumerateObject())
 				{
-					Tag = vnum
-				};
+					var direction = Enum.Parse<Direction>(pair.Name);
+
+					result[direction] = new RoomExit
+					{
+						Direction = direction,
+						TargetRoom = new Room
+						{
+							Id = pair.Value.GetInt32()
+						}
+					};
+				}
+
+				return result;
 			}
 
-			public override void Write(Utf8JsonWriter writer, RoomExit value, JsonSerializerOptions options)
+			public override void Write(Utf8JsonWriter writer, Dictionary<Direction, RoomExit> value, JsonSerializerOptions options)
 			{
-				if (value.TargetRoom != null)
+				var newDict = new Dictionary<Direction, object>();
+
+				foreach (var pair in value)
 				{
-					writer.WriteNumberValue(value.TargetRoom.Id);
+					// If there's no duration, then write just value
+					newDict[pair.Key] = pair.Value.TargetRoom.Id;
 				}
-				else
-				{
-					writer.WriteNullValue();
-				}
+
+				JsonSerializer.Serialize(writer, newDict, JsonUtils.DefaultOptions);
 			}
 		}
 
@@ -203,15 +218,10 @@ namespace AbarimMUD.Storage
 					foreach (var pair2 in room.Exits)
 					{
 						var exit = pair2.Value;
-						if (exit == null)
-						{
-							continue;
-						}
-
+						
 						exit.Direction = pair2.Key;
 
-						var vnum = (int)exit.Tag;
-
+						var vnum = exit.TargetRoom.Id;
 						var targetRoom = GetRoomById(vnum);
 						if (targetRoom == null)
 						{
@@ -229,7 +239,6 @@ namespace AbarimMUD.Storage
 						}
 
 						exit.TargetRoom = targetRoom;
-						exit.Tag = null;
 					}
 
 					foreach(var d in toDelete)

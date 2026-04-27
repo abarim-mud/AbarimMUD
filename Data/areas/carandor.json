@@ -291,8 +291,7 @@
       "HealRate": 0,
       "ManaRate": 0,
       "Exits": {
-        "West": 23,
-        "East": null
+        "West": 23
       },
       "Id": 24
     },

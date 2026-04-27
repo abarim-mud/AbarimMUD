@@ -92,24 +92,6 @@ namespace AbarimMUD.Data
 			}
 		}
 
-		public Room()
-		{
-			MobileSpawns = new ObservableCollection<MobileSpawn>();
-		}
-
-		private void UpdateMobileSpawns()
-		{
-			foreach (var mobileSpawn in _mobileSpawns)
-			{
-				mobileSpawn.Room = this;
-			}
-		}
-
-		private void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-		{
-			UpdateMobileSpawns();
-		}
-
 		[Browsable(false)]
 		public Dictionary<Direction, RoomExit> Exits { get; set; } = new Dictionary<Direction, RoomExit>();
 
@@ -132,6 +114,24 @@ namespace AbarimMUD.Data
 				Name = "Default Room",
 				Description = "The game has no rooms yet. Create the first area by command 'create area _id_'."
 			};
+		}
+
+		public Room()
+		{
+			MobileSpawns = new ObservableCollection<MobileSpawn>();
+		}
+
+		private void UpdateMobileSpawns()
+		{
+			foreach (var mobileSpawn in _mobileSpawns)
+			{
+				mobileSpawn.Room = this;
+			}
+		}
+
+		private void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+		{
+			UpdateMobileSpawns();
 		}
 
 		public void AddCharacter(Character character)
