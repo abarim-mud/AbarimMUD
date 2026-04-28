@@ -1,5 +1,6 @@
 ﻿using AbarimMUD.Data;
 using System.Text.Json;
+using Ur;
 
 namespace AbarimMUD.Storage
 {
@@ -19,7 +20,7 @@ namespace AbarimMUD.Storage
 			return result;
 		}
 
-		protected internal override void SetReferences()
+		protected override void SetReferences()
 		{
 			base.SetReferences();
 

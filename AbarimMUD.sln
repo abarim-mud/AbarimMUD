@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.7.34221.43
+# Visual Studio Version 18
+VisualStudioVersion = 18.5.11709.299 stable
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbarimMUD.Common", "AbarimMUD.Common\AbarimMUD.Common.csproj", "{05A90EB7-9447-48C6-937F-8E0FD79078D0}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbarimMUD.Launcher", "AbarimMUD.Launcher\AbarimMUD.Launcher.csproj", "{767CF1C5-951B-4887-8342-5A71C40703BD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbarimMUD.Common.Tests", "AbarimMUD.Common.Tests\AbarimMUD.Common.Tests.csproj", "{AF36CE32-19BA-44EE-BC97-A2CD4469364A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ur", "..\Ur\Ur\Ur.csproj", "{365EE2DA-8CA6-6C0B-B2D9-D8F9FB5FE729}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{AF36CE32-19BA-44EE-BC97-A2CD4469364A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF36CE32-19BA-44EE-BC97-A2CD4469364A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF36CE32-19BA-44EE-BC97-A2CD4469364A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{365EE2DA-8CA6-6C0B-B2D9-D8F9FB5FE729}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{365EE2DA-8CA6-6C0B-B2D9-D8F9FB5FE729}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{365EE2DA-8CA6-6C0B-B2D9-D8F9FB5FE729}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{365EE2DA-8CA6-6C0B-B2D9-D8F9FB5FE729}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

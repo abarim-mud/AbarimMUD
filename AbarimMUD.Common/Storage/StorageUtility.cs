@@ -1,5 +1,7 @@
 ﻿using AbarimMUD.Data;
+using AbarimMUD.Utils;
 using System;
+using Ur;
 
 namespace AbarimMUD.Storage
 {
@@ -7,24 +9,25 @@ namespace AbarimMUD.Storage
 	{
 		public static void InitializeStorage(Action<string> logger)
 		{
-			DataContext.Logger = logger;
+			UrContext.Logger = logger;
+			UrContext.BaseOptionsCreator = JsonUtils.CreateOptions;
 
-			DataContext.Register(Configuration.Storage);
-			DataContext.Register(LevelInfo.Storage);
-			DataContext.Register(SkillCostInfo.Storage);
-			DataContext.Register(Item.Storage);
-			DataContext.Register(Ability.Storage);
-			DataContext.Register(Skill.Storage);
-			DataContext.Register(PlayerClass.Storage);
-			DataContext.Register(Area.Storage);
-			DataContext.Register(Account.Storage);
-			DataContext.Register(Character.Storage);
-			DataContext.Register(Social.Storage);
-			DataContext.Register(GenericLoot.Storage);
-			DataContext.Register(Shop.Storage);
-			DataContext.Register(ForgeShop.Storage);
-			DataContext.Register(ExchangeShop.Storage);
-			DataContext.Register(Enchantment.Storage);
+			UrContext.Register(Configuration.Storage);
+			UrContext.Register(LevelInfo.Storage);
+			UrContext.Register(SkillCostInfo.Storage);
+			UrContext.Register(Item.Storage);
+			UrContext.Register(Ability.Storage);
+			UrContext.Register(Skill.Storage);
+			UrContext.Register(PlayerClass.Storage);
+			UrContext.Register(Area.Storage);
+			UrContext.Register(Account.Storage);
+			UrContext.Register(Character.Storage);
+			UrContext.Register(Social.Storage);
+			UrContext.Register(GenericLoot.Storage);
+			UrContext.Register(Shop.Storage);
+			UrContext.Register(ForgeShop.Storage);
+			UrContext.Register(ExchangeShop.Storage);
+			UrContext.Register(Enchantment.Storage);
 		}
 	}
 }

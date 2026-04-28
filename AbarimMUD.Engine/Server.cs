@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using AbarimMUD.Combat;
 using System.Threading;
 using AbarimMUD.Commands;
+using Ur;
 
 namespace AbarimMUD
 {
@@ -63,7 +64,7 @@ namespace AbarimMUD
 
 			StorageUtility.InitializeStorage(Logger.Info);
 
-			DataContext.Load(dataFolder);
+			UrContext.Load(dataFolder);
 
 			if (Configuration.SaveDataOnStart)
 			{

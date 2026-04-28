@@ -1,5 +1,6 @@
 ﻿using AbarimMUD.Storage;
 using System.Collections.Generic;
+using Ur;
 
 namespace AbarimMUD.Data
 {
@@ -14,7 +15,7 @@ namespace AbarimMUD.Data
 
 		public LootRecord(Inventory items, int probabilityPercentage)
 		{
-			this.Items = items;
+			Items = items;
 			ProbabilityPercentage = probabilityPercentage;
 		}
 

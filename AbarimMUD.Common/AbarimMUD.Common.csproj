@@ -4,4 +4,8 @@
     <RootNamespace>AbarimMUD</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Ur\Ur\Ur.csproj" />
+  </ItemGroup>
+
 </Project>

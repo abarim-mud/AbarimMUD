@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Ur;
 
 namespace AbarimMUD.Storage
 {
@@ -199,7 +200,7 @@ namespace AbarimMUD.Storage
 			base.ClearCache();
 		}
 
-		protected internal override void SetReferences()
+		protected override void SetReferences()
 		{
 			base.SetReferences();
 
