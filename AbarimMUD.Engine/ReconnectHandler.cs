@@ -39,6 +39,16 @@ namespace AbarimMUD
 			}
 
 			// Yes
+			try
+			{
+				// Disconnect previous session
+				_previousSession.Disconnect();
+			}
+			catch(Exception ex)
+			{
+				Logger.Error(ex);
+			}
+
 			// Copy params
 			Session.Account = _previousSession.Account;
 			Session.Character = _previousSession.Character;
@@ -47,9 +57,6 @@ namespace AbarimMUD
 			var handlerType = _previousSession.CurrentHandler.GetType();
 			var newHandler = (Handler)Activator.CreateInstance(handlerType, Session);
 			Session.CurrentHandler = newHandler;
-
-			// Disconnect previous session
-			_previousSession.Disconnect();
 		}
 	}
 }
