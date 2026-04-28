@@ -1,10 +1,18 @@
-﻿using Ur;
+﻿using System.Text.Json.Serialization;
+using Ur;
 
 namespace AbarimMUD.Data
 {
-	public class Social
+	public class Social : IHasId<string>
 	{
-		public static readonly SingleFileStorageString<Social> Storage = new SingleFileStorageString<Social>(s => s.Name, "socials.json");
+		public static readonly SingleFileStorageString<Social> Storage = new SingleFileStorageString<Social>("socials.json");
+
+		[JsonIgnore]
+		public string Id
+		{
+			get => Name;
+			set => Name = value;
+		}
 
 		public string Name { get; set; }
 		public string CharNoArgument { get; set; }

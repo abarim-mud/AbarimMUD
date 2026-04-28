@@ -1,10 +1,18 @@
-﻿using Ur;
+﻿using System.Text.Json.Serialization;
+using Ur;
 
 namespace AbarimMUD.Data
 {
-	public class LevelInfo
+	public class LevelInfo: IHasId<int>
 	{
-		public static readonly SingleFileStorage<int, LevelInfo> Storage = new SingleFileStorage<int, LevelInfo>(l => l.Level, "levels.json");
+		public static readonly SingleFileStorage<int, LevelInfo> Storage = new SingleFileStorage<int, LevelInfo>("levels.json");
+
+		[JsonIgnore]
+		public int Id
+		{
+			get => Level;
+			set => Level = value;
+		}
 
 		public int Level { get; set; }
 

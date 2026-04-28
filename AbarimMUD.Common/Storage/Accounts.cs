@@ -10,7 +10,7 @@ namespace AbarimMUD.Storage
 		internal const string SubfolderName = "accounts";
 		private const string AccountFileName = "account.json";
 
-		public Accounts() : base(a => a.Name, SubfolderName)
+		public Accounts() : base(SubfolderName)
 		{
 		}
 

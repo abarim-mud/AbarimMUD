@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Ur;
 
 namespace AbarimMUD.Storage
 {
@@ -11,11 +12,8 @@ namespace AbarimMUD.Storage
 	{
 		public class EntityConverter<ObjectType> : JsonConverter<ObjectType> where ObjectType : class, IHasId<string>, new()
 		{
-			private readonly Func<ObjectType, string> _objToId;
-
-			public EntityConverter(Func<ObjectType, string> objToId)
+			public EntityConverter()
 			{
-				_objToId = objToId ?? throw new ArgumentNullException(nameof(objToId));
 			}
 
 			public override ObjectType Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
@@ -36,7 +34,7 @@ namespace AbarimMUD.Storage
 
 			public override void Write(Utf8JsonWriter writer, ObjectType value, JsonSerializerOptions options)
 			{
-				writer.WriteStringValue(_objToId(value));
+				writer.WriteStringValue(value.Id);
 			}
 		}
 
@@ -375,22 +373,22 @@ namespace AbarimMUD.Storage
 			}
 		}
 
-		public static readonly EntityConverter<PlayerClass> PlayerClassConverter = new EntityConverter<PlayerClass>(s => s.Id);
-		public static readonly EntityConverter<Skill> SkillConverter = new EntityConverter<Skill>(s => s.Id);
-		public static readonly EntityConverter<Item> ItemConverter = new EntityConverter<Item>(i => i.Id);
+		public static readonly EntityConverter<PlayerClass> PlayerClassConverter = new EntityConverter<PlayerClass>();
+		public static readonly EntityConverter<Skill> SkillConverter = new EntityConverter<Skill>();
+		public static readonly EntityConverter<Item> ItemConverter = new EntityConverter<Item>();
 		public static readonly ItemInstanceConverterType ItemInstanceConverter = new ItemInstanceConverterType();
 		public static readonly SkillValueConverterType SkillValueConverter = new SkillValueConverterType();
 		public static readonly AffectsConverterType AffectsConverter = new AffectsConverterType();
 		public static readonly AbilitiesConverterType AbilitiesConverter = new AbilitiesConverterType();
-		public static readonly EntityConverter<Shop> ShopConverter = new EntityConverter<Shop>(s => s.Id);
+		public static readonly EntityConverter<Shop> ShopConverter = new EntityConverter<Shop>();
 		public static readonly InventoryConverterType InventoryConverter = new InventoryConverterType();
 		public static readonly EquipmentConverterType EquipmentConverter = new EquipmentConverterType();
-		public static readonly EntityConverter<ForgeShop> ForgeShopConverter = new EntityConverter<ForgeShop>(f => f.Id);
-		public static readonly EntityConverter<ExchangeShop> ExchangeShopConverter = new EntityConverter<ExchangeShop>(f => f.Id);
-		public static readonly EntityConverter<Enchantment> EnchantmentConverter = new EntityConverter<Enchantment>(s => s.Id);
+		public static readonly EntityConverter<ForgeShop> ForgeShopConverter = new EntityConverter<ForgeShop>();
+		public static readonly EntityConverter<ExchangeShop> ExchangeShopConverter = new EntityConverter<ExchangeShop>();
+		public static readonly EntityConverter<Enchantment> EnchantmentConverter = new EntityConverter<Enchantment>();
 		public static readonly MobileSpawnConverterType MobileSpawnConverter = new MobileSpawnConverterType();
 		public static readonly InstantEffectConverterType InstantEffectConverter = new InstantEffectConverterType();
-		public static readonly EntityConverter<Ability> AbilityConverter = new EntityConverter<Ability>(s => s.Id);
+		public static readonly EntityConverter<Ability> AbilityConverter = new EntityConverter<Ability>();
 
 		public static void SetReferences(this ItemInstance item)
 		{

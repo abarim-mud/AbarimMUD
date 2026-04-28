@@ -6,7 +6,7 @@ namespace AbarimMUD.Storage
 {
 	internal class Items : MultipleFilesStorage<Item>
 	{
-		public Items() : base(m => m.Id, "items")
+		public Items() : base("items")
 		{
 		}
 

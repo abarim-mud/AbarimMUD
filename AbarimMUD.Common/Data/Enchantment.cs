@@ -8,7 +8,7 @@ namespace AbarimMUD.Data
 {
 	public class Enchantment : IStoredInFile, ICloneable
 	{
-		public static readonly MultipleFilesStorage<Enchantment> Storage = new MultipleFilesStorage<Enchantment>(e => e.Id, "enchantments");
+		public static readonly MultipleFilesStorage<Enchantment> Storage = new MultipleFilesStorage<Enchantment>("enchantments");
 
 		public string Id { get; set; }
 

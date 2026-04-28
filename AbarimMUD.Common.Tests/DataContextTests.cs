@@ -3,10 +3,11 @@ using AbarimMUD.Storage;
 using NUnit.Framework;
 using System.Diagnostics;
 using System.IO;
+using Ur;
 
 namespace AbarimMUD.Common.Tests
 {
-	public class DataContextTests
+	public class UrContextTests
 	{
 		private static readonly Attack DefaultAttack = new Attack(AttackType.Hit, 50, 10, 100);
 
@@ -17,7 +18,7 @@ namespace AbarimMUD.Common.Tests
 				Directory.Delete("Data", true);
 			}
 
-			DataContext.Clear();
+			UrContext.Clear();
 			StorageUtility.InitializeStorage(s => Trace.WriteLine(s));
 		}
 
@@ -26,7 +27,7 @@ namespace AbarimMUD.Common.Tests
 		{
 			ResetData();
 
-			DataContext.Load("Data");
+			UrContext.Load("Data");
 
 			var testClass = new PlayerClass
 			{
@@ -72,7 +73,7 @@ namespace AbarimMUD.Common.Tests
 			Assert.That(charsGet[0].Name, Is.EqualTo("char1"));
 			Assert.That(charsGet[1].Name, Is.EqualTo("char2"));
 
-			DataContext.Load("Data");
+			UrContext.Load("Data");
 
 			accGet = Account.GetAccountByName(newAcc.Name);
 			Assert.That(accGet, Is.Not.Null);
@@ -91,7 +92,7 @@ namespace AbarimMUD.Common.Tests
 		{
 			ResetData();
 
-			DataContext.Load("Data");
+			UrContext.Load("Data");
 
 			var area = new Area
 			{
@@ -134,7 +135,7 @@ namespace AbarimMUD.Common.Tests
 			area.Create();
 
 			// Reload
-			DataContext.Load("Data");
+			UrContext.Load("Data");
 
 			area = Area.GetAreaByName("test");
 			Assert.That(area, Is.Not.Null);
@@ -151,7 +152,7 @@ namespace AbarimMUD.Common.Tests
 			Assert.That(area.Mobiles.Count, Is.EqualTo(1));
 			Assert.That(area.Mobiles[0].ShortDescription, Is.EqualTo("a test mobile"));
 
-			DataContext.Unregister(Area.Storage);
+			UrContext.Unregister(Area.Storage);
 		}
 	}
 }

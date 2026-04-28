@@ -7,7 +7,7 @@ namespace AbarimMUD.Storage
 {
 	internal class Skills: MultipleFilesStorage<Skill>
 	{
-		public Skills() : base(c => c.Id, "skills")
+		public Skills() : base("skills")
 		{
 		}
 

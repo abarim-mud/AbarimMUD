@@ -6,7 +6,7 @@ namespace AbarimMUD.Storage
 {
 	internal class ForgeShops: MultipleFilesStorage<ForgeShop>
 	{
-		public ForgeShops(): base(f => f.Id, "forgeShops")
+		public ForgeShops(): base("forgeShops")
 		{
 		}
 

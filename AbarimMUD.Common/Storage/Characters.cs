@@ -26,7 +26,7 @@ namespace AbarimMUD.Storage
 
 		public override string Name => "characters";
 
-		internal Characters() : base(c => c.Name, Accounts.SubfolderName)
+		internal Characters() : base(Accounts.SubfolderName)
 		{
 		}
 

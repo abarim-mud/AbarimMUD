@@ -149,7 +149,7 @@ namespace AbarimMUD.Storage
 		public IReadOnlyDictionary<int, Room> AllRooms => _allRoomsCache.All;
 		public IReadOnlyDictionary<int, Mobile> AllMobiles => _allMobilesCache.All;
 
-		internal Areas() : base(a => a.Id, SubfolderName)
+		internal Areas() : base(SubfolderName)
 		{
 			_allRoomsCache = new EntityCache<Room>(this, a => a.Rooms);
 			_allMobilesCache = new EntityCache<Mobile>(this, a => a.Mobiles);
@@ -218,7 +218,7 @@ namespace AbarimMUD.Storage
 					foreach (var pair2 in room.Exits)
 					{
 						var exit = pair2.Value;
-						
+
 						exit.Direction = pair2.Key;
 
 						var vnum = exit.TargetRoom.Id;
@@ -241,7 +241,7 @@ namespace AbarimMUD.Storage
 						exit.TargetRoom = targetRoom;
 					}
 
-					foreach(var d in toDelete)
+					foreach (var d in toDelete)
 					{
 						room.Exits.Remove(d);
 					}

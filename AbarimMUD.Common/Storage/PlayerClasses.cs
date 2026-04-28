@@ -6,7 +6,7 @@ namespace AbarimMUD.Storage
 {
 	internal class PlayerClasses : MultipleFilesStorage<PlayerClass>
 	{
-		public PlayerClasses() : base(c => c.Id, "playerClasses")
+		public PlayerClasses() : base("playerClasses")
 		{
 		}
 

@@ -1,13 +1,21 @@
 ﻿using AbarimMUD.Storage;
 using System;
 using System.IO;
+using System.Text.Json.Serialization;
 using Ur;
 
 namespace AbarimMUD.Data
 {
-	public sealed class Account
+	public sealed class Account: IHasId<string>
 	{
 		public static readonly MultipleFilesStorage<Account> Storage = new Accounts();
+
+		[JsonIgnore]
+		public string Id
+		{
+			get => Name;
+			set => Name = value;
+		}
 
 		public string Name { get; set; }
 

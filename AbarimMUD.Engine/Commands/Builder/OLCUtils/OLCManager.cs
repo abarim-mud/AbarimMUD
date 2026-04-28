@@ -20,7 +20,7 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 
 	internal static class OLCManager
 	{
-		private class OLCRecordString<EntityType> : IOLCStorage where EntityType : class, IStoredInFile
+		private class OLCRecordString<EntityType> : IOLCStorage where EntityType : class, IStoredInFile, new()
 		{
 			private readonly GenericBaseStorage<string, EntityType> _storage;
 

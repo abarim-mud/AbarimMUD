@@ -6,7 +6,7 @@ namespace AbarimMUD.Storage
 {
 	internal class ExchangeShops : MultipleFilesStorage<ExchangeShop>
 	{
-		public ExchangeShops() : base(f => f.Id, "exchangeShops")
+		public ExchangeShops() : base("exchangeShops")
 		{
 		}
 

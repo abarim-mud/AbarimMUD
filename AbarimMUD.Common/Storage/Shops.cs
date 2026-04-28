@@ -6,7 +6,7 @@ namespace AbarimMUD.Storage
 {
 	public class Shops : MultipleFilesStorage<Shop>
 	{
-		public Shops() : base(s => s.Id, "shops")
+		public Shops() : base("shops")
 		{
 		}
 
