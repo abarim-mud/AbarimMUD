@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Ur\Ur\Ur.csproj" />
+    <PackageReference Include="Ur" Version="0.4.0" />
   </ItemGroup>
 
 </Project>
