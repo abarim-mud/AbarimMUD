@@ -4,40 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Ur;
 
 namespace AbarimMUD.Storage
 {
 	internal static class Common
 	{
-		public class EntityConverter<ObjectType> : JsonConverter<ObjectType> where ObjectType : class, IHasId<string>, new()
-		{
-			public EntityConverter()
-			{
-			}
-
-			public override ObjectType Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-			{
-				var value = reader.GetString();
-				if (string.IsNullOrEmpty(value))
-				{
-					return null;
-				}
-
-				var result = new ObjectType
-				{
-					Id = value
-				};
-
-				return result;
-			}
-
-			public override void Write(Utf8JsonWriter writer, ObjectType value, JsonSerializerOptions options)
-			{
-				writer.WriteStringValue(value.Id);
-			}
-		}
-
 		public class SkillValueConverterType : JsonConverter<SkillValue>
 		{
 			public override SkillValue Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
@@ -149,24 +120,6 @@ namespace AbarimMUD.Storage
 
 		public class ItemInstanceConverterType : JsonConverter<ItemInstance>
 		{
-			private static JsonSerializerOptions _defaultOptions;
-
-			public static JsonSerializerOptions DefaultOptions
-			{
-				get
-				{
-					if (_defaultOptions == null)
-					{
-						_defaultOptions = JsonUtils.CreateOptions();
-						_defaultOptions.Converters.Add(ItemConverter);
-						_defaultOptions.Converters.Add(EnchantmentConverter);
-					}
-
-					return _defaultOptions;
-				}
-			}
-
-
 			public override ItemInstance Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 			{
 				if (reader.TokenType == JsonTokenType.String)
@@ -182,7 +135,7 @@ namespace AbarimMUD.Storage
 
 				// Standard parse
 				var doc = JsonDocument.ParseValue(ref reader);
-				return JsonSerializer.Deserialize<ItemInstance>(doc, DefaultOptions);
+				return JsonSerializer.Deserialize<ItemInstance>(doc, JsonUtils.DefaultOptions);
 			}
 
 			public override void Write(Utf8JsonWriter writer, ItemInstance value, JsonSerializerOptions options)
@@ -195,7 +148,7 @@ namespace AbarimMUD.Storage
 				}
 
 				// Full serialization
-				JsonSerializer.Serialize(writer, value, DefaultOptions);
+				JsonSerializer.Serialize(writer, value, JsonUtils.DefaultOptions);
 			}
 		}
 
@@ -373,22 +326,14 @@ namespace AbarimMUD.Storage
 			}
 		}
 
-		public static readonly EntityConverter<PlayerClass> PlayerClassConverter = new EntityConverter<PlayerClass>();
-		public static readonly EntityConverter<Skill> SkillConverter = new EntityConverter<Skill>();
-		public static readonly EntityConverter<Item> ItemConverter = new EntityConverter<Item>();
 		public static readonly ItemInstanceConverterType ItemInstanceConverter = new ItemInstanceConverterType();
 		public static readonly SkillValueConverterType SkillValueConverter = new SkillValueConverterType();
 		public static readonly AffectsConverterType AffectsConverter = new AffectsConverterType();
 		public static readonly AbilitiesConverterType AbilitiesConverter = new AbilitiesConverterType();
-		public static readonly EntityConverter<Shop> ShopConverter = new EntityConverter<Shop>();
 		public static readonly InventoryConverterType InventoryConverter = new InventoryConverterType();
 		public static readonly EquipmentConverterType EquipmentConverter = new EquipmentConverterType();
-		public static readonly EntityConverter<ForgeShop> ForgeShopConverter = new EntityConverter<ForgeShop>();
-		public static readonly EntityConverter<ExchangeShop> ExchangeShopConverter = new EntityConverter<ExchangeShop>();
-		public static readonly EntityConverter<Enchantment> EnchantmentConverter = new EntityConverter<Enchantment>();
 		public static readonly MobileSpawnConverterType MobileSpawnConverter = new MobileSpawnConverterType();
 		public static readonly InstantEffectConverterType InstantEffectConverter = new InstantEffectConverterType();
-		public static readonly EntityConverter<Ability> AbilityConverter = new EntityConverter<Ability>();
 
 		public static void SetReferences(this ItemInstance item)
 		{

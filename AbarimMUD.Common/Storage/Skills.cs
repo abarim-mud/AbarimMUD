@@ -16,7 +16,6 @@ namespace AbarimMUD.Storage
 			var result = base.CreateJsonOptions();
 
 			result.Converters.Add(Common.AbilitiesConverter);
-			result.Converters.Add(Common.PlayerClassConverter);
 
 			return result;
 		}

@@ -34,7 +34,6 @@ namespace AbarimMUD.Storage
 		{
 			var result = base.CreateJsonOptions();
 
-			result.Converters.Add(Common.PlayerClassConverter);
 			result.Converters.Add(Common.AffectsConverter);
 			result.Converters.Add(Common.InstantEffectConverter);
 

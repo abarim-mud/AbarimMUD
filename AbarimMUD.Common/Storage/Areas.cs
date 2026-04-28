@@ -272,10 +272,6 @@ namespace AbarimMUD.Storage
 			result.Converters.Add(Common.MobileSpawnConverter);
 			result.Converters.Add(Common.ItemInstanceConverter);
 			result.Converters.Add(Common.InventoryConverter);
-			result.Converters.Add(Common.ShopConverter);
-			result.Converters.Add(Common.ForgeShopConverter);
-			result.Converters.Add(Common.ExchangeShopConverter);
-			result.Converters.Add(Common.PlayerClassConverter);
 
 			return result;
 		}
