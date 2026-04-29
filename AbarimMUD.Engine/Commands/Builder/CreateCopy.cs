@@ -24,8 +24,6 @@ namespace AbarimMUD.Commands.Builder
 				Name = room.Name,
 				Description = room.Description,
 				SectorType = room.SectorType,
-				HealRate = room.HealRate,
-				ManaRate = room.ManaRate,
 				ExtraKeyword = room.ExtraKeyword,
 				ExtraDescription = room.ExtraDescription
 			};

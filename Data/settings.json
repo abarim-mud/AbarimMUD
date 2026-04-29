@@ -2,7 +2,7 @@
   "MaximumLevel": 40,
   "ServerPort": 6101,
   "WebServiceUrl": "http://localhost:8080/AbarimMUD/",
-  "StartRoomId": 0,
+  "StartRoomId": 75,
   "HitpointsRegenPercentagePerMinute": 5,
   "ManaRegenPercentagePerMinute": 5,
   "MovesRegenPercentagePerMinute": 5,

@@ -72,6 +72,24 @@ namespace AbarimMUD
 
 			if (Configuration.SaveDataOnStart)
 			{
+				// Fix ids
+				foreach (var area in Area.Storage)
+				{
+					var id = area.StartId;
+					foreach (var room in area.Rooms)
+					{
+						room.Id = id;
+						++id;
+					}
+
+					id = area.StartId;
+					foreach (var mobile in area.Mobiles)
+					{
+						mobile.Id = id;
+						++id;
+					}
+				}
+
 				Area.Storage.SaveAll();
 				PlayerClass.Storage.SaveAll();
 				Skill.Storage.SaveAll();

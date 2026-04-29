@@ -12,442 +12,376 @@
       "Name": "A Gravel Road in the Graveyard",
       "Description": "You are on a well-kept gravel road that leads north-south through the\ngraveyard.  On both sides of the road grow dark evergreen trees.  An iron\ngrate is to the north and narrow gravel paths lead east and west.",
       "SectorType": "Field",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "East": 3650,
-        "South": 3601,
-        "West": 3606,
-        "North": 19099
+        "East": 3031,
+        "South": 3001,
+        "West": 3005,
+        "North": 87
       },
-      "Id": 3600
+      "Id": 3000
     },
     {
       "Name": "A Gravel Road in the Graveyard",
       "Description": "You are on a well-kept gravel road that leads north-south through the\ngraveyard.  On both sides of the road grow dark evergreen trees.",
       "SectorType": "Field",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 3600,
-        "South": 3602
+        "North": 3000,
+        "South": 3002
       },
-      "Id": 3601
+      "Id": 3001
     },
     {
       "Name": "A Gravel Road in the Graveyard",
       "Description": "You are on a well-kept gravel road that leads north-south through the\ngraveyard.  On both sides of the road grow dark evergreen trees.",
       "SectorType": "Field",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 3601,
-        "South": 3603
+        "North": 3001,
+        "South": 3003
       },
-      "Id": 3602
+      "Id": 3002
     },
     {
       "Name": "A Gravel Road in the Graveyard",
       "Description": "You are on a well-kept gravel road that leads north-south through the\ngraveyard.  On both sides of the road grow dark evergreen trees.",
       "SectorType": "Field",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 3602,
-        "South": 3604
+        "North": 3002,
+        "South": 3004
       },
-      "Id": 3603
+      "Id": 3003
     },
     {
       "Name": "In front of the Chapel",
       "Description": "You are on an open space before a small chapel.  A gravel road leads north\nthrough the graveyard and the chapel entrance is to the south.",
       "SectorType": "Field",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "3604"
+        "3004"
       ],
       "Exits": {
-        "North": 3603,
-        "East": 3638,
-        "West": 3618
+        "North": 3003,
+        "East": 3019,
+        "West": 3017
       },
-      "Id": 3604
+      "Id": 3004
     },
     {
       "Name": "A Gravel Path on the Graveyard",
       "Description": "You are on a gravel path winding its way between dark evergreen trees on\nthe graveyard.  An old tomb is here.",
       "SectorType": "Field",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "3604"
+        "3004"
       ],
       "Exits": {
-        "East": 3600,
-        "South": 3608,
-        "Down": 3607
+        "East": 3000,
+        "South": 3007,
+        "Down": 3006
       },
-      "Id": 3606
+      "Id": 3005
     },
     {
       "Name": "In a dusty Tomb",
       "Description": "You are in a dark burial chamber beneath a large tomb stone.\nThe only exit appears to be up.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "Up": 3606
+        "Up": 3005
       },
-      "Id": 3607
+      "Id": 3006
     },
     {
       "Name": "A Gravel Path on the Graveyard",
       "Description": "You are on a gravel path winding its way between dark evergreen trees on\nthe graveyard.  The path leads north and west.  An old tomb is here.",
       "SectorType": "Field",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 3606,
-        "West": 3610,
-        "Down": 3609
+        "North": 3005,
+        "West": 3009,
+        "Down": 3008
       },
-      "Id": 3608
+      "Id": 3007
     },
     {
       "Name": "In a dusty Tomb",
       "Description": "You are in a dark burial chamber beneath a large tomb stone.\nThe only exit appears to be up.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "3603"
+        "3003"
       ],
       "Exits": {
-        "Up": 3608
+        "Up": 3007
       },
-      "Id": 3609
+      "Id": 3008
     },
     {
       "Name": "A Gravel Path on the Graveyard",
       "Description": "You are on a gravel path winding its way between dark evergreen trees on\nthe graveyard.  The path leads east and south.  An old tomb is here.",
       "SectorType": "Field",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "East": 3608,
-        "South": 3612,
-        "Down": 3611
+        "East": 3007,
+        "South": 3011,
+        "Down": 3010
       },
-      "Id": 3610
+      "Id": 3009
     },
     {
       "Name": "In a dusty Tomb",
       "Description": "You are in a dark burial chamber beneath a large tomb stone.\nThe only exit appears to be up.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "3603"
+        "3003"
       ],
       "Exits": {
-        "Up": 3610
+        "Up": 3009
       },
-      "Id": 3611
+      "Id": 3010
     },
     {
       "Name": "A Gravel Path on the Graveyard",
       "Description": "You are on a gravel path winding its way between dark evergreen trees on\nthe graveyard.  The path leads north and east.  A small shed is to the west.",
       "SectorType": "Field",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "3604"
+        "3004"
       ],
       "Exits": {
-        "North": 3610,
-        "East": 3614,
-        "West": 3613
+        "North": 3009,
+        "East": 3013,
+        "West": 3012
       },
-      "Id": 3612
+      "Id": 3011
     },
     {
       "Name": "In a shed on the Graveyard",
       "Description": "You are in a small shed that looks as if it is used to store all sorts of\ngardening equipment.  The only exit appears to be through a door to the east.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "3600"
+        "3000"
       ],
       "Exits": {
-        "East": 3612
+        "East": 3011
       },
-      "Id": 3613
+      "Id": 3012
     },
     {
       "Name": "A Gravel Path on the Graveyard",
       "Description": "You are on a gravel path winding its way between dark evergreen trees on\nthe graveyard.  The path leads south and west.  An old tomb is here.",
       "SectorType": "Field",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "South": 3616,
-        "West": 3612,
-        "Down": 3615
+        "South": 3015,
+        "West": 3011,
+        "Down": 3014
       },
-      "Id": 3614
+      "Id": 3013
     },
     {
       "Name": "In a dusty Tomb",
       "Description": "You are in a dark burial chamber beneath a large tomb stone.\nThe only exit appears to be up.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "Up": 3614
+        "Up": 3013
       },
-      "Id": 3615
+      "Id": 3014
     },
     {
       "Name": "A Gravel Path on the Graveyard",
       "Description": "You are on a gravel path winding its way between dark evergreen trees on\nthe graveyard.  The path leads north and south.  An old tomb is here.",
       "SectorType": "Field",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 3614,
-        "South": 3618,
-        "Down": 3617
+        "North": 3013,
+        "South": 3017,
+        "Down": 3016
       },
-      "Id": 3616
+      "Id": 3015
     },
     {
       "Name": "In a dusty Tomb",
       "Description": "You are in a dark burial chamber beneath a large tomb stone.\nThe only exit appears to be up.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "3602"
+        "3002"
       ],
       "Exits": {
-        "Up": 3616
+        "Up": 3015
       },
-      "Id": 3617
+      "Id": 3016
     },
     {
       "Name": "A Gravel Path on the Graveyard",
       "Description": "You are on a gravel path winding its way between dark evergreen trees on\nthe graveyard.  The path leads north and east.  An old tomb is here.",
       "SectorType": "Field",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 3616,
-        "East": 3604,
-        "Down": 3619
+        "North": 3015,
+        "East": 3004,
+        "Down": 3018
       },
-      "Id": 3618
+      "Id": 3017
     },
     {
       "Name": "In a dusty Tomb",
       "Description": "You are in a dark burial chamber beneath a large tomb stone.\nThe only exit appears to be up.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "Up": 3618
+        "Up": 3017
       },
-      "Id": 3619
+      "Id": 3018
     },
     {
       "Name": "A Gravel Path on the Graveyard",
       "Description": "You are on a gravel path winding its way between dark evergreen trees on\nthe graveyard.  The path leads north and west.  An old tomb is here.",
       "SectorType": "Field",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "3605"
+        "3005"
       ],
       "Exits": {
-        "North": 3640,
-        "West": 3604,
-        "Down": 3639
+        "North": 3021,
+        "West": 3004,
+        "Down": 3020
       },
-      "Id": 3638
+      "Id": 3019
     },
     {
       "Name": "In a dusty Tomb",
       "Description": "You are in a dark burial chamber beneath a large tomb stone.\nThe only exit appears to be up.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "3603"
+        "3003"
       ],
       "Exits": {
-        "Up": 3638
+        "Up": 3019
       },
-      "Id": 3639
+      "Id": 3020
     },
     {
       "Name": "A Gravel Path on the Graveyard",
       "Description": "You are on a gravel path winding its way between dark evergreen trees on\nthe graveyard.  The path leads north and south.  An old tomb is here.",
       "SectorType": "Field",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "3604"
+        "3004"
       ],
       "Exits": {
-        "North": 3642,
-        "South": 3638,
-        "Down": 3641
+        "North": 3023,
+        "South": 3019,
+        "Down": 3022
       },
-      "Id": 3640
+      "Id": 3021
     },
     {
       "Name": "In a dusty Tomb",
       "Description": "You are in a dark burial chamber beneath a large tomb stone.\nThe only exit appears to be up.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "Up": 3640
+        "Up": 3021
       },
-      "Id": 3641
+      "Id": 3022
     },
     {
       "Name": "A Gravel Path on the Graveyard",
       "Description": "You are on a gravel path winding its way between dark evergreen trees on\nthe graveyard.  The path leads east and south.  An old tomb is here.",
       "SectorType": "Field",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "East": 3644,
-        "South": 3640,
-        "Down": 3643
+        "East": 3025,
+        "South": 3021,
+        "Down": 3024
       },
-      "Id": 3642
+      "Id": 3023
     },
     {
       "Name": "In a dusty Tomb",
       "Description": "You are in a dark burial chamber beneath a large tomb stone.\nThe only exit appears to be up.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "Up": 3642
+        "Up": 3023
       },
-      "Id": 3643
+      "Id": 3024
     },
     {
       "Name": "A Gravel Path on the Graveyard",
       "Description": "You are on a gravel path winding its way between dark evergreen trees on\nthe graveyard.  The path leads north and west.  An old tomb is here.",
       "SectorType": "Field",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "3605"
+        "3005"
       ],
       "Exits": {
-        "North": 3646,
-        "West": 3642,
-        "Down": 3645
+        "North": 3027,
+        "West": 3023,
+        "Down": 3026
       },
-      "Id": 3644
+      "Id": 3025
     },
     {
       "Name": "In a dusty Tomb",
       "Description": "You are in a dark burial chamber beneath a large tomb stone.\nThe only exit appears to be up.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "3601"
+        "3001"
       ],
       "Exits": {
-        "Up": 3644
+        "Up": 3025
       },
-      "Id": 3645
+      "Id": 3026
     },
     {
       "Name": "A Gravel Path on the Graveyard",
       "Description": "You are on a gravel path winding its way between dark evergreen trees on\nthe graveyard.  The path leads south and west.  An old tomb is here.",
       "SectorType": "Field",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "South": 3644,
-        "West": 3648,
-        "Down": 3647
+        "South": 3025,
+        "West": 3029,
+        "Down": 3028
       },
-      "Id": 3646
+      "Id": 3027
     },
     {
       "Name": "In a dusty Tomb",
       "Description": "You are in a dark burial chamber beneath a large tomb stone.\nThe only exit appears to be up.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "Up": 3646
+        "Up": 3027
       },
-      "Id": 3647
+      "Id": 3028
     },
     {
       "Name": "A Gravel Path on the Graveyard",
       "Description": "You are on a gravel path winding its way between dark evergreen trees on\nthe graveyard.  The path leads north and east.  An old tomb is here.",
       "SectorType": "Field",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 3650,
-        "East": 3646,
-        "Down": 3649
+        "North": 3031,
+        "East": 3027,
+        "Down": 3030
       },
-      "Id": 3648
+      "Id": 3029
     },
     {
       "Name": "In a dusty Tomb",
       "Description": "You are in a dark burial chamber beneath a large tomb stone.\nThe only exit appears to be up.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "3603"
+        "3003"
       ],
       "Exits": {
-        "Up": 3648
+        "Up": 3029
       },
-      "Id": 3649
+      "Id": 3030
     },
     {
       "Name": "A Gravel Path on the Graveyard",
       "Description": "You are on a gravel path winding its way between dark evergreen trees on\nthe graveyard.  The path leads south and west.  An old tomb is here.",
       "SectorType": "Field",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "South": 3648,
-        "West": 3600,
-        "Down": 3651
+        "South": 3029,
+        "West": 3000,
+        "Down": 3032
       },
-      "Id": 3650
+      "Id": 3031
     },
     {
       "Name": "In a dusty Tomb",
       "Description": "You are in a dark burial chamber beneath a large tomb stone.\nThe only exit appears to be up.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "3605"
+        "3005"
       ],
       "Exits": {
-        "Up": 3650
+        "Up": 3031
       },
-      "Id": 3651
+      "Id": 3032
     }
   ],
   "Mobiles": [
@@ -482,7 +416,7 @@
         "AssistId"
       ],
       "Experience": "3,520",
-      "Id": 3600
+      "Id": 3000
     },
     {
       "Keywords": [
@@ -516,7 +450,7 @@
         "AssistId"
       ],
       "Experience": "3,520",
-      "Id": 3601
+      "Id": 3001
     },
     {
       "Keywords": [
@@ -550,7 +484,7 @@
         "AssistId"
       ],
       "Experience": "7,200",
-      "Id": 3602
+      "Id": 3002
     },
     {
       "Keywords": [
@@ -584,7 +518,7 @@
         "AssistId"
       ],
       "Experience": "1,540",
-      "Id": 3603
+      "Id": 3003
     },
     {
       "Keywords": [
@@ -617,7 +551,7 @@
         "AssistId"
       ],
       "Experience": "1,540",
-      "Id": 3604
+      "Id": 3004
     },
     {
       "Keywords": [
@@ -650,7 +584,7 @@
         "AssistId"
       ],
       "Experience": "3,520",
-      "Id": 3605
+      "Id": 3005
     }
   ],
   "RespawnTimeInMinutes": 30

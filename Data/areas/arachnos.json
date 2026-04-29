@@ -12,729 +12,617 @@
       "Name": "On the spider web",
       "Description": "You are balancing carefully on the giant sticky threads that holds the giant\nweb in place.  To the south leads a strand to a cave-like structure made from\nmany layers of a spider web.  Another silky strand continues to the north.",
       "SectorType": "Forest",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 6203,
-        "South": 51533
+        "North": 2003,
+        "South": 1057
       },
-      "Id": 6200
+      "Id": 2000
     },
     {
       "Name": "On the spider web",
       "Description": "You are balancing carefully on the giant sticky threads that holds the giant\nweb in place.  To the north leads a strand to a cave-like structure made from\nmany layers of a spider web.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
-      "Id": 6201
+      "Id": 2001
     },
     {
       "Name": "On the spider web",
       "Description": "You are balancing carefully on the giant sticky threads that holds the giant\nweb in place.  To the east leads a strand to a cave-like structure made from\nmany layers of a spider web.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
-      "Id": 6202
+      "Id": 2002
     },
     {
       "Name": "On the spider web",
       "Description": "You are balancing carefully on the giant sticky threads that holds the giant\nweb in place. A single silky strand lead to the south, while another leads\noff into the northern direction.",
       "SectorType": "Forest",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 6301,
-        "South": 6200
+        "North": 2004,
+        "South": 2000
       },
-      "Id": 6203
+      "Id": 2003
     },
     {
       "Name": "Webbed Entrance",
       "Description": "Sticky, sticky, sticky!  The ground is cluttered with leaves, decayed\nremains of webbed crickets, beetle, rats, dogs (?), and even humans.\nYou begin to wonder about what lies ahead.  The air is damp here,\nand even the little light that shines through the canopy seems\nabsorbed into the webbing.",
       "SectorType": "Forest",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "6301"
+        "2000"
       ],
       "Exits": {
-        "North": 6302,
-        "South": 6203
+        "North": 2005,
+        "South": 2003
       },
-      "Id": 6301
+      "Id": 2004
     },
     {
       "Name": "Webby Passage",
       "Description": "You find that footing here is very good, almost too good.  The\nlimbs are coated with cobwebs and seem unusually strong for tree\nbranches.  Paths lead in four directions.  The eastward path goes\ndown a bit.",
       "SectorType": "Cave",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 6304,
-        "East": 6305,
-        "South": 6301,
-        "West": 6303
+        "North": 2007,
+        "East": 2008,
+        "South": 2004,
+        "West": 2006
       },
-      "Id": 6302
+      "Id": 2005
     },
     {
       "Name": "Wasp Hive",
       "Description": "Drones scuttle about in this room.  The cells on the walls\nare honeycomb in shape and many of the maggots and wasps you see\nhave fang-marks on there bodies.  You sense some order in their markings.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "6305"
+        "2004"
       ],
       "Exits": {
-        "East": 6302
+        "East": 2005
       },
-      "Id": 6303
+      "Id": 2006
     },
     {
       "Name": "Webby Passage",
       "Description": "Another webby passage, all sticky and wet.  Tiny ballooning\nspiders fill the air.  It seems that these young ones are newborns.",
       "SectorType": "Cave",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "6301"
+        "2000"
       ],
       "Exits": {
-        "South": 6302
+        "South": 2005
       },
-      "Id": 6304
+      "Id": 2007
     },
     {
       "Name": "Beneath the Busy Path",
       "Description": "You hear the sounds of crawling arachnids above.  The rhythms of\nthe footsteps suggest a primitive order in their movement.  The light\nseems brighter upwards.",
       "SectorType": "Cave",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "West": 6302,
-        "Up": 6306
+        "West": 2005,
+        "Up": 2009
       },
-      "Id": 6305
+      "Id": 2008
     },
     {
       "Name": "On the Busy Path",
       "Description": "Spiders, spiders, everywhere!  It is almost ant-like in efficiency\nwith one big difference.  The spiders here are carrying ant-corpses,\nas well as rats, wolves, and humans.",
       "SectorType": "Cave",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "6301",
-        "6301"
+        "2000",
+        "2000"
       ],
       "Exits": {
-        "South": 6307,
-        "Down": 6305
+        "South": 2010,
+        "Down": 2008
       },
-      "Id": 6306
+      "Id": 2009
     },
     {
       "Name": "On the Busy Path",
       "Description": "Spiders, spiders, everywhere!  It is almost ant-like in efficiency\nwith one big difference.  The spiders here are carrying ant-corpses,\nas well as cats, wolves, and humans.",
       "SectorType": "Cave",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 6306,
-        "East": 6308
+        "North": 2009,
+        "East": 2011
       },
-      "Id": 6307
+      "Id": 2010
     },
     {
       "Name": "On the Busy Path",
       "Description": "Spiders, spiders, everywhere!  It is almost ant-like in efficiency\nwith one big difference.  The spiders here are carrying ant-corpses,\nas well as cats, dogs, and humans.",
       "SectorType": "Cave",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "6308",
-        "6308",
-        "6308",
-        "6308",
-        "6308"
+        "2007",
+        "2007",
+        "2007",
+        "2007",
+        "2007"
       ],
       "Exits": {
-        "East": 6309,
-        "West": 6307
+        "East": 2012,
+        "West": 2010
       },
-      "Id": 6308
+      "Id": 2011
     },
     {
       "Name": "A Split in the Path",
       "Description": "As always, there is a split in the road.  One road is strewn\nwith cricket feelers.  The other is well-kept and suitable for smooth\ntravelling.  The webbing that was prevalent in earlier rooms is almost\nnon-existent now.",
       "SectorType": "Cave",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 6310,
-        "South": 6320,
-        "West": 6308
+        "North": 2013,
+        "South": 2017,
+        "West": 2011
       },
-      "Id": 6309
+      "Id": 2012
     },
     {
       "Name": "Fuzzy Tree Limb",
       "Description": "You are on a \u0022fuzzy\u0022 tree limb.  Interesting, since the branches\nseem to have \u0022hairs\u0022 sprouting from its bark.  As you look\ncloser you see millions of aphids covering each limb.",
       "SectorType": "Cave",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "South": 6309,
-        "West": 6311
+        "South": 2012,
+        "West": 2014
       },
-      "Id": 6310
+      "Id": 2013
     },
     {
       "Name": "Tree Trunk",
       "Description": "You feel that you can rest here safely.  There is evidence of\nwebbing here, but it is of a finer quality.",
       "SectorType": "Cave",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "East": 6310,
-        "South": 6312
+        "East": 2013,
+        "South": 2015
       },
-      "Id": 6311
+      "Id": 2014
     },
     {
       "Name": "Tree Lair Entrance",
       "Description": "It seems the inhabitant of this place does not web her\nvictims, as evidenced by the remains before you.  The area\nis cluttered with desiccated corpses, apparently bitten\nbut unwebbed, and drained of their life juices.",
       "SectorType": "Cave",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 6311,
-        "West": 6313
+        "North": 2014,
+        "West": 2016
       },
-      "Id": 6312
+      "Id": 2015
     },
     {
       "Name": "Wolf Spider Lair",
       "Description": "Very dark, as all lairs of spiders are.  Not much of furnishings\nsave an exit.  The wolf spider keeps no corpses here, but rather\nthrows them out at her leisure.",
       "SectorType": "Cave",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "6303"
+        "2002"
       ],
       "Exits": {
-        "East": 6312
+        "East": 2015
       },
-      "Id": 6313
+      "Id": 2016
     },
     {
       "Name": "The Webless Path",
       "Description": "Strange.  No webbing here.  In fact, no sounds whatsoever.\nThe path continues northward, where you find that you may have to\ntightrope your way across a ravine.",
       "SectorType": "Cave",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 6309,
-        "West": 6321
+        "North": 2012,
+        "West": 2018
       },
-      "Id": 6320
+      "Id": 2017
     },
     {
       "Name": "Above the Ravine",
       "Description": "Stranger still.  Your feet get a real firm grip on the spiderline.\nYou are above a deep ravine.  This line connects you between two trees.\nBelow you can see a prismatic web with lots of animal bones caught in it:\nsome bear and small deer bones in fact.  No human skeletons are visible\n(yet).",
       "SectorType": "Forest",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "6306"
+        "2005"
       ],
       "Exits": {
-        "East": 6320,
-        "South": 6323,
-        "Down": 6322
+        "East": 2017,
+        "South": 2020,
+        "Down": 2019
       },
-      "Id": 6321
+      "Id": 2018
     },
     {
       "Name": "The Rainbow Web",
       "Description": "This is the rainbow web--each strand, each link, a hue of violently\nsharp colors and contrasts.  The resident here seems to have a command\nof light as well.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "Up": 6321
+        "Up": 2018
       },
-      "Id": 6322
+      "Id": 2019
     },
     {
       "Name": "The Web Forest",
       "Description": "The trees here take on a different appearance--they are not trees\nanymore, but disjointed make-shift silken made shafts, sticky to the touch,\nand webby in texture.  This is another world it would appear.",
       "SectorType": "Forest",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 6321,
-        "Down": 6324
+        "North": 2018,
+        "Down": 2021
       },
-      "Id": 6323
+      "Id": 2020
     },
     {
       "Name": "The Slave Pit",
       "Description": "You have entered the slave pit.  A voice blares in the distance,\n\u0022Get back to work, maggots!\u0022  Rails upon rails of mined gold and silver\nclutter the trail beneath you.",
       "SectorType": "Cave",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 6325,
-        "Up": 6323
+        "North": 2022,
+        "Up": 2020
       },
-      "Id": 6324
+      "Id": 2021
     },
     {
       "Name": "The Tether Path",
       "Description": "Another tether path just like the rest of them.  Surprisingly well\n-lit by the golden orbs that hang from the sides, you can see the paths\nbecome finer and finer in quality.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "East": 6326,
-        "West": 6324
+        "East": 2023,
+        "West": 2021
       },
-      "Id": 6325
+      "Id": 2022
     },
     {
       "Name": "A Road Crossing",
       "Description": "Another shifty little strand of webs, almost ethereal in nature.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "West": 6325,
-        "Up": 6327
+        "West": 2022,
+        "Up": 2024
       },
-      "Id": 6326
+      "Id": 2023
     },
     {
       "Name": "A Leader Strand",
       "Description": "This strand is weightier, more sturdy.  It shimmers as you step on\nit.  You are definitely not in the Midgaardian realms anymore.  Just\nwhere you are you can\u0027t tell.  It feels like you\u0027re moving through\nether.  You can still get back down to more surer lands.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "6309"
+        "2008"
       ],
       "Exits": {
-        "North": 6328,
-        "Down": 6326
+        "North": 2025,
+        "Down": 2023
       },
-      "Id": 6327
+      "Id": 2024
     },
     {
       "Name": "The Entrance of the Ethereal Web",
       "Description": "You are at the entrance to ethereal web.  Flickering in and out,\nin and out, each strand reveals a different hue from black to green\nto blue.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "South": 6327,
-        "Down": 6331
+        "South": 2024,
+        "Down": 2027
       },
-      "Id": 6328
+      "Id": 2025
     },
     {
       "Name": "A Narrow Series of Caves",
       "Description": "Here is a filthy section of narrow and stinking caves.\nMaggots of wasps and other baby vermin lie scattered about.\nThe walls are coated with a layer of larvae husks and other scum.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "6306",
-        "6316"
+        "2005",
+        "2015"
       ],
       "Exits": {
-        "South": 6331
+        "South": 2027
       },
-      "Id": 6330
+      "Id": 2026
     },
     {
       "Name": "The Base of the Web",
       "Description": "Large strands connect at this point.  The node shimmers and\nflickers within the ether.  You see many flying creatures--\ninsects, pegasi, and dragon wormkins--navigate the dangerous\npassages of the web.  Exits go in many directions.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "6306"
+        "2005"
       ],
       "Exits": {
-        "North": 6330,
-        "East": 6332,
-        "South": 6333
+        "North": 2026,
+        "East": 2028,
+        "South": 2029
       },
-      "Id": 6331
+      "Id": 2027
     },
     {
       "Name": "Through the Trees",
       "Description": "This part of the web intersects through the branches of some\ntrees.  Various leaves and other debris that the many drones\nhave not picked up yet lie here.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "6304"
+        "2003"
       ],
       "Exits": {
-        "West": 6331
+        "West": 2027
       },
-      "Id": 6332
+      "Id": 2028
     },
     {
       "Name": "Above the Clouds",
       "Description": "You can see all of Midgaard in this ethereal web.  Many\nof the larger dragons that do wish to fly seem to fly\naway from the sticky strands of the web.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "6307"
+        "2006"
       ],
       "Exits": {
-        "North": 6331,
-        "South": 6334,
-        "West": 6335
+        "North": 2027,
+        "South": 2030,
+        "West": 2031
       },
-      "Id": 6333
+      "Id": 2029
     },
     {
       "Name": "On A Cloud",
       "Description": "Rather thick in consistency.  You realize this is not\na typical cloud, but it might be the nest of an aerial creature.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 6333
+        "North": 2029
       },
-      "Id": 6334
+      "Id": 2030
     },
     {
       "Name": "A Link in the Ethereal Web",
       "Description": "This is another link in the ethereal web.  Various creatures\nseem to get caught (or hypnotized) by its sticky strands.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "6307"
+        "2006"
       ],
       "Exits": {
-        "East": 6333,
-        "West": 6336
+        "East": 2029,
+        "West": 2032
       },
-      "Id": 6335
+      "Id": 2031
     },
     {
       "Name": "The Tenuous Strand",
       "Description": "Very windy here since it goes up into the sky somewhat.\nStill, it\u0027s safe enough to move around.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "East": 6335,
-        "South": 6340,
-        "West": 6341
+        "East": 2031,
+        "South": 2033,
+        "West": 2034
       },
-      "Id": 6336
+      "Id": 2032
     },
     {
       "Name": "The Elder Wormkin\u0027s Room",
       "Description": "A more mature wormkin it seems resides here.  Various tomes of\narcane lore clutter the area, along with shards of armor and weaponry.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "6317"
+        "2016"
       ],
       "Exits": {
-        "North": 6336
+        "North": 2032
       },
-      "Id": 6340
+      "Id": 2033
     },
     {
       "Name": "Another Tree Limb",
       "Description": "Once again the web crosses another tree limb.  To the side you\nsee the possible entrance to another creatures lair.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "East": 6336,
-        "South": 6342,
-        "West": 6345
+        "East": 2032,
+        "South": 2035,
+        "West": 2036
       },
-      "Id": 6341
+      "Id": 2034
     },
     {
       "Name": "The Bird Spider\u0027s Lair",
       "Description": "This is a big game hunter among most spiders.  Crush jewels\nand other weapons suggest the inhabitant must have powerful jaws.\nBeware!",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "6310"
+        "2009"
       ],
       "Exits": {
-        "North": 6341
+        "North": 2034
       },
-      "Id": 6342
+      "Id": 2035
     },
     {
       "Name": "A Link in the Ethereal Web",
       "Description": "This is another link in the ethereal web.  Various creatures\nseem to get caught (or hypnotized) by its sticky strands.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "East": 6341,
-        "South": 6350,
-        "West": 6346
+        "East": 2034,
+        "South": 2039,
+        "West": 2037
       },
-      "Id": 6345
+      "Id": 2036
     },
     {
       "Name": "The Quiet Tree Top",
       "Description": "Here is a quiet tree top.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "East": 6345,
-        "West": 6347
+        "East": 2036,
+        "West": 2038
       },
-      "Id": 6346
+      "Id": 2037
     },
     {
       "Name": "On The Web",
       "Description": "RRRRRRRRRRROOOOOOOOOOOOOAAAAAAAAAAAAAARR!  You hear the roar\nof a powerful beast.  Dragon, you think.  You shiver in your boots\nas you tiptoe on this section of the web.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "East": 6346,
-        "South": 6355
+        "East": 2037,
+        "South": 2040
       },
-      "Id": 6347
+      "Id": 2038
     },
     {
       "Name": "The Ki-Rin Chamber",
       "Description": "A wise ki-rin was entrapped here many years ago.  It is from her\nthat the ruler of this realm steals his magical strength.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "6315"
+        "2014"
       ],
       "Exits": {
-        "North": 6345
+        "North": 2036
       },
-      "Id": 6350
+      "Id": 2039
     },
     {
       "Name": "A Link in the Ethereal Web",
       "Description": "This is another link in the ethereal web.  Various creatures\nseem to get caught (or hypnotized) by its sticky strands.  To\nthe north you sense the heavy breathing of a fiery animal.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 6347,
-        "West": 6360,
-        "Up": 6365
+        "North": 2038,
+        "West": 2041,
+        "Up": 2042
       },
-      "Id": 6355
+      "Id": 2040
     },
     {
       "Name": "Yevaud\u0027s Lair",
       "Description": "Yevaud, the Usurper of Midgaard, resides here.  A voice cries\nout, \u0022BEWARE, the Usurper of Midgaard lives here!  FLEE while you can!\u0022\nBut even Yevaud has his master...or so you deduce.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "6302"
+        "2001"
       ],
       "Exits": {
-        "East": 6355
+        "East": 2040
       },
-      "Id": 6360
+      "Id": 2041
     },
     {
       "Name": "A Link in the Ethereal Web",
       "Description": "This is another link in the ethereal web.  Various creatures\nseem to get caught (or hypnotized) by its sticky strands.  A single\nspider line lies to the north, while ghastly seemings are due\nsouthward.  The grim entrance of Arachnos\u0027 Lair is downward.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 6371,
-        "South": 6366,
-        "Up": 6390,
-        "Down": 6355
+        "North": 2048,
+        "South": 2043,
+        "Up": 2052,
+        "Down": 2040
       },
-      "Id": 6365
+      "Id": 2042
     },
     {
       "Name": "Entrance to the Donjonkeep",
       "Description": "A dark path at the end of the web strand, you see ahead\na torch lit chamber where the souls of unavenged adventurers\ncome and gnash their teeth.  The howls and screams of many echo\nthrough the hall ways.  You see one definite path ahead.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "East": 6367
+        "East": 2044
       },
-      "Id": 6366
+      "Id": 2043
     },
     {
       "Name": "The Guardian\u0027s Room",
       "Description": "A chair sits here for a tireless guardian who ensures that no\nsoul escapes.  The room is undecorated.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "6313"
+        "2012"
       ],
       "Exits": {
-        "East": 6368,
-        "West": 6366
+        "East": 2045,
+        "West": 2043
       },
-      "Id": 6367
+      "Id": 2044
     },
     {
       "Name": "Realm of the Hopeless",
       "Description": "Here you see many misguided souls who think they still live.\nThey search for those who killed them without warrant, and seek the\nfree souls of living beings to inhabit and perhaps adventure once\nmore.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "East": 6369,
-        "West": 6367
+        "East": 2046,
+        "West": 2044
       },
-      "Id": 6368
+      "Id": 2045
     },
     {
       "Name": "Realm of the Hopeless",
       "Description": "Here you see many misguided souls who think they still live.\nThey search for those who killed them without warrant, and seek the\nfree souls of living beings to inhabit and perhaps adventure once\nmore.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "East": 6370,
-        "West": 6368
+        "East": 2047,
+        "West": 2045
       },
-      "Id": 6369
+      "Id": 2046
     },
     {
       "Name": "The Donjonkeep",
       "Description": "No souls have ever lived in this place.  The wails of slaves\nand the howls of wolves are the only way you can describe the sounds\nyou hear.  The walls are thin and wispy.  The only light you receive\nis the shimmering from the strand of the ethereal web you used to get\nhere.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "6312"
+        "2011"
       ],
       "Exits": {
-        "East": 6371,
-        "West": 6369
+        "East": 2048,
+        "West": 2046
       },
-      "Id": 6370
+      "Id": 2047
     },
     {
       "Name": "The Single Spider Line",
       "Description": "A single spider line supports you once more.  As you look\nacross the ether you seen a single shack up ahead with a light in\nthe window.  You sense a great evil coming from the east and feel\ninclined to go back on the ethereal web and take your chances there.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "East": 6372,
-        "West": 6370
+        "East": 2049,
+        "West": 2047
       },
-      "Id": 6371
+      "Id": 2048
     },
     {
       "Name": "The Single Spider Line",
       "Description": "A single spider line supports you once more.  The shack comes\ncloser into view and you are even more inclined to go back now.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "East": 6373,
-        "West": 6371
+        "East": 2050,
+        "West": 2048
       },
-      "Id": 6372
+      "Id": 2049
     },
     {
       "Name": "The Hermit\u0027s Corner",
       "Description": "Here you see evidence of a vagrant\u0027s abode.  The shack is to the\neast, if you dare enter it.  You get the sneaking feeling you should\ngo back now.  The skies above you darken and roar with the laughter\nof thunder.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "6311"
+        "2010"
       ],
       "Exits": {
-        "East": 6380,
-        "West": 6372
+        "East": 2051,
+        "West": 2049
       },
-      "Id": 6373
+      "Id": 2050
     },
     {
       "Name": "Mahatma\u0027s Inescapable Trap",
       "Description": "Mahatma, that silly thief, is here, and he steals everything you\nhave.  He says, \u0027Here, have a quick trip to the Temple of Midgaard.\u0027\nHe plunges a black dagger into your back ...",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
-      "Id": 6380
+      "Id": 2051
     },
     {
       "Name": "The Entrance to the Arachnos\u0027 Lair",
       "Description": "All strands inevitably lead here, the center of the web, the\nentrance to Arachnos\u0027 Lair.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 6391,
-        "Down": 6365
+        "North": 2053,
+        "Down": 2042
       },
-      "Id": 6390
+      "Id": 2052
     },
     {
       "Name": "The Sticky Chamber",
       "Description": "You can still bail out since your knees are shaking from the\nanticipation (or is it fear?).  The sky is clear on this strand of\nweb, surprisingly unsticky.  The strand does not vibrate like the\nothers.  A few ballooning spiders pass by, cackling \u0022You\u0027re gonna\ndie, you\u0027re gonna fry.  Good bye!\u0022",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 6392,
-        "South": 6390
+        "North": 2054,
+        "South": 2052
       },
-      "Id": 6391
+      "Id": 2053
     },
     {
       "Name": "The Great Door",
       "Description": "Before you you see a large, web-like door.  Various designs\nof ancient runes and names of Midgaard heroes are etched into\nthe webwork.  Perhaps lists of victims?  You can\u0027t tell.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 6399,
-        "South": 6391
+        "North": 2055,
+        "South": 2053
       },
-      "Id": 6392
+      "Id": 2054
     },
     {
       "Name": "The Lair of Arachnos",
       "Description": "This is the lair of the Empress Spider, Arachnos.  A lavishly\nadorned rainbow web, her lair allows her to move to any universe\nshe wishes by using her magical strands to the Prime Material Plane.\nCoffers upon coffers of gold, magical jewels and gems await.  Unfor-\ntunately Arachnos is a baggy spider too, and webs all her treasures\nto her beautiful silken body.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "6314"
+        "2013"
       ],
       "Exits": {
-        "South": 6392
+        "South": 2054
       },
-      "Id": 6399
+      "Id": 2055
     }
   ],
   "Mobiles": [
@@ -767,7 +655,7 @@
       ],
       "Flags": [],
       "Experience": "3,520",
-      "Id": 6301
+      "Id": 2000
     },
     {
       "Keywords": [
@@ -803,7 +691,7 @@
       ],
       "Flags": [],
       "Experience": "218,880",
-      "Id": 6302
+      "Id": 2001
     },
     {
       "Keywords": [
@@ -834,7 +722,7 @@
       ],
       "Flags": [],
       "Experience": "7,200",
-      "Id": 6303
+      "Id": 2002
     },
     {
       "Keywords": [
@@ -864,7 +752,7 @@
       ],
       "Flags": [],
       "Experience": "3,520",
-      "Id": 6304
+      "Id": 2003
     },
     {
       "Keywords": [
@@ -895,7 +783,7 @@
       ],
       "Flags": [],
       "Experience": "28,080",
-      "Id": 6305
+      "Id": 2004
     },
     {
       "Keywords": [
@@ -926,7 +814,7 @@
       ],
       "Flags": [],
       "Experience": "7,200",
-      "Id": 6306
+      "Id": 2005
     },
     {
       "Keywords": [
@@ -957,7 +845,7 @@
       ],
       "Flags": [],
       "Experience": "20,800",
-      "Id": 6307
+      "Id": 2006
     },
     {
       "Keywords": [
@@ -988,7 +876,7 @@
       ],
       "Flags": [],
       "Experience": "12,480",
-      "Id": 6308
+      "Id": 2007
     },
     {
       "Keywords": [
@@ -1018,7 +906,7 @@
       ],
       "Flags": [],
       "Experience": "20,800",
-      "Id": 6309
+      "Id": 2008
     },
     {
       "Keywords": [
@@ -1049,7 +937,7 @@
       ],
       "Flags": [],
       "Experience": "43,120",
-      "Id": 6310
+      "Id": 2009
     },
     {
       "Keywords": [
@@ -1079,7 +967,7 @@
       ],
       "Flags": [],
       "Experience": "8,640",
-      "Id": 6311
+      "Id": 2010
     },
     {
       "Keywords": [
@@ -1114,7 +1002,7 @@
       ],
       "Flags": [],
       "Experience": "230,400",
-      "Id": 6312
+      "Id": 2011
     },
     {
       "Keywords": [
@@ -1149,7 +1037,7 @@
       ],
       "Flags": [],
       "Experience": "84,000",
-      "Id": 6313
+      "Id": 2012
     },
     {
       "Keywords": [
@@ -1186,7 +1074,7 @@
       ],
       "Flags": [],
       "Experience": "278,460",
-      "Id": 6314
+      "Id": 2013
     },
     {
       "Keywords": [
@@ -1221,7 +1109,7 @@
       ],
       "Flags": [],
       "Experience": "278,460",
-      "Id": 6315
+      "Id": 2014
     },
     {
       "Keywords": [
@@ -1253,7 +1141,7 @@
       ],
       "Flags": [],
       "Experience": "20,800",
-      "Id": 6316
+      "Id": 2015
     },
     {
       "Keywords": [
@@ -1285,7 +1173,7 @@
       ],
       "Flags": [],
       "Experience": "29,640",
-      "Id": 6317
+      "Id": 2016
     },
     {
       "Keywords": [
@@ -1316,7 +1204,7 @@
       ],
       "Flags": [],
       "Experience": "12,480",
-      "Id": 6318
+      "Id": 2017
     },
     {
       "Keywords": [
@@ -1352,7 +1240,7 @@
       ],
       "Flags": [],
       "Experience": "64,680",
-      "Id": 6319
+      "Id": 2018
     }
   ],
   "RespawnTimeInMinutes": 30

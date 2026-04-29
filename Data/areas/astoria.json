@@ -12,1382 +12,1168 @@
       "Name": "Outside The East Gate",
       "Description": "A grand and imposing city entrance, with large black marble pillars on either\nside of the gate, which has a small golden emblem embedded within it. The use\nof black and gold in the description suggests a sense of opulence and\ngrandeur.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "West": 19001
+        "West": 1
       },
-      "Id": 19000
+      "Id": 0
     },
     {
       "Name": "The East Gate of Astoria",
       "Description": "A grand and imposing city entrance, with large black marble pillars on either\nside of the gate, which has a small golden emblem embedded within it. The use\nof black and gold in the description suggests a sense of opulence and\ngrandeur.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "19019"
+        "19"
       ],
       "Exits": {
-        "East": 19000,
-        "West": 19002
+        "East": 0,
+        "West": 2
       },
-      "Id": 19001
+      "Id": 1
     },
     {
       "Name": "Eastern Street of Astoria",
       "Description": "Ancient cobblestones line the street which creates an odd tempo of clacks\nand thumps as horse-drawn wagons pass by, bringing merchandise and wares to\nvarious merchants and vendors within the city. The road continues east and west.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "East": 19001,
-        "West": 19003
+        "East": 1,
+        "West": 3
       },
-      "Id": 19002
+      "Id": 2
     },
     {
       "Name": "Eastern Street of Astoria",
       "Description": "Ancient cobblestones line the street which creates an odd tempo of clacks\nand thumps as horse-drawn wagons pass by, bringing merchandise and wares to\nvarious merchants and vendors within the city. The road continues east and west.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "East": 19002,
-        "West": 19004
+        "East": 2,
+        "West": 4
       },
-      "Id": 19003
+      "Id": 3
     },
     {
       "Name": "Eastern Street of Astoria",
       "Description": "Ancient cobblestones line this four way street which creates an odd tempo of clacks\nand thumps as horse-drawn wagons pass by, bringing merchandise and wares to\nvarious merchants and vendors within the city.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19015,
-        "East": 19003,
-        "South": 19034,
-        "West": 19005
+        "North": 15,
+        "East": 3,
+        "South": 31,
+        "West": 5
       },
-      "Id": 19004
+      "Id": 4
     },
     {
       "Name": "Eastern Street of Astoria",
       "Description": "Ancient cobblestones line the street which creates an odd tempo of clacks\nand thumps as horse-drawn wagons pass by, bringing merchandise and wares to\nvarious merchants and vendors within the city. The road continues east and west.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "East": 19004,
-        "West": 19006
+        "East": 4,
+        "West": 6
       },
-      "Id": 19005
+      "Id": 5
     },
     {
       "Name": "Eastern Street of Astoria",
       "Description": "Ancient cobblestones line the street which creates an odd tempo of clacks\nand thumps as horse-drawn wagons pass by, bringing merchandise and wares to\nvarious merchants and vendors within the city. The road continues east and west.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "East": 19005,
-        "West": 19007
+        "East": 5,
+        "West": 7
       },
-      "Id": 19006
+      "Id": 6
     },
     {
       "Name": "The Gazebo",
       "Description": "Ancient cobblestones line the street of this giant gazebo, supported by massive\ncolumns in each of the four corners. One of the busiest intersections of town,\nthe lound sound of clacks and thumps as horse-drawn wagons pass by, bringing\nmerchandise and wares to various merchants, vendors and temples within the\ncity.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19087,
-        "East": 19006,
-        "South": 19093,
-        "West": 19008
+        "North": 75,
+        "East": 6,
+        "South": 81,
+        "West": 8
       },
-      "Id": 19007
+      "Id": 7
     },
     {
       "Name": "Western Street of Astoria",
       "Description": "Ancient cobblestones line the street which creates an odd tempo of clacks\nand thumps as horse-drawn wagons pass by, bringing merchandise and wares to\nvarious merchants and vendors within the city. The road continues east and west.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "East": 19007,
-        "West": 19009
+        "East": 7,
+        "West": 9
       },
-      "Id": 19008
+      "Id": 8
     },
     {
       "Name": "Western Street of Astoria",
       "Description": "Ancient cobblestones line the street which creates an odd tempo of clacks\nand thumps as horse-drawn wagons pass by, bringing merchandise and wares to\nvarious merchants and vendors within the city. The road continues east and west.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "East": 19008,
-        "West": 19010
+        "East": 8,
+        "West": 10
       },
-      "Id": 19009
+      "Id": 9
     },
     {
       "Name": "Western Street of Astoria",
       "Description": "Ancient cobblestones line this four way street which creates an odd tempo of clacks\nand thumps as horse-drawn wagons pass by, bringing merchandise and wares to\nvarious merchants and vendors within the city.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19071,
-        "East": 19009,
-        "South": 19055,
-        "West": 19011
+        "North": 61,
+        "East": 9,
+        "South": 47,
+        "West": 11
       },
-      "Id": 19010
+      "Id": 10
     },
     {
       "Name": "Western Street of Astoria",
       "Description": "Ancient cobblestones line the street which creates an odd tempo of clacks\nand thumps as horse-drawn wagons pass by, bringing merchandise and wares to\nvarious merchants and vendors within the city. The road continues east and west.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "East": 19010,
-        "West": 19012
+        "East": 10,
+        "West": 12
       },
-      "Id": 19011
+      "Id": 11
     },
     {
       "Name": "Western Street of Astoria",
       "Description": "Ancient cobblestones line the street which creates an odd tempo of clacks\nand thumps as horse-drawn wagons pass by, bringing merchandise and wares to\nvarious merchants and vendors within the city. The road continues east and west.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "East": 19011,
-        "West": 19013
+        "East": 11,
+        "West": 13
       },
-      "Id": 19012
+      "Id": 12
     },
     {
       "Name": "Western Gate",
       "Description": "A grand and imposing city entrance, with large black marble pillars on either\nside of the gate, which has a small golden emblem embedded within it. The use\nof black and gold in the description suggests a sense of opulence and\ngrandeur.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "19019"
+        "19"
       ],
       "Exits": {
-        "East": 19012,
-        "West": 19014
+        "East": 12,
+        "West": 14
       },
-      "Id": 19013
+      "Id": 13
     },
     {
       "Name": "Outside the Western Gate",
       "Description": "A grand and imposing city entrance, with large black marble pillars on either\nside of the gate, which has a small golden emblem embedded within it. The use\nof black and gold in the description suggests a sense of opulence and\ngrandeur.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "East": 19013,
-        "West": 51400
+        "East": 13,
+        "West": 1000
       },
-      "Id": 19014
+      "Id": 14
     },
     {
       "Name": "Communer Lane",
       "Description": "Magical spheres of light replace street lamps here, illuminating the pathway\nalmost as well as the high-noon sun. Some strange etchings appear on various \nwalls and windowsills, like some secret language revealing a higher knowledge\nof things beyond understanding. The lane continues to the north.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19016,
-        "South": 19004
+        "North": 16,
+        "South": 4
       },
-      "Id": 19015
+      "Id": 15
     },
     {
       "Name": "Communer Lane",
       "Description": "Magical spheres of light replace street lamps here, illuminating the pathway\nalmost as well as the high-noon sun. Some strange etchings appear on various \nwalls and windowsills, like some secret language revealing a higher knowledge\nof things beyond understanding. The lane continues to the north and south.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19017,
-        "South": 19015
+        "North": 17,
+        "South": 15
       },
-      "Id": 19016
+      "Id": 16
     },
     {
       "Name": "Communer Lane",
       "Description": "Magical spheres of light replace street lamps here, illuminating the pathway\nalmost as well as the high-noon sun. Some strange etchings appear on various \nwalls and windowsills, like some secret language revealing a higher knowledge\nof things beyond understanding. The lane continues north and south, the priest\nto the east.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19018,
-        "East": 19025,
-        "South": 19016
+        "North": 18,
+        "East": 25,
+        "South": 16
       },
-      "Id": 19017
+      "Id": 17
     },
     {
       "Name": "Communer Lane",
       "Description": "Magical spheres of light replace street lamps here, illuminating the pathway\nalmost as well as the high-noon sun. Some strange etchings appear on various \nwalls and windowsills, like some secret language revealing a higher knowledge\nof things beyond understanding. The lane continues north and south.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19019,
-        "South": 19017
+        "North": 19,
+        "South": 17
       },
-      "Id": 19018
+      "Id": 18
     },
     {
       "Name": "Communer Lane",
       "Description": "Magical spheres of light replace street lamps here, illuminating the pathway\nalmost as well as the high-noon sun. Some strange etchings appear on various \nwalls and windowsills, like some secret language revealing a higher knowledge\nof things beyond understanding. The lane continues north and south.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19020,
-        "South": 19018
+        "North": 20,
+        "South": 18
       },
-      "Id": 19019
+      "Id": 19
     },
     {
       "Name": "Communer Lane",
       "Description": "Magical spheres of light replace street lamps here, illuminating the pathway\nalmost as well as the high-noon sun. Some strange etchings appear on various \nwalls and windowsills, like some secret language revealing a higher knowledge\nof things beyond understanding. The lane continues north and south, the\npaladin\u0027s guild lies to the east.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "19011"
+        "11"
       ],
       "Exits": {
-        "North": 19021,
-        "East": 19026,
-        "South": 19019
+        "North": 21,
+        "East": 26,
+        "South": 19
       },
-      "Id": 19020
+      "Id": 20
     },
     {
       "Name": "Communer Lane",
       "Description": "Magical spheres of light replace street lamps here, illuminating the pathway\nalmost as well as the high-noon sun. Some strange etchings appear on various \nwalls and windowsills, like some secret language revealing a higher knowledge\nof things beyond understanding. The lane continues north and south.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19022,
-        "South": 19020
+        "North": 22,
+        "South": 20
       },
-      "Id": 19021
+      "Id": 21
     },
     {
       "Name": "Communer Lane",
       "Description": "Magical spheres of light replace street lamps here, illuminating the pathway\nalmost as well as the high-noon sun. Some strange etchings appear on various \nwalls and windowsills, like some secret language revealing a higher knowledge\nof things beyond understanding. The lane continues north and south.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19023,
-        "South": 19021,
-        "West": 19108
+        "North": 23,
+        "South": 21,
+        "West": 96
       },
-      "Id": 19022
+      "Id": 22
     },
     {
       "Name": "Communer Lane",
       "Description": "Magical spheres of light replace street lamps here, illuminating the pathway\nalmost as well as the high-noon sun. Some strange etchings appear on various \nwalls and windowsills, like some secret language revealing a higher knowledge\nof things beyond understanding. The lane continues north and south, the healers\nguild lies to the east.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "19013"
+        "13"
       ],
       "Exits": {
-        "North": 19024,
-        "East": 19027,
-        "South": 19022
+        "North": 24,
+        "East": 27,
+        "South": 22
       },
-      "Id": 19023
+      "Id": 23
     },
     {
       "Name": "Wendy\u0027s Shop of Magic",
       "Description": "Bells ring as you enter the shop, signaling the owner a patron has entered.\nA long smooth counter lines one wall of the room, clear of all clutter except\nfor a large crystal ball. Strange devices hang from hooks in the ceiling along\none wall, while the other side is lined with shelves containing various plants\nand shrubs.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "19007"
+        "7"
       ],
       "Exits": {
-        "South": 19023
+        "South": 23
       },
-      "Id": 19024
+      "Id": 24
     },
     {
       "Name": "The Shamans Guild",
       "Description": "Walking into this extravegant looking guild, the first thing that you notice is\na small shrine in the middle of the room. Its the Shrine of the Great Shamans\nGuild. The floor is made of solid wood and is coverd in a huge blue rug thathas\npictures of chalices and crosses on it. In the middle of the where the shrine\nsits is a medium whie cloth with a shield and two swords crossing the shield,\nsitting underneath the shine.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19028,
-        "West": 19017
+        "North": 28,
+        "West": 17
       },
-      "Id": 19025
+      "Id": 25
     },
     {
       "Name": "The Paladins Guild",
       "Description": "Walking into this dreary looking guild, the first thing that you notice is a\nsmall modest shrine in the middle of the room, representing all paladins who\nhave trained and died fighting in the defense of others. Beneath the shrine is\na purple cloth embeded with a sword and shield, the symbol of traditional\ndefense of the innocent. The floor is made of solid wood and is worn smooth\nwith various notches from all the sword practice.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19030,
-        "West": 19020
+        "North": 29,
+        "West": 20
       },
-      "Id": 19026
+      "Id": 26
     },
     {
       "Name": "Clerics Sanctuary",
       "Description": "Walking into this guild, the first thing that you notice is the smell of\ndisinfectant and incense. A small modest shrine in the middle of the room,\nwhere various scented candles burn, creating a relaxing atmosphere for healing.\nThe floor is made of solid wood and is waxed and buffed to a mirror-like shine.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19032,
-        "West": 19023
+        "North": 30,
+        "West": 23
       },
-      "Id": 19027
+      "Id": 27
     },
     {
       "Name": "The Priests Guidance",
       "Description": "The extravagance of this room is intense to say the least. Gaudy chandeliers\nof gold and silver hang from the vaulted ceiling all lit with fragrant candles\nmade with gold flecks within the wax. An elder is here dressed in all white,\nwith a blue emblem upon her chest depicting a chalice and cross. No expense was\nspared to display an arrogance of superiority and position of the elder here.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "South": 19025
+        "South": 25
       },
-      "Id": 19028
+      "Id": 28
     },
     {
       "Name": "The Paladins Guidance",
       "Description": "You see one single elder here sitting on a cold stone chair, completely lacking\nany cushion for comfort. While still gripping his ancient sword and shield, you\ncan\u0027t help but notice the scars across both his face and forearms. Symbols of\ncampaigns to rescue the innocent fill the single mural on the wall.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "19010"
+        "10"
       ],
       "Exits": {
-        "South": 19026
+        "South": 26
       },
-      "Id": 19030
+      "Id": 29
     },
     {
       "Name": "Clerics Guidance",
       "Description": "You see a multitude of elders perched on comfortable cushioned chairs,\nsurrounding the outside walls of the room. Symbols of snakes and other\nwildlife fill the murals on the walls above the elders, all depicting\nvarious stages of healing or death. The elders invite you to aks your questions\nwithout delay, so they may get back to their contemplations.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "19012"
+        "12"
       ],
       "Exits": {
-        "South": 19027
+        "South": 27
       },
-      "Id": 19032
+      "Id": 30
     },
     {
       "Name": "Adventurers Lane",
       "Description": "This clean cobblestone street shows little wear. Less used by wagons or\nmerchants, due to the lack of shops along the lane. The lane continues south.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19004,
-        "East": 19106,
-        "South": 19035
+        "North": 4,
+        "East": 94,
+        "South": 32
       },
-      "Id": 19034
+      "Id": 31
     },
     {
       "Name": "Adventurers Lane",
       "Description": "This clean cobblestone street shows little wear. Less used by wagons or\nmerchants, due to the lack of shops along the lane. The lane continues\nnorth and south.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19034,
-        "South": 19036
+        "North": 31,
+        "South": 33
       },
-      "Id": 19035
+      "Id": 32
     },
     {
       "Name": "Adventurers Lane",
       "Description": "This clean cobblestone street shows little wear. Less used by wagons or\nmerchants, due to the lack of shops along the lane. The lane continues\nnorth and south. To the east you see a guild.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "19009"
+        "9"
       ],
       "Exits": {
-        "North": 19035,
-        "East": 19045,
-        "South": 19037
+        "North": 32,
+        "East": 41,
+        "South": 34
       },
-      "Id": 19036
+      "Id": 33
     },
     {
       "Name": "Adventurers Lane",
       "Description": "This clean cobblestone street shows little wear. Less used by wagons or\nmerchants, due to the lack of shops along the lane. The lane continues\nnorth and south.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19036,
-        "South": 19038
+        "North": 33,
+        "South": 35
       },
-      "Id": 19037
+      "Id": 34
     },
     {
       "Name": "Adventurers Lane",
       "Description": "This clean cobblestone street shows little wear. Less used by wagons or\nmerchants, due to the lack of shops along the lane. The lane continues\nnorth and south.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19037,
-        "South": 19039
+        "North": 34,
+        "South": 36
       },
-      "Id": 19038
+      "Id": 35
     },
     {
       "Name": "Adventurers Lane",
       "Description": "This clean cobblestone street shows little wear. Less used by wagons or\nmerchants, due to the lack of shops along the lane. The lane continues\nnorth and south. To the east you see a guild.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "19015"
+        "15"
       ],
       "Exits": {
-        "North": 19038,
-        "East": 19046,
-        "South": 19040
+        "North": 35,
+        "East": 42,
+        "South": 37
       },
-      "Id": 19039
+      "Id": 36
     },
     {
       "Name": "Adventurers Lane",
       "Description": "This clean cobblestone street shows little wear. Less used by wagons or\nmerchants, due to the lack of shops along the lane. The lane continues\nnorth and south.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19039,
-        "South": 19041
+        "North": 36,
+        "South": 38
       },
-      "Id": 19040
+      "Id": 37
     },
     {
       "Name": "Adventurers Lane",
       "Description": "This clean cobblestone street shows little wear. Less used by wagons or\nmerchants, due to the lack of shops along the lane. The lane continues\nnorth and south.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "19035"
+        "35"
       ],
       "Exits": {
-        "North": 19040,
-        "East": 19122,
-        "South": 19042
+        "North": 37,
+        "East": 104,
+        "South": 39
       },
-      "Id": 19041
+      "Id": 38
     },
     {
       "Name": "Adventurers Lane",
       "Description": "This clean cobblestone street shows little wear. Less used by wagons or\nmerchants, due to the lack of shops along the lane. The lane continues\nnorth and south. To the east you see a guild.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19041,
-        "East": 19047,
-        "South": 19043
+        "North": 38,
+        "East": 43,
+        "South": 40
       },
-      "Id": 19042
+      "Id": 39
     },
     {
       "Name": "Adventurers Lane",
       "Description": "This clean cobblestone street shows little wear. Less used by wagons or\nmerchants, due to the lack of shops along the lane. The lane continues\nnorth, but evidence shows work being done to continue the lane further.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19042
+        "North": 39
       },
-      "Id": 19043
+      "Id": 40
     },
     {
       "Name": "Warriors Guild",
       "Description": "All the walls here are lined with padding, each corner featuring a weapon rack\nfull of implements of various specialties. The floor looks to be swept and\nmopped often, yet old sweat and blood stains have set in from the years of\nhard work and practice.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19048,
-        "West": 19036
+        "North": 44,
+        "West": 33
       },
-      "Id": 19045
+      "Id": 41
     },
     {
       "Name": "Thiefs Guild",
       "Description": "Entry into this room is by invitation only. A large sign at the entrance lists\n10 rules you can never break, the first of which states \u0022Death to any who break\n3 or more of the following rules!\u0022 Full sized statues wearing various types of\nclothing are arranged throughout the room, many a thief practicing their pick\npocket skills.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19050,
-        "West": 19039
+        "North": 45,
+        "West": 36
       },
-      "Id": 19046
+      "Id": 42
     },
     {
       "Name": "Guard Station",
       "Description": "A small, fortified structure is used to schedule guard rotation. The shack\nis located out of the way so as to not intrude on the citizens of Astoria.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "19030"
+        "30"
       ],
       "Exits": {
-        "North": 19052,
-        "West": 19042
+        "North": 46,
+        "West": 39
       },
-      "Id": 19047
+      "Id": 43
     },
     {
       "Name": "Warriors Training",
       "Description": "In a small room with few decorations an old yet hard muscled man sits, waiting\nto approve or disaprove advancement within the guild. A podium stands beside\nthe trainer, with the book open to your name, along side an ink pot and pen.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "19008"
+        "8"
       ],
       "Exits": {
-        "South": 19045
+        "South": 41
       },
-      "Id": 19048
+      "Id": 44
     },
     {
       "Name": "Thiefs Guidance",
       "Description": "A luxuriously furished room is filled with well dressed men and women, enjoying\ndrinks and snacks, much like what you would expect at a party. An old wrinkled\nman hides in the shadows of a corner, waiting for students to complete their\ntest to prove they are worthy to advance.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "19014"
+        "14"
       ],
       "Exits": {
-        "South": 19046
+        "South": 42
       },
-      "Id": 19050
+      "Id": 45
     },
     {
       "Name": "Guard Shack",
       "Description": "A small, fortified structure is used to schedule guard rotation. The shack\nis located out of the way so as to not intrude on the citizens of Astoria.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "19031"
+        "31"
       ],
       "Exits": {
-        "South": 19047
+        "South": 43
       },
-      "Id": 19052
+      "Id": 46
     },
     {
       "Name": "Ryhmers Path",
       "Description": "The road is surrounded by trees and brush with a variety of wildlife adding to\nthe symphony of sounds in the air. The scent of blooming flowers and freshly cut\ngrass mixes with the natural scents of the forest. The rustling of leaves,\nchirping of birds, and occasional calls of animals create a harmonious rhythm in\nthe surroundings. The beauty of nature can be seen and heard with every step,\nmaking the journey all the more worthwhile.\nThe road continues north and south.",
       "SectorType": "Forest",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19010,
-        "South": 19056
+        "North": 10,
+        "South": 48
       },
-      "Id": 19055
+      "Id": 47
     },
     {
       "Name": "Rhymers Path",
       "Description": "The road is surrounded by trees and brush with a variety of wildlife adding to\nthe symphony of sounds in the air. The scent of blooming flowers and freshly cut\ngrass mixes with the natural scents of the forest. The rustling of leaves,\nchirping of birds, and occasional calls of animals create a harmonious rhythm in\nthe surroundings. The beauty of nature can be seen and heard with every step,\nmaking the journey all the more worthwhile.\nThe road continues north and south.",
       "SectorType": "Forest",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19055,
-        "South": 19057
+        "North": 47,
+        "South": 49
       },
-      "Id": 19056
+      "Id": 48
     },
     {
       "Name": "Rhymers Path",
       "Description": "The road is surrounded by trees and brush with a variety of wildlife adding to\nthe symphony of sounds in the air. The scent of blooming flowers and freshly cut\ngrass mixes with the natural scents of the forest. The rustling of leaves,\nchirping of birds, and occasional calls of animals create a harmonious rhythm in\nthe surroundings. The beauty of nature can be seen and heard with every step,\nmaking the journey all the more worthwhile.\nThe road continues north and south,\nand a guild lies to the west.",
       "SectorType": "Forest",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "19033"
+        "33"
       ],
       "Exits": {
-        "North": 19056,
-        "South": 19058,
-        "West": 19065
+        "North": 48,
+        "South": 50,
+        "West": 57
       },
-      "Id": 19057
+      "Id": 49
     },
     {
       "Name": "Rhymers Path",
       "Description": "The road is surrounded by trees and brush with a variety of wildlife adding to\nthe symphony of sounds in the air. The scent of blooming flowers and freshly cut\ngrass mixes with the natural scents of the forest. The rustling of leaves,\nchirping of birds, and occasional calls of animals create a harmonious rhythm in\nthe surroundings. The beauty of nature can be seen and heard with every step,\nmaking the journey all the more worthwhile.\nThe road continues north and south.",
       "SectorType": "Forest",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19057,
-        "South": 19059
+        "North": 49,
+        "South": 51
       },
-      "Id": 19058
+      "Id": 50
     },
     {
       "Name": "Rhymers Path",
       "Description": "The road is surrounded by trees and brush with a variety of wildlife adding to\nthe symphony of sounds in the air. The scent of blooming flowers and freshly cut\ngrass mixes with the natural scents of the forest. The rustling of leaves,\nchirping of birds, and occasional calls of animals create a harmonious rhythm in\nthe surroundings. The beauty of nature can be seen and heard with every step,\nmaking the journey all the more worthwhile.\nThe road continues north and south.",
       "SectorType": "Forest",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19058,
-        "South": 19060
+        "North": 50,
+        "South": 52
       },
-      "Id": 19059
+      "Id": 51
     },
     {
       "Name": "Rhymers Path",
       "Description": "The road is surrounded by trees and brush with a variety of wildlife adding to\nthe symphony of sounds in the air. The scent of blooming flowers and freshly cut\ngrass mixes with the natural scents of the forest. The rustling of leaves,\nchirping of birds, and occasional calls of animals create a harmonious rhythm in\nthe surroundings. The beauty of nature can be seen and heard with every step,\nmaking the journey all the more worthwhile.\nThe road continues north and south,\nand a guild lies to the west.",
       "SectorType": "Forest",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19059,
-        "South": 19061,
-        "West": 19068
+        "North": 51,
+        "South": 53,
+        "West": 59
       },
-      "Id": 19060
+      "Id": 52
     },
     {
       "Name": "Rhymers Path",
       "Description": "The road is surrounded by trees and brush with a variety of wildlife adding to\nthe symphony of sounds in the air. The scent of blooming flowers and freshly cut\ngrass mixes with the natural scents of the forest. The rustling of leaves,\nchirping of birds, and occasional calls of animals create a harmonious rhythm in\nthe surroundings. The beauty of nature can be seen and heard with every step,\nmaking the journey all the more worthwhile.\nThe road continues north and south.",
       "SectorType": "Forest",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19060,
-        "South": 19062
+        "North": 52,
+        "South": 54
       },
-      "Id": 19061
+      "Id": 53
     },
     {
       "Name": "Rhymers Path",
       "Description": "The road is surrounded by trees and brush with a variety of wildlife adding to\nthe symphony of sounds in the air. The scent of blooming flowers and freshly cut\ngrass mixes with the natural scents of the forest. The rustling of leaves,\nchirping of birds, and occasional calls of animals create a harmonious rhythm in\nthe surroundings. The beauty of nature can be seen and heard with every step,\nmaking the journey all the more worthwhile.\nThe road continues north and south,\nor you could jump down into a river.",
       "SectorType": "Forest",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19061,
-        "South": 19063
+        "North": 53,
+        "South": 55
       },
-      "Id": 19062
+      "Id": 54
     },
     {
       "Name": "Inside the South Gate",
       "Description": "A grand and imposing city entrance, with large black marble pillars on either\nside of the gate, which has a small golden emblem embedded within it. The use\nof black and gold in the description suggests a sense of opulence and\ngrandeur.",
       "SectorType": "Forest",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "19019"
+        "19"
       ],
       "Exits": {
-        "North": 19062,
-        "South": 19064
+        "North": 54,
+        "South": 56
       },
-      "Id": 19063
+      "Id": 55
     },
     {
       "Name": "Outside the South Gate",
       "Description": "A grand and imposing city entrance, with large black marble pillars on either\nside of the gate, which has a small golden emblem embedded within it. The use\nof black and gold in the description suggests a sense of opulence and\ngrandeur.",
       "SectorType": "Forest",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19063
+        "North": 55
       },
-      "Id": 19064
+      "Id": 56
     },
     {
       "Name": "Bards Guild",
       "Description": "A giant peg board lines three of the four walls of this room, multiple hooks\nholding every kind of musical instrument you can imagine. To either side of\nthe north door, wooden racks stand from floor to ceiling hold the larger\ncontraptions that are too heavy to carry.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "19034"
+        "34"
       ],
       "Exits": {
-        "North": 19066,
-        "East": 19057
+        "North": 58,
+        "East": 49
       },
-      "Id": 19065
+      "Id": 57
     },
     {
       "Name": "Bards Guidance",
       "Description": "The walls of this room are lined with heavy wool strips pleated and sewn\ntogether, with a thick coating of tree sap and bees wax. Upon entering, you\nrealize that the acoustics here are superb. An ancient man is here, waiting\non you to begin your audition.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "19032"
+        "32"
       ],
       "Exits": {
-        "South": 19065
+        "South": 57
       },
-      "Id": 19066
+      "Id": 58
     },
     {
       "Name": "hollow tree",
       "Description": "You have stepped into a huge, hollow tree. Despite the large area hollowed out,\nthe living tree seems health and strong. The inner cavity is covered in thick\nbark, protecting itself from it\u0027s intruders. Thick grass mixed with moss line\nthe ground, making it a comfortable place to take a rest.",
       "SectorType": "Forest",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "19021"
+        "21"
       ],
       "Exits": {
-        "North": 19069,
-        "East": 19060
+        "North": 60,
+        "East": 52
       },
-      "Id": 19068
+      "Id": 59
     },
     {
       "Name": "hollow tree",
       "Description": "You have stepped further into the hollow tree. The inner cavity here is also\ncovered in thick bark, protecting itself from intruders. Thick grass mixed\nwith moss line the ground, making it a comfortable place to take a rest.",
       "SectorType": "Forest",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "South": 19068
+        "South": 59
       },
-      "Id": 19069
+      "Id": 60
     },
     {
       "Name": "Soothsayer Lane",
       "Description": "The road here is paved with an assortment of crystals and gems of all shapes\nsizes, gaps between each filled with a fine powder, and a final overlay of\nclear shellac. Much less traveled than others in the city, the atmosphere of\nthis lane vibrates with a strange occult sensation. The lane continues north.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19072,
-        "South": 19010
+        "North": 62,
+        "South": 10
       },
-      "Id": 19071
+      "Id": 61
     },
     {
       "Name": "Soothsayer Lane",
       "Description": "The road here is paved with an assortment of crystals and gems of all shapes\nsizes, gaps between each filled with a fine powder, and a final overlay of\nclear shellac. Much less traveled than others in the city, the atmosphere of\nthis lane vibrates with a strange occult sensation. The lane continues north\nand south.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19073,
-        "South": 19071
+        "North": 63,
+        "South": 61
       },
-      "Id": 19072
+      "Id": 62
     },
     {
       "Name": "Soothsayer Lane",
       "Description": "The road here is paved with an assortment of crystals and gems of all shapes\nsizes, gaps between each filled with a fine powder, and a final overlay of\nclear shellac. Much less traveled than others in the city, the atmosphere of\nthis lane vibrates with a strange occult sensation. The lane continues north\nand south, a guild lies to the west.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "19043"
+        "43"
       ],
       "Exits": {
-        "North": 19074,
-        "South": 19072,
-        "West": 19081
+        "North": 64,
+        "South": 62,
+        "West": 71
       },
-      "Id": 19073
+      "Id": 63
     },
     {
       "Name": "Soothsayer Lane",
       "Description": "The road here is paved with an assortment of crystals and gems of all shapes\nsizes, gaps between each filled with a fine powder, and a final overlay of\nclear shellac. Much less traveled than others in the city, the atmosphere of\nthis lane vibrates with a strange occult sensation. The lane continues north\nand south.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19075,
-        "South": 19073
+        "North": 65,
+        "South": 63
       },
-      "Id": 19074
+      "Id": 64
     },
     {
       "Name": "Soothsayer Lane",
       "Description": "The road here is paved with an assortment of crystals and gems of all shapes\nsizes, gaps between each filled with a fine powder, and a final overlay of\nclear shellac. Much less traveled than others in the city, the atmosphere of\nthis lane vibrates with a strange occult sensation. The lane continues north\nand south.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19076,
-        "South": 19074
+        "North": 66,
+        "South": 64
       },
-      "Id": 19075
+      "Id": 65
     },
     {
       "Name": "Soothsayer Lane",
       "Description": "The road here is paved with an assortment of crystals and gems of all shapes\nsizes, gaps between each filled with a fine powder, and a final overlay of\nclear shellac. Much less traveled than others in the city, the atmosphere of\nthis lane vibrates with a strange occult sensation. The lane continues north\nand south, a guild lies to the west.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "19017"
+        "17"
       ],
       "Exits": {
-        "North": 19077,
-        "South": 19075,
-        "West": 19084
+        "North": 67,
+        "South": 65,
+        "West": 73
       },
-      "Id": 19076
+      "Id": 66
     },
     {
       "Name": "Soothsayer Lane",
       "Description": "The road here is paved with an assortment of crystals and gems of all shapes\nsizes, gaps between each filled with a fine powder, and a final overlay of\nclear shellac. Much less traveled than others in the city, the atmosphere of\nthis lane vibrates with a strange occult sensation. The lane continues north\nand south.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19078,
-        "South": 19076
+        "North": 68,
+        "South": 66
       },
-      "Id": 19077
+      "Id": 67
     },
     {
       "Name": "Soothsayer Lane",
       "Description": "The road here is paved with an assortment of crystals and gems of all shapes\nsizes, gaps between each filled with a fine powder, and a final overlay of\nclear shellac. Much less traveled than others in the city, the atmosphere of\nthis lane vibrates with a strange occult sensation. The lane continues north\nand south.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19079,
-        "East": 19113,
-        "South": 19077
+        "North": 69,
+        "East": 101,
+        "South": 67
       },
-      "Id": 19078
+      "Id": 68
     },
     {
       "Name": "Soothsayer Lane",
       "Description": "The road here is paved with an assortment of crystals and gems of all shapes\nsizes, gaps between each filled with a fine powder, and a final overlay of\nclear shellac. Much less traveled than others in the city, the atmosphere of\nthis lane vibrates with a strange occult sensation. The lane continues north\nand south.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19080,
-        "South": 19078
+        "North": 70,
+        "South": 68
       },
-      "Id": 19079
+      "Id": 69
     },
     {
       "Name": "Dead End",
       "Description": "The road here is paved with an assortment of crystals and gems of all shapes\nsizes, gaps between each filled with a fine powder, and a final overlay of\nclear shellac. The lane ends here, a dead end but with further construction\nevident. The lane continues to the south.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "South": 19079
+        "South": 69
       },
-      "Id": 19080
+      "Id": 70
     },
     {
       "Name": "Shapeshifters Guild",
       "Description": "The entrance to the shapeshifters guild is an imposing stone archway, carved\nwith intricate patterns and symbols that represent the shapeshifters\u0027 connection\nto nature and their ability to transform into various creatures. At the\nentrance, a high-level shapeshifter stands guard, their animal form radiating a\nsense of power and strength. The shapeshifter observes anyone who approaches,\ngauging their intentions and testing their respect for nature before allowing\nthem entry.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19082,
-        "East": 19073
+        "North": 72,
+        "East": 63
       },
-      "Id": 19081
+      "Id": 71
     },
     {
       "Name": "Shapeshifter Guidance",
       "Description": "As you enter the shapeshifters guild, you are greeted by air that is thick with\nthe smell of wood burning in the fireplace, and the walls are lined with shelves\nfilled with books on anatomy, biology, and animal behavior. The students can be\nseen in various forms, practicing their transformations in designated areas or\nstudying in groups. There is a sense of harmony and tranquility within the\nguild, and the sounds of birds and other woodland creatures can be heard in the\nbackground.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "19042"
+        "42"
       ],
       "Exits": {
-        "South": 19081
+        "South": 71
       },
-      "Id": 19082
+      "Id": 72
     },
     {
       "Name": "Mages Guild",
       "Description": "The walls of the mages guild are full of mystical symbols, none of which can\nbe understood by the common mind. Several robed figures mill around discussing\nincomprehensible things with unintelligible words and hand motions.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19085,
-        "East": 19076
+        "North": 74,
+        "East": 66
       },
-      "Id": 19084
+      "Id": 73
     },
     {
       "Name": "Mages Guidance",
       "Description": "As you enter this dark and silent room you hear a voice in your head asking you\nif you are worthy to learn new spells yet. Obviously, without the power to\ndetect the invisible, it would feel as if the bodyless voice was from a spirit.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "19016"
+        "16"
       ],
       "Exits": {
-        "South": 19084
+        "South": 73
       },
-      "Id": 19085
+      "Id": 74
     },
     {
       "Name": "Temple Altar",
       "Description": "A giant altar stands tall and gaudy in the middle of this room. There are\nvarious depictions of scenery etched into the altar, from the bloom of new\nlife to the death of a star. No one god is represented here, but all gods of \nall faiths are welcome. The room is simple of fashion, all decorations designed\nto display the altar front and center.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "19018"
+        "18"
       ],
       "Exits": {
-        "North": 19088,
-        "East": 19089,
-        "South": 19007,
-        "West": 19090
+        "North": 76,
+        "East": 77,
+        "South": 7,
+        "West": 78
       },
-      "Id": 19087
+      "Id": 75
     },
     {
       "Name": "Temple Bath",
       "Description": "Smooth marble stones along the bath floor present a very real slip hazzard to\nworshipers who partake in the ceremonial bath celebrations.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19091,
-        "South": 19087
+        "North": 79,
+        "South": 75
       },
-      "Id": 19088
+      "Id": 76
     },
     {
       "Name": "Temple of the Sun",
       "Description": "Brightly lit chandeliers hang from the vaulted ceiling, revealing all,\nforever vanquishing all shadows. Various cushioned benches line the\nwalls for worshipers to kneel or pray as needed.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "West": 19087
+        "West": 75
       },
-      "Id": 19089
+      "Id": 77
     },
     {
       "Name": "Temple of The Shadow",
       "Description": "Dimly lit chandeliers hang from the vaulted ceiling, revealing very little,\nmultiple shadows provide many hiding placesa. Various cushioned benches line\nthe walls for worshipers to kneel or pray as needed.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "East": 19087
+        "East": 75
       },
-      "Id": 19090
+      "Id": 78
     },
     {
       "Name": "Temple of The Moon",
       "Description": "This temple room features a large dome window in the ceiling above. Without \nartificial lighting, the room is bathed completely in natural light from \neither the sun or the moon. Multiple mirrors are placed strategically in the \nupper corners to reflect the lesser moonlight at night, yet can be turned up \nand away during the daytime.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "South": 19088
+        "South": 76
       },
-      "Id": 19091
+      "Id": 79
     },
     {
       "Name": "",
       "Description": "",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
-      "Id": 19092
+      "Id": 80
     },
     {
       "Name": "Merchants Lane",
       "Description": "The road is made with solid rock fit tightly together. Wide enough for four\nwagons abreast, this is one lively street, merchants and hawkers line both\nsides of the street. The center of the street is humped, allowing rain to\nflow to the sides and into the gutters. The lane continues north and south.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19007,
-        "South": 19094
+        "North": 7,
+        "South": 82
       },
-      "Id": 19093
+      "Id": 81
     },
     {
       "Name": "Merchants Lane",
       "Description": "The road is made with solid rock fit tightly together. Wide enough for four\nwagons abreast, this is one lively street, merchants and hawkers line both\nsides of the street. The center of the street is humped, allowing rain to\nflow to the sides and into the gutters. The lane continues north and south,\nmerchant shops lie to the east and the west.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19093,
-        "East": 19100,
-        "South": 19095,
-        "West": 19101
+        "North": 81,
+        "East": 88,
+        "South": 83,
+        "West": 89
       },
-      "Id": 19094
+      "Id": 82
     },
     {
       "Name": "Merchants Lane",
       "Description": "The road is made with solid rock fit tightly together. Wide enough for four\nwagons abreast, this is one lively street, merchants and hawkers line both\nsides of the street. The center of the street is humped, allowing rain to\nflow to the sides and into the gutters. The lane continues north and south.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19094,
-        "East": 19107,
-        "South": 19096
+        "North": 82,
+        "East": 95,
+        "South": 84
       },
-      "Id": 19095
+      "Id": 83
     },
     {
       "Name": "Merchants Lane",
       "Description": "The road is made with solid rock fit tightly together. Wide enough for four\nwagons abreast, this is one lively street, merchants and hawkers line both\nsides of the street. The center of the street is humped, allowing rain to\nflow to the sides and into the gutters. The lane continues north and south.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19095,
-        "South": 19097
+        "North": 83,
+        "South": 85
       },
-      "Id": 19096
+      "Id": 84
     },
     {
       "Name": "Merchants Lane",
       "Description": "The road is made with solid rock fit tightly together. Wide enough for four\nwagons abreast, this is one lively street, merchants and hawkers line both\nsides of the street. The center of the street is humped, allowing rain to\nflow to the sides and into the gutters. The lane continues north and south,\nmerchant shops lie to the east and the west.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19096,
-        "East": 19102,
-        "South": 19098,
-        "West": 19103
+        "North": 84,
+        "East": 90,
+        "South": 86,
+        "West": 91
       },
-      "Id": 19097
+      "Id": 85
     },
     {
       "Name": "Merchants Lane",
       "Description": "The road is made with solid rock fit tightly together. Wide enough for four\nwagons abreast, this is one lively street, merchants and hawkers line both\nsides of the street. The center of the street is humped, allowing rain to\nflow to the sides and into the gutters. The lane continues north and south.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19097,
-        "South": 19099
+        "North": 85,
+        "South": 87
       },
-      "Id": 19098
+      "Id": 86
     },
     {
       "Name": "Merchants Lane",
       "Description": "The road is made with solid rock fit tightly together. Wide enough for four\nwagons abreast, this is one lively street, merchants and hawkers line both\nsides of the street. The center of the street is humped, allowing rain to\nflow to the sides and into the gutters. The lane continues north, merchant\nshops lie to the east and the west.",
       "SectorType": "City",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19098,
-        "East": 19104,
-        "West": 19105,
-        "South": 3600
+        "North": 86,
+        "East": 92,
+        "West": 93,
+        "South": 3000
       },
-      "Id": 19099
+      "Id": 87
     },
     {
       "Name": "General Store",
       "Description": "Clean and organized, this shop seems to have all the neccessary conveniences\none may want as they travel and explore. From small kayaks, various sized sacks\nand canteens, You can be sure to find what you need.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "19006"
+        "6"
       ],
       "Exits": {
-        "West": 19094
+        "West": 82
       },
-      "Id": 19100
+      "Id": 88
     },
     {
       "Name": "Blacksmith",
       "Description": "The forge roars at all hours, its heat spilling into the front of the shop where\nracks of gleaming swords, battleaxes, and chainmail sets await buyers. An anvil sits near\nthe entrance, dented from years of use, and the air carries a thick scent of molten metal\nand burning coal. The counter bears deep scratches, likely from impatient warriors testing\nblades before paying.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "19020"
+        "20"
       ],
       "Exits": {
-        "East": 19094
+        "East": 82
       },
-      "Id": 19101
+      "Id": 89
     },
     {
       "Name": "Tanners Shop",
       "Description": "A sweet smell of cured leathers and skins fill the air here. Tables line the\nwalls, displaying all the leathers in an organized manner. Brown, green, or\neven camouflage, all guarenteed to be water and sun resistant, perfect for\nall your outdoor travel needs.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "19004"
+        "4"
       ],
       "Exits": {
-        "West": 19097
+        "West": 85
       },
-      "Id": 19102
+      "Id": 90
     },
     {
       "Name": "Alchemist Store",
       "Description": "The Alchemist Store smells of crushed herbs, bitter roots, and faintly sweet vapors. Shelves packed with vials, jars, and strange ingredients line the walls, some softly\nglowing or bubbling. A worn wooden counter stands at the back, cluttered with tools and glassware, while a small flame warms a brass apparatus nearby.\n\nDried plants hang from the rafters, and scorch marks on the floor hint at past mishaps. Despite the clutter, everything feels purposeful, as if each item serves a hidden design.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "19005"
+        "5"
       ],
       "Exits": {
-        "East": 19097
+        "East": 85
       },
-      "Id": 19103
+      "Id": 91
     },
     {
       "Name": "Axe and Dagger",
       "Description": "As you enter you notice a huge sign on the wall which states \u0022We will not be\nheld responsible for accidents or bloodshed within the establishment.\u0022 Row\nupon row of smaller daggers and swords are displayed on open tables, weapon\nstands along the walls contain taller weapons such as staffs and polearms. All\nappear freshly sharpened and ready for immediate use.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "19003"
+        "3"
       ],
       "Exits": {
-        "West": 19099
+        "West": 87
       },
-      "Id": 19104
+      "Id": 92
     },
     {
       "Name": "Krolicks BBQ",
       "Description": "As you walk in you hear lots of yelling from behind the counter. You see cooks\nand trainees working hard preparing all the custom orders received. Although\nmany items on the menu include chicken or pork, all seem to be doused with the\nsame, hot spicy bbq sauce that Krolicks is famous for.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "19002"
+        "2"
       ],
       "Exits": {
-        "East": 19099
+        "East": 87
       },
-      "Id": 19105
+      "Id": 93
     },
     {
       "Name": "The Trainer",
       "Description": "You are in the room with the trainer. He has learned many valuable lessons to\nbe shared with the endeavoring adventurer.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "West": 19034
+        "West": 31
       },
-      "Id": 19106
+      "Id": 94
     },
     {
       "Name": "The Bank",
       "Description": "Vaults line the eastern wall. Your belongings could be in\nany of them. A banker stands here to take your gold.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "19001"
+        "1"
       ],
       "Exits": {
-        "West": 19095
+        "West": 83
       },
-      "Id": 19107
+      "Id": 95
     },
     {
       "Name": "Park Avenue",
       "Description": "This avenue is so pristine you could eat off the ground. Mansions line the road\nwhere the city leaders and the rich live. Multiple signs can be seen on both\nsides of the avenue, all stating rules about what can and can\u0027t be done, such\nas \u0022Keep of the grass\u0022 or \u0022Stay to the right.\u0022",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "East": 19022,
-        "West": 19109
+        "East": 22,
+        "West": 97
       },
-      "Id": 19108
+      "Id": 96
     },
     {
       "Name": "Park Avenue",
       "Description": "This avenue is so pristine you could eat off the ground. Mansions line the road \nwhere the city leaders and the rich live. Multiple signs can be seen on both\nsides of the avenue, all stating rules about what can and can\u0027t be done, such\nas \u0022Keep of the grass\u0022 or \u0022Stay to the right.\u0022",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "East": 19108,
-        "West": 19110
+        "East": 96,
+        "West": 98
       },
-      "Id": 19109
+      "Id": 97
     },
     {
       "Name": "Park Avenue Intersection",
       "Description": "This avenue is so pristine you could eat off the ground. Multiple signs can be seen on both\nsides of the avenue, all stating rules about what can and can\u0027t be done, such\nas \u0022Keep of the grass\u0022 or \u0022Stay to the right.\u0022 Pearl Avenue lies to the north.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19111,
-        "East": 19109,
-        "West": 19112
+        "North": 99,
+        "East": 97,
+        "West": 100
       },
-      "Id": 19110
+      "Id": 98
     },
     {
       "Name": "Pearl Avenue",
       "Description": "This avenue is so pristine you could eat off the ground. Mansions line the road \nwhere the city leaders and the rich live. Multiple signs can be seen on both\nsides of the avenue, all stating rules about what can and can\u0027t be done, such\nas \u0022Keep of the grass\u0022 or \u0022Stay to the right.\u0022",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19114,
-        "South": 19110
+        "North": 102,
+        "South": 98
       },
-      "Id": 19111
+      "Id": 99
     },
     {
       "Name": "Park Avenue",
       "Description": "This avenue is so pristine you could eat off the ground. Mansions line the road \nwhere the city leaders and the rich live. Multiple signs can be seen on both\nsides of the avenue, all stating rules about what can and can\u0027t be done, such\nas \u0022Keep of the grass\u0022 or \u0022Stay to the right.\u0022",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "East": 19110,
-        "West": 19113
+        "East": 98,
+        "West": 101
       },
-      "Id": 19112
+      "Id": 100
     },
     {
       "Name": "Park Avenue",
       "Description": "This avenue is so pristine you could eat off the ground. Mansions line the road \nwhere the city leaders and the rich live. Multiple signs can be seen on both\nsides of the avenue, all stating rules about what can and can\u0027t be done, such\nas \u0022Keep of the grass\u0022 or \u0022Stay to the right.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "East": 19112,
-        "West": 19078
+        "East": 100,
+        "West": 68
       },
-      "Id": 19113
+      "Id": 101
     },
     {
       "Name": "Inside the North Gate",
       "Description": "A grand and imposing city entrance, with large black marble pillars on either\nside of the gate, which has a small golden emblem embedded within it. The use\nof black and gold in the description suggests a sense of opulence and\ngrandeur.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "19019"
+        "19"
       ],
       "Exits": {
-        "North": 19115,
-        "South": 19111
+        "North": 103,
+        "South": 99
       },
-      "Id": 19114
+      "Id": 102
     },
     {
       "Name": "Outside the North Gate",
       "Description": "A grand and imposing city entrance, with large black marble pillars on either\nside of the gate, which has a small golden emblem embedded within it. The use\nof black and gold in the description suggests a sense of opulence and\ngrandeur.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "South": 19114
+        "South": 102
       },
-      "Id": 19115
+      "Id": 103
     },
     {
       "Name": "Monks Guild",
       "Description": "A serene stillness fills the entrance of the Monk\u0027s Guild, where faint incense lingers\nin the air. A stone fountain at the center flows endlessly, symbolizing balance and discipline.\nPolished wooden beams overhead bear ancient teachings, while a scroll on the eastern\nwall outlines the guild\u0027s tenets.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "North": 19123,
-        "East": 19124,
-        "West": 19041
+        "North": 105,
+        "East": 106,
+        "West": 38
       },
-      "Id": 19122
+      "Id": 104
     },
     {
       "Name": "Monks Guidance",
       "Description": "A deep silence lingers here, broken only by the soft crackle of incense. A low wooden\ntable, adorned with ancient scrolls and prayer beads, sits at the center. Etched proverbs\nline the walls, offering wisdom to those who seek it. A small shrine in the corner honors\npast masters, their presence felt in the teachings passed down.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "MobileSpawns": [
-        "19036"
+        "36"
       ],
       "Exits": {
-        "South": 19122
+        "South": 104
       },
-      "Id": 19123
+      "Id": 105
     },
     {
       "Name": "Secret Alcove",
       "Description": "You see a dimly lit space with thick stone walls, an alcove hidden away for\nconcealment. Adorned with dark tapestries and flickering candles, and\nfilled with a library of arcane knowledge, including forbidden texts on the\nart of assassination and dark magic. This hidden secret chamber is\naccessible only to the most trusted members of the guild.",
       "SectorType": "Inside",
-      "HealRate": 0,
-      "ManaRate": 0,
       "Exits": {
-        "West": 19122
+        "West": 104
       },
-      "Id": 19124
+      "Id": 106
     }
   ],
   "Mobiles": [
@@ -1436,7 +1222,7 @@
         "Sentinel"
       ],
       "Experience": "2,640,000",
-      "Id": 19000
+      "Id": 0
     },
     {
       "Keywords": [
@@ -1465,7 +1251,7 @@
         "Sentinel"
       ],
       "Experience": "660",
-      "Id": 19001
+      "Id": 1
     },
     {
       "Keywords": [
@@ -1514,7 +1300,7 @@
         "NoPurge"
       ],
       "Experience": "2,640,000",
-      "Id": 19002
+      "Id": 2
     },
     {
       "Keywords": [
@@ -1563,7 +1349,7 @@
         "NoPurge"
       ],
       "Experience": "2,640,000",
-      "Id": 19003
+      "Id": 3
     },
     {
       "Keywords": [
@@ -1613,7 +1399,7 @@
         "NoPurge"
       ],
       "Experience": "2,640,000",
-      "Id": 19004
+      "Id": 4
     },
     {
       "Keywords": [
@@ -1664,7 +1450,7 @@
       "Shop": "alchemist",
       "ExchangeShop": "alchemist",
       "Experience": "2,640,000",
-      "Id": 19005
+      "Id": 5
     },
     {
       "Keywords": [
@@ -1713,7 +1499,7 @@
         "NoPurge"
       ],
       "Experience": "2,640,000",
-      "Id": 19006
+      "Id": 6
     },
     {
       "Keywords": [
@@ -1762,7 +1548,7 @@
         "Enchanter"
       ],
       "Experience": "2,640,000",
-      "Id": 19007
+      "Id": 7
     },
     {
       "Keywords": [
@@ -1812,7 +1598,7 @@
       ],
       "Guildmaster": "warrior",
       "Experience": "2,640,000",
-      "Id": 19008
+      "Id": 8
     },
     {
       "Keywords": [
@@ -1861,7 +1647,7 @@
         "AssistId"
       ],
       "Experience": "2,640,000",
-      "Id": 19009
+      "Id": 9
     },
     {
       "Keywords": [
@@ -1910,7 +1696,7 @@
         "Sentinel"
       ],
       "Experience": "2,640,000",
-      "Id": 19010
+      "Id": 10
     },
     {
       "Keywords": [
@@ -1959,7 +1745,7 @@
         "AssistId"
       ],
       "Experience": "2,640,000",
-      "Id": 19011
+      "Id": 11
     },
     {
       "Keywords": [
@@ -2009,7 +1795,7 @@
       ],
       "Guildmaster": "cleric",
       "Experience": "2,640,000",
-      "Id": 19012
+      "Id": 12
     },
     {
       "Keywords": [
@@ -2058,7 +1844,7 @@
         "AssistId"
       ],
       "Experience": "2,640,000",
-      "Id": 19013
+      "Id": 13
     },
     {
       "Keywords": [
@@ -2108,7 +1894,7 @@
       ],
       "Guildmaster": "rogue",
       "Experience": "2,640,000",
-      "Id": 19014
+      "Id": 14
     },
     {
       "Keywords": [
@@ -2157,7 +1943,7 @@
         "AssistId"
       ],
       "Experience": "2,640,000",
-      "Id": 19015
+      "Id": 15
     },
     {
       "Keywords": [
@@ -2207,7 +1993,7 @@
       ],
       "Guildmaster": "mage",
       "Experience": "2,640,000",
-      "Id": 19016
+      "Id": 16
     },
     {
       "Keywords": [
@@ -2256,7 +2042,7 @@
         "AssistId"
       ],
       "Experience": "2,640,000",
-      "Id": 19017
+      "Id": 17
     },
     {
       "Keywords": [
@@ -2305,7 +2091,7 @@
         "Healer"
       ],
       "Experience": "3,790,800",
-      "Id": 19018
+      "Id": 18
     },
     {
       "Keywords": [
@@ -2345,7 +2131,7 @@
         "AssistId"
       ],
       "Experience": "64,680",
-      "Id": 19019
+      "Id": 19
     },
     {
       "Keywords": [
@@ -2398,7 +2184,7 @@
       "ForgeShop": "smithy",
       "ExchangeShop": "smithy",
       "Experience": "2,640,000",
-      "Id": 19020
+      "Id": 20
     },
     {
       "Keywords": [
@@ -2436,7 +2222,7 @@
         "NoPurge"
       ],
       "Experience": "190,080",
-      "Id": 19021
+      "Id": 21
     },
     {
       "Keywords": [
@@ -2466,7 +2252,7 @@
         "NoAlign"
       ],
       "Experience": "660",
-      "Id": 19022
+      "Id": 22
     },
     {
       "Keywords": [
@@ -2501,7 +2287,7 @@
         "NoAlign"
       ],
       "Experience": "1,540",
-      "Id": 19023
+      "Id": 23
     },
     {
       "Keywords": [
@@ -2536,7 +2322,7 @@
         "NoAlign"
       ],
       "Experience": "3,520",
-      "Id": 19024
+      "Id": 24
     },
     {
       "Keywords": [
@@ -2571,7 +2357,7 @@
         "NoAlign"
       ],
       "Experience": "8,640",
-      "Id": 19025
+      "Id": 25
     },
     {
       "Keywords": [
@@ -2605,7 +2391,7 @@
         "NoAlign"
       ],
       "Experience": "13,440",
-      "Id": 19026
+      "Id": 26
     },
     {
       "Keywords": [
@@ -2641,7 +2427,7 @@
         "NoAlign"
       ],
       "Experience": "28,080",
-      "Id": 19027
+      "Id": 27
     },
     {
       "Keywords": [
@@ -2681,7 +2467,7 @@
         "NoAlign"
       ],
       "Experience": "64,680",
-      "Id": 19028
+      "Id": 28
     },
     {
       "Keywords": [
@@ -2721,7 +2507,7 @@
         "NoAlign"
       ],
       "Experience": "135,000",
-      "Id": 19029
+      "Id": 29
     },
     {
       "Keywords": [
@@ -2770,7 +2556,7 @@
         "AssistPlayers"
       ],
       "Experience": "2,640,000",
-      "Id": 19030
+      "Id": 30
     },
     {
       "Keywords": [
@@ -2813,7 +2599,7 @@
         "Sentinel"
       ],
       "Experience": "1,184,000",
-      "Id": 19031
+      "Id": 31
     },
     {
       "Keywords": [
@@ -2862,7 +2648,7 @@
         "Sentinel"
       ],
       "Experience": "2,640,000",
-      "Id": 19032
+      "Id": 32
     },
     {
       "Keywords": [
@@ -2911,7 +2697,7 @@
         "AssistId"
       ],
       "Experience": "2,640,000",
-      "Id": 19033
+      "Id": 33
     },
     {
       "Keywords": [
@@ -2955,7 +2741,7 @@
         "NoPurge"
       ],
       "Experience": "1,184,000",
-      "Id": 19034
+      "Id": 34
     },
     {
       "Keywords": [
@@ -3004,7 +2790,7 @@
         "AssistId"
       ],
       "Experience": "2,640,000",
-      "Id": 19035
+      "Id": 35
     },
     {
       "Keywords": [
@@ -3056,7 +2842,7 @@
       ],
       "Guildmaster": "monk",
       "Experience": "2,640,000",
-      "Id": 19036
+      "Id": 36
     },
     {
       "Keywords": [
@@ -3094,7 +2880,7 @@
         "AssistPlayers"
       ],
       "Experience": "64,680",
-      "Id": 19037
+      "Id": 37
     },
     {
       "Keywords": [
@@ -3121,7 +2907,7 @@
         "NoWander"
       ],
       "Experience": "660",
-      "Id": 19038
+      "Id": 38
     },
     {
       "Keywords": [
@@ -3148,7 +2934,7 @@
         "NoWander"
       ],
       "Experience": "660",
-      "Id": 19039
+      "Id": 39
     },
     {
       "Keywords": [
@@ -3175,7 +2961,7 @@
         "NoWander"
       ],
       "Experience": "660",
-      "Id": 19040
+      "Id": 40
     },
     {
       "Keywords": [
@@ -3202,7 +2988,7 @@
         "NoWander"
       ],
       "Experience": "660",
-      "Id": 19041
+      "Id": 41
     },
     {
       "Keywords": [
@@ -3251,7 +3037,7 @@
         "Sentinel"
       ],
       "Experience": "2,640,000",
-      "Id": 19042
+      "Id": 42
     },
     {
       "Keywords": [
@@ -3300,7 +3086,7 @@
         "AssistId"
       ],
       "Experience": "2,640,000",
-      "Id": 19043
+      "Id": 43
     },
     {
       "Keywords": [
@@ -3348,7 +3134,7 @@
         "AssistAlign"
       ],
       "Experience": "3,790,800",
-      "Id": 19044
+      "Id": 44
     },
     {
       "Keywords": [
@@ -3396,7 +3182,7 @@
         "AssistAlign"
       ],
       "Experience": "3,790,800",
-      "Id": 19045
+      "Id": 45
     }
   ],
   "RespawnTimeInMinutes": 30
