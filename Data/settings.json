@@ -19,5 +19,6 @@
   "RoomExitNotExistantBehavior": "DeleteRoomExit",
   "SaveDataOnStart": false,
   "NpcWanderChance": 15,
+  "AllowPlayerKilling": false,
   "CastLagInMs": 2000
 }

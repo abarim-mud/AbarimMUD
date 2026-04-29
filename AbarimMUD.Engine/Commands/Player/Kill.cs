@@ -32,9 +32,8 @@ namespace AbarimMUD.Commands.Player
 				return false;
 			}
 
-			if (target.Creature is Character)
+			if (!context.CheckPk(target))
 			{
-				context.Send($"You can't attack {target.ShortDescription}");
 				return false;
 			}
 

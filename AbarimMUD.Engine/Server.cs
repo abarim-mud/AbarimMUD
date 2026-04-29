@@ -19,6 +19,8 @@ namespace AbarimMUD
 {
 	public sealed class Server
 	{
+		private const int PulseInMs = 250;
+
 		private static readonly Server _instance = new Server();
 		private readonly List<Connection> _newConnections = new List<Connection>();
 		private readonly ObservableCollection<Session> _sessions = new ObservableCollection<Session>();
@@ -453,7 +455,7 @@ namespace AbarimMUD
 				{
 					try
 					{
-						Debug.WriteLine("Tick");
+						var now = DateTime.Now;
 
 						// Process new connections
 						lock (_newConnections)
@@ -488,7 +490,8 @@ namespace AbarimMUD
 						}
 
 						// Sleep
-						_mainThreadEvent.WaitOne(1000);
+						var passed = (int)(DateTime.Now - now).TotalMilliseconds;
+						_mainThreadEvent.WaitOne(PulseInMs - passed);
 					}
 					catch (Exception ex)
 					{

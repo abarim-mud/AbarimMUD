@@ -45,6 +45,7 @@ namespace AbarimMUD.Data
 			public RoomExitNotExistantBehavior RoomExitNotExistantBehavior { get; set; } = RoomExitNotExistantBehavior.ThrowException;
 			public bool SaveDataOnStart { get; set; } = false;
 			public int NpcWanderChance { get; set; } = 15;
+			public bool AllowPlayerKilling { get; set; } = false;
 		}
 
 		public static BaseStorage Storage => InternalStorage;
@@ -80,6 +81,7 @@ namespace AbarimMUD.Data
 		public static RoomExitNotExistantBehavior RoomExitNotExistantBehavior => Instance.RoomExitNotExistantBehavior;
 		public static bool SaveDataOnStart => Instance.SaveDataOnStart;
 		public static int NpcWanderChance => Instance.NpcWanderChance;
+		public static bool AllowPlayerKilling => Instance.AllowPlayerKilling;
 
 		public static void Save() => InternalStorage.Save();
 	}

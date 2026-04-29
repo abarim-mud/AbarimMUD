@@ -29,7 +29,7 @@ namespace AbarimMUD.Commands
 
 		public static ExecutionContext Find(this Area area, string keyword)
 		{
-			foreach(var room in area.Rooms)
+			foreach (var room in area.Rooms)
 			{
 				var result = room.Find(keyword);
 				if (result != null)
@@ -39,6 +39,22 @@ namespace AbarimMUD.Commands
 			}
 
 			return null;
+		}
+
+		public static bool CheckPk(this ExecutionContext attacker, ExecutionContext target)
+		{
+			if (Configuration.AllowPlayerKilling)
+			{
+				return true;
+			}
+
+			if (attacker.Creature is Character && target.Creature is Character)
+			{
+				attacker.Send($"You can't attack {target.ShortDescription}");
+				return false;
+			}
+
+			return true;
 		}
 	}
 }
