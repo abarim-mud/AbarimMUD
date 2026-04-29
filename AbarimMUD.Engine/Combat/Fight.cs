@@ -1,5 +1,6 @@
 ﻿using AbarimMUD.Commands;
 using AbarimMUD.Data;
+using AbarimMUD.Utils;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -17,8 +18,8 @@ namespace AbarimMUD.Combat
 	{
 		private static readonly List<Fight> _allFights = new List<Fight>();
 
-		private DateTime _lastRound;
-		private List<ExecutionContext> _participants = new List<ExecutionContext>();
+		private readonly List<ExecutionContext> _participants = new List<ExecutionContext>();
+		private readonly GameTimer _timer = new GameTimer();
 
 		public Room Room { get; private set; }
 
@@ -30,9 +31,10 @@ namespace AbarimMUD.Combat
 
 		private Fight(ExecutionContext attacker, ExecutionContext target)
 		{
-			_lastRound = DateTime.Now;
-
 			Room = attacker.Room;
+
+			_timer.IntervalInMilliseconds = Configuration.PauseBetweenFightRoundsInMs;
+			_timer.Tick += OnDoRound;
 
 			Add(FightSide.Side1, attacker, target);
 		}
@@ -117,21 +119,10 @@ namespace AbarimMUD.Combat
 			}
 		}
 
-		public void DoRound()
+		private void OnDoRound(TimeSpan elapsed)
 		{
 			if (Finished)
 			{
-				return;
-			}
-
-			var now = DateTime.Now;
-			if ((now - _lastRound).TotalMilliseconds >= Configuration.PauseBetweenFightRoundsInMs)
-			{
-				_lastRound = now;
-			}
-			else
-			{
-				// Not enough time passed between rounds
 				return;
 			}
 
@@ -184,6 +175,11 @@ namespace AbarimMUD.Combat
 			Finished = true;
 		}
 
+		public void Update()
+		{
+			_timer.Update();
+		}
+
 		public static void Start(ExecutionContext attacker, ExecutionContext target)
 		{
 			attacker.BreakHunt();
@@ -210,7 +206,7 @@ namespace AbarimMUD.Combat
 			// Process fights
 			foreach (var fight in AllFights)
 			{
-				fight.DoRound();
+				fight.Update();
 			}
 
 			// Remove finished fights

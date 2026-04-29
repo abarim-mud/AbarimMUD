@@ -32,7 +32,10 @@ namespace AbarimMUD.Import.Diku
 				var roomExit = new RoomExit
 				{
 					Direction = exit.Key.ToAMDirection(),
-					Tag = exit.Value.TargetRoom.VNum
+					TargetRoom = new Room
+					{
+						Id = exit.Value.TargetRoom.VNum
+					},
 				};
 
 				result.Exits[roomExit.Direction] = roomExit;
@@ -108,7 +111,7 @@ namespace AbarimMUD.Import.Diku
 				result.Mobiles.Add(mobile.ToAmMobile());
 			}
 
-			foreach(var mobileReset in area.Resets)
+			foreach (var mobileReset in area.Resets)
 			{
 				if (mobileReset.ResetType != DikuLoad.Data.AreaResetType.NPC)
 				{

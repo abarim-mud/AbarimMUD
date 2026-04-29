@@ -5,6 +5,7 @@ using DikuLoad.Import.Ascii;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Ur;
 
 namespace AbarimMUD.Import.Diku
 {
@@ -52,7 +53,7 @@ namespace AbarimMUD.Import.Diku
 		static void Process(SourceType? sourceType, string[] areasNames, string inputFolder, string outputFolder)
 		{
 			StorageUtility.InitializeStorage(Log);
-			DataContext.Load(outputFolder);
+			UrContext.Load(outputFolder);
 
 			BaseImporter importer;
 
@@ -133,7 +134,7 @@ namespace AbarimMUD.Import.Diku
 			try
 			{
 				Process(null,
-					new[] { "Sewers", "Haon Dor", "Arachnos", "Plains" },
+					new[] { "Astoria", "Haon Dor", "Arachnos", "Graveyard" },
 					@"D:\Projects\CrimsonStainedLands\master\CrimsonStainedLands\data\areas",
 					@"D:\Projects\AbarimMUD\Data");
 				/*Process(SourceType.Soulmud,

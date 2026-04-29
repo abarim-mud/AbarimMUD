@@ -11,6 +11,7 @@ using System.Text.Json.Serialization;
 using System.Text.Json;
 using System.Text;
 using AbarimMUD.Utils;
+using Ur;
 
 namespace AbarimMUD.ExportAreasToMMB
 {
@@ -524,7 +525,7 @@ namespace AbarimMUD.ExportAreasToMMB
 		{
 			StorageUtility.InitializeStorage(Log);
 
-			DataContext.Load(inputFolder);
+			UrContext.Load(inputFolder);
 
 			ExportAreas(outputFolder);
 			ExportEquipment(outputFolder);

@@ -5,7 +5,7 @@
   "Version": 0,
   "MinimumLevel": "5",
   "MaximumLevel": "10",
-  "StartId": 0,
+  "StartId": 1000,
   "IdCount": 1000,
   "Rooms": [
     {
@@ -17,7 +17,7 @@
       "Exits": {
         "North": 51565,
         "West": 51401,
-        "East": 10
+        "East": 19014
       },
       "Id": 51400
     },
@@ -621,7 +621,6 @@
       "ManaRate": 0,
       "Exits": {
         "North": 51519,
-        "South": 51591,
         "West": 51521
       },
       "Id": 51520
@@ -1290,149 +1289,6 @@
       "Id": 51580
     },
     {
-      "Name": "Tigris River",
-      "Description": "Still wide enough for boats to pass, yet the banks of the river are covered\nin tall grass and ferns, blocking your view beyond. Various trees and shrubs\ncan also be seen, providing shade and food for a multitude of animals.",
-      "SectorType": "River",
-      "HealRate": 0,
-      "ManaRate": 0,
-      "Exits": {
-        "West": 51582
-      },
-      "Id": 51581
-    },
-    {
-      "Name": "Tigris River",
-      "Description": "Still wide enough for boats to pass, yet the banks of the river are covered\nin tall grass and ferns, blocking your view beyond. Various trees and shrubs\ncan also be seen, providing shade and food for a multitude of animals.",
-      "SectorType": "River",
-      "HealRate": 0,
-      "ManaRate": 0,
-      "Exits": {
-        "East": 51581,
-        "West": 51583
-      },
-      "Id": 51582
-    },
-    {
-      "Name": "River Bend",
-      "Description": "Still wide enough for boats to pass, yet the banks of the river are covered\nin tall grass and ferns, blocking your view beyond. Various trees and shrubs\ncan also be seen, providing shade and food for a multitude of animals.",
-      "SectorType": "River",
-      "HealRate": 0,
-      "ManaRate": 0,
-      "Exits": {
-        "North": 51584,
-        "East": 51582
-      },
-      "Id": 51583
-    },
-    {
-      "Name": "River Bend",
-      "Description": "Still wide enough for boats to pass, yet the banks of the river are covered\nin tall grass and ferns, blocking your view beyond. Various trees and shrubs\ncan also be seen, providing shade and food for a multitude of animals.",
-      "SectorType": "River",
-      "HealRate": 0,
-      "ManaRate": 0,
-      "Exits": {
-        "South": 51583,
-        "West": 51585
-      },
-      "Id": 51584
-    },
-    {
-      "Name": "Tigris River",
-      "Description": "Still wide enough for boats to pass, yet the banks of the river are covered\nin tall grass and ferns, blocking your view beyond. Various trees and shrubs\ncan also be seen, providing shade and food for a multitude of animals.",
-      "SectorType": "River",
-      "HealRate": 0,
-      "ManaRate": 0,
-      "Exits": {
-        "East": 51584,
-        "West": 51586
-      },
-      "Id": 51585
-    },
-    {
-      "Name": "Tigris River",
-      "Description": "Still wide enough for boats to pass, yet the banks of the river are covered\nin tall grass and ferns, blocking your view beyond. Various trees and shrubs\ncan also be seen, providing shade and food for a multitude of animals.",
-      "SectorType": "River",
-      "HealRate": 0,
-      "ManaRate": 0,
-      "Exits": {
-        "East": 51585,
-        "West": 51587
-      },
-      "Id": 51586
-    },
-    {
-      "Name": "River Bend",
-      "Description": "Still wide enough for boats to pass, yet the banks of the river are covered\nin tall grass and ferns, blocking your view beyond. Various trees and shrubs\ncan also be seen, providing shade and food for a multitude of animals.",
-      "SectorType": "River",
-      "HealRate": 0,
-      "ManaRate": 0,
-      "Exits": {
-        "North": 51588,
-        "East": 51586
-      },
-      "Id": 51587
-    },
-    {
-      "Name": "Tigris River",
-      "Description": "Still wide enough for boats to pass, yet the banks of the river are covered\nin tall grass and ferns, blocking your view beyond. Various trees and shrubs\ncan also be seen, providing shade and food for a multitude of animals.",
-      "SectorType": "River",
-      "HealRate": 0,
-      "ManaRate": 0,
-      "Exits": {
-        "North": 51589,
-        "South": 51587
-      },
-      "Id": 51588
-    },
-    {
-      "Name": "River Bend",
-      "Description": "Still wide enough for boats to pass, yet the banks of the river are covered\nin tall grass and ferns, blocking your view beyond. Various trees and shrubs\ncan also be seen, providing shade and food for a multitude of animals.",
-      "SectorType": "River",
-      "HealRate": 0,
-      "ManaRate": 0,
-      "Exits": {
-        "South": 51588,
-        "West": 51590
-      },
-      "Id": 51589
-    },
-    {
-      "Name": "Tigris River",
-      "Description": "Still wide enough for boats to pass, yet the banks of the river are covered\nin tall grass and ferns, blocking your view beyond. Various trees and shrubs\ncan also be seen, providing shade and food for a multitude of animals.",
-      "SectorType": "River",
-      "HealRate": 0,
-      "ManaRate": 0,
-      "Exits": {
-        "East": 51589,
-        "West": 51591
-      },
-      "Id": 51590
-    },
-    {
-      "Name": "Tigris River",
-      "Description": "Still wide enough for boats to pass, yet the banks of the river are covered\nin tall grass and ferns, blocking your view beyond. Various trees and shrubs\ncan also be seen, providing shade and food for a multitude of animals.",
-      "SectorType": "River",
-      "HealRate": 0,
-      "ManaRate": 0,
-      "Exits": {
-        "North": 51520,
-        "East": 51590,
-        "West": 51592
-      },
-      "Id": 51591
-    },
-    {
-      "Name": "Tigris River",
-      "Description": "Still wide enough for boats to pass, yet the banks of the river are covered\nin tall grass and ferns, blocking your view beyond. Various trees and shrubs\ncan also be seen, providing shade and food for a multitude of animals.",
-      "SectorType": "River",
-      "HealRate": 0,
-      "ManaRate": 0,
-      "Exits": {
-        "East": 51591
-      },
-      "Id": 51592
-    },
-    {
       "Name": "Edge of a Dense Forest",
       "Description": "The dense forest surrounds you with towering trees that reach for the sky, their branches intermingling overhead to form a thick canopy that blocks out much of the sunlight and casts deep shadows below. The ground beneath your feet is soft and spongy, covered in a carpet of fallen leaves and pine needles. Ferns and other undergrowth flourish in abundance, dotted with wildflowers that add pops of color to the lush green landscape. The air is thick with the fragrant scent of pine and damp earth, and the rustling of leaves and the chirping of insects fills the air with a tranquil hum.",
       "SectorType": "Forest",
@@ -1990,6 +1846,34 @@
       ],
       "Experience": "1,184,000",
       "Id": 51519
+    },
+    {
+      "Keywords": [
+        "oldstyle",
+        "rabbit"
+      ],
+      "ShortDescription": "the cute rabbit",
+      "LongDescription": "A cute rabbit is here.",
+      "Description": "It is a small, furry creature with long ears and big feet.",
+      "Level": 1,
+      "Gold": 100,
+      "Sex": "None",
+      "Hitpoints": 100,
+      "Mana": 100,
+      "Moves": 1000,
+      "Armor": 10,
+      "Attacks": [
+        {
+          "Type": "Punch",
+          "AttackBonus": 10,
+          "DamageRange": "4-8"
+        }
+      ],
+      "Flags": [
+        "AssistRace"
+      ],
+      "Experience": "660",
+      "Id": 309
     }
   ],
   "RespawnTimeInMinutes": 30

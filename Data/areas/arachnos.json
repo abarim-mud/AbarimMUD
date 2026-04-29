@@ -5,7 +5,7 @@
   "Version": 0,
   "MinimumLevel": "5",
   "MaximumLevel": "20",
-  "StartId": 0,
+  "StartId": 2000,
   "IdCount": 1000,
   "Rooms": [
     {
