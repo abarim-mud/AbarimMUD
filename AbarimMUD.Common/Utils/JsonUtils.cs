@@ -10,21 +10,6 @@ namespace AbarimMUD.Utils
 		private static readonly LongConverterType LongConverter = new LongConverterType();
 		private static readonly ValueRangeConverterType ValueRangeConverter = new ValueRangeConverterType();
 
-		private static JsonSerializerOptions _defaultOptions;
-
-		public static JsonSerializerOptions DefaultOptions
-		{
-			get
-			{
-				if (_defaultOptions == null)
-				{
-					_defaultOptions = CreateOptions();
-				}
-
-				return _defaultOptions;
-			}
-		}
-
 		private class LongConverterType : JsonConverter<long>
 		{
 			public override long Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
@@ -64,6 +49,14 @@ namespace AbarimMUD.Utils
 
 			result.Converters.Add(LongConverter);
 			result.Converters.Add(ValueRangeConverter);
+
+			return result;
+		}
+
+		public static JsonSerializerOptions CreateCopyWithout(this JsonSerializerOptions options, JsonConverter converterToRemove)
+		{
+			var result = new JsonSerializerOptions(options);
+			result.Converters.Remove(converterToRemove);
 
 			return result;
 		}

@@ -52,7 +52,7 @@ namespace AbarimMUD.Storage
 					else
 					{
 						// Duration
-						result[modifier] = JsonSerializer.Deserialize<Affect>(pair.Value, JsonUtils.DefaultOptions);
+						result[modifier] = JsonSerializer.Deserialize<Affect>(pair.Value, options);
 						result[modifier].Type = modifier;
 					}
 				}
@@ -77,7 +77,7 @@ namespace AbarimMUD.Storage
 					}
 				}
 
-				JsonSerializer.Serialize(writer, newDict, JsonUtils.DefaultOptions);
+				JsonSerializer.Serialize(writer, newDict, options);
 			}
 		}
 
@@ -114,7 +114,7 @@ namespace AbarimMUD.Storage
 					newDict[pair.Key] = pair.Value.Power;
 				}
 
-				JsonSerializer.Serialize(writer, newDict, JsonUtils.DefaultOptions);
+				JsonSerializer.Serialize(writer, newDict, options);
 			}
 		}
 
@@ -135,7 +135,9 @@ namespace AbarimMUD.Storage
 
 				// Standard parse
 				var doc = JsonDocument.ParseValue(ref reader);
-				return JsonSerializer.Deserialize<ItemInstance>(doc, JsonUtils.DefaultOptions);
+
+				// We need to ignore the converter to avoid infinite recursion
+				return JsonSerializer.Deserialize<ItemInstance>(doc, options.CreateCopyWithout(ItemInstanceConverter));
 			}
 
 			public override void Write(Utf8JsonWriter writer, ItemInstance value, JsonSerializerOptions options)
@@ -148,69 +150,36 @@ namespace AbarimMUD.Storage
 				}
 
 				// Full serialization
-				JsonSerializer.Serialize(writer, value, JsonUtils.DefaultOptions);
+				// We need to ignore the converter to avoid infinite recursion
+				JsonSerializer.Serialize(writer, value, options.CreateCopyWithout(ItemInstanceConverter));
 			}
 		}
 
 		public class InventoryConverterType : JsonConverter<Inventory>
 		{
-			private static JsonSerializerOptions _defaultOptions;
-
-			public static JsonSerializerOptions DefaultOptions
-			{
-				get
-				{
-					if (_defaultOptions == null)
-					{
-						_defaultOptions = JsonUtils.CreateOptions();
-						_defaultOptions.Converters.Add(ItemInstanceConverter);
-					}
-
-					return _defaultOptions;
-				}
-			}
-
-
 			public override Inventory Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 			{
 				var doc = JsonDocument.ParseValue(ref reader);
 
 				return new Inventory
 				{
-					Items = JsonSerializer.Deserialize<List<InventoryRecord>>(doc, DefaultOptions)
+					Items = JsonSerializer.Deserialize<List<InventoryRecord>>(doc, options)
 				};
 			}
 
 			public override void Write(Utf8JsonWriter writer, Inventory value, JsonSerializerOptions options)
 			{
-				JsonSerializer.Serialize(writer, value.Items, DefaultOptions);
+				JsonSerializer.Serialize(writer, value.Items, options);
 			}
 		}
 
 		public class EquipmentConverterType : JsonConverter<Equipment>
 		{
-			private static JsonSerializerOptions _defaultOptions;
-
-			public static JsonSerializerOptions DefaultOptions
-			{
-				get
-				{
-					if (_defaultOptions == null)
-					{
-						_defaultOptions = JsonUtils.CreateOptions();
-						_defaultOptions.Converters.Add(ItemInstanceConverter);
-					}
-
-					return _defaultOptions;
-				}
-			}
-
-
 			public override Equipment Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 			{
 				var doc = JsonDocument.ParseValue(ref reader);
 
-				var dict = JsonSerializer.Deserialize<Dictionary<string, ItemInstance>>(doc, DefaultOptions);
+				var dict = JsonSerializer.Deserialize<Dictionary<string, ItemInstance>>(doc, options);
 
 				var result = new Equipment();
 				foreach (var pair in dict)
@@ -260,7 +229,7 @@ namespace AbarimMUD.Storage
 				}
 
 
-				JsonSerializer.Serialize(writer, dict, DefaultOptions);
+				JsonSerializer.Serialize(writer, dict, options);
 			}
 		}
 
@@ -284,7 +253,9 @@ namespace AbarimMUD.Storage
 
 				// Standard parse
 				var doc = JsonDocument.ParseValue(ref reader);
-				return JsonSerializer.Deserialize<MobileSpawn>(doc, JsonUtils.DefaultOptions);
+
+				// We need to ignore the converter to avoid infinite recursion
+				return JsonSerializer.Deserialize<MobileSpawn>(doc, options.CreateCopyWithout(MobileSpawnConverter));
 			}
 
 			public override void Write(Utf8JsonWriter writer, MobileSpawn value, JsonSerializerOptions options)
@@ -297,7 +268,8 @@ namespace AbarimMUD.Storage
 				}
 
 				// Full serialization
-				JsonSerializer.Serialize(writer, value, JsonUtils.DefaultOptions);
+				// We need to ignore the converter to avoid infinite recursion
+				JsonSerializer.Serialize(writer, value, options.CreateCopyWithout(MobileSpawnConverter));
 			}
 		}
 
@@ -326,6 +298,27 @@ namespace AbarimMUD.Storage
 			}
 		}
 
+		public class RoomExitConverterType : JsonConverter<RoomExit>
+		{
+			public override RoomExit Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+			{
+				var id = reader.GetInt32();
+				return new RoomExit
+				{
+					TargetRoom = new Room
+					{
+						Id = id
+					}
+				};
+			}
+
+			public override void Write(Utf8JsonWriter writer, RoomExit value, JsonSerializerOptions options)
+			{
+				writer.WriteNumberValue(value.TargetRoom.Id);
+			}
+		}
+
+		public static readonly RoomExitConverterType RoomExitConverter = new RoomExitConverterType();
 		public static readonly ItemInstanceConverterType ItemInstanceConverter = new ItemInstanceConverterType();
 		public static readonly SkillValueConverterType SkillValueConverter = new SkillValueConverterType();
 		public static readonly AffectsConverterType AffectsConverter = new AffectsConverterType();

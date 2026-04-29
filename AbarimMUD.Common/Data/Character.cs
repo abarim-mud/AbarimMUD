@@ -166,6 +166,7 @@ namespace AbarimMUD.Data
 			}
 		}
 
+		[JsonIgnore]
 		public override HashSet<string> Keywords => new HashSet<string> { Name };
 
 		public override event EventHandler RoomChanged;

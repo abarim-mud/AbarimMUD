@@ -102,45 +102,6 @@ namespace AbarimMUD.Storage
 			}
 		}
 
-		private class RoomExitConverterType : JsonConverter<Dictionary<Direction, RoomExit>>
-		{
-			public override Dictionary<Direction, RoomExit> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-			{
-				var result = new Dictionary<Direction, RoomExit>();
-				var doc = JsonDocument.ParseValue(ref reader);
-
-				foreach (var pair in doc.RootElement.EnumerateObject())
-				{
-					var direction = Enum.Parse<Direction>(pair.Name);
-
-					result[direction] = new RoomExit
-					{
-						Direction = direction,
-						TargetRoom = new Room
-						{
-							Id = pair.Value.GetInt32()
-						}
-					};
-				}
-
-				return result;
-			}
-
-			public override void Write(Utf8JsonWriter writer, Dictionary<Direction, RoomExit> value, JsonSerializerOptions options)
-			{
-				var newDict = new Dictionary<Direction, object>();
-
-				foreach (var pair in value)
-				{
-					newDict[pair.Key] = pair.Value.TargetRoom.Id;
-				}
-
-				JsonSerializer.Serialize(writer, newDict, JsonUtils.DefaultOptions);
-			}
-		}
-
-		private static readonly RoomExitConverterType RoomExitConverter = new RoomExitConverterType();
-
 		internal const string SubfolderName = "areas";
 
 		private readonly EntityCache<Room> _allRoomsCache;
@@ -268,7 +229,7 @@ namespace AbarimMUD.Storage
 		protected override JsonSerializerOptions CreateJsonOptions()
 		{
 			var result = base.CreateJsonOptions();
-			result.Converters.Add(RoomExitConverter);
+			result.Converters.Add(Common.RoomExitConverter);
 			result.Converters.Add(Common.MobileSpawnConverter);
 			result.Converters.Add(Common.ItemInstanceConverter);
 			result.Converters.Add(Common.InventoryConverter);

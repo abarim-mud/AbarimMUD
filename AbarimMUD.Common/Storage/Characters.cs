@@ -33,6 +33,7 @@ namespace AbarimMUD.Storage
 		protected override JsonSerializerOptions CreateJsonOptions()
 		{
 			var result = base.CreateJsonOptions();
+			result.Converters.Add(Common.ItemInstanceConverter);
 			result.Converters.Add(Common.EquipmentConverter);
 			result.Converters.Add(Common.InventoryConverter);
 			result.Converters.Add(Common.SkillValueConverter);
