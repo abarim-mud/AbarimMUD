@@ -13,6 +13,7 @@ using AbarimMUD.Combat;
 using System.Threading;
 using AbarimMUD.Commands;
 using Ur;
+using AbarimMUD.Utils;
 
 namespace AbarimMUD
 {
@@ -24,9 +25,9 @@ namespace AbarimMUD
 		private Session[] _sessionsCopy = null;
 		private readonly AutoResetEvent _mainThreadEvent = new AutoResetEvent(false);
 		private readonly Service _webService = new Service();
-		private DateTime? _lastRegenDt;
 		private readonly List<string> _toDelete = new List<string>();
 		private readonly AIService _aiService = new AIService();
+		private readonly GameTimer _timerCreatures = new GameTimer();
 
 		public static Logger Logger { get; private set; } = LogManager.GetLogger("Logs/Server");
 
@@ -56,6 +57,9 @@ namespace AbarimMUD
 			{
 				_sessionsCopy = null;
 			};
+
+			_timerCreatures.IntervalInMilliseconds = 1000;
+			_timerCreatures.Tick += OnTimerCreaturesTick;
 		}
 
 		private void LoadDatabase(string dataFolder)
@@ -226,147 +230,142 @@ namespace AbarimMUD
 			}
 		}
 
+		private void OnTimerCreaturesTick(TimeSpan elapsed)
+		{
+			var now = DateTime.Now;
+
+			// Areas' repop
+			foreach (var area in Area.Storage)
+			{
+				var passed = (float)(now - area.LastSpawn).TotalMinutes;
+
+				if (passed > area.RespawnTimeInMinutes)
+				{
+					SpawnArea(area);
+				}
+			}
+
+			var secondsPassed = (float)elapsed.TotalSeconds;
+
+			// Process creature
+			foreach (var creature in Creature.ActiveCreatures)
+			{
+				var ctx = creature.GetContext();
+
+				// Hitpoints regen
+				var currentValue = creature.State.Hitpoints;
+				var fractionalValue = creature.State.FractionalHitpointsRegen;
+				if (ProcessRegen(ref currentValue, creature.Stats.MaxHitpoints, ref fractionalValue,
+					creature.Stats.GetHitpointsRegen(ctx.IsFighting), secondsPassed))
+				{
+					creature.State.Hitpoints = currentValue;
+					creature.State.FractionalHitpointsRegen = fractionalValue;
+				}
+
+				// Mana regen
+				currentValue = creature.State.Mana;
+				fractionalValue = creature.State.FractionalManaRegen;
+				if (ProcessRegen(ref currentValue, creature.Stats.MaxMana, ref fractionalValue,
+					creature.Stats.GetManaRegen(ctx.IsFighting), secondsPassed))
+				{
+					creature.State.Mana = currentValue;
+					creature.State.FractionalManaRegen = fractionalValue;
+				}
+
+				// Moves regen
+				currentValue = creature.State.Moves;
+				fractionalValue = creature.State.FractionalMovesRegen;
+				if (ProcessRegen(ref currentValue, creature.Stats.MaxMoves, ref fractionalValue,
+					creature.Stats.GetMovesRegen(ctx.IsFighting), secondsPassed))
+				{
+					creature.State.Moves = currentValue;
+					creature.State.FractionalMovesRegen = fractionalValue;
+				}
+
+				// Remove expired effects
+				_toDelete.Clear();
+				foreach (var pair in creature.TemporaryAffects)
+				{
+					var ta = pair.Value;
+					var passed = now - ta.Started;
+
+					if (ta.DurationInSeconds > 2 * 60 && ta.DurationInSeconds - passed.TotalSeconds <= 60 && !ta.WarnedAboutToExpire)
+					{
+						// Warn that the affect is about to expire
+						ctx.Send($"'{ta.Name}' is about to expire.");
+
+						ta.WarnedAboutToExpire = true;
+					}
+
+					if (passed.TotalSeconds >= ta.DurationInSeconds)
+					{
+						_toDelete.Add(pair.Key);
+
+						if (!string.IsNullOrEmpty(ta.MessageDeactivated))
+						{
+							ctx.Send(ta.MessageDeactivated);
+						}
+						else
+						{
+							ctx.Send($"'{ta.Name}' wears off.");
+						}
+					}
+				}
+
+				foreach (var key in _toDelete)
+				{
+					creature.RemoveTemporaryAffect(key);
+				}
+
+				// Hunting
+				ProcessHunt(ctx);
+
+				// Command queue
+				ctx.ProcessCommandQueue();
+			}
+
+			// Process characters
+			foreach (var character in Character.ActiveCharacters)
+			{
+				// Autoskill
+				var ctx = (Commands.ExecutionContext)character.Tag;
+				if (ctx.IsFighting && !ctx.WaitingCommandLag() && character.FightSkill != null)
+				{
+					var ab = character.FightSkill;
+					if (ab.ManaCost < ctx.State.Mana && ab.MovesCost < ctx.State.Moves)
+					{
+						BaseCommand command = null;
+						var data = string.Empty;
+						switch (ab.Type)
+						{
+							case AbilityType.Physical:
+								command = BaseCommand.FindCommand(ab.Name);
+								break;
+							case AbilityType.Spell:
+								command = BaseCommand.Cast;
+								data = $"'{ab.Name}'";
+								break;
+						}
+
+						if (command != null)
+						{
+							ctx.SendInfoMessage($"Performing autoskill \"{character.FightSkill}\"");
+							if (!command.Execute(ctx, data))
+							{
+								ctx.ParseAndExecute("autoskill off");
+							}
+						}
+
+					}
+				}
+			}
+		}
+
+
 		private void WorldTick()
 		{
 			Fight.Process();
-
-			// Creatures run
-			var now = DateTime.Now;
-			if (_lastRegenDt == null)
-			{
-				_lastRegenDt = now;
-			}
-			else if ((now - _lastRegenDt.Value).TotalMilliseconds >= 1000)
-			{
-				// Areas' repop
-				foreach (var area in Area.Storage)
-				{
-					var passed = (float)(now - area.LastSpawn).TotalMinutes;
-
-					if (passed > area.RespawnTimeInMinutes)
-					{
-						SpawnArea(area);
-					}
-				}
-
-				var secondsPassed = (float)(now - _lastRegenDt.Value).TotalSeconds;
-
-				// Process creature
-				foreach (var creature in Creature.ActiveCreatures)
-				{
-					var ctx = creature.GetContext();
-
-					// Hitpoints regen
-					var currentValue = creature.State.Hitpoints;
-					var fractionalValue = creature.State.FractionalHitpointsRegen;
-					if (ProcessRegen(ref currentValue, creature.Stats.MaxHitpoints, ref fractionalValue,
-						creature.Stats.GetHitpointsRegen(ctx.IsFighting), secondsPassed))
-					{
-						creature.State.Hitpoints = currentValue;
-						creature.State.FractionalHitpointsRegen = fractionalValue;
-					}
-
-					// Mana regen
-					currentValue = creature.State.Mana;
-					fractionalValue = creature.State.FractionalManaRegen;
-					if (ProcessRegen(ref currentValue, creature.Stats.MaxMana, ref fractionalValue,
-						creature.Stats.GetManaRegen(ctx.IsFighting), secondsPassed))
-					{
-						creature.State.Mana = currentValue;
-						creature.State.FractionalManaRegen = fractionalValue;
-					}
-
-					// Moves regen
-					currentValue = creature.State.Moves;
-					fractionalValue = creature.State.FractionalMovesRegen;
-					if (ProcessRegen(ref currentValue, creature.Stats.MaxMoves, ref fractionalValue,
-						creature.Stats.GetMovesRegen(ctx.IsFighting), secondsPassed))
-					{
-						creature.State.Moves = currentValue;
-						creature.State.FractionalMovesRegen = fractionalValue;
-					}
-
-					// Remove expired effects
-					_toDelete.Clear();
-					foreach (var pair in creature.TemporaryAffects)
-					{
-						var ta = pair.Value;
-						var passed = now - ta.Started;
-
-						if (ta.DurationInSeconds > 2 * 60 && ta.DurationInSeconds - passed.TotalSeconds <= 60 && !ta.WarnedAboutToExpire)
-						{
-							// Warn that the affect is about to expire
-							ctx.Send($"'{ta.Name}' is about to expire.");
-
-							ta.WarnedAboutToExpire = true;
-						}
-
-						if (passed.TotalSeconds >= ta.DurationInSeconds)
-						{
-							_toDelete.Add(pair.Key);
-
-							if (!string.IsNullOrEmpty(ta.MessageDeactivated))
-							{
-								ctx.Send(ta.MessageDeactivated);
-							}
-							else
-							{
-								ctx.Send($"'{ta.Name}' wears off.");
-							}
-						}
-					}
-
-					foreach (var key in _toDelete)
-					{
-						creature.RemoveTemporaryAffect(key);
-					}
-
-					// Hunting
-					ProcessHunt(ctx);
-
-					// Command queue
-					ctx.ProcessCommandQueue();
-				}
-
-				// Process characters
-				foreach (var character in Character.ActiveCharacters)
-				{
-					// Autoskill
-					var ctx = (Commands.ExecutionContext)character.Tag;
-					if (ctx.IsFighting && !ctx.WaitingCommandLag() && character.FightSkill != null)
-					{
-						var ab = character.FightSkill;
-						if (ab.ManaCost < ctx.State.Mana && ab.MovesCost < ctx.State.Moves)
-						{
-							BaseCommand command = null;
-							var data = string.Empty;
-							switch (ab.Type)
-							{
-								case AbilityType.Physical:
-									command = BaseCommand.FindCommand(ab.Name);
-									break;
-								case AbilityType.Spell:
-									command = BaseCommand.Cast;
-									data = $"'{ab.Name}'";
-									break;
-							}
-
-							if (command != null)
-							{
-								ctx.SendInfoMessage($"Performing autoskill \"{character.FightSkill}\"");
-								if (!command.Execute(ctx, data))
-								{
-									ctx.ParseAndExecute("autoskill off");
-								}
-							}
-
-						}
-					}
-				}
-
-				_lastRegenDt = now;
-			}
-
+			_timerCreatures.Update();
 			_aiService.Update();
 		}
 

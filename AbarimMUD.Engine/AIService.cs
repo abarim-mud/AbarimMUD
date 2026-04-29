@@ -18,22 +18,16 @@ namespace AbarimMUD
 			[Direction.Down] = BaseCommand.Down
 		};
 
-		private DateTime? _lastWanderDt;
+		private readonly GameTimer _timerWander = new GameTimer();
 
-		private void UpdateWander()
+		public AIService()
 		{
-			var now = DateTime.Now;
-			if (_lastWanderDt == null)
-			{
-				_lastWanderDt = now;
-				return;
-			}
+			_timerWander.IntervalInMilliseconds = 30 * 1000;
+			_timerWander.Tick += OnUpdateWander;
+		}
 
-			if ((now - _lastWanderDt.Value).TotalSeconds < 30)
-			{
-				return;
-			}
-
+		private void OnUpdateWander(TimeSpan elapsed)
+		{
 			foreach (var creature in Creature.ActiveCreatures)
 			{
 				var mobile = creature as MobileInstance;
@@ -75,13 +69,11 @@ namespace AbarimMUD
 
 				_moveCommands[dir].Execute(ctx);
 			}
-
-			_lastWanderDt = now;
 		}
 
 		public void Update()
 		{
-			UpdateWander();
+			_timerWander.Update();
 		}
 	}
 }
