@@ -14,6 +14,7 @@ namespace AbarimMUD.Commands
 		private Dictionary<int, PathFindingResult> _path;
 
 		public Creature Target { get; private set; }
+		public DateTime LastHunt { get; set; }
 		public int TargetRoomId { get; private set; }
 		public bool IsActive => Target != null;
 

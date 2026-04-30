@@ -158,7 +158,6 @@ namespace AbarimMUD
 				Logger.Info("Creating services");
 				_services.Add(new ActivityService());
 				_services.Add(new FightskillService());
-				_services.Add(new HuntService());
 				_services.Add(new MobileAggroService());
 				_services.Add(new MobileWanderService());
 				_services.Add(new RespawnAreasService());
