@@ -1,6 +1,6 @@
 ﻿using AbarimMUD.Commands;
 using AbarimMUD.Data;
-using AbarimMUD.Utils;
+using AbarimMUD.Services;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -14,12 +14,11 @@ namespace AbarimMUD.Combat
 		Side2
 	}
 
-	public class Fight
+	public class Fight : BaseService
 	{
 		private static readonly List<Fight> _allFights = new List<Fight>();
 
 		private readonly List<ExecutionContext> _participants = new List<ExecutionContext>();
-		private readonly GameTimer _timer = new GameTimer();
 
 		public Room Room { get; private set; }
 
@@ -33,8 +32,7 @@ namespace AbarimMUD.Combat
 		{
 			Room = attacker.Room;
 
-			_timer.IntervalInMilliseconds = Configuration.PauseBetweenFightRoundsInMs;
-			_timer.Tick += OnDoRound;
+			IntervalInMilliseconds = Configuration.PauseBetweenFightRoundsInMs;
 
 			Add(FightSide.Side1, attacker, target);
 		}
@@ -119,7 +117,7 @@ namespace AbarimMUD.Combat
 			}
 		}
 
-		private void OnDoRound(TimeSpan elapsed)
+		protected override void InternalUpdate(TimeSpan elapsed)
 		{
 			if (Finished)
 			{
@@ -173,11 +171,6 @@ namespace AbarimMUD.Combat
 
 			_participants.Clear();
 			Finished = true;
-		}
-
-		public void Update()
-		{
-			_timer.Update();
 		}
 
 		public static void Start(ExecutionContext attacker, ExecutionContext target)

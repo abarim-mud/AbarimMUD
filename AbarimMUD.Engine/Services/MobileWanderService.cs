@@ -4,9 +4,12 @@ using AbarimMUD.Utils;
 using System;
 using System.Collections.Generic;
 
-namespace AbarimMUD
+namespace AbarimMUD.Services
 {
-	public class AIService
+	/// <summary>
+	/// Service that handles the wandering of mobiles, i.e. the random movement of mobiles around their area when not fighting, based on a configured chance.
+	/// </summary>
+	internal class MobileWanderService : BaseService
 	{
 		private static readonly Dictionary<Direction, BaseCommand> _moveCommands = new Dictionary<Direction, BaseCommand>
 		{
@@ -18,19 +21,12 @@ namespace AbarimMUD
 			[Direction.Down] = BaseCommand.Down
 		};
 
-		private readonly GameTimer _timerWander = new GameTimer();
-		private readonly GameTimer _timerAggro = new GameTimer();
-
-		public AIService()
+		public MobileWanderService()
 		{
-			_timerWander.IntervalInMilliseconds = 30 * 1000;
-			_timerWander.Tick += OnUpdateWander;
-
-			_timerAggro.IntervalInMilliseconds = 2000;
-			_timerAggro.Tick += OnUpdateAggro;
+			IntervalInMilliseconds = 30 * 1000;
 		}
 
-		private void OnUpdateWander(TimeSpan elapsed)
+		protected override void InternalUpdate(TimeSpan elapsed)
 		{
 			foreach (var creature in Creature.ActiveCreatures)
 			{
@@ -73,45 +69,6 @@ namespace AbarimMUD
 
 				_moveCommands[dir].Execute(ctx);
 			}
-		}
-
-		private void OnUpdateAggro(TimeSpan elapsed)
-		{
-			foreach (var creature in Creature.ActiveCreatures)
-			{
-				var mobile = creature as MobileInstance;
-				if (mobile == null || !mobile.IsAlive || !mobile.Info.Flags.Contains(MobileFlags.Aggressive))
-				{
-					continue;
-				}
-
-				var ctx = mobile.GetContext();
-				if (ctx.IsFighting)
-				{
-					continue;
-				}
-
-				foreach(var character in mobile.Room.Characters)
-				{
-					if (!character.IsAlive)
-					{
-						continue;
-					}
-
-					var characterCtx = character.GetContext();
-					characterCtx.Send($"{mobile.ShortDescription} screams and attacks you!");
-					characterCtx.SendRoomExceptMe($"{mobile.ShortDescription} screams attacks {character.ShortDescription}!");
-					
-					BaseCommand.Kill.Execute(ctx, character.Name);
-					break;
-				}
-			}
-		}
-
-		public void Update()
-		{
-			_timerWander.Update();
-			_timerAggro.Update();
 		}
 	}
 }

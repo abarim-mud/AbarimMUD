@@ -1,14 +1,12 @@
 ﻿using System;
 
-namespace AbarimMUD.Utils
+namespace AbarimMUD.Services
 {
-	public class GameTimer
+	public abstract class BaseService
 	{
 		private DateTime? _lastDt;
 
 		public int IntervalInMilliseconds { get; set; } = 1000;
-
-		public Action<TimeSpan> Tick;
 
 		public void Update()
 		{
@@ -25,9 +23,11 @@ namespace AbarimMUD.Utils
 				return;
 			}
 
-			Tick?.Invoke(elapsed);
+			InternalUpdate(elapsed);
 
 			_lastDt = now;
 		}
+
+		protected abstract void InternalUpdate(TimeSpan elapsed);
 	}
 }
