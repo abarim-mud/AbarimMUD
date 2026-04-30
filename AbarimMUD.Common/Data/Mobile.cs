@@ -1,6 +1,5 @@
 ﻿using AbarimMUD.Attributes;
 using AbarimMUD.Utils;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 
@@ -354,10 +353,12 @@ namespace AbarimMUD.Data
 				if (Gold < 3000)
 				{
 					Gold = Gold.RoundUpToNearest(500);
-				} else if (Gold < 10000)
+				}
+				else if (Gold < 10000)
 				{
 					Gold = Gold.RoundUpToNearest(1000);
-				} else
+				}
+				else
 				{
 					Gold = Gold.RoundUpToNearest(5000);
 				}
@@ -397,5 +398,51 @@ namespace AbarimMUD.Data
 
 		public static Mobile GetMobileById(int id) => Area.Storage.GetMobileById(id);
 		public static Mobile EnsureMobileById(int id) => Area.Storage.EnsureMobileById(id);
+	}
+
+	public static class MobileExtensions
+	{
+		public static string GetPronoun1(this Sex sex)
+		{
+			if (sex == Sex.Male)
+			{
+				return "he";
+			}
+			else if (sex == Sex.Female)
+			{
+				return "she";
+			}
+
+			return "it";
+		}
+
+		public static string GetPronoun2(this Sex sex)
+		{
+			if (sex == Sex.Male)
+			{
+				return "his";
+			}
+			else if (sex == Sex.Female)
+			{
+				return "her";
+			}
+
+			return "it's";
+		}
+
+		public static string GetPronoun3(this Sex sex)
+		{
+			if (sex == Sex.Male)
+			{
+				return "him";
+			}
+			else if (sex == Sex.Female)
+			{
+				return "her";
+			}
+
+			return "it";
+		}
+
 	}
 }

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace AbarimMUD.Commands
 {
-	public static class AbilityHelper
+	internal static class AbilityHelper
 	{
 		private static readonly int[] DefaultAbilityChecks = new int[] { Configuration.DefaultAbilityCheck };
 

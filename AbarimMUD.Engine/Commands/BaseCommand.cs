@@ -40,7 +40,7 @@ namespace AbarimMUD.Commands
 		public static readonly Name NameCommand = new Name();
 
 		public static readonly Score Score = new Score();
-		public static readonly SkillCommand Skills = new SkillCommand();
+		public static readonly SkillsCommand Skills = new SkillsCommand();
 		public static readonly Abilities Abilities = new Abilities();
 
 		public static readonly Train Train = new Train();
@@ -73,6 +73,8 @@ namespace AbarimMUD.Commands
 		public static readonly Circlestab Circlestab = new Circlestab();
 		public static readonly Deathtouch Deathtouch = new Deathtouch();
 		public static readonly Strike Strike = new Strike();
+
+		public static readonly SocialsCommand Socials = new SocialsCommand();
 
 		// Builders
 		public static readonly Recall Recall = new Recall();

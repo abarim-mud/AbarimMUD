@@ -1,0 +1,2345 @@
+[
+  {
+    "Name": "gack",
+    "NoTargetPlayer": "Gaaack!",
+    "NoTargetRoom": "{player.name} gacks with dismay!",
+    "TargettedPlayer": "Appalled, you gack at {target.name}.",
+    "TargettedTarget": "{player.name} gacks, and looks your way, dismayed.",
+    "TargettedRoom": "{player.name} gacks expressively, shooting {target.name} a dismayed look.",
+    "TargetNotFoundPlayer": "That person isn\u0027t here.",
+    "SelfPlayer": "*GACK!*",
+    "SelfRoom": "Appalled, {player.name} gacks at {player.pronoun3}self!"
+  },
+  {
+    "Name": "kiss",
+    "NoTargetPlayer": "Isn\u0027t there someone you want to kiss?",
+    "NoTargetRoom": "",
+    "TargettedPlayer": "You kiss {target.pronoun3}.",
+    "TargettedTarget": "{player.name} kisses you.",
+    "TargettedRoom": "{player.name} kisses {target.name}.",
+    "TargetNotFoundPlayer": "Never around when required.",
+    "SelfPlayer": "All the lonely people :("
+  },
+  {
+    "Name": "bounce",
+    "NoTargetPlayer": "BOIINNNNNNGG!",
+    "NoTargetRoom": "{player.name} bounces around with a happy smile.",
+    "TargettedPlayer": "You bounce onto {target.pronoun2} lap and wiggle about.",
+    "TargettedTarget": "{player.name} bounces onto your lap and wiggles about.",
+    "TargettedRoom": "{player.name} bounces onto {target.name}\u0027s lap and wiggles about.",
+    "TargetNotFoundPlayer": "You don\u0027t see your plaything.",
+    "SelfPlayer": "You bounce your head like a basketball.",
+    "SelfRoom": "{player.name} plays basketball with {player.pronoun2} head."
+  },
+  {
+    "Name": "smile",
+    "NoTargetPlayer": "You smile happily.",
+    "NoTargetRoom": "{player.name} smiles happily.",
+    "TargettedPlayer": "You smile at {target.pronoun3}.",
+    "TargettedTarget": "{player.name} smiles at you.",
+    "TargettedRoom": "{player.name} beams a smile at {target.name}.",
+    "TargetNotFoundPlayer": "There\u0027s no one by that name around.",
+    "SelfPlayer": "You smile at yourself.",
+    "SelfRoom": "{player.name} smiles at {player.pronoun3}self."
+  },
+  {
+    "Name": "dance",
+    "NoTargetPlayer": "Feels silly, doesn\u0027t it?",
+    "NoTargetRoom": "{player.name} dances wildly before you!",
+    "TargettedPlayer": "You lead {target.pronoun3} to the dancefloor.",
+    "TargettedTarget": "{player.name} sends you across the dancefloor.",
+    "TargettedRoom": "{player.name} sends {target.name} across the dancefloor.",
+    "TargetNotFoundPlayer": "Eh, WHO?",
+    "SelfPlayer": "You skip and dance around by yourself.",
+    "SelfRoom": "{player.name} skips a light Fandango."
+  },
+  {
+    "Name": "cackle",
+    "NoTargetPlayer": "You cackle gleefully.",
+    "NoTargetRoom": "{player.name} throws back {player.pronoun2} head and cackles with insane glee!",
+    "TargettedPlayer": "You cackle gleefully at {target.name}",
+    "TargettedTarget": "{player.name} cackles gleefully at you.  Better keep your distance from {player.pronoun3}.",
+    "TargettedRoom": "{player.name} cackles gleefully at {target.name}.",
+    "TargetNotFoundPlayer": "You can\u0027t find a friend to cackle with.",
+    "SelfPlayer": "You cackle at yourself.  Now, THAT\u0027S strange!",
+    "SelfRoom": "{player.name} is really crazy now!  {player.pronoun1} cackles at {player.pronoun3}self."
+  },
+  {
+    "Name": "laugh",
+    "NoTargetPlayer": "You fall down laughing.",
+    "NoTargetRoom": "{player.name} falls down laughing.",
+    "TargettedPlayer": "You laugh at {target.name} mercilessly.",
+    "TargettedTarget": "{player.name} laughs at you mercilessly.  Hmmmmph.",
+    "TargettedRoom": "{player.name} laughs at {target.name} mercilessly.",
+    "TargetNotFoundPlayer": "You can\u0027t find the butt of your joke.",
+    "SelfPlayer": "You laugh at yourself.  I would, too.",
+    "SelfRoom": "{player.name} laughs at {player.pronoun3}self.  Let\u0027s all join in!!!"
+  },
+  {
+    "Name": "giggle",
+    "NoTargetPlayer": "You giggle.",
+    "NoTargetRoom": "{player.name} giggles.",
+    "TargettedPlayer": "You giggle in {target.pronoun2} presence.",
+    "TargettedTarget": "{player.name} giggles at you.  Hope it\u0027s not contagious!",
+    "TargettedRoom": "{player.name} giggles at {target.name}\u0027s actions.",
+    "TargetNotFoundPlayer": "You giggle by yourself, since you can\u0027t find a partner to giggle with.",
+    "SelfPlayer": "You giggle at yourself, which makes you giggle at yourself, which makes you ...",
+    "SelfRoom": "{player.name} giggles at {player.pronoun3}self.  {player.pronoun1} must be nervous or something."
+  },
+  {
+    "Name": "shake",
+    "NoTargetPlayer": "You shake your head.",
+    "NoTargetRoom": "{player.name} shakes {player.pronoun2} head.",
+    "TargettedPlayer": "You shake {target.pronoun2} hand.",
+    "TargettedTarget": "{player.name} shakes your hand.",
+    "TargettedRoom": "{player.name} shakes {target.name}\u0027s hand.",
+    "TargetNotFoundPlayer": "Sorry good buddy, but that person doesn\u0027t seem to be here.",
+    "SelfPlayer": "You are shaken by yourself.",
+    "SelfRoom": "{player.name} shakes and quivers like a bowl full of jelly."
+  },
+  {
+    "Name": "puke",
+    "NoTargetPlayer": "You puke...chunks everywhere!!! YUK!",
+    "NoTargetRoom": "{player.name} pukes.",
+    "TargettedPlayer": "You puke on {target.pronoun3}.",
+    "TargettedTarget": "{player.name} spews vomit and pukes all over your clothing!",
+    "TargettedRoom": "{player.name} pukes on {target.name}.",
+    "TargetNotFoundPlayer": "Once again?",
+    "SelfPlayer": "You puke on yourself.",
+    "SelfRoom": "{player.name} pukes on {player.pronoun2} clothes."
+  },
+  {
+    "Name": "growl",
+    "NoTargetPlayer": "Grrrrrrrrrr...",
+    "NoTargetRoom": "{player.name} growls.",
+    "TargettedPlayer": "Grrrrrrrrrr....take that, {target.name}!!!",
+    "TargettedTarget": "{player.name} growls at you.  Hey, two can play it that way!",
+    "TargettedRoom": "{player.name} growls at {target.name}.  Better leave the room before the fighting starts.",
+    "TargetNotFoundPlayer": "No one can see you growl that far.",
+    "SelfPlayer": "You growl at yourself.  Boy, do you feel bitter!",
+    "SelfRoom": "{player.name} growls at {player.pronoun3}self.  This could get interesting..."
+  },
+  {
+    "Name": "scream",
+    "NoTargetPlayer": "ARRRRRRRRRRGH!!!!!",
+    "NoTargetRoom": "{player.name} screams loudly!",
+    "TargettedPlayer": "ARRRRRRRRRRGH!!!!!  Yes, it MUST have been {target.pronoun2} fault!!!",
+    "TargettedTarget": "{player.name} screams at you!  That\u0027s not nice!  *sniff*",
+    "TargettedRoom": "{player.name} screams loudly at {target.name}.  Better leave before {player.name} blames you, too!!!",
+    "TargetNotFoundPlayer": "Your lungs can\u0027t reach that far!",
+    "SelfPlayer": "You scream at yourself.  Yes, that\u0027s ONE way of relieving tension!",
+    "SelfRoom": "{player.name} screams loudly at {player.pronoun3}self!  Is there a full moon up?"
+  },
+  {
+    "Name": "comfort",
+    "NoTargetPlayer": "Do you feel uncomfortable?",
+    "NoTargetRoom": "",
+    "TargettedPlayer": "You comfort {target.pronoun3}.",
+    "TargettedTarget": "{player.name} comforts you.",
+    "TargettedRoom": "{player.name} comforts {target.name}.",
+    "TargetNotFoundPlayer": "Comfort who?",
+    "SelfPlayer": "You make a vain attempt to comfort yourself.",
+    "SelfRoom": "{player.name} has no one to comfort {player.pronoun3} but {player.pronoun3}self"
+  },
+  {
+    "Name": "sigh",
+    "NoTargetPlayer": "You sigh.",
+    "NoTargetRoom": "{player.name} sighs.",
+    "TargettedPlayer": "You sigh as you think of {target.pronoun3}.",
+    "TargettedTarget": "{player.name} sighs as {player.pronoun1} thinks of you.  Touching, huh?",
+    "TargettedRoom": "{player.name} sighs at the sight of {target.name}.",
+    "TargetNotFoundPlayer": "You really sigh, since you don\u0027t see your friend.",
+    "SelfPlayer": "You sigh at yourself.  You MUST be lonely.",
+    "SelfRoom": "{player.name} sighs at {player.pronoun3}self.  What a sorry sight."
+  },
+  {
+    "Name": "sulk",
+    "NoTargetPlayer": "You sulk.",
+    "NoTargetRoom": "{player.name} sulks in the corner."
+  },
+  {
+    "Name": "hug",
+    "NoTargetPlayer": "Hug who?",
+    "NoTargetRoom": "",
+    "TargettedPlayer": "You hug {target.pronoun3}.",
+    "TargettedTarget": "{player.name} hugs you.",
+    "TargettedRoom": "{player.name} hugs {target.name}.",
+    "TargetNotFoundPlayer": "Sorry, friend, I can\u0027t see that person here.",
+    "SelfPlayer": "You hug yourself.",
+    "SelfRoom": "{player.name} hugs {player.pronoun3}self in a vain attempt to get friendship."
+  },
+  {
+    "Name": "snuggle",
+    "NoTargetPlayer": "Who?",
+    "NoTargetRoom": "",
+    "TargettedPlayer": "You snuggle {target.pronoun3}.",
+    "TargettedTarget": "{player.name} snuggles up to you.",
+    "TargettedRoom": "{player.name} snuggles up to {target.name}.",
+    "TargetNotFoundPlayer": "They aren\u0027t here.",
+    "SelfPlayer": "You snuggle up, getting ready to sleep.",
+    "SelfRoom": "{player.name} snuggles up, getting ready to sleep."
+  },
+  {
+    "Name": "cuddle",
+    "NoTargetPlayer": "Who do you feel like cuddling today?",
+    "NoTargetRoom": "",
+    "TargettedPlayer": "You cuddle {target.pronoun3}.",
+    "TargettedTarget": "{player.name} cuddles you.",
+    "TargettedRoom": "{player.name} cuddles {target.name}.",
+    "TargetNotFoundPlayer": "They aren\u0027t here.",
+    "SelfPlayer": "You must feel very cuddly indeed ... :)",
+    "SelfRoom": "{player.name} cuddles up to {player.pronoun2} shadow.  What a sorry sight."
+  },
+  {
+    "Name": "nuzzle",
+    "NoTargetPlayer": "Nuzzle who??",
+    "NoTargetRoom": "",
+    "TargettedPlayer": "You nuzzle {target.pronoun2} neck softly.",
+    "TargettedTarget": "{player.name} softly nuzzles your neck.",
+    "TargettedRoom": "{player.name} softly nuzzles {target.name}\u0027s neck.",
+    "TargetNotFoundPlayer": "No.. they aren\u0027t here..",
+    "SelfPlayer": "I\u0027m sorry, friend, but that\u0027s impossible."
+  },
+  {
+    "Name": "cry",
+    "NoTargetPlayer": "Waaaaah..",
+    "NoTargetRoom": "{player.name} bursts into tears.",
+    "TargettedPlayer": "You cry on {target.pronoun2} shoulder.",
+    "TargettedTarget": "{player.name} cries on your shoulder.",
+    "TargettedRoom": "{player.name} cries on {target.name}\u0027s shoulder.",
+    "TargetNotFoundPlayer": "Who\u0027s that?",
+    "SelfPlayer": "You cry to yourself.",
+    "SelfRoom": "{player.name} sobs quietly to {player.pronoun3}self."
+  },
+  {
+    "Name": "poke",
+    "NoTargetPlayer": "Poke who??",
+    "NoTargetRoom": "",
+    "TargettedPlayer": "You poke {target.pronoun3} in the ribs.",
+    "TargettedTarget": "{player.name} pokes you in the ribs.",
+    "TargettedRoom": "{player.name} pokes {target.name} in the ribs.",
+    "TargetNotFoundPlayer": "You can\u0027t poke someone who\u0027s not here!.",
+    "SelfPlayer": "You poke yourself in the ribs, feeling very silly.",
+    "SelfRoom": "{player.name} pokes {player.pronoun3}self in the ribs, looking very sheepish."
+  },
+  {
+    "Name": "accuse",
+    "NoTargetPlayer": "Accuse who??",
+    "NoTargetRoom": "{player.name} is in an accusing mood.",
+    "TargettedPlayer": "You look accusingly at {target.pronoun3}.",
+    "TargettedTarget": "{player.name} looks accusingly at you.",
+    "TargettedRoom": "{player.name} looks accusingly at {target.name}.",
+    "TargetNotFoundPlayer": "Accuse somebody who\u0027s not even there ??",
+    "SelfPlayer": "You accuse yourself.",
+    "SelfRoom": "{player.name} seems to have a bad conscience."
+  },
+  {
+    "Name": "grin",
+    "NoTargetPlayer": "You grin evilly.",
+    "NoTargetRoom": "{player.name} grins evilly.",
+    "TargettedPlayer": "You grin evilly at {target.pronoun3}.",
+    "TargettedTarget": "{player.name} grins evilly at you.  Hmmm.  Better keep your distance.",
+    "TargettedRoom": "{player.name} grins evilly at {target.name}.",
+    "TargetNotFoundPlayer": "You must be delirious.",
+    "SelfPlayer": "You grin at youself.  You must be getting very bad thoughts.",
+    "SelfRoom": "{player.name} grins at {player.pronoun3}self.  You must wonder what\u0027s in {player.pronoun2} mind."
+  },
+  {
+    "Name": "bow",
+    "NoTargetPlayer": "You bow deeply.",
+    "NoTargetRoom": "{player.name} bows deeply.",
+    "TargettedPlayer": "You bow before {target.pronoun3}.",
+    "TargettedTarget": "{player.name} bows before you.",
+    "TargettedRoom": "{player.name} bows before {target.name}.",
+    "TargetNotFoundPlayer": "Who\u0027s that?",
+    "SelfPlayer": "You kiss your toes.",
+    "SelfRoom": "{player.name} folds up like a jacknife and kisses {player.pronoun2} own toes."
+  },
+  {
+    "Name": "applaud",
+    "NoTargetPlayer": "Clap, clap, clap.",
+    "NoTargetRoom": "{player.name} gives a round of applause.",
+    "TargettedPlayer": "You clap at {target.name}\u0027s actions.",
+    "TargettedTarget": "{player.name} gives you a round of applause.  You MUST\u0027VE done something good!",
+    "TargettedRoom": "{player.name} claps at {target.name}\u0027s actions.",
+    "TargetNotFoundPlayer": "You give your imaginary round of applause to your imaginary friend.",
+    "SelfPlayer": "You applaud at yourself.  Boy, are we conceited!",
+    "SelfRoom": "{player.name} applauds at {player.pronoun3}self.  Boy, are we conceited!"
+  },
+  {
+    "Name": "blush",
+    "NoTargetPlayer": "Your cheeks are burning.",
+    "NoTargetRoom": "{player.name} blushes.",
+    "TargettedPlayer": "You get all flustered up seeing {target.pronoun3}.",
+    "TargettedTarget": "{player.name} blushes as {player.pronoun1} sees you here.  Such an effect on people!",
+    "TargettedRoom": "{player.name} blushes as {player.pronoun1} sees {target.name} here.",
+    "TargetNotFoundPlayer": "You blush as you notice that person isn\u0027t here.",
+    "SelfPlayer": "You blush at your own folly.",
+    "SelfRoom": "{player.name} blushes as {player.pronoun1} notices {player.pronoun2} boo-boo."
+  },
+  {
+    "Name": "burp",
+    "NoTargetPlayer": "You burp loudly.",
+    "NoTargetRoom": "{player.name} burps loudly.",
+    "TargettedPlayer": "You burp loudly to {target.pronoun3} in response.",
+    "TargettedTarget": "{player.name} burps loudly in response to your remark.",
+    "TargettedRoom": "{player.name} burps loudly in response to {target.name}\u0027s remark.",
+    "TargetNotFoundPlayer": "You can\u0027t find your victim.",
+    "SelfPlayer": "You burp at yourself.",
+    "SelfRoom": "{player.name} burps at {player.pronoun3}self.  What a sick sight."
+  },
+  {
+    "Name": "chuckle",
+    "NoTargetPlayer": "You chuckle politely.",
+    "NoTargetRoom": "{player.name} chuckles politely.",
+    "TargettedPlayer": "You chuckle at {target.pronoun2} joke.",
+    "TargettedTarget": "{player.name} chuckles at your joke.",
+    "TargettedRoom": "{player.name} chuckles at {target.name}\u0027s joke.",
+    "TargetNotFoundPlayer": "You can\u0027t find a friend to chuckle with.",
+    "SelfPlayer": "You chuckle at your own joke, since no one else would.",
+    "SelfRoom": "{player.name} chuckles at {player.pronoun2} own joke, since none of you would."
+  },
+  {
+    "Name": "clap",
+    "NoTargetPlayer": "You clap your hands together.",
+    "NoTargetRoom": "{player.name} shows {player.pronoun2} approval by clapping {player.pronoun2} hands together.",
+    "TargettedPlayer": "You clap at {target.pronoun2} performance.",
+    "TargettedTarget": "{player.name} claps at your performance.",
+    "TargettedRoom": "{player.name} claps at {target.name}\u0027s performance.",
+    "TargetNotFoundPlayer": "You clap for nothing.",
+    "SelfPlayer": "You clap at your own performance.",
+    "SelfRoom": "{player.name} claps at {player.pronoun2} own performance."
+  },
+  {
+    "Name": "cough",
+    "NoTargetPlayer": "Yuck, try to cover your mouth next time!",
+    "NoTargetRoom": "{player.name} coughs loudly."
+  },
+  {
+    "Name": "curtsey",
+    "NoTargetPlayer": "You curtsey to your audience.",
+    "NoTargetRoom": "{player.name} curtseys gracefully.",
+    "TargettedPlayer": "You curtsey to {target.pronoun3}.",
+    "TargettedTarget": "{player.name} curtseys gracefully for you.",
+    "TargettedRoom": "{player.name} curtseys gracefully to {target.name}.",
+    "TargetNotFoundPlayer": "You curtsey to no one in particular.",
+    "SelfPlayer": "You curtsey to your audience (yourself).",
+    "SelfRoom": "{player.name} curtseys to {player.pronoun3}self, since no one is paying attention to {player.pronoun3}."
+  },
+  {
+    "Name": "fart",
+    "NoTargetPlayer": "Where are your manners ?",
+    "NoTargetRoom": "{player.name} lets off a real rip-roarer ... a greenish cloud envelops {player.name}!",
+    "TargettedPlayer": "You fart at {target.pronoun3}.  Boy, you are sick.",
+    "TargettedTarget": "{player.name} farts in your direction.  You gasp for air.",
+    "TargettedRoom": "{player.name} farts in the direction of {target.name}.  Better flee before {player.pronoun1} turns to you!",
+    "TargetNotFoundPlayer": "You can\u0027t hold it that long!",
+    "SelfPlayer": "You fart at yourself.  You deserve it.",
+    "SelfRoom": "{player.name} farts at {player.pronoun3}self.  Better {player.pronoun3} than you."
+  },
+  {
+    "Name": "flip",
+    "NoTargetPlayer": "You flip head over heels.",
+    "NoTargetRoom": "{player.name} flips head over heels.",
+    "TargettedPlayer": "You flip {target.pronoun3} over your shoulder.",
+    "TargettedTarget": "{player.name} flips you over {player.pronoun2} shoulder.  Hmmmm.",
+    "TargettedRoom": "{player.name} flips {target.name} over {player.pronoun2} shoulder.",
+    "TargetNotFoundPlayer": "You can\u0027t find the person.",
+    "SelfPlayer": "You tumble all over the room.",
+    "SelfRoom": "{player.name} does some nice tumbling and gymnastics."
+  },
+  {
+    "Name": "fondle",
+    "NoTargetPlayer": "Who needs to be fondled ?",
+    "NoTargetRoom": "",
+    "TargettedPlayer": "You fondly fondle {target.pronoun3}.",
+    "TargettedTarget": "{player.name} fondly fondles you.",
+    "TargettedRoom": "{player.name} fondly fondles {target.name}.",
+    "TargetNotFoundPlayer": "You fondly try to fondle someone not in the room, but who cares.",
+    "SelfPlayer": "You fondly fondle yourself, feels funny doesn\u0027t it?",
+    "SelfRoom": "{player.name} fondly fondles {player.pronoun3}self - this is going too far!!"
+  },
+  {
+    "Name": "frown",
+    "NoTargetPlayer": "You frown disapprovingly.",
+    "NoTargetRoom": "{player.name} frowns.",
+    "TargettedPlayer": "You frown at what {target.pronoun1} did.",
+    "TargettedTarget": "{player.name} frowns at what you did.",
+    "TargettedRoom": "{player.name} frowns at what {target.name} did.",
+    "TargetNotFoundPlayer": "You don\u0027t see any reason to frown.",
+    "SelfPlayer": "You frown at yourself.  Poor baby.",
+    "SelfRoom": "{player.name} frowns at {player.pronoun3}self.  What a sad puppy...."
+  },
+  {
+    "Name": "gasp",
+    "NoTargetPlayer": "You gasp in astonishment.",
+    "NoTargetRoom": "{player.name} gasps in astonishment.",
+    "TargettedPlayer": "You gasp as you realize what {target.pronoun1} did.",
+    "TargettedTarget": "{player.name} gasps as {player.pronoun1} realizes what you did.",
+    "TargettedRoom": "{player.name} gasps as {player.pronoun1} realizes what {target.name} did.",
+    "TargetNotFoundPlayer": "You need to panic.",
+    "SelfPlayer": "You look at yourself and gasp!",
+    "SelfRoom": "{player.name} takes one look at {player.pronoun3}self and gasps in astonisment!"
+  },
+  {
+    "Name": "glare",
+    "NoTargetPlayer": "You glare at nothing in particular.",
+    "NoTargetRoom": "{player.name} glares around {player.pronoun3}.",
+    "TargettedPlayer": "You glare icily at {target.pronoun3}.",
+    "TargettedTarget": "{player.name} glares icily at you, you feel cold to your bones.",
+    "TargettedRoom": "{player.name} glares at {target.name}.",
+    "TargetNotFoundPlayer": "You try to glare at somebody who is not present.",
+    "SelfPlayer": "You glare icily at your feet, they are suddenly very cold.",
+    "SelfRoom": "{player.name} glares at {player.pronoun2} feet, what is bothering {player.pronoun3}?"
+  },
+  {
+    "Name": "groan",
+    "NoTargetPlayer": "You groan loudly.",
+    "NoTargetRoom": "{player.name} groans loudly.",
+    "TargettedPlayer": "You groan at the sight of {target.pronoun3}.",
+    "TargettedTarget": "{player.name} groans at the sight of you.",
+    "TargettedRoom": "{player.name} groans at the sight of {target.name}.",
+    "TargetNotFoundPlayer": "You see no reason to groan.",
+    "SelfPlayer": "You groan as you realize what you have done.",
+    "SelfRoom": "{player.name} groans as {player.pronoun1} realizes what {player.pronoun1} has done."
+  },
+  {
+    "Name": "grope",
+    "NoTargetPlayer": "Whom do you wish to grope ??",
+    "NoTargetRoom": "",
+    "TargettedPlayer": "Well, what sort of noise do you expect here?",
+    "TargettedTarget": "{player.name} gropes you.",
+    "TargettedRoom": "{player.name} gropes {target.name}.",
+    "TargetNotFoundPlayer": "Try someone who\u0027s here.",
+    "SelfPlayer": "You grope yourself - YUCK.",
+    "SelfRoom": "{player.name} gropes {player.pronoun3}self - YUCK."
+  },
+  {
+    "Name": "hiccup",
+    "NoTargetPlayer": "*HIC*",
+    "NoTargetRoom": "{player.name} hiccups."
+  },
+  {
+    "Name": "lick",
+    "NoTargetPlayer": "You lick your mouth and smile.",
+    "NoTargetRoom": "{player.name} licks {player.pronoun2} mouth and smiles.",
+    "TargettedPlayer": "You lick {target.name}\u0027s jawline delicately.",
+    "TargettedTarget": "{player.name} licks your jawline delicately.",
+    "TargettedRoom": "{player.name} licks {target.name}\u0027s jawline delicately.",
+    "TargetNotFoundPlayer": "Lick away, nobody\u0027s here with that name.",
+    "SelfPlayer": "You lick your own eyebrows.",
+    "SelfRoom": "{player.name} licks {player.pronoun2} own eyebrows."
+  },
+  {
+    "Name": "love",
+    "NoTargetPlayer": "You love the whole world.",
+    "NoTargetRoom": "{player.name} loves everybody in the world.",
+    "TargettedPlayer": "You tell your true feelings to {target.name}.",
+    "TargettedTarget": "{player.name} whispers to you sweet words of love.",
+    "TargettedRoom": "{player.name} whispers softly to {target.name}.",
+    "TargetNotFoundPlayer": "Alas, your love is not present...",
+    "SelfPlayer": "Well, we already know you love yourself (lucky someone does !)",
+    "SelfRoom": "{player.name} loves {player.pronoun3}self, can you believe it ?"
+  },
+  {
+    "Name": "moan",
+    "NoTargetPlayer": "You start to moan.",
+    "NoTargetRoom": "{player.name} starts moaning.",
+    "TargettedPlayer": "You moan for the loss of {target.pronoun3}.",
+    "TargettedTarget": "{player.name} moans at the sight of you.  Hmmmm.",
+    "TargettedRoom": "{player.name} moans for the loss of {target.name}.",
+    "TargetNotFoundPlayer": "You see no cause to moan.",
+    "SelfPlayer": "You moan at yourself.",
+    "SelfRoom": "{player.name} makes {player.pronoun3}self moan."
+  },
+  {
+    "Name": "nibble",
+    "NoTargetPlayer": "Nibble on who ?",
+    "NoTargetRoom": "",
+    "TargettedPlayer": "You nibble on {target.name}\u0027s ear.",
+    "TargettedTarget": "{player.name} nibbles on your ear.",
+    "TargettedRoom": "{player.name} nibbles on {target.name}\u0027s ear.",
+    "TargetNotFoundPlayer": "Sorry, not present.",
+    "SelfPlayer": "You nibble on your OWN ear ???????????????????",
+    "SelfRoom": "{player.name} nibbles on {player.pronoun2} OWN ear (I wonder how it is done !!)."
+  },
+  {
+    "Name": "pout",
+    "NoTargetPlayer": "Ah, don\u0027t take it so hard.",
+    "NoTargetRoom": "{player.name} pouts."
+  },
+  {
+    "Name": "ruffle",
+    "NoTargetPlayer": "You\u0027ve got to ruffle SOMEONE.",
+    "NoTargetRoom": "",
+    "TargettedPlayer": "You ruffle {target.name}\u0027s hair playfully.",
+    "TargettedTarget": "{player.name} ruffles your hair playfully.",
+    "TargettedRoom": "{player.name} ruffles {target.name}\u0027s hair playfully.",
+    "TargetNotFoundPlayer": "Might be a bit difficult.",
+    "SelfPlayer": "You ruffle your hair, wondering how far you can go before the rest think you\u0027re crazy.",
+    "SelfRoom": "{player.name} ruffles {player.pronoun2} hair - weirdo!"
+  },
+  {
+    "Name": "shiver",
+    "NoTargetPlayer": "Brrrrrrrrr.",
+    "NoTargetRoom": "{player.name} shivers uncomfortably.",
+    "TargettedPlayer": "You shiver at the thought of fighting {target.pronoun3}.",
+    "TargettedTarget": "{player.name} shivers at the suicidal thought of fighting you.",
+    "TargettedRoom": "{player.name} shivers at the thought of fighting {target.name}.",
+    "TargetNotFoundPlayer": "You don\u0027t see any reason to shiver.",
+    "SelfPlayer": "You shiver to yourself?",
+    "SelfRoom": "{player.name} scares {player.pronoun3}self to shivers."
+  },
+  {
+    "Name": "shrug",
+    "NoTargetPlayer": "You shrug.",
+    "NoTargetRoom": "{player.name} shrugs helplessly.",
+    "TargettedPlayer": "You shrug in response to {target.pronoun2} question.",
+    "TargettedTarget": "{player.name} shrugs in response to your question.",
+    "TargettedRoom": "{player.name} shrugs in response to {target.name}\u0027s question.",
+    "TargetNotFoundPlayer": "You shrug to no one in particular.",
+    "SelfPlayer": "You shrug to yourself.",
+    "SelfRoom": "{player.name} shrugs to {player.pronoun3}self.  What a strange person."
+  },
+  {
+    "Name": "sing",
+    "NoTargetPlayer": "You raise your clear (?) voice towards the sky.",
+    "NoTargetRoom": "HEY CLERICS! I COULD USE A HEAL!  {player.name} has begun to sing.",
+    "TargettedPlayer": "You sing a ballad to {target.pronoun3}.",
+    "TargettedTarget": "{player.name} sings a ballad to you!  How sweet!",
+    "TargettedRoom": "{player.name} sings a ballad to {target.name}.",
+    "TargetNotFoundPlayer": "You see no one to sing to.",
+    "SelfPlayer": "You sing a little ditty to yourself.",
+    "SelfRoom": "{player.name} sings a little ditty to {player.pronoun3}self."
+  },
+  {
+    "Name": "slap",
+    "NoTargetPlayer": "What is the sound of one hand slapping?",
+    "NoTargetRoom": "",
+    "TargettedPlayer": "*thwock!* You slap {target.name} ringingly.",
+    "TargettedTarget": "{player.name} slaps you stingingly.",
+    "TargettedRoom": "*thwock!* {player.name} slaps {target.name}!",
+    "TargetNotFoundPlayer": "How about slapping someone in the same room as you ??",
+    "SelfPlayer": "You slap yourself, silly you.",
+    "SelfRoom": "{player.name} slaps {player.pronoun3}self, really strange ..."
+  },
+  {
+    "Name": "smirk",
+    "NoTargetPlayer": "You smirk.",
+    "NoTargetRoom": "{player.name} smirks.",
+    "TargettedPlayer": "You smirk at {target.pronoun2} saying.",
+    "TargettedTarget": "{player.name} smirks at your saying.",
+    "TargettedRoom": "{player.name} smirks at {target.name}\u0027s saying.",
+    "TargetNotFoundPlayer": "You want to smirk to whom?",
+    "SelfPlayer": "You smirk at yourself.  Okay.....",
+    "SelfRoom": "{player.name} smirks at {player.pronoun2} own \u0027wisdom\u0027."
+  },
+  {
+    "Name": "snap",
+    "NoTargetPlayer": "Eureka!  You snap your fingers.",
+    "NoTargetRoom": "{player.name} snaps {player.pronoun2} fingers.",
+    "TargettedPlayer": "You snap back at {target.pronoun3}.",
+    "TargettedTarget": "{player.name} snaps back at you!",
+    "TargettedRoom": "{player.name} snaps back at {target.name}.",
+    "TargetNotFoundPlayer": "You must be very agitated.",
+    "SelfPlayer": "You snap yourself to attention.",
+    "SelfRoom": "{player.name} snaps {player.pronoun3}self to attention."
+  },
+  {
+    "Name": "sneeze",
+    "NoTargetPlayer": "Gesundheit !",
+    "NoTargetRoom": "{player.name} sneezes."
+  },
+  {
+    "Name": "snicker",
+    "NoTargetPlayer": "You snicker softly.",
+    "NoTargetRoom": "{player.name} snickers softly.",
+    "TargettedPlayer": "You snicker with {target.pronoun3} about your shared secret.",
+    "TargettedTarget": "{player.name} snickers with you about your shared secret.",
+    "TargettedRoom": "{player.name} snickers with {target.name} about their shared secret.",
+    "TargetNotFoundPlayer": "Huh?",
+    "SelfPlayer": "You snicker at your own evil thoughts.",
+    "SelfRoom": "{player.name} snickers at {player.pronoun2} own evil thoughts."
+  },
+  {
+    "Name": "sniff",
+    "NoTargetPlayer": "You sniff sadly. *SNIFF*",
+    "NoTargetRoom": "{player.name} sniffs sadly.",
+    "TargettedPlayer": "You sniff sadly at the way {target.pronoun1} is treating you.",
+    "TargettedTarget": "{player.name} sniffs sadly at the way you are treating {player.pronoun3}.",
+    "TargettedRoom": "{player.name} sniffs sadly at the way {target.name} is treating {player.pronoun3}.",
+    "TargetNotFoundPlayer": "You see no reason to sniff.",
+    "SelfPlayer": "You sniff sadly at your lost opportunities.",
+    "SelfRoom": "{player.name} sniffs sadly at {player.pronoun3}self.  Something MUST be bothering {player.pronoun3}."
+  },
+  {
+    "Name": "snore",
+    "NoTargetPlayer": "Zzzzzzzzzzzzzzzzz.",
+    "NoTargetRoom": "{player.name} snores loudly."
+  },
+  {
+    "Name": "squeeze",
+    "NoTargetPlayer": "Where, what, how, WHO ???",
+    "NoTargetRoom": "",
+    "TargettedPlayer": "You squeeze {target.pronoun3} fondly.",
+    "TargettedTarget": "{player.name} squeezes you fondly.",
+    "TargettedRoom": "{player.name} squeezes {target.name} fondly.",
+    "TargetNotFoundPlayer": "Where, what, how, WHO ???",
+    "SelfPlayer": "You squeeze yourself - try to relax a little!",
+    "SelfRoom": "{player.name} squeezes {player.pronoun3}self."
+  },
+  {
+    "Name": "stare",
+    "NoTargetPlayer": "You stare at the sky.",
+    "NoTargetRoom": "{player.name} stares at the sky.",
+    "TargettedPlayer": "You stare dreamily at {target.name}, completely lost in {target.pronoun2} eyes..",
+    "TargettedTarget": "{player.name} stares dreamily at you, completely lost in your eyes.",
+    "TargettedRoom": "{player.name} stares dreamily at {target.name}.",
+    "TargetNotFoundPlayer": "You stare and stare but can\u0027t see that person anywhere...",
+    "SelfPlayer": "You stare dreamily at yourself - enough narcissism for now.",
+    "SelfRoom": "{player.name} stares dreamily at {player.pronoun3}self - NARCISSIST!"
+  },
+  {
+    "Name": "strut",
+    "NoTargetPlayer": "Strut your stuff.",
+    "NoTargetRoom": "{player.name} struts proudly.",
+    "TargettedPlayer": "You strut to get {target.pronoun2} attention.",
+    "TargettedTarget": "{player.name} struts, hoping to get your attention.",
+    "TargettedRoom": "{player.name} struts, hoping to get {target.name}\u0027s attention.",
+    "TargetNotFoundPlayer": "You don\u0027t see an audience.",
+    "SelfPlayer": "You strut to yourself, lost in your own world.",
+    "SelfRoom": "{player.name} struts to {player.pronoun3}self, lost in {player.pronoun2} own world."
+  },
+  {
+    "Name": "thank",
+    "NoTargetPlayer": "Thank you too.",
+    "NoTargetRoom": "",
+    "TargettedPlayer": "You thank {target.name} heartily.",
+    "TargettedTarget": "{player.name} thanks you heartily.",
+    "TargettedRoom": "{player.name} thanks {target.name} heartily.",
+    "TargetNotFoundPlayer": "No one answers to that name here.",
+    "SelfPlayer": "You thank yourself since nobody else wants to !",
+    "SelfRoom": "{player.name} thanks {player.pronoun3}self since you won\u0027t."
+  },
+  {
+    "Name": "twiddle",
+    "NoTargetPlayer": "You patiently twiddle your thumbs.",
+    "NoTargetRoom": "{player.name} patiently twiddles {player.pronoun2} thumbs.",
+    "TargettedPlayer": "You twiddle {target.pronoun2} ears.",
+    "TargettedTarget": "{player.name} twiddles your ears.",
+    "TargettedRoom": "{player.name} twiddles {target.name}\u0027s ears.",
+    "TargetNotFoundPlayer": "You don\u0027t see the person here.",
+    "SelfPlayer": "You twiddle your ears like Dumbo.",
+    "SelfRoom": "{player.name} twiddles {player.pronoun2} own ears like Dumbo."
+  },
+  {
+    "Name": "wave",
+    "NoTargetPlayer": "You wave.",
+    "NoTargetRoom": "{player.name} waves happily.",
+    "TargettedPlayer": "You wave goodbye to {target.name}.",
+    "TargettedTarget": "{player.name} waves goodbye to you.  Have a good journey.",
+    "TargettedRoom": "{player.name} waves goodbye to {target.name}.",
+    "TargetNotFoundPlayer": "They didn\u0027t wait for you to wave goodbye.",
+    "SelfPlayer": "Are you going on adventures as well??",
+    "SelfRoom": "{player.name} waves goodbye to {player.pronoun3}self."
+  },
+  {
+    "Name": "whistle",
+    "NoTargetPlayer": "You whistle appreciatively.",
+    "NoTargetRoom": "{player.name} whistles appreciatively.",
+    "TargettedPlayer": "You whistle at the sight of {target.pronoun3}.",
+    "TargettedTarget": "{player.name} whistles at the sight of you.",
+    "TargettedRoom": "{player.name} whistles at the sight of {target.name}.",
+    "TargetNotFoundPlayer": "You don\u0027t see nothing special to whistle at.",
+    "SelfPlayer": "You whistle a little tune to yourself.",
+    "SelfRoom": "{player.name} whistles a little tune to {player.pronoun3}self."
+  },
+  {
+    "Name": "wiggle",
+    "NoTargetPlayer": "Your wiggle your bottom.",
+    "NoTargetRoom": "{player.name} wiggles {player.pronoun2} bottom.",
+    "TargettedPlayer": "You wiggle your bottom toward {target.pronoun3}.",
+    "TargettedTarget": "{player.name} wiggles {player.pronoun2} bottom toward you.",
+    "TargettedRoom": "{player.name} wiggles {player.pronoun2} bottom toward {target.name}.",
+    "TargetNotFoundPlayer": "You must be alone.",
+    "SelfPlayer": "You wiggle about like a fish.",
+    "SelfRoom": "{player.name} wiggles about like a fish."
+  },
+  {
+    "Name": "wink",
+    "NoTargetPlayer": "Have you got something in your eye?",
+    "NoTargetRoom": "{player.name} winks suggestively.",
+    "TargettedPlayer": "You wink suggestively at {target.name}.",
+    "TargettedTarget": "{player.name} winks suggestively at you.",
+    "TargettedRoom": "{player.name} winks at {target.name}.",
+    "TargetNotFoundPlayer": "No one with that name is present.",
+    "SelfPlayer": "You wink at yourself ?? - what are you up to?",
+    "SelfRoom": "{player.name} winks at {player.pronoun3}self - something strange is going on..."
+  },
+  {
+    "Name": "yawn",
+    "NoTargetPlayer": "You must be tired.",
+    "NoTargetRoom": "{player.name} yawns."
+  },
+  {
+    "Name": "snowball",
+    "NoTargetPlayer": "Who do you want to throw a snowball at?",
+    "NoTargetRoom": "",
+    "TargettedPlayer": "You throw a snowball in {target.name}\u0027s face.",
+    "TargettedTarget": "{player.name} conjures a snowball from the thin air and throws it at you.",
+    "TargettedRoom": "{player.name} conjures a snowball from the thin air and throws it at {target.name}.",
+    "TargetNotFoundPlayer": "You stand with the snowball in your hand because your victim is not here.",
+    "SelfPlayer": "You conjure a snowball from the thin air and throw it at yourself.",
+    "SelfRoom": "{player.name} conjures a snowball out of the thin air and throws it at {player.pronoun3}self."
+  },
+  {
+    "Name": "french",
+    "NoTargetPlayer": "Kiss whom?",
+    "NoTargetRoom": "",
+    "TargettedPlayer": "You give {target.name} a long and passionate kiss, it seems to last forever...",
+    "TargettedTarget": "{player.name} gives you a long and passionate kiss, it seems to last forever...",
+    "TargettedRoom": "{player.name} kisses {target.name} passionately.",
+    "TargetNotFoundPlayer": "Your heart is filled with despair as that person is not here.",
+    "SelfPlayer": "You gather yourself in your arms and try to kiss yourself.",
+    "SelfRoom": "{player.name} makes an attempt at kissing {player.pronoun3}self."
+  },
+  {
+    "Name": "comb",
+    "NoTargetPlayer": "You comb your hair - perfect.",
+    "NoTargetRoom": "{player.name} combs {player.pronoun2} hair, what a dashing specimen !",
+    "TargettedPlayer": "You patiently untangle {target.name}\u0027s hair - what a mess !",
+    "TargettedTarget": "{player.name} pulls your hair in an attempt to comb it.",
+    "TargettedRoom": "{player.name} tries patiently to untangle {target.name}\u0027s hair.",
+    "TargetNotFoundPlayer": "That person is not here.",
+    "SelfPlayer": "You pull your hair, but it will not be combed.",
+    "SelfRoom": "{player.name} tries to comb {player.pronoun2} tangled hair."
+  },
+  {
+    "Name": "massage",
+    "NoTargetPlayer": "Massage what?  Thin air?",
+    "NoTargetRoom": "",
+    "TargettedPlayer": "You gently massage {target.name}\u0027s shoulders.",
+    "TargettedTarget": "{player.name} gently massages your shoulders - Ahhhhhhhhhh...",
+    "TargettedRoom": "{player.name} massages {target.name}\u0027s shoulders.",
+    "TargetNotFoundPlayer": "You can only massage someone in the same room as you.",
+    "SelfPlayer": "You practice yoga as you try to massage yourself.",
+    "SelfRoom": "{player.name} gives a show on yoga-positions, trying to massage {player.pronoun3}self."
+  },
+  {
+    "Name": "tickle",
+    "NoTargetPlayer": "Whom do you want to tickle?",
+    "NoTargetRoom": "",
+    "TargettedPlayer": "You tickle {target.name}.",
+    "TargettedTarget": "{player.name} tickles you - ho ho ho.",
+    "TargettedRoom": "{player.name} tickles {target.name}.",
+    "TargetNotFoundPlayer": "Who is that??",
+    "SelfPlayer": "You tickle yourself, how funny!",
+    "SelfRoom": "{player.name} tickles {player.pronoun3}self."
+  },
+  {
+    "Name": "pat",
+    "NoTargetPlayer": "Pat who?",
+    "NoTargetRoom": "",
+    "TargettedPlayer": "You pat {target.name} on {target.pronoun2} head.",
+    "TargettedTarget": "{player.name} pats you on your head.",
+    "TargettedRoom": "{player.name} pats {target.name} on {target.pronoun2} head.",
+    "TargetNotFoundPlayer": "Who, where, what?",
+    "SelfPlayer": "You pat yourself on your head, very reassuring.",
+    "SelfRoom": "{player.name} pats {player.pronoun3}self on the head."
+  },
+  {
+    "Name": "curse",
+    "NoTargetPlayer": "You swear loudly for a long time.",
+    "NoTargetRoom": "{player.name} swears : #@*\u0022*\u0026^*#%@*\u0026! !!!!!",
+    "TargettedPlayer": "You swear at {target.pronoun3}.",
+    "TargettedTarget": "{player.name} swears at you!  Where are the manners?",
+    "TargettedRoom": "{player.name} swears at {target.name}.",
+    "TargetNotFoundPlayer": "You can\u0027t find the victim of your frustrations.",
+    "SelfPlayer": "You swear at your own mistakes.",
+    "SelfRoom": "{player.name} starts swearing at {player.pronoun3}self.  Why don\u0027t you help?"
+  },
+  {
+    "Name": "pray",
+    "NoTargetPlayer": "You feel righteous, and maybe a little foolish.",
+    "NoTargetRoom": "{player.name} begs and grovels to the powers that be.",
+    "TargettedPlayer": "You crawl in the dust before {target.pronoun3}.",
+    "TargettedTarget": "{player.name} kisses the dirt at your feet.",
+    "TargettedRoom": "{player.name} falls down and grovels in the dirt before {target.name}.",
+    "TargetNotFoundPlayer": "No such person around; your prayers vanish into the endless voids.",
+    "SelfPlayer": "Talk about narcissism...",
+    "SelfRoom": "{player.name} performs some strange yoga-exercises and mumbles a prayer to {player.pronoun3}self."
+  },
+  {
+    "Name": "beg",
+    "NoTargetPlayer": "You beg the gods for mercy.",
+    "NoTargetRoom": "The gods fall down laughing at {player.name}\u0027s request for mercy.",
+    "TargettedPlayer": "You desperately try to squeeze a few coins from {target.pronoun3}.",
+    "TargettedTarget": "{player.name} begs {target.name} for a dime or two - or twenty !",
+    "TargettedRoom": "{player.name} begs you for money. You graciously let {player.pronoun3} peep at your fortune.",
+    "TargetNotFoundPlayer": "Your money-lender seems to be out for the moment.",
+    "SelfPlayer": "Begging yourself for money doesn\u0027t help."
+  },
+  {
+    "Name": "cringe",
+    "NoTargetPlayer": "You cringe in terror.",
+    "NoTargetRoom": "{player.name} cringes in terror!",
+    "TargettedPlayer": "You cringe away from {target.pronoun3}.",
+    "TargettedTarget": "{player.name} cringes away from you.",
+    "TargettedRoom": "{player.name} cringes away from {target.name} in mortal terror.",
+    "TargetNotFoundPlayer": "I don\u0027t see anyone by that name here.. what are you afraid of?",
+    "SelfPlayer": "I beg your pardon?"
+  },
+  {
+    "Name": "daydream",
+    "NoTargetPlayer": "You dream of better times.",
+    "NoTargetRoom": "{player.name} looks absent-minded, his eyes staring into space."
+  },
+  {
+    "Name": "fume",
+    "NoTargetPlayer": "Take it easy now! count to ten, very slowly.",
+    "NoTargetRoom": "{player.name} grits {player.pronoun2} teeth and fumes with rage.",
+    "TargettedPlayer": "You stare at {target.pronoun3}, fuming.",
+    "TargettedTarget": "{player.name} stares at you, fuming with rage!",
+    "TargettedRoom": "{player.name} stares at {target.name}, fuming with rage.",
+    "TargetNotFoundPlayer": "Fume away... they ain\u0027t here.",
+    "SelfPlayer": "That\u0027s right - hate yourself!",
+    "SelfRoom": "{player.name} clenches {player.pronoun2} fists and stomps his feet, fuming with anger."
+  },
+  {
+    "Name": "grovel",
+    "NoTargetPlayer": "You grovel in the dirt.",
+    "NoTargetRoom": "{player.name} grovels in the dirt.",
+    "TargettedPlayer": "You grovel before {target.pronoun3}",
+    "TargettedTarget": "{player.name} grovels in the dirt before you.",
+    "TargettedRoom": "{player.name} grovels in the dirt before {target.name}.",
+    "TargetNotFoundPlayer": "Who?",
+    "SelfPlayer": "That seems a little silly to me."
+  },
+  {
+    "Name": "hop",
+    "NoTargetPlayer": "You hop around like a little kid.",
+    "NoTargetRoom": "{player.name} hops around like a little kid."
+  },
+  {
+    "Name": "nudge",
+    "NoTargetPlayer": "Nudge whom?",
+    "NoTargetRoom": "",
+    "TargettedPlayer": "You nudge {target.pronoun3}.",
+    "TargettedTarget": "{player.name} nudges you.",
+    "TargettedRoom": "{player.name} nudges {target.name}.",
+    "TargetNotFoundPlayer": "Who?",
+    "SelfPlayer": "You nudge yourself, for some strange reason.",
+    "SelfRoom": "{player.name} nudges {player.pronoun3}self, to keep {player.pronoun3}self awake."
+  },
+  {
+    "Name": "ponder",
+    "NoTargetPlayer": "You ponder the question.",
+    "NoTargetRoom": "{player.name} sits down and thinks deeply."
+  },
+  {
+    "Name": "punch",
+    "NoTargetPlayer": "Punch whom?",
+    "NoTargetRoom": "",
+    "TargettedPlayer": "You punch {target.pronoun3} playfully.",
+    "TargettedTarget": "{player.name} punches you playfully.  OUCH!",
+    "TargettedRoom": "{player.name} punches {target.name} playfully.",
+    "TargetNotFoundPlayer": "You can\u0027t find your boxing partner.",
+    "SelfPlayer": "You punch yourself.  You deserve it.",
+    "SelfRoom": "{player.name} punches {player.pronoun3}self.  Why don\u0027t you join in?"
+  },
+  {
+    "Name": "snarl",
+    "NoTargetPlayer": "You grizzle your teeth and look mean.",
+    "NoTargetRoom": "{player.name} snarls angrily.",
+    "TargettedPlayer": "You snarl at {target.pronoun3}.",
+    "TargettedTarget": "{player.name} snarls at you, for some reason.",
+    "TargettedRoom": "{player.name} snarls at {target.name}.",
+    "TargetNotFoundPlayer": "No need to snarl!",
+    "SelfPlayer": "You snarl at yourself.",
+    "SelfRoom": "{player.name} snarls at {player.pronoun3}self."
+  },
+  {
+    "Name": "spank",
+    "NoTargetPlayer": "Spank whom?",
+    "NoTargetRoom": "",
+    "TargettedPlayer": "You spank {target.pronoun3} playfully.",
+    "TargettedTarget": "{player.name} spanks you playfully.  OUCH!",
+    "TargettedRoom": "{player.name} spanks {target.name} playfully.",
+    "TargetNotFoundPlayer": "Your hand can\u0027t find your victim!",
+    "SelfPlayer": "You spank yourself....HMMMMMMM...",
+    "SelfRoom": "{player.name} spanks {player.pronoun3}self....HMMMMMMM..."
+  },
+  {
+    "Name": "hand",
+    "NoTargetPlayer": "Kiss whose hand?",
+    "NoTargetRoom": "",
+    "TargettedPlayer": "You kiss {target.pronoun2} hand.",
+    "TargettedTarget": "{player.name} kisses your hand.  How continental!",
+    "TargettedRoom": "{player.name} kisses {target.name}\u0027s hand.  How continental!",
+    "TargetNotFoundPlayer": "You can\u0027t find a lady in THIS group.",
+    "SelfPlayer": "You kiss your own hand.",
+    "SelfRoom": "{player.name} kisses {player.pronoun2} own hand."
+  },
+  {
+    "Name": "yodel",
+    "NoTargetPlayer": "You think of Julie Andrews and start to yodel.",
+    "NoTargetRoom": "{player.name} begins to yodel:  HEY!! CLERICS!! I COULD USE A HEAL!!!",
+    "TargettedPlayer": "{target.name} covers {target.pronoun2} ears as you begin to yodel.",
+    "TargettedTarget": "{player.name} yodels to you...you cringe and turn away.",
+    "TargettedRoom": "{player.name} yodels to {target.name}.",
+    "TargetNotFoundPlayer": "That person just escaped!",
+    "SelfPlayer": "Well, it\u0027s up to you if you want to damage your hearing.",
+    "SelfRoom": "{player.name} yodels to {player.pronoun3}self.  What a sado-masochist."
+  },
+  {
+    "Name": "faint",
+    "NoTargetPlayer": "You faint.",
+    "NoTargetRoom": "{player.name} faints.",
+    "TargettedPlayer": "You faint into {target.pronoun2} arms.",
+    "TargettedTarget": "{player.name} just fainted into YOUR arms.",
+    "TargettedRoom": "{player.name} faints into {target.name}\u0027s open arms.",
+    "TargetNotFoundPlayer": "You fall on the floor and look stupid--really suave."
+  },
+  {
+    "Name": "pinch",
+    "NoTargetPlayer": "You say, \u0027A pinch of this, and a dab of that.\u0027",
+    "NoTargetRoom": "{player.name} says, \u0027A pinch of this and a dab of that.\u0027",
+    "TargettedPlayer": "You squeeze {target.pronoun2} bottom and grin.",
+    "TargettedTarget": "{player.name} pinches your bottom and grins.",
+    "TargettedRoom": "{player.name} pinches {target.name}\u0027s bottom and grins.",
+    "TargetNotFoundPlayer": "You\u0027d like to, wouldn\u0027t you?",
+    "SelfPlayer": "You pinch yourself to see if you are dreaming!",
+    "SelfRoom": "{player.name} pinches {player.pronoun3}self to see if {player.pronoun1} is dreaming!"
+  },
+  {
+    "Name": "stroke",
+    "NoTargetPlayer": "You stroke the air vaguely.",
+    "NoTargetRoom": "{player.name} makes vague stroking motions.",
+    "TargettedPlayer": "You gently stroke {target.pronoun2} inner thigh.  {target.name} inhales sharply.",
+    "TargettedTarget": "{player.name} gently strokes your inner thigh.  You inhale sharply.",
+    "TargettedRoom": "{target.name} exhales sharply and suddenly.",
+    "TargetNotFoundPlayer": "Maybe you should practice on yourself first.",
+    "SelfPlayer": "You are about to do something you\u0027d rather not be caught doing."
+  },
+  {
+    "Name": "apologize",
+    "NoTargetPlayer": "You apologize until you are blue in the face.",
+    "NoTargetRoom": "{player.name} apologizes profusely.",
+    "TargettedPlayer": "You might as well apologize because {target.pronoun1} sure as hell won\u0027t.",
+    "TargettedTarget": "{player.name} apologizes to you and begs for forgiveness.",
+    "TargettedRoom": "{player.name} apologizes to {target.name} with a very sincere look on {player.pronoun2} face.",
+    "TargetNotFoundPlayer": "Who\u0027s that?"
+  },
+  {
+    "Name": "caress",
+    "NoTargetPlayer": "Who do you wish to caress?",
+    "NoTargetRoom": "{player.name} looks for someone to caress.",
+    "TargettedPlayer": "You tenderly caress {target.pronoun3}.",
+    "TargettedTarget": "{player.name} tenderly caresses your body.",
+    "TargettedRoom": "{player.name} tenderly caresses {target.name}.",
+    "TargetNotFoundPlayer": "You\u0027re S.O.L., buddy."
+  },
+  {
+    "Name": "stagger",
+    "NoTargetPlayer": "You stagger blindly around the room.",
+    "NoTargetRoom": "{player.name} staggers blindly around the room.",
+    "TargettedPlayer": "You stagger toward {target.name} as the room begins to spin.",
+    "TargettedTarget": "{player.name} staggers blindly into you.",
+    "TargettedRoom": "{player.name} staggers into {target.name}.",
+    "TargetNotFoundPlayer": "Stagger into whom!?!?"
+  },
+  {
+    "Name": "snort",
+    "NoTargetPlayer": "You snort derisively.",
+    "NoTargetRoom": "{player.name} snorts derisively.",
+    "TargettedPlayer": "You snort derisively at {target.name}.",
+    "TargettedTarget": "{player.name} snorts at you.",
+    "TargettedRoom": "{player.name} snorts derisively at {target.name}.",
+    "TargetNotFoundPlayer": "Snort at whom?",
+    "SelfPlayer": "You snort derisively at yourself.",
+    "SelfRoom": "{player.name} snorts derisively at {player.pronoun2}self."
+  },
+  {
+    "Name": "slobber",
+    "NoTargetPlayer": "You slobber down your front.",
+    "NoTargetRoom": "{player.name} slobbers all over {player.pronoun3}self.",
+    "TargettedPlayer": "You slobber on {target.name}.",
+    "TargettedTarget": "{player.name} slobbers disgustingly on you.",
+    "TargettedRoom": "{player.name} slobbers on {target.name}  **Yuck**",
+    "TargetNotFoundPlayer": "Slobber on WHOM?"
+  },
+  {
+    "Name": "blink",
+    "NoTargetPlayer": "You bat your eyelashes.",
+    "NoTargetRoom": "{player.name} blinks innocently.",
+    "TargettedPlayer": "You blink innocently at {target.name}.",
+    "TargettedTarget": "{player.name} blinks innocently at you.",
+    "TargettedRoom": "{player.name} blinks innocently at {target.name}.",
+    "TargetNotFoundPlayer": "Feign innocence for whom?",
+    "SelfPlayer": "You try to convince yourself of your innocence."
+  },
+  {
+    "Name": "tease",
+    "NoTargetPlayer": "What a tease.   SHEESH.",
+    "NoTargetRoom": "{player.name} looks around for someone to tease.",
+    "TargettedPlayer": "You tease {target.name} in a playful way.",
+    "TargettedTarget": "{player.name} sticks {player.pronoun2} tongue out at you, what a DORK!!",
+    "TargettedRoom": "{player.name} sticks {player.pronoun2} tongue out at {target.name}.",
+    "TargetNotFoundPlayer": "Tease whom?",
+    "SelfPlayer": "You tease yourself. NYAH NYAH NYAH.",
+    "SelfRoom": "{player.name} teases {player.pronoun3}self."
+  },
+  {
+    "Name": "knee",
+    "NoTargetPlayer": "You raise one knee, preparing to do justice...",
+    "NoTargetRoom": "{player.name} cocks one knee threateningly.",
+    "TargettedPlayer": "You knee {target.pronoun3} hard in the groin.",
+    "TargettedTarget": "{player.name} suddenly knees you in the groin!  You fall to your knees in agony.",
+    "TargettedRoom": "{target.name} doubles over in pain as {player.name} knees {target.pronoun3} in the groin!",
+    "TargetNotFoundPlayer": "Whom do you wish to render impotent?",
+    "SelfPlayer": "What ARE you thinking !?!??!?!?!?!"
+  },
+  {
+    "Name": "flirt",
+    "NoTargetPlayer": "You flirt outrageously.",
+    "NoTargetRoom": "{player.name} is an outrageous flirt.",
+    "TargettedPlayer": "You flirt with {target.name} trying to get {target.pronoun2} attention.",
+    "TargettedTarget": "{player.name} flirts with you.",
+    "TargettedRoom": "{player.name} flirts with {target.name}, hmmm wonder what {player.pronoun1} wants? *wink*",
+    "TargetNotFoundPlayer": "Sorry no one here to flirt with. :(",
+    "SelfPlayer": "You flirt with yourself -- what ARE you trying to gain!?!?!?",
+    "SelfRoom": "{player.name} flirts with {player.pronoun3}self, wonder what {player.pronoun1} is trying to accomplish?"
+  },
+  {
+    "Name": "tip",
+    "NoTargetPlayer": "You tip your hat gallantly.",
+    "NoTargetRoom": "{player.name} gallantly tips {player.pronoun2} hat.",
+    "TargettedPlayer": "You tip your hat to {target.name}.",
+    "TargettedTarget": "{player.name} gallantly tips {player.pronoun2} hat to you.",
+    "TargettedRoom": "{player.name} gallantly tips {player.pronoun2} hat to {target.name}.",
+    "TargetNotFoundPlayer": "But there is no one here to impress?!?!"
+  },
+  {
+    "Name": "lust",
+    "NoTargetPlayer": "Your hormones begin to rage.",
+    "NoTargetRoom": "{player.name} has that look of lust in {player.pronoun2} eyes --- Get away QUICK!",
+    "TargettedPlayer": "You have lust after {target.name}.",
+    "TargettedTarget": "{player.name} lusts after your delectable body.",
+    "TargettedRoom": "{player.name} looks lustily at {target.name}.",
+    "TargetNotFoundPlayer": "Whom are you trying to lust after?",
+    "SelfPlayer": "Oh, please! You aren\u0027t THAT great...",
+    "SelfRoom": "{player.name} lusts after {player.pronoun3}self, lonely eh?"
+  },
+  {
+    "Name": "flutter",
+    "NoTargetPlayer": "You flutter your eyelashes seductively.",
+    "NoTargetRoom": "{player.name} flutters {player.pronoun2} eyelashes seductively.",
+    "TargettedPlayer": "You flutter your eyelashes at {target.name}, trying to be seductive.",
+    "TargettedTarget": "{player.name} flutters {player.pronoun2} eyelashes at you coyly.",
+    "TargettedRoom": "{player.name} flirts with {target.name}, flutters {player.pronoun2} eyelashes at {target.pronoun3}.",
+    "TargetNotFoundPlayer": "EH? Can\u0027t see them here."
+  },
+  {
+    "Name": "bark",
+    "NoTargetPlayer": "You bark loudly.",
+    "NoTargetRoom": "{player.name} barks like a dog. GO DAWGS SIC \u0027EM!!! WOOF! WOOF! WOOF! WOOF!",
+    "TargettedPlayer": "You bark at {target.name} scaring {target.pronoun3} silly -- SHAME ON YOU!!",
+    "TargettedTarget": "{player.name} barks loudly at you, you back away, because {player.pronoun1} might bite too!!",
+    "TargettedRoom": "{player.name} barks at {target.name} scaring {target.pronoun3} senseless.",
+    "TargetNotFoundPlayer": "Bark at whom?",
+    "SelfPlayer": "You bark at yourself and jump back in fear.",
+    "SelfRoom": "{player.name} barks at {player.pronoun3}self and cowers in fear."
+  },
+  {
+    "Name": "howl",
+    "NoTargetPlayer": "You howl at the moon.",
+    "NoTargetRoom": "{player.name} howls at the moon.",
+    "TargettedPlayer": "You howl soulfully at {target.name}.",
+    "TargettedTarget": "{player.name} howls soulfully at you.",
+    "TargettedRoom": "{player.name} howls at {target.name}.",
+    "TargetNotFoundPlayer": "Who? What? Where?"
+  },
+  {
+    "Name": "babble",
+    "NoTargetPlayer": "You babble endlessly.",
+    "NoTargetRoom": "{player.name} babbles endlessly, won\u0027t {player.pronoun1} EVER shut up?",
+    "TargettedPlayer": "You babble to {target.name} for hours on end.",
+    "TargettedTarget": "{player.name} babbles at you. You nod mechanically, hoping {player.pronoun1} will shut up soon.",
+    "TargettedRoom": "{player.name} babbles to {target.name} for what seems an eternity, how can {target.name} stand it?",
+    "TargetNotFoundPlayer": "Whom do you wish to annoy with your babble?",
+    "SelfPlayer": "You babble on and on to yourself, FINALLY! someone who LISTENS!!",
+    "SelfRoom": "{player.name} babbles quietly to {player.pronoun3}self."
+  },
+  {
+    "Name": "ramble",
+    "NoTargetPlayer": "You ramble on and on.",
+    "NoTargetRoom": "{player.name} rambles on about a boring exploit.",
+    "TargettedPlayer": "You ramble on to {target.name} about your past adventures.",
+    "TargettedTarget": "{player.name} tells you a rather boring tale, you feign interest.",
+    "TargettedRoom": "{player.name} blithers on and on to {target.name} about something.",
+    "TargetNotFoundPlayer": "??EH??"
+  },
+  {
+    "Name": "hush",
+    "NoTargetPlayer": "SHHHHHHHHHHHHHHHHHHHHHH",
+    "NoTargetRoom": "{player.name} requests everyone quiet down.  Shhhhhhhhhhh...",
+    "TargettedPlayer": "You nicely ask {target.name} to be more quiet.",
+    "TargettedTarget": "{player.name} kindly requests that you please quiet down.",
+    "TargettedRoom": "{player.name} nicely asks {target.name} to be more quiet.",
+    "TargetNotFoundPlayer": "Who needs to be silenced?",
+    "SelfPlayer": "You realize you are loud and obnoxious and try to silence yourself.",
+    "SelfRoom": "{player.name} covers {player.pronoun2} mouth in an attempt to silence {player.pronoun3}self."
+  },
+  {
+    "Name": "threaten",
+    "NoTargetPlayer": "You threaten everyone with your overwhelming presence.",
+    "NoTargetRoom": "You feel threatened in the presence of the great {player.name}.",
+    "TargettedPlayer": "You stand tall as you threaten {target.name}.",
+    "TargettedTarget": "{player.name} threatens you...oooooooh scary *laugh*",
+    "TargettedRoom": "{player.name} threatens {target.name} forcefully.",
+    "TargetNotFoundPlayer": "Whom do you wish to intimidate?"
+  },
+  {
+    "Name": "roll",
+    "NoTargetPlayer": "You roll your eyes in disgust.",
+    "NoTargetRoom": "{player.name} rolls {player.pronoun2} eyes, disgusted.",
+    "TargettedPlayer": "You look at {target.name} and roll your eyes in disgust.",
+    "TargettedTarget": "{player.name} rolls {player.pronoun2} eyes at you.",
+    "TargettedRoom": "{player.name} rolls {player.pronoun2} eyes in disgust at {target.name}.",
+    "TargetNotFoundPlayer": "You should be disgusted with yourself because you look so foolish.",
+    "SelfPlayer": "At whom do you wish to roll your eyes?"
+  },
+  {
+    "Name": "swoon",
+    "NoTargetPlayer": "You swoon.",
+    "NoTargetRoom": "{player.name} swoons in absolute ecstasy.",
+    "TargettedPlayer": "You look at {target.name} and swoon in ecstasy.",
+    "TargettedTarget": "{player.name} looks at you and swoons in ecstasy.",
+    "TargettedRoom": "{player.name} looks at {target.name} and swoons in ecstasy.",
+    "TargetNotFoundPlayer": "Who?"
+  },
+  {
+    "Name": "bird",
+    "NoTargetPlayer": "You flick a bird...How obscene!",
+    "NoTargetRoom": "{player.name} flicks a bird at no one in particular.",
+    "TargettedPlayer": "You shoot a bird at {target.name}.",
+    "TargettedTarget": "{player.name} gives you the bird...What an ass!",
+    "TargettedRoom": "{player.name} gives {target.name} the bird.",
+    "TargetNotFoundPlayer": "Don\u0027t you hate to waste a good obscene gesture like that?"
+  },
+  {
+    "Name": "eyebrow",
+    "NoTargetPlayer": "You raise an eyebrow at the notion.",
+    "NoTargetRoom": "{player.name} raises an eyebrow.",
+    "TargettedPlayer": "You raise your eyebrow at {target.name}.",
+    "TargettedTarget": "{player.name} raises an eyebrow at you.",
+    "TargettedRoom": "{player.name} raises an eyebrow at {target.name}\u0027s weird actions.",
+    "TargetNotFoundPlayer": "Forget it.  They aren\u0027t here."
+  },
+  {
+    "Name": "serenade",
+    "NoTargetPlayer": "You raise your voice in a loud serenade to your invisible love.",
+    "NoTargetRoom": "{player.name} raises {player.pronoun2} voice to serenade the world.",
+    "TargettedPlayer": "You raise your voice in a loving serenade to {target.name}.",
+    "TargettedTarget": "{player.name} serenades you, you are swept away by {player.pronoun2} voice.",
+    "TargettedRoom": "{player.name} raises {player.pronoun2} voice in a loving serenade to {target.name}.",
+    "TargetNotFoundPlayer": "The one that you wish to serenade has left you to sing to yourself.",
+    "SelfPlayer": "You sing a loud serenade to yourself.  What type of person are you?!",
+    "SelfRoom": "{player.name} serenades {player.pronoun3}self.  What an ego!"
+  },
+  {
+    "Name": "grimace",
+    "NoTargetPlayer": "You grimace painfully at the thought.",
+    "NoTargetRoom": "{player.name} grimaces painfully at the thought.",
+    "TargettedPlayer": "You grimace at {target.name}.",
+    "TargettedTarget": "{player.name} grimaces at you.  What could be wrong?",
+    "TargettedRoom": "{player.name} grimaces at {player.name}.",
+    "TargetNotFoundPlayer": "You grimace at no one in particular.",
+    "SelfPlayer": "You grimace painfully at your thoughts.",
+    "SelfRoom": "{player.name} grimaces painfully to {player.pronoun3}self."
+  },
+  {
+    "Name": "boggle",
+    "NoTargetPlayer": "You boggle at the concept.",
+    "NoTargetRoom": "{player.name} boggles at the concept.",
+    "TargettedPlayer": "You boggle at {target.name}.",
+    "TargettedTarget": "{player.name} boggles at you.",
+    "TargettedRoom": "{player.name} boggles at {target.name}.",
+    "TargetNotFoundPlayer": "Boggle away.  They\u0027ve left.",
+    "SelfPlayer": "You boggle at yourself.  Hmmm...intriguing.",
+    "SelfRoom": "{player.name} boggles quietly to {player.pronoun3}self."
+  },
+  {
+    "Name": "beckon",
+    "NoTargetPlayer": "You beckon for everyone to follow.",
+    "NoTargetRoom": "{player.name} beckons for everyone to follow.",
+    "TargettedPlayer": "You beckon for {target.name} to follow -- sure hope they do!",
+    "TargettedTarget": "{player.name} beckons for you to follow.",
+    "TargettedRoom": "{player.name} beckons {target.name} to follow...hmmm what\u0027s going on?",
+    "TargetNotFoundPlayer": "So sorry, that person has already left.",
+    "SelfPlayer": "You beckon to your shadow to follow.",
+    "SelfRoom": "{player.name} beckons to {player.pronoun2} shadow to follow."
+  },
+  {
+    "Name": "wonder",
+    "NoTargetPlayer": "You wonder about how things could have been.",
+    "NoTargetRoom": "{player.name} gets a blank stare on {player.pronoun2} face.  What could {player.pronoun1} be wondering about?",
+    "TargettedPlayer": "You look at {target.name} and wonder what will happen.",
+    "TargettedTarget": "{player.name} looks at you quizzically.",
+    "TargettedRoom": "{player.name} looks at {target.name} and wonders....",
+    "TargetNotFoundPlayer": "You wonder what would have happened had they been here.",
+    "SelfPlayer": "You wonder about yourself and your purpose here.",
+    "SelfRoom": "A blank stare crosses {player.name}\u0027s face.  What could {player.pronoun1} be wondering about?"
+  },
+  {
+    "Name": "worry",
+    "NoTargetPlayer": "You worry about what\u0027s going to happen.",
+    "NoTargetRoom": "A troubled look suddenly crosses {player.name}\u0027s face.  Wonder what\u0027s wrong?",
+    "TargettedPlayer": "You look at {target.name} worriedly.",
+    "TargettedTarget": "{player.name} looks at you worriedly.",
+    "TargettedRoom": "{player.name} looks at {target.name} with a troubled gaze.",
+    "TargetNotFoundPlayer": "Well they obviously aren\u0027t worried -- they left!",
+    "SelfPlayer": "You worry about what\u0027s going to happen.",
+    "SelfRoom": "A troubled look suddenly crosses {player.name}\u0027s face.  Wonder what\u0027s wrong?"
+  },
+  {
+    "Name": "drool",
+    "NoTargetPlayer": "You drool down the front of your shirt.",
+    "NoTargetRoom": "{player.name} drools all over {player.pronoun3}self -- making a TERRIBLE mess!",
+    "TargettedPlayer": "You drool messily on {target.name}.",
+    "TargettedTarget": "{player.name} looks at you lustily and drools.",
+    "TargettedRoom": "{player.name} drools upon {target.name}.",
+    "TargetNotFoundPlayer": "Oh fine, make a pool of slobber -- they aren\u0027t even here!",
+    "SelfPlayer": "You drool down the front of your shirt.",
+    "SelfRoom": "{player.name} drools all over {player.pronoun3}self -- making a TERRIBLE mess!"
+  },
+  {
+    "Name": "nod",
+    "NoTargetPlayer": "You nod.",
+    "NoTargetRoom": "{player.name} nods.",
+    "TargettedPlayer": "You nod at {target.name}.",
+    "TargettedTarget": "{player.name} nods at you in agreement.",
+    "TargettedRoom": "{player.name} nods at {target.name}.",
+    "TargetNotFoundPlayer": "Nod your head off -- they aren\u0027t here.",
+    "SelfPlayer": "You attempt to nod at yourself and get dizzy instead.",
+    "SelfRoom": "{player.name} nods quietly to {player.pronoun3}self.  What a wacko."
+  },
+  {
+    "Name": "purr",
+    "NoTargetPlayer": "MMMMMMEEEEEEEEEOOOOOOOOOOOOOWWWWWWWWWWW!!!!!!!!!!!",
+    "NoTargetRoom": "{player.name} purrs contentedly.",
+    "TargettedPlayer": "You rub up against {target.name} and purr contentedly.",
+    "TargettedTarget": "{player.name} rubs up against you and purrs contentedly.",
+    "TargettedRoom": "{player.name} rubs against {target.name} and purrs contentedly.",
+    "TargetNotFoundPlayer": "You silly cat!  They aren\u0027t here.",
+    "SelfPlayer": "You purr quietly to yourself.",
+    "SelfRoom": "{player.name} purrs contentedly to {player.pronoun3}self."
+  },
+  {
+    "Name": "point",
+    "NoTargetPlayer": "You point in every direction.",
+    "NoTargetRoom": "{player.name} points excitedly!",
+    "TargettedPlayer": "You point at {target.name}.",
+    "TargettedTarget": "{player.name} points at you.  How rude!",
+    "TargettedRoom": "{player.name} points excitedly at {target.name}!",
+    "TargetNotFoundPlayer": "You point at no one in particular.",
+    "SelfPlayer": "You point at yourself, obviously very confused.",
+    "SelfRoom": "{player.name} points at {player.pronoun3}self, obviously very confused."
+  },
+  {
+    "Name": "rub",
+    "NoTargetPlayer": "You rub your hands together in greedy anticipation.",
+    "NoTargetRoom": "{player.name} rubs {player.pronoun2} hands together in greedy anticipation.",
+    "TargettedPlayer": "You give {target.name} a nice, long, kinky rubdown.",
+    "TargettedTarget": "{player.name} gives you a rubdown, running {player.pronoun2} hands over your tense shoulders...Mmmm...",
+    "TargettedRoom": "{player.name} gives {target.name} a nice long rubdown.",
+    "TargetNotFoundPlayer": "Shame to waste those talented hands, but they\u0027ve already left.",
+    "SelfPlayer": "You rub yourself...lingering a little too long in some places.",
+    "SelfRoom": "{player.name} rubs {player.pronoun3}self...what a creep!"
+  },
+  {
+    "Name": "bleed",
+    "NoTargetPlayer": "You bleed profusely -- making a horrible mess!",
+    "NoTargetRoom": "{player.name} weakly bleeds all over the floor.",
+    "TargettedPlayer": "You bleed on {target.name} -- ewww!",
+    "TargettedTarget": "{player.name} bleeds on you -- ewww!  Get away!!",
+    "TargettedRoom": "{player.name} bleeds on {target.name}.  Watch out, YOU might be next!",
+    "TargetNotFoundPlayer": "Bleed on whom?",
+    "SelfPlayer": "You bleed all over yourself.",
+    "SelfRoom": "{player.name} bleeds profusely all over {player.pronoun3}self."
+  },
+  {
+    "Name": "highfive",
+    "NoTargetPlayer": "You jump in the air and give a BIG high five to...umm...absolutely nothing.",
+    "NoTargetRoom": "{player.name} wildly high fives the air, looking very foolish -- very foolish indeed.",
+    "TargettedPlayer": "You jump in the air and give a BIG high five to {target.name}!",
+    "TargettedTarget": "{player.name} gives you a BIG high five!  Way to go!!",
+    "TargettedRoom": "{player.name} enthusiastically high-five\u0027s {target.name}!",
+    "TargetNotFoundPlayer": "Sorry, they have already left.",
+    "SelfPlayer": "You try to give yourself a high five.  What ARE you thinking?",
+    "SelfRoom": "{player.name} tries to high five {player.pronoun3}self, but ends up looking foolish instead."
+  },
+  {
+    "Name": "propose",
+    "NoTargetPlayer": "You propose to everyone in the room.",
+    "NoTargetRoom": "{player.name} proposes to everyone in the room.  Very odd.",
+    "TargettedPlayer": "You kneel and romantically propose to {target.name}.",
+    "TargettedTarget": "{player.name} gets down on one knee and romantically proposes to you.",
+    "TargettedRoom": "{player.name} gets on one knee and proposes to {target.name}.",
+    "TargetNotFoundPlayer": "You must be lonely.  They aren\u0027t here.",
+    "SelfPlayer": "You are SO full of yourself!",
+    "SelfRoom": "{player.name} proposes to {player.pronoun3}self -- how narcissistic!"
+  },
+  {
+    "Name": "peer",
+    "NoTargetPlayer": "You peer around yourself intently.",
+    "NoTargetRoom": "{player.name} peers around {player.pronoun3}self intently.",
+    "TargettedPlayer": "You peer intently at {target.name}.",
+    "TargettedTarget": "{player.name} peers at you intently.",
+    "TargettedRoom": "{player.name} peers intently at {target.name}.",
+    "TargetNotFoundPlayer": "They aren\u0027t here.",
+    "SelfPlayer": "You get a little cross-eyed with your attempts to stare yourself down.",
+    "SelfRoom": "{player.name} peers at {player.pronoun3}self, crossing {player.pronoun2} eyes in the process."
+  },
+  {
+    "Name": "worship",
+    "NoTargetPlayer": "You prostrate yourself and worship the gods!",
+    "NoTargetRoom": "{player.name} prostrates {player.pronoun3}self and worships the gods!",
+    "TargettedPlayer": "You fall on your knees and worship {target.name}.",
+    "TargettedTarget": "{player.name} falls to the ground and worships you.",
+    "TargettedRoom": "{player.name} falls on {player.pronoun2} knees and worships {target.name}.",
+    "TargetNotFoundPlayer": "You can\u0027t worship someone who isn\u0027t here.",
+    "SelfPlayer": "You worship yourself.",
+    "SelfRoom": "{player.name} worships {player.pronoun3}self."
+  },
+  {
+    "Name": "bearhug",
+    "NoTargetPlayer": "Whom do you wish to bearhug?",
+    "NoTargetRoom": "",
+    "TargettedPlayer": "You overwhelm {target.name} with a great, big, hulking bearhug.",
+    "TargettedTarget": "{player.name} clutches you tightly in an overwhelming bearhug!",
+    "TargettedRoom": "{player.name} encompasses {target.name} in an ENORMOUS bearhug!",
+    "TargetNotFoundPlayer": "Perhaps you should shower your affections on someone who is here?",
+    "SelfPlayer": "You vainly clutch yourself in a bearhug for consolation.",
+    "SelfRoom": "{player.name} hugs {player.pronoun3}self as tightly as possible.  Looks like {player.pronoun1} could use a hand."
+  },
+  {
+    "Name": "innocent",
+    "NoTargetPlayer": "You innocently whistle a tune.",
+    "NoTargetRoom": "{player.name} looks around and whistles innocently.",
+    "TargettedPlayer": "You look at {target.name} and bat your eyelashes -- the picture of innocence!",
+    "TargettedTarget": "{player.name} looks at you and innocently bats {player.pronoun2} eyelashes.",
+    "TargettedRoom": "{player.name} bats {player.pronoun2} eyelashes innocently at {target.name}.",
+    "TargetNotFoundPlayer": "Don\u0027t even TRY -- they\u0027ve already left."
+  },
+  {
+    "Name": "collapse",
+    "NoTargetPlayer": "You collapse on the floor from exhaustion.",
+    "NoTargetRoom": "{player.name} dramatically collapses to the floor from exhaustion.",
+    "TargettedPlayer": "You collapse right into {target.name}\u0027s arms.",
+    "TargettedTarget": "Suddenly, {player.name} collapses into your arms from exhaustion.",
+    "TargettedRoom": "{player.name} collapses right into {target.name}\u0027s arms.",
+    "TargetNotFoundPlayer": "They\u0027ve already left, just collapse on the floor."
+  },
+  {
+    "Name": "stretch",
+    "NoTargetPlayer": "You lean back and streeeeeettch your arms and legs.",
+    "NoTargetRoom": "{player.name} stretches luxuriously.  Kinda makes you want to doesn\u0027t it?"
+  },
+  {
+    "Name": "spam",
+    "NoTargetPlayer": "You mutter, \u0027spam\u0027 quietly to yourself again and again.",
+    "NoTargetRoom": "{player.name} rests in a corner and mutters \u0027spam\u0027 quietly to {player.pronoun3}self.",
+    "TargettedPlayer": "You SPAM {target.name} mercilessly!",
+    "TargettedTarget": "You\u0027ve been SPAMMED by {player.name}!",
+    "TargettedRoom": "{player.name} spams {target.name}!",
+    "TargetNotFoundPlayer": "Spam away -- they\u0027ve left."
+  },
+  {
+    "Name": "boast",
+    "NoTargetPlayer": "You boast loudly of all your amazing accomplishments.",
+    "NoTargetRoom": "{player.name} boasts loudly in a pigheaded fashion.",
+    "TargettedPlayer": "You boast to {target.name} of all your great deeds.",
+    "TargettedTarget": "Once again, {player.name} boasts to you, what a bloated ego!",
+    "TargettedRoom": "{player.name} boasts to {target.name}.",
+    "TargetNotFoundPlayer": "Your ego takes a blow.  They\u0027ve already left.",
+    "SelfPlayer": "You boast to yourself of all your great feats!  Your own biggest fan.",
+    "SelfRoom": "{player.name} boasts to {player.pronoun3}self -- what an ego!"
+  },
+  {
+    "Name": "squirm",
+    "NoTargetPlayer": "You squirm uncontrollably in your consternation.",
+    "NoTargetRoom": "{player.name} squirms uncontrollably, suddenly looking very uncomfortable.",
+    "TargettedPlayer": "You look at {target.name} and squirm with delight.",
+    "TargettedTarget": "{player.name} looks at you and squirms with delight.",
+    "TargettedRoom": "{player.name} looks at {target.name} and squirms with delight."
+  },
+  {
+    "Name": "moo",
+    "NoTargetPlayer": "You chew your cud and moo plaintively.  Muh-OOOOO!",
+    "NoTargetRoom": "{player.name} turns cowlike eyes on you, chews {player.pronoun2} cud, and moos plaintively.",
+    "TargettedPlayer": "You focus all your bovine Zen on {target.name}, and speak your thoughts.  Muh-OOOOO!",
+    "TargettedTarget": "{player.name} moos at you.  What could that possibly mean?",
+    "TargettedRoom": "Slowly, {player.name} looks at {target.name}, chews {player.pronoun2} cud, and muh-OOOOs!",
+    "TargetNotFoundPlayer": "You\u0027d better find someone else to moo at.",
+    "SelfPlayer": "You settle down into the center of your bovine Zen; the foolish world thinks you\u0027re just mooing.",
+    "SelfRoom": "{player.name} is mooing at {player.pronoun3}self again...  You look for an exit..."
+  },
+  {
+    "Name": "moon",
+    "NoTargetPlayer": "You drop your drawers and moon everyone in the room!",
+    "NoTargetRoom": "{player.name} drops {player.pronoun2} pants and gives you the vertical smile!",
+    "TargettedPlayer": "You bend over and moon {target.name}.",
+    "TargettedTarget": "{player.name} bends over and gives you the vertical smile!",
+    "TargettedRoom": "{player.name} drops {player.pronoun2} pants and rudely moons {target.name}!",
+    "TargetNotFoundPlayer": "You stand, with your pants around your ankles, looking VERY silly!",
+    "SelfPlayer": "You try to moon yourself, but you can\u0027t see your A** that well.",
+    "SelfRoom": "{player.name} nearly goes into convulsions while trying to moon {player.pronoun3}self."
+  },
+  {
+    "Name": "goose",
+    "NoTargetPlayer": "Who would you like to goose?",
+    "NoTargetRoom": "",
+    "TargettedPlayer": "You tenderly goose {target.name} on the tush.",
+    "TargettedTarget": "{player.name} gooses you tenderly!",
+    "TargettedRoom": "{player.name} reaches around {target.name}\u0027s backside and gooses {target.pronoun3} tenderly.",
+    "TargetNotFoundPlayer": "You should go hunting for another victim, they left.",
+    "SelfPlayer": "You pinch yourself on the rear, you must be desperate.",
+    "SelfRoom": "{player.name} pinches {player.pronoun3}self on the rear."
+  },
+  {
+    "Name": "wince",
+    "NoTargetPlayer": "You wince in agony.",
+    "NoTargetRoom": "{player.name} winces in agony.",
+    "TargettedPlayer": "You look at {target.name} and wince at {target.pronoun2} remark.",
+    "TargettedTarget": "{player.name} winces at your remark.",
+    "TargettedRoom": "{player.name} winces at {target.name}\u0027s remark."
+  },
+  {
+    "Name": "type",
+    "NoTargetPlayer": "You can\u0027t type for crap tonight!  You give up in frustration!",
+    "NoTargetRoom": "{player.name} throws {player.pronoun2} hands up in disgust at {player.pronoun2} lousy typing skills!"
+  },
+  {
+    "Name": "brb",
+    "NoTargetPlayer": "Hope to see you soon!",
+    "NoTargetRoom": "{player.name} will be right back!"
+  },
+  {
+    "Name": "mutter",
+    "NoTargetPlayer": "You mutter quietly to yourself.",
+    "NoTargetRoom": "{player.name} mutters something quietly to {player.pronoun3}self.",
+    "TargettedPlayer": "You mutter something to {target.name}.",
+    "TargettedTarget": "{player.name} looks at you and mutters something nasty under {player.pronoun2} breath.",
+    "TargettedRoom": "{player.name} looks at {target.name} and mutters something nasty under {player.pronoun2} breath.",
+    "TargetNotFoundPlayer": "There\u0027s nothing left for you to say, they\u0027ve left!",
+    "SelfPlayer": "You mutter quietly to yourself.",
+    "SelfRoom": "{player.name} mutters something quietly to {player.pronoun3}self."
+  },
+  {
+    "Name": "rofl",
+    "NoTargetPlayer": "You roll on the floor, laughing hysterically.",
+    "NoTargetRoom": "{player.name} falls to the ground and rolls around laughing hysterically.",
+    "TargettedPlayer": "You fall to the floor laughing at {target.name}\u0027s remark.",
+    "TargettedTarget": "{player.name} rolls on the floor laughing at your antics!",
+    "TargettedRoom": "{player.name} rolls on the floor laughing at {target.name}\u0027s antics!"
+  },
+  {
+    "Name": "sob",
+    "NoTargetPlayer": "You sob quietly to yourself.",
+    "NoTargetRoom": "{player.name} sobs in misery.",
+    "TargettedPlayer": "You sob quietly to yourself because {target.name} has hurt your feelings so badly.",
+    "TargettedTarget": "You feel like a cad because you\u0027ve made {player.name} sob.",
+    "TargettedRoom": "{player.name} sobs quietly to {player.pronoun3}self because {target.name} was a jerk!"
+  },
+  {
+    "Name": "pant",
+    "NoTargetPlayer": "You pant lustily.",
+    "NoTargetRoom": "{player.name} pants lustily.",
+    "TargettedPlayer": "You pant lustily at {target.pronoun3}.",
+    "TargettedTarget": "{player.name} looks at you and pants lustily...",
+    "TargettedRoom": "{player.name} looks at {target.name} and pants lustily."
+  },
+  {
+    "Name": "whine",
+    "NoTargetPlayer": "You whine to anyone who will listen to you.",
+    "NoTargetRoom": "{player.name} whines pathetically to anyone who will listen.",
+    "TargettedPlayer": "You whine to {target.pronoun3}, hoping desperately that at least {target.pronoun1} will give a damn.",
+    "TargettedTarget": "{player.name} whines pathetically to you.  What a loser!",
+    "TargettedRoom": "{player.name} whines pathetically to {target.name}.",
+    "TargetNotFoundPlayer": "They really don\u0027t care.",
+    "SelfPlayer": "You whine to yourself, probably the only one who will listen.",
+    "SelfRoom": "{player.name} whines to {player.pronoun3}self.  At least {player.pronoun1} isn\u0027t bitching to YOU."
+  },
+  {
+    "Name": "flex",
+    "NoTargetPlayer": "You flex your muscles proudly!",
+    "NoTargetRoom": "{player.name} flexes {player.pronoun2} muscles...what a stud!?!",
+    "TargettedPlayer": "You show off to {target.name}, flexing your muscles proudly.",
+    "TargettedTarget": "{player.name} flexes {player.pronoun2} muscles in a vain attempt to show off to you.",
+    "TargettedRoom": "{player.name} flexes {player.pronoun2} muscles, in a vain attempt to impress {target.name}."
+  },
+  {
+    "Name": "embrace",
+    "NoTargetPlayer": "Who would you like to embrace?",
+    "NoTargetRoom": "",
+    "TargettedPlayer": "You wrap your arms around {target.name} in a warm and loving embrace.",
+    "TargettedTarget": "{player.name} takes you in {player.pronoun2} arms in a warm and loving embrace.",
+    "TargettedRoom": "{player.name} wraps {player.pronoun2} arms around {target.name} in a warm and loving embrace.",
+    "TargetNotFoundPlayer": "Your heart breaks as you realize you are alone.",
+    "SelfPlayer": "You try to console yourself with a loving embrace.",
+    "SelfRoom": "{player.name} tries to console {player.pronoun3}self by wrapping {player.pronoun2} arms around {player.pronoun3}self."
+  },
+  {
+    "Name": "duck",
+    "NoTargetPlayer": "DUCK!!!!",
+    "NoTargetRoom": "{player.name} ducks defensively.",
+    "TargettedPlayer": "You duck defensively, anticipating the oncoming swipe from {target.name}.",
+    "TargettedTarget": "{player.name} ducks, please oh please don\u0027t hit {player.pronoun3}!",
+    "TargettedRoom": "{player.name} ducks, anticipating {target.name}\u0027s reaction."
+  },
+  {
+    "Name": "bonk",
+    "NoTargetPlayer": "***BONK!!!***",
+    "NoTargetRoom": "",
+    "TargettedPlayer": "You bonk {target.name} on the head for being such a moron.",
+    "TargettedTarget": "{player.name} bonks you on the head for being so foolish.",
+    "TargettedRoom": "{player.name} bonks {target.name} on the head for being such an UTTER moron.",
+    "TargetNotFoundPlayer": "***BONK*** they left...",
+    "SelfPlayer": "You bonk yourself, fool that you are.",
+    "SelfRoom": "{player.name} bonks {player.pronoun3}self and grimaces in pain."
+  },
+  {
+    "Name": "squeal",
+    "NoTargetPlayer": "You squeal with delight!",
+    "NoTargetRoom": "{player.name} lets out a sudden squeal of delight!",
+    "TargettedPlayer": "You look at {target.name} and squeal with delight!",
+    "TargettedTarget": "{player.name} looks at you and squeals with delight!",
+    "TargettedRoom": "{player.name} squeals with delight at {target.name}."
+  },
+  {
+    "Name": "tackle",
+    "NoTargetPlayer": "You\u0027re going to tackle everyone in the room?!",
+    "NoTargetRoom": "",
+    "TargettedPlayer": "You tackle {target.name} playfully.",
+    "TargettedTarget": "{player.name} brings you down in a playful tackle!",
+    "TargettedRoom": "{player.name} playfully tackles {target.name}."
+  },
+  {
+    "Name": "spit",
+    "NoTargetPlayer": "You spit in utter disgust.",
+    "NoTargetRoom": "{player.name} spits in utter disgust!",
+    "TargettedPlayer": "You spit on {target.name}...you\u0027re gross!",
+    "TargettedTarget": "{player.name} spits on you -- how gross!",
+    "TargettedRoom": "{player.name} spits on {target.name}.",
+    "TargetNotFoundPlayer": "Your victim isn\u0027t here.",
+    "SelfPlayer": "You spit on yourself, pretty nasty eh?",
+    "SelfRoom": "{player.name} spits on {player.pronoun3}self...what a sicko!"
+  },
+  {
+    "Name": "life",
+    "NoTargetPlayer": "You try to get a life, and fail.",
+    "NoTargetRoom": "{player.name} tries to get a life, and fails.",
+    "TargettedPlayer": "{target.name} needs to get a life!",
+    "TargettedTarget": "You need to get a life!",
+    "TargettedRoom": "{target.name} needs to get a life!",
+    "TargetNotFoundPlayer": "Who needs a life?",
+    "SelfPlayer": "But you have none to give!",
+    "SelfRoom": "{player.name} attempts to give {player.pronoun3}self a life, but has none to spare."
+  },
+  {
+    "Name": "mosh",
+    "NoTargetPlayer": "You mosh insanely around the room!",
+    "NoTargetRoom": "{player.name} moshes insanely around the room!",
+    "TargettedPlayer": "You mosh sadistically against {target.name} ... you WILL be punished.",
+    "TargettedTarget": "{player.name} slams into you, moshing painfully against you.  That REALLY hurts!",
+    "TargettedRoom": "{player.name} bounces off of {target.name} in a vain attempt to mosh... what a LOSER.",
+    "TargetNotFoundPlayer": "Hmmm...  your victim found a new dance partner.",
+    "SelfPlayer": "Masochist!",
+    "SelfRoom": "{player.name} throws {player.pronoun3}self on the floor, grinding {player.pronoun3}self into a bloody pulp"
+  },
+  {
+    "Name": "flinch",
+    "NoTargetPlayer": "EEEK... You flinch in obvious pain.",
+    "NoTargetRoom": "{player.name} flinches in obvious pain... you wonder what {player.pronoun1} did THIS time.",
+    "TargettedPlayer": "Don\u0027t you wish you could just crawl under a rock and die?",
+    "TargettedTarget": "{player.name} flinches in response to your cold rebuke.",
+    "TargettedRoom": "{player.name} sneaks a glance at {target.name} and flinches.",
+    "TargetNotFoundPlayer": "Relax, {target.pronoun1} is gone.",
+    "SelfPlayer": "You can\u0027t belive what you\u0027ve done...",
+    "SelfRoom": "{player.name} twitches violently, shocked at {player.pronoun2} own behavior."
+  },
+  {
+    "Name": "air",
+    "NoTargetPlayer": "You grab your air guitar and play for all you\u0027re worth.",
+    "NoTargetRoom": "{player.name} air-guitars like a mad man ... EXCELLENT!!!",
+    "TargettedPlayer": "You hope {target.pronoun1} appreciates your (total lack of) talent.",
+    "TargettedTarget": "{player.name} plays a most excellent tune for you on {player.pronoun2} most excellent air guitar.",
+    "TargettedRoom": "{player.name} is surrounded by air groupies.",
+    "TargetNotFoundPlayer": "Awww... you have no audience!",
+    "SelfPlayer": "You play softly to yourself."
+  },
+  {
+    "Name": "tweak",
+    "NoTargetPlayer": "Tweak who?",
+    "NoTargetRoom": "",
+    "TargettedPlayer": "You gently tweak {target.pronoun2} cheek.  Isn\u0027t {target.pronoun1} so CUTE?",
+    "TargettedTarget": "{player.name} lovingly tweaks your cheek.  It reminds you of Grandma... sniff...",
+    "TargettedRoom": "{player.name} tweaked {target.name}\u0027s cheek... don\u0027t they look so adorable together?",
+    "TargetNotFoundPlayer": "*Sniff*  That cheek seems to be missing.",
+    "SelfPlayer": "You can\u0027t DO that."
+  },
+  {
+    "Name": "peck",
+    "NoTargetPlayer": "Wouldn\u0027t you like to do that to a person, or do you prefer air?",
+    "NoTargetRoom": "",
+    "TargettedPlayer": "Risking a slap to the face, you give {target.name} a peck on the cheek.",
+    "TargettedTarget": "{player.name} pecks you on the cheek, how sweet!",
+    "TargettedRoom": "{player.name} smiles and gives {target.name} a chaste peck on the cheek.",
+    "TargetNotFoundPlayer": "I guess you scared them away...",
+    "SelfPlayer": "You must REALLY like yourself.",
+    "SelfRoom": "{player.name} tries in vain to wrap {player.pronoun2} lips around {player.pronoun2} cheeks."
+  },
+  {
+    "Name": "explode",
+    "NoTargetPlayer": "You feel the blood boiling in your veins!",
+    "NoTargetRoom": "{player.name} turns a deep red, fighting to contain {player.pronoun2} temper...",
+    "TargettedPlayer": "You feel your rage explode deep in the pit of your stomach...",
+    "TargettedTarget": "{player.name} is ANGRY with you... I\u0027d run if I were you!!!",
+    "TargettedRoom": "{player.name} burns holes through {target.name} with his explosive anger!",
+    "TargetNotFoundPlayer": "Temper Temper... they left.",
+    "SelfPlayer": "Your soul burns brightly then fades to nothing.",
+    "SelfRoom": "{player.name} implodes!!!  Only a grease spot remains where {player.pronoun1} once stood."
+  },
+  {
+    "Name": "raspberry",
+    "NoTargetPlayer": "You stick your tongue out at ... well, no one.",
+    "NoTargetRoom": "{player.name} sticks {player.pronoun2} tongue out, catching a few flies in the process.",
+    "TargettedPlayer": "You give {target.name} the raspberry... and spit all over yourself.",
+    "TargettedTarget": "You are splattered with saliva as {player.name} gives you the raspberry... HOW RUDE!",
+    "TargettedRoom": "{player.name} gives {target.name} the raspberry... PHBT!  What a mess... Spit EVERYWHERE!",
+    "TargetNotFoundPlayer": "Hang your tongue out if you like, {player.pronoun1} isn\u0027t here.",
+    "SelfPlayer": "You try to stick your tongue out at yourself... somehow, it isn\u0027t the same."
+  },
+  {
+    "Name": "flash",
+    "NoTargetPlayer": "You grin and strut as you open your coat and show what you\u0027ve got!",
+    "NoTargetRoom": "{player.name} rips {player.pronoun2} clothes off and parades naked around the room!",
+    "TargettedPlayer": "Swiftly you jerk open your jacket, trying to get {target.pronoun3} to notice you.",
+    "TargettedTarget": "You gasp!  {player.name} has just revealed {player.pronoun2} \u0022equipment\u0022 to you!",
+    "TargettedRoom": "Cover your eyes, {player.name} is exposing {player.pronoun3}self to {player.name}!  EWWWW!",
+    "TargetNotFoundPlayer": "Exhibitionist, that person isn\u0027t here!",
+    "SelfPlayer": "That\u0027s sick.",
+    "SelfRoom": "PERVERT PRESENT!  {player.name} is trying to flash {player.pronoun3}self"
+  },
+  {
+    "Name": "strip",
+    "NoTargetPlayer": "You do a slow strip tease for the people...",
+    "NoTargetRoom": "{player.name} begins a slow, erotic strip-tease act...",
+    "TargettedPlayer": "You start to undress {target.name} ... one piece of clothing at a time...",
+    "TargettedTarget": "{player.name} has started to strip you... woah BABY!",
+    "TargettedRoom": "{player.name} runs {player.pronoun2} hands over {target.name}s body, slowly stripping away the clothing...",
+    "TargetNotFoundPlayer": "Your toy doesn\u0027t seem to be here...",
+    "SelfPlayer": "You can\u0027t DO that in public!"
+  },
+  {
+    "Name": "undress",
+    "NoTargetPlayer": "You start to undress in the shadows, waiting for someone to notice.",
+    "NoTargetRoom": "{player.name} begins to undress... {player.pronoun1} is VERY sexy... *Pant*",
+    "TargettedPlayer": "You undress {target.pronoun3} with your eyes... Kinky.",
+    "TargettedTarget": "Feeling exposed, you sense {player.name} undressing you with {player.pronoun2} eyes...",
+    "TargettedRoom": "You feel the temperature of the room rise as {player.name} lusts on {target.name}...",
+    "TargetNotFoundPlayer": "They are not here...",
+    "SelfPlayer": "A mirror would work better..."
+  },
+  {
+    "Name": "tongue",
+    "NoTargetPlayer": "You slowly give your tongue a nice workout.",
+    "NoTargetRoom": "",
+    "TargettedPlayer": "Mmmm... you give {target.name} a good working over with your tongue...",
+    "TargettedTarget": "{player.name} wraps {player.pronoun2} tongue around you, moving it across your young, nubile flesh...",
+    "TargettedRoom": "{player.name} slides {player.pronoun2} tongue over {target.name}\u0027s body...",
+    "TargetNotFoundPlayer": "Never around when required...",
+    "SelfPlayer": "You slowly tongue yourself.",
+    "SelfRoom": "{player.name} slowly tongues {player.pronoun3}self... ICK."
+  },
+  {
+    "Name": "view",
+    "NoTargetPlayer": "You sit back and watch the world go by.",
+    "NoTargetRoom": "{player.name} kicks back and enjoys the view."
+  },
+  {
+    "Name": "grumble",
+    "NoTargetPlayer": "You grumble distractedly to yourself",
+    "NoTargetRoom": "{player.name} grumbles and growls. You wonder what\u0027s wrong...",
+    "TargettedPlayer": "You grumble at {target.name}, disgusted with their presence.",
+    "TargettedTarget": "{player.name} is grumbling at you... what\u0027d you do?",
+    "TargettedRoom": "{player.name} seems to be a grumpy bear... {player.pronoun1} is grumbling at poor {target.name}.",
+    "TargetNotFoundPlayer": "That person is presently AWOL.",
+    "SelfPlayer": "Why bother?"
+  },
+  {
+    "Name": "cheer",
+    "NoTargetPlayer": "You cheer and dance as the joy within you bursts forth!",
+    "NoTargetRoom": "{player.name} cheers and sings... {player.pronoun1} is just BURSTING with joy!",
+    "TargettedPlayer": "You cheer {target.name} on and wish {target.pronoun3} good luck!",
+    "TargettedTarget": "You are cheered on by {player.name}... you feel so loved!",
+    "TargettedRoom": "*Yay!*  Go {target.name}!!!  {player.name} cheers {target.pronoun3} on.",
+    "TargetNotFoundPlayer": "Who? Huh? Where?  They\u0027re not here, that\u0027s for sure",
+    "SelfPlayer": "You cheer silently for yourself since nobody else will",
+    "SelfRoom": "{player.name} resorts to cheering for {player.pronoun3}self... how sad."
+  },
+  {
+    "Name": "plead",
+    "NoTargetPlayer": "You beg and plead to anyone who will listen.",
+    "NoTargetRoom": "{player.name} pleads {player.pronoun2} case to anyone who will listen... You ALMOST feel sorry for {player.pronoun2}."
+  },
+  {
+    "Name": "charge",
+    "NoTargetPlayer": "You charge into the fray!",
+    "NoTargetRoom": "{player.name} charges into the fray!  All guts, no brains.",
+    "TargettedPlayer": "With surprising dexterity, you head-butt {target.name}!",
+    "TargettedTarget": "OOF!  {player.name} rammed {player.pronoun2} head into your stomach!  That HURT.",
+    "TargettedRoom": "{player.name} ducks down low, charges forward, and head-butts {target.name}!",
+    "TargetNotFoundPlayer": "Nobody \u0027round with that name, Mister!",
+    "SelfPlayer": "You run your head into a brick wall.  OUCH!"
+  },
+  {
+    "Name": "criticize",
+    "NoTargetPlayer": "Yes, but who?",
+    "NoTargetRoom": "",
+    "TargettedPlayer": "You criticize {target.pronoun3} with all the warmth of a snake.",
+    "TargettedTarget": "{player.name} informs you that your attempts need some MAJOR adjustments.",
+    "TargettedRoom": "With a nasty grin, {player.name} rips apart {target.name}s efforts.",
+    "TargetNotFoundPlayer": "Where oh where has my victim gone, oh where oh where...",
+    "SelfPlayer": "You criticize yourself profusely.",
+    "SelfRoom": "{player.name} tears {player.pronoun3}self apart, cursing {player.pronoun2} own stupidity."
+  },
+  {
+    "Name": "run",
+    "NoTargetPlayer": "You run away in terror and horror!",
+    "NoTargetRoom": "{player.name} runs away in utter terror!",
+    "TargettedPlayer": "You run away from {target.name} in complete terror!",
+    "TargettedTarget": "{player.name} runs from you, fearing for {player.pronoun2} life!",
+    "TargettedRoom": "{player.name} runs away from {target.name} in utter terror and horror!",
+    "TargetNotFoundPlayer": "No reason to be afraid, they aren\u0027t here.",
+    "SelfPlayer": "Are you THAT ugly?",
+    "SelfRoom": "{player.name} looks in the mirror, sees {player.pronoun2} face, and runs away terrified!"
+  },
+  {
+    "Name": "judge",
+    "NoTargetPlayer": "Yes, but who?",
+    "NoTargetRoom": "",
+    "TargettedPlayer": "You judge {player.pronoun3} on a scale of 1 to 10.",
+    "TargettedTarget": "{player.name} judges your actions on a scale of 1 to 10 and comes up with ZERO!!!",
+    "TargettedRoom": "On a scale from 1 to 10, {player.name} thinks {target.name} is a complete ZERO!!!",
+    "TargetNotFoundPlayer": "They aren\u0027t here right now.",
+    "SelfPlayer": "You don\u0027t REALLY want to do that."
+  },
+  {
+    "Name": "insane",
+    "NoTargetPlayer": "You feel your sanity slipping away...",
+    "NoTargetRoom": "Before your eyes, {player.name}\u0027s sanity is slipping away..."
+  },
+  {
+    "Name": "cover",
+    "NoTargetPlayer": "You cover your ears to protect them from the noise.",
+    "NoTargetRoom": "{player.name} covers {player.pronoun2} ears to protect them from all the noise.",
+    "TargettedPlayer": "You glare at {target.name} and cover your ears.",
+    "TargettedTarget": "{player.name} covers {player.pronoun2} ears because of you... you are TOO LOUD!",
+    "TargettedRoom": "{player.name} glares at {target.name} and covers {player.pronoun2} ears.",
+    "TargetNotFoundPlayer": "They aren\u0027t here right now.",
+    "SelfPlayer": "No... I don\u0027t think so."
+  },
+  {
+    "Name": "flare",
+    "NoTargetPlayer": "You flare your nostrils disdainfully.",
+    "NoTargetRoom": "{player.name} flares {player.pronoun2} nostrils disdainfully.",
+    "TargettedPlayer": "You flare your nostrils disdainfully at {target.name}... HOW RUDE!",
+    "TargettedTarget": "{player.name} flares {player.pronoun2} nostrils disdainfully at you... what\u0027d you DO???",
+    "TargettedRoom": "{player.name} flares {player.pronoun2} nostrils disdainfully at {target.name} and turns up {player.pronoun2} snobbish nose.",
+    "TargetNotFoundPlayer": "Flare if you wish, but that person isn\u0027t here to see it.",
+    "SelfPlayer": "*Sniff*  But you should LOVE yourself!"
+  },
+  {
+    "Name": "head",
+    "NoTargetPlayer": "You toss your head haughtily.",
+    "NoTargetRoom": "{player.name} tosses {player.pronoun2} head haughtily.",
+    "TargettedPlayer": "You toss your head haughtily at {target.name}.",
+    "TargettedTarget": "{player.name} tossed {player.pronoun2} head haughtily at you... :(",
+    "TargettedRoom": "{player.name} tosses her head haughtily at {target.name}... what an ATTITUDE!",
+    "TargetNotFoundPlayer": "That person is AWOL.",
+    "SelfPlayer": "Why would you do that?"
+  },
+  {
+    "Name": "pie",
+    "NoTargetPlayer": "You pick up a pie and toss it around for a bit.",
+    "NoTargetRoom": "{player.name} picks up a pie and tosses it around for a bit.",
+    "TargettedPlayer": "You toss a pie at {target.name} and hit {target.pronoun3} right in the FACE!",
+    "TargettedTarget": "{player.name} tossed a pie in your face... and now you are all covered in GOO!",
+    "TargettedRoom": "{player.name} tosses a pie at {target.name} and hits {player.pronoun3} right in the FACE!",
+    "TargetNotFoundPlayer": "That person isn\u0027t here...",
+    "SelfPlayer": "You bury your face in the pie... yummmmm!!! :)",
+    "SelfRoom": "{player.name} buries {player.pronoun2} face in the pie, licking the pan clean."
+  },
+  {
+    "Name": "cower",
+    "NoTargetPlayer": "You cower in a corner.",
+    "NoTargetRoom": "{player.name} cowers in a corner and whimpers softly.",
+    "TargettedPlayer": "You cower away from {target.name} and {target.pronoun2} harsh words.",
+    "TargettedTarget": "You scared poor {player.name}!  Now {target.pronoun2} is cowering in a corner, afraid for {player.pronoun2} life.",
+    "TargettedRoom": "{player.name} cowers in a corner, terrified that {target.name} will come after {player.pronoun3}.",
+    "TargetNotFoundPlayer": "That person is AWOL at the moment.",
+    "SelfPlayer": "You are afraid of your own shadow!",
+    "SelfRoom": "{player.name} cowers in the corner afraid of {player.pronoun2} own shadow"
+  },
+  {
+    "Name": "noogie",
+    "NoTargetPlayer": "You can\u0027t noogie the AIR!  It has no head.",
+    "NoTargetRoom": "",
+    "TargettedPlayer": "You grab {target.name}, get {target.pronoun3} in a head lock and NOOGIE {target.pronoun3}!",
+    "TargettedTarget": "Oh NO, {player.name} grabs you, throws you in a head lock and NOOGIES you!",
+    "TargettedRoom": "{player.name} grabs {target.name} in a head lock and NOOGIES {target.pronoun3}... ARGH!!!",
+    "TargetNotFoundPlayer": "That person has gone off to other lands...",
+    "SelfPlayer": "You rub your head and create a static charge...",
+    "SelfRoom": "{player.name} rubs {player.pronoun2} OWN head and creates a static charge... *ZAP*"
+  },
+  {
+    "Name": "yeehaw",
+    "NoTargetPlayer": "You mount your pony(?) and shout YEEEEEEEHAAAAAAAW!",
+    "NoTargetRoom": "{player.name} bounces up and down screaming *YEEEEEEHAAAAAAW!*"
+  },
+  {
+    "Name": "pissed",
+    "NoTargetPlayer": "You are PISSED!",
+    "NoTargetRoom": "{player.name} is PISSED so watch out!",
+    "TargettedPlayer": "You turn a stoney gaze toward {target.name}... you are SOOO pissed at {target.name}!",
+    "TargettedTarget": "{player.name} is pissed at you now... What do you think {player.pronoun1}\u0027ll DO?",
+    "TargettedRoom": "{player.name} glares at {player.name}.... {player.name} is SOOO PISSED at {player.pronoun3}!",
+    "TargetNotFoundPlayer": "That person is not here...",
+    "SelfPlayer": "You are PISSED at yourself!",
+    "SelfRoom": "{player.name} is so pissed at {player.pronoun3}self.  How could {player.pronoun1} be so stupid???"
+  },
+  {
+    "Name": "passout",
+    "NoTargetPlayer": "You belch and pass out.",
+    "NoTargetRoom": "{player.name} is OBVIOUSLY intoxicated... {player.pronoun1} burps loudly and passes out!"
+  },
+  {
+    "Name": "adjust",
+    "NoTargetPlayer": "You look around, make sure nobody is watching, and you adjust your \u0022Tool.\u0022",
+    "NoTargetRoom": "{player.name} looks around slyly, smiles, then reaches down and \u0022adjusts\u0022 {player.pronoun3}self..."
+  },
+  {
+    "Name": "scratch",
+    "NoTargetPlayer": "You scratch yourself contentedly.",
+    "NoTargetRoom": "{player.name} reaches down and scratches {player.pronoun3}self...  Now {player.pronoun1} looks VERY happy."
+  },
+  {
+    "Name": "meditate",
+    "NoTargetPlayer": "You assume a very comfortable position and begin to meditate.",
+    "NoTargetRoom": "{player.name} rests and begins to meditate... {player.pronoun1} chants softly to {player.pronoun3}self."
+  },
+  {
+    "Name": "bkiss",
+    "NoTargetPlayer": "You blow kisses to the air.",
+    "NoTargetRoom": "{player.name} blows kisses at no one in particular.",
+    "TargettedPlayer": "You blow a kiss at {target.name} and wonder if {target.pronoun1} will catch it.",
+    "TargettedTarget": "{player.name} blows a kiss at you and hopes you\u0027ll blow one back at {player.pronoun3}.",
+    "TargettedRoom": "{player.name} blows a kiss at {target.name} ... isn\u0027t {player.pronoun1} so CUTE?",
+    "TargetNotFoundPlayer": "You kiss falls to the ground with no one to go to.",
+    "SelfPlayer": "You blow a kiss to yourself... isn\u0027t the world beautiful?",
+    "SelfRoom": "{player.name} blows a kiss to {player.pronoun3}self, obviously very in love."
+  },
+  {
+    "Name": "beer",
+    "NoTargetPlayer": "You pull out a six-pack.",
+    "NoTargetRoom": "{player.name} starts to juggle a six-pack of beer.",
+    "TargettedPlayer": "You toss a bottle of beer at {target.name}.",
+    "TargettedTarget": "{player.name} tossed you a bottle of beer... I think {player.pronoun1} wants something...",
+    "TargettedRoom": "{player.name} tosses a bottle of beer at {target.name} ... let\u0027s just hope {player.pronoun1}\u0027ll catch it!",
+    "TargetNotFoundPlayer": "The bottle crashes to the floor and shatters.",
+    "SelfPlayer": "You pop off the top and down a beer.",
+    "SelfRoom": "{player.name} pops the top off a bottle of beer and downs it in one gulp."
+  },
+  {
+    "Name": "bcatch",
+    "NoTargetPlayer": "You reach out and rescue the bottle from its flight.",
+    "NoTargetRoom": "{player.name} reaches out and grabs the bottle of beer tossed to {player.pronoun3}."
+  },
+  {
+    "Name": "claw",
+    "NoTargetPlayer": "You tighten your hands into a fist.",
+    "NoTargetRoom": "{player.name} clenches {player.pronoun2} fists until blood drips from them...",
+    "TargettedPlayer": "You claw {target.pronoun2} eyes out... GROSS!",
+    "TargettedTarget": "{player.name} buries {player.pronoun2} nails in your eyes and you are blinded by your own blood!",
+    "TargettedRoom": "{player.name} buries {player.pronoun2} nails in {target.name}\u0027s eyes ... OH GOD, THE BLOOD!",
+    "TargetNotFoundPlayer": "They aren\u0027t here to claw.",
+    "SelfPlayer": "You claw yourself to shreds!",
+    "SelfRoom": "{player.name} rips {player.pronoun3}self to shreds with {player.pronoun2} fingernails!"
+  },
+  {
+    "Name": "rose",
+    "NoTargetPlayer": "Who would you like to give it to?",
+    "NoTargetRoom": "",
+    "TargettedPlayer": "You give {target.pronoun3} a pretty rose.",
+    "TargettedTarget": "{player.name} hands you a beautiful ---\u0027---,--{@",
+    "TargettedRoom": "{player.name} hands {target.name} a beautiful rose.",
+    "TargetNotFoundPlayer": "They seem to have left.",
+    "SelfPlayer": "You give yourself a rose and feel a little sad...",
+    "SelfRoom": "{player.name} gives {player.pronoun3}self a rose, dont you feel sorry for {player.pronoun3}?"
+  },
+  {
+    "Name": "laces",
+    "NoTargetPlayer": "Whose laces?",
+    "NoTargetRoom": "",
+    "TargettedPlayer": "With the greatest of stealth, you tie {target.pronoun2} shoelaces together.",
+    "TargettedTarget": "You try to take a step, and you hit the world facedown!  Someone must have tied your shoelaces together!",
+    "TargettedRoom": "{player.name} sneaks up to {target.name} and ties {target.pronoun2} shoelaces together.",
+    "TargetNotFoundPlayer": "Whose laces?",
+    "SelfPlayer": "You tie your own shoelaces together, try to walk, and promptly fall.",
+    "SelfRoom": "{player.name} cleverly ties {player.pronoun2} own shoelaces together, tries to walk, and sprawls flat on the floor."
+  },
+  {
+    "Name": "tag",
+    "NoTargetPlayer": "Tag whom?",
+    "NoTargetRoom": "{player.name} casts about for someone to tag.",
+    "TargettedPlayer": "\u003EFrom nowhere, you pounce on {target.name} and TAG {target.pronoun3} remorselessly!  BWAHAHA!!!",
+    "TargettedTarget": "{player.name} pounces on you and \u003E\u003E\u003E TAGS \u003C\u003C\u003C you!  You\u0027re IT!",
+    "TargettedRoom": "{player.name} dives from the shadows and TAGS {target.name}.  {target.name} IS IT!",
+    "TargetNotFoundPlayer": "Who were you going to tag, then?",
+    "SelfPlayer": "Unable to catch anyone else, you do the intelligent thing and tag yourself. You\u0027re still IT!",
+    "SelfRoom": "Unable to catch anyone else, {player.name} tags {player.pronoun3}self.  Are you impressed?"
+  },
+  {
+    "Name": "tank",
+    "NoTargetPlayer": "You boldly offer to tank for your everyone else.  Are you sure you know what you\u0027re getting into?",
+    "NoTargetRoom": "{player.name} offers to tank!",
+    "TargettedPlayer": "You offer to tank for {target.name}.",
+    "TargettedTarget": "{player.name} offers to tank for you!",
+    "TargettedRoom": "{player.name} offers to tank for {target.name}.",
+    "TargetNotFoundPlayer": "Tank for whom?",
+    "SelfPlayer": "No one will tank for you, eh?!? WELL, YOU\u0027LL SHOW THEM!  (right?)",
+    "SelfRoom": "In dazzling chivalry, {player.name} offers to tank-- for {player.pronoun3}self!"
+  },
+  {
+    "Name": "starve",
+    "NoTargetPlayer": "You show your prominent ribs and hope that someone will take pity.",
+    "NoTargetRoom": "{player.name} is withering before your eyes!  Starvation!",
+    "TargettedPlayer": "You throw yourself upon {target.pronoun2} mercy, begging for food.",
+    "TargettedTarget": "{player.name} is starving before your eyes!  Could you spare some food, please?",
+    "TargettedRoom": "{player.name} begs {target.name} for food.  One would think that magic would have cured hunger by now...",
+    "TargetNotFoundPlayer": "Sorry, but that person isn\u0027t around-- looks like you\u0027ll starve."
+  },
+  {
+    "Name": "aargh",
+    "NoTargetPlayer": "AAAAAARRRRRRGGGGGGHHHHHH!!!!!!",
+    "NoTargetRoom": "{player.name} throws back {player.pronoun2} head and howls in profound frustration!",
+    "TargettedPlayer": "You scream your frustration and grab for {target.pronoun2} throat with both hands!",
+    "TargettedTarget": "{player.name} grabs for your throat with two hands, howling in frustration!",
+    "TargettedRoom": "{player.name} howls in frustration, and leaps for {target.name}, trying to throttle {target.pronoun3}!",
+    "TargetNotFoundPlayer": "You get even MORE frustrated when you can\u0027t find anyone to throttle!",
+    "SelfPlayer": "You scream in frustration at your own stupidity!",
+    "SelfRoom": "{player.name} screams in frustration at {player.pronoun2} own stupidity!"
+  },
+  {
+    "Name": "homework",
+    "NoTargetPlayer": "Your suddenly remember that you have to defend your thesis today...",
+    "NoTargetRoom": "{player.name} looks stricken.  Could {player.pronoun1} have blown off some important homework?"
+  },
+  {
+    "Name": "puff",
+    "NoTargetPlayer": "You mimic Puff at her most annoying.",
+    "NoTargetRoom": "{player.name} says, \u0022Did you know that I\u0027m written in C?\u0022"
+  },
+  {
+    "Name": "yae",
+    "NoTargetPlayer": "You sigh, burdened with Yet Another Eeediot.",
+    "NoTargetRoom": "{player.name} sighs, burdened with Yet Another Eeediot.",
+    "TargettedPlayer": "There\u0027s Yet Another Eeediot in the room, and you\u0027re looking right at {target.pronoun3}.",
+    "TargettedTarget": "{player.name} glares at you, obviously not impressed with your intelligence.",
+    "TargettedRoom": "{player.name} clearly believes that {target.name} is an Eeediot!",
+    "TargetNotFoundPlayer": "There are plenty of Eeediots, but that one doesn\u0027t seem to be present.",
+    "SelfPlayer": "You bonk yourself for the Eeediot you are!",
+    "SelfRoom": "{player.name} bonks {player.pronoun3}self, HARD, and curses {player.pronoun3}self for the Eeediot {player.pronoun1} is!"
+  },
+  {
+    "Name": "lightbulb",
+    "NoTargetPlayer": "*Ding!*  Inspiration!",
+    "NoTargetRoom": "A light bulb appears above {player.name}\u0027s head!"
+  },
+  {
+    "Name": "voodoo",
+    "NoTargetPlayer": "Bad juju like this has to be directed at a person.",
+    "NoTargetRoom": "{player.name} looks hostile for a moment.",
+    "TargettedPlayer": "You stare daggers at {target.name}, jabbing pins into {target.pronoun2} effigy.",
+    "TargettedTarget": "Your heart lurches in your chest, and fiery pain stabs through your skull!",
+    "TargettedRoom": "{player.name} glares balefully at {target.name} while stabbing a pin into a voodoo doll.",
+    "TargetNotFoundPlayer": "Your hatred finds no such target.",
+    "SelfPlayer": "You stab a pin into your own voodoo doll!  Agony!",
+    "SelfRoom": "{player.name} jabs a pin into {player.pronoun2} own voodoo doll, and twitches in agony!"
+  },
+  {
+    "Name": "ogg",
+    "NoTargetPlayer": "Ogg who?",
+    "NoTargetRoom": "",
+    "TargettedPlayer": "Engage!",
+    "TargettedTarget": "{player.name} oggs your head with photon torpedos!  You are reeling.",
+    "TargettedRoom": "{player.name} oggs {target.name}\u0027s head with photon torpedos!  {target.name} reels.",
+    "TargetNotFoundPlayer": "You can\u0027t find your target.",
+    "SelfPlayer": "If you do that, the universe will explode.",
+    "SelfRoom": "{player.name} almost oggs {player.pronoun3}self, but wisely reconsiders."
+  },
+  {
+    "Name": "confused",
+    "NoTargetPlayer": "Your confusion is showing.",
+    "NoTargetRoom": "{player.name} blinks slowly...",
+    "TargettedPlayer": "You blink slowly, trying to decipher {target.pronoun2} comment.",
+    "TargettedTarget": "{player.name} blinks slowly.  Maybe you left a word out of your sentence?",
+    "TargettedRoom": "{player.name} blinks slowly.  Maybe {target.name} left a word out of {target.pronoun2} sentence...",
+    "TargetNotFoundPlayer": "No wonder you\u0027re confused."
+  },
+  {
+    "Name": "beam",
+    "NoTargetPlayer": "You beam delightedly at nothing in particular.",
+    "NoTargetRoom": "{player.name} beams broadly at nothing in particular.",
+    "TargettedPlayer": "You dazzle {target.name} with your smile.",
+    "TargettedTarget": "{player.name} must like you a great deal to beam at you so broadly!",
+    "TargettedRoom": "{player.name} must like {target.name} a great deal to beam at {target.pronoun3} so broadly!",
+    "TargetNotFoundPlayer": "You look pretty silly beaming at imaginary friends...",
+    "SelfPlayer": "Well, aren\u0027t you special?",
+    "SelfRoom": "{player.name} beams at {player.pronoun3}self, obviously pleased."
+  },
+  {
+    "Name": "bite",
+    "NoTargetPlayer": "You glare around, muttering \u0022Bite me...\u0022 under your breath.",
+    "NoTargetRoom": "{player.name} glares around, muttering \u0022Bite me...\u0022 under {player.pronoun2} breath.",
+    "TargettedPlayer": "You bite {target.name} on the neck.",
+    "TargettedTarget": "{player.name} bites you on the neck.",
+    "TargettedRoom": "{player.name} bites {target.name} on the neck!",
+    "TargetNotFoundPlayer": "Hungry?  No such luck.",
+    "SelfPlayer": "You bite your knuckle in anguish.",
+    "SelfRoom": "{player.name} bites {player.pronoun2} knuckle in anguish...the tragedy!"
+  },
+  {
+    "Name": "discodance",
+    "NoTargetPlayer": "Groovy!",
+    "NoTargetRoom": "{player.name} discos wildly!",
+    "TargettedPlayer": "You grab {target.name} and disco wildly!  Groovy!",
+    "TargettedTarget": "{player.name} grabs you and does {player.pronoun3} best Travolta!",
+    "TargettedRoom": "{player.name} grabs {target.name} and does {player.pronoun3} best Travolta!",
+    "TargetNotFoundPlayer": "It\u0027s okay, you can disco solo too."
+  },
+  {
+    "Name": "scuff",
+    "NoTargetPlayer": "You scuff your foot sheepishly.",
+    "NoTargetRoom": "{player.name} scuffs {player.pronoun2} foot in the dirt, looking very sheepish.",
+    "TargettedPlayer": "You scuff your foot, avoiding {target.name}\u0027s gaze.",
+    "TargettedTarget": "{player.name} scuffs {player.pronoun2} foot and shyly avoids your gaze.",
+    "TargettedRoom": "{player.name} scuffs {player.pronoun2} foot and shyly avoids {target.name}\u0027s gaze.",
+    "TargetNotFoundPlayer": "They aren\u0027t here."
+  },
+  {
+    "Name": "whap",
+    "NoTargetPlayer": "Whap who?",
+    "NoTargetRoom": "",
+    "TargettedPlayer": "You whap {target.name} upside the head!",
+    "TargettedTarget": "HEY!  {player.name} whaps you upside the head!",
+    "TargettedRoom": "With a resounding WHAP!, {player.name} reprimands {target.name}.",
+    "TargetNotFoundPlayer": "Whiff...",
+    "SelfPlayer": "Ow! You give yourself a resounding whap upside the head.",
+    "SelfRoom": "Biff!  {player.name} whaps {player.pronoun3}self upside the head!"
+  },
+  {
+    "Name": "lag",
+    "NoTargetPlayer": "Yes, yes.",
+    "NoTargetRoom": "{player.name} is   m o v i n g      v  e    ry  sl  o w   l   y ..."
+  },
+  {
+    "Name": "chortle",
+    "NoTargetPlayer": "Heh.",
+    "NoTargetRoom": "{player.name} chortles mischievously.",
+    "TargettedPlayer": "You chortle mischievously at {target.name}.",
+    "TargettedTarget": "{player.name} chortles mischievously at you.",
+    "TargettedRoom": "{player.name} chortles mischievously at {target.name}.",
+    "TargetNotFoundPlayer": "Took you a while to get that....they aren\u0027t here.",
+    "SelfPlayer": "You chortle at your own joke.",
+    "SelfRoom": "{player.name} chortles at {player.pronoun2} own joke.  Don\u0027t bother."
+  },
+  {
+    "Name": "zerbert",
+    "NoTargetPlayer": "Gotta zerbert SOMEBODY.",
+    "NoTargetRoom": "",
+    "TargettedPlayer": "You lift {target.name}\u0027s shirt and blow loudly into {target.pronoun2} navel!",
+    "TargettedTarget": "Yeek!  {player.name} lifts your shirt and blows loudly into your navel!",
+    "TargettedRoom": "{player.name} lifts {target.name}\u0027s shirt and blows loudly into {target.pronoun2} navel!",
+    "TargetNotFoundPlayer": "You missed.",
+    "SelfPlayer": "Careful, people are staring...",
+    "SelfRoom": "{player.name} looks around furtively, and then bends over and blows loudly into {player.pronoun2} own navel!"
+  },
+  {
+    "Name": "twitch",
+    "NoTargetPlayer": "You twitch nervously.",
+    "NoTargetRoom": "{player.name} twitches nervously.",
+    "TargettedPlayer": "You twitch involuntarily at {target.name}\u0027s presence.",
+    "TargettedTarget": "{player.name} notices you and twitches.",
+    "TargettedRoom": "{target.name} must really be getting to {player.name}...",
+    "TargetNotFoundPlayer": "Nervous? They aren\u0027t even here."
+  },
+  {
+    "Name": "leer",
+    "NoTargetPlayer": "You peer around the room, leering like the pervert you are!",
+    "NoTargetRoom": "{player.name} peers about, leering like a filthy pervert!",
+    "TargettedPlayer": "You leer at {target.name} like the pervert you are.",
+    "TargettedTarget": "{player.name} eyes you up and down, leering like a filthy pervert!",
+    "TargettedRoom": "{player.name} eyes {target.name} up and down, leering like a filthy pervert!",
+    "TargetNotFoundPlayer": "You\u0027ll have to settle for memories -- that person isn\u0027t here.",
+    "SelfPlayer": "Desperation has reached new heights, hasn\u0027t it?",
+    "SelfRoom": "{player.name} leers at {player.pronoun3}self shamelessly."
+  },
+  {
+    "Name": "polite",
+    "NoTargetPlayer": "You give a polite little chuckle.",
+    "NoTargetRoom": "{player.name} gives a polite little chuckle.",
+    "TargettedPlayer": "You indicate your underappreciation of {target.pronoun2} joke.",
+    "TargettedTarget": "{player.name} gives a politle but unappreciative chuckle to your joke.",
+    "TargettedRoom": "{player.name} gives a polite little chuckle to {target.name}\u0027s joke.",
+    "TargetNotFoundPlayer": "You can\u0027t find a friend to chuckle with.",
+    "SelfPlayer": "You chuckle at your own joke, since no one else would.",
+    "SelfRoom": "{player.name} chuckles at {player.pronoun2} own joke, since none of you would."
+  },
+  {
+    "Name": "mischievous",
+    "NoTargetPlayer": "You give a mischievous smile at the trouble you have in mind.",
+    "NoTargetRoom": "{player.name} grins mischievously at a nasty idea.",
+    "TargettedPlayer": "You grin mischievously at {target.pronoun3}, thinking an evil thought.",
+    "TargettedTarget": "{player.name} grins mischievously at you.  You inch toward the door.",
+    "TargettedRoom": "{player.name} grins mischievously at {target.name}.  {player.pronoun3} must be thinking something evil.",
+    "TargetNotFoundPlayer": "You must be delirious.",
+    "SelfPlayer": "You grin mischievously to yourself.",
+    "SelfRoom": "{player.name} grins mischievously to {player.pronoun3}self."
+  },
+  {
+    "Name": "accept",
+    "NoTargetPlayer": "You accept the proferred apology graciously.",
+    "NoTargetRoom": "{player.name} graciously accepts the proferred apology."
+  },
+  {
+    "Name": "anticipate",
+    "NoTargetPlayer": "You murmur \u0027Sssssoonnn, my presssssciousssss...\u0027",
+    "NoTargetRoom": "{player.name} murmurs \u0027Ssssssooonnnn, my pressssscioussss...\u0027"
+  },
+  {
+    "Name": "shudder",
+    "NoTargetPlayer": "You shudder at the horror and repress tears.",
+    "NoTargetRoom": "{player.name} shudders at the horror and represses tears."
+  },
+  {
+    "Name": "powertrip",
+    "NoTargetPlayer": "You scream \u0027The PPppppPOOOOoooWWWwwwErrRRR!\u0027 and writhe.",
+    "NoTargetRoom": "{player.name} writhes, screaming \u0027The PPppppPOOOOoooWWWwwwErrRRR!\u0027"
+  },
+  {
+    "Name": "mull",
+    "NoTargetPlayer": "You mull over the idea at hand, asking for patience.",
+    "NoTargetRoom": "{player.name} mulls over the idea at hand.  Please be patient."
+  },
+  {
+    "Name": "wait",
+    "NoTargetPlayer": "You wait patiently.",
+    "NoTargetRoom": "{player.name} waits patiently."
+  },
+  {
+    "Name": "bat",
+    "NoTargetPlayer": "You bat your long, dark lashes and smile innocently.",
+    "NoTargetRoom": "{player.name} bats {player.pronoun2} long, dark lashes and smiles innocently."
+  },
+  {
+    "Name": "sage",
+    "NoTargetPlayer": "You nod sagely.",
+    "NoTargetRoom": "{player.name} nods sagely."
+  },
+  {
+    "Name": "contemplate",
+    "NoTargetPlayer": "You bite your lip contemplatively.",
+    "NoTargetRoom": "{player.name} bites {player.pronoun2} lip contemplatively."
+  },
+  {
+    "Name": "agree",
+    "NoTargetPlayer": "You agree absolutely.",
+    "NoTargetRoom": "{player.name} agrees absolutely.",
+    "TargettedPlayer": "You nod in enthusiastic agreement with {target.name}.",
+    "TargettedTarget": "{player.name} nods in enthusiastic agreement with you.",
+    "TargettedRoom": "{player.name} nods in enthusiastic agreement with {target.name}.",
+    "TargetNotFoundPlayer": "Sorry, your target is absent.",
+    "SelfPlayer": "You find yourself most agreeable.",
+    "SelfRoom": "{player.name} finds {player.pronoun3}self the most agreeable being alive."
+  },
+  {
+    "Name": "toast",
+    "NoTargetPlayer": "You raise a glass of champagne in a toast.",
+    "NoTargetRoom": "{player.name} raises {player.pronoun2} glass of champagne in a toast.",
+    "TargettedPlayer": "You raise your glass of champagne to {target.pronoun2}.",
+    "TargettedTarget": "{player.name} silently toasts you.",
+    "TargettedRoom": "{player.name} silently toasts {target.name}.",
+    "TargetNotFoundPlayer": "Your object of praise is absent.",
+    "SelfPlayer": "You grin evilly and toast yourself.",
+    "SelfRoom": "{player.name} grins evilly and toasts {player.pronoun3}self."
+  },
+  {
+    "Name": "conspire",
+    "NoTargetPlayer": "You wink conspiratorily, waiting for the countersign.",
+    "NoTargetRoom": "{player.name} winks conspiratorily, waiting for the countersign.",
+    "TargettedPlayer": "You induct {target.pronoun2} into your private conspiracy with a wink.",
+    "TargettedTarget": "{player.name} inducts you into {player.pronoun3} private conspiracy with a wink.",
+    "TargettedRoom": "{player.name} winks conspiratorily at {target.name}.  You wonder what this can mean.",
+    "TargetNotFoundPlayer": "Even you conspire against yourself.",
+    "SelfPlayer": "{player.name} is paranoid enough to distrust even {player.pronoun3}self."
+  },
+  {
+    "Name": "support",
+    "NoTargetPlayer": "You fully support the plan.",
+    "NoTargetRoom": "{player.name} fully supports the plan.",
+    "TargettedPlayer": "You hug {target.pronoun3} supportively and smile.",
+    "TargettedTarget": "{player.name} hugs you supportively and smiles.",
+    "TargettedRoom": "{player.name} hugs {target.name} supportively and smiles.",
+    "TargetNotFoundPlayer": "Sorry, friend, I can\u0027t see that person here.",
+    "SelfPlayer": "You hug yourself sadly.",
+    "SelfRoom": "{player.name} hugs {player.pronoun3}self sadly.  Perhaps you could help?"
+  },
+  {
+    "Name": "pound",
+    "NoTargetPlayer": "You make vague pounding motions with your fist at the thought.",
+    "NoTargetRoom": "{player.name} makes vague pounding motions with {player.pronoun3} fist at the thought.",
+    "TargettedPlayer": "You pound {target.pronoun3} into a bloody mass.",
+    "TargettedTarget": "{player.name} pounds you into a bloody mass.",
+    "TargettedRoom": "{player.name} pounds {target.name} into a bloody mass.",
+    "TargetNotFoundPlayer": "Sorry, friend, I can\u0027t see that person here."
+  },
+  {
+    "Name": "wrist",
+    "NoTargetPlayer": "You hold out out a wrist for a slap.",
+    "NoTargetRoom": "{player.name} holds out a wrist for a slap.",
+    "TargettedPlayer": "You slaps {target.pronoun3} wrist sharply.",
+    "TargettedTarget": "{player.name} slaps your wrist sharply.",
+    "TargettedRoom": "{player.name} slaps {target.name}\u0027s wrist sharply.",
+    "TargetNotFoundPlayer": "Sorry, friend, I can\u0027t see that person here.",
+    "SelfPlayer": "You slap your own wrist.",
+    "SelfRoom": "{player.name} slaps {player.pronoun3} own wrist."
+  },
+  {
+    "Name": "romeo",
+    "NoTargetPlayer": "You light up a Romeo y Julietta cigar and puff contentedly.",
+    "NoTargetRoom": "{player.name} lights up a Romeo y Julietta cigar and puffs contentedly."
+  },
+  {
+    "Name": "camel",
+    "NoTargetPlayer": "You pretend you are a camel.",
+    "NoTargetRoom": "{player.name} pretends to be a camel.",
+    "TargettedPlayer": "You light a Camel cigarette for {target.pronoun3}.",
+    "TargettedTarget": "{player.name} lights a Camel cigarette for you.",
+    "TargettedRoom": "{player.name} lights a Camel cigarette for {target.name}.",
+    "TargetNotFoundPlayer": "You don\u0027t see that personhere.",
+    "SelfPlayer": "You light a Camel cigarette and inhale sharply.",
+    "SelfRoom": "{player.name} lights a Camel cigarette and inhales sharply."
+  },
+  {
+    "Name": "whip",
+    "NoTargetPlayer": "You crack your bullwhip menacingly.",
+    "NoTargetRoom": "{player.name} cracks a bullwhip menacingly.",
+    "TargettedPlayer": "You flick your whip across {target.pronoun3} bare back.",
+    "TargettedTarget": "{player.name} flicks a whip across your back... the pain.. the pleasure..",
+    "TargettedRoom": "{player.name} flicks {player.pronoun2} whip across {target.name}\u0027s bare back.",
+    "TargetNotFoundPlayer": "Sorry, friend, I can\u0027t see that person here.",
+    "SelfPlayer": "You whip yourself into a frenzy.",
+    "SelfRoom": "{player.name} whips {player.pronoun3}self into a frenzy."
+  },
+  {
+    "Name": "cramp",
+    "NoTargetPlayer": "You gasp and clutch your abdomen, wheezing with the pain.",
+    "NoTargetRoom": "{player.name} gasps and clutches {player.pronoun3} abdomen in agony.",
+    "TargettedPlayer": "You hammerlock {target.pronoun3}, screaming, \u0022AAAAARRRRRGH!! I HAVE A CRAMP!!!\u0022",
+    "TargettedTarget": "{player.name} hammerlocks you, screaming \u0022AAAAARRRRRGH!! I HAVE A CRAMP!!!\u0022",
+    "TargettedRoom": "{player.name} hammerlocks {target.name}, screaming, \u0022AAAAARRRRRGH!! I HAVE A CRAMP!!!\u0022.",
+    "TargetNotFoundPlayer": "Suffering as you are, you didn\u0027t see that person slip out."
+  },
+  {
+    "Name": "make",
+    "NoTargetPlayer": "You breathe heavily and wetly.",
+    "NoTargetRoom": "{player.name} breathes heavily and wetly.",
+    "TargettedPlayer": "You steam up the windows with {target.pronoun3}.",
+    "TargettedTarget": "{player.name} starts steaming up the windows with you.",
+    "TargettedRoom": "{player.name} and {target.name} start steaming up the windows.",
+    "TargetNotFoundPlayer": "Sorry, friend, I can\u0027t see that person here."
+  },
+  {
+    "Name": "sweep",
+    "NoTargetPlayer": "You look at your empty arms and sigh.",
+    "NoTargetRoom": "{player.name} looks at {player.pronoun2} empty arms and sighs.",
+    "TargettedPlayer": "You sweep {target.pronoun3} into your arms and kiss {target.pronoun3} long and deeply.",
+    "TargettedTarget": "{player.name} sweeps you into {player.pronoun2} arms and kisses you long and deeply.",
+    "TargettedRoom": "{player.name} sweeps {target.name} into {player.pronoun2} arms and kisses {target.pronoun3} long and deeply.",
+    "TargetNotFoundPlayer": "The object of your kiss is absent."
+  },
+  {
+    "Name": "buff",
+    "NoTargetPlayer": "You buff your nails on your cloak.",
+    "NoTargetRoom": "{player.name} buffs {player.pronoun2} nails on {player.pronoun2} cloak."
+  },
+  {
+    "Name": "liver",
+    "NoTargetPlayer": "You look angrily for someone to disembowel.",
+    "NoTargetRoom": "{player.name} angrily for someone to disembowel.",
+    "TargettedPlayer": "You rip out {target.pronoun2} liver and eat it.",
+    "TargettedTarget": "{player.name} rips out your liver and eats it.",
+    "TargettedRoom": "{player.name} rips out {target.name}\u0027s liver and eats it.",
+    "TargetNotFoundPlayer": "The object of your wrath is absent."
+  },
+  {
+    "Name": "wrestle",
+    "NoTargetPlayer": "",
+    "NoTargetRoom": "",
+    "TargettedPlayer": "You wrestle {target.pronoun3} to the floor and pin {target.pronoun3} there.",
+    "TargettedTarget": "{player.name} wrestles you to the floor and pins you.",
+    "TargettedRoom": "{player.name} wrestles {target.name} to the floor, pinning {target.pronoun3} there.",
+    "TargetNotFoundPlayer": "Sorry, friend, I can\u0027t see that person here.",
+    "SelfPlayer": "You wrestle with your conscience.",
+    "SelfRoom": "{player.name} wrestles with {player.pronoun3} conscience."
+  },
+  {
+    "Name": "tie",
+    "NoTargetPlayer": "You toy with a pair of handcuffs suggestively.",
+    "NoTargetRoom": "{player.name} toys suggestively with a pair of handcuffs.",
+    "TargettedPlayer": "You grab {target.name} and tie {target.pronoun3} to the bedposts.",
+    "TargettedTarget": "{player.name} grabs you and ties you securely to a four poster bed.",
+    "TargettedRoom": "{player.name} grabs {target.name} and ties {target.pronoun2} to a four poster bed.",
+    "TargetNotFoundPlayer": "Sorry, friend, I can\u0027t see that person here."
+  },
+  {
+    "Name": "tight",
+    "NoTargetPlayer": "",
+    "NoTargetRoom": "",
+    "TargettedPlayer": "You hold {target.pronoun3} tightly in your arms.",
+    "TargettedTarget": "{player.name} holds you in {player.pronoun3} arms.",
+    "TargettedRoom": "{player.name} holds {target.name} tightly in {player.pronoun3} arms.",
+    "TargetNotFoundPlayer": "Sorry, friend, I can\u0027t see that person here."
+  },
+  {
+    "Name": "fatality",
+    "NoTargetPlayer": "",
+    "NoTargetRoom": "",
+    "TargettedPlayer": "You intone, \u0027{target.name} wins.  Fatality.\u0027",
+    "TargettedTarget": "{player.name} intones, \u0027{target.name} wins.  Fatality.\u0027",
+    "TargettedRoom": "{player.name} intones, \u0027{target.name} wins.  Fatality.\u0027"
+  },
+  {
+    "Name": "yowl",
+    "NoTargetPlayer": "You yowl in frustration.",
+    "NoTargetRoom": "{player.name} yowls in frustration!"
+  },
+  {
+    "Name": "silly",
+    "NoTargetPlayer": "You do the silly walk all around the room.",
+    "NoTargetRoom": "{player.name} does the silly walk all around the room.  {player.pronoun1} *is* silly."
+  }
+]

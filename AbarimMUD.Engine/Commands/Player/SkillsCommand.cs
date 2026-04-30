@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace AbarimMUD.Commands.Player
 {
-	public class SkillCommand : PlayerCommand
+	public class SkillsCommand : PlayerCommand
 	{
 		protected override bool InternalExecute(ExecutionContext context, string data)
 		{

@@ -183,8 +183,23 @@ namespace AbarimMUD.Commands
 			var room = Room;
 			foreach (var c in room.Characters)
 			{
-				var context = (ExecutionContext)c.Tag;
+				var context = c.GetContext();
 				if (this == context)
+				{
+					continue;
+				}
+
+				yield return context;
+			}
+		}
+
+		public IEnumerable<ExecutionContext> AllExceptMeAndTargetInRoom(ExecutionContext target)
+		{
+			var room = Room;
+			foreach (var c in room.Characters)
+			{
+				var context = c.GetContext();
+				if (this == context || target == context)
 				{
 					continue;
 				}
@@ -196,6 +211,14 @@ namespace AbarimMUD.Commands
 		public void SendRoomExceptMe(string message)
 		{
 			foreach (var ctx in AllExceptMeInRoom())
+			{
+				ctx.Send(message);
+			}
+		}
+
+		public void SendRoomExceptMeAndTarget(ExecutionContext target, string message)
+		{
+			foreach (var ctx in AllExceptMeAndTargetInRoom(target))
 			{
 				ctx.Send(message);
 			}
@@ -369,25 +392,35 @@ namespace AbarimMUD.Commands
 				}
 
 				var cmd = parts[0];
+				var args = parts.Length > 1 ? parts[1] : string.Empty;
 
 				var command = BaseCommand.FindCommand(cmd);
-				if (command == null)
+				if (command != null && command.RequiredRole > Role)
 				{
-					Send("Arglebargle, glop-glyf!?!");
-					continue;
+					// User does not have permissions to execute this command
+					command = null;
 				}
 
-				if (command.RequiredRole > Role)
+				if (command != null)
 				{
-					Send("Arglebargle, glop-glyf!?!");
-					continue;
+					var type = command.GetType();
+					Log($"Command type is {type}.");
+
+					command.Execute(this, args);
 				}
-
-				var type = command.GetType();
-				Log($"Command type is {type}.");
-
-				var args = parts.Length > 1 ? parts[1] : string.Empty;
-				command.Execute(this, args);
+				else
+				{
+					// Try to find a social
+					var social = Social.LookupSocial(cmd);
+					if (social != null)
+					{
+						social.DoSocial(this, args);
+					}
+					else
+					{
+						Send("Arglebargle, glop-glyf!?!");
+					}
+				}
 			}
 		}
 
