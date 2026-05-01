@@ -6,6 +6,20 @@ namespace AbarimMUD.Commands
 {
 	internal static class SocialHelper
 	{
+		private static void DoSocialNoTarget(this Social social, ExecutionContext context, Dictionary<string, string> variables)
+		{
+			// No target
+			if (!string.IsNullOrEmpty(social.NoTargetPlayer))
+			{
+				context.Send(social.NoTargetPlayer.FormatMessage(variables));
+			}
+
+			if (!string.IsNullOrEmpty(social.NoTargetRoom))
+			{
+				context.SendRoomExceptMe(social.NoTargetRoom.FormatMessage(variables));
+			}
+		}
+
 		public static bool DoSocial(this Social social, ExecutionContext context, string data)
 		{
 			var player = context.Creature;
@@ -21,17 +35,7 @@ namespace AbarimMUD.Commands
 
 			if (string.IsNullOrEmpty(data))
 			{
-				// No target
-				if (!string.IsNullOrEmpty(social.NoTargetPlayer))
-				{
-					context.Send(social.NoTargetPlayer.FormatMessage(variables));
-				}
-
-				if (!string.IsNullOrEmpty(social.NoTargetRoom))
-				{
-					context.SendRoomExceptMe(social.NoTargetRoom.FormatMessage(variables));
-				}
-
+				social.DoSocialNoTarget(context, variables);
 				return true;
 			}
 
@@ -42,12 +46,22 @@ namespace AbarimMUD.Commands
 				{
 					context.Send(social.TargetNotFoundPlayer.FormatMessage(variables));
 				}
+				else
+				{
+					social.DoSocialNoTarget(context, variables);
+				}
 
 				return true;
 			}
 
 			if (targetContext != context)
 			{
+				if (string.IsNullOrEmpty(social.TargettedPlayer))
+				{
+					social.DoSocialNoTarget(context, variables);
+					return true;
+				}
+
 				var target = targetContext.Creature;
 				variables["target.name"] = target.ShortDescription;
 				variables["target.pronoun1"] = target.Sex.GetPronoun1();
@@ -71,6 +85,12 @@ namespace AbarimMUD.Commands
 			}
 			else
 			{
+				if (string.IsNullOrEmpty(social.SelfPlayer))
+				{
+					social.DoSocialNoTarget(context, variables);
+					return true;
+				}
+
 				if (!string.IsNullOrEmpty(social.SelfPlayer))
 				{
 					context.Send(social.SelfPlayer.FormatMessage(variables));

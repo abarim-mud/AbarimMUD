@@ -25,7 +25,7 @@ namespace AbarimMUD
 
 		public override void OnSet()
 		{
-			Send($"{_previousSession.Account.Name}/{_previousSession.Character.Name} is in-game. Would you like to reconnect(Y/n)?");
+			Send($"{_previousSession.Character.Name} is in-game. Would you like to reconnect(Y/n)?");
 		}
 
 		public override void Process(string data)
@@ -33,8 +33,7 @@ namespace AbarimMUD
 			if (data.EqualsToIgnoreCase("n"))
 			{
 				// No
-				SendLine("Bye");
-				Session.Disconnect();
+				Session.CurrentHandler = new MainMenuHandler(Session);
 				return;
 			}
 

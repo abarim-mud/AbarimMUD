@@ -104,29 +104,14 @@ namespace AbarimMUD
 
 			Logger.Info("{0} active sessions with that account has been found.", activeSessions.Count);
 
-			// Find game session among them
-			var gameSession = (from s in activeSessions where s.CurrentHandler is GameHandler select s).FirstOrDefault();
-
-			if (gameSession != null)
-			{
-				activeSessions.Remove(gameSession);
-			}
-
-			// Close all others
+			// Close non gaming sessions
+			activeSessions.RemoveAll(s => s.CurrentHandler is GameHandler);
 			foreach (var s in activeSessions)
 			{
 				s.Disconnect();
 			}
 
-			if (gameSession != null)
-			{
-				// Handle reconnection
-				Session.CurrentHandler = new ReconnectHandler(Session, gameSession);
-			}
-			else
-			{
-				Session.CurrentHandler = new MainMenuHandler(Session);
-			}
+			Session.CurrentHandler = new MainMenuHandler(Session);
 		}
 
 		private void SwitchToAccount()

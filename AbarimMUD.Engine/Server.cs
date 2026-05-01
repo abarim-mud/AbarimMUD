@@ -12,6 +12,7 @@ using AbarimMUD.Combat;
 using System.Threading;
 using Ur;
 using AbarimMUD.Services;
+using AbarimMUD.Utils;
 
 namespace AbarimMUD
 {
@@ -105,10 +106,15 @@ namespace AbarimMUD
 		{
 			Fight.Process();
 
-			foreach(var service in _services)
+			foreach (var service in _services)
 			{
 				service.Update();
 			}
+		}
+
+		public Session GetSessionByCharacter(string name)
+		{
+			return (from s in Sessions where s.Character != null && s.Character.Name.EqualsToIgnoreCase(name) select s).FirstOrDefault();
 		}
 
 		public void SpawnArea(Area area, Action<string> spawnLogger = null)

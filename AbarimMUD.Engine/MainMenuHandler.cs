@@ -1,7 +1,7 @@
-﻿using System;
+﻿using AbarimMUD.Data;
+using System;
+using System.Linq;
 using System.Text;
-using System.Threading;
-using AbarimMUD.Data;
 
 namespace AbarimMUD
 {
@@ -46,7 +46,16 @@ namespace AbarimMUD
 			{
 				foreach (var c in characters)
 				{
-					sb.AppendLine(string.Format("{0}) {1}", i, c.Name));
+					sb.Append($"{i}) {c.Name}");
+
+					var gameSession = Server.Instance.GetSessionByCharacter(c.Name);
+					if (gameSession != null)
+					{
+						sb.AppendLine(" (online)");
+					} else
+					{
+						sb.AppendLine();
+					}
 
 					++i;
 				}
@@ -105,13 +114,22 @@ namespace AbarimMUD
 				if (characters != null && choice >= 1 && choice < newIndex)
 				{
 					var character = characters[choice - 1];
-					character.LastLogin = DateTime.UtcNow;
-					character.Save();
 
-					Commands.ExecutionContext.SendAll($"[magenta]{character.Name} entered the game.[reset]");
+					var gameSession = Server.Instance.GetSessionByCharacter(character.Name);
 
-					Session.Character = character;
-					Session.CurrentHandler = new GameHandler(Session);
+					if (gameSession == null)
+					{
+						character.LastLogin = DateTime.UtcNow;
+						character.Save();
+
+						Commands.ExecutionContext.SendAll($"[magenta]{character.Name} entered the game.[reset]");
+
+						Session.Character = character;
+						Session.CurrentHandler = new GameHandler(Session);
+					} else
+					{
+						Session.CurrentHandler = new ReconnectHandler(Session, gameSession);
+					}
 
 					return;
 				}
