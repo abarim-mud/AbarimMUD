@@ -1186,11 +1186,11 @@
       "Description": "",
       "Sex": "Male",
       "Class": "default",
-      "Level": 50,
+      "Level": 100,
       "Flags": [
         "Sentinel"
       ],
-      "Experience": "2,100,000",
+      "Experience": "28,800,000",
       "Id": 0
     },
     {
@@ -1203,12 +1203,12 @@
       "Description": "The bank teller is a prim and proper figure. She has a demure smile, a small\nnose, and soft blue eyes that reflect her impeccable attention to detail. Her\nhair is styled in a fashionable updo, adorned with a delicate hat that adds to\nher sophisticated appearance. Her skin is a warm, creamy complexion, and she\ncarries herself with grace and poise. She radiates an aura of efficiency and\nprofessionalism, her meticulous nature inspiring trust in her customers. Despite\nher quiet demeanor, she is well-versed in the intricacies of finance, and her\nexpertise in managing money is second to none.",
       "Sex": "Female",
       "Class": "default",
-      "Level": 1,
+      "Level": 100,
       "Flags": [
         "Banker",
         "Sentinel"
       ],
-      "Experience": "660",
+      "Experience": "28,800,000",
       "Id": 1
     },
     {
@@ -1221,12 +1221,12 @@
       "Description": "A big bearded, bare-armed man is covered in BBQ sauce up to his elbows.",
       "Sex": "Male",
       "Class": "default",
-      "Level": 50,
+      "Level": 100,
       "Flags": [
         "Sentinel",
         "NoPurge"
       ],
-      "Experience": "2,100,000",
+      "Experience": "28,800,000",
       "Id": 2
     },
     {
@@ -1239,12 +1239,12 @@
       "Description": "A big barrel-chested man is behind the counter ready to sell you something sharp.",
       "Sex": "Male",
       "Class": "default",
-      "Level": 50,
+      "Level": 100,
       "Flags": [
         "Sentinel",
         "NoPurge"
       ],
-      "Experience": "2,100,000",
+      "Experience": "28,800,000",
       "Id": 3
     },
     {
@@ -1258,12 +1258,12 @@
       "Description": "A short man is behind the counter ready to sell you some gear.",
       "Sex": "Male",
       "Class": "default",
-      "Level": 50,
+      "Level": 100,
       "Flags": [
         "Sentinel",
         "NoPurge"
       ],
-      "Experience": "2,100,000",
+      "Experience": "28,800,000",
       "Id": 4
     },
     {
@@ -1276,14 +1276,14 @@
       "Description": "Malrik is a wiry old man, his robes stained with the remnants of countless\nexperiments. Thick goggles rest on his forehead, and his sharp eyes glint with both\ncuriosity and wisdom. A mischievous smirk and cryptic remarks hint at secrets, perhaps\neven the key to immortality. The scent of burnt herbs clings to him as he absently twirls\na vial of shimmering liquid.",
       "Sex": "Female",
       "Class": "default",
-      "Level": 50,
+      "Level": 100,
       "Flags": [
         "Sentinel",
         "NoPurge"
       ],
       "Shop": "alchemist",
       "ExchangeShop": "alchemist",
-      "Experience": "2,100,000",
+      "Experience": "28,800,000",
       "Id": 5
     },
     {
@@ -1296,12 +1296,12 @@
       "Description": "A Grumpy old man beckons you over.",
       "Sex": "Male",
       "Class": "default",
-      "Level": 50,
+      "Level": 100,
       "Flags": [
         "Sentinel",
         "NoPurge"
       ],
-      "Experience": "2,100,000",
+      "Experience": "28,800,000",
       "Id": 6
     },
     {
@@ -1314,12 +1314,12 @@
       "Description": "A lovely lady beckons you over.",
       "Sex": "Female",
       "Class": "default",
-      "Level": 50,
+      "Level": 100,
       "Flags": [
         "Sentinel",
         "Enchanter"
       ],
-      "Experience": "2,100,000",
+      "Experience": "28,800,000",
       "Id": 7
     },
     {
@@ -1333,12 +1333,12 @@
       "Description": "The warrior guildmaster is a formidable figure with a tall and athletic build.\nShe has a sharp jawline, a straight nose, and intense brown eyes that seem to\nsee right through you. Her hair is a deep auburn, styled in a practical braid\nthat keeps it out of her face during combat. Her skin is weathered from years\nof training and battles, bearing the scars of her experiences as badges of\nhonor. She exudes a confident and fearless energy, her presence commanding\nrespect and inspiring courage in those around her. She stands tall and proud,\nready to face any challenge that comes her way.",
       "Sex": "Male",
       "Class": "default",
-      "Level": 50,
+      "Level": 100,
       "Flags": [
         "Sentinel"
       ],
       "Guildmaster": "warrior",
-      "Experience": "2,100,000",
+      "Experience": "28,800,000",
       "Id": 8
     },
     {
@@ -1370,11 +1370,11 @@
       "Description": "The paladin guildmaster is a tall and muscular figure with a chiseled jawline,\na straight nose, and piercing green eyes. He has bright golden blonde hair\nstyled in a regal manner. His presence commands respect and his bearing exudes\na sense of justice and righteousness. His unwavering spirit and powerful aura\ninspire those around him to be brave and to fight for what is right.",
       "Sex": "Male",
       "Class": "default",
-      "Level": 50,
+      "Level": 100,
       "Flags": [
         "Sentinel"
       ],
-      "Experience": "2,100,000",
+      "Experience": "28,800,000",
       "Id": 10
     },
     {
@@ -1406,12 +1406,12 @@
       "Description": "The Cleric Guildmaster is a dignified man in flowing ivory and gold robes, marked with sacred\nsymbols of his order. His silver-streaked hair and steady, piercing gaze\nreflect wisdom and authority earned through years of devotion.\n\nHe carries a rune-carved staff and wears a faintly glowing amulet, both radiating quiet divine\npower. Calm and composed, he guides his followers with firm conviction - offering healing\nand guidance to the faithful, and swift judgment to those who stray.",
       "Sex": "Male",
       "Class": "default",
-      "Level": 50,
+      "Level": 100,
       "Flags": [
         "Sentinel"
       ],
       "Guildmaster": "cleric",
-      "Experience": "2,100,000",
+      "Experience": "28,800,000",
       "Id": 12
     },
     {
@@ -1443,12 +1443,12 @@
       "Description": "The thief guildmaster is a slender and nimble figure with a quick wit and a\ncharming smile. He has a sharp jawline, a crooked nose, and sparkling brown eyes\nthat seem to always be on the lookout for his next big score. His hair is a\nshaggy mop of black, styled in a manner that adds to his roguish charm. He moves\nwith a feline grace, his confidence and cunning evident in every step. Despite\nhis sometimes questionable methods, he has a charismatic personality and a\nsilver tongue that makes him well-liked by his fellow thieves.",
       "Sex": "Male",
       "Class": "default",
-      "Level": 50,
+      "Level": 100,
       "Flags": [
         "Sentinel"
       ],
       "Guildmaster": "rogue",
-      "Experience": "2,100,000",
+      "Experience": "28,800,000",
       "Id": 14
     },
     {
@@ -1480,12 +1480,12 @@
       "Description": "The mage guildmaster is a serene and regal figure with an ethereal beauty. She\nhas a delicate jawline, a straight nose, and piercing blue eyes that seem to\nshimmer with an inner light. Her hair is a shining silver, styled in an\nelaborate up-do that adds to her stately appearance. Her skin is a warm,\ncreamy complexion, and she carries herself with grace and poise. She radiates\nan aura of calm and confidence, her gentle presence inspiring a sense of peace\nand security in those around her. Despite her quiet demeanor, her vast\nknowledge and mastery of magic is undeniable.",
       "Sex": "Female",
       "Class": "default",
-      "Level": 50,
+      "Level": 100,
       "Flags": [
         "Sentinel"
       ],
       "Guildmaster": "mage",
-      "Experience": "2,100,000",
+      "Experience": "28,800,000",
       "Id": 16
     },
     {
@@ -1515,13 +1515,13 @@
       "Description": "Although retired from adventuring, the healer still lends a hand. Type 'heal' to see a listing of spells.",
       "Sex": "Male",
       "Class": "default",
-      "Level": 55,
+      "Level": 100,
       "Flags": [
         "Sentinel",
         "NoPurge",
         "Healer"
       ],
-      "Experience": "2,821,920",
+      "Experience": "28,800,000",
       "Id": 18
     },
     {
@@ -1554,7 +1554,7 @@
       "Description": "Thane Ironjaw is a towering, broad-shouldered man with the physique of\nsomeone who has spent a lifetime hammering steel. His arms are thick with muscle,\nbearing countless burn scars from stray embers and molten metal. A long, grizzled beard,\nonce deep auburn, now streaked with silver, frames his square jaw, giving him the look\nof a battle-hardened veteran. His dark eyes gleam like tempered steel, ever watchful over\nhis shop's wares and ers alike. His leather apron, heavy with soot, smells faintly of\niron and sweat, and his hands, calloused and strong, move with practiced ease as he\ninspects blades and hammers.",
       "Sex": "Male",
       "Class": "default",
-      "Level": 50,
+      "Level": 100,
       "Flags": [
         "Sentinel",
         "NoPurge"
@@ -1562,7 +1562,7 @@
       "Shop": "smithy",
       "ForgeShop": "smithy",
       "ExchangeShop": "smithy",
-      "Experience": "2,100,000",
+      "Experience": "28,800,000",
       "Id": 20
     },
     {
@@ -1574,12 +1574,12 @@
       "Description": "He is young and close-cropped and looks quite happy.",
       "Sex": "Male",
       "Class": "default",
-      "Level": 23,
+      "Level": 100,
       "Flags": [
         "Sentinel",
         "NoPurge"
       ],
-      "Experience": "178,200",
+      "Experience": "28,800,000",
       "Id": 21
     },
     {
@@ -1780,11 +1780,11 @@
       "Description": "The guildmaster is a tall and regal looking figure, with long flowing silver\nhair and piercing green eyes. He wears a garb of rich purple and gold,\nadorned with intricate musical symbols embroidered along the hem and sleeves.\nA lute is hung from a strap across his back, and a small harp is clasped in\nhis hand. A charming smile graces his lips, and his voice is like honey,\nsoothing the soul and captivating all who hear it. He exuded a sense of wisdom\nand leadership, and his mere presence commands respect from all those around.",
       "Sex": "Male",
       "Class": "default",
-      "Level": 50,
+      "Level": 100,
       "Flags": [
         "Sentinel"
       ],
-      "Experience": "2,100,000",
+      "Experience": "28,800,000",
       "Id": 32
     },
     {
@@ -1854,12 +1854,12 @@
       "Description": "A master of discipline, Zhen Taoru commands respect through wisdom, not force. His\namber eyes hold the weight of countless lessons, and his movements, fluid and precise,\nreflect decades of training. Draped in a simple robe, he speaks in measured riddles,\nguiding students toward their own truths.\n\nA worn wooden staff rests at his side, a symbol of mastery rather than necessity. Though\nage has tempered his stride, none doubt his ability to wield it with effortless precision.",
       "Sex": "Male",
       "Class": "default",
-      "Level": 50,
+      "Level": 100,
       "Flags": [
         "Sentinel"
       ],
       "Guildmaster": "monk",
-      "Experience": "2,100,000",
+      "Experience": "28,800,000",
       "Id": 36
     },
     {
@@ -1954,11 +1954,11 @@
       "Description": "The guildmaster of the shapeshifters guild is a wise and mysterious figure,\nknown simply as the Elder. Whether male or female, their appearance is that of a\nperson who has lived many lives, with eyes that seem to hold the knowledge of\nthe ages. The Elder is revered by all who enter the guild, their words carrying\nthe weight of centuries of shapeshifting lore and wisdom. They have dedicated\ntheir life to the art of shapeshifting and are a master of all animal forms,\nable to shift effortlessly from one creature to another. The Elder is patient\nand compassionate, yet fierce in their determination to protect the balance\nbetween humans and nature. Their guidance is sought by all shapeshifters who\nseek to deepen their understanding of the natural world and hone their\nshapeshifting skills.",
       "Sex": "None",
       "Class": "default",
-      "Level": 50,
+      "Level": 100,
       "Flags": [
         "Sentinel"
       ],
-      "Experience": "2,100,000",
+      "Experience": "28,800,000",
       "Id": 42
     },
     {
@@ -1989,11 +1989,11 @@
       "Description": "Radiant, with golden locks that shimmer like sunlight. Her eyes are a\nserene shade of azure, reflecting her calm and steadfast nature. Clad in\ngleaming silver armor, she carries a sword that emanates a soft, ethereal\nglow, signifying her divine allegiance.",
       "Sex": "Female",
       "Class": "default",
-      "Level": 55,
+      "Level": 100,
       "Flags": [
         "AssistAlign"
       ],
-      "Experience": "2,821,920",
+      "Experience": "28,800,000",
       "Id": 44
     },
     {
@@ -2006,11 +2006,11 @@
       "Description": "Tall, wiry, with jet-black hair that cascades over a pale, gaunt face. Eyes\nare a deep shade of crimson, almost resembling pools of blood. Wears dark,\ntattered robes that flutter as if caught in a ceaseless, stormy wind. His\npresence is accompanied by the eerie cawing of unseen ravens.",
       "Sex": "Male",
       "Class": "default",
-      "Level": 55,
+      "Level": 100,
       "Flags": [
         "AssistAlign"
       ],
-      "Experience": "2,821,920",
+      "Experience": "28,800,000",
       "Id": 45
     }
   ],
