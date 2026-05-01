@@ -14,6 +14,9 @@ namespace AbarimMUD.Commands.Builder
 
 			itemEditor.RegisterCustomEditor("armor", "_armor_", SetArmor);
 			itemEditor.RegisterCustomEditor("weapon", "_penetration_ _minimumDamage_ _maximumDamage_", SetWeapon);
+
+			var mobileEditor = ClassEditor.GetEditor<Mobile>();
+			mobileEditor.RegisterCustomEditor("autolevel", "_level_ _attackType_", SetAutoLevel);
 		}
 
 		private static bool SetArmor(ExecutionContext context, object obj, IReadOnlyList<string> values)
@@ -53,6 +56,32 @@ namespace AbarimMUD.Commands.Builder
 
 			var item = (Item)obj;
 			//			item.SetWeapon(penetration, minimumDamage, maximumDamage);
+
+			return true;
+		}
+
+		private static bool SetAutoLevel(ExecutionContext context, object obj, IReadOnlyList<string> values)
+		{
+			if (values.Count < 2)
+			{
+				context.Send("Usage: set mobile _id_ autolevel _level_ _attackType_");
+				return false;
+			}
+
+			int level;
+			if (!context.EnsureInt(values[0], out level))
+			{
+				return false;
+			}
+
+			AttackType attackType;
+			if (!context.EnsureEnum(values[1], out attackType))
+			{
+				return false;
+			}
+
+			var mobile = (Mobile)obj;
+			mobile.SetAutoLevel(level, attackType);
 
 			return true;
 		}

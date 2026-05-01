@@ -459,23 +459,23 @@
       "ShortDescription": "the ghastly ghoul",
       "LongDescription": "A ghastly ghoul is here.",
       "Description": "It is a walking corpse with long fangs and long, sharp nails that most of\nresemble claws.  Its eyes are a dark yellow colour and glare hungrily at you.",
-      "Level": 6,
+      "Level": 8,
       "Gold": 1500,
       "Sex": "Male",
-      "Hitpoints": 300,
+      "Hitpoints": 400,
       "Mana": 100,
       "Moves": 1000,
       "Armor": 20,
       "Attacks": [
         {
-          "Type": "Punch",
+          "Type": "Claw",
           "AttackBonus": 20,
-          "DamageRange": "6-13"
+          "DamageRange": "7-15"
         },
         {
-          "Type": "Punch",
+          "Type": "Claw",
           "AttackBonus": 20,
-          "DamageRange": "6-13"
+          "DamageRange": "7-15"
         }
       ],
       "Flags": [
@@ -483,7 +483,7 @@
         "Aggressive",
         "AssistId"
       ],
-      "Experience": "7,200",
+      "Experience": "12,480",
       "Id": 3002
     },
     {
@@ -527,30 +527,30 @@
       "ShortDescription": "a dusty skeleton",
       "LongDescription": "A dusty skeleton lies here.",
       "Description": "The dusty bones are almost brown.  It must have been buried for a very long\ntime.",
-      "Level": 3,
-      "Gold": 500,
+      "Level": 6,
+      "Gold": 1500,
       "Sex": "Male",
-      "Hitpoints": 100,
+      "Hitpoints": 300,
       "Mana": 100,
       "Moves": 1000,
-      "Armor": 10,
+      "Armor": 20,
       "Attacks": [
         {
           "Type": "Punch",
-          "AttackBonus": 10,
-          "DamageRange": "4-10"
+          "AttackBonus": 20,
+          "DamageRange": "6-13"
         },
         {
           "Type": "Punch",
-          "AttackBonus": 10,
-          "DamageRange": "4-10"
+          "AttackBonus": 20,
+          "DamageRange": "6-13"
         }
       ],
       "Flags": [
         "Aggressive",
         "AssistId"
       ],
-      "Experience": "1,540",
+      "Experience": "7,200",
       "Id": 3004
     },
     {
@@ -560,30 +560,30 @@
       "ShortDescription": "the rotting zombie",
       "LongDescription": "A rotting zombie is staggering towards you with outstretched hands.",
       "Description": "Maggots crawl all over its decaying body.",
-      "Level": 4,
-      "Gold": 700,
+      "Level": 7,
+      "Gold": 1500,
       "Sex": "Male",
-      "Hitpoints": 200,
+      "Hitpoints": 300,
       "Mana": 100,
       "Moves": 1000,
-      "Armor": 10,
+      "Armor": 20,
       "Attacks": [
         {
           "Type": "Punch",
-          "AttackBonus": 10,
-          "DamageRange": "5-11"
+          "AttackBonus": 20,
+          "DamageRange": "6-14"
         },
         {
           "Type": "Punch",
-          "AttackBonus": 10,
-          "DamageRange": "5-11"
+          "AttackBonus": 20,
+          "DamageRange": "6-14"
         }
       ],
       "Flags": [
         "Aggressive",
         "AssistId"
       ],
-      "Experience": "3,520",
+      "Experience": "8,640",
       "Id": 3005
     }
   ],

@@ -29,7 +29,7 @@ namespace AbarimMUD.Services
 
 				foreach (var character in mobile.Room.Characters)
 				{
-					if (!character.IsAlive)
+					if (!character.IsAlive || character.Role > Role.Player)
 					{
 						continue;
 					}
