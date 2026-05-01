@@ -88,6 +88,7 @@ namespace AbarimMUD
 
 				Area.Storage.SaveAll();
 				PlayerClass.Storage.SaveAll();
+				MobileClass.Storage.SaveAll();
 				Skill.Storage.SaveAll();
 				Ability.Storage.SaveAll();
 				Configuration.Save();

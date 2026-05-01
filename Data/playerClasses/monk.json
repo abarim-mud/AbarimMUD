@@ -4,7 +4,7 @@
   "Description": "Master of martial arts.",
   "Hitpoints": "250+level*6",
   "Mana": "200+level*3",
-  "Moves": "200+level*1",
+  "Moves": "200+level",
   "StartingEquipment": [
     "greenLantern",
     "cloakOfRookie",

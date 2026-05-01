@@ -379,6 +379,14 @@ namespace AbarimMUD.Storage
 
 		public static void SetReferences(this Mobile mobile)
 		{
+			if (mobile.Class != null)
+			{
+				mobile.Class = MobileClass.EnsureClassById(mobile.Class.Id);
+			} else
+			{
+				mobile.Class = MobileClass.EnsureClassById(Configuration.DefaultMobileClassId);
+			}
+
 			if (mobile.Loot != null)
 			{
 				foreach (var loot in mobile.Loot)

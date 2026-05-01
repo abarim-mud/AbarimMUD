@@ -4,7 +4,7 @@
   "Description": "Master of armor and sword.",
   "Hitpoints": "300+level*7",
   "Mana": "150+level*3",
-  "Moves": "150+level*1",
+  "Moves": "150+level",
   "StartingEquipment": [
     "greenLantern",
     "cloakOfRookie",

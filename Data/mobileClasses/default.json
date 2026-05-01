@@ -1,0 +1,58 @@
+{
+  "Id": "default",
+  "Armor": "10+level*2",
+  "Gold": "100+level*200",
+  "Hitpoints": "100+level*50",
+  "Mana": "100+level*10",
+  "Moves": "1000",
+  "Attacks": [
+    {
+      "MinimumLevel": 1,
+      "AttackBonus": "10+level*2",
+      "MinimumDamage": "4+level*0.5",
+      "MaximumDamage": "8+level"
+    },
+    {
+      "MinimumLevel": 3,
+      "AttackBonus": "10+level*2",
+      "MinimumDamage": "4+level*0.5",
+      "MaximumDamage": "8+level"
+    },
+    {
+      "MinimumLevel": 15,
+      "AttackBonus": "10+level*2",
+      "MinimumDamage": "4+level*0.5",
+      "MaximumDamage": "8+level"
+    },
+    {
+      "MinimumLevel": 30,
+      "AttackBonus": "10+level*2",
+      "MinimumDamage": "4+level*0.5",
+      "MaximumDamage": "8+level"
+    },
+    {
+      "MinimumLevel": 45,
+      "AttackBonus": "10+level*2",
+      "MinimumDamage": "4+level*0.5",
+      "MaximumDamage": "8+level"
+    },
+    {
+      "MinimumLevel": 60,
+      "AttackBonus": "10+level*2",
+      "MinimumDamage": "4+level*0.5",
+      "MaximumDamage": "8+level"
+    },
+    {
+      "MinimumLevel": 80,
+      "AttackBonus": "10+level*2",
+      "MinimumDamage": "4+level*0.5",
+      "MaximumDamage": "8+level"
+    },
+    {
+      "MinimumLevel": 100,
+      "AttackBonus": "10+level*2",
+      "MinimumDamage": "4+level*0.5",
+      "MaximumDamage": "8+level"
+    }
+  ]
+}

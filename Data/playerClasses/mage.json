@@ -4,7 +4,7 @@
   "Description": "Master of magic.",
   "Hitpoints": "150+level*5",
   "Mana": "300+level*5",
-  "Moves": "100+level*1",
+  "Moves": "100+level",
   "StartingEquipment": [
     "greenLantern",
     "cloakOfRookie",

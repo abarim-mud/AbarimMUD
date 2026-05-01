@@ -46,6 +46,7 @@ namespace AbarimMUD.Data
 			public bool SaveDataOnStart { get; set; } = false;
 			public int NpcWanderChance { get; set; } = 15;
 			public bool AllowPlayerKilling { get; set; } = false;
+			public string DefaultMobileClassId { get; set; } = "default";
 		}
 
 		public static BaseStorage Storage => InternalStorage;
@@ -82,6 +83,7 @@ namespace AbarimMUD.Data
 		public static bool SaveDataOnStart => Instance.SaveDataOnStart;
 		public static int NpcWanderChance => Instance.NpcWanderChance;
 		public static bool AllowPlayerKilling => Instance.AllowPlayerKilling;
+		public static string DefaultMobileClassId => Instance.DefaultMobileClassId;
 
 		public static void Save() => InternalStorage.Save();
 	}

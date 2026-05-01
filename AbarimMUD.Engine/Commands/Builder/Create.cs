@@ -95,16 +95,11 @@ namespace AbarimMUD.Commands.Builder
 			{
 				Id = newId,
 				Sex = Sex.Male,
+				Class = MobileClass.EnsureClassById(Configuration.DefaultMobileClassId),
 				Level = 1,
 				ShortDescription = "short",
 				LongDescription = "long",
 				Description = "description"
-			};
-
-			var attack = new Attack(AttackType.Hit, 0, 5, 10);
-			newMobile.Attacks = new Attack[]
-			{
-				attack
 			};
 
 			area.Mobiles.Add(newMobile);

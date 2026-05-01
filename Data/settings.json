@@ -20,5 +20,6 @@
   "SaveDataOnStart": false,
   "NpcWanderChance": 15,
   "AllowPlayerKilling": false,
+  "DefaultMobileClassId": "default",
   "CastLagInMs": 2000
 }

@@ -634,27 +634,11 @@
       "ShortDescription": "the young spider",
       "LongDescription": "The young spider is ballooning by you.",
       "Description": "He looks freshly hatched and sprightly.  His young fangs are just\ngrowing in as of late.",
-      "Level": 5,
-      "Gold": 900,
       "Sex": "Female",
-      "Hitpoints": 200,
-      "Mana": 100,
-      "Moves": 1000,
-      "Armor": 10,
-      "Attacks": [
-        {
-          "Type": "Punch",
-          "AttackBonus": 10,
-          "DamageRange": "5-12"
-        },
-        {
-          "Type": "Punch",
-          "AttackBonus": 10,
-          "DamageRange": "5-12"
-        }
-      ],
+      "Class": "default",
+      "Level": 5,
       "Flags": [],
-      "Experience": "3,520",
+      "Experience": "5,940",
       "Id": 2000
     },
     {
@@ -665,32 +649,11 @@
       "ShortDescription": "Yevaud",
       "LongDescription": "Yevaud the Usurper of Midgaard is here, grinning evilly at you.",
       "Description": "Old, scaly, but still with a lot of bite in him left.",
-      "Level": 24,
-      "Gold": 5000,
       "Sex": "Male",
-      "Hitpoints": 1200,
-      "Mana": 300,
-      "Moves": 1000,
-      "Armor": 60,
-      "Attacks": [
-        {
-          "Type": "Claw",
-          "AttackBonus": 60,
-          "DamageRange": "14-34"
-        },
-        {
-          "Type": "Claw",
-          "AttackBonus": 60,
-          "DamageRange": "14-34"
-        },
-        {
-          "Type": "Claw",
-          "AttackBonus": 60,
-          "DamageRange": "14-34"
-        }
-      ],
+      "Class": "default",
+      "Level": 24,
       "Flags": [],
-      "Experience": "218,880",
+      "Experience": "183,600",
       "Id": 2001
     },
     {
@@ -701,25 +664,9 @@
       "ShortDescription": "the Wolf Spider",
       "LongDescription": "The Wolf Spider is here, licking its bloody fangs.",
       "Description": "The Wolf Spider is hairy, very hairy.",
-      "Level": 6,
-      "Gold": 1500,
       "Sex": "Female",
-      "Hitpoints": 300,
-      "Mana": 100,
-      "Moves": 1000,
-      "Armor": 20,
-      "Attacks": [
-        {
-          "Type": "Punch",
-          "AttackBonus": 20,
-          "DamageRange": "6-13"
-        },
-        {
-          "Type": "Punch",
-          "AttackBonus": 20,
-          "DamageRange": "6-13"
-        }
-      ],
+      "Class": "default",
+      "Level": 6,
       "Flags": [],
       "Experience": "7,200",
       "Id": 2002
@@ -731,27 +678,11 @@
       "ShortDescription": "the orc",
       "LongDescription": "The orc is stuck in the web and he can't get out.",
       "Description": "You notice an evil look in his eyes.",
-      "Level": 5,
-      "Gold": 900,
       "Sex": "Male",
-      "Hitpoints": 200,
-      "Mana": 100,
-      "Moves": 1000,
-      "Armor": 10,
-      "Attacks": [
-        {
-          "Type": "Claw",
-          "AttackBonus": 10,
-          "DamageRange": "5-12"
-        },
-        {
-          "Type": "Claw",
-          "AttackBonus": 10,
-          "DamageRange": "5-12"
-        }
-      ],
+      "Class": "default",
+      "Level": 5,
       "Flags": [],
-      "Experience": "3,520",
+      "Experience": "5,940",
       "Id": 2003
     },
     {
@@ -762,25 +693,9 @@
       "ShortDescription": "the Queen Wasp",
       "LongDescription": "The Queen Wasp is here, thinking that you would make a tasty offering\n to her master.",
       "Description": "You notice a glazed look in her eyes.",
-      "Level": 12,
-      "Gold": 2500,
       "Sex": "Female",
-      "Hitpoints": 600,
-      "Mana": 200,
-      "Moves": 1000,
-      "Armor": 30,
-      "Attacks": [
-        {
-          "Type": "Punch",
-          "AttackBonus": 30,
-          "DamageRange": "9-20"
-        },
-        {
-          "Type": "Punch",
-          "AttackBonus": 30,
-          "DamageRange": "9-20"
-        }
-      ],
+      "Class": "default",
+      "Level": 12,
       "Flags": [],
       "Experience": "28,080",
       "Id": 2004
@@ -793,25 +708,9 @@
       "ShortDescription": "the drone spider",
       "LongDescription": "The drone spider walks around doing her master's bidding.",
       "Description": "An ordinary drone spider.",
-      "Level": 6,
-      "Gold": 1500,
       "Sex": "Male",
-      "Hitpoints": 300,
-      "Mana": 100,
-      "Moves": 1000,
-      "Armor": 20,
-      "Attacks": [
-        {
-          "Type": "Punch",
-          "AttackBonus": 20,
-          "DamageRange": "6-13"
-        },
-        {
-          "Type": "Punch",
-          "AttackBonus": 20,
-          "DamageRange": "6-13"
-        }
-      ],
+      "Class": "default",
+      "Level": 6,
       "Flags": [],
       "Experience": "7,200",
       "Id": 2005
@@ -824,27 +723,11 @@
       "ShortDescription": "the ethereal spider",
       "LongDescription": "The ethereal spider strides here, traveling to different worlds.",
       "Description": "She winks in and out.",
-      "Level": 10,
-      "Gold": 2000,
       "Sex": "Female",
-      "Hitpoints": 500,
-      "Mana": 100,
-      "Moves": 1000,
-      "Armor": 30,
-      "Attacks": [
-        {
-          "Type": "Punch",
-          "AttackBonus": 30,
-          "DamageRange": "8-18"
-        },
-        {
-          "Type": "Punch",
-          "AttackBonus": 30,
-          "DamageRange": "8-18"
-        }
-      ],
+      "Class": "default",
+      "Level": 10,
       "Flags": [],
-      "Experience": "20,800",
+      "Experience": "16,800",
       "Id": 2006
     },
     {
@@ -855,25 +738,9 @@
       "ShortDescription": "the slave of Arachnos",
       "LongDescription": "The slave works here relentlessly.",
       "Description": "The slave does not mind you, but will fight like a warrior if attacked.",
-      "Level": 8,
-      "Gold": 1500,
       "Sex": "Male",
-      "Hitpoints": 400,
-      "Mana": 100,
-      "Moves": 1000,
-      "Armor": 20,
-      "Attacks": [
-        {
-          "Type": "Punch",
-          "AttackBonus": 20,
-          "DamageRange": "7-15"
-        },
-        {
-          "Type": "Punch",
-          "AttackBonus": 20,
-          "DamageRange": "7-15"
-        }
-      ],
+      "Class": "default",
+      "Level": 8,
       "Flags": [],
       "Experience": "12,480",
       "Id": 2007
@@ -885,27 +752,11 @@
       "ShortDescription": "the quasit",
       "LongDescription": "The quasit blinks in and out, grinning at you.",
       "Description": "Demoniac in nature, but more mischievous.  He twiddles his thumbs\nand creates a magical treasure!",
-      "Level": 10,
-      "Gold": 2000,
       "Sex": "Male",
-      "Hitpoints": 500,
-      "Mana": 100,
-      "Moves": 1000,
-      "Armor": 30,
-      "Attacks": [
-        {
-          "Type": "Punch",
-          "AttackBonus": 30,
-          "DamageRange": "8-18"
-        },
-        {
-          "Type": "Punch",
-          "AttackBonus": 30,
-          "DamageRange": "8-18"
-        }
-      ],
+      "Class": "default",
+      "Level": 10,
       "Flags": [],
-      "Experience": "20,800",
+      "Experience": "16,800",
       "Id": 2008
     },
     {
@@ -916,27 +767,11 @@
       "ShortDescription": "the Bird Spider",
       "LongDescription": "The Bird Spider snaps its powerful jaws.",
       "Description": "The Bird Spider has very powerful jaws.",
-      "Level": 14,
-      "Gold": 3000,
       "Sex": "Female",
-      "Hitpoints": 700,
-      "Mana": 200,
-      "Moves": 1000,
-      "Armor": 40,
-      "Attacks": [
-        {
-          "Type": "Punch",
-          "AttackBonus": 40,
-          "DamageRange": "10-22"
-        },
-        {
-          "Type": "Punch",
-          "AttackBonus": 40,
-          "DamageRange": "10-22"
-        }
-      ],
+      "Class": "default",
+      "Level": 14,
       "Flags": [],
-      "Experience": "43,120",
+      "Experience": "34,542",
       "Id": 2009
     },
     {
@@ -946,27 +781,11 @@
       "ShortDescription": "the Hermit",
       "LongDescription": "The Hermit sits here and warns, \"Go back before it's too late!\"",
       "Description": "A dishevelled veteran warrior in disguise is what he is, but he\nmeans well.",
-      "Level": 7,
-      "Gold": 1500,
       "Sex": "Male",
-      "Hitpoints": 300,
-      "Mana": 100,
-      "Moves": 1000,
-      "Armor": 20,
-      "Attacks": [
-        {
-          "Type": "Punch",
-          "AttackBonus": 20,
-          "DamageRange": "6-14"
-        },
-        {
-          "Type": "Punch",
-          "AttackBonus": 20,
-          "DamageRange": "6-14"
-        }
-      ],
+      "Class": "default",
+      "Level": 7,
       "Flags": [],
-      "Experience": "8,640",
+      "Experience": "11,520",
       "Id": 2010
     },
     {
@@ -976,32 +795,11 @@
       "ShortDescription": "the Donjonkeeper",
       "LongDescription": "The Donjonkeeper eyes you and wonders how pure your soul is.",
       "Description": "He delves deeper into you as you stare at him.",
-      "Level": 25,
-      "Gold": 5000,
       "Sex": "Male",
-      "Hitpoints": 1200,
-      "Mana": 300,
-      "Moves": 1000,
-      "Armor": 60,
-      "Attacks": [
-        {
-          "Type": "Punch",
-          "AttackBonus": 60,
-          "DamageRange": "15-35"
-        },
-        {
-          "Type": "Punch",
-          "AttackBonus": 60,
-          "DamageRange": "15-35"
-        },
-        {
-          "Type": "Punch",
-          "AttackBonus": 60,
-          "DamageRange": "15-35"
-        }
-      ],
+      "Class": "default",
+      "Level": 25,
       "Flags": [],
-      "Experience": "230,400",
+      "Experience": "210,600",
       "Id": 2011
     },
     {
@@ -1011,32 +809,11 @@
       "ShortDescription": "The guardian",
       "LongDescription": "The guardian is obviously not doing his job.",
       "Description": "He looks like a lazy bum who sleeps half the time.",
-      "Level": 17,
-      "Gold": 4000,
       "Sex": "Male",
-      "Hitpoints": 800,
-      "Mana": 200,
-      "Moves": 1000,
-      "Armor": 40,
-      "Attacks": [
-        {
-          "Type": "Punch",
-          "AttackBonus": 40,
-          "DamageRange": "11-26"
-        },
-        {
-          "Type": "Punch",
-          "AttackBonus": 40,
-          "DamageRange": "11-26"
-        },
-        {
-          "Type": "Punch",
-          "AttackBonus": 40,
-          "DamageRange": "11-26"
-        }
-      ],
+      "Class": "default",
+      "Level": 17,
       "Flags": [],
-      "Experience": "84,000",
+      "Experience": "94,500",
       "Id": 2012
     },
     {
@@ -1048,32 +825,11 @@
       "ShortDescription": "Arachnos",
       "LongDescription": "Arachnos the Empress of Spiders welcomes you with an evil smile.",
       "Description": "She is a very attractive spider with an ornate gown.  She tempts you\ninto being one of her many slaves.  She does not possess the venomous\nfangs of normal spiders, but then, as you realize, she does not need\nthem.",
-      "Level": 26,
-      "Gold": 6000,
       "Sex": "Female",
-      "Hitpoints": 1300,
-      "Mana": 300,
-      "Moves": 1000,
-      "Armor": 70,
-      "Attacks": [
-        {
-          "Type": "Punch",
-          "AttackBonus": 70,
-          "DamageRange": "15-36"
-        },
-        {
-          "Type": "Punch",
-          "AttackBonus": 70,
-          "DamageRange": "15-36"
-        },
-        {
-          "Type": "Punch",
-          "AttackBonus": 70,
-          "DamageRange": "15-36"
-        }
-      ],
+      "Class": "default",
+      "Level": 26,
       "Flags": [],
-      "Experience": "278,460",
+      "Experience": "237,120",
       "Id": 2013
     },
     {
@@ -1083,32 +839,11 @@
       "ShortDescription": "the Ki-Rin",
       "LongDescription": "The Ki-Rin smiles good-naturedly to you.",
       "Description": "She is the last bastion of good in this realm.  Her mission is to\nsomeday free the slaves of the Empress.",
-      "Level": 26,
-      "Gold": 6000,
       "Sex": "Female",
-      "Hitpoints": 1300,
-      "Mana": 300,
-      "Moves": 1000,
-      "Armor": 70,
-      "Attacks": [
-        {
-          "Type": "Punch",
-          "AttackBonus": 70,
-          "DamageRange": "15-36"
-        },
-        {
-          "Type": "Punch",
-          "AttackBonus": 70,
-          "DamageRange": "15-36"
-        },
-        {
-          "Type": "Punch",
-          "AttackBonus": 70,
-          "DamageRange": "15-36"
-        }
-      ],
+      "Class": "default",
+      "Level": 26,
       "Flags": [],
-      "Experience": "278,460",
+      "Experience": "237,120",
       "Id": 2014
     },
     {
@@ -1120,27 +855,11 @@
       "ShortDescription": "the young dragon wormkin",
       "LongDescription": "A wormkin with no teeth plays here.",
       "Description": "Rather small, you almost feel sad in killing it.",
-      "Level": 10,
-      "Gold": 2000,
       "Sex": "Male",
-      "Hitpoints": 500,
-      "Mana": 100,
-      "Moves": 1000,
-      "Armor": 30,
-      "Attacks": [
-        {
-          "Type": "Claw",
-          "AttackBonus": 30,
-          "DamageRange": "8-18"
-        },
-        {
-          "Type": "Claw",
-          "AttackBonus": 30,
-          "DamageRange": "8-18"
-        }
-      ],
+      "Class": "default",
+      "Level": 10,
       "Flags": [],
-      "Experience": "20,800",
+      "Experience": "16,800",
       "Id": 2015
     },
     {
@@ -1152,27 +871,11 @@
       "ShortDescription": "the medium dragon wormkin",
       "LongDescription": "A wormkin that has grown a bit stares at you inquisitively.",
       "Description": "A medium-sized dragon--seems it hasn't killed anything yet by itself.",
-      "Level": 13,
-      "Gold": 2500,
       "Sex": "Male",
-      "Hitpoints": 600,
-      "Mana": 200,
-      "Moves": 1000,
-      "Armor": 30,
-      "Attacks": [
-        {
-          "Type": "Claw",
-          "AttackBonus": 30,
-          "DamageRange": "9-21"
-        },
-        {
-          "Type": "Claw",
-          "AttackBonus": 30,
-          "DamageRange": "9-21"
-        }
-      ],
+      "Class": "default",
+      "Level": 13,
       "Flags": [],
-      "Experience": "29,640",
+      "Experience": "34,542",
       "Id": 2016
     },
     {
@@ -1183,25 +886,9 @@
       "ShortDescription": "the huge, poisonous spider",
       "LongDescription": "A huge, poisonous spider is here.",
       "Description": "This disgusting creature is at the size of a human crawling on all four.  It\nhas eight hairy legs that gives it a tremendous speed on almost any surface and\nsharp poisonous fangs to paralyze or kill its prey.",
-      "Level": 8,
-      "Gold": 1500,
       "Sex": "Female",
-      "Hitpoints": 400,
-      "Mana": 100,
-      "Moves": 1000,
-      "Armor": 20,
-      "Attacks": [
-        {
-          "Type": "Punch",
-          "AttackBonus": 20,
-          "DamageRange": "7-15"
-        },
-        {
-          "Type": "Punch",
-          "AttackBonus": 20,
-          "DamageRange": "7-15"
-        }
-      ],
+      "Class": "default",
+      "Level": 8,
       "Flags": [],
       "Experience": "12,480",
       "Id": 2017
@@ -1214,32 +901,11 @@
       "ShortDescription": "the Queen Spider",
       "LongDescription": "The huge, bulky Queen Spider is here.",
       "Description": "This disgusting creature is at the size of a small elephant.  It has eight\nhuge, hairy legs that would give it a tremendous speed on almost any surface\nif it wasn't so immensely fat.  Its large, bulbous eyes stare back at you.",
-      "Level": 15,
-      "Gold": 3000,
       "Sex": "Female",
-      "Hitpoints": 700,
-      "Mana": 200,
-      "Moves": 1000,
-      "Armor": 40,
-      "Attacks": [
-        {
-          "Type": "Punch",
-          "AttackBonus": 40,
-          "DamageRange": "10-23"
-        },
-        {
-          "Type": "Punch",
-          "AttackBonus": 40,
-          "DamageRange": "10-23"
-        },
-        {
-          "Type": "Punch",
-          "AttackBonus": 40,
-          "DamageRange": "10-23"
-        }
-      ],
+      "Class": "default",
+      "Level": 15,
       "Flags": [],
-      "Experience": "64,680",
+      "Experience": "62,400",
       "Id": 2018
     }
   ],

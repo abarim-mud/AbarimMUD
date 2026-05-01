@@ -2,6 +2,7 @@
 using AbarimMUD.Utils;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
 {
@@ -59,25 +60,9 @@ namespace AbarimMUD.Data
 
 	public class Mobile : AreaEntity
 	{
-		public const int DefaultArmor = 0;
-		public const int DefaultGold = 100;
-		public const int DefaultHitpoints = 100;
-		public const int DefaultMana = 100;
-		public const int DefaultMoves = 1000;
-
-		private static readonly ValueRange AutoLevelArmor = new ValueRange(10, 250);
-		private static readonly ValueRange AutoLevelGold = new ValueRange(100, 20000);
-		private static readonly ValueRange AutoLevelHitpoints = new ValueRange(100, 5000);
-		private static readonly ValueRange AutoLevelMana = new ValueRange(100, 1000);
-		private static readonly ValueRange AutoLevelAttackBonus = new ValueRange(10, 250);
-		private static readonly ValueRange AutoLevelMinimumDamage = new ValueRange(4, 50);
-		private static readonly ValueRange AutoLevelMaximumDamage = new ValueRange(8, 120);
-		private static readonly int[] AutoLevelAttacks = new int[] { 3, 15, 30, 45, 60, 80, 100 };
-
-		private int _hitpoints = DefaultHitpoints, _mana = DefaultMana, _moves = DefaultMoves;
-		private int _armor = DefaultArmor;
+		private MobileClass _class;
 		private int _level;
-		private int _gold = DefaultGold;
+		private AttackType? _attackType = null;
 		private Shop _shop;
 
 		[Browsable(false)]
@@ -90,6 +75,24 @@ namespace AbarimMUD.Data
 		public string LongDescription { get; set; }
 
 		public string Description { get; set; }
+
+		public Sex Sex { get; set; }
+
+		public MobileClass Class
+		{
+			get => _class;
+
+			set
+			{
+				if (value == _class)
+				{
+					return;
+				}
+
+				_class = value;
+				InvalidateCreaturesOfThisTemplate();
+			}
+		}
 
 		public int Level
 		{
@@ -107,92 +110,95 @@ namespace AbarimMUD.Data
 			}
 		}
 
+		public AttackType? DefaultAttackType
+		{
+			get => _attackType;
+
+			set
+			{
+				if (value == _attackType)
+				{
+					return;
+				}
+
+				_attackType = value;
+				InvalidateCreaturesOfThisTemplate();
+			}
+		}
+
+		[OLCIgnore]
+		[JsonIgnore]
 		public int Gold
 		{
-			get => _gold;
-
-			set
+			get
 			{
-				if (value == _gold)
+				var result = Class.Gold.GetValue(Level).RoundDownToNearest(100);
+
+				if (result > 1000)
 				{
-					return;
+					if (result < 3000)
+					{
+						result = result.RoundUpToNearest(500);
+					}
+					else if (result < 10000)
+					{
+						result = result.RoundUpToNearest(1000);
+					}
+					else
+					{
+						result = result.RoundUpToNearest(5000);
+					}
 				}
 
-				_gold = value;
-				InvalidateCreaturesOfThisTemplate();
+				return result;
 			}
 		}
 
+		[OLCIgnore]
+		[JsonIgnore]
+		public int Hitpoints => Class.Hitpoints.GetValue(Level).RoundDownToNearest(100);
 
-		public Sex Sex { get; set; }
+		[OLCIgnore]
+		[JsonIgnore]
+		public int Mana => Class.Mana.GetValue(Level).RoundDownToNearest(100);
 
-		public int Hitpoints
+		[OLCIgnore]
+		[JsonIgnore]
+		public int Moves => Class.Moves.GetValue(Level);
+
+		[OLCIgnore]
+		[JsonIgnore]
+		public int Armor => Class.Armor.GetValue(Level).RoundDownToNearest(10);
+
+		[OLCIgnore]
+		[JsonIgnore]
+		public Attack[] Attacks
 		{
-			get => _hitpoints;
-
-			set
+			get
 			{
-				if (value == _hitpoints)
+				var result = new List<Attack>();
+
+				foreach (var info in Class.Attacks)
 				{
-					return;
+					if (info.MinimumLevel > Level)
+					{
+						continue;
+					}
+
+					var attackType = DefaultAttackType ?? AttackType.Hit;
+					if (info.Type != null)
+					{
+						attackType = info.Type.Value;
+					}
+
+					var attackBonus = info.AttackBonus.GetValue(Level).RoundDownToNearest(10);
+					var damage = new ValueRange(info.MinimumDamage.GetValue(Level), info.MaximumDamage.GetValue(Level));
+					result.Add(new Attack(attackType, attackBonus, damage));
 				}
 
-				_hitpoints = value;
-				InvalidateCreaturesOfThisTemplate();
+				return result.ToArray();
 			}
 		}
-
-		public int Mana
-		{
-			get => _mana;
-
-			set
-			{
-				if (value == _mana)
-				{
-					return;
-				}
-
-				_mana = value;
-				InvalidateCreaturesOfThisTemplate();
-			}
-		}
-
-		public int Moves
-		{
-			get => _moves;
-
-			set
-			{
-				if (value == _moves)
-				{
-					return;
-				}
-
-				_moves = value;
-				InvalidateCreaturesOfThisTemplate();
-			}
-		}
-
-		public int Armor
-		{
-			get => _armor;
-
-			set
-			{
-				if (value == _armor)
-				{
-					return;
-				}
-
-				_armor = value;
-				InvalidateCreaturesOfThisTemplate();
-			}
-		}
-
-		public Attack[] Attacks { get; set; }
-
-		public MobileSpecialAttack[] SpecialAttacks { get; set; }
 
 		public HashSet<MobileFlags> Flags { get; set; } = new HashSet<MobileFlags>();
 
@@ -222,6 +228,7 @@ namespace AbarimMUD.Data
 
 		public ExchangeShop ExchangeShop { get; set; }
 
+		[OLCIgnore]
 		public long Experience { get; set; }
 
 		public Mobile()
@@ -293,19 +300,10 @@ namespace AbarimMUD.Data
 				LongDescription = LongDescription,
 				Description = Description,
 				Level = Level,
+				Class = Class,
 				Sex = Sex,
-				Hitpoints = Hitpoints,
-				Mana = Mana,
-				Moves = Moves,
-				Armor = Armor,
-				Gold = Gold,
+				DefaultAttackType = DefaultAttackType,
 			};
-
-			clone.Attacks = new Attack[Attacks.Length];
-			for (var i = 0; i < clone.Attacks.Length; ++i)
-			{
-				clone.Attacks[i] = Attacks[i].Clone();
-			}
 
 			foreach (var word in Keywords)
 			{
@@ -322,74 +320,7 @@ namespace AbarimMUD.Data
 				clone.Flags.Add(flag);
 			}
 
-			if (SpecialAttacks != null && SpecialAttacks.Length > 0)
-			{
-				clone.SpecialAttacks = new MobileSpecialAttack[SpecialAttacks.Length];
-
-				for (var i = 0; i < clone.SpecialAttacks.Length; ++i)
-				{
-					clone.SpecialAttacks[i] = SpecialAttacks[i].Clone();
-				}
-			}
-
 			return clone;
-		}
-
-		/// <summary>
-		/// Sets the mobile parameters based on the level.
-		/// The level is set too.
-		/// </summary>
-		/// <param name="level"></param>
-		/// <param name=""></param>
-		public void SetAutoLevel(int level, AttackType attackType = AttackType.Hit)
-		{
-			Level = level;
-
-			Armor = AutoLevelArmor.GetValueByLevel(level).RoundDownToNearest(10);
-			Gold = AutoLevelGold.GetValueByLevel(level).RoundDownToNearest(100);
-
-			if (Gold > 1000)
-			{
-				if (Gold < 3000)
-				{
-					Gold = Gold.RoundUpToNearest(500);
-				}
-				else if (Gold < 10000)
-				{
-					Gold = Gold.RoundUpToNearest(1000);
-				}
-				else
-				{
-					Gold = Gold.RoundUpToNearest(5000);
-				}
-			}
-
-			Hitpoints = AutoLevelHitpoints.GetValueByLevel(level).RoundDownToNearest(100);
-			Mana = AutoLevelMana.GetValueByLevel(level).RoundDownToNearest(100);
-
-			var attackBonus = AutoLevelAttackBonus.GetValueByLevel(level).RoundDownToNearest(10);
-
-			var attacksCount = 1;
-			for (var i = 0; i < AutoLevelAttacks.Length; ++i)
-			{
-				var lvl = AutoLevelAttacks[i];
-				if (level < lvl)
-				{
-					break;
-				}
-
-				++attacksCount;
-			}
-
-			var damage = new ValueRange(AutoLevelMinimumDamage.GetValueByLevel(level), AutoLevelMaximumDamage.GetValueByLevel(level));
-
-			var attacks = new List<Attack>();
-			for (var i = 0; i < attacksCount; ++i)
-			{
-				attacks.Add(new Attack(attackType, attackBonus, damage));
-			}
-
-			Attacks = attacks.ToArray();
 		}
 
 		public bool MatchesKeyword(string keyword) => Keywords.StartsWithPattern(keyword);

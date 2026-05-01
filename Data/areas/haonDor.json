@@ -1171,25 +1171,9 @@
       "ShortDescription": "John the Lumberjack",
       "LongDescription": "John the Lumberjack is here, looking for some trees to chop down.",
       "Description": "He is six feet tall and looks quite strong, muscles bulging under his heavy,\nchequered shirt.  His features are worn with hard work and his expression is\none of a peaceful man leading a simple life.",
-      "Level": 6,
-      "Gold": 1500,
       "Sex": "Male",
-      "Hitpoints": 300,
-      "Mana": 100,
-      "Moves": 1000,
-      "Armor": 20,
-      "Attacks": [
-        {
-          "Type": "Slash",
-          "AttackBonus": 20,
-          "DamageRange": "6-13"
-        },
-        {
-          "Type": "Slash",
-          "AttackBonus": 20,
-          "DamageRange": "6-13"
-        }
-      ],
+      "Class": "default",
+      "Level": 6,
       "Flags": [],
       "Experience": "7,200",
       "Id": 1000
@@ -1201,25 +1185,9 @@
       "ShortDescription": "the brown bear",
       "LongDescription": "A big, brown, angry-looking bear is here.",
       "Description": "The bear is a big, brown, furry animal with very large claws and very sharp\nteeth.  It doesn't resemble those cute little thingies from toy shops at all.",
-      "Level": 8,
-      "Gold": 1500,
       "Sex": "Female",
-      "Hitpoints": 400,
-      "Mana": 100,
-      "Moves": 1000,
-      "Armor": 20,
-      "Attacks": [
-        {
-          "Type": "Claw",
-          "AttackBonus": 20,
-          "DamageRange": "7-15"
-        },
-        {
-          "Type": "Claw",
-          "AttackBonus": 20,
-          "DamageRange": "7-15"
-        }
-      ],
+      "Class": "default",
+      "Level": 8,
       "Flags": [],
       "Experience": "12,480",
       "Id": 1001
@@ -1231,27 +1199,11 @@
       "ShortDescription": "the ferocious rabbit",
       "LongDescription": "A ferocious rabbit is here, glaring hungrily at you.",
       "Description": "This small, furry creature with long ears and big feet has been attacked by\nthe dreaded rabbit rabies, a horrible disease that turns helpless and innocent\nrabbits into ferocious and bloodthirsty monsters.",
-      "Level": 3,
-      "Gold": 500,
       "Sex": "Female",
-      "Hitpoints": 100,
-      "Mana": 100,
-      "Moves": 1000,
-      "Armor": 10,
-      "Attacks": [
-        {
-          "Type": "Pound",
-          "AttackBonus": 10,
-          "DamageRange": "4-10"
-        },
-        {
-          "Type": "Pound",
-          "AttackBonus": 10,
-          "DamageRange": "4-10"
-        }
-      ],
+      "Class": "default",
+      "Level": 3,
       "Flags": [],
-      "Experience": "1,540",
+      "Experience": "3,080",
       "Id": 1002
     },
     {
@@ -1261,20 +1213,9 @@
       "ShortDescription": "the fallow deer",
       "LongDescription": "A fallow deer is grazing peacefully here.",
       "Description": "She is a graceful creature on long, slender legs, and with large, brown eyes\nlooking back at you with an air of watchful interest.",
-      "Level": 2,
-      "Gold": 300,
       "Sex": "Female",
-      "Hitpoints": 100,
-      "Mana": 100,
-      "Moves": 1000,
-      "Armor": 10,
-      "Attacks": [
-        {
-          "Type": "Pound",
-          "AttackBonus": 10,
-          "DamageRange": "4-9"
-        }
-      ],
+      "Class": "default",
+      "Level": 2,
       "Flags": [],
       "Experience": "660",
       "Id": 1003
@@ -1286,20 +1227,9 @@
       "ShortDescription": "the brown fox",
       "LongDescription": "A brown fox is here, looking for some rabbits to chew up.",
       "Description": "It is a large fox with beautiful, red-brown fur and a long, thick brush.",
-      "Level": 2,
-      "Gold": 300,
       "Sex": "Female",
-      "Hitpoints": 100,
-      "Mana": 100,
-      "Moves": 1000,
-      "Armor": 10,
-      "Attacks": [
-        {
-          "Type": "Bite",
-          "AttackBonus": 10,
-          "DamageRange": "4-9"
-        }
-      ],
+      "Class": "default",
+      "Level": 2,
       "Flags": [],
       "Experience": "660",
       "Id": 1004
@@ -1312,27 +1242,11 @@
       "ShortDescription": "the vicious warg",
       "LongDescription": "A vicious warg is here, snarling angrily at you.",
       "Description": "It is an exceptionally large wolf with thick, black fur.  Saliva is dripping\nquickly from its long, white fangs.  It looks quite dangerous and very angry.",
-      "Level": 5,
-      "Gold": 900,
       "Sex": "Female",
-      "Hitpoints": 200,
-      "Mana": 100,
-      "Moves": 1000,
-      "Armor": 10,
-      "Attacks": [
-        {
-          "Type": "Bite",
-          "AttackBonus": 10,
-          "DamageRange": "5-12"
-        },
-        {
-          "Type": "Bite",
-          "AttackBonus": 10,
-          "DamageRange": "5-12"
-        }
-      ],
+      "Class": "default",
+      "Level": 5,
       "Flags": [],
-      "Experience": "3,520",
+      "Experience": "5,940",
       "Id": 1005
     },
     {
@@ -1343,27 +1257,11 @@
       "ShortDescription": "the ferocious warg",
       "LongDescription": "A ferocious warg is here, snarling angrily at you.",
       "Description": "It is an exceptionally large wolf with thick, black fur.  Saliva is dripping\nquickly from its long, white fangs.  It looks quite dangerous and very angry.",
-      "Level": 5,
-      "Gold": 900,
       "Sex": "Female",
-      "Hitpoints": 200,
-      "Mana": 100,
-      "Moves": 1000,
-      "Armor": 10,
-      "Attacks": [
-        {
-          "Type": "Bite",
-          "AttackBonus": 10,
-          "DamageRange": "5-12"
-        },
-        {
-          "Type": "Bite",
-          "AttackBonus": 10,
-          "DamageRange": "5-12"
-        }
-      ],
+      "Class": "default",
+      "Level": 5,
       "Flags": [],
-      "Experience": "3,520",
+      "Experience": "5,940",
       "Id": 1006
     },
     {
@@ -1374,27 +1272,11 @@
       "ShortDescription": "the large, grey wolf",
       "LongDescription": "A large, grey wolf is here, glaring hungrily at you.",
       "Description": "The large, grey wolf eyes you with interest while licking its lips.",
-      "Level": 3,
-      "Gold": 500,
       "Sex": "Female",
-      "Hitpoints": 100,
-      "Mana": 100,
-      "Moves": 1000,
-      "Armor": 10,
-      "Attacks": [
-        {
-          "Type": "Bite",
-          "AttackBonus": 10,
-          "DamageRange": "4-10"
-        },
-        {
-          "Type": "Bite",
-          "AttackBonus": 10,
-          "DamageRange": "4-10"
-        }
-      ],
+      "Class": "default",
+      "Level": 3,
       "Flags": [],
-      "Experience": "1,540",
+      "Experience": "3,080",
       "Id": 1007
     },
     {
@@ -1405,27 +1287,11 @@
       "ShortDescription": "the large, black wolf",
       "LongDescription": "A large, black wolf is here, glaring hungrily at you.",
       "Description": "The large, black wolf eyes you with interest while licking its lips.",
-      "Level": 3,
-      "Gold": 500,
       "Sex": "Female",
-      "Hitpoints": 100,
-      "Mana": 100,
-      "Moves": 1000,
-      "Armor": 10,
-      "Attacks": [
-        {
-          "Type": "Bite",
-          "AttackBonus": 10,
-          "DamageRange": "4-10"
-        },
-        {
-          "Type": "Bite",
-          "AttackBonus": 10,
-          "DamageRange": "4-10"
-        }
-      ],
+      "Class": "default",
+      "Level": 3,
       "Flags": [],
-      "Experience": "1,540",
+      "Experience": "3,080",
       "Id": 1008
     },
     {
@@ -1436,32 +1302,11 @@
       "ShortDescription": "the huge, green dragon",
       "LongDescription": "A huge green dragon is here, its narrow yellow eyes glowing with rage.",
       "Description": "This enormous winged serpent has dark green scales covering most of its\ncolossal body.  Numerous holes in its heavy wings tell of many fights as does\nthe nicks in the horns on its head.  It smells as disgusting as only dragons\ndo.",
-      "Level": 25,
-      "Gold": 5000,
       "Sex": "Female",
-      "Hitpoints": 1200,
-      "Mana": 300,
-      "Moves": 1000,
-      "Armor": 60,
-      "Attacks": [
-        {
-          "Type": "Claw",
-          "AttackBonus": 60,
-          "DamageRange": "15-35"
-        },
-        {
-          "Type": "Claw",
-          "AttackBonus": 60,
-          "DamageRange": "15-35"
-        },
-        {
-          "Type": "Claw",
-          "AttackBonus": 60,
-          "DamageRange": "15-35"
-        }
-      ],
+      "Class": "default",
+      "Level": 25,
       "Flags": [],
-      "Experience": "230,400",
+      "Experience": "210,600",
       "Id": 1009
     },
     {
@@ -1472,27 +1317,11 @@
       "ShortDescription": "Shargugh",
       "LongDescription": "Shargugh the Forest Brownie is here, grinning broadly at you.",
       "Description": "This little fellow is only three foot tall with wild matted brown hair and long\ntangled brown beard.  He wears ragged brown and green clothing and looks as if\nhe is having great fun.",
-      "Level": 10,
-      "Gold": 2000,
       "Sex": "Male",
-      "Hitpoints": 500,
-      "Mana": 100,
-      "Moves": 1000,
-      "Armor": 30,
-      "Attacks": [
-        {
-          "Type": "Punch",
-          "AttackBonus": 30,
-          "DamageRange": "8-18"
-        },
-        {
-          "Type": "Punch",
-          "AttackBonus": 30,
-          "DamageRange": "8-18"
-        }
-      ],
+      "Class": "default",
+      "Level": 10,
       "Flags": [],
-      "Experience": "20,800",
+      "Experience": "16,800",
       "Id": 1010
     },
     {
@@ -1503,32 +1332,11 @@
       "ShortDescription": "the elder druid",
       "LongDescription": "The elder druid is here ... he looks very upset at your presence in his home.",
       "Description": "The druid looks quite old.  You would think him venerable, but you know\nhe would be a tough foe.",
-      "Level": 17,
-      "Gold": 4000,
       "Sex": "Male",
-      "Hitpoints": 800,
-      "Mana": 200,
-      "Moves": 1000,
-      "Armor": 40,
-      "Attacks": [
-        {
-          "Type": "Punch",
-          "AttackBonus": 40,
-          "DamageRange": "11-26"
-        },
-        {
-          "Type": "Punch",
-          "AttackBonus": 40,
-          "DamageRange": "11-26"
-        },
-        {
-          "Type": "Punch",
-          "AttackBonus": 40,
-          "DamageRange": "11-26"
-        }
-      ],
+      "Class": "default",
+      "Level": 17,
       "Flags": [],
-      "Experience": "84,000",
+      "Experience": "94,500",
       "Id": 1011
     },
     {
@@ -1539,20 +1347,9 @@
       "ShortDescription": "a bunny",
       "LongDescription": "A bunny rabbit hops around playfully.",
       "Description": "This rabbit is a small, furry animal with long hind legs and short front legs.\nIt has a round, compact body and a short, fluffy tail. It has large, round ears\nthat can move independently, and its eyes are situated on the sides of its head,\ngiving it a wide field of vision. Its fur is soft and gray. It has large, strong\nhind legs that it uses for jumping and running, and sharp claws that it uses for\ndigging burrows. It has large, flat teeth designed for chewing tough vegetation.\nOverall, this rabbit have a distinctive and recognizable appearance, with its\nsoft, round body and long hind legs making it look both cute and nimble.",
-      "Level": 1,
-      "Gold": 100,
       "Sex": "None",
-      "Hitpoints": 100,
-      "Mana": 100,
-      "Moves": 1000,
-      "Armor": 10,
-      "Attacks": [
-        {
-          "Type": "Pound",
-          "AttackBonus": 10,
-          "DamageRange": "4-8"
-        }
-      ],
+      "Class": "default",
+      "Level": 1,
       "Flags": [],
       "Experience": "660",
       "Id": 1012
@@ -1567,44 +1364,13 @@
       "ShortDescription": "the ranger guildmaster",
       "LongDescription": "Thalionorin Leafwhisperer, master of the rangers guild rests here waiting for the next student.",
       "Description": "A tall, lean, and muscular figure with piercing green eyes, long curly brown\nhair, and dons a suit of green and brown leather armor. Thalionorin is a skilled\nmaster ranger, holding a staff made from the wood of this massive. He is wise\nand compassionate, with a deep love for nature and its balance. As guildmaster,\nThalionorin trains and mentors new rangers while overseeing guild operations\nwith a fair but firm leadership style, earning the respect and reverence of all\nwho know him.",
-      "Level": 51,
-      "Gold": 15000,
       "Sex": "Male",
-      "Hitpoints": 2500,
-      "Mana": 500,
-      "Moves": 1000,
-      "Armor": 130,
-      "Attacks": [
-        {
-          "Type": "Punch",
-          "AttackBonus": 130,
-          "DamageRange": "27-64"
-        },
-        {
-          "Type": "Punch",
-          "AttackBonus": 130,
-          "DamageRange": "27-64"
-        },
-        {
-          "Type": "Punch",
-          "AttackBonus": 130,
-          "DamageRange": "27-64"
-        },
-        {
-          "Type": "Punch",
-          "AttackBonus": 130,
-          "DamageRange": "27-64"
-        },
-        {
-          "Type": "Punch",
-          "AttackBonus": 130,
-          "DamageRange": "27-64"
-        }
-      ],
+      "Class": "default",
+      "Level": 51,
       "Flags": [
         "Sentinel"
       ],
-      "Experience": "2,961,250",
+      "Experience": "2,456,550",
       "Id": 1013
     },
     {
@@ -1616,39 +1382,13 @@
       "ShortDescription": "the ranger guild guard",
       "LongDescription": "The ranger guild guard is alert here, scanning the shadows and bushes for\nsomeone trying to sneak into the guild.",
       "Description": "Dressed in green and brown leather armor adorned with nature-inspired designs,\nthis ranger guard blends in seamlessly with the surrounding forest. The ranger\nis peaceful sort, preferring to use non-lethal means to subdue intruders\nwhenever possible, using deadly force only as a last resort to protect the\nliving tree and its guild members.",
-      "Level": 40,
-      "Gold": 8000,
       "Sex": "Male",
-      "Hitpoints": 2000,
-      "Mana": 400,
-      "Moves": 1000,
-      "Armor": 100,
-      "Attacks": [
-        {
-          "Type": "Slash",
-          "AttackBonus": 100,
-          "DamageRange": "22-52"
-        },
-        {
-          "Type": "Slash",
-          "AttackBonus": 100,
-          "DamageRange": "22-52"
-        },
-        {
-          "Type": "Slash",
-          "AttackBonus": 100,
-          "DamageRange": "22-52"
-        },
-        {
-          "Type": "Slash",
-          "AttackBonus": 100,
-          "DamageRange": "22-52"
-        }
-      ],
+      "Class": "default",
+      "Level": 40,
       "Flags": [
         "Sentinel"
       ],
-      "Experience": "1,184,000",
+      "Experience": "907,200",
       "Id": 1014
     },
     {
@@ -1659,20 +1399,9 @@
       "ShortDescription": "the cute rabbit",
       "LongDescription": "A cute rabbit is here.",
       "Description": "It is a small, furry creature with long ears and big feet.",
-      "Level": 1,
-      "Gold": 100,
       "Sex": "None",
-      "Hitpoints": 100,
-      "Mana": 100,
-      "Moves": 1000,
-      "Armor": 10,
-      "Attacks": [
-        {
-          "Type": "Punch",
-          "AttackBonus": 10,
-          "DamageRange": "4-8"
-        }
-      ],
+      "Class": "default",
+      "Level": 1,
       "Flags": [
         "AssistRace"
       ],

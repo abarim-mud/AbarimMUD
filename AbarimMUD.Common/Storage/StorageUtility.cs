@@ -19,6 +19,7 @@ namespace AbarimMUD.Storage
 			UrContext.Register(Ability.Storage);
 			UrContext.Register(Skill.Storage);
 			UrContext.Register(PlayerClass.Storage);
+			UrContext.Register(MobileClass.Storage);
 			UrContext.Register(Area.Storage);
 			UrContext.Register(Account.Storage);
 			UrContext.Register(Character.Storage);
