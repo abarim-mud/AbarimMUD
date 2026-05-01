@@ -80,6 +80,10 @@ namespace AbarimMUD.Data
 				HitpointsBase = Hitpoints.GetValue(level),
 				ManaBase = Mana.GetValue(level),
 				MovesBase = Moves.GetValue(level),
+				HolyResistance = Configuration.DefaultHolyResistance,
+				FireResistance = Configuration.DefaultFireResistance,
+				ColdResistance = Configuration.DefaultColdResistance,
+				ShockResistance = Configuration.DefaultShockResistance
 			};
 		}
 

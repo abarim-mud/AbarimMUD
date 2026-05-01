@@ -20,6 +20,7 @@ namespace AbarimMUD.Data
 
 		[OLCIgnore]
 		public string Id { get; set; }
+		public string Name { get; set; }
 
 		public LeveledValue Armor { get; set; }
 		public LeveledValue Gold { get; set; }
@@ -27,6 +28,11 @@ namespace AbarimMUD.Data
 		public LeveledValue Mana { get; set; }
 		public LeveledValue Moves { get; set; }
 		public List<MobileClassAttackInfo> Attacks { get; set; } = new List<MobileClassAttackInfo>();
+
+		public LeveledValue? HolyResistance { get; set; }
+		public LeveledValue? FireResistance { get; set; }
+		public LeveledValue? ColdResistance { get; set; }
+		public LeveledValue? ShockResistance { get; set; }
 
 		public void Create() => Storage.Create(this);
 		public void Save() => Storage.Save(this);

@@ -105,9 +105,7 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 
 				SetValue(item, v);
 			}
-			else if (Type == typeof(HashSet<string>) ||
-				Type == typeof(List<string>) ||
-				Type == typeof(string[]))
+			else if (Type == typeof(HashSet<string>) || Type == typeof(List<string>) || Type == typeof(string[]))
 			{
 				object val;
 				if (Type == typeof(HashSet<string>))
@@ -203,6 +201,16 @@ namespace AbarimMUD.Commands.Builder.OLCUtils
 			else if (Type == typeof(PlayerClass))
 			{
 				var cls = context.EnsurePlayerClassById(s);
+				if (cls == null)
+				{
+					return false;
+				}
+
+				SetValue(item, cls);
+			}
+			else if (Type == typeof(MobileClass))
+			{
+				var cls = context.EnsureMobileClassById(s);
 				if (cls == null)
 				{
 					return false;

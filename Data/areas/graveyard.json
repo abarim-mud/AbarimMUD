@@ -428,7 +428,7 @@
       "LongDescription": "A ghastly ghoul is here.",
       "Description": "It is a walking corpse with long fangs and long, sharp nails that most of\nresemble claws.  Its eyes are a dark yellow colour and glare hungrily at you.",
       "Sex": "Male",
-      "Class": "default",
+      "Class": "undead",
       "Level": 8,
       "Flags": [
         "Sentinel",
@@ -464,7 +464,7 @@
       "LongDescription": "A dusty skeleton lies here.",
       "Description": "The dusty bones are almost brown.  It must have been buried for a very long\ntime.",
       "Sex": "Male",
-      "Class": "default",
+      "Class": "undead",
       "Level": 6,
       "Flags": [
         "Aggressive",
@@ -481,7 +481,7 @@
       "LongDescription": "A rotting zombie is staggering towards you with outstretched hands.",
       "Description": "Maggots crawl all over its decaying body.",
       "Sex": "Male",
-      "Class": "default",
+      "Class": "undead",
       "Level": 7,
       "Flags": [
         "Aggressive",

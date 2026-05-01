@@ -1,6 +1,6 @@
 {
-  "Id": "default",
-  "Name": "Default",
+  "Id": "undead",
+  "Name": "Undead",
   "Armor": "10+level*2",
   "Gold": "100+level*200",
   "Hitpoints": "100+level*50",
@@ -55,5 +55,8 @@
       "MinimumDamage": "4+level*0.5",
       "MaximumDamage": "8+level"
     }
-  ]
+  ],
+  "HolyResistance": "0",
+  "FireResistance": "-25",
+  "ColdResistance": "75"
 }

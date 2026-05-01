@@ -156,23 +156,23 @@ namespace AbarimMUD.Data
 
 		[OLCIgnore]
 		[JsonIgnore]
-		public int Hitpoints => Class.Hitpoints.GetValue(Level).RoundDownToNearest(100);
+		private int Hitpoints => Class.Hitpoints.GetValue(Level).RoundDownToNearest(100);
 
 		[OLCIgnore]
 		[JsonIgnore]
-		public int Mana => Class.Mana.GetValue(Level).RoundDownToNearest(100);
+		private int Mana => Class.Mana.GetValue(Level).RoundDownToNearest(100);
 
 		[OLCIgnore]
 		[JsonIgnore]
-		public int Moves => Class.Moves.GetValue(Level);
+		private int Moves => Class.Moves.GetValue(Level);
 
 		[OLCIgnore]
 		[JsonIgnore]
-		public int Armor => Class.Armor.GetValue(Level).RoundDownToNearest(10);
+		private int Armor => Class.Armor.GetValue(Level).RoundDownToNearest(10);
 
 		[OLCIgnore]
 		[JsonIgnore]
-		public Attack[] Attacks
+		private Attack[] Attacks
 		{
 			get
 			{
@@ -199,6 +199,59 @@ namespace AbarimMUD.Data
 				return result.ToArray();
 			}
 		}
+
+		private int HolyResistance
+		{
+			get
+			{
+				if (Class.HolyResistance != null)
+				{
+					return Class.HolyResistance.Value.GetValue(Level);
+				}
+
+				return Configuration.DefaultHolyResistance;
+			}
+		}
+
+		private int FireResistance
+		{
+			get
+			{
+				if (Class.FireResistance != null)
+				{
+					return Class.FireResistance.Value.GetValue(Level);
+				}
+
+				return Configuration.DefaultFireResistance;
+			}
+		}
+
+		private int ColdResistance
+		{
+			get
+			{
+				if (Class.ColdResistance != null)
+				{
+					return Class.ColdResistance.Value.GetValue(Level);
+				}
+
+				return Configuration.DefaultColdResistance;
+			}
+		}
+
+		private int ShockResistance
+		{
+			get
+			{
+				if (Class.ShockResistance != null)
+				{
+					return Class.ShockResistance.Value.GetValue(Level);
+				}
+
+				return Configuration.DefaultShockResistance;
+			}
+		}
+
 
 		public HashSet<MobileFlags> Flags { get; set; } = new HashSet<MobileFlags>();
 
@@ -242,7 +295,11 @@ namespace AbarimMUD.Data
 				HitpointsBase = Hitpoints,
 				ManaBase = Mana,
 				MovesBase = Moves,
-				Armor = Armor
+				Armor = Armor,
+				HolyResistance = HolyResistance,
+				FireResistance = FireResistance,
+				ColdResistance = ColdResistance,
+				ShockResistance = ShockResistance
 			};
 
 			stats.Attacks.AddRange(Attacks);

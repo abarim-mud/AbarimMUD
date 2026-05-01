@@ -43,6 +43,11 @@ namespace AbarimMUD.Data
 		public int HealBonus { get; internal set; }
 		public int SpellBonus { get; internal set; }
 
+		public int HolyResistance { get; internal set; }
+		public int FireResistance { get; internal set; }
+		public int ColdResistance { get; internal set; }
+		public int ShockResistance { get; internal set; }
+
 		public int GetHitpointsRegen(bool isFighting)
 		{
 			var r = (int)((Configuration.HitpointsRegenPercentagePerMinute + HpRegenPercentage) * HitpointsBase / 100.0f);

@@ -176,9 +176,15 @@ namespace AbarimMUD.Commands.Player
 
 				var stats = creature.Stats;
 
-				var regen = stats.GetHitpointsRegen(lookContext.IsFighting);
-				sb.AppendLine($"Hitpoints: {creature.State.Hitpoints}/{stats.MaxHitpoints} + {regen}");
+				sb.AppendLine($"Hitpoints: {creature.State.Hitpoints}/{stats.MaxHitpoints} + {stats.GetHitpointsRegen(lookContext.IsFighting)}");
+				sb.AppendLine($"Mana: {creature.State.Mana}/{stats.MaxMana} + {stats.GetManaRegen(lookContext.IsFighting)}");
+				sb.AppendLine($"Moves: {creature.State.Moves}/{stats.MaxMoves} + {stats.GetMovesRegen(lookContext.IsFighting)}");
 				sb.AppendLine("Armor Class: " + creature.Stats.Armor);
+				sb.AppendLine("Holy Resistance: " + creature.Stats.HolyResistance);
+				sb.AppendLine("Fire Resistance: " + creature.Stats.FireResistance);
+				sb.AppendLine("Cold Resistance: " + creature.Stats.ColdResistance);
+				sb.AppendLine("Shock Resistance: " + creature.Stats.ShockResistance);
+
 				for (var i = 0; i < stats.Attacks.Count; i++)
 				{
 					var attack = stats.Attacks[i];
