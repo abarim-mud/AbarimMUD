@@ -228,7 +228,8 @@ namespace AbarimMUD
 
 						// Sleep
 						var passed = (int)(DateTime.Now - now).TotalMilliseconds;
-						_mainThreadEvent.WaitOne(PulseInMs - passed);
+						var waitTime = Math.Max(1, PulseInMs - passed);
+						_mainThreadEvent.WaitOne(waitTime);
 					}
 					catch (Exception ex)
 					{
