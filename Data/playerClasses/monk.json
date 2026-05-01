@@ -2,9 +2,9 @@
   "Id": "monk",
   "Name": "Monk",
   "Description": "Master of martial arts.",
-  "Hitpoints": "250-850",
-  "Mana": "200-500",
-  "Moves": "200-300",
+  "Hitpoints": "250+level*6",
+  "Mana": "200+level*3",
+  "Moves": "200+level*1",
   "StartingEquipment": [
     "greenLantern",
     "cloakOfRookie",

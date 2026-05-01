@@ -641,7 +641,7 @@
     },
     {
       "Name": "The spider web",
-      "Description": "You are walking along the narrow path, ducking under the sticky ropes as you\nadvance...\n\u003E\nA huge, poisonous spider drops from above!\nA huge, poisonous spider drops from above!\nA huge, poisonous spider drops from above!\n\u003E\nThe huge, poisonous spider stings you!  You resist the poison!\nThe huge, poisonous spider stings you!  You are poisoned!\nThe huge, poisonous spider stings you!  You are poisoned!\n\u003E\nYou\u0027ve fallen, and you can\u0027t get up!!!!!",
+      "Description": "You are walking along the narrow path, ducking under the sticky ropes as you\nadvance...\n>\nA huge, poisonous spider drops from above!\nA huge, poisonous spider drops from above!\nA huge, poisonous spider drops from above!\n>\nThe huge, poisonous spider stings you!  You resist the poison!\nThe huge, poisonous spider stings you!  You are poisoned!\nThe huge, poisonous spider stings you!  You are poisoned!\n>\nYou've fallen, and you can't get up!!!!!",
       "SectorType": "Inside",
       "Id": 1055
     },
@@ -798,7 +798,7 @@
     },
     {
       "Name": "The cultist temple.",
-      "Description": "This temple is built to some god that you don\u0027t worship.  It is a nice place\nto visit but you feel very uncomfortable about spending much time here.\nThe wooden altar seems almost to glow as you enter the room.  The only exit is\nthe way you came in.",
+      "Description": "This temple is built to some god that you don't worship.  It is a nice place\nto visit but you feel very uncomfortable about spending much time here.\nThe wooden altar seems almost to glow as you enter the room.  The only exit is\nthe way you came in.",
       "SectorType": "Cave",
       "MobileSpawns": [
         "1011"
@@ -1151,7 +1151,7 @@
     },
     {
       "Name": "Deep Within the Massive Living Tree",
-      "Description": "Deep within the heart of the giant living tree, there is a small, cozy room\nwhere the guildmaster awaits his students. The room is adorned with\nintricate wooden carvings and tapestries depicting woodland scenes, and the\nwalls are lined with shelves holding various weapons, scrolls, and books. A\nlarge wooden desk sits in the center of the room, and behind it sits the\nguildmaster\u0027s chair, carved from a single piece of oak. The room is lit by\nflickering candles, giving it a warm and inviting glow. This is where the\nguildmaster interviews and advances his students, imparting his knowledge\nand wisdom upon them as they progress through the ranks of the guild. The\nair in the room is heavy with the scent of parchment and ink, and the sound\nof rustling leaves can be heard faintly in the background, reminding all\nwho enter of the forest\u0027s presence.",
+      "Description": "Deep within the heart of the giant living tree, there is a small, cozy room\nwhere the guildmaster awaits his students. The room is adorned with\nintricate wooden carvings and tapestries depicting woodland scenes, and the\nwalls are lined with shelves holding various weapons, scrolls, and books. A\nlarge wooden desk sits in the center of the room, and behind it sits the\nguildmaster's chair, carved from a single piece of oak. The room is lit by\nflickering candles, giving it a warm and inviting glow. This is where the\nguildmaster interviews and advances his students, imparting his knowledge\nand wisdom upon them as they progress through the ranks of the guild. The\nair in the room is heavy with the scent of parchment and ink, and the sound\nof rustling leaves can be heard faintly in the background, reminding all\nwho enter of the forest's presence.",
       "SectorType": "Forest",
       "MobileSpawns": [
         "1013"
@@ -1200,7 +1200,7 @@
       ],
       "ShortDescription": "the brown bear",
       "LongDescription": "A big, brown, angry-looking bear is here.",
-      "Description": "The bear is a big, brown, furry animal with very large claws and very sharp\nteeth.  It doesn\u0027t resemble those cute little thingies from toy shops at all.",
+      "Description": "The bear is a big, brown, furry animal with very large claws and very sharp\nteeth.  It doesn't resemble those cute little thingies from toy shops at all.",
       "Level": 8,
       "Gold": 1500,
       "Sex": "Female",

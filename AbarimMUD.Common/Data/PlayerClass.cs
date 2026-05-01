@@ -9,7 +9,7 @@ namespace AbarimMUD.Data
 	public class PlayerClass : IStoredInFile
 	{
 		public static readonly MultipleFilesStorage<PlayerClass> Storage = new PlayerClasses();
-		private ValueRange _hitpoints, _mana, _moves;
+		private LeveledValue _hitpoints, _mana, _moves;
 
 		[OLCIgnore]
 		public string Id { get; set; }
@@ -17,7 +17,7 @@ namespace AbarimMUD.Data
 		public string Name { get; set; }
 		public string Description { get; set; }
 
-		public ValueRange Hitpoints
+		public LeveledValue Hitpoints
 		{
 			get => _hitpoints;
 
@@ -33,7 +33,7 @@ namespace AbarimMUD.Data
 			}
 		}
 
-		public ValueRange Mana
+		public LeveledValue Mana
 		{
 			get => _mana;
 
@@ -49,7 +49,7 @@ namespace AbarimMUD.Data
 			}
 		}
 
-		public ValueRange Moves
+		public LeveledValue Moves
 		{
 			get => _moves;
 
@@ -77,9 +77,9 @@ namespace AbarimMUD.Data
 		{
 			return new CreatureStats
 			{
-				HitpointsBase = Hitpoints.GetValueByLevel(level),
-				ManaBase = Mana.GetValueByLevel(level),
-				MovesBase = Moves.GetValueByLevel(level),
+				HitpointsBase = Hitpoints.GetValue(level),
+				ManaBase = Mana.GetValue(level),
+				MovesBase = Moves.GetValue(level),
 			};
 		}
 

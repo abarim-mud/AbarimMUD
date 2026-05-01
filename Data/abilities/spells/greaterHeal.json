@@ -5,7 +5,7 @@
   "MovesCost": 0,
   "ManaCost": 55,
   "MessageHitTarget": "Your wounds disappear.",
-  "MessageHitRoom": "{user.Name}\u0027s wounds disappear.",
+  "MessageHitRoom": "{user.Name}'s wounds disappear.",
   "InstantEffects": [
     "Heal:150"
   ],

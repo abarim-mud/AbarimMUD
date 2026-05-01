@@ -222,7 +222,7 @@
     },
     {
       "Name": "Communer Lane",
-      "Description": "Magical spheres of light replace street lamps here, illuminating the pathway\nalmost as well as the high-noon sun. Some strange etchings appear on various \nwalls and windowsills, like some secret language revealing a higher knowledge\nof things beyond understanding. The lane continues north and south, the\npaladin\u0027s guild lies to the east.",
+      "Description": "Magical spheres of light replace street lamps here, illuminating the pathway\nalmost as well as the high-noon sun. Some strange etchings appear on various \nwalls and windowsills, like some secret language revealing a higher knowledge\nof things beyond understanding. The lane continues north and south, the\npaladin's guild lies to the east.",
       "SectorType": "City",
       "MobileSpawns": [
         "11"
@@ -270,7 +270,7 @@
       "Id": 23
     },
     {
-      "Name": "Wendy\u0027s Shop of Magic",
+      "Name": "Wendy's Shop of Magic",
       "Description": "Bells ring as you enter the shop, signaling the owner a patron has entered.\nA long smooth counter lines one wall of the room, clear of all clutter except\nfor a large crystal ball. Strange devices hang from hooks in the ceiling along\none wall, while the other side is lined with shelves containing various plants\nand shrubs.",
       "SectorType": "Inside",
       "MobileSpawns": [
@@ -322,7 +322,7 @@
     },
     {
       "Name": "The Paladins Guidance",
-      "Description": "You see one single elder here sitting on a cold stone chair, completely lacking\nany cushion for comfort. While still gripping his ancient sword and shield, you\ncan\u0027t help but notice the scars across both his face and forearms. Symbols of\ncampaigns to rescue the innocent fill the single mural on the wall.",
+      "Description": "You see one single elder here sitting on a cold stone chair, completely lacking\nany cushion for comfort. While still gripping his ancient sword and shield, you\ncan't help but notice the scars across both his face and forearms. Symbols of\ncampaigns to rescue the innocent fill the single mural on the wall.",
       "SectorType": "Inside",
       "MobileSpawns": [
         "10"
@@ -469,7 +469,7 @@
     },
     {
       "Name": "Thiefs Guild",
-      "Description": "Entry into this room is by invitation only. A large sign at the entrance lists\n10 rules you can never break, the first of which states \u0022Death to any who break\n3 or more of the following rules!\u0022 Full sized statues wearing various types of\nclothing are arranged throughout the room, many a thief practicing their pick\npocket skills.",
+      "Description": "Entry into this room is by invitation only. A large sign at the entrance lists\n10 rules you can never break, the first of which states \"Death to any who break\n3 or more of the following rules!\" Full sized statues wearing various types of\nclothing are arranged throughout the room, many a thief practicing their pick\npocket skills.",
       "SectorType": "Inside",
       "Exits": {
         "North": 45,
@@ -660,7 +660,7 @@
     },
     {
       "Name": "hollow tree",
-      "Description": "You have stepped into a huge, hollow tree. Despite the large area hollowed out,\nthe living tree seems health and strong. The inner cavity is covered in thick\nbark, protecting itself from it\u0027s intruders. Thick grass mixed with moss line\nthe ground, making it a comfortable place to take a rest.",
+      "Description": "You have stepped into a huge, hollow tree. Despite the large area hollowed out,\nthe living tree seems health and strong. The inner cavity is covered in thick\nbark, protecting itself from it's intruders. Thick grass mixed with moss line\nthe ground, making it a comfortable place to take a rest.",
       "SectorType": "Forest",
       "MobileSpawns": [
         "21"
@@ -790,7 +790,7 @@
     },
     {
       "Name": "Shapeshifters Guild",
-      "Description": "The entrance to the shapeshifters guild is an imposing stone archway, carved\nwith intricate patterns and symbols that represent the shapeshifters\u0027 connection\nto nature and their ability to transform into various creatures. At the\nentrance, a high-level shapeshifter stands guard, their animal form radiating a\nsense of power and strength. The shapeshifter observes anyone who approaches,\ngauging their intentions and testing their respect for nature before allowing\nthem entry.",
+      "Description": "The entrance to the shapeshifters guild is an imposing stone archway, carved\nwith intricate patterns and symbols that represent the shapeshifters' connection\nto nature and their ability to transform into various creatures. At the\nentrance, a high-level shapeshifter stands guard, their animal form radiating a\nsense of power and strength. The shapeshifter observes anyone who approaches,\ngauging their intentions and testing their respect for nature before allowing\nthem entry.",
       "SectorType": "Inside",
       "Exits": {
         "North": 72,
@@ -1017,7 +1017,7 @@
     },
     {
       "Name": "Axe and Dagger",
-      "Description": "As you enter you notice a huge sign on the wall which states \u0022We will not be\nheld responsible for accidents or bloodshed within the establishment.\u0022 Row\nupon row of smaller daggers and swords are displayed on open tables, weapon\nstands along the walls contain taller weapons such as staffs and polearms. All\nappear freshly sharpened and ready for immediate use.",
+      "Description": "As you enter you notice a huge sign on the wall which states \"We will not be\nheld responsible for accidents or bloodshed within the establishment.\" Row\nupon row of smaller daggers and swords are displayed on open tables, weapon\nstands along the walls contain taller weapons such as staffs and polearms. All\nappear freshly sharpened and ready for immediate use.",
       "SectorType": "Inside",
       "MobileSpawns": [
         "3"
@@ -1062,7 +1062,7 @@
     },
     {
       "Name": "Park Avenue",
-      "Description": "This avenue is so pristine you could eat off the ground. Mansions line the road\nwhere the city leaders and the rich live. Multiple signs can be seen on both\nsides of the avenue, all stating rules about what can and can\u0027t be done, such\nas \u0022Keep of the grass\u0022 or \u0022Stay to the right.\u0022",
+      "Description": "This avenue is so pristine you could eat off the ground. Mansions line the road\nwhere the city leaders and the rich live. Multiple signs can be seen on both\nsides of the avenue, all stating rules about what can and can't be done, such\nas \"Keep of the grass\" or \"Stay to the right.\"",
       "SectorType": "Inside",
       "Exits": {
         "East": 22,
@@ -1072,7 +1072,7 @@
     },
     {
       "Name": "Park Avenue",
-      "Description": "This avenue is so pristine you could eat off the ground. Mansions line the road \nwhere the city leaders and the rich live. Multiple signs can be seen on both\nsides of the avenue, all stating rules about what can and can\u0027t be done, such\nas \u0022Keep of the grass\u0022 or \u0022Stay to the right.\u0022",
+      "Description": "This avenue is so pristine you could eat off the ground. Mansions line the road \nwhere the city leaders and the rich live. Multiple signs can be seen on both\nsides of the avenue, all stating rules about what can and can't be done, such\nas \"Keep of the grass\" or \"Stay to the right.\"",
       "SectorType": "Inside",
       "Exits": {
         "East": 96,
@@ -1082,7 +1082,7 @@
     },
     {
       "Name": "Park Avenue Intersection",
-      "Description": "This avenue is so pristine you could eat off the ground. Multiple signs can be seen on both\nsides of the avenue, all stating rules about what can and can\u0027t be done, such\nas \u0022Keep of the grass\u0022 or \u0022Stay to the right.\u0022 Pearl Avenue lies to the north.",
+      "Description": "This avenue is so pristine you could eat off the ground. Multiple signs can be seen on both\nsides of the avenue, all stating rules about what can and can't be done, such\nas \"Keep of the grass\" or \"Stay to the right.\" Pearl Avenue lies to the north.",
       "SectorType": "Inside",
       "Exits": {
         "North": 99,
@@ -1093,7 +1093,7 @@
     },
     {
       "Name": "Pearl Avenue",
-      "Description": "This avenue is so pristine you could eat off the ground. Mansions line the road \nwhere the city leaders and the rich live. Multiple signs can be seen on both\nsides of the avenue, all stating rules about what can and can\u0027t be done, such\nas \u0022Keep of the grass\u0022 or \u0022Stay to the right.\u0022",
+      "Description": "This avenue is so pristine you could eat off the ground. Mansions line the road \nwhere the city leaders and the rich live. Multiple signs can be seen on both\nsides of the avenue, all stating rules about what can and can't be done, such\nas \"Keep of the grass\" or \"Stay to the right.\"",
       "SectorType": "Inside",
       "Exits": {
         "North": 102,
@@ -1103,7 +1103,7 @@
     },
     {
       "Name": "Park Avenue",
-      "Description": "This avenue is so pristine you could eat off the ground. Mansions line the road \nwhere the city leaders and the rich live. Multiple signs can be seen on both\nsides of the avenue, all stating rules about what can and can\u0027t be done, such\nas \u0022Keep of the grass\u0022 or \u0022Stay to the right.\u0022",
+      "Description": "This avenue is so pristine you could eat off the ground. Mansions line the road \nwhere the city leaders and the rich live. Multiple signs can be seen on both\nsides of the avenue, all stating rules about what can and can't be done, such\nas \"Keep of the grass\" or \"Stay to the right.\"",
       "SectorType": "Inside",
       "Exits": {
         "East": 98,
@@ -1113,7 +1113,7 @@
     },
     {
       "Name": "Park Avenue",
-      "Description": "This avenue is so pristine you could eat off the ground. Mansions line the road \nwhere the city leaders and the rich live. Multiple signs can be seen on both\nsides of the avenue, all stating rules about what can and can\u0027t be done, such\nas \u0022Keep of the grass\u0022 or \u0022Stay to the right.",
+      "Description": "This avenue is so pristine you could eat off the ground. Mansions line the road \nwhere the city leaders and the rich live. Multiple signs can be seen on both\nsides of the avenue, all stating rules about what can and can't be done, such\nas \"Keep of the grass\" or \"Stay to the right.",
       "SectorType": "Inside",
       "Exits": {
         "East": 100,
@@ -1145,7 +1145,7 @@
     },
     {
       "Name": "Monks Guild",
-      "Description": "A serene stillness fills the entrance of the Monk\u0027s Guild, where faint incense lingers\nin the air. A stone fountain at the center flows endlessly, symbolizing balance and discipline.\nPolished wooden beams overhead bear ancient teachings, while a scroll on the eastern\nwall outlines the guild\u0027s tenets.",
+      "Description": "A serene stillness fills the entrance of the Monk's Guild, where faint incense lingers\nin the air. A stone fountain at the center flows endlessly, symbolizing balance and discipline.\nPolished wooden beams overhead bear ancient teachings, while a scroll on the eastern\nwall outlines the guild's tenets.",
       "SectorType": "Inside",
       "Exits": {
         "North": 105,
@@ -2050,7 +2050,7 @@
       ],
       "ShortDescription": "the healer",
       "LongDescription": "A healer is here, selling spells.",
-      "Description": "Although retired from adventuring, the healer still lends a hand. Type \u0027heal\u0027 to see a listing of spells.",
+      "Description": "Although retired from adventuring, the healer still lends a hand. Type 'heal' to see a listing of spells.",
       "Level": 55,
       "Gold": 15000,
       "Sex": "Male",
@@ -2100,7 +2100,7 @@
       ],
       "ShortDescription": "the cityguard",
       "LongDescription": "A cityguard is here, guarding the gate alertly.",
-      "Description": "The city guard stands tall and imposing on the streets, their broad shoulders\nand sturdy frame making them a reassuring presence for the citizens. They have a\nstrong jawline, a straight nose, and piercing green eyes that reflect their\nvigilance and attention to detail. Their hair is a short crop, styled in a\npractical manner that doesn\u0027t distract from their duties. Their skin is rough\nand tanned from the sun, bearing the marks of a life spent outdoors. They carry\nthemselves with confidence and authority, their posture straight and their gait\nsteady. Despite their intimidating appearance, they are known to have a stern\nbut fair demeanor, earning the respect of the people they serve and protect.",
+      "Description": "The city guard stands tall and imposing on the streets, their broad shoulders\nand sturdy frame making them a reassuring presence for the citizens. They have a\nstrong jawline, a straight nose, and piercing green eyes that reflect their\nvigilance and attention to detail. Their hair is a short crop, styled in a\npractical manner that doesn't distract from their duties. Their skin is rough\nand tanned from the sun, bearing the marks of a life spent outdoors. They carry\nthemselves with confidence and authority, their posture straight and their gait\nsteady. Despite their intimidating appearance, they are known to have a stern\nbut fair demeanor, earning the respect of the people they serve and protect.",
       "Level": 15,
       "Gold": 3000,
       "Sex": "None",
@@ -2141,7 +2141,7 @@
       ],
       "ShortDescription": "Thane the blacksmith",
       "LongDescription": "Blacksmith Thane Ironjaw stands at the counter, waiting for your order.",
-      "Description": "Thane Ironjaw is a towering, broad-shouldered man with the physique of\nsomeone who has spent a lifetime hammering steel. His arms are thick with muscle,\nbearing countless burn scars from stray embers and molten metal. A long, grizzled beard,\nonce deep auburn, now streaked with silver, frames his square jaw, giving him the look\nof a battle-hardened veteran. His dark eyes gleam like tempered steel, ever watchful over\nhis shop\u0027s wares and ers alike. His leather apron, heavy with soot, smells faintly of\niron and sweat, and his hands, calloused and strong, move with practiced ease as he\ninspects blades and hammers.",
+      "Description": "Thane Ironjaw is a towering, broad-shouldered man with the physique of\nsomeone who has spent a lifetime hammering steel. His arms are thick with muscle,\nbearing countless burn scars from stray embers and molten metal. A long, grizzled beard,\nonce deep auburn, now streaked with silver, frames his square jaw, giving him the look\nof a battle-hardened veteran. His dark eyes gleam like tempered steel, ever watchful over\nhis shop's wares and ers alike. His leather apron, heavy with soot, smells faintly of\niron and sweat, and his hands, calloused and strong, move with practiced ease as he\ninspects blades and hammers.",
       "Level": 50,
       "Gold": 10000,
       "Sex": "Male",
@@ -2657,7 +2657,7 @@
       ],
       "ShortDescription": "the guild guard",
       "LongDescription": "A guard is here, protecting the bards guild from intruders.",
-      "Description": "The guard is a formidable figure, standing tall and proud at the entrance to\nthe bard\u0027s guild. She is dressed in gleaming silver armor, adorned with musical\nnotes etched in gold. Her long cape, made of the finest velvet, flows in the\nbreeze, while her helmet is shaped like a lyre, symbolizing the music she\nprotects. In one hand, she holds a wooden dagger, the blade made of a magical\nwood that never breaks and the point shining like a star. In the other hand,\nshe carrys a lute, ready to strum a tune if needed.",
+      "Description": "The guard is a formidable figure, standing tall and proud at the entrance to\nthe bard's guild. She is dressed in gleaming silver armor, adorned with musical\nnotes etched in gold. Her long cape, made of the finest velvet, flows in the\nbreeze, while her helmet is shaped like a lyre, symbolizing the music she\nprotects. In one hand, she holds a wooden dagger, the blade made of a magical\nwood that never breaks and the point shining like a star. In the other hand,\nshe carrys a lute, ready to strum a tune if needed.",
       "Level": 50,
       "Gold": 10000,
       "Sex": "Female",
@@ -2915,7 +2915,7 @@
       ],
       "ShortDescription": "a vicious serpent",
       "LongDescription": "A vicious serpent is here, serving its master.",
-      "Description": "A long, sinuous serpent with smooth scales and a flickering tongue is here. Its\nbody is lithe and flexible, able to move swiftly and gracefully through the\nunderbrush. Its scales are a shade of green with black spots, and it has a\ntriangular head with sharp fangs. The serpent\u0027s eyes appear to be be keen and\nwatchful, and it moves with a fluid, serpentine grace.",
+      "Description": "A long, sinuous serpent with smooth scales and a flickering tongue is here. Its\nbody is lithe and flexible, able to move swiftly and gracefully through the\nunderbrush. Its scales are a shade of green with black spots, and it has a\ntriangular head with sharp fangs. The serpent's eyes appear to be be keen and\nwatchful, and it moves with a fluid, serpentine grace.",
       "Level": 1,
       "Gold": 100,
       "Sex": "None",

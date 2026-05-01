@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Ur;
@@ -9,6 +10,7 @@ namespace AbarimMUD.Utils
 	{
 		private static readonly LongConverterType LongConverter = new LongConverterType();
 		private static readonly ValueRangeConverterType ValueRangeConverter = new ValueRangeConverterType();
+		private static readonly LeveledValueConverterType LeveledValueConverter = new LeveledValueConverterType();
 
 		private class LongConverterType : JsonConverter<long>
 		{
@@ -43,12 +45,30 @@ namespace AbarimMUD.Utils
 			}
 		}
 
+		private class LeveledValueConverterType : JsonConverter<LeveledValue>
+		{
+			public override LeveledValue Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+			{
+				var value = reader.GetString();
+
+				return LeveledValue.Parse(value);
+			}
+
+			public override void Write(Utf8JsonWriter writer, LeveledValue value, JsonSerializerOptions options)
+			{
+				writer.WriteStringValue(value.ToString());
+			}
+		}
+
 		public static JsonSerializerOptions CreateOptions()
 		{
 			var result = UrContext.CreateDefaultOptions();
 
+			result.Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping;
+
 			result.Converters.Add(LongConverter);
 			result.Converters.Add(ValueRangeConverter);
+			result.Converters.Add(LeveledValueConverter);
 
 			return result;
 		}

@@ -2,9 +2,9 @@
   "Id": "cleric",
   "Name": "Cleric",
   "Description": "Master of healing and bane of the undead.",
-  "Hitpoints": "200-700",
-  "Mana": "250-700",
-  "Moves": "100-200",
+  "Hitpoints": "200+level*5",
+  "Mana": "250+level*4",
+  "Moves": "100+level*1",
   "StartingEquipment": [
     "greenLantern",
     "cloakOfRookie",

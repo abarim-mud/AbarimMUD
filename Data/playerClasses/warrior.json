@@ -2,9 +2,9 @@
   "Id": "warrior",
   "Name": "Warrior",
   "Description": "Master of armor and sword.",
-  "Hitpoints": "300-1000",
-  "Mana": "150-450",
-  "Moves": "150-250",
+  "Hitpoints": "300+level*7",
+  "Mana": "150+level*3",
+  "Moves": "150+level*1",
   "StartingEquipment": [
     "greenLantern",
     "cloakOfRookie",

@@ -5,7 +5,7 @@
   "MovesCost": 0,
   "ManaCost": 15,
   "MessageHitUser": "Your magic missile strikes {target.Name}{info}!",
-  "MessageHitRoom": "{user.Name}\u0027s magic missile strikes {target.Name}!",
+  "MessageHitRoom": "{user.Name}'s magic missile strikes {target.Name}!",
   "InstantEffects": [
     "MagicDamage:6-12"
   ],

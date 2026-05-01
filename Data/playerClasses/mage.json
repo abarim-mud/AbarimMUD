@@ -2,9 +2,9 @@
   "Id": "mage",
   "Name": "Mage",
   "Description": "Master of magic.",
-  "Hitpoints": "150-650",
-  "Mana": "300-800",
-  "Moves": "100-200",
+  "Hitpoints": "150+level*5",
+  "Mana": "300+level*5",
+  "Moves": "100+level*1",
   "StartingEquipment": [
     "greenLantern",
     "cloakOfRookie",

@@ -153,7 +153,7 @@
     },
     {
       "Name": "Fuzzy Tree Limb",
-      "Description": "You are on a \u0022fuzzy\u0022 tree limb.  Interesting, since the branches\nseem to have \u0022hairs\u0022 sprouting from its bark.  As you look\ncloser you see millions of aphids covering each limb.",
+      "Description": "You are on a \"fuzzy\" tree limb.  Interesting, since the branches\nseem to have \"hairs\" sprouting from its bark.  As you look\ncloser you see millions of aphids covering each limb.",
       "SectorType": "Cave",
       "Exits": {
         "South": 2012,
@@ -238,7 +238,7 @@
     },
     {
       "Name": "The Slave Pit",
-      "Description": "You have entered the slave pit.  A voice blares in the distance,\n\u0022Get back to work, maggots!\u0022  Rails upon rails of mined gold and silver\nclutter the trail beneath you.",
+      "Description": "You have entered the slave pit.  A voice blares in the distance,\n\"Get back to work, maggots!\"  Rails upon rails of mined gold and silver\nclutter the trail beneath you.",
       "SectorType": "Cave",
       "Exits": {
         "North": 2022,
@@ -268,7 +268,7 @@
     },
     {
       "Name": "A Leader Strand",
-      "Description": "This strand is weightier, more sturdy.  It shimmers as you step on\nit.  You are definitely not in the Midgaardian realms anymore.  Just\nwhere you are you can\u0027t tell.  It feels like you\u0027re moving through\nether.  You can still get back down to more surer lands.",
+      "Description": "This strand is weightier, more sturdy.  It shimmers as you step on\nit.  You are definitely not in the Midgaardian realms anymore.  Just\nwhere you are you can't tell.  It feels like you're moving through\nether.  You can still get back down to more surer lands.",
       "SectorType": "Inside",
       "MobileSpawns": [
         "2008"
@@ -366,7 +366,7 @@
     },
     {
       "Name": "The Tenuous Strand",
-      "Description": "Very windy here since it goes up into the sky somewhat.\nStill, it\u0027s safe enough to move around.",
+      "Description": "Very windy here since it goes up into the sky somewhat.\nStill, it's safe enough to move around.",
       "SectorType": "Inside",
       "Exits": {
         "East": 2031,
@@ -376,7 +376,7 @@
       "Id": 2032
     },
     {
-      "Name": "The Elder Wormkin\u0027s Room",
+      "Name": "The Elder Wormkin's Room",
       "Description": "A more mature wormkin it seems resides here.  Various tomes of\narcane lore clutter the area, along with shards of armor and weaponry.",
       "SectorType": "Inside",
       "MobileSpawns": [
@@ -399,7 +399,7 @@
       "Id": 2034
     },
     {
-      "Name": "The Bird Spider\u0027s Lair",
+      "Name": "The Bird Spider's Lair",
       "Description": "This is a big game hunter among most spiders.  Crush jewels\nand other weapons suggest the inhabitant must have powerful jaws.\nBeware!",
       "SectorType": "Inside",
       "MobileSpawns": [
@@ -465,8 +465,8 @@
       "Id": 2040
     },
     {
-      "Name": "Yevaud\u0027s Lair",
-      "Description": "Yevaud, the Usurper of Midgaard, resides here.  A voice cries\nout, \u0022BEWARE, the Usurper of Midgaard lives here!  FLEE while you can!\u0022\nBut even Yevaud has his master...or so you deduce.",
+      "Name": "Yevaud's Lair",
+      "Description": "Yevaud, the Usurper of Midgaard, resides here.  A voice cries\nout, \"BEWARE, the Usurper of Midgaard lives here!  FLEE while you can!\"\nBut even Yevaud has his master...or so you deduce.",
       "SectorType": "Inside",
       "MobileSpawns": [
         "2001"
@@ -478,7 +478,7 @@
     },
     {
       "Name": "A Link in the Ethereal Web",
-      "Description": "This is another link in the ethereal web.  Various creatures\nseem to get caught (or hypnotized) by its sticky strands.  A single\nspider line lies to the north, while ghastly seemings are due\nsouthward.  The grim entrance of Arachnos\u0027 Lair is downward.",
+      "Description": "This is another link in the ethereal web.  Various creatures\nseem to get caught (or hypnotized) by its sticky strands.  A single\nspider line lies to the north, while ghastly seemings are due\nsouthward.  The grim entrance of Arachnos' Lair is downward.",
       "SectorType": "Inside",
       "Exits": {
         "North": 2048,
@@ -498,7 +498,7 @@
       "Id": 2043
     },
     {
-      "Name": "The Guardian\u0027s Room",
+      "Name": "The Guardian's Room",
       "Description": "A chair sits here for a tireless guardian who ensures that no\nsoul escapes.  The room is undecorated.",
       "SectorType": "Inside",
       "MobileSpawns": [
@@ -564,8 +564,8 @@
       "Id": 2049
     },
     {
-      "Name": "The Hermit\u0027s Corner",
-      "Description": "Here you see evidence of a vagrant\u0027s abode.  The shack is to the\neast, if you dare enter it.  You get the sneaking feeling you should\ngo back now.  The skies above you darken and roar with the laughter\nof thunder.",
+      "Name": "The Hermit's Corner",
+      "Description": "Here you see evidence of a vagrant's abode.  The shack is to the\neast, if you dare enter it.  You get the sneaking feeling you should\ngo back now.  The skies above you darken and roar with the laughter\nof thunder.",
       "SectorType": "Inside",
       "MobileSpawns": [
         "2010"
@@ -577,14 +577,14 @@
       "Id": 2050
     },
     {
-      "Name": "Mahatma\u0027s Inescapable Trap",
-      "Description": "Mahatma, that silly thief, is here, and he steals everything you\nhave.  He says, \u0027Here, have a quick trip to the Temple of Midgaard.\u0027\nHe plunges a black dagger into your back ...",
+      "Name": "Mahatma's Inescapable Trap",
+      "Description": "Mahatma, that silly thief, is here, and he steals everything you\nhave.  He says, 'Here, have a quick trip to the Temple of Midgaard.'\nHe plunges a black dagger into your back ...",
       "SectorType": "Inside",
       "Id": 2051
     },
     {
-      "Name": "The Entrance to the Arachnos\u0027 Lair",
-      "Description": "All strands inevitably lead here, the center of the web, the\nentrance to Arachnos\u0027 Lair.",
+      "Name": "The Entrance to the Arachnos' Lair",
+      "Description": "All strands inevitably lead here, the center of the web, the\nentrance to Arachnos' Lair.",
       "SectorType": "Inside",
       "Exits": {
         "North": 2053,
@@ -594,7 +594,7 @@
     },
     {
       "Name": "The Sticky Chamber",
-      "Description": "You can still bail out since your knees are shaking from the\nanticipation (or is it fear?).  The sky is clear on this strand of\nweb, surprisingly unsticky.  The strand does not vibrate like the\nothers.  A few ballooning spiders pass by, cackling \u0022You\u0027re gonna\ndie, you\u0027re gonna fry.  Good bye!\u0022",
+      "Description": "You can still bail out since your knees are shaking from the\nanticipation (or is it fear?).  The sky is clear on this strand of\nweb, surprisingly unsticky.  The strand does not vibrate like the\nothers.  A few ballooning spiders pass by, cackling \"You're gonna\ndie, you're gonna fry.  Good bye!\"",
       "SectorType": "Inside",
       "Exits": {
         "North": 2054,
@@ -604,7 +604,7 @@
     },
     {
       "Name": "The Great Door",
-      "Description": "Before you you see a large, web-like door.  Various designs\nof ancient runes and names of Midgaard heroes are etched into\nthe webwork.  Perhaps lists of victims?  You can\u0027t tell.",
+      "Description": "Before you you see a large, web-like door.  Various designs\nof ancient runes and names of Midgaard heroes are etched into\nthe webwork.  Perhaps lists of victims?  You can't tell.",
       "SectorType": "Inside",
       "Exits": {
         "North": 2055,
@@ -729,7 +729,7 @@
         "orc"
       ],
       "ShortDescription": "the orc",
-      "LongDescription": "The orc is stuck in the web and he can\u0027t get out.",
+      "LongDescription": "The orc is stuck in the web and he can't get out.",
       "Description": "You notice an evil look in his eyes.",
       "Level": 5,
       "Gold": 900,
@@ -791,7 +791,7 @@
         "drone"
       ],
       "ShortDescription": "the drone spider",
-      "LongDescription": "The drone spider walks around doing her master\u0027s bidding.",
+      "LongDescription": "The drone spider walks around doing her master's bidding.",
       "Description": "An ordinary drone spider.",
       "Level": 6,
       "Gold": 1500,
@@ -944,7 +944,7 @@
         "hermit"
       ],
       "ShortDescription": "the Hermit",
-      "LongDescription": "The Hermit sits here and warns, \u0022Go back before it\u0027s too late!\u0022",
+      "LongDescription": "The Hermit sits here and warns, \"Go back before it's too late!\"",
       "Description": "A dishevelled veteran warrior in disguise is what he is, but he\nmeans well.",
       "Level": 7,
       "Gold": 1500,
@@ -1151,7 +1151,7 @@
       ],
       "ShortDescription": "the medium dragon wormkin",
       "LongDescription": "A wormkin that has grown a bit stares at you inquisitively.",
-      "Description": "A medium-sized dragon--seems it hasn\u0027t killed anything yet by itself.",
+      "Description": "A medium-sized dragon--seems it hasn't killed anything yet by itself.",
       "Level": 13,
       "Gold": 2500,
       "Sex": "Male",
@@ -1213,7 +1213,7 @@
       ],
       "ShortDescription": "the Queen Spider",
       "LongDescription": "The huge, bulky Queen Spider is here.",
-      "Description": "This disgusting creature is at the size of a small elephant.  It has eight\nhuge, hairy legs that would give it a tremendous speed on almost any surface\nif it wasn\u0027t so immensely fat.  Its large, bulbous eyes stare back at you.",
+      "Description": "This disgusting creature is at the size of a small elephant.  It has eight\nhuge, hairy legs that would give it a tremendous speed on almost any surface\nif it wasn't so immensely fat.  Its large, bulbous eyes stare back at you.",
       "Level": 15,
       "Gold": 3000,
       "Sex": "Female",

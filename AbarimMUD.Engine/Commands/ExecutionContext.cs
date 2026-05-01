@@ -491,14 +491,14 @@ namespace AbarimMUD.Commands
 			// Append level up messages
 			for (var level = lastLevel + 1; level <= character.Level; ++level)
 			{
-				var previousHp = character.Class.Hitpoints.GetValueByLevel(level - 1);
-				var newHp = character.Class.Hitpoints.GetValueByLevel(level);
+				var previousHp = character.Class.Hitpoints.GetValue(level - 1);
+				var newHp = character.Class.Hitpoints.GetValue(level);
 
-				var previousMana = character.Class.Mana.GetValueByLevel(level - 1);
-				var newMana = character.Class.Mana.GetValueByLevel(level);
+				var previousMana = character.Class.Mana.GetValue(level - 1);
+				var newMana = character.Class.Mana.GetValue(level);
 
-				var previousMoves = character.Class.Moves.GetValueByLevel(level - 1);
-				var newMoves = character.Class.Moves.GetValueByLevel(level);
+				var previousMoves = character.Class.Moves.GetValue(level - 1);
+				var newMoves = character.Class.Moves.GetValue(level);
 
 				Send($"Welcome to the level {level}! You gained {newHp - previousHp} hitpoints, {newMana - previousMana} mana and {newMoves - previousMoves} moves.");
 				if (level % 10 == 0)
