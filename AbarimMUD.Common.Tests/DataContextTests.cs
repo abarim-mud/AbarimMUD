@@ -129,7 +129,6 @@ namespace AbarimMUD.Common.Tests
 				Id = area.NextMobileId,
 				ShortDescription = "a test mobile",
 				Level = 1,
-				Attacks = new Attack[1] { DefaultAttack }
 			};
 			area.Mobiles.Add(mobile);
 			area.Create();
