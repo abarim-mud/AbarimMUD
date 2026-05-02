@@ -31,7 +31,12 @@ namespace AbarimMUD.Data
 		MartialArtsAttacksCount,
 		MartialArtsAttackBonus,
 		MartialArtsDamage,
-		DamageReduction,
+		PhysicalResistance,
+		MagicResistance,
+		HolyResistance,
+		FireResistance,
+		ColdResistance,
+		ShockResistance,
 		HealBonus,
 		SpellBonus
 	}

@@ -39,10 +39,11 @@ namespace AbarimMUD.Data
 		public List<AbilityPower> Abilities { get; } = new List<AbilityPower>();
 		public int BuyPriceRebatePercentage { get; internal set; }
 		public int SellPriceBonusPercentage { get; internal set; }
-		public int DamageReduction { get; internal set; }
 		public int HealBonus { get; internal set; }
 		public int SpellBonus { get; internal set; }
 
+		public int PhysicalResistance { get; internal set; }
+		public int MagicResistance { get; internal set; }
 		public int HolyResistance { get; internal set; }
 		public int FireResistance { get; internal set; }
 		public int ColdResistance { get; internal set; }
@@ -251,8 +252,23 @@ namespace AbarimMUD.Data
 						}
 					}
 					break;
-				case ModifierType.DamageReduction:
-					DamageReduction += val;
+				case ModifierType.PhysicalResistance:
+					PhysicalResistance += val;
+					break;
+				case ModifierType.MagicResistance:
+					MagicResistance += val;
+					break;
+				case ModifierType.HolyResistance:
+					HolyResistance += val;
+					break;
+				case ModifierType.FireResistance:
+					FireResistance += val;
+					break;
+				case ModifierType.ColdResistance:
+					ColdResistance += val;
+					break;
+				case ModifierType.ShockResistance:
+					ShockResistance += val;
 					break;
 				case ModifierType.HealBonus:
 					HealBonus += val;

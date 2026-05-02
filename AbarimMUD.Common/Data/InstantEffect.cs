@@ -5,7 +5,12 @@ namespace AbarimMUD.Data
 	public enum InstantEffectType
 	{
 		Heal,
-		MagicDamage
+		MagicDamage,
+		HolyDamage,
+		FireDamage,
+		ColdDamage,
+		ShockDamage,
+		ChaosDamage
 	}
 
 	public class InstantEffect

@@ -22,13 +22,13 @@ namespace AbarimMUD.Commands
 
 		public static bool DoSocial(this Social social, ExecutionContext context, string data)
 		{
-			var player = context.Creature;
+			var user = context.Creature;
 			var variables = new Dictionary<string, string>()
 			{
-				{ "player.name", player.ShortDescription },
-				{ "player.pronoun1", player.Sex.GetPronoun1() },
-				{ "player.pronoun2", player.Sex.GetPronoun2() },
-				{ "player.pronoun3", player.Sex.GetPronoun3() }
+				{ "user.name", user.ShortDescription },
+				{ "user.pronoun1", user.Sex.GetPronoun1() },
+				{ "user.pronoun2", user.Sex.GetPronoun2() },
+				{ "user.pronoun3", user.Sex.GetPronoun3() }
 			};
 
 			data = data.Trim();

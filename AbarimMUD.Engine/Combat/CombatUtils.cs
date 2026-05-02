@@ -218,5 +218,22 @@ namespace AbarimMUD.Combat
 		{
 			return $"{targetName} evades {attackType.GetAttackNoun()} of {attackerName}.";
 		}
+
+		public static int ApplyResistance(int damage, int resistance)
+		{
+			if (resistance == 0)
+			{
+				return damage;
+			}
+
+
+			if (resistance >= 100)
+			{
+				return 0;
+			}
+
+			var k = 1.0f - resistance / 100.0f;
+			return (int)(damage * k);
+		}
 	}
 }

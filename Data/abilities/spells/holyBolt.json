@@ -1,0 +1,14 @@
+{
+  "Id": "holyBolt",
+  "Name": "holy bolt",
+  "Type": "Spell",
+  "MovesCost": 0,
+  "ManaCost": 15,
+  "InstantEffects": [
+    "HolyDamage:6-12"
+  ],
+  "Flags": [
+    "Offensive",
+    "FightSkill"
+  ]
+}

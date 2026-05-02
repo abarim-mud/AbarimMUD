@@ -71,6 +71,37 @@ namespace AbarimMUD.Commands.Player
 			context.Send($"Moves: {state.Moves}/{stats.MaxMoves} + {regen}");
 
 			context.Send("Armor: " + stats.Armor);
+
+			if (stats.PhysicalResistance != 0)
+			{
+				context.Send("Physical Resistance: " + stats.PhysicalResistance);
+			}
+
+			if (stats.MagicResistance != 0)
+			{
+				context.Send("Magic Resistance: " + stats.MagicResistance);
+			}
+
+			if (stats.HolyResistance != Configuration.DefaultHolyResistance)
+			{
+				context.Send("Holy Resistance: " + stats.HolyResistance);
+			}
+
+			if (stats.FireResistance != Configuration.DefaultFireResistance)
+			{
+				context.Send("Fire Resistance: " + stats.FireResistance);
+			}
+
+			if (stats.ColdResistance != Configuration.DefaultColdResistance)
+			{
+				context.Send("Cold Resistance: " + stats.ColdResistance);
+			}
+
+			if (stats.ShockResistance != Configuration.DefaultShockResistance)
+			{
+				context.Send("Shock Resistance: " + stats.ShockResistance);
+			}
+
 			for (var i = 0; i < stats.Attacks.Count; i++)
 			{
 				var attack = stats.Attacks[i];

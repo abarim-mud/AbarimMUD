@@ -5,7 +5,8 @@
   "Levels": [
     {
       "Abilities": {
-        "cureLightWounds": 0
+        "cureLightWounds": 0,
+        "holyBolt": 0
       }
     },
     {

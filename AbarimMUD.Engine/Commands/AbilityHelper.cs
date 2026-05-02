@@ -17,12 +17,31 @@ namespace AbarimMUD.Commands
 		private const string DefaultMessageKillUser = "You kill {target.name} with {ability}{info}.";
 		private const string DefaultMessageKillRoom = "{user.name} kills {target.name} with {ability}{info}.";
 
+		private struct DamageInfo
+		{
+			public int PhysicalDamage { get; set; }
+			public int MagicDamage { get; set; }
+			public int HolyDamage { get; set; }
+			public int FireDamage { get; set; }
+			public int ColdDamage { get; set; }
+			public int ShockDamage { get; set; }
+			public int ChaosDamage { get; set; }
+
+			public int TotalDamage => PhysicalDamage + MagicDamage + HolyDamage + FireDamage + ColdDamage + ShockDamage + ChaosDamage;
+		}
+
 		private static string FormatMessage(string message, ExecutionContext user, Ability ability, ExecutionContext target, string weapon, string info)
 		{
 			var variables = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
 			{
 				{ "user.name", user.ShortDescription },
+				{ "user.pronoun1", user.Sex.GetPronoun1()  },
+				{ "user.pronoun2", user.Sex.GetPronoun2() },
+				{ "user.pronoun3", user.Sex.GetPronoun3() },
 				{ "target.name", target.ShortDescription },
+				{ "target.pronoun1", target.Sex.GetPronoun1() },
+				{ "target.pronoun2", target.Sex.GetPronoun2() },
+				{ "target.pronoun3", target.Sex.GetPronoun3() },
 				{ "ability", ability.Name },
 				{ "weapon", weapon },
 				{ "info", info }
@@ -196,7 +215,7 @@ namespace AbarimMUD.Commands
 					break;
 				}
 
-				var totalDamage = 0;
+				var damage = new DamageInfo();
 				var weaponStr = weapon != null ? weapon.Info.ShortDescription : string.Empty;
 				AttackRollResult? physicalAttackRoll = null;
 				if (ability.Flags.Contains(AbilityFlags.Offensive) && ability.Type == AbilityType.Physical)
@@ -220,7 +239,7 @@ namespace AbarimMUD.Commands
 					physicalAttackRoll = attackRoll;
 
 					// Now roll the damage
-					totalDamage = physicalDamageRoller();
+					damage.PhysicalDamage = physicalDamageRoller();
 				}
 
 				// Apply affects
@@ -245,7 +264,27 @@ namespace AbarimMUD.Commands
 								break;
 
 							case InstantEffectType.MagicDamage:
-								totalDamage += power;
+								damage.MagicDamage += power;
+								break;
+							
+							case InstantEffectType.HolyDamage:
+								damage.HolyDamage += power;
+								break;
+							
+							case InstantEffectType.FireDamage:
+								damage.FireDamage += power;
+								break;
+							
+							case InstantEffectType.ColdDamage:
+								damage.ColdDamage += power;
+								break;
+							
+							case InstantEffectType.ShockDamage:
+								damage.ShockDamage += power;
+								break;
+							
+							case InstantEffectType.ChaosDamage:
+								damage.ChaosDamage += power;
 								break;
 						}
 					}
@@ -256,23 +295,41 @@ namespace AbarimMUD.Commands
 					context.Send($"You cast '{ability.Name}'.");
 				}
 
-				target.Creature.State.Hitpoints -= totalDamage;
+				// Apply resistances
+				damage.PhysicalDamage = CombatUtils.ApplyResistance(damage.PhysicalDamage, target.Stats.PhysicalResistance);
+				damage.MagicDamage = CombatUtils.ApplyResistance(damage.MagicDamage, target.Stats.MagicResistance);
+
+				// Elemental damages path through corresponding resistance than through the magic resistance
+				damage.HolyDamage = CombatUtils.ApplyResistance(damage.HolyDamage, target.Stats.HolyResistance);
+				damage.HolyDamage = CombatUtils.ApplyResistance(damage.HolyDamage, target.Stats.MagicResistance);
+
+				damage.FireDamage = CombatUtils.ApplyResistance(damage.FireDamage, target.Stats.FireResistance);
+				damage.FireDamage = CombatUtils.ApplyResistance(damage.FireDamage, target.Stats.MagicResistance);
+
+				damage.ColdDamage = CombatUtils.ApplyResistance(damage.ColdDamage, target.Stats.ColdResistance);
+				damage.ColdDamage = CombatUtils.ApplyResistance(damage.ColdDamage, target.Stats.MagicResistance);
+
+				damage.ShockDamage = CombatUtils.ApplyResistance(damage.ShockDamage, target.Stats.ShockResistance);
+				damage.ShockDamage = CombatUtils.ApplyResistance(damage.ShockDamage, target.Stats.MagicResistance);	
+
+
+				target.Creature.State.Hitpoints -= damage.TotalDamage;
 
 				info = string.Empty;
 				switch (fightDetails)
 				{
 					case FightDetails.Damage:
-						info = totalDamage.ToString();
+						info = damage.TotalDamage.ToString();
 						break;
 
 					case FightDetails.All:
 						if (physicalAttackRoll != null)
 						{
-							info = physicalAttackRoll.Value.AttackRoll + ", " + totalDamage;
+							info = physicalAttackRoll.Value.AttackRoll + ", " + damage.TotalDamage;
 						}
 						else
 						{
-							info = totalDamage.ToString();
+							info = damage.TotalDamage.ToString();
 						}
 						break;
 				}

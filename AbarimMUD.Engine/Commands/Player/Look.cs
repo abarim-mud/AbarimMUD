@@ -180,6 +180,8 @@ namespace AbarimMUD.Commands.Player
 				sb.AppendLine($"Mana: {creature.State.Mana}/{stats.MaxMana} + {stats.GetManaRegen(lookContext.IsFighting)}");
 				sb.AppendLine($"Moves: {creature.State.Moves}/{stats.MaxMoves} + {stats.GetMovesRegen(lookContext.IsFighting)}");
 				sb.AppendLine("Armor Class: " + creature.Stats.Armor);
+				sb.AppendLine("Physical Resistance: " + creature.Stats.PhysicalResistance);
+				sb.AppendLine("Magic Resistance: " + creature.Stats.MagicResistance);
 				sb.AppendLine("Holy Resistance: " + creature.Stats.HolyResistance);
 				sb.AppendLine("Fire Resistance: " + creature.Stats.FireResistance);
 				sb.AppendLine("Cold Resistance: " + creature.Stats.ColdResistance);

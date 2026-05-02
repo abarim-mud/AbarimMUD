@@ -12,7 +12,7 @@
   "Price": 800000000,
   "Affects": {
     "Armor": 120,
-    "DamageReduction": 20
+    "PhysicalResistance": 20
   },
   "Flags": [
     "HideFromEquipmentList"

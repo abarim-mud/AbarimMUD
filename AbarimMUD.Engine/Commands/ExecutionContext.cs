@@ -91,6 +91,7 @@ namespace AbarimMUD.Commands
 
 		public CreatureStats Stats => Creature.Stats;
 		public CreatureState State => Creature.State;
+		public Sex Sex => Creature.Sex;
 
 		public Room Room
 		{
