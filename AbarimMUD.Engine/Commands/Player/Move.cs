@@ -37,7 +37,7 @@ namespace AbarimMUD.Commands.Player
 
 			// Notify inhabits of the source room about the leave
 			var dirName = _dir.GetName();
-			context.Send($"You go {dirName}.");
+			context.Send(string.Empty);
 			context.SendRoomExceptMe(string.Format("{0} leaves {1}.", context.ShortDescription, dirName));
 
 			// Perform the movement

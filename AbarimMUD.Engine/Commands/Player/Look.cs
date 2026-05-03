@@ -17,8 +17,6 @@ namespace AbarimMUD.Commands.Player
 				name += string.Format(" #{0}", room.Id);
 			}
 
-			name += $" ({room.SectorType})";
-
 			sb.AppendLine(name);
 			sb.Append("[reset]");
 			sb.Append("   ");
