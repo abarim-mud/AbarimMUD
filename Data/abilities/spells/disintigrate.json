@@ -1,0 +1,14 @@
+{
+  "Id": "disintigrate",
+  "Name": "disintigrate",
+  "Type": "Spell",
+  "MovesCost": 0,
+  "ManaCost": 20,
+  "InstantEffects": [
+    "MagicDamage:55-60"
+  ],
+  "Flags": [
+    "Offensive",
+    "FightSkill"
+  ]
+}

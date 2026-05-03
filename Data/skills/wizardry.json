@@ -30,12 +30,13 @@
     },
     {
       "Abilities": {
-        "armor": 5
+        "armor": 5,
+        "iceRay": 0
       }
     },
     {
       "Abilities": {
-        "iceRay": 0
+        "disintigrate": 0
       }
     },
     {
