@@ -1,0 +1,14 @@
+{
+  "Id": "fireBall",
+  "Name": "fire ball",
+  "Type": "Spell",
+  "MovesCost": 0,
+  "ManaCost": 15,
+  "InstantEffects": [
+    "FireDamage:35-45"
+  ],
+  "Flags": [
+    "Offensive",
+    "FightSkill"
+  ]
+}
