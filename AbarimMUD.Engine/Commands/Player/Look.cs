@@ -9,16 +9,8 @@ namespace AbarimMUD.Commands.Player
 		private string BuildRoomDescription(ExecutionContext context, Room room)
 		{
 			var sb = new StringBuilder();
-			sb.Append("[cyan]");
 
-			var name = room.Name;
-			if (context.IsStaff)
-			{
-				name += string.Format(" #{0}", room.Id);
-			}
-
-			sb.AppendLine(name);
-			sb.Append("[reset]");
+			sb.AppendLine($"[cyan]#{room.Id}: {room.Name}[reset]");
 			sb.Append("   ");
 			sb.AppendLine(room.Description);
 			sb.Append("[cyan]");

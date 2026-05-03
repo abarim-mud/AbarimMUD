@@ -13,7 +13,11 @@
         "armor": 10
       }
     },
-    {},
+    {
+      "Abilities": {
+        "lightningBolt": 0
+      }
+    },
     {
       "Abilities": {
         "armor": 5

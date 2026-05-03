@@ -1,0 +1,14 @@
+{
+  "Id": "lightningBolt",
+  "Name": "lightning bolt",
+  "Type": "Spell",
+  "MovesCost": 0,
+  "ManaCost": 15,
+  "InstantEffects": [
+    "ShockDamage:20-25"
+  ],
+  "Flags": [
+    "Offensive",
+    "FightSkill"
+  ]
+}
