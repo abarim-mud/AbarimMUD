@@ -3,7 +3,7 @@
   "Name": "magic missile",
   "Type": "Spell",
   "MovesCost": 0,
-  "ManaCost": 15,
+  "ManaCost": 10,
   "MessageHitUser": "Your magic missile strikes {target.Name}{info}!",
   "MessageHitRoom": "{user.Name}'s magic missile strikes {target.Name}!",
   "InstantEffects": [

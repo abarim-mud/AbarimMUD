@@ -16,6 +16,7 @@ namespace AbarimMUD.Data
 
 		private class ConfigurationInstance
 		{
+			public bool UseColors { get; set; } = true;
 			public int MaximumLevel { get; set; }
 			public int ServerPort { get; set; }
 			public string WebServiceUrl { get; set; }
@@ -59,6 +60,7 @@ namespace AbarimMUD.Data
 
 		private static ConfigurationInstance Instance => InternalStorage.Item;
 
+		public static bool UseColors => Instance.UseColors;
 		public static int MaximumLevel => Instance.MaximumLevel;
 		public static int ServerPort => Instance.ServerPort;
 		public static string WebServiceUrl => Instance.WebServiceUrl;

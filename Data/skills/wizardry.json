@@ -41,7 +41,8 @@
     },
     {
       "Abilities": {
-        "armor": 5
+        "armor": 5,
+        "fireWind": 0
       }
     },
     {},

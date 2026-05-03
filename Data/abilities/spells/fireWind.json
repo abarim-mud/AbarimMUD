@@ -1,11 +1,11 @@
 {
-  "Id": "holyBolt",
-  "Name": "holy bolt",
+  "Id": "fireWind",
+  "Name": "fire wind",
   "Type": "Spell",
   "MovesCost": 0,
-  "ManaCost": 10,
+  "ManaCost": 25,
   "InstantEffects": [
-    "HolyDamage:6-12"
+    "FireDamage:70-80"
   ],
   "Flags": [
     "Offensive",

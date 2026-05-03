@@ -2,6 +2,7 @@
 using System;
 using System.Reflection;
 using System.Text;
+using AbarimMUD.Data;
 
 namespace AbarimMUD.Utils
 {
@@ -118,7 +119,7 @@ namespace AbarimMUD.Utils
 							result.Append(commandBuffer);
 							result.Append(']');
 						}
-						else
+						else if (Configuration.UseColors)
 						{
 							result.Append(command);
 						}
