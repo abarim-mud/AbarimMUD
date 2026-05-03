@@ -41,14 +41,18 @@
     },
     {
       "Abilities": {
-        "armor": 5,
+        "armor": 5
+      }
+    },
+    {
+      "Abilities": {
         "fireWind": 0
       }
     },
-    {},
     {
       "Abilities": {
-        "armor": 5
+        "armor": 5,
+        "chaosBlast": 0
       }
     }
   ],

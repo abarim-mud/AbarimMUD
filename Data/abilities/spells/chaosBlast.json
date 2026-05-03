@@ -1,0 +1,15 @@
+{
+  "Id": "chaosBlast",
+  "Name": "chaos blast",
+  "Type": "Spell",
+  "PrimeClass": "mage",
+  "MovesCost": 0,
+  "ManaCost": 25,
+  "InstantEffects": [
+    "ChaosDamage:70-80"
+  ],
+  "Flags": [
+    "Offensive",
+    "FightSkill"
+  ]
+}
