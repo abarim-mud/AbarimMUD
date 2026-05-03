@@ -33,7 +33,11 @@
         "armor": 5
       }
     },
-    {},
+    {
+      "Abilities": {
+        "iceRay": 0
+      }
+    },
     {
       "Abilities": {
         "armor": 5

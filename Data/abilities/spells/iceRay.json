@@ -1,0 +1,14 @@
+{
+  "Id": "iceRay",
+  "Name": "ice ray",
+  "Type": "Spell",
+  "MovesCost": 0,
+  "ManaCost": 15,
+  "InstantEffects": [
+    "ColdDamage:45-50"
+  ],
+  "Flags": [
+    "Offensive",
+    "FightSkill"
+  ]
+}
