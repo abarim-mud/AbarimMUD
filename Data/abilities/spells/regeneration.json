@@ -1,0 +1,14 @@
+{
+  "Id": "regeneration",
+  "Name": "regeneration",
+  "Type": "Spell",
+  "MovesCost": 0,
+  "ManaCost": 30,
+  "Affects": {
+    "HpRegenAbsolute2": {
+      "DurationInSeconds": 600,
+      "AffectSlotName": "spellRegeneration"
+    }
+  },
+  "Flags": []
+}

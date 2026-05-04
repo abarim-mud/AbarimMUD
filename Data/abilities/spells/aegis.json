@@ -5,7 +5,7 @@
   "MovesCost": 0,
   "ManaCost": 75,
   "Affects": {
-    "Armor": {
+    "PhysicalResistance": {
       "DurationInSeconds": 180,
       "AffectSlotName": "spellAegis"
     }

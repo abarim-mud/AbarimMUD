@@ -16,31 +16,36 @@
     },
     {
       "Abilities": {
-        "cureSeriousWounds": 0
+        "cureSeriousWounds": 0,
+        "regeneration": 10
       }
     },
     {
       "Abilities": {
         "accuracy": 5,
-        "aegis": 10
+        "aegis": 10,
+        "regeneration": 10
       }
     },
     {
       "Abilities": {
         "heal": 0,
-        "aegis": 10
+        "aegis": 10,
+        "regeneration": 10
       }
     },
     {
       "Abilities": {
         "accuracy": 5,
-        "aegis": 10
+        "aegis": 10,
+        "regeneration": 10
       }
     },
     {
       "Abilities": {
         "greaterHeal": 0,
-        "aegis": 10
+        "aegis": 10,
+        "regeneration": 10
       }
     },
     {
