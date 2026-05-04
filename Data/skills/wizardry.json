@@ -36,7 +36,8 @@
     },
     {
       "Abilities": {
-        "disintigrate": 0
+        "disintigrate": 0,
+        "haste": 0
       }
     },
     {

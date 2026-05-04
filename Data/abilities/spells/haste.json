@@ -1,0 +1,15 @@
+{
+  "Id": "haste",
+  "Name": "haste",
+  "Type": "Spell",
+  "MovesCost": 0,
+  "ManaCost": 50,
+  "Affects": {
+    "AttacksCount": {
+      "Value": 1,
+      "DurationInSeconds": 180,
+      "AffectSlotName": "spellHaste"
+    }
+  },
+  "Flags": []
+}
