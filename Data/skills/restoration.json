@@ -21,27 +21,32 @@
     },
     {
       "Abilities": {
-        "accuracy": 5
+        "accuracy": 5,
+        "aegis": 10
       }
     },
     {
       "Abilities": {
-        "heal": 0
+        "heal": 0,
+        "aegis": 10
       }
     },
     {
       "Abilities": {
-        "accuracy": 5
+        "accuracy": 5,
+        "aegis": 10
       }
     },
     {
       "Abilities": {
-        "greaterHeal": 0
+        "greaterHeal": 0,
+        "aegis": 10
       }
     },
     {
       "Abilities": {
-        "accuracy": 5
+        "accuracy": 5,
+        "aegis": 10
       }
     },
     {

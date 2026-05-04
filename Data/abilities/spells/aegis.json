@@ -1,0 +1,14 @@
+{
+  "Id": "aegis",
+  "Name": "aegis",
+  "Type": "Spell",
+  "MovesCost": 0,
+  "ManaCost": 75,
+  "Affects": {
+    "Armor": {
+      "DurationInSeconds": 180,
+      "AffectSlotName": "spellAegis"
+    }
+  },
+  "Flags": []
+}
