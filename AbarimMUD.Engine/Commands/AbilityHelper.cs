@@ -2,6 +2,7 @@
 using AbarimMUD.Data;
 using AbarimMUD.Utils;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace AbarimMUD.Commands
@@ -189,6 +190,20 @@ namespace AbarimMUD.Commands
 				context.Creature.State.Mana -= ability.ManaCost;
 				context.Creature.State.Moves -= ability.MovesCost;
 
+				if (ap.Ability.Flags.Contains(AbilityFlags.Offensive) && ability.Type == AbilityType.Physical && target.Stats.IsEthereal && !context.Stats.CanHitEthereal)
+				{
+					var message = $"Your {ability.Name} passes through {target.Creature.ShortDescription}.";
+					context.SendBattleMessage(message);
+
+					message = $"The {context.ShortDescription}'s {ability.Name} passes through you.";
+					target.SendBattleMessage(message);
+
+					message = $"The {context.ShortDescription}'s {ability.Name} passes through {target.Creature.ShortDescription}.";
+					context.SendRoomExceptMeAndTarget(target, message);
+
+					break;
+				}
+
 				// Ability check
 				var fightDetails = context.GetFightDetails();
 				var info = string.Empty;
@@ -266,23 +281,23 @@ namespace AbarimMUD.Commands
 							case InstantEffectType.MagicDamage:
 								damage.MagicDamage += power;
 								break;
-							
+
 							case InstantEffectType.HolyDamage:
 								damage.HolyDamage += power;
 								break;
-							
+
 							case InstantEffectType.FireDamage:
 								damage.FireDamage += power;
 								break;
-							
+
 							case InstantEffectType.ColdDamage:
 								damage.ColdDamage += power;
 								break;
-							
+
 							case InstantEffectType.ShockDamage:
 								damage.ShockDamage += power;
 								break;
-							
+
 							case InstantEffectType.ChaosDamage:
 								damage.ChaosDamage += power;
 								break;
@@ -310,7 +325,7 @@ namespace AbarimMUD.Commands
 				damage.ColdDamage = CombatUtils.ApplyResistance(damage.ColdDamage, target.Stats.MagicResistance);
 
 				damage.ShockDamage = CombatUtils.ApplyResistance(damage.ShockDamage, target.Stats.ShockResistance);
-				damage.ShockDamage = CombatUtils.ApplyResistance(damage.ShockDamage, target.Stats.MagicResistance);	
+				damage.ShockDamage = CombatUtils.ApplyResistance(damage.ShockDamage, target.Stats.MagicResistance);
 
 
 				target.Creature.State.Hitpoints -= damage.TotalDamage;

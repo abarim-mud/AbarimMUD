@@ -1,6 +1,6 @@
 {
-  "Id": "undead",
-  "Name": "Undead",
+  "Id": "defaultEthereal",
+  "Name": "Default Ethereal",
   "Armor": "10+level*2",
   "Gold": "100+level*200",
   "Hitpoints": "100+level*50",
@@ -56,8 +56,5 @@
       "MaximumDamage": "8+level"
     }
   ],
-  "HolyResistance": "0",
-  "FireResistance": "-25",
-  "ColdResistance": "75",
-  "IsEthereal": false
+  "IsEthereal": true
 }

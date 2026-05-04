@@ -724,10 +724,10 @@
       "LongDescription": "The ethereal spider strides here, traveling to different worlds.",
       "Description": "She winks in and out.",
       "Sex": "Female",
-      "Class": "default",
+      "Class": "defaultEthereal",
       "Level": 10,
       "Flags": [],
-      "Experience": "16,800",
+      "Experience": "20,160",
       "Id": 2006
     },
     {

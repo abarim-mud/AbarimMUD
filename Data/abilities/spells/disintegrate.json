@@ -1,0 +1,16 @@
+{
+  "Id": "disintegrate",
+  "Name": "disintegrate",
+  "Type": "Spell",
+  "MovesCost": 0,
+  "ManaCost": 20,
+  "MessageHitUser": "Your disintegrate spell unmakes {target.Name}{info}!",
+  "MessageHitRoom": "{user.Name}'s disintegrate spell unmakes {target.Name}!",
+  "InstantEffects": [
+    "MagicDamage:55-60"
+  ],
+  "Flags": [
+    "Offensive",
+    "FightSkill"
+  ]
+}

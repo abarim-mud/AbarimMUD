@@ -33,6 +33,7 @@ namespace AbarimMUD.Data
 		public LeveledValue? FireResistance { get; set; }
 		public LeveledValue? ColdResistance { get; set; }
 		public LeveledValue? ShockResistance { get; set; }
+		public bool IsEthereal { get; set; }
 
 		public void Create() => Storage.Create(this);
 		public void Save() => Storage.Save(this);

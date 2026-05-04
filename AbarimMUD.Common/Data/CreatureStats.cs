@@ -48,6 +48,8 @@ namespace AbarimMUD.Data
 		public int FireResistance { get; internal set; }
 		public int ColdResistance { get; internal set; }
 		public int ShockResistance { get; internal set; }
+		public bool IsEthereal { get; internal set; }
+		public bool CanHitEthereal { get; internal set; }
 
 		public int GetHitpointsRegen(bool isFighting)
 		{

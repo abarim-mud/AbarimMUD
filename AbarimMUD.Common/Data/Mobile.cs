@@ -6,15 +6,6 @@ using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
 {
-	public enum Sex
-	{
-		None,
-		Neutral,
-		Male,
-		Female,
-		Either
-	}
-
 	public enum MobileFlags
 	{
 		Sentinel,
@@ -299,7 +290,8 @@ namespace AbarimMUD.Data
 				HolyResistance = HolyResistance,
 				FireResistance = FireResistance,
 				ColdResistance = ColdResistance,
-				ShockResistance = ShockResistance
+				ShockResistance = ShockResistance,
+				IsEthereal = Class.IsEthereal,
 			};
 
 			stats.Attacks.AddRange(Attacks);
@@ -308,7 +300,24 @@ namespace AbarimMUD.Data
 		}
 
 
-		public long CalculateXpAward() => CreatureStats.CalculateXpAward(Hitpoints, Armor, Attacks);
+		public long CalculateXpAward()
+		{
+			var result = CreatureStats.CalculateXpAward(Hitpoints, Armor, Attacks);
+
+			var addPerc = 0;
+			if (Class.IsEthereal)
+			{
+				addPerc += 20;
+			}
+
+			if (addPerc > 0)
+			{
+				var add = (long)(result * addPerc / 100.0f);
+				result += add;
+			}
+
+			return result;
+		}
 
 		private bool IsMobileOfThisTemplate(MobileInstance mobile)
 		{
@@ -386,51 +395,5 @@ namespace AbarimMUD.Data
 
 		public static Mobile GetMobileById(int id) => Area.Storage.GetMobileById(id);
 		public static Mobile EnsureMobileById(int id) => Area.Storage.EnsureMobileById(id);
-	}
-
-	public static class MobileExtensions
-	{
-		public static string GetPronoun1(this Sex sex)
-		{
-			if (sex == Sex.Male)
-			{
-				return "he";
-			}
-			else if (sex == Sex.Female)
-			{
-				return "she";
-			}
-
-			return "it";
-		}
-
-		public static string GetPronoun2(this Sex sex)
-		{
-			if (sex == Sex.Male)
-			{
-				return "his";
-			}
-			else if (sex == Sex.Female)
-			{
-				return "her";
-			}
-
-			return "it's";
-		}
-
-		public static string GetPronoun3(this Sex sex)
-		{
-			if (sex == Sex.Male)
-			{
-				return "him";
-			}
-			else if (sex == Sex.Female)
-			{
-				return "her";
-			}
-
-			return "it";
-		}
-
 	}
 }

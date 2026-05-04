@@ -78,10 +78,24 @@ namespace AbarimMUD.Combat
 			var stats = attacker.Creature.Stats;
 			var attacks = stats.Attacks;
 			var attack = attacks[attackIndex];
-			var targetStats = target.Stats;
+
+			if (target.Stats.IsEthereal && !attacker.Stats.CanHitEthereal)
+			{
+				var message = $"Your {attack.Type.GetAttackNoun()} passes through {target.Creature.ShortDescription}.";
+				attacker.SendBattleMessage(message);
+
+				message = $"The {attacker.ShortDescription}'s {attack.Type.GetAttackNoun()} passes through you.";
+				target.SendBattleMessage(message);
+
+				message = $"The {attacker.ShortDescription}'s {attack.Type.GetAttackNoun()} passes through {target.Creature.ShortDescription}.";
+				attacker.SendRoomExceptMeAndTarget(target, message);
+
+				return;
+			}
+
 			var damage = 0;
 
-			var attackRoll = attack.DoAttackRoll(targetStats.Armor);
+			var attackRoll = attack.DoAttackRoll(target.Stats.Armor);
 
 			if (attackRoll.Hit)
 			{
@@ -212,11 +226,6 @@ namespace AbarimMUD.Combat
 			result += ".";
 
 			return result;
-		}
-
-		public static string GetEvadeMessage(string attackerName, string targetName, AttackType attackType)
-		{
-			return $"{targetName} evades {attackType.GetAttackNoun()} of {attackerName}.";
 		}
 
 		public static int ApplyResistance(int damage, int resistance)

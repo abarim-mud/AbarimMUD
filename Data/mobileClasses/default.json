@@ -55,5 +55,6 @@
       "MinimumDamage": "4+level*0.5",
       "MaximumDamage": "8+level"
     }
-  ]
+  ],
+  "IsEthereal": false
 }

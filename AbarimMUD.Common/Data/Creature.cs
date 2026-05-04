@@ -5,6 +5,15 @@ using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
 {
+	public enum Sex
+	{
+		None,
+		Neutral,
+		Male,
+		Female,
+		Either
+	}
+
 	public abstract class Creature
 	{
 		protected class ModifiersAccumulator
@@ -313,5 +322,51 @@ namespace AbarimMUD.Data
 		protected virtual void Slain()
 		{
 		}
+	}
+
+	public static class CreatureExtensions
+	{
+		public static string GetPronoun1(this Sex sex)
+		{
+			if (sex == Sex.Male)
+			{
+				return "he";
+			}
+			else if (sex == Sex.Female)
+			{
+				return "she";
+			}
+
+			return "it";
+		}
+
+		public static string GetPronoun2(this Sex sex)
+		{
+			if (sex == Sex.Male)
+			{
+				return "his";
+			}
+			else if (sex == Sex.Female)
+			{
+				return "her";
+			}
+
+			return "it's";
+		}
+
+		public static string GetPronoun3(this Sex sex)
+		{
+			if (sex == Sex.Male)
+			{
+				return "him";
+			}
+			else if (sex == Sex.Female)
+			{
+				return "her";
+			}
+
+			return "it";
+		}
+
 	}
 }
