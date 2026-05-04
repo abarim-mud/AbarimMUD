@@ -4,6 +4,8 @@
   "Type": "Spell",
   "MovesCost": 0,
   "ManaCost": 10,
+  "MessageHitUser": "Your holy bolt smites {target.Name}{info}!",
+  "MessageHitRoom": "{user.Name}'s holy bolt smites {target.Name}!",
   "InstantEffects": [
     "HolyDamage:6-12"
   ],

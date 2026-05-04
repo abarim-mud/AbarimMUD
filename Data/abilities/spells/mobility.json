@@ -4,6 +4,8 @@
   "Type": "Spell",
   "MovesCost": 0,
   "ManaCost": 30,
+  "MessageHitTarget": "Your steps become lighter.",
+  "MessageDeactivatedUser": "Your steps return to normal.",
   "Affects": {
     "Moves": {
       "DurationInSeconds": 600,

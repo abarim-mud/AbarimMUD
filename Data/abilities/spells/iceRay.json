@@ -4,6 +4,8 @@
   "Type": "Spell",
   "MovesCost": 0,
   "ManaCost": 15,
+  "MessageHitUser": "Your ice ray freezes {target.Name}{info}!",
+  "MessageHitRoom": "{user.Name}'s ice ray freezes {target.Name}!",
   "InstantEffects": [
     "ColdDamage:45-50"
   ],

@@ -4,6 +4,8 @@
   "Type": "Spell",
   "MovesCost": 0,
   "ManaCost": 25,
+  "MessageHitUser": "Your fire wind scorches {target.Name}{info}!",
+  "MessageHitRoom": "{user.Name}'s fire wind scorches {target.Name}!",
   "InstantEffects": [
     "FireDamage:70-80"
   ],

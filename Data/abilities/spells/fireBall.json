@@ -4,6 +4,8 @@
   "Type": "Spell",
   "MovesCost": 0,
   "ManaCost": 15,
+  "MessageHitUser": "Your fire ball explodes against {target.Name}{info}!",
+  "MessageHitRoom": "{user.Name}'s fire ball explodes against {target.Name}!",
   "InstantEffects": [
     "FireDamage:35-45"
   ],

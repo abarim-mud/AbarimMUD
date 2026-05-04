@@ -4,6 +4,8 @@
   "Type": "Spell",
   "MovesCost": 0,
   "ManaCost": 30,
+  "MessageHitTarget": "Your wounds begin to heal rapidly.",
+  "MessageDeactivatedUser": "Your regeneration fades away.",
   "Affects": {
     "HpRegenAbsolute2": {
       "DurationInSeconds": 600,

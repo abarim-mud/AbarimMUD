@@ -4,6 +4,8 @@
   "Type": "Spell",
   "MovesCost": 0,
   "ManaCost": 50,
+  "MessageHitTarget": "You feel yourself moving faster.",
+  "MessageDeactivatedUser": "Your speed returns to normal.",
   "Affects": {
     "AttacksCount": {
       "Value": 1,

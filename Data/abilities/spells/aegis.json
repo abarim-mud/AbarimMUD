@@ -4,6 +4,8 @@
   "Type": "Spell",
   "MovesCost": 0,
   "ManaCost": 75,
+  "MessageHitTarget": "You are surrounded by a protective aegis.",
+  "MessageDeactivatedUser": "Your protective aegis fades away.",
   "Affects": {
     "PhysicalResistance": {
       "DurationInSeconds": 180,

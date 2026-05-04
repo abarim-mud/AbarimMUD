@@ -4,6 +4,8 @@
   "Type": "Spell",
   "MovesCost": 0,
   "ManaCost": 15,
+  "MessageHitUser": "Your lightning bolt arcs into {target.Name}{info}!",
+  "MessageHitRoom": "{user.Name}'s lightning bolt arcs into {target.Name}!",
   "InstantEffects": [
     "ShockDamage:20-25"
   ],
