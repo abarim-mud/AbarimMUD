@@ -1,0 +1,14 @@
+{
+  "Id": "mobility",
+  "Name": "mobility",
+  "Type": "Spell",
+  "MovesCost": 0,
+  "ManaCost": 30,
+  "Affects": {
+    "Moves": {
+      "DurationInSeconds": 600,
+      "AffectSlotName": "spellMobility"
+    }
+  },
+  "Flags": []
+}
