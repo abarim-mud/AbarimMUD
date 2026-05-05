@@ -1,5 +1,4 @@
-﻿using AbarimMUD.Data;
-using AbarimMUD.Utils;
+﻿using AbarimMUD.Utils;
 using System.Linq;
 
 namespace AbarimMUD.Commands.Player
@@ -17,21 +16,20 @@ namespace AbarimMUD.Commands.Player
 			}
 
 			var grid = new AsciiGrid();
-			grid.SetHeader(0, "Item");
-			grid.SetHeader(1, "Price");
-			grid.SetHeader(2, "Quantity");
+			grid.SetHeader(0, "Number");
+			grid.SetHeader(1, "Item");
+			grid.SetHeader(2, "Price");
+			grid.SetHeader(3, "Quantity");
 
-			var y = 0;
 			for (var i = 0; i < shopKeeper.Inventory.Items.Count; ++i)
 			{
 				var item = shopKeeper.Inventory.Items[i].Item;
 				var price = context.Creature.Stats.GetBuyPrice(item.Price);
 
-				grid.SetValue(0, y, item.Name);
-				grid.SetValue(1, y, price.ToString());
-				grid.SetValue(2, y, shopKeeper.Inventory.Items[i].Quantity.ToString());
-
-				++y;
+				grid.SetValue(0, i, (i + 1).ToString());
+				grid.SetValue(1, i, item.Name);
+				grid.SetValue(2, i, price.ToString());
+				grid.SetValue(3, i, shopKeeper.Inventory.Items[i].Quantity.ToString());
 			}
 
 			context.Send("You can buy following items:");

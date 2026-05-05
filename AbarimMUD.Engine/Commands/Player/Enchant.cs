@@ -7,7 +7,7 @@ namespace AbarimMUD.Commands.Player
 {
 	public class Enchant : PlayerCommand
 	{
-		public override string HelpText => "Usage:\n'enchant list' shows list of available enchantments.\n'enchant _itemName_ _enchantmentName_' purchases the enchantment.";
+		public override string HelpText => "Usage:\n'enchant list' shows list of available enchantments.\n'enchant _itemName_ _enchantmentNumber_|_enchantmentName_' purchases the enchantment.";
 
 		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
@@ -22,43 +22,45 @@ namespace AbarimMUD.Commands.Player
 			if (data.EqualsToIgnoreCase("list"))
 			{
 				var grid = new AsciiGrid();
-				grid.SetHeader(0, "Name");
-				grid.SetHeader(1, "Stones");
-				grid.SetHeader(2, "Items");
-				grid.SetHeader(3, "Materials");
-				grid.SetHeader(4, "Price");
-				grid.SetHeader(5, "Affects");
+				grid.SetHeader(0, "Number");
+				grid.SetHeader(1, "Name");
+				grid.SetHeader(2, "Stones");
+				grid.SetHeader(3, "Items");
+				grid.SetHeader(4, "Materials");
+				grid.SetHeader(5, "Price");
+				grid.SetHeader(6, "Affects");
 
 				var y = 0;
 				foreach (var f in Enchantment.Storage)
 				{
-					grid.SetValue(0, y, f.Name);
-					grid.SetValue(1, y, f.EnchantmentStones.ToString());
+					grid.SetValue(0, y, (y + 1).ToString());
+					grid.SetValue(1, y, f.Name);
+					grid.SetValue(2, y, f.EnchantmentStones.ToString());
 
 					if (!f.HasSlotTypesFilters)
-					{
-						grid.SetValue(2, y, "Any");
-					}
-					else
-					{
-						grid.SetValue(2, y, f.SlotTypes.JoinByComma());
-					}
-
-
-					if (!f.HasMaterialsFilters)
 					{
 						grid.SetValue(3, y, "Any");
 					}
 					else
 					{
-						grid.SetValue(3, y, f.Materials.JoinByComma());
+						grid.SetValue(3, y, f.SlotTypes.JoinByComma());
 					}
 
 
-					grid.SetValue(4, y, f.Price.ToString());
+					if (!f.HasMaterialsFilters)
+					{
+						grid.SetValue(4, y, "Any");
+					}
+					else
+					{
+						grid.SetValue(4, y, f.Materials.JoinByComma());
+					}
+
+
+					grid.SetValue(5, y, f.Price.ToString());
 
 					var affects = string.Join(", ", (from pair in f.Affects select $"+{pair.Value} {pair.Key}"));
-					grid.SetValue(5, y, affects);
+					grid.SetValue(6, y, affects);
 
 					++y;
 				}
@@ -99,11 +101,24 @@ namespace AbarimMUD.Commands.Player
 			}
 
 			// Find enchantment
-			var enchantment = (from f in Enchantment.Storage where f.MatchesKeyword(args[1]) select f).FirstOrDefault();
-			if (enchantment == null)
+			Enchantment enchantment;
+			if (int.TryParse(args[1], out var enchantmentNumber))
 			{
-				Tell.Execute(enchanter.GetContext(), $"{creature.ShortDescription} I don't know the enchantment '{args[1]}'.");
-				return false;
+				enchantment = Enchantment.Storage.ElementAtOrDefault(enchantmentNumber - 1);
+				if (enchantment == null)
+				{
+					Tell.Execute(enchanter.GetContext(), $"{creature.ShortDescription} I don't know enchantment with number {enchantmentNumber}.");
+					return false;
+				}
+			}
+			else
+			{
+				enchantment = (from f in Enchantment.Storage where f.MatchesKeyword(args[1]) select f).FirstOrDefault();
+				if (enchantment == null)
+				{
+					Tell.Execute(enchanter.GetContext(), $"{creature.ShortDescription} I don't know the enchantment '{args[1]}'.");
+					return false;
+				}
 			}
 
 			// Check item type

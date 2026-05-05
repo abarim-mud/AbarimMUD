@@ -7,7 +7,7 @@ namespace AbarimMUD.Commands.Player
 {
 	public class ForgeCommand : PlayerCommand
 	{
-		public override string HelpText => "Usage:\n'forge list' shows list of available forge.\n'forge _forgeName_' does the actual forge.";
+		public override string HelpText => "Usage:\n'forge list' shows list of available forge.\n'forge _number_|_name_' does the actual forge.";
 
 
 		protected override bool InternalExecute(ExecutionContext context, string data)
@@ -30,14 +30,16 @@ namespace AbarimMUD.Commands.Player
 			if (data.EqualsToIgnoreCase("list"))
 			{
 				var grid = new AsciiGrid();
-				grid.SetHeader(0, "Item");
-				grid.SetHeader(1, "Components");
-				grid.SetHeader(2, "Price");
+				grid.SetHeader(0, "Number");
+				grid.SetHeader(1, "Item");
+				grid.SetHeader(2, "Components");
+				grid.SetHeader(3, "Price");
 
 				var y = 0;
 				foreach (var f in forges)
 				{
-					grid.SetValue(0, y, f.Result.ShortDescription);
+					grid.SetValue(0, y, (y + 1).ToString());
+					grid.SetValue(1, y, f.Result.ShortDescription);
 
 					var sb = new StringBuilder();
 
@@ -57,8 +59,8 @@ namespace AbarimMUD.Commands.Player
 						}
 					}
 
-					grid.SetValue(1, y, sb.ToString());
-					grid.SetValue(2, y, f.Price.ToString());
+					grid.SetValue(2, y, sb.ToString());
+					grid.SetValue(3, y, f.Price.ToString());
 
 					++y;
 				}
@@ -72,11 +74,25 @@ namespace AbarimMUD.Commands.Player
 			// Find forge
 			var creature = context.Creature;
 			var inv = creature.Inventory;
-			var forge = (from f in forges where f.Result.MatchesKeyword(data) select f).FirstOrDefault();
-			if (forge == null)
+
+			Forge forge;
+			if (int.TryParse(data, out var number))
 			{
-				Tell.Execute(shopKeeper.GetContext(), $"{creature.ShortDescription} I don't know how to forge '{data}'.");
-				return false;
+				forge = forges.ElementAtOrDefault(number - 1);
+				if (forge == null)
+				{
+					Tell.Execute(shopKeeper.GetContext(), $"{creature.ShortDescription} I don't know forge with number {number}.");
+					return false;
+				}
+			}
+			else
+			{
+				forge = (from f in forges where f.Result.MatchesKeyword(data) select f).FirstOrDefault();
+				if (forge == null)
+				{
+					Tell.Execute(shopKeeper.GetContext(), $"{creature.ShortDescription} I don't know how to forge '{data}'.");
+					return false;
+				}
 			}
 
 			// Check cps

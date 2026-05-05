@@ -5,11 +5,14 @@ namespace AbarimMUD.Commands.Player
 {
 	public class Buy : PlayerCommand
 	{
+		public override string HelpText => "Usage: buy _name_|_number_";
+
 		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
 			if (string.IsNullOrEmpty(data))
 			{
-				context.Send("Usage: buy _itemName_");
+				ShowHelp(context);
+				return true;
 			}
 
 			// Find shopkeeper
@@ -20,12 +23,24 @@ namespace AbarimMUD.Commands.Player
 				return false;
 			}
 
-			var invItem = shopKeeper.Inventory.FindItem(data);
-
-			if (invItem == null)
+			InventoryRecord invItem;
+			if (int.TryParse(data, out var number))
 			{
-				Tell.Execute(shopKeeper.GetContext(), $"{context.Creature.ShortDescription} I don't have '{data}'.");
-				return false;
+				invItem = shopKeeper.Inventory.Items.ElementAtOrDefault(number - 1);
+				if (invItem == null)
+				{
+					Tell.Execute(shopKeeper.GetContext(), $"{context.Creature.ShortDescription} I don't have item with number {number}.");
+					return false;
+				}
+			}
+			else
+			{
+				invItem = shopKeeper.Inventory.FindItem(data);
+				if (invItem == null)
+				{
+					Tell.Execute(shopKeeper.GetContext(), $"{context.Creature.ShortDescription} I don't have '{data}'.");
+					return false;
+				}
 			}
 
 			var inventoryItem = invItem.Item;
