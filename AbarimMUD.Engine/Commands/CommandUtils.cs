@@ -492,5 +492,73 @@ namespace AbarimMUD.Commands
 
 			return result;
 		}
+
+		public static bool Tell(this ExecutionContext context, ExecutionContext whom, string text)
+		{
+			if (whom.Creature == context.Creature)
+			{
+				context.Send("You can't talk to yourself.");
+				return false;
+			}
+
+			if (whom.Session != null && !whom.Session.Connection.Alive)
+			{
+				context.Send($"{whom.ShortDescription} is offline.");
+				return false;
+			}
+
+			context.Send($"[magenta]You told {whom.ShortDescription} '{text}'[reset]");
+			whom.Send($"[magenta]{context.Creature.ShortDescription} tells you '{text}'[reset]");
+
+			return true;
+		}
+
+		public static ItemInstance GetShopItemByNumber(this MobileInstance shopKeeper, int number)
+		{
+			var index = number - 1;
+			if (index < 0)
+			{
+				return null;
+			}
+
+			var shopSize = 0;
+			if (shopKeeper.Shop != null)
+			{
+				shopSize = shopKeeper.Shop.UnlimitedItems.Count;
+			}
+			if (shopKeeper.Shop != null && index < shopSize)
+			{
+				return shopKeeper.Shop.UnlimitedItems[index];
+			}
+
+			if (index < shopSize + shopKeeper.ShopInventory.Items.Count)
+			{
+				return shopKeeper.ShopInventory.Items[index - shopSize].Item;
+			}
+
+			return null;
+		}
+
+		public static ItemInstance GetShopItemByKeyword(this MobileInstance shopKeeper, string keyword)
+		{
+			ItemInstance result = null;
+
+			if (shopKeeper.Shop != null)
+			{
+				result = shopKeeper.Shop.UnlimitedItems.Find(m => m.MatchesKeyword(keyword));
+				if (result != null)
+				{
+					return result;
+				}
+			}
+
+			var invItem = shopKeeper.ShopInventory.FindItem(keyword);
+			if (invItem != null)
+			{
+				result = invItem.Item;
+			}
+
+			return result;
+		}
 	}
 }

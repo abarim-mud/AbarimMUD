@@ -9,7 +9,17 @@ namespace AbarimMUD.Data
 		public static readonly MultipleFilesStorage<Shop> Storage = new Shops();
 
 		public string Id { get; set; }
-		public Inventory Inventory { get; set; } = new Inventory();
+
+		/// <summary>
+		/// Gets ot sets the collection of items that the shop has an unlimited quantity of.
+		/// </summary>
+		public List<ItemInstance> UnlimitedItems { get; set; } = new List<ItemInstance>();
+
+		/// <summary>
+		/// Gets or sets the collection of limited items available in the inventory.
+		/// </summary>
+		public Inventory LimitedItems { get; set; } = new Inventory();
+
 		public HashSet<ItemType> ItemTypes { get; set; } = new HashSet<ItemType>();
 
 		public void Create() => Storage.Create(this);

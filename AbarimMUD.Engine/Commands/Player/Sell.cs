@@ -20,6 +20,8 @@ namespace AbarimMUD.Commands.Player
 				return false;
 			}
 
+			var shopKeeperContext = shopKeeper.GetContext();
+
 			var invItem = context.Creature.Inventory.FindItem(data);
 			if (invItem == null)
 			{
@@ -30,21 +32,21 @@ namespace AbarimMUD.Commands.Player
 			var item = invItem.Item;
 			if (!shopKeeper.Shop.ItemTypes.Contains(item.ItemType))
 			{
-				Tell.Execute(shopKeeper.GetContext(), $"{context.Creature.ShortDescription} I don't deal in those.");
+				shopKeeperContext.Tell(context, $"I don't deal in those.");
 				return false;
 			}
 
-			var price = context.Creature.Stats.GetSellPrice(item.Price);
+			var price = Configuration.SellPricePercentage * item.Price / 100;
 
 			context.Creature.Gold += price;
 			context.Creature.Inventory.AddItem(item, -1);
 
-			shopKeeper.Inventory.AddItem(item, 1);
+			shopKeeper.ShopAddItem(item, 1);
 
 			var character = context.Creature as Character;
 			character?.Save();
 
-			Tell.Execute(shopKeeper.GetContext(), $"{context.Creature.ShortDescription} You'll get {price} coins for it!");
+			shopKeeperContext.Tell(context, $"You'll get {price} coins for it!");
 			context.Send($"{shopKeeper.ShortDescription} now has {invItem.Name}.");
 
 			return true;

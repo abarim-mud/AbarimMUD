@@ -28,23 +28,7 @@ namespace AbarimMUD.Commands.Player
 				return false;
 			}
 
-			if (whom == context.Creature)
-			{
-				context.Send("You can't talk to yourself.");
-				return false;
-			}
-
-			var ctx = whom.GetContext();
-			if (!ctx.Session.Connection.Alive)
-			{
-				context.Send($"{whom.Name} is offline.");
-				return false;
-			}
-
-			context.Send($"[magenta]You told {ctx.ShortDescription} '{parts[1]}'[reset]");
-			ctx.Send($"[magenta]{context.Creature.ShortDescription} tells you '{parts[1]}'[reset]");
-
-			return true;
+			return context.Tell(whom.GetContext(), parts[1]);
 		}
 	}
 }

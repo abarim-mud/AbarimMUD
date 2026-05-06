@@ -23,46 +23,44 @@ namespace AbarimMUD.Commands.Player
 				return false;
 			}
 
-			InventoryRecord invItem;
+			var shopKeeperContext = shopKeeper.GetContext();
+
+			ItemInstance inventoryItem;
 			if (int.TryParse(data, out var number))
 			{
-				invItem = shopKeeper.Inventory.Items.ElementAtOrDefault(number - 1);
-				if (invItem == null)
+				inventoryItem = shopKeeper.GetShopItemByNumber(number);
+				if (inventoryItem == null)
 				{
-					Tell.Execute(shopKeeper.GetContext(), $"{context.Creature.ShortDescription} I don't have item with number {number}.");
+					shopKeeperContext.Tell(context, $"I don't have item with number {number}.");
 					return false;
 				}
 			}
 			else
 			{
-				invItem = shopKeeper.Inventory.FindItem(data);
-				if (invItem == null)
+				inventoryItem = shopKeeper.GetShopItemByKeyword(data);
+				if (inventoryItem == null)
 				{
-					Tell.Execute(shopKeeper.GetContext(), $"{context.Creature.ShortDescription} I don't have '{data}'.");
+					shopKeeperContext.Tell(context, $"I don't have '{data}'.");
 					return false;
 				}
 			}
 
-			var inventoryItem = invItem.Item;
-			var price = context.Creature.Stats.GetBuyPrice(inventoryItem.Info.Price);
+			var price = inventoryItem.Info.Price;
 			if (context.Creature.Gold < price)
 			{
-				Tell.Execute(shopKeeper.GetContext(), $"{context.Creature.ShortDescription} You can't afford {inventoryItem.Name}.");
+				shopKeeperContext.Tell(context, $"You can't afford {inventoryItem.Name}.");
 				return false;
 			}
 
 			context.Creature.Gold -= price;
 			context.Creature.Inventory.AddItem(inventoryItem, 1);
 
-			if (inventoryItem != null)
-			{
-				shopKeeper.Inventory.AddItem(inventoryItem, -1);
-			}
+			shopKeeper.ShopAddItem(inventoryItem, -1);
 
 			var character = context.Creature as Character;
 			character?.Save();
 
-			Tell.Execute(shopKeeper.GetContext(), $"{context.Creature.ShortDescription} That'll be {price}, please.");
+			shopKeeperContext.Tell(context, $"That'll be {price}, please.");
 			context.Send($"You now have {inventoryItem.Name}.");
 
 			return true;

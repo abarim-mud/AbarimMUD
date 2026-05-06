@@ -24,8 +24,6 @@ namespace AbarimMUD.Data
 		HpRegenAbsolute2,
 		ManaRegenAbsolute2,
 		MovesRegenAbsolute2,
-		BuyPriceRebatePercentage,
-		SellPriceBonusPercentage, 
 		MartialArtsMinimumDamage,
 		MartialArtsMaximumDamage,
 		MartialArtsAttacksCount,

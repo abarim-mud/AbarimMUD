@@ -37,8 +37,7 @@ namespace AbarimMUD.Data
 			public ValueRange BaseMartialArtsDamage { get; set; } = new ValueRange(1, 4);
 
 			public int RecallManaCost { get; set; } = 35;
-			public int BaseBuyPricePercentage { get; set; } = 150;
-			public int BaseSellPricePercentage { get; set; } = 25;
+			public int SellPricePercentage { get; set; } = 50;
 			public int XpMultiply { get; set; } = 2;
 			public int HuntPauseInMs { get; set; } = 6000;
 			public int DefaultAbilityCheck { get; set; } = 95;
@@ -82,8 +81,7 @@ namespace AbarimMUD.Data
 		public static ValueRange CharacterBarehandedDamage => Instance.BaseMartialArtsDamage;
 
 		public static int RecallManaCost => Instance.RecallManaCost;
-		public static int BaseBuyPricePercentage => Instance.BaseBuyPricePercentage;
-		public static int BaseSellPricePercentage => Instance.BaseSellPricePercentage;
+		public static int SellPricePercentage => Instance.SellPricePercentage;
 		public static int XpMultiply => Instance.XpMultiply;
 		public static int HuntPauseInMs => Instance.HuntPauseInMs;
 		public static int DefaultAbilityCheck => Instance.DefaultAbilityCheck;

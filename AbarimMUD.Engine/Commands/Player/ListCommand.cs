@@ -15,21 +15,37 @@ namespace AbarimMUD.Commands.Player
 				return false;
 			}
 
+			var shop = shopKeeper.Shop;
+
 			var grid = new AsciiGrid();
 			grid.SetHeader(0, "Number");
 			grid.SetHeader(1, "Item");
 			grid.SetHeader(2, "Price");
 			grid.SetHeader(3, "Quantity");
 
-			for (var i = 0; i < shopKeeper.Inventory.Items.Count; ++i)
+			// Unlimited items first
+			var y = 0;
+			foreach (var item in shop.UnlimitedItems)
 			{
-				var item = shopKeeper.Inventory.Items[i].Item;
-				var price = context.Creature.Stats.GetBuyPrice(item.Price);
+				grid.SetValue(0, y, (y + 1).ToString());
+				grid.SetValue(1, y, item.Name);
+				grid.SetValue(2, y, item.Price.FormatBigNumber());
+				grid.SetValue(3, y, "Unlimited");
+				++y;
+			}
 
-				grid.SetValue(0, i, (i + 1).ToString());
-				grid.SetValue(1, i, item.Name);
-				grid.SetValue(2, i, price.ToString());
-				grid.SetValue(3, i, shopKeeper.Inventory.Items[i].Quantity.ToString());
+			// Then limited items
+			for (var i = 0; i < shopKeeper.ShopInventory.Count; ++i)
+			{
+				var rec = shopKeeper.ShopInventory[i];
+				var item = rec.Item;
+
+				grid.SetValue(0, y, (y + 1).ToString());
+				grid.SetValue(1, y, item.Name);
+				grid.SetValue(2, y, item.Price.FormatBigNumber());
+				grid.SetValue(3, y, rec.Quantity.ToString());
+
+				++y;
 			}
 
 			context.Send("You can buy following items:");

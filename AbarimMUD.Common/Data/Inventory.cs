@@ -100,6 +100,11 @@ namespace AbarimMUD.Data
 			}
 		}
 
+		/// <summary>
+		/// Searches for an item within the inventory by its keyword. Returns null if not found.
+		/// </summary>
+		/// <param name="keyword"></param>
+		/// <returns></returns>
 		public InventoryRecord FindItem(string keyword)
 		{
 			return (from i in Items where i.Item.MatchesKeyword(keyword) select i).FirstOrDefault();

@@ -37,8 +37,6 @@ namespace AbarimMUD.Data
 
 		public int Armor { get; internal set; }
 		public List<AbilityPower> Abilities { get; } = new List<AbilityPower>();
-		public int BuyPriceRebatePercentage { get; internal set; }
-		public int SellPriceBonusPercentage { get; internal set; }
 		public int HealBonus { get; internal set; }
 		public int SpellBonus { get; internal set; }
 
@@ -113,24 +111,6 @@ namespace AbarimMUD.Data
 			return result;
 		}
 
-
-		public int GetBuyPrice(int originalPrice)
-		{
-			var perc = Configuration.BaseBuyPricePercentage;
-
-			perc -= BuyPriceRebatePercentage;
-
-			return originalPrice * perc / 100;
-		}
-
-		public int GetSellPrice(int originalPrice)
-		{
-			var perc = Configuration.BaseSellPricePercentage;
-
-			perc += SellPriceBonusPercentage;
-
-			return originalPrice * perc / 100;
-		}
 
 		public void Apply(ModifierType type, int val, bool usesWeapon)
 		{
@@ -229,12 +209,6 @@ namespace AbarimMUD.Data
 				case ModifierType.AttacksCount:
 					// This is calculated on earlier stage of Creature.UpdateStats
 					// Hence ignoring it here
-					break;
-				case ModifierType.BuyPriceRebatePercentage:
-					BuyPriceRebatePercentage += val;
-					break;
-				case ModifierType.SellPriceBonusPercentage:
-					SellPriceBonusPercentage += val;
 					break;
 				case ModifierType.MartialArtsMinimumDamage:
 					foreach (var atk in Attacks)

@@ -26,7 +26,8 @@ namespace AbarimMUD.Storage
 
 			foreach (var shop in this)
 			{
-				shop.Inventory.SetReferences();
+				shop.UnlimitedItems.SetReferences();
+				shop.LimitedItems.SetReferences();
 			}
 		}
 	}

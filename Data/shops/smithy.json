@@ -1,71 +1,24 @@
 {
   "Id": "smithy",
-  "Inventory": [
-    {
-      "Item": "ironArmor",
-      "Quantity": 5
-    },
-    {
-      "Item": "ironBoots",
-      "Quantity": 5
-    },
-    {
-      "Item": "ironDagger",
-      "Quantity": 5
-    },
-    {
-      "Item": "ironSword",
-      "Quantity": 5
-    },
-    {
-      "Item": "ironAxe",
-      "Quantity": 5
-    },
-    {
-      "Item": "ironMace",
-      "Quantity": 5
-    },
-    {
-      "Item": "ironGloves",
-      "Quantity": 5
-    },
-    {
-      "Item": "ironGreaves",
-      "Quantity": 5
-    },
-    {
-      "Item": "ironHelmet",
-      "Quantity": 5
-    },
-    {
-      "Item": "ironShield",
-      "Quantity": 5
-    },
-    {
-      "Item": "leatherArmor",
-      "Quantity": 5
-    },
-    {
-      "Item": "leatherBoots",
-      "Quantity": 5
-    },
-    {
-      "Item": "leatherGloves",
-      "Quantity": 5
-    },
-    {
-      "Item": "leatherPants",
-      "Quantity": 5
-    },
-    {
-      "Item": "leatherHelmet",
-      "Quantity": 5
-    },
-    {
-      "Item": "leatherShield",
-      "Quantity": 5
-    }
+  "UnlimitedItems": [
+    "ironArmor",
+    "ironBoots",
+    "ironDagger",
+    "ironSword",
+    "ironAxe",
+    "ironMace",
+    "ironGloves",
+    "ironGreaves",
+    "ironHelmet",
+    "ironShield",
+    "leatherArmor",
+    "leatherBoots",
+    "leatherGloves",
+    "leatherPants",
+    "leatherHelmet",
+    "leatherShield"
   ],
+  "LimitedItems": [],
   "ItemTypes": [
     "Equipment",
     "Material"

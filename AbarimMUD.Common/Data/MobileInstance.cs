@@ -1,14 +1,32 @@
 ﻿using AbarimMUD.Utils;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AbarimMUD.Data
 {
 	public class MobileInstance : Creature
 	{
 		private Room _room;
+		private Inventory _shopInventory;
 
 		public Mobile Info { get; }
+
+		/// <summary>
+		/// Used only by shop keepers
+		/// </summary>
+		public Inventory ShopInventory
+		{
+			get
+			{
+				if (_shopInventory == null)
+				{
+					_shopInventory = new Inventory();
+				}
+
+				return _shopInventory;
+			}
+		}
 
 		public override int Level => Info.Level;
 
@@ -150,48 +168,57 @@ namespace AbarimMUD.Data
 			Inventory.Items.Clear();
 
 			// Generic loot
-			if (Shop == null)
+			foreach (var pair in GenericLoot.Items)
 			{
-				foreach (var pair in GenericLoot.Items)
+				if (Level <= pair.Key)
 				{
-					if (Level <= pair.Key)
+					// Level match
+					foreach (var genericLootRecord in pair.Value)
 					{
-						// Level match
-						foreach (var genericLootRecord in pair.Value)
+						// Roll loot prob
+						int rnd;
+						if (!Utility.RollPercentage(genericLootRecord.ProbabilityPercentage, out rnd))
 						{
-							// Roll loot prob
-							int rnd;
-							if (!Utility.RollPercentage(genericLootRecord.ProbabilityPercentage, out rnd))
-							{
-								continue;
-							}
+							continue;
+						}
 
-							// Another roll to determine which item to loot
-							var prob = Utility.Random1to100();
-							var total = 0;
-							foreach (var rec in genericLootRecord.Choice)
-							{
-								total += rec.ProbabilityPercentage;
+						// Another roll to determine which item to loot
+						var prob = Utility.Random1to100();
+						var total = 0;
+						foreach (var rec in genericLootRecord.Choice)
+						{
+							total += rec.ProbabilityPercentage;
 
-								if (prob <= total)
+							if (prob <= total)
+							{
+								foreach (var invRec in rec.Items.Items)
 								{
-									foreach (var invRec in rec.Items.Items)
-									{
-										Inventory.AddItem(invRec);
-									}
-
-									break;
+									Inventory.AddItem(invRec);
 								}
+
+								break;
 							}
 						}
 					}
 				}
 			}
-			else
+
+			if (Shop != null && Shop.LimitedItems != null)
 			{
-				// Shop
-				Inventory.AddInventory(Shop.Inventory);
+				ShopInventory.Clear();
+				ShopInventory.AddInventory(Shop.LimitedItems);
 			}
+		}
+
+		public void ShopAddItem(ItemInstance item, int quantity)
+		{
+			if (Shop != null && Shop.UnlimitedItems.Any(s => ItemInstance.AreEqual(s, item)))
+			{
+				// Unlimited item, ignore quantity
+				return;
+			}
+
+			ShopInventory.AddItem(item, quantity);
 		}
 
 		public override string ToString() => Info.ToString();
