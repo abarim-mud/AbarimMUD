@@ -11,7 +11,7 @@
     },
     {
       "Abilities": {
-        "mobility": 10,
+        "accuracy": 10,
         "regeneration": 10
       }
     },
@@ -23,7 +23,7 @@
     {
       "Abilities": {
         "aegis": 10,
-        "mobility": 10,
+        "accuracy": 5,
         "regeneration": 5
       }
     },
@@ -36,7 +36,7 @@
     {
       "Abilities": {
         "aegis": 10,
-        "mobility": 10,
+        "accuracy": 5,
         "regeneration": 5
       }
     },
@@ -48,7 +48,7 @@
     {
       "Abilities": {
         "aegis": 10,
-        "mobility": 10,
+        "accuracy": 5,
         "regeneration": 5
       }
     },
@@ -60,7 +60,7 @@
     {
       "Abilities": {
         "aegis": 10,
-        "mobility": 10,
+        "accuracy": 5,
         "regeneration": 5
       }
     }

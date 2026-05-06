@@ -2,6 +2,7 @@
   "Id": "alchemist",
   "UnlimitedItems": [
     "potionOfAccuracy",
+    "potionOfArmor",
     "potionOfhaste"
   ],
   "LimitedItems": [],
