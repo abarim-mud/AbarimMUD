@@ -126,7 +126,7 @@ namespace AbarimMUD.Commands
 		private static bool UseAbilityNoChecks(this ExecutionContext context, AbilityPower ap, ExecutionContext target, DamageInfo damage, AttackRollResult? physicalAttackRoll, string weaponStr)
 		{
 			var ability = ap.Ability;
-			
+
 			// Apply affects
 			if (ability.Affects != null)
 			{
@@ -240,7 +240,7 @@ namespace AbarimMUD.Commands
 			return true;
 		}
 
-		public static bool UseAbility(this ExecutionContext context, AbilityPower ap, string targetName, int[] abilityChecks, Func<int> physicalDamageRoller, ItemInstance weapon)
+		public static bool UseAbility(this ExecutionContext context, AbilityPower ap, string targetName, int[] abilityChecks, Func<ExecutionContext, int> physicalDamageRoller, ItemInstance weapon)
 		{
 			var ability = ap.Ability;
 			if (ability.Flags.Contains(AbilityFlags.NotFighting) && context.IsFighting)
@@ -378,7 +378,7 @@ namespace AbarimMUD.Commands
 					physicalAttackRoll = attackRoll;
 
 					// Now roll the damage
-					damage.PhysicalDamage = physicalDamageRoller();
+					damage.PhysicalDamage = physicalDamageRoller(target);
 				}
 
 				if (!context.UseAbilityNoChecks(ap, target, damage, physicalAttackRoll, weaponStr))
@@ -395,10 +395,10 @@ namespace AbarimMUD.Commands
 			return true;
 		}
 
-		public static bool UseAbility(this ExecutionContext context, AbilityPower ap, string targetName, int abilityCheck, Func<int> physicalDamageRoller, ItemInstance weapon) =>
+		public static bool UseAbility(this ExecutionContext context, AbilityPower ap, string targetName, int abilityCheck, Func<ExecutionContext, int> physicalDamageRoller, ItemInstance weapon) =>
 			context.UseAbility(ap, targetName, new[] { abilityCheck }, physicalDamageRoller, weapon);
 
-		public static bool UseAbility(this ExecutionContext context, AbilityPower ap, string targetName, Func<int> physicalDamageRoller, ItemInstance weapon) =>
+		public static bool UseAbility(this ExecutionContext context, AbilityPower ap, string targetName, Func<ExecutionContext, int> physicalDamageRoller, ItemInstance weapon) =>
 			context.UseAbility(ap, targetName, DefaultAbilityChecks, physicalDamageRoller, weapon);
 	}
 }

@@ -1,4 +1,5 @@
-﻿using AbarimMUD.Data;
+﻿using AbarimMUD.Combat;
+using AbarimMUD.Data;
 using AbarimMUD.Utils;
 
 namespace AbarimMUD.Commands.Player
@@ -17,11 +18,14 @@ namespace AbarimMUD.Commands.Player
 			}
 
 			return context.UseAbility(ability, data,
-				() =>
+				target =>
 				{
 					var baseDamage = ability.Power;
 					var damageRange = new ValueRange(baseDamage, baseDamage + 4);
-					return damageRange.Random();
+					var result = damageRange.Random();
+					result = CombatUtils.ApplyResistance(result, target.Stats.PhysicalResistance);
+
+					return result;
 				}, null);
 		}
 

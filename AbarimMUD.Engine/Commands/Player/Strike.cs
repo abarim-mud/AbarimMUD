@@ -1,4 +1,5 @@
 ﻿using AbarimMUD.Data;
+using NLog.Targets;
 
 namespace AbarimMUD.Commands.Player
 {
@@ -23,13 +24,13 @@ namespace AbarimMUD.Commands.Player
 				return false;
 			}
 
-			return context.UseAbility(ab, data, () =>
+			return context.UseAbility(ab, data, target =>
 			{
 				var damage = 0;
 				var attack = context.Stats.Attacks[0];
 				for (var j = 0; j < ab.Power; ++j)
 				{
-					damage += attack.CalculateDamage();
+					damage += attack.CalculateDamage(target.Stats.PhysicalResistance);
 				}
 
 				return damage;

@@ -3,7 +3,8 @@
   "UnlimitedItems": [
     "potionOfAccuracy",
     "potionOfArmor",
-    "potionOfhaste"
+    "potionOfAegis",
+    "potionOfHaste"
   ],
   "LimitedItems": [],
   "ItemTypes": [

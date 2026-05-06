@@ -1,6 +1,7 @@
 ﻿using AbarimMUD.Commands;
 using AbarimMUD.Data;
 using AbarimMUD.Utils;
+using System;
 
 namespace AbarimMUD.Combat
 {
@@ -99,7 +100,7 @@ namespace AbarimMUD.Combat
 
 			if (attackRoll.Hit)
 			{
-				damage = attack.CalculateDamage();
+				damage = attack.CalculateDamage(target.Stats.PhysicalResistance);
 			}
 
 			target.Creature.State.Hitpoints -= damage;
@@ -235,14 +236,13 @@ namespace AbarimMUD.Combat
 				return damage;
 			}
 
-
 			if (resistance >= 100)
 			{
 				return 0;
 			}
 
 			var k = 1.0f - resistance / 100.0f;
-			return (int)(damage * k);
+			return (int)Math.Round(damage * k);
 		}
 	}
 }

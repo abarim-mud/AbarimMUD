@@ -132,13 +132,16 @@ namespace AbarimMUD.Data
 			return result;
 		}
 
-		public int CalculateDamage(int damageReduction = 0)
+		public int CalculateDamage(int physicalResistance = 0)
 		{
 			var result = DamageRange.Random();
 
-			var reduction = result * damageReduction / 100.0f;
+			if (physicalResistance > 0)
+			{
+				var reduction = result * physicalResistance / 100.0f;
 
-			result -= (int)reduction;
+				result = (int)Math.Round(result - reduction);
+			}
 
 			if (result < 1)
 			{

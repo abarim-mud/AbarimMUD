@@ -1,0 +1,13 @@
+{
+  "Id": "potionOfAegis",
+  "Keywords": [
+    "potion",
+    "aegis"
+  ],
+  "ShortDescription": "a potion of aegis",
+  "Description": "a potion of aegis",
+  "ItemType": "Potion",
+  "Price": 7500,
+  "Ability": "aegis:30",
+  "Flags": []
+}

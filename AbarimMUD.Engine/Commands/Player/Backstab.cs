@@ -18,13 +18,13 @@ namespace AbarimMUD.Commands.Player
 			}
 
 			return attacker.UseAbility(backstab, targetName, abilityChecks,
-					() =>
+					target =>
 					{
 						var damage = 0;
 						var attack = attacker.Stats.Attacks[0];
 						for (var j = 0; j < backstab.Power; ++j)
 						{
-							damage += attack.CalculateDamage();
+							damage += attack.CalculateDamage(target.Stats.PhysicalResistance);
 						}
 
 						return damage;
