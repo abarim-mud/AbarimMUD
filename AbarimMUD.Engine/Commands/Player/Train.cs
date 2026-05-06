@@ -158,8 +158,8 @@ namespace AbarimMUD.Commands.Player
 				}
 
 				// Build list of new and improved abilities
-				var newAbilities = new List<string>();
-				var improvedAbilities = new List<string>();
+				var newAbilities = new List<Ability>();
+				var improvedAbilities = new List<Ability>();
 				var skillValue = character.GetSkillValue(skillToTrain);
 				var newLevelDefinition = skillToTrain.GetLevelDefinition(skillValue != null ? skillValue.Level + 1 : 1);
 				if (newLevelDefinition.Abilities != null)
@@ -169,11 +169,11 @@ namespace AbarimMUD.Commands.Player
 						var ab = context.Stats.GetAbilityById(pair.Key);
 						if (ab == null)
 						{
-							newAbilities.Add(pair.Value.Ability.Name);
+							newAbilities.Add(pair.Value.Ability);
 						}
 						else
 						{
-							improvedAbilities.Add(ab.Ability.Name);
+							improvedAbilities.Add(ab.Ability);
 						}
 					}
 				}
@@ -196,12 +196,19 @@ namespace AbarimMUD.Commands.Player
 
 				foreach (var ab in newAbilities)
 				{
-					context.Send($"You learned the new ability: {ab}.");
+					if (ab.Type == AbilityType.Physical)
+					{
+						context.Send($"You learned the new physical ability '{ab}'.");
+					}
+					else
+					{
+						context.Send($"You learned the new spell '{ab}'.");
+					}
 				}
 
 				foreach (var ab in improvedAbilities)
 				{
-					context.Send($"The power of ability '{ab}' was increased.");
+					context.Send($"The power of '{ab}' was increased.");
 				}
 			}
 
@@ -209,4 +216,3 @@ namespace AbarimMUD.Commands.Player
 		}
 	}
 }
- 
