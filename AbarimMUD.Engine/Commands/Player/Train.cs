@@ -1,6 +1,7 @@
 ﻿using AbarimMUD.Data;
 using AbarimMUD.Utils;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -105,7 +106,7 @@ namespace AbarimMUD.Commands.Player
 			{
 				if (trainableSkills.Count == 0)
 				{
-					Tell.Execute(trainerContext, $"{context.Creature.ShortDescription} There's nothing I could teach you anymore.");
+					trainerContext.Tell(context, "There's nothing I could teach you anymore.");
 				}
 				else
 				{
@@ -120,40 +121,61 @@ namespace AbarimMUD.Commands.Player
 						}
 					}
 					var skillNames = (from s in trainableSkills select s.Name).ToList();
-					Tell.Execute(trainerContext, $"{context.Creature.ShortDescription} I could teach you one of the following: {sb.ToString()}. It would cost you {price} gold.");
+					trainerContext.Tell(context, $"I could teach you one of the following: {sb.ToString()}. It would cost you {price} gold.");
 				}
 			}
 			else
 			{
 				if (skillToTrain == null)
 				{
-					Tell.Execute(trainerContext, $"{context.Creature.ShortDescription} I don't know '{data}'.");
+					trainerContext.Tell(context, $"I don't know '{data}'.");
 					return false;
 				}
 
 				var levelConstraint = CalculateLevelConstraint(character, skillToTrain);
 				if (levelConstraint == null)
 				{
-					Tell.Execute(trainerContext, $"{context.Creature.ShortDescription} You are master in '{data}' already.");
+					trainerContext.Tell(context, $"You are master in '{data}' already.");
 					return false;
 				}
 
 				if (character.Level < levelConstraint.Value)
 				{
-					Tell.Execute(trainerContext, $"{context.Creature.ShortDescription} You need to have at least level {levelConstraint} to learn that.");
+					trainerContext.Tell(context, $"You need to have at least level {levelConstraint} to learn that.");
 					return false;
 				}
 
 				if (character.SkillPoints < skillToTrain.Cost)
 				{
-					Tell.Execute(trainerContext, $"{context.Creature.ShortDescription} Unfortunately you don't have enough skill points.");
+					trainerContext.Tell(context, "Unfortunately you don't have enough skill points.");
 					return false;
 				}
 
 				if (character.Gold < price)
 				{
-					Tell.Execute(trainerContext, $"{context.Creature.ShortDescription} Unfortunately you don't have enough gold.");
+					trainerContext.Tell(context, "Unfortunately you don't have enough gold.");
 					return false;
+				}
+
+				// Build list of new and improved abilities
+				var newAbilities = new List<string>();
+				var improvedAbilities = new List<string>();
+				var skillValue = character.GetSkillValue(skillToTrain);
+				var newLevelDefinition = skillToTrain.GetLevelDefinition(skillValue != null ? skillValue.Level + 1 : 1);
+				if (newLevelDefinition.Abilities != null)
+				{
+					foreach (var pair in newLevelDefinition.Abilities)
+					{
+						var ab = context.Stats.GetAbilityById(pair.Key);
+						if (ab == null)
+						{
+							newAbilities.Add(pair.Value.Ability.Name);
+						}
+						else
+						{
+							improvedAbilities.Add(ab.Ability.Name);
+						}
+					}
 				}
 
 				var oldSkillValue = character.GetSkillValue(skillToTrain);
@@ -172,20 +194,14 @@ namespace AbarimMUD.Commands.Player
 					context.Send($"You advanced {skillToTrain.Name} to the next level.");
 				}
 
-				var newSkillValue = character.GetSkillValue(skillToTrain);
-				if (newSkillValue.LevelDefinition.Abilities != null)
+				foreach (var ab in newAbilities)
 				{
-					foreach(var pair in newSkillValue.LevelDefinition.Abilities)
-					{
-						var ab = context.Stats.GetAbilityById(pair.Key);
-						if (ab == null)
-						{
-							context.Send($"You learned the new ability: {ab.Id}.");
-						} else
-						{
-							context.Send($"The power of ability '{ab.Id}' has increased by {ab.Power}.");
-						}
-					}
+					context.Send($"You learned the new ability: {ab}.");
+				}
+
+				foreach (var ab in improvedAbilities)
+				{
+					context.Send($"The power of ability '{ab}' was increased.");
 				}
 			}
 
@@ -193,3 +209,4 @@ namespace AbarimMUD.Commands.Player
 		}
 	}
 }
+ 

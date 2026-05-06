@@ -1187,6 +1187,51 @@
       "Sex": "Male",
       "Class": "default",
       "Level": 100,
+      "Gold": 20000,
+      "Hitpoints": 5000,
+      "Armor": 200,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        }
+      ],
       "Flags": [
         "Sentinel"
       ],
@@ -1204,6 +1249,51 @@
       "Sex": "Female",
       "Class": "default",
       "Level": 100,
+      "Gold": 20000,
+      "Hitpoints": 5000,
+      "Armor": 200,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        }
+      ],
       "Flags": [
         "Banker",
         "Sentinel"
@@ -1222,6 +1312,51 @@
       "Sex": "Male",
       "Class": "default",
       "Level": 100,
+      "Gold": 20000,
+      "Hitpoints": 5000,
+      "Armor": 200,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        }
+      ],
       "Flags": [
         "Sentinel",
         "NoPurge"
@@ -1240,6 +1375,51 @@
       "Sex": "Male",
       "Class": "default",
       "Level": 100,
+      "Gold": 20000,
+      "Hitpoints": 5000,
+      "Armor": 200,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        }
+      ],
       "Flags": [
         "Sentinel",
         "NoPurge"
@@ -1259,6 +1439,51 @@
       "Sex": "Male",
       "Class": "default",
       "Level": 100,
+      "Gold": 20000,
+      "Hitpoints": 5000,
+      "Armor": 200,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        }
+      ],
       "Flags": [
         "Sentinel",
         "NoPurge"
@@ -1277,6 +1502,51 @@
       "Sex": "Female",
       "Class": "default",
       "Level": 100,
+      "Gold": 20000,
+      "Hitpoints": 5000,
+      "Armor": 200,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        }
+      ],
       "Flags": [
         "Sentinel",
         "NoPurge"
@@ -1297,6 +1567,51 @@
       "Sex": "Male",
       "Class": "default",
       "Level": 100,
+      "Gold": 20000,
+      "Hitpoints": 5000,
+      "Armor": 200,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        }
+      ],
       "Flags": [
         "Sentinel",
         "NoPurge"
@@ -1315,6 +1630,51 @@
       "Sex": "Female",
       "Class": "default",
       "Level": 100,
+      "Gold": 20000,
+      "Hitpoints": 5000,
+      "Armor": 200,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        }
+      ],
       "Flags": [
         "Sentinel",
         "Enchanter"
@@ -1334,6 +1694,51 @@
       "Sex": "Male",
       "Class": "default",
       "Level": 100,
+      "Gold": 20000,
+      "Hitpoints": 5000,
+      "Armor": 200,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        }
+      ],
       "Flags": [
         "Sentinel"
       ],
@@ -1352,6 +1757,36 @@
       "Sex": "None",
       "Class": "default",
       "Level": 50,
+      "Gold": 10000,
+      "Hitpoints": 2500,
+      "Armor": 100,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 100,
+          "DamageRange": "28-57"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 100,
+          "DamageRange": "28-57"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 100,
+          "DamageRange": "28-57"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 100,
+          "DamageRange": "28-57"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 100,
+          "DamageRange": "28-57"
+        }
+      ],
       "Flags": [
         "Sentinel",
         "AssistId"
@@ -1371,6 +1806,51 @@
       "Sex": "Male",
       "Class": "default",
       "Level": 100,
+      "Gold": 20000,
+      "Hitpoints": 5000,
+      "Armor": 200,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        }
+      ],
       "Flags": [
         "Sentinel"
       ],
@@ -1388,6 +1868,36 @@
       "Sex": "None",
       "Class": "default",
       "Level": 50,
+      "Gold": 10000,
+      "Hitpoints": 2500,
+      "Armor": 100,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 100,
+          "DamageRange": "28-57"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 100,
+          "DamageRange": "28-57"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 100,
+          "DamageRange": "28-57"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 100,
+          "DamageRange": "28-57"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 100,
+          "DamageRange": "28-57"
+        }
+      ],
       "Flags": [
         "Sentinel",
         "AssistId"
@@ -1407,6 +1917,51 @@
       "Sex": "Male",
       "Class": "default",
       "Level": 100,
+      "Gold": 20000,
+      "Hitpoints": 5000,
+      "Armor": 200,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        }
+      ],
       "Flags": [
         "Sentinel"
       ],
@@ -1425,6 +1980,36 @@
       "Sex": "Female",
       "Class": "default",
       "Level": 50,
+      "Gold": 10000,
+      "Hitpoints": 2500,
+      "Armor": 100,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 100,
+          "DamageRange": "28-57"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 100,
+          "DamageRange": "28-57"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 100,
+          "DamageRange": "28-57"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 100,
+          "DamageRange": "28-57"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 100,
+          "DamageRange": "28-57"
+        }
+      ],
       "Flags": [
         "Sentinel",
         "AssistId"
@@ -1444,6 +2029,51 @@
       "Sex": "Male",
       "Class": "default",
       "Level": 100,
+      "Gold": 20000,
+      "Hitpoints": 5000,
+      "Armor": 200,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        }
+      ],
       "Flags": [
         "Sentinel"
       ],
@@ -1462,6 +2092,36 @@
       "Sex": "Male",
       "Class": "default",
       "Level": 50,
+      "Gold": 10000,
+      "Hitpoints": 2500,
+      "Armor": 100,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 100,
+          "DamageRange": "28-57"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 100,
+          "DamageRange": "28-57"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 100,
+          "DamageRange": "28-57"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 100,
+          "DamageRange": "28-57"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 100,
+          "DamageRange": "28-57"
+        }
+      ],
       "Flags": [
         "Sentinel",
         "AssistId"
@@ -1481,6 +2141,51 @@
       "Sex": "Female",
       "Class": "default",
       "Level": 100,
+      "Gold": 20000,
+      "Hitpoints": 5000,
+      "Armor": 200,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        }
+      ],
       "Flags": [
         "Sentinel"
       ],
@@ -1499,6 +2204,36 @@
       "Sex": "Female",
       "Class": "default",
       "Level": 50,
+      "Gold": 10000,
+      "Hitpoints": 2500,
+      "Armor": 100,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 100,
+          "DamageRange": "28-57"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 100,
+          "DamageRange": "28-57"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 100,
+          "DamageRange": "28-57"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 100,
+          "DamageRange": "28-57"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 100,
+          "DamageRange": "28-57"
+        }
+      ],
       "Flags": [
         "Sentinel",
         "AssistId"
@@ -1516,6 +2251,51 @@
       "Sex": "Male",
       "Class": "default",
       "Level": 100,
+      "Gold": 20000,
+      "Hitpoints": 5000,
+      "Armor": 200,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        }
+      ],
       "Flags": [
         "Sentinel",
         "NoPurge",
@@ -1535,6 +2315,26 @@
       "Sex": "None",
       "Class": "default",
       "Level": 15,
+      "Gold": 3000,
+      "Hitpoints": 800,
+      "Armor": 30,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 30,
+          "DamageRange": "11-22"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 30,
+          "DamageRange": "11-22"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 30,
+          "DamageRange": "11-22"
+        }
+      ],
       "Flags": [
         "Sentinel",
         "Scavenger",
@@ -1555,6 +2355,51 @@
       "Sex": "Male",
       "Class": "default",
       "Level": 100,
+      "Gold": 20000,
+      "Hitpoints": 5000,
+      "Armor": 200,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        }
+      ],
       "Flags": [
         "Sentinel",
         "NoPurge"
@@ -1575,6 +2420,51 @@
       "Sex": "Male",
       "Class": "default",
       "Level": 100,
+      "Gold": 20000,
+      "Hitpoints": 5000,
+      "Armor": 200,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        }
+      ],
       "Flags": [
         "Sentinel",
         "NoPurge"
@@ -1594,6 +2484,16 @@
       "Sex": "None",
       "Class": "default",
       "Level": 1,
+      "Gold": 100,
+      "Hitpoints": 100,
+      "Armor": 10,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 10,
+          "DamageRange": "4-8"
+        }
+      ],
       "Flags": [
         "Sentinel",
         "NoAlign"
@@ -1613,6 +2513,21 @@
       "Sex": "None",
       "Class": "default",
       "Level": 3,
+      "Gold": 500,
+      "Hitpoints": 200,
+      "Armor": 10,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 10,
+          "DamageRange": "5-10"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 10,
+          "DamageRange": "5-10"
+        }
+      ],
       "Flags": [
         "Sentinel",
         "NoAlign"
@@ -1632,6 +2547,21 @@
       "Sex": "None",
       "Class": "default",
       "Level": 5,
+      "Gold": 900,
+      "Hitpoints": 300,
+      "Armor": 10,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 10,
+          "DamageRange": "6-12"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 10,
+          "DamageRange": "6-12"
+        }
+      ],
       "Flags": [
         "Sentinel",
         "NoAlign"
@@ -1651,6 +2581,21 @@
       "Sex": "None",
       "Class": "default",
       "Level": 7,
+      "Gold": 1500,
+      "Hitpoints": 400,
+      "Armor": 20,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 20,
+          "DamageRange": "7-14"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 20,
+          "DamageRange": "7-14"
+        }
+      ],
       "Flags": [
         "Sentinel",
         "NoAlign"
@@ -1669,6 +2614,21 @@
       "Sex": "None",
       "Class": "default",
       "Level": 9,
+      "Gold": 2000,
+      "Hitpoints": 500,
+      "Armor": 20,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 20,
+          "DamageRange": "8-16"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 20,
+          "DamageRange": "8-16"
+        }
+      ],
       "Flags": [
         "Sentinel",
         "NoAlign"
@@ -1688,6 +2648,21 @@
       "Sex": "None",
       "Class": "default",
       "Level": 12,
+      "Gold": 2500,
+      "Hitpoints": 600,
+      "Armor": 30,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 30,
+          "DamageRange": "9-19"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 30,
+          "DamageRange": "9-19"
+        }
+      ],
       "Flags": [
         "Sentinel",
         "Pet",
@@ -1707,6 +2682,26 @@
       "Sex": "None",
       "Class": "default",
       "Level": 15,
+      "Gold": 3000,
+      "Hitpoints": 800,
+      "Armor": 30,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 30,
+          "DamageRange": "11-22"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 30,
+          "DamageRange": "11-22"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 30,
+          "DamageRange": "11-22"
+        }
+      ],
       "Flags": [
         "Sentinel",
         "Pet",
@@ -1726,6 +2721,26 @@
       "Sex": "None",
       "Class": "default",
       "Level": 20,
+      "Gold": 4000,
+      "Hitpoints": 1000,
+      "Armor": 40,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 40,
+          "DamageRange": "13-27"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 40,
+          "DamageRange": "13-27"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 40,
+          "DamageRange": "13-27"
+        }
+      ],
       "Flags": [
         "Sentinel",
         "Pet",
@@ -1745,6 +2760,36 @@
       "Sex": "Male",
       "Class": "default",
       "Level": 50,
+      "Gold": 10000,
+      "Hitpoints": 2500,
+      "Armor": 100,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 100,
+          "DamageRange": "28-57"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 100,
+          "DamageRange": "28-57"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 100,
+          "DamageRange": "28-57"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 100,
+          "DamageRange": "28-57"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 100,
+          "DamageRange": "28-57"
+        }
+      ],
       "Flags": [
         "Sentinel",
         "AssistPlayers"
@@ -1763,6 +2808,31 @@
       "Sex": "Male",
       "Class": "default",
       "Level": 40,
+      "Gold": 8000,
+      "Hitpoints": 2000,
+      "Armor": 80,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 80,
+          "DamageRange": "23-47"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 80,
+          "DamageRange": "23-47"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 80,
+          "DamageRange": "23-47"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 80,
+          "DamageRange": "23-47"
+        }
+      ],
       "Flags": [
         "Sentinel"
       ],
@@ -1781,6 +2851,51 @@
       "Sex": "Male",
       "Class": "default",
       "Level": 100,
+      "Gold": 20000,
+      "Hitpoints": 5000,
+      "Armor": 200,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        }
+      ],
       "Flags": [
         "Sentinel"
       ],
@@ -1798,6 +2913,36 @@
       "Sex": "Female",
       "Class": "default",
       "Level": 50,
+      "Gold": 10000,
+      "Hitpoints": 2500,
+      "Armor": 100,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 100,
+          "DamageRange": "28-57"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 100,
+          "DamageRange": "28-57"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 100,
+          "DamageRange": "28-57"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 100,
+          "DamageRange": "28-57"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 100,
+          "DamageRange": "28-57"
+        }
+      ],
       "Flags": [
         "Sentinel",
         "AssistId"
@@ -1816,6 +2961,31 @@
       "Sex": "Male",
       "Class": "default",
       "Level": 40,
+      "Gold": 8000,
+      "Hitpoints": 2000,
+      "Armor": 80,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 80,
+          "DamageRange": "23-47"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 80,
+          "DamageRange": "23-47"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 80,
+          "DamageRange": "23-47"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 80,
+          "DamageRange": "23-47"
+        }
+      ],
       "Flags": [
         "Sentinel",
         "NoPurge"
@@ -1834,6 +3004,36 @@
       "Sex": "Male",
       "Class": "default",
       "Level": 50,
+      "Gold": 10000,
+      "Hitpoints": 2500,
+      "Armor": 100,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 100,
+          "DamageRange": "28-57"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 100,
+          "DamageRange": "28-57"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 100,
+          "DamageRange": "28-57"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 100,
+          "DamageRange": "28-57"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 100,
+          "DamageRange": "28-57"
+        }
+      ],
       "Flags": [
         "Sentinel",
         "AssistId"
@@ -1855,6 +3055,51 @@
       "Sex": "Male",
       "Class": "default",
       "Level": 100,
+      "Gold": 20000,
+      "Hitpoints": 5000,
+      "Armor": 200,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        }
+      ],
       "Flags": [
         "Sentinel"
       ],
@@ -1873,6 +3118,26 @@
       "Sex": "None",
       "Class": "default",
       "Level": 15,
+      "Gold": 3000,
+      "Hitpoints": 800,
+      "Armor": 30,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 30,
+          "DamageRange": "11-22"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 30,
+          "DamageRange": "11-22"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 30,
+          "DamageRange": "11-22"
+        }
+      ],
       "Flags": [
         "AssistPlayers"
       ],
@@ -1889,6 +3154,16 @@
       "Sex": "None",
       "Class": "default",
       "Level": 1,
+      "Gold": 100,
+      "Hitpoints": 100,
+      "Armor": 10,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 10,
+          "DamageRange": "4-8"
+        }
+      ],
       "Flags": [
         "NoWander"
       ],
@@ -1905,6 +3180,16 @@
       "Sex": "None",
       "Class": "default",
       "Level": 1,
+      "Gold": 100,
+      "Hitpoints": 100,
+      "Armor": 10,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 10,
+          "DamageRange": "4-8"
+        }
+      ],
       "Flags": [
         "NoWander"
       ],
@@ -1921,6 +3206,16 @@
       "Sex": "None",
       "Class": "default",
       "Level": 1,
+      "Gold": 100,
+      "Hitpoints": 100,
+      "Armor": 10,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 10,
+          "DamageRange": "4-8"
+        }
+      ],
       "Flags": [
         "NoWander"
       ],
@@ -1937,6 +3232,16 @@
       "Sex": "None",
       "Class": "default",
       "Level": 1,
+      "Gold": 100,
+      "Hitpoints": 100,
+      "Armor": 10,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 10,
+          "DamageRange": "4-8"
+        }
+      ],
       "Flags": [
         "NoWander"
       ],
@@ -1955,6 +3260,51 @@
       "Sex": "None",
       "Class": "default",
       "Level": 100,
+      "Gold": 20000,
+      "Hitpoints": 5000,
+      "Armor": 200,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        }
+      ],
       "Flags": [
         "Sentinel"
       ],
@@ -1972,6 +3322,36 @@
       "Sex": "Female",
       "Class": "default",
       "Level": 50,
+      "Gold": 10000,
+      "Hitpoints": 2500,
+      "Armor": 100,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 100,
+          "DamageRange": "28-57"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 100,
+          "DamageRange": "28-57"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 100,
+          "DamageRange": "28-57"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 100,
+          "DamageRange": "28-57"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 100,
+          "DamageRange": "28-57"
+        }
+      ],
       "Flags": [
         "Sentinel",
         "AssistId"
@@ -1990,6 +3370,51 @@
       "Sex": "Female",
       "Class": "default",
       "Level": 100,
+      "Gold": 20000,
+      "Hitpoints": 5000,
+      "Armor": 200,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        }
+      ],
       "Flags": [
         "AssistAlign"
       ],
@@ -2007,6 +3432,51 @@
       "Sex": "Male",
       "Class": "default",
       "Level": 100,
+      "Gold": 20000,
+      "Hitpoints": 5000,
+      "Armor": 200,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 200,
+          "DamageRange": "53-107"
+        }
+      ],
       "Flags": [
         "AssistAlign"
       ],

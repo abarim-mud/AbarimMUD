@@ -637,6 +637,21 @@
       "Sex": "Female",
       "Class": "default",
       "Level": 5,
+      "Gold": 900,
+      "Hitpoints": 300,
+      "Armor": 10,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 10,
+          "DamageRange": "6-12"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 10,
+          "DamageRange": "6-12"
+        }
+      ],
       "Flags": [],
       "Experience": "5,940",
       "Id": 2000
@@ -652,6 +667,26 @@
       "Sex": "Male",
       "Class": "default",
       "Level": 24,
+      "Gold": 5000,
+      "Hitpoints": 1200,
+      "Armor": 50,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 50,
+          "DamageRange": "15-31"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 50,
+          "DamageRange": "15-31"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 50,
+          "DamageRange": "15-31"
+        }
+      ],
       "Flags": [],
       "Experience": "183,600",
       "Id": 2001
@@ -667,6 +702,21 @@
       "Sex": "Female",
       "Class": "default",
       "Level": 6,
+      "Gold": 1500,
+      "Hitpoints": 300,
+      "Armor": 20,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 20,
+          "DamageRange": "6-13"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 20,
+          "DamageRange": "6-13"
+        }
+      ],
       "Flags": [],
       "Experience": "7,200",
       "Id": 2002
@@ -681,6 +731,21 @@
       "Sex": "Male",
       "Class": "default",
       "Level": 5,
+      "Gold": 900,
+      "Hitpoints": 300,
+      "Armor": 10,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 10,
+          "DamageRange": "6-12"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 10,
+          "DamageRange": "6-12"
+        }
+      ],
       "Flags": [],
       "Experience": "5,940",
       "Id": 2003
@@ -696,6 +761,21 @@
       "Sex": "Female",
       "Class": "default",
       "Level": 12,
+      "Gold": 2500,
+      "Hitpoints": 600,
+      "Armor": 30,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 30,
+          "DamageRange": "9-19"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 30,
+          "DamageRange": "9-19"
+        }
+      ],
       "Flags": [],
       "Experience": "28,080",
       "Id": 2004
@@ -711,6 +791,21 @@
       "Sex": "Male",
       "Class": "default",
       "Level": 6,
+      "Gold": 1500,
+      "Hitpoints": 300,
+      "Armor": 20,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 20,
+          "DamageRange": "6-13"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 20,
+          "DamageRange": "6-13"
+        }
+      ],
       "Flags": [],
       "Experience": "7,200",
       "Id": 2005
@@ -726,6 +821,21 @@
       "Sex": "Female",
       "Class": "defaultEthereal",
       "Level": 10,
+      "Gold": 2000,
+      "Hitpoints": 500,
+      "Armor": 20,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 20,
+          "DamageRange": "8-17"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 20,
+          "DamageRange": "8-17"
+        }
+      ],
       "Flags": [],
       "Experience": "20,160",
       "Id": 2006
@@ -741,6 +851,21 @@
       "Sex": "Male",
       "Class": "default",
       "Level": 8,
+      "Gold": 1500,
+      "Hitpoints": 400,
+      "Armor": 20,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 20,
+          "DamageRange": "7-15"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 20,
+          "DamageRange": "7-15"
+        }
+      ],
       "Flags": [],
       "Experience": "12,480",
       "Id": 2007
@@ -755,6 +880,21 @@
       "Sex": "Male",
       "Class": "default",
       "Level": 10,
+      "Gold": 2000,
+      "Hitpoints": 500,
+      "Armor": 20,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 20,
+          "DamageRange": "8-17"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 20,
+          "DamageRange": "8-17"
+        }
+      ],
       "Flags": [],
       "Experience": "16,800",
       "Id": 2008
@@ -770,6 +910,21 @@
       "Sex": "Female",
       "Class": "default",
       "Level": 14,
+      "Gold": 3000,
+      "Hitpoints": 700,
+      "Armor": 30,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 30,
+          "DamageRange": "10-21"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 30,
+          "DamageRange": "10-21"
+        }
+      ],
       "Flags": [],
       "Experience": "34,542",
       "Id": 2009
@@ -784,6 +939,21 @@
       "Sex": "Male",
       "Class": "default",
       "Level": 7,
+      "Gold": 1500,
+      "Hitpoints": 400,
+      "Armor": 20,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 20,
+          "DamageRange": "7-14"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 20,
+          "DamageRange": "7-14"
+        }
+      ],
       "Flags": [],
       "Experience": "11,520",
       "Id": 2010
@@ -798,6 +968,26 @@
       "Sex": "Male",
       "Class": "default",
       "Level": 25,
+      "Gold": 5000,
+      "Hitpoints": 1300,
+      "Armor": 50,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 50,
+          "DamageRange": "16-32"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 50,
+          "DamageRange": "16-32"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 50,
+          "DamageRange": "16-32"
+        }
+      ],
       "Flags": [],
       "Experience": "210,600",
       "Id": 2011
@@ -812,6 +1002,26 @@
       "Sex": "Male",
       "Class": "default",
       "Level": 17,
+      "Gold": 4000,
+      "Hitpoints": 900,
+      "Armor": 40,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 40,
+          "DamageRange": "12-24"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 40,
+          "DamageRange": "12-24"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 40,
+          "DamageRange": "12-24"
+        }
+      ],
       "Flags": [],
       "Experience": "94,500",
       "Id": 2012
@@ -828,6 +1038,26 @@
       "Sex": "Female",
       "Class": "default",
       "Level": 26,
+      "Gold": 6000,
+      "Hitpoints": 1300,
+      "Armor": 60,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 60,
+          "DamageRange": "16-33"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 60,
+          "DamageRange": "16-33"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 60,
+          "DamageRange": "16-33"
+        }
+      ],
       "Flags": [],
       "Experience": "237,120",
       "Id": 2013
@@ -842,6 +1072,26 @@
       "Sex": "Female",
       "Class": "default",
       "Level": 26,
+      "Gold": 6000,
+      "Hitpoints": 1300,
+      "Armor": 60,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 60,
+          "DamageRange": "16-33"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 60,
+          "DamageRange": "16-33"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 60,
+          "DamageRange": "16-33"
+        }
+      ],
       "Flags": [],
       "Experience": "237,120",
       "Id": 2014
@@ -858,6 +1108,21 @@
       "Sex": "Male",
       "Class": "default",
       "Level": 10,
+      "Gold": 2000,
+      "Hitpoints": 500,
+      "Armor": 20,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 20,
+          "DamageRange": "8-17"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 20,
+          "DamageRange": "8-17"
+        }
+      ],
       "Flags": [],
       "Experience": "16,800",
       "Id": 2015
@@ -874,6 +1139,21 @@
       "Sex": "Male",
       "Class": "default",
       "Level": 13,
+      "Gold": 2500,
+      "Hitpoints": 700,
+      "Armor": 30,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 30,
+          "DamageRange": "10-20"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 30,
+          "DamageRange": "10-20"
+        }
+      ],
       "Flags": [],
       "Experience": "34,542",
       "Id": 2016
@@ -889,6 +1169,21 @@
       "Sex": "Female",
       "Class": "default",
       "Level": 8,
+      "Gold": 1500,
+      "Hitpoints": 400,
+      "Armor": 20,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 20,
+          "DamageRange": "7-15"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 20,
+          "DamageRange": "7-15"
+        }
+      ],
       "Flags": [],
       "Experience": "12,480",
       "Id": 2017
@@ -904,6 +1199,26 @@
       "Sex": "Female",
       "Class": "default",
       "Level": 15,
+      "Gold": 3000,
+      "Hitpoints": 800,
+      "Armor": 30,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 30,
+          "DamageRange": "11-22"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 30,
+          "DamageRange": "11-22"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 30,
+          "DamageRange": "11-22"
+        }
+      ],
       "Flags": [],
       "Experience": "62,400",
       "Id": 2018

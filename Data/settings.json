@@ -21,6 +21,8 @@
   "NpcWanderChance": 15,
   "AllowPlayerKilling": false,
   "DefaultMobileClassId": "default",
+  "DefaultMobileMana": 200,
+  "DefaultMobileMoves": 200,
   "DefaultHolyResistance": 100,
   "DefaultFireResistance": 0,
   "DefaultColdResistance": 0,

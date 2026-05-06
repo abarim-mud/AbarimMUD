@@ -256,9 +256,9 @@ namespace AbarimMUD.Data
 				var skill = pair.Value.Skill;
 
 				// Apply all levels up to learned one
-				for (var level = 0; level < pair.Value.Level; ++level)
+				for (var level = 1; level <= pair.Value.Level; ++level)
 				{
-					var def = skill.Levels[level];
+					var def = skill.GetLevelDefinition(level);
 
 					foreach (var modPair in def.Modifiers)
 					{

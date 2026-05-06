@@ -214,5 +214,17 @@ namespace AbarimMUD.Data
 		{
 			return _attackNames[(int)attackType].Verb;
 		}
+
+		public static Attack[] CloneAttacks(this Attack[] source)
+		{
+			var result = new Attack[source.Length];
+
+			for (var i = 0; i < source.Length; i++)
+			{
+				result[i] = source[i].Clone();
+			}
+
+			return result;
+		}
 	}
 }

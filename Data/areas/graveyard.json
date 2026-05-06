@@ -396,6 +396,21 @@
       "Sex": "Male",
       "Class": "default",
       "Level": 4,
+      "Gold": 700,
+      "Hitpoints": 200,
+      "Armor": 10,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 10,
+          "DamageRange": "5-11"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 10,
+          "DamageRange": "5-11"
+        }
+      ],
       "Flags": [
         "AssistId"
       ],
@@ -412,6 +427,21 @@
       "Sex": "Male",
       "Class": "default",
       "Level": 4,
+      "Gold": 700,
+      "Hitpoints": 200,
+      "Armor": 10,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 10,
+          "DamageRange": "5-11"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 10,
+          "DamageRange": "5-11"
+        }
+      ],
       "Flags": [
         "Sentinel",
         "Aggressive",
@@ -430,6 +460,21 @@
       "Sex": "Male",
       "Class": "undead",
       "Level": 8,
+      "Gold": 1500,
+      "Hitpoints": 400,
+      "Armor": 20,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 20,
+          "DamageRange": "7-15"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 20,
+          "DamageRange": "7-15"
+        }
+      ],
       "Flags": [
         "Sentinel",
         "Aggressive",
@@ -448,6 +493,21 @@
       "Sex": "Male",
       "Class": "default",
       "Level": 3,
+      "Gold": 500,
+      "Hitpoints": 200,
+      "Armor": 10,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 10,
+          "DamageRange": "5-10"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 10,
+          "DamageRange": "5-10"
+        }
+      ],
       "Flags": [
         "Sentinel",
         "Aggressive",
@@ -466,6 +526,21 @@
       "Sex": "Male",
       "Class": "undead",
       "Level": 6,
+      "Gold": 1500,
+      "Hitpoints": 300,
+      "Armor": 20,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 20,
+          "DamageRange": "6-13"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 20,
+          "DamageRange": "6-13"
+        }
+      ],
       "Flags": [
         "Aggressive",
         "AssistId"
@@ -483,6 +558,21 @@
       "Sex": "Male",
       "Class": "undead",
       "Level": 7,
+      "Gold": 1500,
+      "Hitpoints": 400,
+      "Armor": 20,
+      "Attacks": [
+        {
+          "Type": "Hit",
+          "AttackBonus": 20,
+          "DamageRange": "7-14"
+        },
+        {
+          "Type": "Hit",
+          "AttackBonus": 20,
+          "DamageRange": "7-14"
+        }
+      ],
       "Flags": [
         "Aggressive",
         "AssistId"

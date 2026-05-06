@@ -48,11 +48,13 @@ namespace AbarimMUD.Data
 			public bool AllowPlayerKilling { get; set; } = false;
 			public string DefaultMobileClassId { get; set; } = "default";
 
+			public int DefaultMobileMana { get; set; } = 200;
+			public int DefaultMobileMoves { get; set; } = 200;
+
 			public int DefaultHolyResistance { get; set; } = 100;
 			public int DefaultFireResistance { get; set; } = 0;
 			public int DefaultColdResistance { get; set; } = 0;
 			public int DefaultShockResistance { get; set; } = 0;
-
 		}
 
 		public static BaseStorage Storage => InternalStorage;
@@ -90,6 +92,9 @@ namespace AbarimMUD.Data
 		public static int NpcWanderChance => Instance.NpcWanderChance;
 		public static bool AllowPlayerKilling => Instance.AllowPlayerKilling;
 		public static string DefaultMobileClassId => Instance.DefaultMobileClassId;
+
+		public static int DefaultMobileMana => Instance.DefaultMobileMana;
+		public static int DefaultMobileMoves => Instance.DefaultMobileMoves;
 
 		public static int DefaultHolyResistance => Instance.DefaultHolyResistance;
 		public static int DefaultFireResistance => Instance.DefaultFireResistance;

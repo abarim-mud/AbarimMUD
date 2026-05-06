@@ -56,13 +56,24 @@ namespace AbarimMUD.Data
 
 		public static Skill GetSkillById(string name) => Storage.GetByKey(name);
 		public static Skill EnsureSkillById(string name) => Storage.EnsureByKey(name);
+
+		public SkillLevelDefinition GetLevelDefinition(int level)
+		{
+			if (level < 1 || level > TotalLevels)
+			{
+				throw new ArgumentOutOfRangeException(nameof(level));
+			}
+
+			// Since level starts from 1, while the array start from zero, we need to do -1
+			return Levels[level - 1];
+		}
 	}
 
 	public class SkillValue
 	{
 		public Skill Skill { get; set; }
 		public int Level { get; set; }
-		public SkillLevelDefinition LevelDefinition => Skill.Levels[Level];
+		public SkillLevelDefinition LevelDefinition => Skill.GetLevelDefinition(Level);
 
 		public bool IsMaxed => Level >= Skill.TotalLevels;
 

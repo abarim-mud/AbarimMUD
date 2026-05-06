@@ -1,8 +1,8 @@
 ﻿using AbarimMUD.Attributes;
 using AbarimMUD.Utils;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text.Json.Serialization;
 
 namespace AbarimMUD.Data
 {
@@ -53,8 +53,11 @@ namespace AbarimMUD.Data
 	{
 		private MobileClass _class;
 		private int _level;
-		private AttackType? _attackType = null;
 		private Shop _shop;
+		private int _hitpoints;
+		private int? _mana, _moves;
+		private int _armor;
+		private Attack[] _attacks;
 
 		[Browsable(false)]
 		public HashSet<string> Keywords { get; set; } = new HashSet<string>();
@@ -101,93 +104,92 @@ namespace AbarimMUD.Data
 			}
 		}
 
-		public AttackType? DefaultAttackType
-		{
-			get => _attackType;
+		public int Gold { get; set; }
 
+		public int Hitpoints
+		{
+			get => _hitpoints;
 			set
 			{
-				if (value == _attackType)
+				if (value == _hitpoints)
 				{
 					return;
 				}
 
-				_attackType = value;
+				_hitpoints = value;
 				InvalidateCreaturesOfThisTemplate();
 			}
 		}
 
-		[OLCIgnore]
-		[JsonIgnore]
-		public int Gold
+		public int? Mana
 		{
-			get
-			{
-				var result = Class.Gold.GetValue(Level).RoundDownToNearest(100);
+			get => _mana;
 
-				if (result > 1000)
+			set
+			{
+				if (value == _mana)
 				{
-					if (result < 3000)
-					{
-						result = result.RoundUpToNearest(500);
-					}
-					else if (result < 10000)
-					{
-						result = result.RoundUpToNearest(1000);
-					}
-					else
-					{
-						result = result.RoundUpToNearest(5000);
-					}
+					return;
 				}
 
-				return result;
+				_mana = value;
+				InvalidateCreaturesOfThisTemplate();
 			}
 		}
 
-		[OLCIgnore]
-		[JsonIgnore]
-		private int Hitpoints => Class.Hitpoints.GetValue(Level).RoundDownToNearest(100);
+		public int? Moves
+		{
+			get => _moves;
 
-		[OLCIgnore]
-		[JsonIgnore]
-		private int Mana => Class.Mana.GetValue(Level).RoundDownToNearest(100);
+			set
+			{
+				if (value == _moves)
+				{
+					return;
+				}
 
-		[OLCIgnore]
-		[JsonIgnore]
-		private int Moves => Class.Moves.GetValue(Level);
+				_moves = value;
+				InvalidateCreaturesOfThisTemplate();
+			}
+		}
 
-		[OLCIgnore]
-		[JsonIgnore]
-		private int Armor => Class.Armor.GetValue(Level).RoundDownToNearest(10);
+		public int Armor
+		{
+			get => _armor;
+			set
+			{
+				if (value == _armor)
+				{
+					return;
+				}
 
-		[OLCIgnore]
-		[JsonIgnore]
-		private Attack[] Attacks
+				_armor = value;
+				InvalidateCreaturesOfThisTemplate();
+			}
+		}
+
+		public Attack[] Attacks
 		{
 			get
 			{
-				var result = new List<Attack>();
-
-				foreach (var info in Class.Attacks)
+				if (_attacks == null)
 				{
-					if (info.MinimumLevel > Level)
-					{
-						continue;
-					}
-
-					var attackType = DefaultAttackType ?? AttackType.Hit;
-					if (info.Type != null)
-					{
-						attackType = info.Type.Value;
-					}
-
-					var attackBonus = info.AttackBonus.GetValue(Level).RoundDownToNearest(10);
-					var damage = new ValueRange(info.MinimumDamage.GetValue(Level), info.MaximumDamage.GetValue(Level));
-					result.Add(new Attack(attackType, attackBonus, damage));
+					_attacks = new Attack[1];
+					_attacks[0] = new Attack(AttackType.Hit, 10, new ValueRange(4, 8));
 				}
 
-				return result.ToArray();
+				return _attacks;
+			}
+
+			set
+			{
+				if (value == null || value.Length < 1)
+				{
+					throw new ArgumentNullException(nameof(value));
+				}
+
+				_attacks = value;
+				InvalidateCreaturesOfThisTemplate();
 			}
 		}
 
@@ -284,8 +286,8 @@ namespace AbarimMUD.Data
 			var stats = new CreatureStats
 			{
 				HitpointsBase = Hitpoints,
-				ManaBase = Mana,
-				MovesBase = Moves,
+				ManaBase = Mana ?? Configuration.DefaultMobileMana,
+				MovesBase = Moves ?? Configuration.DefaultMobileMoves,
 				Armor = Armor,
 				HolyResistance = HolyResistance,
 				FireResistance = FireResistance,
@@ -367,8 +369,13 @@ namespace AbarimMUD.Data
 				Description = Description,
 				Level = Level,
 				Class = Class,
-				Sex = Sex,
-				DefaultAttackType = DefaultAttackType,
+				Gold = Gold,
+				Hitpoints = Hitpoints,
+				Mana = Mana,
+				Moves = Moves,
+				Armor = Armor,
+				Attacks = Attacks.CloneAttacks(),
+				Sex = Sex
 			};
 
 			foreach (var word in Keywords)
