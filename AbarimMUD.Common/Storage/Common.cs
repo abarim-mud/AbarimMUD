@@ -81,6 +81,46 @@ namespace AbarimMUD.Storage
 			}
 		}
 
+		public class AbilityConverterType : JsonConverter<AbilityPower>
+		{
+			public override AbilityPower Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+			{
+				var s = reader.GetString();
+
+				var parts = s.Split(':');
+
+				var result = new AbilityPower
+				{
+					Ability = new Ability
+					{
+						Id = parts[0]
+					}
+				};
+
+				if (parts.Length > 1)
+				{
+					result.Power = int.Parse(parts[1]);
+				}
+
+				return result;
+			}
+
+			public override void Write(Utf8JsonWriter writer, AbilityPower value, JsonSerializerOptions options)
+			{
+				string s;
+				if (value.Power == 0)
+				{
+					s = value.Ability.Id;
+				}
+				else
+				{
+					s = $"{value.Ability.Id}:{value.Power}";
+				}
+
+				writer.WriteStringValue(s);
+			}
+		}
+
 		public class AbilitiesConverterType : JsonConverter<Dictionary<string, AbilityPower>>
 		{
 			public override Dictionary<string, AbilityPower> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
@@ -322,6 +362,7 @@ namespace AbarimMUD.Storage
 		public static readonly ItemInstanceConverterType ItemInstanceConverter = new ItemInstanceConverterType();
 		public static readonly SkillValueConverterType SkillValueConverter = new SkillValueConverterType();
 		public static readonly AffectsConverterType AffectsConverter = new AffectsConverterType();
+		public static readonly AbilityConverterType AbilityConverter = new AbilityConverterType();
 		public static readonly AbilitiesConverterType AbilitiesConverter = new AbilitiesConverterType();
 		public static readonly InventoryConverterType InventoryConverter = new InventoryConverterType();
 		public static readonly EquipmentConverterType EquipmentConverter = new EquipmentConverterType();
@@ -382,7 +423,8 @@ namespace AbarimMUD.Storage
 			if (mobile.Class != null)
 			{
 				mobile.Class = MobileClass.EnsureClassById(mobile.Class.Id);
-			} else
+			}
+			else
 			{
 				mobile.Class = MobileClass.EnsureClassById(Configuration.DefaultMobileClassId);
 			}
@@ -416,6 +458,11 @@ namespace AbarimMUD.Storage
 			}
 
 			mobile.Experience = mobile.CalculateXpAward();
+		}
+
+		public static void SetReferences(this AbilityPower ability)
+		{
+			ability.Ability = Ability.EnsureAbilityById(ability.Ability.Id);
 		}
 	}
 }

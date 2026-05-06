@@ -1,0 +1,13 @@
+{
+  "Id": "potionOfhaste",
+  "Keywords": [
+    "potion",
+    "haste"
+  ],
+  "ShortDescription": "a potion of haste",
+  "Description": "a potion of haste",
+  "ItemType": "Potion",
+  "Price": 5000,
+  "Ability": "haste",
+  "Flags": []
+}

@@ -1,9 +1,8 @@
 {
   "Id": "alchemist",
   "UnlimitedItems": [
-    "novicePotionOfHealing",
-    "novicePotionOfMana",
-    "novicePotionOfMoves"
+    "potionOfAccuracy",
+    "potionOfhaste"
   ],
   "LimitedItems": [],
   "ItemTypes": [

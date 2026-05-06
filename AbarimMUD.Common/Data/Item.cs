@@ -106,6 +106,7 @@ namespace AbarimMUD.Data
 
 		public Dictionary<ModifierType, Affect> Affects { get; set; } = new Dictionary<ModifierType, Affect>();
 
+		public AbilityPower Ability { get; set; }
 
 		public HashSet<ItemFlags> Flags { get; set; } = new HashSet<ItemFlags>();
 		public ValueRange? DamageRange { get; set; }
@@ -126,6 +127,11 @@ namespace AbarimMUD.Data
 				EnchantmentTier = EnchantmentTier,
 				Material = Material,
 			};
+
+			if (Ability != null)
+			{
+				result.Ability = Ability.Clone();
+			}
 
 			foreach(var pair in Affects)
 			{

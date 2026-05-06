@@ -1,0 +1,13 @@
+{
+  "Id": "potionOfAccuracy",
+  "Keywords": [
+    "potion",
+    "accuracy"
+  ],
+  "ShortDescription": "a potion of accuracy",
+  "Description": "a potion of accuracy",
+  "ItemType": "Potion",
+  "Price": 5000,
+  "Ability": "accuracy:30",
+  "Flags": []
+}

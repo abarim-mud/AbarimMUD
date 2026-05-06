@@ -1,6 +1,8 @@
 ﻿using AbarimMUD.Combat;
+using AbarimMUD.Commands.Builder;
 using AbarimMUD.Data;
 using AbarimMUD.Utils;
+using NLog.Targets;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -114,6 +116,128 @@ namespace AbarimMUD.Commands
 				message = ability.MessageKillRoom;
 			}
 			attacker.SendRoomExceptMe(FormatMessage(message, attacker, ability, target, weapon, info));
+		}
+
+		public static bool UseAbilityNoChecks(this ExecutionContext context, AbilityPower ap, ExecutionContext target)
+		{
+			return context.UseAbilityNoChecks(ap, target, new DamageInfo(), null, null);
+		}
+
+		private static bool UseAbilityNoChecks(this ExecutionContext context, AbilityPower ap, ExecutionContext target, DamageInfo damage, AttackRollResult? physicalAttackRoll, string weaponStr)
+		{
+			var ability = ap.Ability;
+			
+			// Apply affects
+			if (ability.Affects != null)
+			{
+				foreach (var pair in ability.Affects)
+				{
+					var affect = pair.Value;
+					target.Creature.AddTemporaryAffect(affect.AffectSlotName, ability.Name, affect.Type, affect.Value ?? ap.Power, affect.DurationInSeconds.Value, ability.MessageDeactivatedUser);
+				}
+			}
+
+			if (ability.InstantEffects != null)
+			{
+				foreach (var instantEffect in ability.InstantEffects)
+				{
+					var power = instantEffect.Power.Random();
+					switch (instantEffect.Type)
+					{
+						case InstantEffectType.Heal:
+							target.Creature.Heal(power, 0, 0);
+							break;
+
+						case InstantEffectType.MagicDamage:
+							damage.MagicDamage += power;
+							break;
+
+						case InstantEffectType.HolyDamage:
+							damage.HolyDamage += power;
+							break;
+
+						case InstantEffectType.FireDamage:
+							damage.FireDamage += power;
+							break;
+
+						case InstantEffectType.ColdDamage:
+							damage.ColdDamage += power;
+							break;
+
+						case InstantEffectType.ShockDamage:
+							damage.ShockDamage += power;
+							break;
+
+						case InstantEffectType.ChaosDamage:
+							damage.ChaosDamage += power;
+							break;
+					}
+				}
+			}
+
+			if (ability.Type == AbilityType.Spell)
+			{
+				context.Send($"You cast '{ability.Name}'.");
+			}
+
+			// Apply resistances
+			damage.PhysicalDamage = CombatUtils.ApplyResistance(damage.PhysicalDamage, target.Stats.PhysicalResistance);
+			damage.MagicDamage = CombatUtils.ApplyResistance(damage.MagicDamage, target.Stats.MagicResistance);
+
+			// Elemental damages path through corresponding resistance than through the magic resistance
+			damage.HolyDamage = CombatUtils.ApplyResistance(damage.HolyDamage, target.Stats.HolyResistance);
+			damage.HolyDamage = CombatUtils.ApplyResistance(damage.HolyDamage, target.Stats.MagicResistance);
+
+			damage.FireDamage = CombatUtils.ApplyResistance(damage.FireDamage, target.Stats.FireResistance);
+			damage.FireDamage = CombatUtils.ApplyResistance(damage.FireDamage, target.Stats.MagicResistance);
+
+			damage.ColdDamage = CombatUtils.ApplyResistance(damage.ColdDamage, target.Stats.ColdResistance);
+			damage.ColdDamage = CombatUtils.ApplyResistance(damage.ColdDamage, target.Stats.MagicResistance);
+
+			damage.ShockDamage = CombatUtils.ApplyResistance(damage.ShockDamage, target.Stats.ShockResistance);
+			damage.ShockDamage = CombatUtils.ApplyResistance(damage.ShockDamage, target.Stats.MagicResistance);
+
+
+			target.Creature.State.Hitpoints -= damage.TotalDamage;
+
+			var info = string.Empty;
+			var fightDetails = context.GetFightDetails();
+
+			switch (fightDetails)
+			{
+				case FightDetails.Damage:
+					info = damage.TotalDamage.ToString();
+					break;
+
+				case FightDetails.All:
+					if (physicalAttackRoll != null)
+					{
+						info = physicalAttackRoll.Value.AttackRoll + ", " + damage.TotalDamage;
+					}
+					else
+					{
+						info = damage.TotalDamage.ToString();
+					}
+					break;
+			}
+
+			if (target.Creature.State.Hitpoints >= 0)
+			{
+				context.SendHitMessage(ability, target, weaponStr, info);
+			}
+			else
+			{
+				context.SendKillMessage(ability, target, weaponStr, info);
+				context.Slain(target);
+				return false;
+			}
+
+			if (ability.Flags.Contains(AbilityFlags.Offensive))
+			{
+				Fight.Start(context, target);
+			}
+
+			return true;
 		}
 
 		public static bool UseAbility(this ExecutionContext context, AbilityPower ap, string targetName, int[] abilityChecks, Func<int> physicalDamageRoller, ItemInstance weapon)
@@ -257,106 +381,9 @@ namespace AbarimMUD.Commands
 					damage.PhysicalDamage = physicalDamageRoller();
 				}
 
-				// Apply affects
-				if (ability.Affects != null)
+				if (!context.UseAbilityNoChecks(ap, target, damage, physicalAttackRoll, weaponStr))
 				{
-					foreach (var pair in ability.Affects)
-					{
-						var affect = pair.Value;
-						target.Creature.AddTemporaryAffect(affect.AffectSlotName, ability.Name, affect.Type, affect.Value ?? ap.Power, affect.DurationInSeconds.Value, ability.MessageDeactivatedUser);
-					}
-				}
-
-				if (ability.InstantEffects != null)
-				{
-					foreach (var instantEffect in ability.InstantEffects)
-					{
-						var power = instantEffect.Power.Random();
-						switch (instantEffect.Type)
-						{
-							case InstantEffectType.Heal:
-								target.Creature.Heal(power, 0, 0);
-								break;
-
-							case InstantEffectType.MagicDamage:
-								damage.MagicDamage += power;
-								break;
-
-							case InstantEffectType.HolyDamage:
-								damage.HolyDamage += power;
-								break;
-
-							case InstantEffectType.FireDamage:
-								damage.FireDamage += power;
-								break;
-
-							case InstantEffectType.ColdDamage:
-								damage.ColdDamage += power;
-								break;
-
-							case InstantEffectType.ShockDamage:
-								damage.ShockDamage += power;
-								break;
-
-							case InstantEffectType.ChaosDamage:
-								damage.ChaosDamage += power;
-								break;
-						}
-					}
-				}
-
-				if (ability.Type == AbilityType.Spell)
-				{
-					context.Send($"You cast '{ability.Name}'.");
-				}
-
-				// Apply resistances
-				damage.PhysicalDamage = CombatUtils.ApplyResistance(damage.PhysicalDamage, target.Stats.PhysicalResistance);
-				damage.MagicDamage = CombatUtils.ApplyResistance(damage.MagicDamage, target.Stats.MagicResistance);
-
-				// Elemental damages path through corresponding resistance than through the magic resistance
-				damage.HolyDamage = CombatUtils.ApplyResistance(damage.HolyDamage, target.Stats.HolyResistance);
-				damage.HolyDamage = CombatUtils.ApplyResistance(damage.HolyDamage, target.Stats.MagicResistance);
-
-				damage.FireDamage = CombatUtils.ApplyResistance(damage.FireDamage, target.Stats.FireResistance);
-				damage.FireDamage = CombatUtils.ApplyResistance(damage.FireDamage, target.Stats.MagicResistance);
-
-				damage.ColdDamage = CombatUtils.ApplyResistance(damage.ColdDamage, target.Stats.ColdResistance);
-				damage.ColdDamage = CombatUtils.ApplyResistance(damage.ColdDamage, target.Stats.MagicResistance);
-
-				damage.ShockDamage = CombatUtils.ApplyResistance(damage.ShockDamage, target.Stats.ShockResistance);
-				damage.ShockDamage = CombatUtils.ApplyResistance(damage.ShockDamage, target.Stats.MagicResistance);
-
-
-				target.Creature.State.Hitpoints -= damage.TotalDamage;
-
-				info = string.Empty;
-				switch (fightDetails)
-				{
-					case FightDetails.Damage:
-						info = damage.TotalDamage.ToString();
-						break;
-
-					case FightDetails.All:
-						if (physicalAttackRoll != null)
-						{
-							info = physicalAttackRoll.Value.AttackRoll + ", " + damage.TotalDamage;
-						}
-						else
-						{
-							info = damage.TotalDamage.ToString();
-						}
-						break;
-				}
-
-				if (target.Creature.State.Hitpoints >= 0)
-				{
-					context.SendHitMessage(ability, target, weaponStr, info);
-				}
-				else
-				{
-					context.SendKillMessage(ability, target, weaponStr, info);
-					context.Slain(target);
+					break;
 				}
 			}
 
