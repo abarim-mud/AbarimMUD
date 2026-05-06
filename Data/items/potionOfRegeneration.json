@@ -1,0 +1,13 @@
+{
+  "Id": "potionOfRegeneration",
+  "Keywords": [
+    "potion",
+    "regeneration"
+  ],
+  "ShortDescription": "a potion of regeneration",
+  "Description": "a potion of regeneration",
+  "ItemType": "Potion",
+  "Price": 5000,
+  "Ability": "regeneration:20",
+  "Flags": []
+}

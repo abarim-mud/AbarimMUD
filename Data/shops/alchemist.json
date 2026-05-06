@@ -4,7 +4,9 @@
     "potionOfAccuracy",
     "potionOfArmor",
     "potionOfAegis",
-    "potionOfHaste"
+    "potionOfHaste",
+    "potionOfRegeneration",
+    "potionOfMobility"
   ],
   "LimitedItems": [],
   "ItemTypes": [
