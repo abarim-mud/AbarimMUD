@@ -10,7 +10,8 @@
     },
     {
       "Abilities": {
-        "armor": 10
+        "armor": 10,
+        "accuracy": 10
       }
     },
     {
@@ -20,7 +21,8 @@
     },
     {
       "Abilities": {
-        "armor": 5
+        "armor": 5,
+        "accuracy": 5
       }
     },
     {
@@ -31,6 +33,7 @@
     {
       "Abilities": {
         "armor": 5,
+        "accuracy": 5,
         "iceRay": 0
       }
     },
@@ -42,7 +45,8 @@
     },
     {
       "Abilities": {
-        "armor": 5
+        "armor": 5,
+        "accuracy": 5
       }
     },
     {
@@ -53,6 +57,7 @@
     {
       "Abilities": {
         "armor": 5,
+        "accuracy": 5,
         "chaosBlast": 0
       }
     }

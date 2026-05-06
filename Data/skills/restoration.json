@@ -11,52 +11,45 @@
     },
     {
       "Abilities": {
-        "accuracy": 10
+        "mobility": 10,
+        "regeneration": 10
       }
     },
     {
       "Abilities": {
-        "cureSeriousWounds": 0,
-        "regeneration": 10,
-        "mobility": 10
+        "cureSeriousWounds": 0
       }
     },
     {
       "Abilities": {
-        "accuracy": 5,
         "aegis": 10,
-        "regeneration": 10,
-        "mobility": 10
+        "mobility": 10,
+        "regeneration": 5
       }
     },
     {
       "Abilities": {
         "heal": 0,
-        "aegis": 10,
-        "regeneration": 10,
-        "mobility": 10
-      }
-    },
-    {
-      "Abilities": {
-        "accuracy": 5,
-        "aegis": 10,
-        "regeneration": 10,
-        "mobility": 10
-      }
-    },
-    {
-      "Abilities": {
-        "greaterHeal": 0,
-        "aegis": 10,
-        "regeneration": 10,
-        "mobility": 10
-      }
-    },
-    {
-      "Abilities": {
-        "accuracy": 5,
         "aegis": 10
+      }
+    },
+    {
+      "Abilities": {
+        "aegis": 10,
+        "mobility": 10,
+        "regeneration": 5
+      }
+    },
+    {
+      "Abilities": {
+        "greaterHeal": 0
+      }
+    },
+    {
+      "Abilities": {
+        "aegis": 10,
+        "mobility": 10,
+        "regeneration": 5
       }
     },
     {
@@ -66,7 +59,9 @@
     },
     {
       "Abilities": {
-        "accuracy": 5
+        "aegis": 10,
+        "mobility": 10,
+        "regeneration": 5
       }
     }
   ],
