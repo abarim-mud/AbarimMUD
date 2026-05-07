@@ -1,0 +1,14 @@
+{
+  "Id": "potionOfMoves",
+  "Name": "potion of moves",
+  "Type": "Spell",
+  "MovesCost": 0,
+  "ManaCost": 0,
+  "Affects": {
+    "MovesRegenAbsolute2": {
+      "DurationInSeconds": 60,
+      "AffectSlotName": "potionOfMoves"
+    }
+  },
+  "Flags": []
+}
