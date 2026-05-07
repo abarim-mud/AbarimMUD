@@ -2,12 +2,15 @@
   "Id": "mobility",
   "Name": "mobility",
   "Type": "Spell",
+  "MovesCost": 0,
   "ManaCost": 30,
   "MessageHitTarget": "Your steps become lighter.",
   "MessageDeactivatedUser": "Your steps return to normal.",
   "Affects": {
-    "Moves": "power"
+    "Values": {
+      "Moves": "power"
+    },
+    "DurationInSeconds": 600
   },
-  "DurationInSeconds": 600,
   "Flags": []
 }

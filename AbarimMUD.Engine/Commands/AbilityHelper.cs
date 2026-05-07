@@ -307,15 +307,8 @@ namespace AbarimMUD.Commands
 
 			for (var i = 0; i < abilityChecks.Length; ++i)
 			{
-				if (ability.ManaCost != null)
-				{
-					context.Creature.State.Mana -= ability.ManaCost.Value;
-				}
-
-				if (ability.MovesCost != null)
-				{
-					context.Creature.State.Moves -= ability.MovesCost.Value;
-				}
+				context.Creature.State.Mana -= ability.ManaCost;
+				context.Creature.State.Moves -= ability.MovesCost;
 
 				if (ap.Ability.Flags.Contains(AbilityFlags.Offensive) && ability.Type == AbilityType.Physical && target.Stats.IsEthereal && !context.Stats.CanHitEthereal)
 				{

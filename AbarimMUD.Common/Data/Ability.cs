@@ -23,6 +23,12 @@ namespace AbarimMUD.Data
 		BurnsHalfMovesOnWearOff
 	}
 
+	public class AbilityAffects
+	{
+		public Dictionary<ModifierType, Affect> Values { get; set; } = new Dictionary<ModifierType, Affect>();
+		public int DurationInSeconds { get; set; }
+	}
+
 	public class Ability : IStoredInFile
 	{
 		public static readonly MultipleFilesStorage<Ability> Storage = new Abilities();
@@ -105,8 +111,8 @@ namespace AbarimMUD.Data
 		public AbilityType Type { get; set; }
 		public PlayerClass PrimeClass { get; set; }
 
-		public int? MovesCost { get; set; }
-		public int? ManaCost { get; set; }
+		public int MovesCost { get; set; }
+		public int ManaCost { get; set; }
 		public string MessageMissUser { get; set; }
 		public string MessageMissRoom { get; set; }
 		public string MessageHitUser { get; set; }
@@ -117,11 +123,9 @@ namespace AbarimMUD.Data
 		public string MessageDeactivatedUser { get; set; }
 		public string Description { get; set; }
 
-		public Dictionary<ModifierType, Affect> Affects { get; set; }
+		public AbilityAffects Affects { get; set; }
+
 		public InstantEffect[] InstantEffects { get; set; }
-
-		public int? DurationInSeconds { get; set; }
-
 
 		public HashSet<AbilityFlags> Flags { get; set; } = new HashSet<AbilityFlags>();
 		public int? CommandLagInMs { get; set; }

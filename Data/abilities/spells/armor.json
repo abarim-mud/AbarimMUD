@@ -2,12 +2,15 @@
   "Id": "armor",
   "Name": "armor",
   "Type": "Spell",
+  "MovesCost": 0,
   "ManaCost": 10,
   "MessageHitTarget": "You feel protected.",
   "MessageDeactivatedUser": "You are no longer protected.",
   "Affects": {
-    "Armor": "power"
+    "Values": {
+      "Armor": "power"
+    },
+    "DurationInSeconds": 600
   },
-  "DurationInSeconds": 600,
   "Flags": []
 }

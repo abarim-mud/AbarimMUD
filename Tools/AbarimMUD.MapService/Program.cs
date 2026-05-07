@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using Ur;
 
 namespace AbarimMUD.MapService;
 
@@ -44,7 +45,7 @@ internal static class Program
 				mapsInfo = ToolsUtility.DeserializeFromFile<Dictionary<string, DateTime>>(mapsInfoPath);
 			}
 
-			DataContext.Load(dataFolder);
+			UrContext.Load(dataFolder);
 
 			var pngFolder = Path.Combine(outputFolder, PngFolder);
 			var jsonFolder = Path.Combine(outputFolder, JsonFolder);
@@ -197,7 +198,7 @@ internal static class Program
 
 			ToolsUtility.SerializeToFile(mapsInfoPath, mapsInfo);
 
-			DataContext.Clear();
+			UrContext.Clear();
 
 			Thread.Sleep(60 * 1000);
 		}

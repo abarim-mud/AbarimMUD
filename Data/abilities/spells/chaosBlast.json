@@ -3,6 +3,7 @@
   "Name": "chaos blast",
   "Type": "Spell",
   "PrimeClass": "mage",
+  "MovesCost": 0,
   "ManaCost": 25,
   "MessageHitUser": "Your chaos blast warps {target.Name}{info}!",
   "MessageHitRoom": "{user.Name}'s chaos blast warps {target.Name}!",

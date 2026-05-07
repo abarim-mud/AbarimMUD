@@ -2,6 +2,7 @@
   "Id": "cureSeriousWounds",
   "Name": "cure serious wounds",
   "Type": "Spell",
+  "MovesCost": 0,
   "ManaCost": 30,
   "MessageHitTarget": "You feel much better.",
   "MessageHitRoom": "{user.Name} feels much better.",

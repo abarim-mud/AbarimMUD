@@ -12,7 +12,17 @@ namespace AbarimMUD.Data
 		{
 			if (abilityPower == null)
 			{
-				throw new ArgumentNullException("source");
+				throw new ArgumentNullException(nameof(abilityPower));
+			}
+
+			if (abilityPower.Ability == null)
+			{
+				throw new ArgumentNullException("abilityPower.Ability");
+			}
+
+			if (abilityPower.Ability.Affects == null)
+			{
+				throw new ArgumentNullException("abilityPower.Ability.Affects");
 			}
 
 			AbilityPower = abilityPower;

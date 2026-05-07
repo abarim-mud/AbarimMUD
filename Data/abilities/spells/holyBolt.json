@@ -2,6 +2,7 @@
   "Id": "holyBolt",
   "Name": "holy bolt",
   "Type": "Spell",
+  "MovesCost": 0,
   "ManaCost": 10,
   "MessageHitUser": "Your holy bolt smites {target.Name}{info}!",
   "MessageHitRoom": "{user.Name}'s holy bolt smites {target.Name}!",

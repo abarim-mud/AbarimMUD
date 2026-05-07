@@ -202,12 +202,7 @@ namespace AbarimMUD.Services
 					var passed = now - ta.Started;
 
 					var ap = pair.Value.AbilityPower;
-					if (ap.Ability.DurationInSeconds == null)
-					{
-						continue;
-					}
-
-					var duration = ap.Ability.DurationInSeconds.Value;
+					var duration = ap.Ability.Affects.DurationInSeconds;
 					if (duration > 2 * 60 && duration - passed.TotalSeconds <= 60 && !ta.WarnedAboutToExpire)
 					{
 						// Warn that the affect is about to expire

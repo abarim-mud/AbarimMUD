@@ -2,9 +2,13 @@
   "Id": "potionOfHealing",
   "Name": "potion of healing",
   "Type": "Spell",
+  "MovesCost": 0,
+  "ManaCost": 0,
   "Affects": {
-    "HpRegenAbsolute2": "power"
+    "Values": {
+      "HpRegenAbsolute2": "power"
+    },
+    "DurationInSeconds": 60
   },
-  "DurationInSeconds": 60,
   "Flags": []
 }

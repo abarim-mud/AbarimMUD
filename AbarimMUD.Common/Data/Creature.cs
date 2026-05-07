@@ -146,8 +146,7 @@ namespace AbarimMUD.Data
 			foreach (var pair in _temporaryAffects)
 			{
 				var ap = pair.Value.AbilityPower;
-
-				foreach (var pair2 in ap.Ability.Affects)
+				foreach (var pair2 in ap.Ability.Affects.Values)
 				{
 					var power = pair2.Value.Value ?? ap.Power;
 					result.Add(pair2.Key, power);

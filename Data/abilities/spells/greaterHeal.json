@@ -2,6 +2,7 @@
   "Id": "greaterHeal",
   "Name": "greater heal",
   "Type": "Spell",
+  "MovesCost": 0,
   "ManaCost": 55,
   "MessageHitTarget": "Your wounds disappear.",
   "MessageHitRoom": "{user.Name}'s wounds disappear.",
