@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AbarimMUD.Common\AbarimMUD.Common.csproj" />
+    <ProjectReference Include="..\..\AbarimMUD.Common\AbarimMUD.Common.csproj" />
   </ItemGroup>
 
 </Project>
