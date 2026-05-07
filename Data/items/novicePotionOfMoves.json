@@ -9,12 +9,6 @@
   "Description": "a novice potion of moves",
   "ItemType": "Potion",
   "Price": 200,
-  "Affects": {
-    "MovesRegenAbsolute2": {
-      "Value": 60,
-      "DurationInSeconds": 60,
-      "AffectSlotName": "potionOfMoves"
-    }
-  },
+  "Ability": "potionOfMoves:60",
   "Flags": []
 }

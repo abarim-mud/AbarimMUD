@@ -9,12 +9,6 @@
   "Description": "a novice potion of mana",
   "ItemType": "Potion",
   "Price": 400,
-  "Affects": {
-    "ManaRegenAbsolute2": {
-      "Value": 60,
-      "DurationInSeconds": 60,
-      "AffectSlotName": "potionOfMana"
-    }
-  },
+  "Ability": "potionOfMana:60",
   "Flags": []
 }

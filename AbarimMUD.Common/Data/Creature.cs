@@ -304,9 +304,9 @@ namespace AbarimMUD.Data
 			}
 		}
 
-		public void AddTemporaryAffect(string slot, string name, ModifierType type, int value, int durationInSeconds, string expirationMessage)
+		public void AddTemporaryAffect(AbilityPower abilityPower, string name, string slot, ModifierType type, int value, int durationInSeconds)
 		{
-			_temporaryAffects[slot] = new TemporaryAffect(name, type, value, durationInSeconds, expirationMessage);
+			_temporaryAffects[slot] = new TemporaryAffect(abilityPower, name, type, value, durationInSeconds);
 			InvalidateStats();
 		}
 

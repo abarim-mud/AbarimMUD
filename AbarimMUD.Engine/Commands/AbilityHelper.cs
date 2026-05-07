@@ -133,7 +133,7 @@ namespace AbarimMUD.Commands
 				foreach (var pair in ability.Affects)
 				{
 					var affect = pair.Value;
-					target.Creature.AddTemporaryAffect(affect.AffectSlotName, ability.Name, affect.Type, affect.Value ?? ap.Power, affect.DurationInSeconds.Value, ability.MessageDeactivatedUser);
+					target.Creature.AddTemporaryAffect(ap, ability.Name, affect.AffectSlotName, affect.Type, affect.Value ?? ap.Power, affect.DurationInSeconds.Value);
 				}
 			}
 

@@ -27,12 +27,6 @@ namespace AbarimMUD.Commands.Player
 
 			context.Creature.Inventory.AddItem(item.Item, -1);
 
-			foreach (var pair in item.Info.Affects)
-			{
-				var affect = pair.Value;
-				context.Creature.AddTemporaryAffect(affect.AffectSlotName, item.Name, affect.Type, affect.Value.Value, affect.DurationInSeconds.Value, string.Empty);
-			}
-
 			if (item.Info.Ability != null)
 			{
 				// Use item ability on self

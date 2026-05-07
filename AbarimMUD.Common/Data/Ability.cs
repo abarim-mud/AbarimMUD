@@ -18,7 +18,8 @@ namespace AbarimMUD.Data
 		Offensive,
 		FightSkill,
 		TargetFullHp,
-		NotFighting
+		NotFighting,
+		BurnsHalfMovesOnWearOff
 	}
 
 	public class Ability : IStoredInFile

@@ -213,13 +213,23 @@ namespace AbarimMUD.Services
 					{
 						_toDelete.Add(pair.Key);
 
-						if (!string.IsNullOrEmpty(ta.MessageDeactivated))
+						var ability = ta.AbilityPower.Ability;
+
+						if (!string.IsNullOrEmpty(ability.MessageDeactivatedUser))
 						{
-							ctx.Send(ta.MessageDeactivated);
+							ctx.Send(ability.MessageDeactivatedUser);
 						}
 						else
 						{
 							ctx.Send($"'{ta.Name}' wears off.");
+						}
+
+						if (ability.Flags.Contains(AbilityFlags.BurnsHalfMovesOnWearOff))
+						{
+							var baseMoves = creature.Stats.MovesBase;
+							var burnAmount = baseMoves / 2;
+							creature.State.Moves = Math.Max(1, creature.State.Moves - burnAmount);
+							ctx.Send($"You feel exhausted.");
 						}
 					}
 				}

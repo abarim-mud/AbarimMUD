@@ -9,12 +9,6 @@
   "Description": "a novice potion of healing",
   "ItemType": "Potion",
   "Price": 200,
-  "Affects": {
-    "HpRegenAbsolute2": {
-      "Value": 60,
-      "DurationInSeconds": 60,
-      "AffectSlotName": "potionOfHealing"
-    }
-  },
+  "Ability": "potionOfHealing:60",
   "Flags": []
 }
