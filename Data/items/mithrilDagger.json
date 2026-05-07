@@ -13,7 +13,7 @@
   "EnchantmentTier": 5,
   "Material": "Mithril",
   "Affects": {
-    "WeaponAttackBonus": 30
+    "WeaponAttackBonus": "30"
   },
   "Flags": [
     "Stab"

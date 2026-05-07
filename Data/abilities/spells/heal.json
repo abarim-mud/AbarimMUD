@@ -2,7 +2,6 @@
   "Id": "heal",
   "Name": "heal",
   "Type": "Spell",
-  "MovesCost": 0,
   "ManaCost": 40,
   "MessageHitTarget": "A warm feeling runs through your body.",
   "MessageHitRoom": "{user.Name}'s is healed.",

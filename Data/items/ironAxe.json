@@ -13,7 +13,7 @@
   "EnchantmentTier": 1,
   "Material": "Iron",
   "Affects": {
-    "WeaponDamage": 2
+    "WeaponDamage": "2"
   },
   "Flags": [],
   "DamageRange": "2-8"

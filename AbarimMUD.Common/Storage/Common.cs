@@ -35,6 +35,8 @@ namespace AbarimMUD.Storage
 
 		public class AffectsConverterType : JsonConverter<Dictionary<ModifierType, Affect>>
 		{
+			private const string Power = "power";
+
 			public override Dictionary<ModifierType, Affect> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 			{
 				var result = new Dictionary<ModifierType, Affect>();
@@ -44,17 +46,13 @@ namespace AbarimMUD.Storage
 				{
 					var modifier = Enum.Parse<ModifierType>(pair.Name);
 
-					if (pair.Value.ValueKind == JsonValueKind.Number)
+					int? value = null;
+					if (int.TryParse(pair.Value.ToString(), out int v))
 					{
-						// No duration
-						result[modifier] = new Affect(modifier, pair.Value.GetInt32());
+						value = v;
 					}
-					else
-					{
-						// Duration
-						result[modifier] = JsonSerializer.Deserialize<Affect>(pair.Value, options);
-						result[modifier].Type = modifier;
-					}
+
+					result[modifier] = new Affect(modifier, value);
 				}
 
 				return result;
@@ -62,18 +60,20 @@ namespace AbarimMUD.Storage
 
 			public override void Write(Utf8JsonWriter writer, Dictionary<ModifierType, Affect> value, JsonSerializerOptions options)
 			{
-				var newDict = new Dictionary<ModifierType, object>();
+				var newDict = new Dictionary<ModifierType, string>();
 
 				foreach (var pair in value)
 				{
-					// If there's no duration, then write just value
-					if (pair.Value.DurationInSeconds == null)
+					var affect = pair.Value;
+
+					// If there's no value, then write word 'power'
+					if (affect.Value == null)
 					{
-						newDict[pair.Key] = pair.Value.Value;
+						newDict[pair.Key] = Power;
 					}
 					else
 					{
-						newDict[pair.Key] = pair.Value;
+						newDict[pair.Key] = affect.Value.ToString();
 					}
 				}
 

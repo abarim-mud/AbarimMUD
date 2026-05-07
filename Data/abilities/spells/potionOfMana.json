@@ -2,13 +2,9 @@
   "Id": "potionOfMana",
   "Name": "potion of mana",
   "Type": "Spell",
-  "MovesCost": 0,
-  "ManaCost": 0,
   "Affects": {
-    "ManaRegenAbsolute2": {
-      "DurationInSeconds": 60,
-      "AffectSlotName": "potionOfMana"
-    }
+    "ManaRegenAbsolute2": "power"
   },
+  "DurationInSeconds": 60,
   "Flags": []
 }

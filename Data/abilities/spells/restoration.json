@@ -2,7 +2,6 @@
   "Id": "restoration",
   "Name": "restoration",
   "Type": "Spell",
-  "MovesCost": 0,
   "ManaCost": 60,
   "MessageHitTarget": "You feel much, much better.",
   "MessageHitRoom": "{user.Name} glows with the blinding light.",

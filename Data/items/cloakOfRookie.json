@@ -11,7 +11,7 @@
   "EquipmentSlot": "Cloak",
   "Price": 1000,
   "Affects": {
-    "AttackBonus": 10
+    "AttackBonus": "10"
   },
   "Flags": []
 }

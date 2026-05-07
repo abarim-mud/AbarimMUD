@@ -9,7 +9,7 @@ namespace AbarimMUD.Services
 	/// <summary>
 	/// Main activity service that handles creatures' regeneration, temporary effects and hunting
 	/// </summary>
-	internal class ActivityService: BaseService
+	internal class ActivityService : BaseService
 	{
 		private readonly List<string> _toDelete = new List<string>();
 
@@ -201,15 +201,22 @@ namespace AbarimMUD.Services
 					var ta = pair.Value;
 					var passed = now - ta.Started;
 
-					if (ta.DurationInSeconds > 2 * 60 && ta.DurationInSeconds - passed.TotalSeconds <= 60 && !ta.WarnedAboutToExpire)
+					var ap = pair.Value.AbilityPower;
+					if (ap.Ability.DurationInSeconds == null)
+					{
+						continue;
+					}
+
+					var duration = ap.Ability.DurationInSeconds.Value;
+					if (duration > 2 * 60 && duration - passed.TotalSeconds <= 60 && !ta.WarnedAboutToExpire)
 					{
 						// Warn that the affect is about to expire
-						ctx.Send($"'{ta.Name}' is about to expire.");
+						ctx.Send($"'{ap.Ability.Name}' is about to expire.");
 
 						ta.WarnedAboutToExpire = true;
 					}
 
-					if (passed.TotalSeconds >= ta.DurationInSeconds)
+					if (passed.TotalSeconds >= duration)
 					{
 						_toDelete.Add(pair.Key);
 
@@ -221,7 +228,7 @@ namespace AbarimMUD.Services
 						}
 						else
 						{
-							ctx.Send($"'{ta.Name}' wears off.");
+							ctx.Send($"'{ap.Ability.Name}' wears off.");
 						}
 
 						if (ability.Flags.Contains(AbilityFlags.BurnsHalfMovesOnWearOff))

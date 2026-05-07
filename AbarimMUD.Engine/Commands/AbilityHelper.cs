@@ -130,11 +130,7 @@ namespace AbarimMUD.Commands
 			// Apply affects
 			if (ability.Affects != null)
 			{
-				foreach (var pair in ability.Affects)
-				{
-					var affect = pair.Value;
-					target.Creature.AddTemporaryAffect(ap, ability.Name, affect.AffectSlotName, affect.Type, affect.Value ?? ap.Power, affect.DurationInSeconds.Value);
-				}
+				target.Creature.AddTemporaryAffect(ap);
 			}
 
 			if (ability.InstantEffects != null)
@@ -311,8 +307,15 @@ namespace AbarimMUD.Commands
 
 			for (var i = 0; i < abilityChecks.Length; ++i)
 			{
-				context.Creature.State.Mana -= ability.ManaCost;
-				context.Creature.State.Moves -= ability.MovesCost;
+				if (ability.ManaCost != null)
+				{
+					context.Creature.State.Mana -= ability.ManaCost.Value;
+				}
+
+				if (ability.MovesCost != null)
+				{
+					context.Creature.State.Moves -= ability.MovesCost.Value;
+				}
 
 				if (ap.Ability.Flags.Contains(AbilityFlags.Offensive) && ability.Type == AbilityType.Physical && target.Stats.IsEthereal && !context.Stats.CanHitEthereal)
 				{

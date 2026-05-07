@@ -11,7 +11,7 @@
   "Price": 100,
   "AttackType": "Pierce",
   "Affects": {
-    "WeaponAttackBonus": 50
+    "WeaponAttackBonus": "50"
   },
   "Flags": [
     "Stab",

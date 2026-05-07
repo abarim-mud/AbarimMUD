@@ -2,7 +2,6 @@
   "Id": "cureLightWounds",
   "Name": "cure light wounds",
   "Type": "Spell",
-  "MovesCost": 0,
   "ManaCost": 10,
   "MessageHitTarget": "You feel better.",
   "MessageHitRoom": "{user.Name} feels better.",

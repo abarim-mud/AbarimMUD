@@ -12,7 +12,7 @@
   "EnchantmentTier": 1,
   "Material": "Iron",
   "Affects": {
-    "Armor": 1
+    "Armor": "1"
   },
   "Flags": []
 }

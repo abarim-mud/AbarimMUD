@@ -59,7 +59,7 @@ namespace AbarimMUD.Commands.Player
 					var affect = pair.Value;
 
 					var power = affect.Value == null ? "_power_" : affect.Value.ToString();
-					var minutes = (affect.DurationInSeconds.Value / 60.0f).FormatFloat();
+					var minutes = (ab.DurationInSeconds.Value / 60.0f).FormatFloat();
 					sb.Append($"Raises {pair.Key} by {power} for {minutes} minutes.");
 				}
 			}

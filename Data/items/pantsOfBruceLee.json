@@ -11,8 +11,8 @@
   "EquipmentSlot": "Legs",
   "Price": 80000000,
   "Affects": {
-    "Armor": 80,
-    "PhysicalResistance": 15
+    "Armor": "80",
+    "PhysicalResistance": "15"
   },
   "Flags": [
     "HideFromEquipmentList"

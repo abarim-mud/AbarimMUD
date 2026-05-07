@@ -2,15 +2,12 @@
   "Id": "accuracy",
   "Name": "accuracy",
   "Type": "Spell",
-  "MovesCost": 0,
   "ManaCost": 10,
   "MessageHitTarget": "Your accuracy has improved.",
   "MessageDeactivatedUser": "Your accuracy is back to normal.",
   "Affects": {
-    "AttackBonus": {
-      "DurationInSeconds": 600,
-      "AffectSlotName": "spellAccuracy"
-    }
+    "AttackBonus": "power"
   },
+  "DurationInSeconds": 600,
   "Flags": []
 }

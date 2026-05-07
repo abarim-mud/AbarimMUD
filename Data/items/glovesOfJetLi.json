@@ -11,9 +11,9 @@
   "EquipmentSlot": "Hands",
   "Price": 40000,
   "Affects": {
-    "Armor": 4,
-    "MartialArtsAttackBonus": 200,
-    "MartialArtsDamage": 50
+    "Armor": "4",
+    "MartialArtsAttackBonus": "200",
+    "MartialArtsDamage": "50"
   },
   "Flags": [
     "HideFromEquipmentList"

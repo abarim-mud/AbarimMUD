@@ -116,9 +116,10 @@ namespace AbarimMUD.Commands.Player
 				foreach (var pair in context.Creature.TemporaryAffects)
 				{
 					var tempAffect = pair.Value;
-					var left = tempAffect.DurationInSeconds - (int)(now - tempAffect.Started).TotalSeconds;
+					var ability = tempAffect.AbilityPower.Ability;
+					var left = ability.DurationInSeconds.Value - (int)(now - tempAffect.Started).TotalSeconds;
 
-					context.Send($"{tempAffect.Name} ({left.FormatTime()})");
+					context.Send($"{ability.Name} ({left.FormatTime()})");
 				}
 			}
 

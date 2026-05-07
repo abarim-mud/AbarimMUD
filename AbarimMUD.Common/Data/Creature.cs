@@ -145,8 +145,13 @@ namespace AbarimMUD.Data
 			// Temporary affects
 			foreach (var pair in _temporaryAffects)
 			{
-				var affect = pair.Value;
-				result.Add(affect.Type, affect.Value);
+				var ap = pair.Value.AbilityPower;
+
+				foreach (var pair2 in ap.Ability.Affects)
+				{
+					var power = pair2.Value.Value ?? ap.Power;
+					result.Add(pair2.Key, power);
+				}
 			}
 		}
 
@@ -304,9 +309,10 @@ namespace AbarimMUD.Data
 			}
 		}
 
-		public void AddTemporaryAffect(AbilityPower abilityPower, string name, string slot, ModifierType type, int value, int durationInSeconds)
+		public void AddTemporaryAffect(AbilityPower abilityPower)
 		{
-			_temporaryAffects[slot] = new TemporaryAffect(abilityPower, name, type, value, durationInSeconds);
+			var slot = abilityPower.Ability.Id;
+			_temporaryAffects[slot] = new TemporaryAffect(abilityPower);
 			InvalidateStats();
 		}
 
