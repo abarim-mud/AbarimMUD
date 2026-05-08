@@ -1,5 +1,7 @@
-﻿using System;
+﻿using AbarimMUD.Data;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace AbarimMUD.Utils
@@ -75,6 +77,11 @@ namespace AbarimMUD.Utils
 			}
 
 			return result.ToString();
+		}
+
+		public static string JoinByComma(this IEnumerable<ItemMaterial> materials)
+		{
+			return string.Join(", ", from m in materials select m.Name);
 		}
 	}
 }

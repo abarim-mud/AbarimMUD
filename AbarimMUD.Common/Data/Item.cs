@@ -43,13 +43,6 @@ namespace AbarimMUD.Data
 		HideFromEquipmentList,
 	}
 
-	public enum ItemMaterial
-	{
-		Leather,
-		Iron,
-		Mithril
-	}
-
 	public class Item : IStoredInFile, ICloneable
 	{
 		public static readonly MultipleFilesStorage<Item> Storage = new Items();
@@ -102,7 +95,7 @@ namespace AbarimMUD.Data
 			}
 		}
 
-		public ItemMaterial? Material { get; set; }
+		public ItemMaterial Material { get; set; }
 
 		public Dictionary<ModifierType, Affect> Affects { get; set; } = new Dictionary<ModifierType, Affect>();
 

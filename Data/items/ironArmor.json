@@ -10,7 +10,7 @@
   "EquipmentSlot": "Body",
   "Price": 1000,
   "EnchantmentTier": 1,
-  "Material": "Iron",
+  "Material": "iron",
   "Affects": {
     "Armor": "16"
   },

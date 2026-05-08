@@ -10,7 +10,7 @@
   "EquipmentSlot": "Neck",
   "Price": 200,
   "EnchantmentTier": 1,
-  "Material": "Leather",
+  "Material": "leather",
   "Affects": {
     "Armor": "2"
   },

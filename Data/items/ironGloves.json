@@ -10,7 +10,7 @@
   "EquipmentSlot": "Hands",
   "Price": 400,
   "EnchantmentTier": 1,
-  "Material": "Iron",
+  "Material": "iron",
   "Affects": {
     "Armor": "2"
   },

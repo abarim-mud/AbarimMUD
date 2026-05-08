@@ -1,4 +1,5 @@
-﻿using AbarimMUD.Utils;
+﻿using AbarimMUD.Storage;
+using AbarimMUD.Utils;
 using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
@@ -8,7 +9,7 @@ namespace AbarimMUD.Data
 {
 	public class Enchantment : IStoredInFile, ICloneable
 	{
-		public static readonly MultipleFilesStorage<Enchantment> Storage = new MultipleFilesStorage<Enchantment>("enchantments");
+		public static readonly MultipleFilesStorage<Enchantment> Storage = new Enchantments();
 
 		public string Id { get; set; }
 
@@ -20,7 +21,7 @@ namespace AbarimMUD.Data
 
 		public Dictionary<ModifierType, int> Affects { get; set; } = new Dictionary<ModifierType, int>();
 		public HashSet<EquipmentSlotType> SlotTypes { get; set; } = new HashSet<EquipmentSlotType>();
-		public HashSet<ItemMaterial> Materials { get; set; } = new HashSet<ItemMaterial>();
+		public List<ItemMaterial> Materials { get; set; } = new List<ItemMaterial>();
 
 
 		[JsonIgnore]
@@ -39,7 +40,7 @@ namespace AbarimMUD.Data
 				Name = Name,
 			};
 
-			foreach(var word in Keywords)
+			foreach (var word in Keywords)
 			{
 				result.Keywords.Add(word);
 			}

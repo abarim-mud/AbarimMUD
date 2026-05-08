@@ -10,7 +10,7 @@
   "EquipmentSlot": "Legs",
   "Price": 800,
   "EnchantmentTier": 1,
-  "Material": "Iron",
+  "Material": "iron",
   "Affects": {
     "Armor": "8"
   },

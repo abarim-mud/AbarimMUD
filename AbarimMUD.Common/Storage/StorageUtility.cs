@@ -15,6 +15,7 @@ namespace AbarimMUD.Storage
 			UrContext.Register(Configuration.Storage);
 			UrContext.Register(LevelInfo.Storage);
 			UrContext.Register(SkillCostInfo.Storage);
+			UrContext.Register(ItemMaterial.Storage);
 			UrContext.Register(Item.Storage);
 			UrContext.Register(Ability.Storage);
 			UrContext.Register(Skill.Storage);

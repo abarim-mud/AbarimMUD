@@ -11,7 +11,7 @@
   "Price": 800,
   "AttackType": "Slash",
   "EnchantmentTier": 1,
-  "Material": "Iron",
+  "Material": "iron",
   "Affects": {
     "WeaponAttackBonus": "10",
     "WeaponDamage": "1"

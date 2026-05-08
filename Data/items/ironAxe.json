@@ -11,7 +11,7 @@
   "Price": 800,
   "AttackType": "Hack",
   "EnchantmentTier": 1,
-  "Material": "Iron",
+  "Material": "iron",
   "Affects": {
     "WeaponDamage": "2"
   },

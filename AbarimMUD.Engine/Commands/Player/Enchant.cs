@@ -129,7 +129,7 @@ namespace AbarimMUD.Commands.Player
 			}
 
 			if (enchantment.HasMaterialsFilters &&
-				(invItem.Info.Material == null || !enchantment.Materials.Contains(invItem.Info.Material.Value)))
+				(invItem.Info.Material == null || !enchantment.Materials.Contains(invItem.Info.Material)))
 			{
 				var sb = new StringBuilder();
 
@@ -141,7 +141,7 @@ namespace AbarimMUD.Commands.Player
 				}
 				else
 				{
-					sb.Append($"made from {invItem.Info.Material.Value}.");
+					sb.Append($"made from {invItem.Info.Material.Name}.");
 				}
 
 				sb.Append($"It could be applied only to following materials: {enchantment.Materials.JoinByComma()}.");

@@ -26,6 +26,11 @@ namespace AbarimMUD.Storage
 
 			foreach(var item in this)
 			{
+				if (item.Material != null)
+				{
+					item.Material = ItemMaterial.EnsureItemMaterialById(item.Material.Id);
+				}
+
 				if (item.Ability != null)
 				{
 					item.Ability.SetReferences();

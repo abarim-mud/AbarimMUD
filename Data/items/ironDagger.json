@@ -11,7 +11,7 @@
   "Price": 500,
   "AttackType": "Pierce",
   "EnchantmentTier": 1,
-  "Material": "Iron",
+  "Material": "iron",
   "Affects": {
     "WeaponAttackBonus": "10",
     "Damage": "1"
