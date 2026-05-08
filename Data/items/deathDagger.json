@@ -10,7 +10,7 @@
   "EquipmentSlot": "Wield",
   "Price": 100,
   "AttackType": "Pierce",
-  "Affects": {
+  "WornAffects": {
     "WeaponAttackBonus": "50"
   },
   "Flags": [

@@ -11,7 +11,7 @@
   "Price": 400,
   "EnchantmentTier": 1,
   "Material": "iron",
-  "Affects": {
+  "WornAffects": {
     "Armor": "6"
   },
   "Flags": []

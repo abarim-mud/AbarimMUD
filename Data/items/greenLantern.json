@@ -9,7 +9,7 @@
   "ItemType": "Equipment",
   "EquipmentSlot": "Light",
   "Price": 1000,
-  "Affects": {
+  "WornAffects": {
     "AttackBonus": "10"
   },
   "Flags": []

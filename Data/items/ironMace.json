@@ -12,7 +12,7 @@
   "AttackType": "Pound",
   "EnchantmentTier": 1,
   "Material": "iron",
-  "Affects": {
+  "WornAffects": {
     "WeaponAttackBonus": "20"
   },
   "Flags": [],

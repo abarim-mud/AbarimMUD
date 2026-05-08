@@ -10,7 +10,7 @@
   "ItemType": "Equipment",
   "EquipmentSlot": "Legs",
   "Price": 80000000,
-  "Affects": {
+  "WornAffects": {
     "Armor": "80",
     "PhysicalResistance": "15"
   },

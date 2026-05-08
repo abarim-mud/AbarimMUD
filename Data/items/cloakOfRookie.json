@@ -10,7 +10,7 @@
   "ItemType": "Equipment",
   "EquipmentSlot": "Cloak",
   "Price": 1000,
-  "Affects": {
+  "WornAffects": {
     "AttackBonus": "10"
   },
   "Flags": []

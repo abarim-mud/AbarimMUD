@@ -12,7 +12,7 @@
   "AttackType": "Pierce",
   "EnchantmentTier": 5,
   "Material": "mithril",
-  "Affects": {
+  "WornAffects": {
     "WeaponAttackBonus": "30"
   },
   "Flags": [

@@ -97,7 +97,7 @@ namespace AbarimMUD.Data
 
 		public ItemMaterial Material { get; set; }
 
-		public Dictionary<ModifierType, Affect> Affects { get; set; } = new Dictionary<ModifierType, Affect>();
+		public Dictionary<ModifierType, Affect> WornAffects { get; set; } = new Dictionary<ModifierType, Affect>();
 
 		public AbilityPower Ability { get; set; }
 
@@ -126,9 +126,9 @@ namespace AbarimMUD.Data
 				result.Ability = Ability.Clone();
 			}
 
-			foreach(var pair in Affects)
+			foreach(var pair in WornAffects)
 			{
-				result.Affects[pair.Key] = pair.Value.Clone();
+				result.WornAffects[pair.Key] = pair.Value.Clone();
 			}
 
 			foreach (var flag in Flags)

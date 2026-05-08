@@ -273,7 +273,7 @@ namespace AbarimMUD.ExportAreasToMMB
 				if (item.EquipmentSlot != EquipmentSlotType.Wield)
 				{
 					Affect affectArmor;
-					if (item.Affects.TryGetValue(ModifierType.Armor, out affectArmor))
+					if (item.WornAffects.TryGetValue(ModifierType.Armor, out affectArmor))
 					{
 						stats = affectArmor.Value.ToString();
 					}
@@ -302,7 +302,7 @@ namespace AbarimMUD.ExportAreasToMMB
 					d.Affects.Add("Stab");
 				}
 
-				foreach (var pair in item.Affects)
+				foreach (var pair in item.WornAffects)
 				{
 					if (item.EquipmentSlot != EquipmentSlotType.Wield &&
 						pair.Key == ModifierType.Armor)
@@ -370,7 +370,7 @@ namespace AbarimMUD.ExportAreasToMMB
 					item.ItemType.ToString(),
 					item.Price.ToString());
 
-				foreach (var pair in item.Affects)
+				foreach (var pair in item.WornAffects)
 				{
 					var affect = pair.Value;
 					d.Affects.Add($"raises {affect.Type} by {affect.Value} for {affect.DurationInSeconds} seconds.");

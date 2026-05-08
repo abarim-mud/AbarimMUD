@@ -10,7 +10,7 @@
   "ItemType": "Equipment",
   "EquipmentSlot": "Hands",
   "Price": 40000,
-  "Affects": {
+  "WornAffects": {
     "Armor": "4",
     "MartialArtsAttackBonus": "200",
     "MartialArtsDamage": "50"

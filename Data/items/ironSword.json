@@ -12,7 +12,7 @@
   "AttackType": "Slash",
   "EnchantmentTier": 1,
   "Material": "iron",
-  "Affects": {
+  "WornAffects": {
     "WeaponAttackBonus": "10",
     "WeaponDamage": "1"
   },

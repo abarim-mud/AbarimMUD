@@ -124,9 +124,9 @@ namespace AbarimMUD.Data
 					continue;
 				}
 
-				if (item.Info.Affects != null)
+				if (item.Info.WornAffects != null)
 				{
-					foreach (var pair in item.Info.Affects)
+					foreach (var pair in item.Info.WornAffects)
 					{
 						var affect = pair.Value;
 						result.Add(affect.Type, affect.Value.Value);

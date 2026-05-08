@@ -11,7 +11,7 @@
   "Price": 1000,
   "EnchantmentTier": 1,
   "Material": "leather",
-  "Affects": {
+  "WornAffects": {
     "Armor": "9"
   },
   "Flags": []
