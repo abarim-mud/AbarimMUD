@@ -26,6 +26,7 @@ namespace AbarimMUD.Commands.Player
 				return false;
 			}
 
+			var shopKeeperContext = shopKeeper.GetContext();
 			var forges = shopKeeper.ForgeShop.Forges;
 			if (data.EqualsToIgnoreCase("list"))
 			{
@@ -81,7 +82,7 @@ namespace AbarimMUD.Commands.Player
 				forge = forges.ElementAtOrDefault(number - 1);
 				if (forge == null)
 				{
-					Tell.Execute(shopKeeper.GetContext(), $"{creature.ShortDescription} I don't know forge with number {number}.");
+					shopKeeperContext.Tell(context, $"I don't know forge with number {number}.");
 					return false;
 				}
 			}
@@ -90,7 +91,7 @@ namespace AbarimMUD.Commands.Player
 				forge = (from f in forges where f.Result.MatchesKeyword(data) select f).FirstOrDefault();
 				if (forge == null)
 				{
-					Tell.Execute(shopKeeper.GetContext(), $"{creature.ShortDescription} I don't know how to forge '{data}'.");
+					shopKeeperContext.Tell(context, $"I don't know how to forge '{data}'.");
 					return false;
 				}
 			}
@@ -102,13 +103,13 @@ namespace AbarimMUD.Commands.Player
 
 				if (invItem == null)
 				{
-					Tell.Execute(shopKeeper.GetContext(), $"{creature.ShortDescription} You don't have any {cp.Item.Name}.");
+					shopKeeperContext.Tell(context, $"You don't have any {cp.Item.Name}.");
 					return false;
 				}
 
 				if (invItem.Quantity < cp.Quantity)
 				{
-					Tell.Execute(shopKeeper.GetContext(), $"{creature.ShortDescription} You don't have enough amount of {cp.Item.Name}.");
+					shopKeeperContext.Tell(context, $"You don't have enough amount of {cp.Item.Name}.");
 					return false;
 				}
 			}
@@ -116,7 +117,7 @@ namespace AbarimMUD.Commands.Player
 			// Check gold
 			if (creature.Gold < forge.Price)
 			{
-				Tell.Execute(shopKeeper.GetContext(), $"{creature.ShortDescription} You don't have enough gold.");
+				shopKeeperContext.Tell(context, $"You don't have enough gold.");
 				return false;
 			}
 
@@ -141,7 +142,7 @@ namespace AbarimMUD.Commands.Player
 			}
 
 			context.Send($"{shopKeeper} forges {item.Name} and gives it to you.");
-			Tell.Execute(shopKeeper.GetContext(), $"{creature.ShortDescription} There you go, {creature.ShortDescription}.");
+			shopKeeperContext.Tell(context, $"There you go, {creature.ShortDescription}.");
 
 			var character = creature as Character;
 			character?.Save();

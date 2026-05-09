@@ -25,6 +25,7 @@ namespace AbarimMUD.Commands.Player
 				return false;
 			}
 
+			var shopKeeperContext = shopKeeper.GetContext();
 			var exchanges = shopKeeper.ExchangeShop.Exchanges;
 			if (data.EqualsToIgnoreCase("list"))
 			{
@@ -91,13 +92,13 @@ namespace AbarimMUD.Commands.Player
 				var invItem = (from i in inv where ItemInstance.AreEqual(i.Item, cp.Item) select i).FirstOrDefault();
 				if (invItem == null)
 				{
-					Tell.Execute(shopKeeper.GetContext(), $"{creature.ShortDescription} You don't have any {cp.Item.Name}.");
+					shopKeeperContext.Tell(context, $"You don't have any {cp.Item.Name}.");
 					return false;
 				}
 
 				if (invItem.Quantity < cp.Quantity)
 				{
-					Tell.Execute(shopKeeper.GetContext(), $"{creature.ShortDescription} You don't have enough amount of {cp.Item.Name}.");
+					shopKeeperContext.Tell(context, $"You don't have enough amount of {cp.Item.Name}.");
 					return false;
 				}
 			}
@@ -112,7 +113,7 @@ namespace AbarimMUD.Commands.Player
 			}
 
 			context.Send($"{shopKeeper} gives you {exchange.Item.Name} in exchange for some items.");
-			Tell.Execute(shopKeeper.GetContext(), $"{creature.ShortDescription} There you go, {creature.ShortDescription}.");
+			shopKeeperContext.Tell(context, $"There you go, {creature.ShortDescription}.");
 
 			var character = creature as Character;
 			character?.Save();

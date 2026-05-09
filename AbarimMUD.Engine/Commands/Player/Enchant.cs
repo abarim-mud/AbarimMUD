@@ -88,15 +88,16 @@ namespace AbarimMUD.Commands.Player
 				return false;
 			}
 
+			var enchanterContext = enchanter.GetContext();
 			if (invItem.Item.Enchantment != null)
 			{
-				Tell.Execute(enchanter.GetContext(), $"{creature.ShortDescription} {invItem.Name} holds an enchantment already.");
+				enchanterContext.Tell(context, $"{invItem.Name} holds an enchantment already.");
 				return false;
 			}
 
 			if (invItem.Info.EnchantmentTier == null || invItem.Info.EquipmentSlot == null)
 			{
-				Tell.Execute(enchanter.GetContext(), $"{creature.ShortDescription} {invItem.Name} can't be enchanted.");
+				enchanterContext.Tell(context, $"{invItem.Name} can't be enchanted.");
 				return false;
 			}
 
@@ -107,7 +108,7 @@ namespace AbarimMUD.Commands.Player
 				enchantment = Enchantment.Storage.ElementAtOrDefault(enchantmentNumber - 1);
 				if (enchantment == null)
 				{
-					Tell.Execute(enchanter.GetContext(), $"{creature.ShortDescription} I don't know enchantment with number {enchantmentNumber}.");
+					enchanterContext.Tell(context, $"I don't know enchantment with number {enchantmentNumber}.");
 					return false;
 				}
 			}
@@ -116,7 +117,7 @@ namespace AbarimMUD.Commands.Player
 				enchantment = (from f in Enchantment.Storage where f.MatchesKeyword(args[1]) select f).FirstOrDefault();
 				if (enchantment == null)
 				{
-					Tell.Execute(enchanter.GetContext(), $"{creature.ShortDescription} I don't know the enchantment '{args[1]}'.");
+					enchanterContext.Tell(context, $"I don't know the enchantment '{args[1]}'.");
 					return false;
 				}
 			}
@@ -124,7 +125,7 @@ namespace AbarimMUD.Commands.Player
 			// Check item type
 			if (enchantment.HasSlotTypesFilters && !enchantment.SlotTypes.Contains(invItem.Info.EquipmentSlot.Value))
 			{
-				Tell.Execute(enchanter.GetContext(), $"{creature.ShortDescription} The enchantment '{enchantment.Name}' can't be applied to {invItem.Name} of type {invItem.Info.EquipmentSlot}. It could be applied only to following item types: {enchantment.SlotTypes.JoinByComma()}");
+				enchanterContext.Tell(context, $"The enchantment '{enchantment.Name}' can't be applied to {invItem.Name} of type {invItem.Info.EquipmentSlot}. It could be applied only to following item types: {enchantment.SlotTypes.JoinByComma()}");
 				return false;
 			}
 
@@ -133,7 +134,7 @@ namespace AbarimMUD.Commands.Player
 			{
 				var sb = new StringBuilder();
 
-				sb.Append($"{creature.ShortDescription} The enchantment '{enchantment.Name}' can't be applied to {invItem.Name} ");
+				sb.Append($"The enchantment '{enchantment.Name}' can't be applied to {invItem.Name} ");
 
 				if (invItem.Info.Material == null)
 				{
@@ -146,7 +147,7 @@ namespace AbarimMUD.Commands.Player
 
 				sb.Append($"It could be applied only to following materials: {enchantment.Materials.JoinByComma()}.");
 
-				Tell.Execute(enchanter.GetContext(), sb.ToString());
+				enchanterContext.Tell(context, sb.ToString());
 
 				return false;
 			}
@@ -159,14 +160,14 @@ namespace AbarimMUD.Commands.Player
 			if (invStones == null || invStones.Quantity < enchantment.EnchantmentStones)
 			{
 				var q = invStones != null ? invStones.Quantity : 0;
-				Tell.Execute(enchanter.GetContext(), $"{creature.ShortDescription} You don't have enough enchantment stones. You have {q} of {enchantment.EnchantmentStones} '{stoneInfo.ShortDescription}'");
+				enchanterContext.Tell(context, $"You don't have enough enchantment stones. You have {q} of {enchantment.EnchantmentStones} '{stoneInfo.ShortDescription}'");
 				return false;
 			}
 
 			// Check gold
 			if (creature.Gold < enchantment.Price)
 			{
-				Tell.Execute(enchanter.GetContext(), $"{creature.ShortDescription} You don't have enough gold.");
+				enchanterContext.Tell(context, $"You don't have enough gold.");
 				return false;
 			}
 
@@ -187,7 +188,7 @@ namespace AbarimMUD.Commands.Player
 			}
 
 			context.Send($"{enchanter} takes {invItem.JustName}, makes some gestures over it.\nThe item grows brightly.\nThe enchantment stones crumble to dust.\n{enchanter.ShortDescription} gives you {invItem.Name}.");
-			Tell.Execute(enchanter.GetContext(), $"{creature.ShortDescription} There you go, {creature.ShortDescription}.");
+			enchanterContext.Tell(context, $"There you go, {creature.ShortDescription}.");
 
 			var character = creature as Character;
 			character?.Save();
