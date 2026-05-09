@@ -1,0 +1,13 @@
+{
+  "Id": "potionOfOblivion",
+  "Keywords": [
+    "potion",
+    "oblivion"
+  ],
+  "ShortDescription": "a potion of oblivion",
+  "Description": "a potion of oblivion",
+  "ItemType": "Potion",
+  "Price": 10000,
+  "Ability": "oblivion",
+  "Flags": []
+}
