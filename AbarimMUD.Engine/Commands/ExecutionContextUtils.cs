@@ -11,7 +11,7 @@ namespace AbarimMUD.Commands
 			{
 				if (c.MatchesKeyword(keyword))
 				{
-					return (ExecutionContext)c.Tag;
+					return c.GetContext();
 				}
 			}
 
@@ -20,7 +20,7 @@ namespace AbarimMUD.Commands
 			{
 				if (m.MatchesKeyword(keyword))
 				{
-					return (ExecutionContext)m.Tag;
+					return m.GetContext();
 				}
 			}
 

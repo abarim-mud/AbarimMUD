@@ -35,7 +35,7 @@ namespace AbarimMUD.Commands.Administrator
 				return false;
 			}
 
-			var characterContext = (ExecutionContext)character.Tag;
+			var characterContext = character.GetContext();
 			if (characterContext == null)
 			{
 				context.Send($"Character {character.Name} isn't online");

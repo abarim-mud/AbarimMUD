@@ -151,7 +151,7 @@ namespace AbarimMUD.Combat
 					message = GetAttackMessage(attackRoll, damage, attackerName, targetName, attack.Type, fightDetails);
 				}
 
-				var context = (ExecutionContext)character.Tag;
+				var context = character.GetContext();
 				context.SendBattleMessage(message);
 			}
 
