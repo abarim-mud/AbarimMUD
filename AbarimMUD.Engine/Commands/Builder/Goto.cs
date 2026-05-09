@@ -7,6 +7,31 @@ namespace AbarimMUD.Commands.Builder
 {
 	public sealed class Goto : BuilderCommand
 	{
+		private static bool TeleportTo(ExecutionContext context, Room newRoom)
+		{
+			var sourceRoom = context.Room;
+
+			if (sourceRoom != null)
+			{
+				context.SendRoomExceptMe(string.Format("{0} disappears suddenly.", context.ShortDescription));
+			}
+
+			context.Room = newRoom;
+
+			var msg = string.Format("{0} appears from thin air.", context.ShortDescription);
+			foreach (var ctx in context.AllInRoom())
+			{
+				if (ctx != context)
+				{
+					ctx.Send(msg);
+				}
+			}
+
+			context.Send("You had been transfered!");
+			Look.Execute(context);
+			return true;
+		}
+
 		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
 			if (string.IsNullOrWhiteSpace(data))
@@ -22,10 +47,7 @@ namespace AbarimMUD.Commands.Builder
 				var newRoom = Room.GetRoomById(id);
 				if (newRoom != null)
 				{
-					context.Room = newRoom;
-					context.Send("You had been transfered!");
-					Look.Execute(context);
-					return true;
+					return TeleportTo(context, newRoom);
 				}
 
 				context.Send(string.Format("Unable to find room with id {0}", id));
@@ -36,27 +58,21 @@ namespace AbarimMUD.Commands.Builder
 			var player = Character.ActiveCharacters.FirstOrDefault(c => c.Name.EqualsToIgnoreCase(data));
 			if (player != null)
 			{
-				context.Room = player.Room;
-				context.Send("You had been transfered!");
-				Look.Execute(context);
-				return true;
+				return TeleportTo(context, player.Room);
 			}
 
 			// Try mobile instance by keyword across all areas
-			foreach (var area in Area.Storage)
+			foreach (var creature in Creature.ActiveCreatures)
 			{
-				foreach (var room in area.Rooms)
+				var mob = creature as MobileInstance;
+				if (mob == null || mob.Room == null)
 				{
-					foreach (var mob in room.Mobiles)
-					{
-						if (mob.MatchesKeyword(data))
-						{
-							context.Room = room;
-							context.Send("You had been transfered!");
-							Look.Execute(context);
-							return true;
-						}
-					}
+					continue;
+				}
+
+				if (mob.MatchesKeyword(data))
+				{
+					return TeleportTo(context, mob.Room);
 				}
 			}
 

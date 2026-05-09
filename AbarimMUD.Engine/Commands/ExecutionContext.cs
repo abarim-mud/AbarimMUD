@@ -230,8 +230,12 @@ namespace AbarimMUD.Commands
 			var room = Room;
 			foreach (var c in room.Characters)
 			{
-				var context = (ExecutionContext)c.Tag;
-				yield return context;
+				yield return c.GetContext();
+			}
+
+			foreach (var m in room.Mobiles)
+			{
+				yield return m.GetContext();
 			}
 		}
 

@@ -249,6 +249,7 @@ namespace AbarimMUD.Commands
 						}
 						character.SkillPoints += refund;
 						character.InvalidateStats();
+						character.Save();
 						target.Send($"You've been reimbursed {refund} skill point{(refund == 1 ? "" : "s")}.");
 					}
 					break;
