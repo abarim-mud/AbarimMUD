@@ -112,7 +112,7 @@ namespace AbarimMUD.Commands.Player
 				inv.AddItem(cp.Item, -cp.Quantity);
 			}
 
-			context.Send($"{shopKeeper} gives you {exchange.Item.Name} in exchange for some items.");
+			context.Send($"{shopKeeper.ShortDescription} gives you {exchange.Item.Name} in exchange for some items.");
 			shopKeeperContext.Tell(context, $"There you go, {creature.ShortDescription}.");
 
 			var character = creature as Character;
