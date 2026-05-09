@@ -1,0 +1,11 @@
+{
+  "Id": "oblivion",
+  "Name": "oblivion",
+  "Type": "Spell",
+  "MovesCost": 0,
+  "ManaCost": 50,
+  "MessageHitUser": "You forget everything you've learned.",
+  "MessageHitRoom": "{user.Name} looks blankly into the void.",
+  "Special": "Oblivion",
+  "Flags": []
+}

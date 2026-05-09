@@ -25,7 +25,8 @@ namespace AbarimMUD.Data
 
 	public enum SpecialAbility
 	{
-		Recall
+		Recall,
+		Oblivion
 	}
 
 	public class AbilityAffects

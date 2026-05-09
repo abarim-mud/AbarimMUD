@@ -237,6 +237,21 @@ namespace AbarimMUD.Commands
 
 					BaseCommand.Look.Execute(target);
 					break;
+
+				case SpecialAbility.Oblivion:
+					if (target.Creature is Character character)
+					{
+						var refund = character.SpentSkillPointsCount;
+						character.Skills.Clear();
+						foreach (var skill in character.Class.StartingSkills)
+						{
+							character.Skills[skill.Id] = new SkillValue(skill);
+						}
+						character.SkillPoints += refund;
+						character.InvalidateStats();
+						target.Send($"You've been reimbursed {refund} skill point{(refund == 1 ? "" : "s")}.");
+					}
+					break;
 			}
 
 			if (ability.Flags.Contains(AbilityFlags.Offensive))

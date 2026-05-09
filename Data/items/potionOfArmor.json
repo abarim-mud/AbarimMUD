@@ -7,7 +7,7 @@
   "ShortDescription": "a potion of armor",
   "Description": "a potion of armor",
   "ItemType": "Potion",
-  "Price": 5000,
+  "Price": 2000,
   "Ability": "armor:20",
   "Flags": []
 }

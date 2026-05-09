@@ -1,0 +1,11 @@
+{
+  "Id": "recall",
+  "Name": "recall",
+  "Type": "Spell",
+  "MovesCost": 0,
+  "ManaCost": 35,
+  "MessageHitUser": "You recall.",
+  "MessageHitRoom": "{user.Name} recalls.",
+  "Special": "Recall",
+  "Flags": []
+}

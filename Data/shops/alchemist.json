@@ -6,7 +6,8 @@
     "potionOfAegis",
     "potionOfHaste",
     "potionOfRegeneration",
-    "potionOfMobility"
+    "potionOfMobility",
+    "potionOfOblivion"
   ],
   "LimitedItems": [],
   "ItemTypes": [

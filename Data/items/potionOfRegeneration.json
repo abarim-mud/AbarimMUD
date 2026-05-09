@@ -7,7 +7,7 @@
   "ShortDescription": "a potion of regeneration",
   "Description": "a potion of regeneration",
   "ItemType": "Potion",
-  "Price": 5000,
+  "Price": 2000,
   "Ability": "regeneration:20",
   "Flags": []
 }

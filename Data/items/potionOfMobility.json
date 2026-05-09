@@ -7,7 +7,7 @@
   "ShortDescription": "a potion of mobility",
   "Description": "a potion of mobility",
   "ItemType": "Potion",
-  "Price": 5000,
+  "Price": 2000,
   "Ability": "mobility:30",
   "Flags": []
 }

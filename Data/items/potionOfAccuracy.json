@@ -7,7 +7,7 @@
   "ShortDescription": "a potion of accuracy",
   "Description": "a potion of accuracy",
   "ItemType": "Potion",
-  "Price": 5000,
+  "Price": 2000,
   "Ability": "accuracy:20",
   "Flags": []
 }

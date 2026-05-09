@@ -7,7 +7,7 @@
   "ShortDescription": "a potion of aegis",
   "Description": "a potion of aegis",
   "ItemType": "Potion",
-  "Price": 7500,
+  "Price": 3000,
   "Ability": "aegis:30",
   "Flags": []
 }
