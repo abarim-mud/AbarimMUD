@@ -36,7 +36,6 @@ namespace AbarimMUD.Data
 			public int NegativeRegen { get; set; }
 			public ValueRange BaseMartialArtsDamage { get; set; } = new ValueRange(1, 4);
 
-			public int RecallManaCost { get; set; } = 35;
 			public int SellPricePercentage { get; set; } = 50;
 			public int XpMultiply { get; set; } = 2;
 			public int HuntPauseInMs { get; set; } = 6000;
@@ -82,7 +81,6 @@ namespace AbarimMUD.Data
 		public static int NegativeRegen => Instance.NegativeRegen;
 		public static ValueRange CharacterBarehandedDamage => Instance.BaseMartialArtsDamage;
 
-		public static int RecallManaCost => Instance.RecallManaCost;
 		public static int SellPricePercentage => Instance.SellPricePercentage;
 		public static int XpMultiply => Instance.XpMultiply;
 		public static int HuntPauseInMs => Instance.HuntPauseInMs;

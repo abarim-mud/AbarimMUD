@@ -15,6 +15,16 @@ namespace AbarimMUD.Data
 		public Ability Ability { get; internal set; }
 		public int Power { get; internal set; }
 
+		internal AbilityPower()
+		{
+		}
+
+		public AbilityPower(Ability ability)
+		{
+			Ability = ability ?? throw new ArgumentNullException(nameof(ability));
+			Power = 0;
+		}
+
 		public override string ToString()
 		{
 			if (Power == 0)

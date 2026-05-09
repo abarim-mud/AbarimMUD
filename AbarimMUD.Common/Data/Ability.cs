@@ -23,6 +23,11 @@ namespace AbarimMUD.Data
 		BurnsHalfMovesOnWearOff
 	}
 
+	public enum SpecialAbility
+	{
+		Recall
+	}
+
 	public class AbilityAffects
 	{
 		public Dictionary<ModifierType, Affect> Values { get; set; } = new Dictionary<ModifierType, Affect>();
@@ -126,6 +131,7 @@ namespace AbarimMUD.Data
 		public AbilityAffects Affects { get; set; }
 
 		public InstantEffect[] InstantEffects { get; set; }
+		public SpecialAbility? Special { get; set; }
 
 		public HashSet<AbilityFlags> Flags { get; set; } = new HashSet<AbilityFlags>();
 		public int? CommandLagInMs { get; set; }

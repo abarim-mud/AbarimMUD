@@ -6,23 +6,10 @@ namespace AbarimMUD.Commands.Player
 	{
 		protected override bool InternalExecute(ExecutionContext context, string data)
 		{
-			if (context.Creature.State.Mana < Configuration.RecallManaCost)
-			{
-				context.Send($"You don't have enough mana. {Configuration.RecallManaCost} mana is required.");
-				return false;
-			}
+			var ability = Ability.EnsureAbilityById("recall");
+			var ap = new AbilityPower(ability);
 
-			context.BreakHunt();
-
-			context.Room = Room.EnsureRoomById(Configuration.StartRoomId);
-			context.Send();
-			context.SendRoomExceptMe($"{context.ShortDescription} appears in the middle of the room.");
-
-			context.State.Mana -= Configuration.RecallManaCost;
-
-			Look.Execute(context);
-
-			return true;
+			return context.UseAbility(ap, context.ShortDescription, null, null);
 		}
 	}
 }

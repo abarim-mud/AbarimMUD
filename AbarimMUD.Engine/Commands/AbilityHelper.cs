@@ -1,10 +1,7 @@
 ﻿using AbarimMUD.Combat;
-using AbarimMUD.Commands.Builder;
 using AbarimMUD.Data;
 using AbarimMUD.Utils;
-using NLog.Targets;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace AbarimMUD.Commands
@@ -171,7 +168,7 @@ namespace AbarimMUD.Commands
 				}
 			}
 
-			if (ability.Type == AbilityType.Spell)
+			if (ability.Type == AbilityType.Spell && ability.Special == null)
 			{
 				context.Send($"You cast '{ability.Name}'.");
 			}
@@ -226,6 +223,20 @@ namespace AbarimMUD.Commands
 				context.SendKillMessage(ability, target, weaponStr, info);
 				context.Slain(target);
 				return false;
+			}
+
+			// Handle special cases
+			switch (ability.Special)
+			{
+				case SpecialAbility.Recall:
+					target.BreakHunt();
+
+					target.Room = Room.EnsureRoomById(Configuration.StartRoomId);
+					target.Send();
+					target.SendRoomExceptMe($"{context.ShortDescription} appears in the middle of the room.");
+
+					BaseCommand.Look.Execute(target);
+					break;
 			}
 
 			if (ability.Flags.Contains(AbilityFlags.Offensive))
